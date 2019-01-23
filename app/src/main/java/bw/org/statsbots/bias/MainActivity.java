@@ -1,0 +1,399 @@
+package bw.org.statsbots.bias;
+
+import android.app.AlertDialog;
+import android.app.Application;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.opengl.Visibility;
+import android.os.Build;
+import android.os.SystemClock;
+import android.os.Vibrator;
+import android.support.annotation.DrawableRes;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
+
+public class MainActivity extends AppCompatActivity implements Serializable{
+    
+    public transient  EditText[] hhArray;//Hold list of HouseHold members
+    public EditText[] hhArrayTemp;//Temp array to reorder the Household members upon removal of one member
+    public Button[] removeArray;//Remove button
+    public Button[] removeArrayTemp;//Temp array to reorder the remove buttons
+    public int HeadofHouse;
+    int counter = 0;
+    private DatabaseHelper myDB;
+
+
+    public HouseHold thisHouse;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        final Drawable deleteIcon=this.getResources(). getDrawable( R.drawable.ic_delete_forever_black_24dp);
+        hhArray = new EditText[30]; //Max number of house hold members
+        hhArrayTemp = new EditText[30];
+        removeArray = new Button[30];
+        removeArrayTemp = new Button[30];
+
+        Intent i = getIntent();
+        thisHouse = (HouseHold)i.getSerializableExtra("Household");
+
+       // Log.d("DB Name: ",myDB.getDatabaseName().toString() );
+        myDB = new DatabaseHelper(this);
+        //Log.d("DB Name: ",myDB.getDatabaseName().toString() );
+       myDB.onOpen(myDB.getWritableDatabase());
+
+        //myDB.dropTables(myDB.getWritableDatabase());
+       //myDB.createTables(myDB.getReadableDatabase());
+       //myDB.insertTables(myDB.getReadableDatabase());
+      // myDB.getAllData(myDB.getWritableDatabase());
+        //layout to contain household members
+        final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.memberlist);
+        linearLayout.setPadding(40,2,2,2);
+
+
+        /**
+         * Button to add household member
+         *
+         */
+        final FloatingActionButton fb = (FloatingActionButton)findViewById(R.id.floatAdd);
+        fb.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+            if((counter>0 && hhArray[counter-1].getText().length()==0) || (counter>0 && hhArray[counter-1].getText().length()==0))
+            {
+                //do nothing wait for the enumerator to enter HH Head
+            }
+            else
+            {
+                //Set the name of Person to be removed
+                if (counter == 0)
+                {
+
+                }
+                else {
+                    removeArray[counter - 1].setText("Remove " + hhArray[counter - 1].getText());
+                }
+
+
+                Display display = getWindowManager().getDefaultDisplay();
+                int width = display.getWidth();
+
+                //Textbox to enter hhmember names
+                final EditText personName = new EditText(MainActivity.this);
+
+                // Create a border programmatically
+                GradientDrawable shape = new GradientDrawable();
+                int myColor = getResources().getColor(R.color.colorPrimaryDark);
+
+                //shape.setColor(myColor);
+                shape.setStroke(2, myColor);
+                shape.setCornerRadius(5);
+
+
+                //Assign the created border to EditText widget
+                personName.setBackground(shape);
+                personName.setPadding(25,25,25,25);
+
+
+                if (counter == 0) {
+                    personName.setHint("Head of House");
+                } else {
+                    personName.setHint("Household Member " + counter);
+                }
+
+                personName.setId(counter);
+                personName.setSingleLine();
+
+                if (width > 700) {
+                    //personName.setWidth(700);
+                    personName.setWidth(width);
+                } else {
+                    personName.setWidth(width);
+                }
+
+                //store edittext personName in hhArray
+                hhArray[counter] = personName;
+
+                //remove person button
+                final Button btnPremove = new Button(MainActivity.this);
+                btnPremove.setId(counter);
+                btnPremove.setText("Remove");
+                btnPremove.setTextColor(Color.RED);
+                btnPremove.setCompoundDrawablesWithIntrinsicBounds(deleteIcon, null, null, null);
+                btnPremove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        /**
+                         * Throws null pointer exception at some point ----- fix
+                         */
+                        ((ViewManager)hhArray[btnPremove.getId()].getParent()).removeView(hhArray[btnPremove.getId()]);
+                        ((ViewManager)removeArray[btnPremove.getId()].getParent()).removeView(removeArray[btnPremove.getId()]);
+
+
+                        //set hhArray and removeArray index to null
+                        hhArray[counter]=null;
+                        removeArray[counter]=null;
+
+                        if(counter==1){
+                            counter=0;
+                        }
+                        else{
+
+                            //make sure to clear the already entered data about the individual and reorder everything
+                            //Re shuffle the arrays and fill the missing index
+                            int t=0;
+                            for (int i = 0; i<hhArray.length;i++)
+                            {
+                                if(hhArray[i]==null)
+                                {
+                                    continue;
+                                }else {
+                                    hhArrayTemp[t]=hhArray[i];
+                                    t+=1;
+                                }
+                            }
+
+                            int t1=0;
+                            for (int i = 0; i<removeArray.length;i++)
+                            {
+                                if(removeArray[i]==null)
+                                {
+                                    continue;
+                                }
+                                else {
+                                    removeArrayTemp[t1]=removeArray[i];
+                                    t1+=1;
+                                }
+                            }
+
+                            //copy the temp to hhArray
+                            hhArray=hhArrayTemp.clone();
+                            removeArray = removeArrayTemp.clone();
+                            counter-=1;
+                            setTitle("P01 Total Persons " + counter);
+                            //add items to the lenearlayout afresh;
+                            //linearLayout.removeAllViewsInLayout();
+
+
+
+                        }
+                    }
+                });
+
+                /**
+                 * Set onKeyListener to text box to update remove person button tex
+                 */
+                personName.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(s.toString().length() == 0)
+                        {
+                            btnPremove.setText("Remove");
+                        }
+                        else{
+                            btnPremove.setText("Remove "+s);
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+
+                linearLayout.addView(hhArray[counter]);
+                hhArray[counter].requestFocus();
+
+                personName.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(5, 10, 5, 10);
+                personName.setLayoutParams(params);
+
+                removeArray[counter] = btnPremove;
+
+                linearLayout.addView(removeArray[counter]);
+                btnPremove.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+
+                counter++;
+                setTitle("P01 Total Persons " + counter);
+
+
+
+
+            }
+
+            }
+        });
+
+
+        /**
+         * Button to complete listing Individuals
+         */
+        final FloatingActionButton fbDone = (FloatingActionButton)findViewById(R.id.floatNext);
+        fbDone.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                if(hhArray[0]==null){
+                    AlertDialog.Builder builderErr = new AlertDialog.Builder(MainActivity.this);
+                    builderErr.setTitle("P01 Error");
+                    builderErr.setIcon(R.drawable.ic_warning_orange_24dp);
+                    builderErr.setMessage("Persons roster requires atleast 1 person");
+                    builderErr.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //Do nothing only when the Head of House is selected we proceed.
+
+                        }
+                    });
+
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+
+
+                    AlertDialog alertDialog =  builderErr.show();
+                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                    positiveButtonLL.width=ViewGroup.LayoutParams.MATCH_PARENT;
+                    positiveButton.setTextColor(Color.WHITE);
+                    positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                    positiveButton.setLayoutParams(positiveButtonLL);
+
+                }else{
+                    //Complete the list entry
+                    final CharSequence[] list = new String[counter];
+                    for(int i =0;i<counter;i++){
+                        list[i]= (i+1) + " - " + hhArray[i].getText().toString();
+                    }
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                    builder.setTitle("Select head of House");
+
+                    builder.setIcon(R.drawable.ic_person_black_24dp);
+                    //builder.setMessage("The person you are about to remove is considered Head of Household. Are you sure you want to remove head?" + list[2].toString());
+                    builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //Do nothing only when the Head of House is selected we proceed.
+
+                        }
+                    });
+
+
+
+                    builder.setItems(list, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            //Start New House Class Activity
+                            String[] plist = new String[counter];
+                            for(int i =0;i<counter;i++){
+                                plist[i]= hhArray[i].getText().toString();
+                            }
+
+                            //Set the Head of house to index of selected array
+                            HeadofHouse = which;
+                             thisHouse.setHead(HeadofHouse);
+                            PersonRoster[] p = new PersonRoster[plist.length];
+
+                            /**
+                             * For each household member set their line number and name
+                             */
+                            for (int i=0;i<plist.length;i++) {
+                                p[i] = new PersonRoster();
+                                p[i].setLineNumber(i);
+                                p[i].setP01(plist[i]);
+                            }
+
+                            thisHouse.setHouseHoldeMembers(p);
+
+                            Intent intent = new Intent(MainActivity.this,P02.class);
+                            intent.putExtra("Household",  thisHouse);
+                            startActivity(intent);
+
+
+                        }
+                    });
+
+
+
+                    AlertDialog ad = builder.show();
+
+                    //SET DIVIDER
+                    ListView listView = ad.getListView();
+                    listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+                    listView.setDividerHeight(3);
+
+
+                    //OK Button layout
+                    final Button positiveButton = ad.getButton(AlertDialog.BUTTON_POSITIVE);
+                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                    positiveButtonLL.width=ViewGroup.LayoutParams.MATCH_PARENT;
+                    positiveButton.setTextColor(Color.WHITE);
+                    positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
+                    positiveButton.setLayoutParams(positiveButtonLL);
+
+
+                }
+
+
+            }
+        });
+
+
+
+
+    }
+
+
+
+}

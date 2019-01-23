@@ -1,0 +1,204 @@
+package bw.org.statsbots.bias;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Vibrator;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import java.io.Serializable;
+
+public class q802 extends AppCompatActivity implements Serializable {
+
+    protected HouseHold thisHouse;
+    protected PersonRoster p1 = null;
+    protected String currentHH = null;
+    protected Individual indv;
+    protected LibraryClass lib;
+    protected RadioButton rbtn1, rbtn2, rbtna2, rbtna3, rbtna4, rbtna5, rbtnaother, selected, selected1;
+    protected RadioGroup rbtngroup, rbtngroup1;
+    protected EditText edt;
+    protected TextView txt1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_q802);
+
+        setTitle("q802 HIV SUPPORT, CARE AND TREATMENT");
+        lib = new LibraryClass();
+        rbtn1 = (RadioButton) findViewById(R.id.q802_1);
+        rbtn2 = (RadioButton) findViewById(R.id.q802_2);
+        rbtngroup = (RadioGroup) findViewById(R.id.q802radioGroup);
+
+
+        rbtngroup1 = (RadioGroup) findViewById(R.id.q802radioGroupa);
+        rbtna2 = (RadioButton) findViewById(R.id.q802a_2);
+        rbtna3 = (RadioButton) findViewById(R.id.q802a_3);
+        rbtna4 = (RadioButton) findViewById(R.id.q802a_4);
+        rbtna5 = (RadioButton) findViewById(R.id.q802a_5);
+        rbtnaother = (RadioButton) findViewById(R.id.q802a_other);
+        edt = (EditText) findViewById(R.id.q802a_other1);
+        txt1 = (TextView) findViewById(R.id.q802a);
+
+        final int selectedId1 = rbtngroup1.getCheckedRadioButtonId();
+
+        Intent i = getIntent();
+        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        int p = 0;
+
+
+        /**
+         * NEXT question
+         */
+        Button btnNext = (Button) findViewById(R.id.button);
+
+
+        /**
+         * NEXT and SAVE BUTTON
+         */
+        // btnNext.setText(btnLabel);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int selectedId = rbtngroup.getCheckedRadioButtonId();
+                selected = (RadioButton) findViewById(selectedId);
+
+                if (selected == null) {
+                    lib.showError(q802.this, "Q802 Error", "Please select an option q802");
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+                } else {
+                    int selectedId1 = rbtngroup1.getCheckedRadioButtonId();
+                    selected1 = (RadioButton) findViewById(selectedId1);
+                    if (selected1 == null) {
+                        lib.showError(q802.this, "Q802a Error", "Please select an option for q802a");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+                    } else {
+
+                        //Set Q802 and Q802a for the current individual
+                        indv.setQ802(selected.getText().toString().substring(0, 1));
+                        indv.setQ802a(selected.getText().toString().substring(0, 1));
+
+                        //If No is selected, skip to Q901
+                        if (selected == rbtn2) {
+
+                            //Next question q901
+                            Intent intent = new Intent(q802.this, q901.class);
+                            intent.putExtra("Household", thisHouse);
+                            startActivity(intent);
+
+                        } else {
+
+
+                            Intent intent = new Intent(q802.this, q803.class);
+                            intent.putExtra("Household", thisHouse);
+                            startActivity(intent);
+
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    public void onRadioButtonClicked(View v) {
+
+        TextView q802atext = findViewById(R.id.q802a_other);
+        RadioGroup rg1 = (RadioGroup) findViewById(R.id.q802radioGroupa);
+        // Is the current Radio Button checked?
+        boolean checked = ((RadioButton) v).isChecked();
+
+        switch (v.getId()) {
+            case R.id.q802_1:
+                if (checked)
+                    rbtna2.setEnabled(true);
+                rbtna3.setEnabled(true);
+                rbtna4.setEnabled(true);
+                rbtna5.setEnabled(true);
+                rbtnaother.setEnabled(true);
+                txt1.setTextColor(Color.BLACK);
+
+
+                break;
+
+
+            case R.id.q802_2:
+                if (checked)
+
+                    rbtna2.setEnabled(false);
+                rbtna3.setEnabled(false);
+                rbtna4.setEnabled(false);
+                rbtna5.setEnabled(false);
+                rbtnaother.setEnabled(false);
+                edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+                rbtna2.setChecked(false);
+                rbtna3.setChecked(false);
+                rbtna4.setChecked(false);
+                rbtna5.setChecked(false);
+                rbtnaother.setEnabled(false);
+                txt1.setTextColor(Color.LTGRAY);
+
+
+                break;
+            case R.id.q802a_2:
+                if (checked)
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+
+
+                break;
+            case R.id.q802a_3:
+                if (checked)
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+
+
+                break;
+            case R.id.q802a_4:
+                if (checked)
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+
+
+                break;
+            case R.id.q802a_5:
+                if (checked)
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+
+
+                break;
+            case R.id.q802a_other:
+                if (checked)
+                    edt.setVisibility(View.VISIBLE);
+
+
+                break;
+
+
+        }
+    }
+}
+
+
+
+
+
+

@@ -1,0 +1,545 @@
+package bw.org.statsbots.bias;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Vibrator;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import java.io.Serializable;
+
+public class q904 extends AppCompatActivity implements Serializable {
+    protected HouseHold thisHouse;
+    protected Individual individual;
+    protected PersonRoster p1 = null;
+    protected String currentHH = null;
+    protected LibraryClass lib;
+    protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5,rbtnaOther , rbtnc1, rbtnc2, rbtnc3, rbtnc4, rbtnc5, rbtnc6, rbtnc7, rbtnc8, rbtnc10, rbtnc11,  rbtnc12, rbtnc13,rbtncOther  ;
+    protected RadioGroup rg, rga, rgc;
+    protected EditText edta, edtc, edtbmnths, edtbyear;
+    protected TextView t1, t2, t3, t4;
+    protected CheckBox chkb99, chkb9999;
+    protected RadioButton selectedRbtn, selectedRbtna, selectedRbtnc;
+    HouseHold thisHose;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_q904);
+
+
+
+        setTitle("Q904: HIV SUPPORT, CARE ANF TREATMENT");
+        lib = new LibraryClass();
+        rbtn1 = (RadioButton) findViewById(R.id.q904_1);
+        rbtn2 = (RadioButton) findViewById(R.id.q904_2);
+        rbtn3 = (RadioButton) findViewById(R.id.q904_3);
+        rbtn4 = (RadioButton) findViewById(R.id.q904_4);
+
+        chkb99 = (CheckBox) findViewById(R.id.q904b_99);
+        chkb9999 = (CheckBox) findViewById(R.id.q904b_9999);
+
+        edtbmnths = (EditText) findViewById(R.id.q904b_months);
+        edtbyear = (EditText) findViewById(R.id.q904b_year);
+
+        edta = (EditText) findViewById(R.id.q904a_other1);
+        edtc = (EditText) findViewById(R.id.q904c_other1);
+
+
+
+        rbtna1 = (RadioButton) findViewById(R.id.q904a_1);
+        rbtna2 = (RadioButton) findViewById(R.id.q904a_2);
+        rbtna3 = (RadioButton) findViewById(R.id.q904a_3);
+        rbtna4 = (RadioButton) findViewById(R.id.q904a_4);
+        rbtna5 = (RadioButton) findViewById(R.id.q904a_5);
+        rbtnaOther = (RadioButton) findViewById(R.id.q904a_other);
+        edta = (EditText) findViewById(R.id.q904a_other1);
+
+
+
+        rbtnc1 = (RadioButton) findViewById(R.id.q904c_1);
+        rbtnc2 = (RadioButton) findViewById(R.id.q904c_2);
+        rbtnc3 = (RadioButton) findViewById(R.id.q904c_3);
+        rbtnc4 = (RadioButton) findViewById(R.id.q904c_4);
+        rbtnc5 = (RadioButton) findViewById(R.id.q904c_5);
+
+        rbtnc6 = (RadioButton) findViewById(R.id.q904c_6);
+        rbtnc7 = (RadioButton) findViewById(R.id.q904c_7);
+        rbtnc8 = (RadioButton) findViewById(R.id.q904c_8);
+        rbtnc10 = (RadioButton) findViewById(R.id.q904c_10);
+        rbtnc11 = (RadioButton) findViewById(R.id.q904c_11);
+        rbtnc12 = (RadioButton) findViewById(R.id.q904c_12);
+        rbtnc13 = (RadioButton) findViewById(R.id.q904c_13);
+        rbtncOther = (RadioButton) findViewById(R.id.q904c_other);
+        edtc = (EditText) findViewById(R.id.q904c_other1);
+
+
+
+
+        t1 = (TextView) findViewById(R.id.q904txt);
+        t2 = (TextView) findViewById(R.id.q904atxt);
+        t3 = (TextView) findViewById(R.id.q904btxt);
+        t4 = (TextView) findViewById(R.id.q904ctxt);
+
+        rg = (RadioGroup) findViewById(R.id.q904radioGroup);
+        rga = (RadioGroup) findViewById(R.id.q904aradioGroup);
+        rgc = (RadioGroup) findViewById(R.id.q904cradioGroup);
+
+
+       // final int selectedId = rg.getCheckedRadioButtonId();
+
+        Intent i = getIntent();
+        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        int p = 0;
+
+        Button btnnext = findViewById(R.id.button);
+        btnnext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int selectedId = rg.getCheckedRadioButtonId();
+                selectedRbtn = (RadioButton) findViewById(selectedId);
+
+                if (selectedRbtn == null) {
+                    lib.showError(q904.this, "Q904: Error ", "Are you currently taking ARVs?");
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+
+
+                } else {
+
+                    int selectedIda = rga.getCheckedRadioButtonId();
+                    selectedRbtna = (RadioButton) findViewById(selectedIda);
+
+                    if (selectedRbtna == null && (rbtn2.isChecked() || rbtn1.isChecked())) {
+                        lib.showError(q904.this, "Q904a: ERROR", "Where are you getting your ARVs?");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+
+                    } else
+                        {
+
+                        //individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
+
+                        if (!chkb99.isChecked() && (rbtn1.isChecked() || rbtn2.isChecked()) && ((edtbmnths.length() == 0 || Integer.valueOf(edtbmnths.getText().toString()) >= 13))) {
+                            lib.showError(q904.this, "Q904b:ERROR: Month", "What month and year did you first start taking ARVs?" +
+                                    "Please provide month or select dont know month");
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
+                        }
+                        else {
+
+                            //individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
+
+                            if (!chkb9999.isChecked() && (rbtn1.isChecked() || rbtn2.isChecked()) && ((edtbyear.length() == 0 || Integer.valueOf(edtbyear.getText().toString()) >= 13))) {
+                                lib.showError(q904.this, "Q904b: ERROR: Year", "What month and year did you first start taking ARVs?" +
+                                        "Please provide YEAR or select dont know year");
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+                            }
+                            else {
+
+                                int selectedIdc = rgc.getCheckedRadioButtonId();
+                                selectedRbtnc = (RadioButton) findViewById(selectedIdc);
+
+                                if (selectedRbtnc == null && (rbtn3.isChecked() || rbtn4.isChecked())) {
+                                    lib.showError(q904.this, "Q904c: ERROR", "What is the MAIN reason you are not taking ARVs?");
+                                    /**
+                                     * VIBRATE DEVICE
+                                     */
+                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                    vibs.vibrate(100);
+
+                                }
+                                else {
+
+                                    //individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
+
+                                    if (rbtn1.isChecked() || rbtn2.isChecked()) {
+                                        // to include ea status code on the check
+                                        Intent q1o2 = new Intent(q904.this, q1001.class);
+                                        //q1o2.putExtra("Household", thisHouse);
+                                        startActivity(q1o2);
+
+                                    }
+                                    else {
+                                        //Set q101 for the current individual
+                                        //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
+                                        //individual.setQ901(selectedRbtn.getText().toString().substring(0,1));
+                                        //individual.setQ901a(selectedRbtn.getText().toString().substring(0,1));
+
+
+                                        Intent intent = new Intent(q904.this, q905.class);
+                                        intent.putExtra("Household", thisHouse);
+                                        startActivity(intent);
+
+                                    }
+
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        });
+        }
+
+
+
+    public void onRadioButtonClicked(View view) {
+
+        boolean checked = ((RadioButton) view).isChecked();
+//
+        switch (view.getId()) {
+
+            case R.id.q904_1:
+                if(checked)
+
+                rbtna1.setEnabled(true);
+                rbtna2.setEnabled(true);
+                rbtna3.setEnabled(true);
+                rbtna4.setEnabled(true);
+                rbtna5.setEnabled(true);
+                rbtnaOther.setEnabled(true);
+                t1.setTextColor(Color.BLACK);
+
+                edtbyear.setText("");
+                edtbyear.setEnabled(true);
+                chkb9999.setEnabled(true);
+
+
+                chkb99.setEnabled(true);
+                edtbmnths.setText("");
+                edtbmnths.setEnabled(true);
+                t3.setTextColor(Color.BLACK);
+
+                rbtnc1.setEnabled(false);
+                rbtnc1.setEnabled(false);
+                rbtnc2.setEnabled(false);
+                rbtnc3.setEnabled(false);
+                rbtnc4.setEnabled(false);
+                rbtnc5.setEnabled(false);
+                rbtnc6.setEnabled(false);
+                rbtnc7.setEnabled(false);
+                rbtnc8.setEnabled(false);
+                rbtnc10.setEnabled(false);
+                rbtnc11.setEnabled(false);
+                rbtnc12.setEnabled(false);
+                rbtnc13.setEnabled(false);
+                rbtncOther.setEnabled(false);
+                t4.setTextColor(Color.LTGRAY);
+
+                rbtnc1.setChecked(false);
+                rbtnc1.setChecked(false);
+                rbtnc2.setChecked(false);
+                rbtnc3.setChecked(false);
+                rbtnc4.setChecked(false);
+                rbtnc5.setChecked(false);
+                rbtnc6.setChecked(false);
+                rbtnc7.setChecked(false);
+                rbtnc8.setChecked(false);
+                rbtnc10.setChecked(false);
+                rbtnc11.setChecked(false);
+                rbtnc12.setChecked(false);
+                rbtnc13.setChecked(false);
+                rbtncOther.setChecked(false);
+
+
+                break;
+
+            case R.id.q904_2:
+                if(checked)
+
+                rbtna1.setEnabled(true);
+                rbtna2.setEnabled(true);
+                rbtna3.setEnabled(true);
+                rbtna4.setEnabled(true);
+                rbtna5.setEnabled(true);
+                rbtnaOther.setEnabled(true);
+                t2.setTextColor(Color.BLACK);
+
+
+                edtbyear.setText("");
+                edtbyear.setEnabled(true);
+                chkb9999.setEnabled(true);
+
+
+                chkb99.setEnabled(true);
+                edtbmnths.setText("");
+                edtbmnths.setEnabled(true);
+                t3.setTextColor(Color.BLACK);
+
+
+                rbtnc1.setEnabled(false);
+                rbtnc1.setEnabled(false);
+                rbtnc2.setEnabled(false);
+                rbtnc3.setEnabled(false);
+                rbtnc4.setEnabled(false);
+                rbtnc5.setEnabled(false);
+                rbtnc6.setEnabled(false);
+                rbtnc7.setEnabled(false);
+                rbtnc8.setEnabled(false);
+                rbtnc10.setEnabled(false);
+                rbtnc11.setEnabled(false);
+                rbtnc12.setEnabled(false);
+                rbtnc13.setEnabled(false);
+                rbtncOther.setEnabled(false);
+                t4.setTextColor(Color.LTGRAY);
+
+                rbtnc1.setChecked(false);
+                rbtnc1.setChecked(false);
+                rbtnc2.setChecked(false);
+                rbtnc3.setChecked(false);
+                rbtnc4.setChecked(false);
+                rbtnc5.setChecked(false);
+                rbtnc6.setChecked(false);
+                rbtnc7.setChecked(false);
+                rbtnc8.setChecked(false);
+                rbtnc10.setChecked(false);
+                rbtnc11.setChecked(false);
+                rbtnc12.setChecked(false);
+                rbtnc13.setChecked(false);
+                rbtncOther.setChecked(false);
+
+                break;
+
+            case R.id.q904_3:
+                if(checked)
+                {
+
+                rbtna1.setEnabled(false);
+                rbtna2.setEnabled(false);
+                rbtna3.setEnabled(false);
+                rbtna4.setEnabled(false);
+                rbtna5.setEnabled(false);
+                rbtnaOther.setEnabled(false);
+                t2.setTextColor(Color.LTGRAY);
+
+
+                rbtna1.setChecked(false);
+                rbtna2.setChecked(false);
+                rbtna3.setChecked(false);
+                rbtna4.setChecked(false);
+                rbtna5.setChecked(false);
+                rbtnaOther.setEnabled(false);
+
+                    rbtnc1.setEnabled(true);
+                    rbtnc1.setEnabled(true);
+                    rbtnc2.setEnabled(true);
+                    rbtnc3.setEnabled(true);
+                    rbtnc4.setEnabled(true);
+                    rbtnc5.setEnabled(true);
+                    rbtnc6.setEnabled(true);
+                    rbtnc7.setEnabled(true);
+                    rbtnc8.setEnabled(true);
+                    rbtnc10.setEnabled(true);
+                    rbtnc11.setEnabled(true);
+                    rbtnc12.setEnabled(true);
+                    rbtnc13.setEnabled(true);
+                    rbtncOther.setEnabled(true);
+                    t4.setTextColor(Color.BLACK);
+
+
+
+                    edtbyear.setText("");
+                edtbyear.setEnabled(false);
+                    chkb9999.setChecked(false);
+                    chkb9999.setEnabled(false);
+                    chkb99.setChecked(false);
+                    chkb99.setEnabled(false);
+                    edtbmnths.setText("");
+                    edtbmnths.setEnabled(false);
+                    t3.setTextColor(Color.LTGRAY);
+
+
+
+
+            }
+            // Put some meat on the sandwich
+                else {
+
+                edtbmnths.setEnabled(true);
+                // Remove the meat
+            }
+
+
+
+                break;
+
+            case R.id.q904_4:
+                if(checked)
+                {
+
+                    rbtna1.setEnabled(false);
+                rbtna1.setEnabled(false);
+                rbtna2.setEnabled(false);
+                rbtna3.setEnabled(false);
+                rbtna4.setEnabled(false);
+                rbtna5.setEnabled(false);
+                rbtnaOther.setEnabled(false);
+                t1.setTextColor(Color.LTGRAY);
+
+                    rbtna1.setChecked(false);
+                    rbtna2.setChecked(false);
+                    rbtna3.setChecked(false);
+                    rbtna4.setChecked(false);
+                    rbtna5.setChecked(false);
+                    rbtnaOther.setEnabled(false);
+
+
+                    rbtnc1.setEnabled(true);
+                    rbtnc1.setEnabled(true);
+                    rbtnc2.setEnabled(true);
+                    rbtnc3.setEnabled(true);
+                    rbtnc4.setEnabled(true);
+                    rbtnc5.setEnabled(true);
+                    rbtnc6.setEnabled(true);
+                    rbtnc7.setEnabled(true);
+                    rbtnc8.setEnabled(true);
+                    rbtnc10.setEnabled(true);
+                    rbtnc11.setEnabled(true);
+                    rbtnc12.setEnabled(true);
+                    rbtnc13.setEnabled(true);
+                    rbtncOther.setEnabled(true);
+                    t4.setTextColor(Color.BLACK);
+
+
+
+                    edtbyear.setText("");
+                    edtbyear.setEnabled(false);
+                    edtbmnths.setText("");
+                    edtbmnths.setEnabled(false);
+                    chkb9999.setChecked(false);
+                    chkb9999.setEnabled(false);
+                    chkb99.setChecked(false);
+                    chkb99.setEnabled(false);
+                    t3.setTextColor(Color.LTGRAY);
+
+
+        }
+        // Put some meat on the sandwich
+                else {
+
+
+            // Remove the meat
+        }
+        break;
+
+            case R.id.q904a_other:
+                if(checked)
+                {
+
+                    edta.setVisibility(View.VISIBLE);
+
+
+
+
+                }
+                // Put some meat on the sandwich
+                else {
+
+                    edta.setVisibility(View.INVISIBLE);
+
+                    edta.setText("");
+                    // Remove the meat
+                }
+                break;
+
+
+            case R.id.q904c_other:
+                if(checked)
+                {
+
+
+
+
+                    edtc.setVisibility(View.VISIBLE);
+
+
+
+
+                }
+                // Put some meat on the sandwich
+                else {
+
+                    edtc.setVisibility(View.INVISIBLE);
+
+                    edtc.setText("");
+                    // Remove the meat
+                }
+                break;
+
+
+            default:
+
+                break;
+
+        }
+
+    }
+
+    public void onCheckboxClicked(View view) {
+
+        boolean checked = ((CheckBox) view).isChecked();
+//
+        switch (view.getId()) {
+
+            case R.id.q904b_99:
+                if(checked) {
+
+                    edtbmnths.setText("99");
+                    edtbmnths.setEnabled(false);
+                }
+
+                else {
+                    edtbmnths.setText("");
+                    edtbmnths.setEnabled(true);
+                }
+                break;
+
+            case R.id.q904b_9999:
+                if(checked) {
+                    edtbyear.setText("9999");
+                    edtbyear.setEnabled(false);
+                }
+                else
+                {
+                    edtbyear.setText("");
+                    edtbyear.setEnabled(true);
+                }
+                break;
+
+
+
+            default:
+
+                break;
+
+        }
+
+    }
+}
+

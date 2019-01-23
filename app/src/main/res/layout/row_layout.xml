@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/assCont"
+    android:padding="6dip" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:background="@drawable/edit_text_background"
+        android:padding="5dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:layout_height="wrap_content"
+        >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="6"
+        android:layout_height="wrap_content">
+
+        <TextView
+        android:id="@+id/tvAssignment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/assNo"
+        android:textColor="@color/WHITE"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/tvAssignValue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:textSize="16sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tvDistrict"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textStyle="bold"
+        android:textColor="@color/WHITE"
+        android:text="@string/AssDistrict"
+        android:textSize="14sp" />
+
+    <TextView
+            android:id="@+id/tvDistrictValue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textColor="@color/gray"
+            android:text="[01] Gaborone"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tvVillage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:textColor="@color/WHITE"
+        android:text="@string/AssVillage"
+        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tvVillageValue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray"
+            android:text="[0101] Gaborone"
+            android:textSize="14sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvLocality"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:textColor="@color/WHITE"
+            android:text="@string/AssLocality"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvLocalityValue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray"
+            android:text="[0101102] Extension 2 Borakanelo"
+            android:textSize="14sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvEA"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:textColor="@color/WHITE"
+            android:text="@string/AssEA"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tvEAValue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray"
+            android:text=" EA 0450"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="end"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/OpenAssignmnt"
+            android:layout_width="wrap_content"
+            android:text="Open"
+
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</RelativeLayout>
+

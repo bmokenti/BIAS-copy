@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp"
+    android:layout_height="match_parent"
+    tools:context=".started_household">
+
+    <ScrollView
+        android:id="@id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/RosterButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edit_text_background_custom"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/rosterHead"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:drawableLeft="@drawable/ic_filter_center_focus_blue_24dp"
+                    android:gravity="center_vertical"
+                    android:padding="3dp"
+                    android:text="Scan Individual Barcode"
+                    android:textColor="@color/WHITE"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/scan_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/scan" />
+
+                <TextView
+                    android:id="@+id/scan_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scan_format"
+                    android:layout_centerHorizontal="true"
+                    android:text="Barcode: "
+                    android:textColor="@color/WHITE"
+                    android:textIsSelectable="true"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <ScrollView
+
+                android:id="@+id/scrollView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/barcode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:ems="10"
+                        android:padding="3dp"
+                        android:text="Assent (Blood, Rapid Tests)"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:id="@+id/RelativeLayout02"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/barcodelbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+
+                            android:text="Barcode"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/EdtBarcode"
+                            android:layout_width="195dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="35dp"
+                            android:layout_marginEnd="28dp"
+                            android:layout_marginRight="28dp"
+                            android:layout_toLeftOf="@id/barcodelbl"
+                            android:layout_toEndOf="@+id/barcodelbl"
+                            android:background="@drawable/edit_text_background"
+                            android:hint="barcode"
+                            android:inputType="text"
+                            android:padding="3dp"
+                            android:paddingLeft="10dp"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/parentalctxt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:ems="10"
+                                    android:padding="3dp"
+                                    android:text="[6 weeks-9 years]"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/q1101atxt1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:ems="10"
+                                        android:padding="3dp"
+                                        android:text="[1]Do you agree for survey team to ask your child to give blood for HIV testing and other related testing?"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <RadioGroup
+                                            android:id="@+id/B3_Rapid_ConsentGroup"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginStart="8dp"
+                                            android:layout_marginLeft="8dp"
+                                            android:layout_marginTop="30dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:layout_marginRight="8dp"
+                                            android:textSize="16sp">
+
+                                            <RadioButton
+                                                android:id="@+id/rbtn1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="1.  YES, I agree for survey team to ask my child to do the interview" />
+
+                                            <RadioButton
+                                                android:id="@+id/rbtn2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="2. NO, I do not agree for survey team to ask my child to do the interview" />
+
+
+                                        </RadioGroup>
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/SurbveyStaffID"
+                            android:layout_width="262dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:ems="10"
+                            android:padding="3dp"
+                            android:text="Select Guardian"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <EditText
+                                android:id="@+id/ListGuardians"
+                                android:layout_width="match_parent"
+                                android:layout_height="38dp"
+                                android:background="@drawable/edit_text_background"
+                                android:padding="3dp"
+                                android:paddingLeft="10dp"
+                                android:text=""
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/SurbveyStaffIDlbl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:ems="10"
+                            android:padding="3dp"
+                            android:text="Record Date"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:id="@+id/RelativeLayout01"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                            <Button
+                                android:id="@+id/datebtn"
+                                android:layout_width="154dp"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginStart="8dp"
+                                android:layout_toEndOf="@+id/DateTxt"
+                                android:text="Tap to record Date" />
+
+                            <EditText
+                                android:id="@+id/DateTxt"
+                                android:layout_width="148dp"
+                                android:layout_height="29dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/datebtn"
+                                android:background="@drawable/edit_text_background"
+                                android:hint="date"
+                                android:inputType="text"
+                                android:padding="3dp"
+                                android:paddingLeft="10dp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/cloodColectionStatus"
+                            android:layout_width="262dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:ems="10"
+                            android:padding="3dp"
+
+                            android:text="BLOOD COLLECTION STATUS"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <RadioGroup
+                                android:id="@+id/bloodCollectStatusRGB"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="30dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:textSize="16sp"
+                                android:visibility="visible">
+
+                                <RadioButton
+                                    android:id="@+id/blood1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="1. Collected" />
+
+                                <RadioButton
+                                    android:id="@+id/blood2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="2. Declined" />
+
+                                <RadioButton
+                                    android:id="@+id/blood3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="3. Failed to Collect" />
+
+
+                            </RadioGroup>
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/amount"
+                            android:layout_width="262dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:ems="10"
+                            android:padding="3dp"
+                            android:text="Blood Volume"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/volume"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/edit_text_background"
+                                android:hint="0.0ml"
+                                android:inputType="numberDecimal"
+                                android:minHeight="30dp"
+                                android:paddingLeft="20dp"
+                                android:text=""
+                                android:textSize="16sp" />
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textview2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:ems="10"
+                            android:padding="3dp"
+                            android:text=" [3] Record rapid test results"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <RadioGroup
+                                android:id="@+id/ParentalradioGroup1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="30dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:textSize="16sp"
+                                android:visibility="visible">
+
+                                <RadioButton
+                                    android:id="@+id/rbtn3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="1. Negative" />
+
+                                <RadioButton
+                                    android:id="@+id/rbtn4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="2. Positive" />
+
+                                <RadioButton
+                                    android:id="@+id/rbtn5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="3. Not Done" />
+
+
+                            </RadioGroup>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/ChildParticipantsID"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:ems="10"
+                            android:padding="3dp"
+                            android:text="Type comments below if any"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/RapidComment"
+                                android:layout_width="match_parent"
+                                android:padding="5dp"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/edit_text_background"
+                                android:minHeight="60dp"
+                                android:text=""
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                        <Button
+                            android:id="@+id/button3"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_save_blue_24dp"
+                            android:gravity="center"
+                            android:text="Save" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>

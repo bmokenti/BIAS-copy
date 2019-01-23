@@ -1,0 +1,275 @@
+package bw.org.statsbots.bias;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.app.Activity;
+import android.os.Vibrator;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import java.io.Serializable;
+
+public class q1106 extends AppCompatActivity implements Serializable {
+    protected  HouseHold thisHouse;
+    protected  Individual idv;
+    protected RadioGroup rGroup1, rGroup2,rGroup3;
+    protected RadioButton rbtn1, rbtn61, rbtn62, rbtn6a1 ,rbtn6a2, rbtn6a3, rbtn6a9, rbtn6b1, rbtn6b2, rbtn6b3, rbtn6b4,rbtn6b5other, selectedRbtn1, selectedRbtn2, selectedRbtn3;
+    protected EditText q1106btxtOther;
+    protected LibraryClass lib;
+    protected Individual individual;
+    protected TextView txt1, txt2, txt3;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_q1106);
+        setTitle("Q1106:");
+        lib = new LibraryClass();
+
+        rGroup1 = findViewById(R.id.q1106rgruop1);
+        rGroup2 = findViewById(R.id.q1106rgruop2);
+        rGroup3 = findViewById(R.id.q1106rgruop3);
+        q1106btxtOther = findViewById(R.id.q1106btxtOther);
+        rbtn61 = findViewById(R.id.q1106_1);
+        rbtn62 = findViewById(R.id.q1106_2);
+        rbtn6a1 = findViewById(R.id.q1106a_1);
+        rbtn6a2 = findViewById(R.id.q1106a_2);
+        rbtn6a3 = findViewById(R.id.q1106a_3);
+        rbtn6a9 = findViewById(R.id.q1106a_9);
+        rbtn6b1 = findViewById(R.id.q1106b_1);
+        rbtn6b2 = findViewById(R.id.q1106b_2);
+        rbtn6b3 = findViewById(R.id.q1106b_3);
+        rbtn6b4 = findViewById(R.id.q1106b_4);
+        rbtn6b5other = findViewById(R.id.q1106b_Other);
+
+        txt2 = findViewById(R.id.txt1106q2);
+        txt3 = findViewById(R.id.txt1106q3);
+
+        Button btnnext = findViewById(R.id.btnNext);
+
+        btnnext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Intent intent = new Intent(q1106.this, q1107.class);
+                //startActivity(intent);
+                int selectedId = rGroup1.getCheckedRadioButtonId();
+                selectedRbtn1 = (RadioButton) findViewById(selectedId);
+
+                if (selectedRbtn1 == null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(q1106.this);
+                    builder.setTitle("Q1106: Error");
+                    builder.setIcon(R.drawable.ic_warning_orange_24dp);
+
+                    builder.setMessage("Did you submit sputum?");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                        }
+                    });
+
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+
+                    AlertDialog alertDialog = builder.show();
+                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                    positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                    positiveButton.setTextColor(Color.WHITE);
+                    positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                    positiveButton.setLayoutParams(positiveButtonLL);
+
+
+                } else {
+                   // individual.setQ1106(selectedRbtn1.getText().toString().substring(0,1));
+                    int selectedId1 = rGroup2.getCheckedRadioButtonId();
+                    selectedRbtn2 = (RadioButton) findViewById(selectedId1);
+
+                    if (selectedRbtn2 == null && rbtn61.isChecked()) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(q1106.this);
+                        builder.setTitle("Q1106: Error");
+                        builder.setIcon(R.drawable.ic_warning_orange_24dp);
+
+                        builder.setMessage("If YES, what was the result?");
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                            }
+                        });
+
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+
+                        AlertDialog alertDialog = builder.show();
+                        final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                        positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                        positiveButton.setTextColor(Color.WHITE);
+                        positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                        positiveButton.setLayoutParams(positiveButtonLL);
+
+
+                    } else {
+                        //individual.setQ1106a(selectedRbtn2.getText().toString().substring(0,1));
+                        int selectedId2 = rGroup3.getCheckedRadioButtonId();
+                        selectedRbtn3 = (RadioButton) findViewById(selectedId2);
+
+                        if (rbtn62.isChecked() && selectedRbtn3 == null) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(q1106.this);
+                            builder.setTitle("Q1106: Error");
+                            builder.setIcon(R.drawable.ic_warning_orange_24dp);
+                            builder.setMessage("b) If NO, why not?");
+                            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                }
+                            });
+
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
+
+                            AlertDialog alertDialog = builder.show();
+                            final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                            LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                            positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            positiveButton.setTextColor(Color.WHITE);
+                            positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                            positiveButton.setLayoutParams(positiveButtonLL);
+
+
+                        } else {
+                            //individual.setQ1106b(selectedRbtn3.getText().toString().substring(0,1));
+
+                            if (rbtn62.isChecked() && q1106btxtOther.length() == 0 && rbtn6b5other.isChecked()) {
+                                lib.showError(q1106.this, "Q1106 Other", "Please specify");
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+                            } else {
+                              //  individual.setQ1106bOther(q1106btxtOther.getText().toString());
+                                //Check if country entered is in the list
+                                // Intent intent = new Intent(q1102.this, q1103.class);
+                                //intent.putExtra("Household", thisHouse);
+                                //startActivity(intent);
+                                Intent q1o3 = new Intent(q1106.this, q1107.class);
+                                q1o3.putExtra("Household", thisHouse);
+                                startActivity(q1o3);
+
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+    public void onRadioButtonClicked(View v){
+
+
+
+        // Is the current Radio Button checked?
+        boolean checked = ((RadioButton) v).isChecked();
+
+        switch(v.getId()){
+            case R.id.q1106_1:
+                if(checked)
+
+                    for(int i = 0; i < rGroup3.getChildCount(); i++){
+                        ((RadioButton)rGroup3.getChildAt(i)).setEnabled(false);
+                        txt3.setTextColor(Color.LTGRAY);
+                        rbtn6b1.setChecked(false);
+                        rbtn6b2.setChecked(false);
+                        rbtn6b3.setChecked(false);
+                        rbtn6b4.setChecked(false);
+                        rbtn6b5other.setChecked(false);
+                        q1106btxtOther.setVisibility(View.INVISIBLE);
+
+                    }
+
+                for(int i = 0; i < rGroup2.getChildCount(); i++){
+                    ((RadioButton)rGroup2.getChildAt(i)).setEnabled(checked);
+                    txt2.setTextColor(Color.BLACK);
+
+
+                }
+                  //  rGroup2.setVisibility(View.VISIBLE);
+
+                break;
+
+            case R.id.q1106_2:
+                if(checked)
+
+                    q1106btxtOther.setVisibility(View.INVISIBLE);
+                    for(int i = 0; i < rGroup3.getChildCount(); i++){
+                        ((RadioButton)rGroup3.getChildAt(i)).setEnabled(checked);
+                        txt3.setTextColor(Color.BLACK);
+                    }
+
+                for(int i = 0; i < rGroup2.getChildCount(); i++){
+                    ((RadioButton)rGroup2.getChildAt(i)).setEnabled(false);
+                    txt2.setTextColor(Color.LTGRAY);
+                    rbtn6a1.setChecked(false);
+                    rbtn6a2.setChecked(false);
+                    rbtn6a3.setChecked(false);
+                    rbtn6a9.setChecked(false);
+
+                }
+                rGroup3.setVisibility(View.VISIBLE);
+                break;
+            case R.id.q1106b_Other:
+                if(checked)
+                    q1106btxtOther.setVisibility(View.VISIBLE);
+                q1106btxtOther.setText("");
+
+                break;
+            case R.id.q1106b_1:
+                if(checked)
+                    q1106btxtOther.setVisibility(View.INVISIBLE);
+                q1106btxtOther.setText("");
+
+                break;
+            case R.id.q1106b_2:
+                if(checked)
+                    q1106btxtOther.setVisibility(View.INVISIBLE);
+                q1106btxtOther.setText("");
+
+                break;
+            case R.id.q1106b_3:
+                if(checked)
+                    q1106btxtOther.setVisibility(View.INVISIBLE);
+                q1106btxtOther.setText("");
+
+                break;
+            case R.id.q1106b_4:
+                if(checked)
+                    q1106btxtOther.setVisibility(View.INVISIBLE);
+                q1106btxtOther.setText("");
+
+                break;
+        }
+    }
+
+
+}

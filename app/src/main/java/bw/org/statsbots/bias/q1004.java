@@ -1,0 +1,222 @@
+package bw.org.statsbots.bias;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Vibrator;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+public class q1004 extends AppCompatActivity {
+    protected HouseHold thisHouse;
+    protected PersonRoster p1 = null;
+    protected String currentHH = null;
+    protected LibraryClass lib;
+    protected CheckBox ck1txt, ck2txt;
+    protected Button btn;
+    protected RadioButton rbtna1, rbtna2, rbtnb1, rbtnb2, rbtnb3, rbtnb4, rbtnb5, rbtnb6, rbtnb7, rbtnb8, rbtnb10, rbtnb11, rbtnb12, rbtnbOther ;
+    protected RadioGroup rgb, rga;
+    protected TextView ta, tb;
+    protected EditText edtdays, edtmonths, edtyears, edtOther;
+    protected RadioButton selectedRbtna, selectedRbtnb;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_q1004);
+
+
+        setTitle("Q1004: CHILD BEARING");
+        lib = new LibraryClass();
+
+//btn = findViewById(R.id.btn);
+        edtdays = (EditText) findViewById(R.id.q1004_days) ;
+        edtmonths = (EditText) findViewById(R.id.q1004_months) ;
+        edtyears = (EditText) findViewById(R.id.q1004_year) ;
+
+
+        rga = (RadioGroup)findViewById(R.id.q1004aGroup1) ;
+        rbtna1 = (RadioButton) findViewById(R.id.q1004a_1);
+        rbtna2 = (RadioButton) findViewById(R.id.q1004a_2);
+
+        rgb = (RadioGroup)findViewById(R.id.q1004bGroup2) ;
+        rbtnb1 = (RadioButton) findViewById(R.id.q1004b_1);
+        rbtnb2 = (RadioButton) findViewById(R.id.q1004b_2);
+        rbtnb3 = (RadioButton) findViewById(R.id.q1004b_3);
+        rbtnb4 = (RadioButton) findViewById(R.id.q1004b_4);
+        rbtnb5 = (RadioButton) findViewById(R.id.q1004b_5);
+        rbtnb6 = (RadioButton) findViewById(R.id.q1004b_6);
+        rbtnb7 = (RadioButton) findViewById(R.id.q1004b_7);
+        rbtnb8 = (RadioButton) findViewById(R.id.q1004b_8);
+        rbtnb10 = (RadioButton) findViewById(R.id.q1004b_10);
+        rbtnb11 = (RadioButton) findViewById(R.id.q1004b_11);
+        rbtnb12 = (RadioButton) findViewById(R.id.q1004b_12);
+        rbtnbOther = (RadioButton) findViewById(R.id.q1004b_other);
+        edtOther =  (EditText) findViewById(R.id.q1004b_other1);
+
+
+
+        ta = (TextView) findViewById(R.id.q1004a) ;
+        tb = (TextView) findViewById(R.id.q1004b) ;
+
+
+        //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
+
+        Intent i = getIntent();
+        thisHouse = (HouseHold)i.getSerializableExtra("Household");
+        int p=0;
+
+
+        Button btnnext = findViewById(R.id.btnNext);
+        btnnext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                if (edtdays.length() == 0 || edtmonths.length() == 0 || edtyears.length() == 0) {
+                    lib.showError(q1004.this, "Q1004: ERROR", "What is the date of birth for your youngest child?" +
+                            "If dont know days or months put 99 and for year put 9999");
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+                } else {
+
+
+                    int selectedIda = rga.getCheckedRadioButtonId();
+                    selectedRbtna = (RadioButton) findViewById(selectedIda);
+
+                    if (selectedRbtna == null) {
+                        lib.showError(q1004.this, "Q1004a: ERROR", "  Whilst pregnant with your youngest child, did you attend an ante natal care clinic?");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+                    } else {
+
+                        int selectedIdb = rgb.getCheckedRadioButtonId();
+                        selectedRbtnb = (RadioButton) findViewById(selectedIdb);
+
+                        if (selectedRbtnb == null && rbtna2.isChecked()) {
+                            lib.showError(q1004.this, "Q1004b: ERROR", "What is the MAIN reason you did not visit a clinic for antenatal care when you were pregnant with this child?");
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
+                        } else {
+
+                            Intent intent = new Intent(q1004.this, q1005.class);
+                            intent.putExtra("Household", thisHouse);
+                            startActivity(intent);
+
+
+                        }
+                    }
+                }
+
+            }
+
+
+        });
+    }
+
+
+    public void onRadioButtonClicked(View view) {
+
+        boolean checked = ((RadioButton) view).isChecked();
+//
+        switch (view.getId()) {
+
+            case R.id.q1004a_1:
+                if(checked)
+
+                    rbtnb1.setEnabled(false);
+                rbtnb2.setEnabled(false);
+                rbtnb3.setEnabled(false);
+                rbtnb4.setEnabled(false);
+                rbtnb5.setEnabled(false);
+                rbtnb6.setEnabled(false);
+                rbtnb7.setEnabled(false);
+                rbtnb8.setEnabled(false);
+                rbtnb10.setEnabled(false);
+                rbtnb11.setEnabled(false);
+
+                rbtnb12.setEnabled(false);
+                rbtnbOther.setEnabled(false);
+
+                rbtnb1.setChecked(false);
+                rbtnb2.setChecked(false);
+                rbtnb3.setChecked(false);
+                rbtnb4.setChecked(false);
+                rbtnb5.setChecked(false);
+                rbtnb6.setChecked(false);
+                rbtnb7.setChecked(false);
+                rbtnb8.setChecked(false);
+                rbtnb10.setChecked(false);
+                rbtnb11.setChecked(false);
+
+                rbtnb12.setChecked(false);
+                rbtnbOther.setChecked(false);
+
+
+
+                tb.setTextColor(Color.BLACK);
+
+
+
+
+
+                break;
+
+            case R.id.q1004a_2:
+                if(checked)
+
+                    rbtnb1.setEnabled(true);
+                rbtnb2.setEnabled(true);
+                rbtnb3.setEnabled(true);
+                rbtnb4.setEnabled(true);
+                rbtnb5.setEnabled(true);
+                rbtnb6.setEnabled(true);
+                rbtnb7.setEnabled(true);
+                rbtnb8.setEnabled(true);
+                rbtnb10.setEnabled(true);
+                rbtnb11.setEnabled(true);
+
+                rbtnb12.setEnabled(true);
+                rbtnbOther.setEnabled(true);
+
+
+                    break;
+
+
+            default:
+
+                break;
+
+        }
+
+    }
+
+
+}
+
+
+
+
+
+/*
+Intent intent = new Intent(q504.this, q1101.class);
+                //intent.putExtra("Household", thisHose);
+                startActivity(intent);
+ */
+
+

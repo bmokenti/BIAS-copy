@@ -1,0 +1,193 @@
+package bw.org.statsbots.bias;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.app.Activity;
+import android.os.Vibrator;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import java.io.Serializable;
+
+public class q1108 extends AppCompatActivity implements  Serializable {
+protected HouseHold thisHouse;
+protected RadioGroup rg;
+protected RadioButton rbty, rbtn, selectedRbtn;
+protected EditText txtq1108dd, txtq1108wks;
+protected TextView q1108aques, t1108dd, t1108wks;
+    protected CheckBox chkq1108;
+    protected Individual individual;
+protected  LinearLayout viewa;
+protected LibraryClass lib;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_q1108);
+        Button btnnext = findViewById(R.id.btnNext);
+        setTitle("Q1108:");
+
+        lib = new LibraryClass();
+        rg = findViewById(R.id.q1108radiogroup);
+        rbty = findViewById(R.id.q1108_y);
+        rbtn = findViewById(R.id.q1108_n);
+        txtq1108dd = findViewById(R.id.txt1108dd);
+        txtq1108wks = findViewById(R.id.txt1108wks);
+        q1108aques = findViewById(R.id.txtq1108aq);
+        viewa = findViewById(R.id.q1108alinear);
+        chkq1108 = findViewById(R.id.q1108a_99);
+        t1108dd = findViewById(R.id.dd);
+                t1108wks = findViewById(R.id.tvwks);
+
+
+        btnnext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int selectedId = rg.getCheckedRadioButtonId();
+                selectedRbtn = (RadioButton) findViewById(selectedId);
+
+                if (selectedRbtn == null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(q1108.this);
+                    builder.setTitle("Q1108: Error select 'Yes/No'");
+                    builder.setIcon(R.drawable.ic_warning_orange_24dp);
+
+                    builder.setMessage("In the past month, have you unexpectedly lost weight");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                        }
+                    });
+
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+
+                    AlertDialog alertDialog = builder.show();
+                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                    positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                    positiveButton.setTextColor(Color.WHITE);
+                    positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                    positiveButton.setLayoutParams(positiveButtonLL);
+
+
+                } else {
+
+                   // individual.setQ1108(selectedRbtn.getText().toString().substring(0,1));
+                    if ((((txtq1108dd.length() == 0 && txtq1108wks.length() == 0 && !chkq1108.isChecked()))) && (rbty.isChecked())) {
+                        lib.showError(q1108.this, "Q1108:", "How long have you had the fever");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+                    }  else {
+                            Intent intent = new Intent(q1108.this, q1109.class);
+                            startActivity(intent);
+                        }
+
+                    }
+
+                }
+
+        });
+    }
+
+/*
+
+                    Intent intent = new Intent(q1108.this, q1109.class);
+                    intent.putExtra("Household",  thisHouse);
+                    startActivity(intent);
+ */
+
+    public void onRadioButtonClicked(View v) {
+
+
+        // Is the current Radio Button checked?
+        boolean checked = ((RadioButton) v).isChecked();
+
+        switch (v.getId()) {
+            case R.id.q1108_y:
+                if (checked) {
+                    q1108aques.setTextColor(Color.BLACK);
+                    //viewa.setEnabled(true);
+                    chkq1108.setEnabled(true);
+                    txtq1108dd.setEnabled(true);
+                    txtq1108wks.setEnabled(true);
+                    t1108dd.setTextColor(Color.BLACK);
+                            t1108wks.setTextColor(Color.BLACK);
+                    //rb99.setVisibility(View.VISIBLE);
+                }
+
+
+                break;
+
+            case R.id.q1108_n:
+                if (checked) {
+
+
+                    q1108aques.setTextColor(Color.LTGRAY);
+                    txtq1108dd.setText("");
+                    txtq1108wks.setText("");
+                    txtq1108dd.setEnabled(false);
+                    txtq1108wks.setEnabled(false);
+                    //chkq1108.setVisibility(View.INVISIBLE);
+                    chkq1108.setChecked(false);
+                    chkq1108.setEnabled(false);
+                    t1108dd.setTextColor(Color.LTGRAY);
+                    t1108wks.setTextColor(Color.LTGRAY);
+                    //rb99.setVisibility(View.INVISIBLE);
+                }
+
+                //txtdays.setVisibility(View.INVISIBLE);
+                // txtweeks.setVisibility(View.INVISIBLE);
+
+
+        }
+    }
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+
+        if (checked) {
+           // viewa.setEnabled(true);
+
+            txtq1108dd.setEnabled(false);
+            txtq1108wks.setEnabled(false);
+            txtq1108dd.setTextColor(Color.LTGRAY);
+            txtq1108wks.setTextColor(Color.LTGRAY);
+            txtq1108dd.setText("");
+            txtq1108wks.setText("");
+            t1108dd.setTextColor(Color.LTGRAY);
+            t1108wks.setTextColor(Color.LTGRAY);
+        }
+        // Put some meat on the sandwich
+        else {
+            // Remove the meat
+            txtq1108dd.setEnabled(true);
+            txtq1108wks.setEnabled(true);
+
+            // TODO: Veggie sandwich
+        }
+    }
+
+}
+
+

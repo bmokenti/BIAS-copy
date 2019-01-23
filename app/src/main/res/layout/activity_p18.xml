@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".P18">
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/P03Linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/P17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/P03radio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:gravity="top"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="20dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="40dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="98dp">
+
+
+            <ListView
+                android:id="@+id/personslist"
+                android:layout_width="wrap_content"
+                android:layout_height="433dp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/P03Navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <Button
+                android:id="@+id/p03_btnPrev"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="2"
+                android:drawableLeft="@drawable/ic_arrow_back_blue_24dp"
+                android:text="@string/previous" />
+
+            <Button
+                android:id="@+id/p18_btnNext"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="2"
+                android:drawableRight="@drawable/ic_arrow_forward_blue_24dp"
+                android:text="@string/next" />
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+    </android.support.constraint.ConstraintLayout>
+

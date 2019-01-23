@@ -1,0 +1,153 @@
+package bw.org.statsbots.bias;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Vibrator;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+public class q305 extends AppCompatActivity {
+    protected HouseHold thisHouse;
+    protected Individual individual;
+    protected LibraryClass lib;
+    protected CheckBox chk1, chk2, chk3, chk4;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_q305);
+
+
+        setTitle("Q305: ALCOHOL CONSUMPTION AND SUBSTANCE USE");
+        lib = new LibraryClass();
+        chk1 = (CheckBox) findViewById(R.id.q305_1);
+        chk2 = (CheckBox) findViewById(R.id.q305_2);
+        chk3 = (CheckBox) findViewById(R.id.q305_3);
+        chk4 = (CheckBox) findViewById(R.id.q305_4);
+
+        // txt2 = (TextView) findViewById(R.id.q205atxt);
+
+        Intent i = getIntent();
+        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        int p = 0;
+
+        Button btnext = findViewById(R.id.button);
+
+
+        btnext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (!chk1.isChecked() && !chk2.isChecked() && !chk3.isChecked() && !chk4.isChecked()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(q305.this);
+                    builder.setTitle("Q305: Error");
+                    builder.setIcon(R.drawable.ic_warning_orange_24dp);
+
+                    builder.setMessage(" Have you used tobacco through smoking, sniffing or chewing in the past 3 months? " +
+                            "(By tobacco products we mean as cigarettes, cigars or pipes))");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                        }
+                    });
+
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+
+                    AlertDialog alertDialog = builder.show();
+                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                    positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                    positiveButton.setTextColor(Color.WHITE);
+                    positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                    positiveButton.setLayoutParams(positiveButtonLL);
+
+
+                }
+
+                else {
+                        //Set q305 for the current individual
+
+                    //individual.setQ305_1(chk1.getText().toString().substring(0, 1));
+                    //individual.setQ305_2(chk2.getText().toString().substring(0, 1));
+                    //individual.setQ305_3(chk3.getText().toString().substring(0, 1));
+                    //individual.setQ305_4(chk4.getText().toString().substring(0, 1));
+
+                        Intent q1o2 = new Intent(q305.this, q306.class);
+                        q1o2.putExtra("Household", thisHouse);
+                        startActivity(q1o2);
+
+                    }
+
+                }
+
+
+        });
+    }
+
+    public void onCheckboxClicked(View v) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) v).isChecked();
+
+        switch (v.getId()) {
+            case R.id.q305_1:
+                if (checked) {
+
+                }
+
+
+                break;
+
+            case R.id.q305_2:
+                if (checked) {
+
+
+                }
+                break;
+
+            case R.id.q305_3:
+                if (checked) {
+
+
+                }
+                break;
+            case R.id.q305_4:
+                if (checked) {
+
+                    chk1.setEnabled(false);
+                    chk2.setEnabled(false);
+                    chk3.setEnabled(false);
+
+                    chk1.setChecked(false);
+                    chk2.setChecked(false);
+                    chk3.setChecked(false);
+                }else
+                {
+                    chk1.setEnabled(true);
+                    chk2.setEnabled(true);
+                    chk3.setEnabled(true);
+                }
+
+                break;
+
+
+        }
+    }
+}
+

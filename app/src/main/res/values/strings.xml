@@ -1,0 +1,2213 @@
+<resources>
+    <string name="app_name">BAIS V</string>
+    <string name="P01">"<b>"P01. Starting with the head of household"</b>", please give me names of all persons who spent the night with this household last night.
+        "<b>"Make sure to include: "\n
+        1. Usual members who did not spend the night but will be available in any of the next 5 days
+        \n\n
+        2. Persons who were away last night on duty, prayer meetings, wake keeping, etc.
+        \n\n
+        3. Babies, newly born, elderly, persons with disability who slept with this household.
+        \n\n
+        4. Visitors</b>
+        "
+    </string>
+    <string name="P02">
+      P02.  What is # \'s relationship to head of household?
+
+    </string>
+    <string name="Head">00 Head</string>
+    <string name="Spouse">01 Spouse/Partner</string>
+    <string name="Son">02 Son/Daughter</string>
+    <string name="Stepchild">03 Stepchild</string>
+    <string name="Grandchild">04 Grandchild</string>
+    <string name="Parent">05 Parent</string>
+    <string name="Grandparent">06 Grandparent</string>
+    <string name="BrotherSister">07 Brother/Sister</string>
+    <string name="NephewNiece">08 Nephew/Niece</string>
+    <string name="SonDaughterinlaw">09 Son/Daughter-inlaw</string>
+    <string name="Parentinlaw">10 Parent-in-law</string>
+    <string name="Otherrelative">11 Other relative</string>
+    <string name="Notrelated">12 Not related</string>
+    <string name="P03">
+        P03. Is # male or female?
+    </string>
+
+    <string name="male">1. Male</string>
+    <string name="female">2. Female</string>
+
+    <string name="P04">
+       P04. How old is # in completed years?
+    </string>
+
+
+    <string name="scan">Scan</string>
+    <string name="result_Code">RESULT CODE</string>
+    <string name="next">next</string>
+    <string name="previous">previous</string>
+    <string name="STRATUM">STRATUM NUMBER</string>
+    <string name="STRATUM_CODE">00</string>
+    <string name="DISTRICT">DISTRICT NAME/CODE</string>
+    <string name="DISTRICT_NAME">GABORONE</string>
+    <string name="DISTRICT_CODE">00</string>
+    <string name="VILLAGE">VILLAGE NAME/CODE</string>
+    <string name="VILLAGE_NAME">MOCHUDI</string>
+    <string name="VILLAGE_CODE">00</string>
+    <string name="LOCALITY">LOCALITY NAME/CODE</string>
+    <string name="LOCALITY_NAME">Extension 27</string>
+    <string name="LOCALITY_CODE">000</string>
+    <string name="EA">EA CODE</string>
+    <string name="EA_CODE">0000</string>
+    <string name="BLOCK">BLOCK NUMBER</string>
+    <string name="BLOCK_NUMBER">000</string>
+    <string name="EA_STATUS">EA STATUS CODE</string>
+    <string name="EA_STATUS_CODE">1</string>
+    <string name="DWELLING">DWELLING NUMBER</string>
+    <string name="DWELLING_NUMBER">00000</string>
+    <string name="HOUSEHOLD">HOUSEHOLD NUMBER</string>
+    <string name="HOUSEHOLD_NUMBER">000</string>
+    <string name="RESPONDENT_LINE">RESPONDENT LINE NUMBER</string>
+    <string name="RESPONDENT_LINE_NUMBER">00</string>
+    <string name="ENUMERATOR">ENUMERATOR\'S CODE</string>
+    <string name="ENUMERATOR_CODE">000</string>
+    <string name="SUPERVISOR">SUPERVISOR\'S CODE</string>
+    <string name="SUPERVISOR_CODE">000</string>
+    >
+    <string name="P04oldBtn">2  Years and above</string>
+    <string name="P04youngBtn"> Less than 2 Years</string>
+    <string name="P04Instruction"><![CDATA[<i>Toggle to enter for Less than 2 Years</i>]]></string>
+    <string name="comment">Comment</string>
+    <string name="textview">TextView</string>
+
+    <string name="btn_Visit1">VISIT 1</string>
+    <string name="btn_Visit2">VISIT 2</string>
+    <string name="btn_Visit3">VISIT 3</string>
+    <string name="Completed">Completed</string>
+    <string name="PartiallyCompleted">Partially Completed</string>
+    <string name="PresentButNotAvailableForInterview">Not Available For Interviews</string>
+    <string name="Refused">Refused</string>
+    <string name="Postponed">Postponed</string>
+    <string name="Other">Other</string>
+    <string name="visit1Date">DATE</string>
+    <string name="btn_InterviewDate">RECORD INTERVIEW DATE</string>
+    <string name="end">End Interview</string>
+    <string name="start">START</string>
+    <string name="NextVisit">NEXT VISIT</string>
+
+    <string name="title_activity_load_tables">load_tables</string>
+    <string name="BOTS">BOTSWANA</string>
+    <string name="ANG">ANGOLA</string>
+    <string name="LES">LESOTHO</string>
+    <string name="MAL">MALAWI</string>
+    <string name="MOZ">MOZAMBIQUE</string>
+    <string name="NAM">NAMIBIA</string>
+    <string name="SA">SOUTH AFRICA</string>
+    <string name="SWAZ">SWAZILAND</string>
+    <string name="ZAM">ZAMBIA</string>
+    <string name="ZIM">ZIMBABWE</string>
+    <string name="TANZ">TANZANIA</string>
+    <string name="IND">INDIA</string>
+    <string name="MAUR">MAURITIUS</string>
+    <string name="UK">UK</string>
+    <string name="USA">USA</string>
+    <string name="OTHER">OTHER SPECIFY</string>
+    <string name="P05">
+        P05. What is the country of # \'s citizenship?
+    </string>
+    <string-array name="country_list">
+        <item>	001	Botswana	</item>
+        <item>	002	Angola	</item>
+        <item>	003	Lesotho	</item>
+        <item>	004	Malawi	</item>
+        <item>	005	Mozambique	</item>
+        <item>	006	Namibia	</item>
+        <item>	007	South Africa	</item>
+        <item>	008	Swaziland	</item>
+        <item>	009	Zambia	</item>
+        <item>	010	Zimbabwe	</item>
+        <item>	011	Tanzania	</item>
+        <item>	012	DRC	</item>
+        <item>	013	Mauritius	</item>
+        <item>	014	Seychelles	</item>
+        <item>	020	Burundi	</item>
+        <item>	021	Djibouti	</item>
+        <item>	022	Eritrea	</item>
+        <item>	023	Ethiopia	</item>
+        <item>	024	Kenya	</item>
+        <item>	025	Rwanda	</item>
+        <item>	026	Somalia	</item>
+        <item>	027	Uganda	</item>
+        <item>	030	Algeria	</item>
+        <item>	031	Egyptt	</item>
+        <item>	032	Libya	</item>
+        <item>	033	Morocco	</item>
+        <item>	034	Sudan	</item>
+        <item>	035	Tunisia	</item>
+        <item>	040	Cameroon	</item>
+        <item>	041	Chad	</item>
+        <item>	042	Central African Republic	</item>
+        <item>	043	Gabon	</item>
+        <item>	050	Benin	</item>
+        <item>	051	Burkina Faso	</item>
+        <item>	052	Cote d?voire	</item>
+        <item>	053	Gambia	</item>
+        <item>	054	Guinea	</item>
+        <item>	055	Guinea Bissau	</item>
+        <item>	056	Ghana	</item>
+        <item>	057	Liberia	</item>
+        <item>	058	Mauritania	</item>
+        <item>	059	Mali	</item>
+        <item>	060	Niger	</item>
+        <item>	061	Nigeria	</item>
+        <item>	062	Sierra Leone	</item>
+        <item>	063	Senegal	</item>
+        <item>	064	Togo	</item>
+        <item>	065	St Helena	</item>
+        <item>	070	Comoros	</item>
+        <item>	071	Madagascar	</item>
+        <item>	099	Unknown Africa	</item>
+        <item>	100	Bermuda	</item>
+        <item>	101	Canada	</item>
+        <item>	102	Greenland	</item>
+        <item>	103	United States of America	</item>
+        <item>	110	Belize	</item>
+        <item>	111	Costa Rica	</item>
+        <item>	112	El Salvador	</item>
+        <item>	113	Guatemala	</item>
+        <item>	114	Honduras	</item>
+        <item>	115	Mexico	</item>
+        <item>	116	Nicaragua	</item>
+        <item>	117	Panama	</item>
+        <item>	120	Bahamas	</item>
+        <item>	121	Barbados	</item>
+        <item>	122	British Virgin Islands	</item>
+        <item>	123	Cuba	</item>
+        <item>	124	Haiti	</item>
+        <item>	125	Jamaica	</item>
+        <item>	126	Grenada	</item>
+        <item>	127	Dominican Republic	</item>
+        <item>	128	Martinique	</item>
+        <item>	129	Puerto Rico	</item>
+        <item>	130	Tobago	</item>
+        <item>	131	Trinidad	</item>
+        <item>	132	United States Virgin Islands	</item>
+        <item>	140	Argentina	</item>
+        <item>	141	Bolivia	</item>
+        <item>	142	Brazil	</item>
+        <item>	143	Chile	</item>
+        <item>	144	Colombia	</item>
+        <item>	145	Ecuador	</item>
+        <item>	146	Falklands IslandsMartinique	</item>
+        <item>	147	Paraguay	</item>
+        <item>	148	Suriname	</item>
+        <item>	149	Peru	</item>
+        <item>	150	Uruaguay	</item>
+        <item>	151	Venezuela	</item>
+        <item>	199	Unknown in America	</item>
+        <item>	200	China	</item>
+        <item>	201	Korea Republic ofa	</item>
+        <item>	202	Hono Kong	</item>
+        <item>	203	Japan	</item>
+        <item>	204	Macau	</item>
+        <item>	205	Mongolia	</item>
+        <item>	210	Afghanistan	</item>
+        <item>	211	Bangladesh	</item>
+        <item>	212	Bhutan	</item>
+        <item>	213	India	</item>
+        <item>	214	Iran	</item>
+        <item>	215	Kazakhstan	</item>
+        <item>	216	Kyrgystan	</item>
+        <item>	217	Nepal	</item>
+        <item>	218	Pakistan	</item>
+        <item>	219	Srti Lanka	</item>
+        <item>	220	Tajikistan	</item>
+        <item>	221	Turkmanistan	</item>
+        <item>	222	Uzbekistan	</item>
+        <item>	230	Brunei Darussalam	</item>
+        <item>	231	Cambodia	</item>
+        <item>	232	East Timor	</item>
+        <item>	233	Indonesia	</item>
+        <item>	234	Malaysia	</item>
+        <item>	235	Myanmar	</item>
+        <item>	236	Phillipines	</item>
+        <item>	237	Singapore	</item>
+        <item>	238	Thailand	</item>
+        <item>	239	Taiwan	</item>
+        <item>	240	Veitnam	</item>
+        <item>	241	Armenia	</item>
+        <item>	242	Azerbaijan	</item>
+        <item>	243	Cyprus	</item>
+        <item>	244	Gaza Strip	</item>
+        <item>	245	Georgia	</item>
+        <item>	246	Iraq	</item>
+        <item>	247	Israel	</item>
+        <item>	248	Jordan	</item>
+        <item>	249	Kuwait	</item>
+        <item>	250	Lebanon	</item>
+        <item>	251	Qatar	</item>
+        <item>	252	Saudi Arabia	</item>
+        <item>	253	Syria	</item>
+        <item>	254	Turkey	</item>
+        <item>	255	Yemen	</item>
+        <item>	299	Unknown Asia	</item>
+        <item>	300	Belarus	</item>
+        <item>	301	Bulgaria	</item>
+        <item>	302	Czech Republic	</item>
+        <item>	303	Hungary	</item>
+        <item>	304	Poland	</item>
+        <item>	305	Moldova	</item>
+        <item>	306	Romania	</item>
+        <item>	307	Russia	</item>
+        <item>	308	Slovakia	</item>
+        <item>	309	Ukraine	</item>
+        <item>	310	Channel Islands	</item>
+        <item>	311	Denmark	</item>
+        <item>	312	Estonia	</item>
+        <item>	313	Finland	</item>
+        <item>	314	Faeroe Islands	</item>
+        <item>	315	Iceland	</item>
+        <item>	316	Ireland	</item>
+        <item>	317	Isle of Man	</item>
+        <item>	318	Latvia	</item>
+        <item>	319	Lithuania	</item>
+        <item>	320	Norway	</item>
+        <item>	321	Sweden	</item>
+        <item>	322	United Kingdom	</item>
+        <item>	330	Albania	</item>
+        <item>	331	Andora	</item>
+        <item>	332	Bosnia and Herzegovina	</item>
+        <item>	333	Crotia	</item>
+        <item>	334	Greece	</item>
+        <item>	335	Italy	</item>
+        <item>	336	Macedonia	</item>
+        <item>	337	Malta	</item>
+        <item>	338	Portugal	</item>
+        <item>	339	San Marino	</item>
+        <item>	340	Slovenia	</item>
+        <item>	341	Spain	</item>
+        <item>	342	Yugoslavia	</item>
+        <item>	350	Austria	</item>
+        <item>	351	Belgium	</item>
+        <item>	352	France	</item>
+        <item>	353	Germany	</item>
+        <item>	354	Liechtenstein	</item>
+        <item>	355	Luxembourg	</item>
+        <item>	356	Monaco	</item>
+        <item>	357	Netherlands	</item>
+        <item>	358	Switzerland	</item>
+        <item>	399	Unknown Europe	</item>
+        <item>	400	Australia	</item>
+        <item>	401	Fiji	</item>
+        <item>	403	Pacific Islands	</item>
+        <item>	404	Papua New Guinea	</item>
+        <item>	405	New Zealand	</item>
+        <item>	406	Solomon Islands	</item>
+        <item>	407	Tonga	</item>
+        <item>	499	Unknown in Oceania	</item>
+        <item>	999	Unknown	</item>
+
+    </string-array>
+    <string name="P06">
+      P06.  Does # usually live in this household?
+
+    </string>
+    <string name="Yes1">1. Yes, spent the night</string>
+    <string name="Yes2">2. Yes, did not spend the night</string>
+    <string name="No3">3. No, visitor</string>
+
+
+    <string name="P07">
+      P07.  How long has # been visiting in this household?
+   
+    </string>
+    <string name="P07_DD">DD</string>
+    <string name="identification">IDENTIFICATION</string>
+    <string name="AssDistrict">District: </string>
+    <string name="AssVillage">Village: </string>
+    <string name="AssLocality">Locality: </string>
+    <string name="AssEA">EA Number: </string>
+    <string name="assNo">Assignment No:</string>
+    <string name="title_activity_main_dash">MainDash</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_login">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">User ID</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="strLogout">Log out</string>
+    <string name="action_sync">Synchronize</string>
+    <string name="specify">Specify</string>
+    <string name="todays_date">todays date</string>
+    <string name="confirm_date">Confirm Date</string>
+    <string name="P08">
+      P08.  What is # \'s current marital status?
+
+    </string>
+    <string name="P09">
+      P09. Has # \ ever attended school?
+
+    </string>
+
+    <string name="P10">
+      P10. What is the highest level that # \ is currently doing/ has completed?
+    </string>
+
+    <string name="P11">
+      P11. If tertiary, what is/was # \'s field of education?
+    </string>
+
+    <string name="P12">
+      P12. In the past 7 days did # \ work for payment, profit or home use for at least 1 hour?
+         \n\n
+        <b> IF NO, PROBE AS FOLLOWS:</b>
+         \n\n
+    <b>Has # \ worked unpaid at own lands/cattle post, or unpaid in family business?</b>
+    </string>
+
+    <string name="P13">
+      P13. Since # \ did not work for payment, profit or home use, what did he/she do?
+    </string>
+
+    <string name="P14">
+      P14. What was # \ mainly working as during the past 7 days?
+    </string>
+
+    <string name="P15">
+      P15. What type of work did #\ do in the past 7 days?
+    </string>
+
+    <string name="P16">
+      P16. What was the main product, service or activity at # \ place of work?
+    </string>
+
+
+    <string name="q103">
+    q103.  Have you ever attended school?
+
+    </string>
+    <string name="q103_1">1. Still at school</string>
+    <string name="q103_2">2. Left school</string>
+    <string name="q103_3">3. Never attended</string>
+
+
+    <string name="q104">
+    q104.  What is the highest level that you are currently doing/have completed?
+            Type of Education
+    </string>
+    <string name="q104_1a">00. Pre school</string>
+    <string name="q104_1b">01. Primary</string>
+    <string name="q104_1c">02. secondary</string>
+    <string name="q104_1d">03. Out of school education and training</string>
+    <string name="q104_1e">11. Apprentice</string>
+    <string name="q104_1f">12. Brigade</string>
+    <string name="q104_1g">13. Technical/Vocational</string>
+    <string name="q104_1h">14. Educational College</string>
+    <string name="q104_1i">15. Institute of health Science</string>
+    <string name="q104_1j">16. University</string>
+
+    <string name="q104a">
+    Q104a.  LEVEL of Education?
+
+    </string>
+    <string name="q104_2a">0. General</string>
+    <string name="q104_2b">1. Certificate</string>
+    <string name="q104_2c">2. Diploma</string>
+    <string name="q104_2d">3. Degree</string>
+    <string name="q104_2e">4. Post Graduate</string>
+    <string name="q104_2f">5. PHD/Doctorate</string>
+
+    <string name="q104b">
+    Q104b.  YEAR
+
+    </string>
+    <string name="q104_3a">0. Less than a Year</string>
+    <string name="q104_3b">1. Year 1</string>
+    <string name="q104_3c">2. Year 2</string>
+    <string name="q104_3d">3. Year 3</string>
+    <string name="q104_3e">4. Year 4</string>
+    <string name="q104_3f">5. Year 5</string>
+    <string name="q104_3g">6. Year 6</string>
+    <string name="q104_3h">7. Year 7</string>
+
+
+    <string name="q401">
+        READ OUT::::::::::::    I am going to ask you some very personal question about sex, I mean vaginal, oral and anal sex.
+        Please bear with me as collecting information on HIV/AIDS issues requires us to ask such sensetive questions.
+        I know it may be difficult to remember exactly , but I would like you to answer the questions to the best of your knowledge, as this
+        information is very important for the survey. Again, this information is all completely private and anonymous and cannot be linked to you or any partner in any way.
+        ...........................................................
+      Q401.  Have you ever had sexual intercourse?
+
+    </string>
+    <string name="q401_1">1. Yes</string>
+    <string name="q401_2">2. No</string>
+
+    <string name="q402">
+      q402.  At what age did you FIRST have sexual intercourse?
+
+    </string>
+    <string name="Q402_YY">YY</string>
+    <string name="q402_DK">99. Dont know</string>
+
+    <string name="q402a">
+      q402a.  Did you give consent at the time of intercourse?
+
+    </string>
+    <string name="q402a_1">1. Yes</string>
+    <string name="q402a_2">2. No</string>
+
+
+    <string name="q402b">
+      q402b.  Was a condom used during that sexual intercourse?
+
+    </string>
+    <string name="q402b_1">1. Yes</string>
+    <string name="q402b_2">2. No</string>
+    <string name="q402b_9">9. Dont know</string>
+
+
+    <string name="q403">
+      q403.  Have you had sex in the past 12 months?
+
+    </string>
+    <string name="q403_1">1. Yes</string>
+    <string name="q403_2">2. No</string>
+
+
+    <string name="q501">
+      q501.  Are you circumcised?
+
+    </string>
+    <string name="q501_1">1. Yes</string>
+    <string name="q501_2">2. No</string>
+    <string name="q501_9">9. Dont know</string>
+
+
+    <string name="q502">
+      q502.  Where were you circumcised?
+
+    </string>
+    <string name="q502_1">1. Government Health Facility</string>
+    <string name="q502_2">2. Private Health Facility</string>
+    <string name="q502_3">3. Traditional</string>
+    <string name="q502_9">9. Dont know</string>
+
+    <string name="q503">
+      q503.  Do you intend to get circumcised in the next 12 months?
+
+    </string>
+    <string name="q503_1">1. Yes</string>
+    <string name="q503_2">2. No</string>
+    <string name="q503_9">9. Dont know</string>
+
+    <string name="q504">
+      q504.  Why would you NOT want to get circumcised?
+
+    </string>
+    <string name="q504_1">1. Pain</string>
+    <string name="q504_2">2. Reduce Sexual Pleasure</string>
+    <string name="q504_3">3. Fear</string>
+    <string name="q504_4">4. Culture</string>
+    <string name="q504_5">5. Religion</string>
+    <string name="q504_6">6. Spouse Consent</string>
+    <string name="q504_7">7. Parental Consent</string>
+    <string name="q504_8">8. Long Duration of Healing Period</string>
+    <string name="q504_10">10. Fear of HIV Test</string>
+    <string name="q504_0000">0000. Other Specify</string>
+
+    <string name="q1101">
+      q1101.  Are you on TB treatment now?
+
+    </string>
+    <string name="q1101_1">1. Yes Confirmed</string>
+    <string name="q1101_2">2. Yes, not confirmed</string>
+    <string name="q1101_3">3. No</string>
+    <string name="q1101_4">4. Dont want to tell</string>
+
+    <string name="q1101a">
+      q1101a.  Where are you getting your TB treatment?
+
+    </string>
+    <string name="q1101a_1">1. Government Clinic</string>
+    <string name="q1101a_2">2. Referral or District Hospital</string>
+    <string name="q1101a_3">3. Private Clinic or Hospital</string>
+    <string name="q1101a_4">4. Pharmacy/Chemist</string>
+    <string name="q1101a_5">5. Traditional Healer</string>
+
+    <string name="q1102">
+      q1102.  Have you been on TB treatment before?
+
+    </string>
+    <string name="q1102_1">1. Yes </string>
+    <string name="q1102_2">2. No</string>
+    <string name="q1102_9">9. Dont know</string>
+
+    <string name="q1102a">
+    q1102a.  When were you treated for tuberculosis?
+
+     </string>
+    <string name="Q1102_YY">Years</string>
+
+
+    <string name="q1103">
+      q1103.  Do you have a cough?
+
+    </string>
+    <string name="q1103_1">1. Yes </string>
+    <string name="q1103_2">2. No</string>
+
+    <string name="q1103a">
+    q1103a.  How long have you had this cough?
+
+     </string>
+    <string name="Q1103a_DD">days</string>
+    <string name="Q1103a_WKS">weeks</string>
+    <string name="Q1103a_99">99. Dont know</string>
+
+
+    <string name="q1104">
+      q1104.  Do you cough up sputum?
+
+    </string>
+    <string name="q1104_1">1. Yes </string>
+    <string name="q1104_2">2. No</string>
+    <string name="title_activity_q1105">Q1105</string>
+    <string name="q1105yes">1. Yes</string>
+    <string name="q1105no">2. No</string>
+    <string name="q1105Q">Does that sputum have blood in it?</string>
+    <string name="title_activity_q1106">q1106</string>
+    <string name="q1106y">1. Yes</string>
+    <string name="q1106n">2. No</string>
+    <string name="q1106a_1">1. Positive for TB</string>
+    <string name="q1106a_2">2. Negative for TB</string>
+    <string name="q1106a_3">3. Awaiting Result</string>
+    <string name="q1106a_9">9. Don\'t know</string>
+    <string name="q1106aq">a) If YES, what was the result?</string>
+    <string name="q1106ques">Did you submit a sputum sample?</string>
+    <string name="q1106bq">b) If NO, why not?</string>
+    <string name="q1106b_1">1. COULD NOT SUBMIT SPUTUM</string>
+    <string name="q1106b_2">2. COULD NOT GET TO THE CLINIC OR HEALTH CENTRE</string>
+    <string name="q1106b_3">3. I WAS NOT ASKED TO SUBMIT A SPUTUM SAMPLE</string>
+    <string name="q1106b_4">4. NO SPUTUM CONTAINER</string>
+    <string name="q1106b_Other">Other specify</string>
+    <string name="title_activity_q1107">q1107</string>
+    <string name="q1107ques">Do you currently have a fever?</string>
+    <string name="q1107y">Yes</string>
+    <string name="q1107n">No</string>
+    <string name="title_activity_q1108">q1108</string>
+    <string name="q1108ques">Do you currently have drenching night sweats?</string>
+    <string name="q1108aques">a) How long have you had the drenching night sweats?</string>
+    <string name="q1107aques">a) How long have you had the fever?</string>
+    <string name="title_activity_q1109">q1109</string>
+    <string name="q1109ques">In the past month, have you unexpectedly lost weight?</string>
+    <string name="q1109y">1. Yes</string>
+    <string name="q1109n">2. No</string>
+    <string name="title_activity_q1110">q1110</string>
+    <string name="q1110ques">Did you seek medical attention?</string>
+    <string name="q1110y">1. Yes</string>
+    <string name="q1110n">2. No</string>
+    <string name="title_activity_q1111">q1111</string>
+    <string name="q1111ques">Where did you FIRST go for help?</string>
+    <string name="q1111_1">1. Government Clinic</string>
+    <string name="q1111_2">2. Referal OR District Hospital</string>
+    <string name="q1111_3">3. Private Clinic or Hospital</string>
+    <string name="q1111_4">4. Pharmacy / Chemist</string>
+    <string name="q1111_5">5. Traditional Healer</string>
+    <string name="q1111_ot">Other specify</string>
+    <string name="title_activity_q1112">q1112</string>
+    <string name="q1112ques">If you consulted, what happened?</string>
+    <string name="q1112_1">1. I was prescribed chest X ray</string>
+    <string name="q1112_2">2. I was asked to submit sputum sample</string>
+    <string name="q1112_3">3. I was givenTB drugs</string>
+    <string name="q1112_4">4. I was prescribed other drugs</string>
+    <string name="q1112_ot">Other specify</string>
+    <string name="title_activity_q1113">q1113</string>
+    <string name="q1113ques">If you did not seek help, what were the reasons</string>
+    <string name="q1113_1">1. No money for transport</string>
+    <string name="q1113_2">2. Health facility was too far</string>
+    <string name="q1113_3">3. I did not feel sick enough</string>
+    <string name="q1113_4">4. I could not take time off work</string>
+    <string name="q1113_ot">Other specify</string>
+    <string name="title_activity_q1114">q1114</string>
+    <string name="q1114ques">Have you been diagnosed with Diabetes?</string>
+    <string name="q1114_1">Yes</string>
+    <string name="q1114_2">No</string>
+    <string name="q104ctxt">
+        c) If tertiary, what is/was your field of Education?
+        (PROBE AS NECESSARY, USE TWO OR MORE WORDS
+        TO DESCRIBE FIELD OF EDUCATION)
+    </string>
+
+
+    <string name="Q1105ques">Does that sputum has blood in it?</string>
+    <string name="Q504_10">10. Fear of HIV test</string>
+    <string name="Q504_8">8. Long duration of healing period</string>
+    <string name="Q504_7">7. Parental consent</string>
+    <string name="Q504_6">6. Spouse consent </string>
+    <string name="Q504_5">5. Religion</string>
+    <string name="Q504_1">1. Pain</string>
+    <string name="Q504_3">3. Fear</string>
+    <string name="Q504_2">2. Reduce sexual pleasure</string>
+    <string name="Q504_4">4. Culture</string>
+    <string name="Q504_Other">Other, specify</string>
+    <string-array name="type_of_education">
+        <item>	00	Pre-School	</item>
+        <item>	01 Primary	</item>
+        <item>	02 Secondary	</item>
+        <item>	03 Out of school education and training	</item>
+        <item>	11 Apprentice </item>
+        <item>	12 Brigade </item>
+        <item>	13 Technical / Vocational </item>
+        <item>	14 Educational College </item>
+        <item>	15 Inst. Of Health Sciences </item>
+        <item>	16 University </item>
+    </string-array>
+
+    <string-array name="level_of_education">
+        <item>	0 General	</item>
+        <item>	1 Certificate	</item>
+        <item>	2 Diploma	</item>
+        <item>	3 Degree	</item>
+        <item>	4 Post Graduate </item>
+        <item>	5 PHD / Doctorate </item>
+    </string-array>
+
+    <string-array name="Year">
+        <item>	0 	</item>
+        <item>	1 	</item>
+        <item>	2 	</item>
+        <item>	3 	</item>
+        <item>	4 </item>
+        <item>	5  </item>
+        <item>	6  </item>
+        <item>	7  </item>
+    </string-array>
+    <string name="title_activity_qrscanner">QRScanner</string>
+    <string name="title_activity_parental_consent">ParentalConsent</string>
+    <string name="title_activity_hiv_ascent">HivAscent</string>
+    <string name="title_activity_hivconsent_over64">HIVConsentOver64</string>
+    <string name="title_activity_rapid_hivtest">RapidHIVTest</string>
+    <string name="title_activity_hivchild_parental_consent15_17">HIVChildParentalConsent15_17
+    </string>
+    <string name="title_activity_hivchild_assent15_17">HIVChildAssent15_17</string>
+    <string name="title_activity_hivadults_consent18_plus">HIVAdultsConsent18Plus</string>
+    <string name="title_activity_adults15_16__rapid_test">Adults15_16_RapidTest</string>
+    <string name="title_activity_hiv__under_15_tests">HIV_Under_15_tests</string>
+    <string name="title_activity_hiv_over64_tests">HIV_over64_tests</string>
+    <string name="title_activity_hiv__o15to64__test">HIV_O15to64_Test</string>
+    <string name="title_activity_barcode">Barcode</string>
+    <string name="q1103ques">Do you currently have a cough?</string>
+    <string name="title_activity_hiv_15_16__p__consent">HIV_15_16_P_Consent</string>
+    <string name="title_activity_p08">p08</string>
+    <string name="married">1. Married</string>
+    <string name="never_married">2. Never Married</string>
+    <string name="living_together">3. Living Together</string>
+    <string name="separated">4. Separated</string>
+    <string name="divocerd">5. Divorced</string>
+    <string name="widowed">6. Widowed</string>
+    <string name="title_activity_p09">P09</string>
+    <string name="AtSchool">1. Still at school</string>
+    <string name="LeftSchool">2. Left School</string>
+    <string name="out">3. Never Attended</string>
+    <string name="title_activity_p10">P10</string>
+    <string name="title_activity_p11">P11</string>
+    <string name="title_activity_p12">P12</string>
+    <string name="yes">1. Yes</string>
+    <string name="no">1. No</string>
+    <string name="title_activity_p13">P13</string>
+    <string name="title_activity_p14">P14</string>
+    <string name="title_activity_p15">P15</string>
+    <string name="title_activity_p16">P16</string>
+    <string name="title_activity_h01">H01</string>
+    <string name="title_activity_h02">H02</string>
+    <string name="title_activity_h03">H03</string>
+    <string name="title_activity_h04">H04</string>
+    <string name="title_activity_h05">H05</string>
+    <string name="title_activity_h12">H12</string>
+    <string name="title_activity_h13">H13</string>
+
+
+
+    <string name="q105">
+    q105.  What is your employment status?
+    </string>
+
+    <string name="q105_1a">1. Full-Time employed</string>
+    <string name="q105_1b">2. self employed</string>
+    <string name="q105_1c">3. Part-time employed</string>
+    <string name="q105_1d">4. working at own lands/cattle post</string>
+    <string name="q105_1e">5. Actively seeking work</string>
+    <string name="q105_1f">6. Too old to work</string>
+    <string name="q105_1g">7. Pensioner</string>
+    <string name="q105_1h">8. Student</string>
+    <string name="q105_other"> Specify</string>
+
+    <string name="q105a">
+    a).  What is your current occupation?
+
+    </string>
+    <string name="q105_2a">Specify occupation</string>
+    <string name="q105_2b">Occupation Code</string>
+
+
+    <string name="q105b">
+    Q105b.  What is the main product, service or activity at your place of work? ..PROBE AS NECESSARY. USE TWO OR MORE WORDS TO DESCRIBE THE INDUSTRY.
+
+    </string>
+    <string name="q105b_2a">Specify Product/Service</string>
+    <string name="q105b_2b">Main Product/Service Code</string>
+
+
+    <string name="q106">
+    q106.  In the past 7 days did you work for payment, profit or home use for at least 1 hour?
+    </string>
+
+    <string name="q106_1">1. Yes</string>
+    <string name="q106_2">2. No</string>
+
+
+    <string name="q106a">
+    Q106a.  Since you DID NOT work for payment, profit or home use, what did you do?
+
+    </string>
+    <string name="q106a_1">1. Actively seeking work</string>
+    <string name="q106a_2">2. Housework</string>
+    <string name="q106a_3">3. Student</string>
+    <string name="q106a_4">4. Too old to work</string>
+    <string name="q106a_5">5. Too sick to work</string>
+    <string name="q106a_other"> other specify</string>
+
+
+    <string name="q106b">
+    q106b.  What were you mainly working as during the past 7 days?
+
+    </string>
+    <string name="q106b_1">1. Employee - Paid cash</string>
+    <string name="q106b_2">2. Employee - Paid  in kind only</string>
+    <string name="q106b_3">3. Self Employed - (No employees)</string>
+    <string name="q106b_4">4. Self Employed - (With employees)</string>.
+    <string name="q106b_5">5. Member - Producer cooperatives</string>
+    <string name="q106b_6">6. Unpaid helper in family business</string>
+    <string name="q106b_7">7. Working at own lands/cattle post</string>
+    <string name="q106b_8">8. Apprentice</string>
+    <string name="q106b_10">10.Volunteer</string>
+
+
+    <string name="q106c">
+    Q106c.  What type of work did you do in the past 7 days? PROBE AS NECESSARY AND WRITE
+        OCCUPATION IN FULL. ALSO RECONCILE WITH LEVEL OF EDUCATION
+
+    </string>
+    <string name="q106C_1">106c Occupation</string>
+
+
+    <string name="q106d">
+    Q106d.  What was the main product, service or activity at your place of work? PROBE AS NECESSARY
+        USE TWO OR MORE WORDS TO DESCRIBE THE INDUSTRY
+
+    </string>
+    <string name="q106D_1">106d Main Product/Service</string>
+
+
+    <string name="q107">
+    q107.  Have you ever worked in a mine?
+    </string>
+
+    <string name="q107_1">1. Yes</string>
+    <string name="q107_2">2. No</string>
+
+
+    <string name="q107a">
+    q107a.  For how long have you worked in the mine?
+    </string>
+
+    <string name="q107a_1">Q107_YEAR</string>
+    <string name="q107a_2">Q107_MONTH</string>
+
+    <string name="q107b">
+    q107b.  What was your occupation?
+    </string>
+
+    <string name="q107b_1">1. Loader</string>
+    <string name="q107b_2">2. Blaster</string>
+    <string name="q107b_3">3. Shaftman</string>
+    <string name="q107b_4">4. Foreman</string>
+    <string name="q107b_5">5. Driller</string>
+    <string name="q107b_specify">other specify</string>
+
+
+    <string name="q107c">
+    q107c.  What is/was the type of the commodity mined?
+    </string>
+
+    <string name="q107c_1">1. Quarry</string>
+    <string name="q107c_2">2. Coal</string>
+    <string name="q107c_3">3. Kimberlite</string>
+    <string name="q107c_4">4. Copper/Nickel</string>
+    <string name="q107c_5">5. Asbestos</string>
+    <string name="q107c_specify">q107c specify</string>
+
+
+    <string name="q201">  READ OUT............ Now i am going to ask you questions about current and previous relationships and /or marriages......................
+    q201.  What is your current marital status?
+    </string>
+
+    <string name="q201_1">1. Never married</string>
+    <string name="q201_2">2. Married</string>
+    <string name="q201_3">3. Living Together</string>
+    <string name="q201_4">4. Separated</string>
+    <string name="q201_5">5. Divorced</string>
+    <string name="q201_6">6. Widowed</string>
+
+    <string name="q202">
+    q202.  Have you ever lived together with a partner as if you were married?
+    </string>
+
+    <string name="q202_1">1. Yes</string>
+    <string name="q202_2">2. No</string>
+
+    <string name="q203">
+    q203.  Altogether, how many wives/husbands or live in partners have you had?
+    </string>
+
+    <string name="q203_1">partner_number </string>
+
+
+    <string name="q204">
+    q204.  For how many years have you been married or living together?
+    </string>
+
+    <string name="q204_1">q204_years </string>
+
+    <string name="q205">
+    q205.  Does your husband/wife/partner live with you now or he/she stays elsewhere?
+    </string>
+
+    <string name="q205_1">1. Living together in the same house</string>
+    <string name="q205_2">2. Staying elsewhere</string>
+
+    <string name="q205a">
+    q205a.  How often do you see/visit each other?
+    </string>
+
+    <string name="q205a_1">1. Daily</string>
+    <string name="q205a_2">2. Weekly</string>
+    <string name="q205a_3">3. Fortnightly</string>
+    <string name="q205a_4">4. Monthly</string>
+    <string name="q205a_5">5. Quartely</string>
+    <string name="q205a_6">6. Yearly</string>
+    <string name="q205a_7">7. Never</string>
+
+    <string name="q301"> READ OUT..........Now i am going to ask you questions about alcohol and substance use. By alcohol we mean beer, spirits, wine,
+        home brews (khadi etc), chibuku, whisky, etc. By substances we mean cocaine, heroin, glue, mandrax, ecstasy, marijuana (motokwane) etc. I would like you
+        to answer the question to the best of your knowledge, as this information is very important for the survey. Again, this information is all completely is all
+        completely private and anonymous and cannot be linked to you or any way................................................................
+
+    q301.  Have you ever taken alcohol?
+    </string>
+
+    <string name="q301_1">1. Yes</string>
+    <string name="q301_2">2. No</string>
+
+    <string name="q301a">
+    q301a.  Have you taken alcohol in the past 3 months?
+    </string>
+
+    <string name="q301a_1">1. Yes</string>
+    <string name="q301a_2">2. No</string>
+
+    <string name="q302">
+    q302.  Have you ever used drugs for recreational purposes?
+    </string>
+
+    <string name="q302_1">1. Yes</string>
+    <string name="q302_2">2. No</string>
+
+
+    <string name="q303">
+    q303.  Have you ever injected any drugs for recreation purpose?
+    </string>
+
+    <string name="q303_1">1. Yes</string>
+    <string name="q303_2">2. No</string>
+
+    <string name="q303a">
+    q303a.  Have you injected any drugs for recreation purposes in the past 3 months?
+    </string>
+
+    <string name="q303a_1">1. Yes</string>
+    <string name="q303a_2">2. No</string>
+
+    <string name="q304">
+    q304.  Have you ever used any of the following drugs for recreation:?
+    </string>
+
+    <string name="q304_1">1. Yes</string>
+    <string name="q304_2">2. No</string>
+
+    <string name="q304a">
+    q304a.  Have you used any of these drugs in the past 3 months?
+    </string>
+
+    <string name="q304a_1">1. Yes</string>
+    <string name="q304a_2">2. No</string>
+
+
+    <string name="q305">
+    Q305.  Have you used tobacco through smoking, sniffing or chewing in the past 3 months? (By tobacco products we mean as cigarettes, cigars or pipes)........MULTIPLE RESPONSE.....
+    </string>
+
+    <string name="q305_1">1. Smoking</string>
+    <string name="q305_2">2. Sniffing</string>
+    <string name="q305_3">3. Chewing</string>
+    <string name="q305_4">4. None</string>
+
+    <string name="q306">
+    q306. During the past 7 days, on how many days did someone smoke around you?
+    </string>
+
+    <string name="q306_1">q306_number of days</string>
+    <string name="q306_9">9. Dont know</string>
+
+
+    <string name="q307">
+    q307.  In the past 12 months have you ever seen or heard any anti-alcohol and substance abuse messages?
+    </string>
+
+    <string name="q307_1">1. Yes</string>
+    <string name="q307_2">2. No</string>
+
+    <string name="q404">
+      q404.  Which type of sex have you had in the past 12 months? ................... MULTIPLE RESPONSES
+
+    </string>
+    <string name="q404_1">1. Vaginal Sex</string>
+    <string name="q404_2">2. Anal Sex</string>
+    <string name="q404_3">3. Oral Sex</string>
+
+    <string name="q404a">
+      q404a.  Was a condom used the last time you had sex in the past 12 months?
+
+    </string>
+    <string name="q404a_1">1. Yes</string>
+    <string name="q404a_2">2. No</string>
+
+
+    <string name="q405">
+      q405.  Have you had sex without your consent in the past 12 months?
+
+    </string>
+    <string name="q405_1">1. Yes</string>
+    <string name="q405_2">2. No</string>
+
+
+    <string name="q406">
+      q406.  In the past 12 months with how many people OVERALL have you had sex?
+
+    </string>
+    <string name="q406_partners">Partners</string>
+
+    <string name="q407">
+      q407.  Have you been engaged in the sex while under the influence of drugs/alcohol in the past 12 months?
+
+    </string>
+    <string name="q407_1">1. Yes</string>
+    <string name="q407_2">2. No</string>
+
+    <string name="q408">
+      q408.  In the past 12 months have you had sex with someone you are not married to or living together?
+
+    </string>
+    <string name="q408_1">1. Yes</string>
+    <string name="q408_2">2. No</string>
+
+    <string name="q408a">
+      q408a.  Did you use a condom used the last time you had sex with this partner?
+
+    </string>
+    <string name="q408a_1">1. Yes</string>
+    <string name="q408a_2">2. No</string>
+
+    <string name="q410">
+       Q410.  Have you experienced physical or sexual violence from a male intimate partner in the past 12 months?
+
+        READ OUT....................Physical or sexual violence is determined by asking whether they were::::
+      </string>
+
+    <string name="q410a">
+      q410a.  Slapped or threw something that could hurt you?
+
+    </string>
+    <string name="q410a_1">1. Yes</string>
+    <string name="q410a_2">2. No</string>
+
+    <string name="q410b">
+      q410b.  Pushed or shoved you?
+
+    </string>
+    <string name="q410b_1">1. Yes</string>
+    <string name="q410b_2">2. No</string>
+
+    <string name="q410c">
+      q410c.  Choked or burned you?
+
+    </string>
+    <string name="q410c_1">1. Yes</string>
+    <string name="q410c_2">2. No</string>
+
+    <string name="q410d">
+      q410d.  Threatened or used a gun, knife or other weapon against you?
+
+    </string>
+    <string name="q410d_1">1. Yes</string>
+    <string name="q410d_2">2. No</string>
+
+    <string name="q410e">
+      q410e.  Physically forced you to have sexual intercourse against your will?
+
+    </string>
+    <string name="q410e_1">1. Yes</string>
+    <string name="q410e_2">2. No</string>
+
+    <string name="q410f">
+      q410f.  Forced you to do something sexual you found degrading or humiliating?
+
+    </string>
+    <string name="q410f_1">1. Yes</string>
+    <string name="q410f_2">2. No</string>
+
+    <string name="q410g">
+      q410g.  Made you afraid of what would happen if you did not have sexual intercourse?
+
+    </string>
+    <string name="q410g_1">1. Yes</string>
+    <string name="q410g_2">2. No</string>
+
+
+    <string name="q601">
+        READ OUT::::::Now i am going to ask you some questions about knowledge about HIV and AIDS and TB. i would like you to answer the questions to the best of your knowledge.........................................
+
+        Q601.  Have you EVER heard of HIV or an illness called AIDS?
+
+    </string>
+    <string name="q601_1">1. Yes</string>
+    <string name="q601_2">2. No</string>
+
+
+    <string name="q601a">
+      Q601a.  In the past 4 weeks, have you heard or seen any information about HIV/AIDS?
+
+    </string>
+    <string name="q601a_1">1. Yes</string>
+    <string name="q601a_2">2. No</string>
+
+
+    <string name="Q602">
+      Q602.  From what source(s) did you receive information about HIV and AIDS? .......... MULTIPLE RESPONSE..........NOT A READOUT
+
+    </string>
+    <string name="q602_1">1. Youth Program</string>
+    <string name="q602_2">2. Television/Video</string>
+    <string name="q602_3">3. Radio</string>
+    <string name="q602_4">4. Newspaper</string>
+    <string name="q602_5">5. Hospital/Clinic/VCT</string>
+    <string name="q602_6">6. Posters/Banners/Booklet</string>
+    <string name="q602_7">7. Traditional/Spiritual/Healer</string>
+    <string name="q602_8">8. Workshop/Seminar</string>
+    <string name="q602_10">10. Individual</string>
+    <string name="q602_11">11. Church</string>
+    <string name="q602_12">12. Kgotla</string>
+    <string name="q602_13">13. Workplace Programme(Peer Educator, Counsellor, co-worker)</string>
+    <string name="q602_14">14. Peer Educator</string>
+    <string name="q602_15">15. School</string>
+    <string name="q602_other">Other Specify</string>
+
+
+    <string name="q603">
+      Q603.  How can people prevent becoming infected with HIV?
+       ....................MULTIPLE RESPONSE
+                     .......... NOT A READOUT
+
+    </string>
+    <string name="q603_1">1. Use Condoms</string>
+    <string name="q603_2">2. Have fewer partners</string>
+    <string name="q603_3">3. Both partners have no other partners</string>
+    <string name="q603_4">4. No casual sex</string>
+    <string name="q603_5">5. Abstinence</string>
+    <string name="q603_6">6. No Commercial sex</string>
+    <string name="q603_7">7. Avoid injections with Contaminated needles</string>
+    <string name="q603_8">8. Avoid Blood Transfusions</string>
+    <string name="q603_9">9. Dont know any</string>
+    <string name="q603_other">Other Specify</string>
+
+
+    <string name="q604">
+      Q604.  Have you EVER heard of TB?
+
+    </string>
+    <string name="q604_1">1. Yes</string>
+    <string name="q604_2">2. No</string>
+
+    <string name="q604a">
+      Q604a.  In the past 4 weeks, have you heard or seen any information about TB?
+
+    </string>
+    <string name="q604a_1">1. Yes</string>
+    <string name="q604a_2">2. No</string>
+
+
+    <string name="q604b">
+      Q604b.  From what source(s) did you receive information about TB?
+
+                      MULTIPLE RESPONSE
+                      NOT A READOUT
+    </string>
+    <string name="q604b_1">1. Youth Program</string>
+    <string name="q604b_2">2. Television/Video</string>
+    <string name="q604b_3">3. Radio</string>
+    <string name="q604b_4">4. Newspaper</string>
+    <string name="q604b_5">5. Hospital/Clinic/VCT</string>
+    <string name="q604b_6">6. Posters/Banners/Booklet</string>
+    <string name="q604b_7">7. Traditional/Spiritual/Healer</string>
+    <string name="q604b_8">8. Workshop/Seminar</string>
+    <string name="q604b_10">10. Individual</string>
+    <string name="q604b_11">11. Church</string>
+    <string name="q604b_12">12. Kgotla</string>
+    <string name="q604b_13">13. Workplace Programme(Peer Educator, Counsellor, co-worker)</string>
+    <string name="q604b_14">14. Peer Educator</string>
+    <string name="q604b_15">15. School</string>
+    <string name="q604b_other">Other Specify</string>
+
+
+    <string name="q605">
+      Q605.  How can people prevent becoming infected with TB?
+
+                      MULTIPLE RESPONSE
+                      NOT A READOUT
+
+    </string>
+    <string name="q605_1">1. Keep Windows open</string>
+    <string name="q605_2">2. Cover month when coughing</string>
+    <string name="q605_3">3. Avoid shaking hands</string>
+    <string name="q605_4">4. Good nutrition</string>
+    <string name="q605_5">5. Praying</string>
+    <string name="q605_9">9. Do not know any</string>
+    <string name="q605_other">Other Specify</string>
+
+
+    <string name="q606">
+        READ OUT::::::::::::
+        Now I am going to ask you some questions about facts and myths about TB and HIV.
+        I would like you to answer the questions to the best of your knowledge.......................................................
+      Q606.  Is it possible for a healthy looking person to have HIV?
+
+    </string>
+    <string name="q606_1">1. Yes</string>
+    <string name="q606_2">2. No </string>
+    <string name="q606_9">9. Dont know</string>
+
+    <string name="q607">
+      Q607.  Can people reduce their chances of getting HIV by using a condom correctly every time they have sex?
+
+    </string>
+    <string name="q607_1">1. Yes</string>
+    <string name="q607_2">2. No </string>
+    <string name="q607_9">9. Dont know</string>
+
+
+    <string name="q608">
+      Q608.  Do you think that a person can get infected with HIV through mosquito bites?
+
+    </string>
+    <string name="q608_1">1. Yes</string>
+    <string name="q608_2">2. No </string>
+    <string name="q608_9">9. Dont know</string>
+
+    <string name="q609">
+      Q609.  Can people reduce their chances of getting HIV by having only one UNINFECTED sex partner who has no other partners?
+
+    </string>
+    <string name="q609_1">1. Yes</string>
+    <string name="q609_2">2. No </string>
+    <string name="q609_9">9. Dont know</string>
+
+    <string name="q610">
+      Q610.  Can a person get infected with HIV by sharing a meal (from the same plate) with a person who has HIV?
+
+    </string>
+    <string name="q610_1">1. Yes</string>
+    <string name="q610_2">2. No </string>
+    <string name="q610_9">9. Dont know</string>
+
+    <string name="q611">
+      Q611.  Can HIV be transferred from a mother to a child: .........READ OUT
+
+    </string>
+
+
+    <string name="q611a">
+        Q611a.  During pregnancy?
+
+    </string>
+    <string name="q611a_1">1. Yes</string>
+    <string name="q611a_2">2. No </string>
+    <string name="q611a_9">9. Dont know</string>
+
+    <string name="q611b">
+      Q611b.  During delivery?
+
+    </string>
+    <string name="q611b_1">1. Yes</string>
+    <string name="q611b_2">2. No </string>
+    <string name="q611b_9">9. Dont know</string>
+
+    <string name="q611c">
+      Q611c.  During breastfeeding?
+
+    </string>
+    <string name="q611c_1">1. Yes</string>
+    <string name="q611c_2">2. No </string>
+    <string name="q611c_9">9. Dont know</string>
+
+    <string name="q612">
+      Q612. If a mother is infected with HIV, is there any way to avoid transmission during pregnancy?
+
+    </string>
+    <string name="q612_1">1. Yes</string>
+    <string name="q612_2">2. No </string>
+    <string name="q612_9">9. Dont know</string>
+
+
+    <string name="q612a">
+      Q612a. If yes, what ways?
+
+    </string>
+    <string name="q612a_1">1. Antiretroviral therapy(Art, drugs after birth)</string>
+    <string name="q612a_2">2. Caesarean section </string>
+    <string name="q612a_9">9. Dont know</string>
+    <string name="q612a_other">Other Specify </string>
+
+    <string name="q613">
+      Q613. If a mother is infected with HIV, is there any way to avoid transmission to a new born baby?
+
+    </string>
+    <string name="q613_1">1. Yes</string>
+    <string name="q613_2">2. No </string>
+    <string name="q613_9">9. Dont know</string>
+
+
+    <string name="q613a">
+      Q613a. If yes, what ways?
+
+    </string>
+    <string name="q613a_1">1. Antiretroviral therapy(Art, drugs after birth)</string>
+    <string name="q613a_2">2. Not breastfeeding </string>
+    <string name="q613a_3">3. Exclusive breastfeeding </string>
+    <string name="q613a_9">9. Dont know</string>
+    <string name="q613a_other">Other Specify </string>
+
+
+    <string name="q614">
+      Q614. What do you believe anti-retroviral (ARVs) do?
+
+    </string>
+    <string name="q614_1">1. Cure AIDS</string>
+    <string name="q614_2">2. Cure HIV </string>
+    <string name="q614_3">3. Suppress HIV </string>
+    <string name="q614_4">4. Boost Immune System</string>
+    <string name="q614_9">9. Dont know</string>
+    <string name="q614_other">Other Specify </string>
+
+
+    <string name="q615">
+      Q615. Do you think that people on ARVs should always use condoms?
+
+    </string>
+    <string name="q615_1">1. Yes</string>
+    <string name="q615_2">2. No </string>
+    <string name="q615_9">9. Dont know</string>
+
+    <string name="q616">
+      Q616. In your opinion, who can be infected with TB? ............MULTIPLE RESPONSES ........NOT A READ OUT
+
+    </string>
+    <string name="q616_1">1. Anybody</string>
+    <string name="q616_2">2. Poor people </string>
+    <string name="q616_3">3. Homeless people</string>
+    <string name="q616_4">4. Alcoholics</string>
+    <string name="q616_5">5. Drug users</string>
+    <string name="q616_6">6. People Living with HIV and AIDS</string>
+    <string name="q616_7">7. People who have been in Prison </string>
+    <string name="q616_8">8. Smokers</string>
+    <string name="q616_9">9. Dont know</string>
+    <string name="q616_other">Other Specify </string>
+
+
+    <string name="q617">
+      Q617.  Can a person get TB through......?
+
+    </string>
+
+
+    <string name="q617a">
+        Q617a.  Sharing a meal with a person who has TB?
+
+    </string>
+    <string name="q617a_1">1. Yes</string>
+    <string name="q617a_2">2. No </string>
+    <string name="q617a_9">9. Dont know</string>
+
+    <string name="q617b">
+      Q617b.  Sharing clothes with a person who has TB?
+
+    </string>
+    <string name="q617b_1">1. Yes</string>
+    <string name="q617b_2">2. No </string>
+    <string name="q617b_9">9. Dont know</string>
+
+    <string name="q617c">
+    Q617c.  Sex with a woman who miscarried?
+
+    </string>
+    <string name="q617c_1">1. Yes</string>
+    <string name="q617c_2">2. No </string>
+    <string name="q617c_9">9. Dont know</string>
+
+
+    <string name="q617d">
+    Q617d.  Sex with a widow/widower?
+
+    </string>
+    <string name="q617d_1">1. Yes</string>
+    <string name="q617d_2">2. No </string>
+    <string name="q617d_9">9. Dont know</string>
+
+
+    <string name="q617e">
+        Q617e.  Born in a family with HIV?
+
+        </string>
+    <string name="q617e_1">1. Yes</string>
+    <string name="q617e_2">2. No </string>
+    <string name="q617e_9">9. Dont know</string>
+
+    <string name="q617f">
+        Q617f.  Born in a family with SEJESO?
+
+    </string>
+    <string name="q617f_1">1. Yes</string>
+    <string name="q617f_2">2. No </string>
+    <string name="q617f_9">9. Dont know</string>
+
+
+    <string name="q617g">
+      Q617g.  Touching items in public places?
+
+    </string>
+    <string name="q617g_1">1. Yes</string>
+    <string name="q617g_2">2. No </string>
+    <string name="q617g_9">9. Dont know</string>
+
+
+    <string name="q617h">
+        Q617h.  Being in contact with someone with TB?
+
+    </string>
+    <string name="q617h_1">1. Yes</string>
+    <string name="q617h_2">2. No </string>
+    <string name="q617h_9">9. Dont know</string>
+
+
+    <string name="q617_Specify">
+      Q617i.  Other specify?
+
+    </string>
+    <string name="q617_other">Other specify</string>
+
+
+    <string name="q618">
+      Q618. Do you think that TB can be treated?
+    </string>
+    <string name="q618_1">1. Yes</string>
+    <string name="q618_2">2. No </string>
+    <string name="q618_9">9. Dont know</string>
+
+    <string name="q619">
+      Q619. What are the signs and symptoms of TB? ............MULTIPLE RESPONSE.............NOT A READ OUT
+
+    </string>
+    <string name="q619_1">1. Rash</string>
+    <string name="q619_2">2. Cough</string>
+    <string name="q619_3">3. Cough that lasts longer than 3 weeks</string>
+    <string name="q619_4">4. Coughing up blood</string>
+    <string name="q619_5">5. Severe headache</string>
+    <string name="q619_6">6. Nausea</string>
+    <string name="q619_7">7. Weight loss </string>
+    <string name="q619_8">8. Fever</string>
+    <string name="q619_10">10. Fever without clear cause that last more than 7 days </string>
+    <string name="q619_11">11. Chest pain</string>
+    <string name="q619_12">12. Shortness of breath</string>
+    <string name="q619_13">13. Ongoing fatique</string>
+    <string name="q619_14">14. Night sweats</string>
+    <string name="q619_9">9. Dont know</string>
+    <string name="q619_other">Other Specify </string>
+
+    <string name="q620">
+      Q620. What is the first thing you would do if you had symptoms of TB?
+
+    </string>
+    <string name="q620_1">1. Go to the health facility</string>
+    <string name="q620_2">2. Go to pharmacy</string>
+    <string name="q620_3">3. Go to traditional healer</string>
+    <string name="q620_4">4. Pursue other treatment options</string>
+    <string name="q620_9">9. Dont know</string>
+    <string name="q620_other">Other Specify </string>
+
+
+    <string name="q621">
+      Q621. If you were diagnosed with TB, would you tell anyone?
+
+    </string>
+    <string name="q621_1">1. Yes</string>
+    <string name="q621_2">2. No </string>
+
+
+    <string name="q621a">
+      Q621a. If yes, whom would you tell? ........................ MULTIPLE RESPONSE
+
+    </string>
+    <string name="q621a_1">1. Spouse</string>
+    <string name="q621a_2">2. Sex Partner</string>
+    <string name="q621a_3">3. Friend</string>
+    <string name="q621a_4">4. Family member(s)</string>
+    <string name="q621a_5">5. Other relatives(s)</string>
+    <string name="q621a_6">6. Health care worker</string>
+    <string name="q621a_7">7. Co-Worker </string>
+    <string name="q621a_other">Other Specify </string>
+
+    <string name="q621b">
+      Q621b. If no, why not?
+
+    </string>
+    <string name="q621b_1">1. Fear of stigmatisation</string>
+    <string name="q621b_2">2. Keep it a secret </string>
+    <string name="q621b_other">Other Specify </string>
+
+
+    <string name="q622">
+      Q622. Do you think HIV positive people should be concerned about TB?
+
+    </string>
+    <string name="q622_1">1. Yes</string>
+    <string name="q622_2">2. No </string>
+    <string name="q622_9">9. Dont know</string>
+
+    <string name="q622a">
+    </string>
+    Q622a. If yes, why?
+
+
+    <string name="q622a_1">1. Person with HIV is more likely to develop TB</string>
+    <string name="q622a_9">9. Dont know</string>
+    <string name="q622a_other">Other Specify </string>
+
+    <string name="q622b">
+    </string>
+    Q622b. If no, why not?
+
+
+    <string name="q622b_1">1. Person with HIV is less likely to develop TB</string>
+    <string name="q622b_9">9. Dont know</string>
+    <string name="q622b_other">Other Specify </string>
+
+
+    <string name="q623">
+      Q623. Have you ever heard of Safe Male Circumcision or SMC programme?
+
+    </string>
+    <string name="q623_1">1. Yes</string>
+    <string name="q623_2">2. No </string>
+
+
+    <string name="q624">
+      Q624. Suppose you had male children aged below 18 years would you get them circumcised?
+
+    </string>
+    <string name="q624_1">1. Yes</string>
+    <string name="q624_2">2. No </string>
+    <string name="q624_3">2. Unsure </string>
+
+    <string name="q625">
+      Q625. Do you think a circumcised male should stop using condoms?
+
+    </string>
+    <string name="q625_1">1. Yes</string>
+    <string name="q625_2">2. No </string>
+    <string name="q625_9">9. Dont know </string>
+
+
+    <string name="q701">
+
+        READ OUT::::::::::: Now i would like to ask you some questions about attitudes and what you think about people who are living with HIV and AIDS and TB............................................................
+      Q701. If a member of your family became sick with HIV AND AIDS, would you be willing to care for him or her in your household?
+
+    </string>
+    <string name="q701_1">1. Yes</string>
+    <string name="q701_2">2. No </string>
+
+
+    <string name="q702">
+      Q702. If your knew that a shopkeeper or food seller had HIV AND AIDS, would you buy vegetables from them?
+
+    </string>
+    <string name="q702_1">1. Yes</string>
+    <string name="q702_2">2. No </string>
+
+
+    <string name="q703">
+      Q703. Do you think that children living with HIV should attend school with children who are HIV negative?
+
+    </string>
+    <string name="q703_1">1. Yes</string>
+    <string name="q703_2">2. No </string>
+
+
+    <string name="q704">
+      Q704. Would you share a room with a person you knew has been diagnosed with TB?
+
+    </string>
+    <string name="q704_1">1. Yes</string>
+    <string name="q704_2">2. No </string>
+
+
+    <string name="q705">
+      Q705. If a member of your family got diagnosed with TB, would you be willing to care for him or her in your household?
+
+    </string>
+    <string name="q705_1">1. Yes</string>
+    <string name="q705_2">2. No </string>
+
+
+    <string name="q801">
+      Q801. READ OUT::::: Now i am going to ask you more about your experience with HIV support, care and treatment.....................................................
+          Have you ever been tested for HIV?
+
+    </string>
+    <string name="q801_1">1. Yes</string>
+    <string name="q801_2">2. No </string>
+
+    <string name="q801a">
+      Q801a. Have you tested for HIV in the past 12 months?
+
+    </string>
+    <string name="q801a_1">1. Yes</string>
+    <string name="q801a_2">2. No </string>
+
+    <string name="q801b">
+      Q801b. Did you test together with your partner in the past 12 months?
+
+    </string>
+    <string name="q801b_1">1. Yes</string>
+    <string name="q801b_2">2. No </string>
+    <string name="q801b_3">3. No, No Partner </string>
+
+    <string name="q801c">
+      Q801c. What month and year was your last HIV test?
+
+    </string>
+    <string name="q801c_month">q801c_month</string>
+    <string name="q801c_year">q801c_year </string>
+    <string name="q801c_99">99. Dont know month </string>
+    <string name="q801c_9999">9999. Dont know year </string>
+
+    <string name="q801d">
+      Q801d. What was the MAIN reason for your last HIV test?
+
+    </string>
+    <string name="q801d_1">1. Illness</string>
+    <string name="q801d_2">2. Pregnancy</string>
+    <string name="q801d_3">3. Wanted to have a child</string>
+    <string name="q801d_4">4. Had unprotected sex</string>
+    <string name="q801d_5">5. Rape</string>
+    <string name="q801d_6">6. Pre-Marital/New Partner</string>
+    <string name="q801d_7">7. Just wanted to know</string>
+    <string name="q801d_8">8. Needle Prick</string>
+    <string name="q801d_10">10. Encouraged by someone</string>
+    <string name="q801d_11">11. Pre-Employment/Scholarship Requirements</string>
+    <string name="q801d_9">9. Dont know</string>
+    <string name="q801d_other"> other_specify</string>
+
+
+    <string name="q801e">
+      Q801e. Where was the LAST test done?
+
+    </string>
+    <string name="q801e_1">1. VCT Facility</string>
+    <string name="q801e_2">2. Mobile VCT(OUTREACH)</string>
+    <string name="q801e_3">3. At home</string>
+    <string name="q801e_4">4. Health Clinic/Facility</string>
+    <string name="q801e_5">5. Hospital Outpatient Clinic</string>
+    <string name="q801e_6">6. Hospital Inpatient Wards</string>
+    <string name="q801e_7">7. Blood Donating Centre</string>
+    <string name="q801e_8">8. ANC Clinic</string>
+    <string name="q801e_9">9. Dont know</string>
+    <string name="q801e_other"> other_specify</string>
+
+
+    <string name="q801f">
+        Q801f. What was the result of your last HIV test?
+
+    </string>
+    <string name="q801f_1">1. Positive</string>
+    <string name="q801f_2">2. Negative</string>
+    <string name="q801f_3">3. Indeterminate</string>
+    <string name="q801f_4">4. Dont want to tell</string>
+    <string name="q801f_9">9. Dont know</string>
+
+    <string name="q802">
+      Q802. Did you tell anyone the result of the test?
+
+    </string>
+    <string name="q802_1">1. Yes</string>
+    <string name="q802_2">2. No</string>
+
+
+    <string name="q802a">
+      Q802a. Who have you told that you are HIV positive? ................NOT A READ OUT
+
+    </string>
+    <string name="q802a_1">2. Husband/Wife/Sex Partner</string>
+    <string name="q802a_2">3. Doctor</string>
+    <string name="q802a_3">4. Friend</string>
+    <string name="q802a_4">5. Family member</string>
+    <string name="q802a_other"> other_specify</string>
+
+
+    <string name="q803">
+      Q803. Why have you not tested in the past 12 months?
+
+    </string>
+    <string name="q803_1">1. Fear of knowing my status</string>
+    <string name="q803_2">2. Fear my partner possible reaction</string>
+    <string name="q803_3">3. My partner recently tested negative</string>
+    <string name="q803_4">4. Fear of the needle prick</string>
+    <string name="q803_5">5. I am not at risk</string>
+    <string name="q803_6">6. I have not had the time or chance to go for testing</string>
+    <string name="q803_7">7. I do not know where to go to get tested</string>
+    <string name="q803_8">8. I know my HIV Positive status</string>
+    <string name="q803_other"> other_specify</string>
+
+    <string name="q804">
+      Q804. Why have you NEVER tested?
+
+    </string>
+    <string name="q804_1">1. Fear of knowing my status</string>
+    <string name="q804_2">2. Fear my partner possible reaction</string>
+    <string name="q804_3">3. My partner recently tested negative</string>
+    <string name="q804_4">4. Fear of the needle prick</string>
+    <string name="q804_5">5. I am not at risk</string>
+    <string name="q804_6">6. I have not had the time or chance to go for testing</string>
+    <string name="q804_7">7. I do not know where to go to get tested</string>
+    <string name="q804_other"> other_specify</string>
+
+    <string name="q901">
+        READ OUT:::  Now i am going to ask you more about your experience with HIV support, care and treatment. ..............................................
+      Q901. After learning you had HIV, have you EVER received HIV medical care from a doctor, clinical officer or nurse?
+
+    </string>
+    <string name="q901_1">1. Yes</string>
+    <string name="q901_2">2. No</string>
+
+
+    <string name="q901a">
+      Q901a. What is the MAIN reason why you have never received HIV medical care from a doctor, clinical officer or nurse?
+
+    </string>
+    <string name="q901a_1">1. Facility is too far away</string>
+    <string name="q901a_2">2. I dont know where to get HIV medical care</string>
+    <string name="q901a_3">3. Cost of care</string>
+    <string name="q901a_4">4. Cost of transport</string>
+    <string name="q901a_5">5. I do not need it/ I feel healthy/Not sick</string>
+    <string name="q901a_6">6. I fear people will know that i have HIV if i go to a clinic</string>
+    <string name="q901a_7">7. Religious reasons</string>
+    <string name="q901a_8">8. I am taking traditional medicine</string>
+    <string name="q901a_10">10. Do not trust the staff/Quality of care</string>
+    <string name="q901a_11">11. I do not feel respected by the staff</string>
+    <string name="q901a_other"> other_specify</string>
+
+    <string name="q902">
+      Q902. What month and year did you FIRST see a doctor, clinical officer or nurse for HIV medical care? ......(PROBE TO VERIFY DATE)
+
+    </string>
+    <string name="q902_month">q902_month</string>
+    <string name="q902_year">q902_year </string>
+    <string name="q902_99">99. Dont know month </string>
+    <string name="q902_9999">9999. Dont know year </string>
+
+
+    <string name="q903"></string>
+
+    Q903. When seeking health services in the past 12 months, did you experience any of the
+    following HIV related discrimination because of your HIV positive status? ...........MULTIPLE
+    RESPONSE ....READ OUT
+
+    <string name="q903a">
+        Q903a. By being denied care
+
+    </string>
+    <string name="q903a_1">1. Yes</string>
+    <string name="q903a_2">2. No</string>
+
+
+    <string name="q903b">
+        Q903b. By being the subject of gossip
+
+    </string>
+    <string name="q903b_1">1. Yes</string>
+    <string name="q903b_2">2. No</string>
+
+
+    <string name="q903c">
+        Q903c. By being advised not to have sex
+
+    </string>
+    <string name="q903c_1">1. Yes</string>
+    <string name="q903c_2">2. No</string>
+
+
+    <string name="q903d">
+        Q903d. By being verbally abused
+
+    </string>
+    <string name="q903d_1">1. Yes</string>
+    <string name="q903d_2">2. No</string>
+
+
+    <string name="q903e">
+        Q903e. By being physically abused
+
+    </string>
+    <string name="q903e_1">1. Yes</string>
+    <string name="q903e_2">2. No</string>
+
+
+    <string name="q903f">
+        Q903f. Through people avoiding physical contact with you
+
+    </string>
+    <string name="q903f_1">1. Yes</string>
+    <string name="q903f_2">2. No</string>
+
+
+    <string name="q903g">
+        Q903g. Through sharing of HIV status without consent
+
+    </string>
+    <string name="q903g_1">1. Yes</string>
+    <string name="q903g_2">2. No</string>
+
+
+    <string name="q904">
+    Q904. Are you currently taking ARVs? .............(REQUEST DOCUMENTED CONFIRMATION)
+
+      </string>
+    <string name="q904_1">1. Yes (Confirmed)</string>
+    <string name="q904_2">2. Yes (Not Confirmed)</string>
+    <string name="q904_3">3. No</string>
+    <string name="q904_4">4. Dont want to tell</string>
+
+    <string name="q904a">
+    Q904a. Where are you getting your ARVs?
+
+      </string>
+    <string name="q904a_1">1. Government Clinic</string>
+    <string name="q904a_2">2. Referral or District Hospital</string>
+    <string name="q904a_3">3. Private Clinic or Hospital</string>
+    <string name="q904a_4">4. Pharmacy/Chemist</string>
+    <string name="q904a_5">5. Traditional Healer</string>
+    <string name="q904a_other"> q904a_Other </string>
+
+
+    <string name="q904b">
+      Q904b. What month and year did you FIRST  start taking ARVs? .........PROBE TO VERIFY DATE
+
+    </string>
+    <string name="q904b_month">q904b_month</string>
+    <string name="q904b_year">q904b_year </string>
+    <string name="q904b_99">99. Dont know month </string>
+    <string name="q904b_9999">9999. Dont know year </string>
+
+    <string name="q904c">
+    Q904c. What is the MAIN reason you are not taking ARVs?
+
+      </string>
+    <string name="q904c_1">1. Non-Disclosure to partner/Spouse</string>
+    <string name="q904c_2">2. Spiritualist said i am healed</string>
+    <string name="q904c_3">3. Did not want to be confined to medication</string>
+    <string name="q904c_4">4. I have trouble taking a tablet everyday</string>
+    <string name="q904c_5">5. I had side effects</string>
+    <string name="q904c_6">6.Facility too far away for me to get medicine regularly</string>
+    <string name="q904c_7">7. Cost of medications</string>
+    <string name="q904c_8">8. Cost of transport</string>
+    <string name="q904c_10">10. I feel healthy/Not sick</string>
+    <string name="q904c_11">11. Facility was out of stock</string>
+    <string name="q904c_12">12. Taking traditional medications</string>
+    <string name="q904c_13">13. People would see my ARVs and know my status</string>
+    <string name="q904c_other"> q904c_Other </string>
+
+
+    <string name="q905">
+    Q905. People sometimes forget to take all of their ARVs every day. In the last30 days, how many days have you missed taking any of your ARV pills?
+
+         </string>
+    <string name="q905_Days">q905_Days</string>
+    <string name="q905_99">99. Dont know </string>
+    <string name="q905_None">00. None </string>
+
+
+    <string name="q905a">
+    Q905a. What are the main reasons that you forget or do not take your ARVs pills every day?
+      </string>
+    <string name="q905a_1">1. I have trouble taking a tablet every day</string>
+    <string name="q905a_2">2. I had side effects/Rash</string>
+    <string name="q905a_3">3. Do not need it when i do not feel sick</string>
+    <string name="q905a_4">4. My schedule conflicts with the times i am supposed to take pills</string>
+    <string name="q905a_5">5. I dont have enough privacy to take everyday</string>
+    <string name="q905a_6">6. I just forget</string>
+    <string name="q905a_other"> q905a_Other </string>
+
+
+    <string name="q1001">
+        READ OUT:: The following questions are about all the births you have had during your life
+        and about  your antenatal care visits. Now i would like to ask you questions about your pregnancies
+        and your children. Some of these questions may seem repetitive but please answer them all............................................................
+
+
+        Q1001. Are you currently pregnant?
+
+    </string>
+    <string name="q1001_1">1. Yes</string>
+    <string name="q1001_2">2. No</string>
+    <string name="q1001_3">3. Not sure</string>
+
+    <string name="q1002">
+    Q1002. Are you or your partner using any method to delay/avoid pregnancy
+
+         </string>
+    <string name="q1002_1">1. Yes</string>
+    <string name="q1002_2">2. No </string>
+    <string name="q1002_9">9. Dont know </string>
+
+
+    <string name="q1002a">
+    Q1002a. Which method are you or your partner using to delay getting pregnant? MULTIPLE RESPONSE....DO NOT READ OUT
+
+      </string>
+    <string name="q1002a_1">1. Male Condoms</string>
+    <string name="q1002a_2">2. Female Condoms</string>
+    <string name="q1002a_3">3. Injectable Contraceptive (E.G DEPO-PROVERA)</string>
+    <string name="q1002a_4">4. Oral Contraceptive</string>
+    <string name="q1002a_5">5. Intrauterine Device (IUD)</string>
+    <string name="q1002a_6">6. Bilateral Tubal Ligation</string>
+    <string name="q1002a_7">7. Female Sterilization </string>
+    <string name="q1002a_8">8. Male Sterilization</string>
+    <string name="q1002a_10">10. Implants</string>
+    <string name="q1002a_11">11. Emergency Contraceptive</string>
+    <string name="q1002a_12">12. Standard Days Method/ Safe Periods</string>
+    <string name="q1002a_13">13. Lactational Amenorrhoea Method (LAM)</string>
+    <string name="q1002a_14">14. Diagraphem</string>
+    <string name="q1002a_15">15. Foam or Jelly (SPERMICIDES)</string>
+    <string name="q1002a_16">16. Natural/ (E.G, RHYTHEM METHOD)</string>
+    <string name="q1002a_17">17. Traditional Methods</string>
+    <string name="q1002a_18">18. Spiritual</string>
+    <string name="q1002a_other"> q1002a_Other </string>
+
+
+    <string name="q1002b">
+        Q1002b. If NO, why are you not using any method to delay pregnancy?
+
+    </string>
+    <string name="q1002b_1">1. Health Facilities far</string>
+    <string name="q1002b_2">2. Cant afford</string>
+    <string name="q1002b_3">3. Lack of knowledge on where to source Contraceptive</string>
+    <string name="q1002b_4">4. Lack of knowledge of pregnancy prevention methods</string>
+    <string name="q1002b_5">5. No Partner</string>
+    <string name="q1002b_6">6. Want to get Pregnant</string>
+    <string name="q1002b_other"> q1002b_Other </string>
+
+    <string name="q1003">
+        Q1003. Have you given birth in the past 2 years
+
+    </string>
+    <string name="q1003_1">1. Yes</string>
+    <string name="q1003_2">2. No</string>
+
+    <string name="q1004">
+        Q1004. What is the date of birth for your youngest child
+
+    </string>
+    <string name="q1004_days">Days</string>
+    <string name="q1004_month">Month</string>
+    <string name="q1004_year">Year</string>
+
+    <string name="q1004a">
+        Q1004a. Whilst pregnant with your child, did you attend an ante-natal care clinic?
+
+    </string>
+    <string name="q1004a_1">1. Yes</string>
+    <string name="q1004a_2">2. No</string>
+
+
+    <string name="q1004b">
+        Q1004b. What is the MAIN reason you did not visit a clinic for antenatal care when you were pregnant with this child?...................DO NOT READOUT
+
+    </string>
+    <string name="q1004b_1">1. Clinic was too far away</string>
+    <string name="q1004b_2">2. Could not take time off work/too busy</string>
+    <string name="q1004b_3">3. Could not afford to pay for the visit</string>
+    <string name="q1004b_4">4. Did not trust the clinic staff</string>
+    <string name="q1004b_5">5. Received care at home</string>
+    <string name="q1004b_6">6. Did not want an HIV test done</string>
+    <string name="q1004b_7">7. Husband/family would not let me go</string>
+    <string name="q1004b_8">8.Used traditional birth</string>
+    <string name="q1004b_10">10. Attendant/Healer</string>
+    <string name="q1004b_11">11. Cost of transport</string>
+    <string name="q1004b_12">12. Religious reasons</string>
+    <string name="q1004b_other"> q1004b_Other </string>
+
+    <string name="q1005">
+        Q1005. Have you ever tested for HIV before your pregnacy with this child?
+
+    </string>
+    <string name="q1005_1">1. Yes</string>
+    <string name="q1005_2">2. No</string>
+
+    <string name="q1005a">
+        Q1005a. What was the result of the test?
+
+    </string>
+    <string name="q1005a_1">1. Positive</string>
+    <string name="q1005a_2">2. Negative</string>
+    <string name="q1005a_3">3. Indeterminate</string>
+    <string name="q1005a_4">4. Refused</string>
+    <string name="q1005a_9">9. Dont know</string>
+
+    <string name="q1006">
+        Q1006. At the time of your first antenatal care visit were you taking ARVs?
+
+    </string>
+    <string name="q1006_1">1. Yes</string>
+    <string name="q1006_2">2. No</string>
+
+
+    <string name="q1007">
+        Q1007. Were you TESTED for HIV during any of your antenatal care clinic visit?
+
+    </string>
+    <string name="q1007_1">1. Yes</string>
+    <string name="q1007_2">2. No</string>
+
+    <string name="q1007a">
+        Q1007a. What was the result of your last HIV test during your pregnancy?
+
+    </string>
+    <string name="q1007a_1">1. Positive</string>
+    <string name="q1007a_2">2. Negative</string>
+    <string name="q1007a_3">3. Indeterminate</string>
+    <string name="q1007a_4">4. Refused</string>
+    <string name="q1007a_9">9. Dont know</string>
+
+    <string name="q1008">
+        Q1008. Did you EVER take ARVs during your pregnancy?
+
+    </string>
+    <string name="q1008_1">1. Yes</string>
+    <string name="q1008_2">2. No</string>
+
+    <string name="q1008a">
+        Q1008a. What was the MAIN REASON you did not take ARVs while you were pregnant?
+
+    </string>
+    <string name="q1008a_1">1. Was not prescribed</string>
+    <string name="q1008a_2">2. I feel healthy/not sick</string>
+    <string name="q1008a_3">3. Cost of medications</string>
+    <string name="q1008a_4">4. Cost of transport</string>
+    <string name="q1008a_5">5. Religious Reasons</string>
+    <string name="q1008a_6">6. Was taking Traditional medications</string>
+    <string name="q1008a_7">7. Medications out of stock</string>
+    <string name="q1008a_8">8. Did not want people to know HIV status</string>
+    <string name="q1008a_10">10. Did not receive permission from Husband/Wife/Partner/Family</string>
+    <string name="q1008a_other"> q1008a_Other </string>
+
+
+    <string name="q1009">
+        Q1009. Did you test for HIV during labor/delivery?
+
+    </string>
+    <string name="q1009_1">1. Yes</string>
+    <string name="q1009_2">2. No</string>
+
+
+    <string name="q1009a">
+        Q1009a. What was the result of that test?
+
+    </string>
+    <string name="q1009a_1">1. Positive</string>
+    <string name="q1009a_2">2. Negative</string>
+    <string name="q1009a_3">3. Indeterminate</string>
+    <string name="q1009a_4">4. Refused</string>
+    <string name="q1009a_9">9. Dont know</string>
+
+    <string name="q1010">
+        Q1010. Where did you give birth to this child?
+
+    </string>
+    <string name="q1010_1">1. Home</string>
+    <string name="q1010_2">2. Public Health Facility</string>
+    <string name="q1010_3">3. Private Health Facility</string>
+    <string name="q1010_other">other specify</string>
+
+    <string name="q1011">
+        Q1011. How did you feed your baby the first 6 months?
+
+    </string>
+    <string name="q1011_1">1. Formula Exclusively</string>
+    <string name="q1011_2">2. Breast-milk Exclusively</string>
+    <string name="q1011_3">3. Formula and Breast-milk</string>
+    <string name="q1011_4">4. Formula and Solid food</string>
+    <string name="q1011_5">5. Formula, Breastfeed, Solid food</string>
+    <string name="q1011_6">6. Breastfeed and Solid</string>
+    <string name="q1011_7">7. Solid only</string>
+    <string name="q1011_8">8. Did not feed, child died at birth</string>
+    <string name="q1011_other">other specify</string>
+
+    <string name="q1012">
+        Q1012. For how long did you breastfeed?
+
+    </string>
+    <string name="q1012_weeks">Weeks</string>
+    <string name="q1012_month">Month</string>
+    <string name="q1012_year">Year</string>
+    <string name="q1012_1">1. Still breastfeeding</string>
+
+
+    <string name="q1013">
+        Q1013. Did you take ARVs while you were breastfeeding?
+
+    </string>
+    <string name="q1013_1">1. Yes</string>
+    <string name="q1013_2">2. No</string>
+
+    <string name="q1014">
+        Q1014. Was this child tested for HIV by the time he/she was 6-8 weeks old?
+
+    </string>
+    <string name="q1014_1">1. Yes</string>
+    <string name="q1014_2">2. No</string>
+    <string name="q1014_9">9. Dont know</string>
+
+    <string name="q1014a">
+        Q1014a. What were the results of the child?
+
+     </string>
+    <string name="q1014a_1">1. Positive</string>
+    <string name="q1014a_2">2. Negative</string>
+    <string name="q1014a_3">3. Indeterminate</string>
+    <string name="q1014a_4">4. Refused</string>
+    <string name="q1014a_9">9. Dont know</string>
+
+    <string name="q1014b">
+        Q1014b. Was the child given ARVs?
+
+    </string>
+    <string name="q1014b_1">1. Yes</string>
+    <string name="q1014b_2">2. No</string>
+
+
+    <string name="q1015">
+        Q1015. Was this child tested for HIV by the time he/she was 18 months old?
+
+    </string>
+    <string name="q1015_1">1. Yes</string>
+    <string name="q1015_2">2. No</string>
+    <string name="q1015_9">9. Dont know</string>
+
+    <string name="q1015a">
+        Q1015a. What were the results of the child?
+
+     </string>
+    <string name="q1015a_1">1. Positive</string>
+    <string name="q1015a_2">2. Negative</string>
+    <string name="q1015a_3">3. Indeterminate</string>
+    <string name="q1015a_4">4. Refused</string>
+    <string name="q1015a_9">9. Dont know</string>
+
+
+    <string name="q1015b">
+        Q1015b. Was the child given ARVs?
+    </string>
+    <string name="q1015b_1">1. Yes</string>
+    <string name="q1015b_2">2. No</string>
+
+
+    <string name="q1016">
+        Q1016. Is the child still alive?
+    </string>
+    <string name="q1016_1">1. Yes</string>
+    <string name="q1016_2">2. No</string>
+
+
+    <string name="q1017">
+        Q1017. Have you ever been screened for cervical cancer in the past 12 months?
+    </string>
+    <string name="q1017_1">1. Yes</string>
+    <string name="q1017_2">2. No</string>
+
+    <string name="PipedIndoors">Piped Indoors</string>
+    <string name="StandpipeWithinPlot">Stand pipe within plot</string>
+    <string name="CommunalTap">Communal tap</string>
+    <string name="Borehole">Borehole</string>
+    <string name="Well">Well</string>
+    <string name="FlowingRiver">Flowing river</string>
+    <string name="SandRiver">Sand river</string>
+    <string name="DamLakePan">Dam lake pan</string>
+    <string name="BouserOrTanker">Bouser Or tanker</string>
+    <string name="NeighboursTap">Neighbours tap</string>
+    <string name="ElectricityMains">Electrical Mains</string>
+    <string name="ElectricitySolar">Electricity Solar</string>
+    <string name="Gas">Gas</string>
+    <string name="Paraffin">Parrafin</string>
+    <string name="WoodOrCharcoal">Wood or Charcoal</string>
+    <string name="Coal">Coal</string>
+    <string name="ParaffinOrCandle">Parrafin or Candle</string>
+    <string name="Diesel">Diesel</string>
+    <string name="Wood">Wood</string>
+    <string name="H09Other">Other specify</string>
+    <string name="OwnFlushToilet">Own flush toilet</string>
+    <string name="OwnPitLatrine">Own pit latrine</string>
+    <string name="NeighboursFlushToilet">Neighbours Pitlatrine</string>
+    <string name="NeighboursPitLatrine">Neighbours Pitlaterine</string>
+    <string name="CommunalFlushToilet">Communal flush toilet</string>
+    <string name="CommunalPitLatrine">Communal pit laterine</string>
+    <string name="PailOrBucketLatrine">Pail or bucket latrine</string>
+    <string name="Bush">Bush</string>
+    <string name="Collected">Collected</string>
+    <string name="Burn">Burn</string>
+    <string name="RoadsideDumping">Road side dumping</string>
+    <string name="RubbishPit">Rubbish pit</string>
+    <string name="H11OtherSpecify">Other specify</string>
+    <string name="title_activity_h06">H06</string>
+    <string name="H08Other">Other Specify</string>
+
+
+</resources>
+
+

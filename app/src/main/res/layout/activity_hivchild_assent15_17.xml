@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".HIVChildAssent15_17">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ParentLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+        </LinearLayout>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ParentalradioLinear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="top"
+            android:paddingTop="20dp"
+            android:paddingBottom="40dp"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+            <ScrollView
+
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/P02Navigation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.291"
+                android:paddingStart="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/PConsentTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="We would like to seek your permission to draw blood and conduct several tests and return results. I will begin by explaining the interview procedures."
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/q1text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:ems="10"
+                                android:padding="3dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="[1] Do you agree for the survey team to draw your blood for HIV testing and other related testing?"
+                                android:textSize="16sp"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <RadioGroup
+                                    android:id="@+id/ParentalradioGroup"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginTop="30dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:textSize="12sp">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnq1y"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="1. YES, I agree for the survey team to draw my blood for HIV testing and other related testing." />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnq1n"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="2. NO, I do not agree for the survey team to draw my blood for HIV testing and other related testing" />
+
+                                </RadioGroup>
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/q1101atxt1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:ems="10"
+                                android:padding="3dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="[2]: Do you agree for your blood sample to be sent to the laboratory for additional HIV related testing?"
+                                android:textSize="16sp"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <RadioGroup
+                                    android:id="@+id/ParentalradioGroup1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginTop="30dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:textSize="12sp">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnq2y"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="1. YES, I agree to have my blood sample sent to the laboratory for additional testing." />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnq2n"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="2.NO, I do not agree to have my blood sample sent to the laboratory for additional testing." />
+
+
+
+                                </RadioGroup>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textview2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:ems="10"
+                            android:padding="3dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:text=" [3]: Do you agree for your blood sample to be sent to the laboratory for additional HIV related testing?"
+                            android:textSize="16sp"
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+
+                            <RadioGroup
+                                android:id="@+id/ParentalradioGroup2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="30dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:textSize="16sp"
+                                android:visibility="visible">
+
+                                <RadioButton
+                                    android:id="@+id/rbtnq3y"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1. YES, I agree to have my blood sample sent to the laboratory for additional testing." />
+
+                                <RadioButton
+                                    android:id="@+id/rbtnq3n"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2. NO, I do not agree to have my child’s blood sample sent to the laboratory for additional testing." />
+
+
+                            </RadioGroup>
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textview4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:ems="10"
+                            android:padding="3dp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:text="[4]: Do you agree for your blood sample to be stored for up to 5 years for future HIV/TB - related research?"
+                            android:textSize="16sp"
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+
+                            <RadioGroup
+                                android:id="@+id/ParentalradioGroup3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="30dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:textSize="16sp"
+                                android:visibility="visible">
+
+                                <RadioButton
+                                    android:id="@+id/rbtnq4y"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1.YES, I agree for my blood sample to be stored for up to 5 years for future HIV/TB - related research. " />
+
+                                <RadioButton
+                                    android:id="@+id/rbtnq4n"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2. NO, I do not agree for my blood sample to be stored for up to 5 years for future HIV/TB - related research." />
+
+
+                            </RadioGroup>
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:ems="10"
+                            android:padding="3dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:text=" Permissions"
+                            android:textSize="16sp"
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/NameOfInterviewerlbl"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:ems="10"
+                                android:padding="3dp"
+                                android:textColor="@color/black"
+                                android:text=" Name of person obtaining permision"
+                                android:textSize="16sp"
+                                />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/NameOfInterviewerTXT"
+                                    android:layout_width="286dp"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/edit_text_background"
+                                    android:text=""
+                                    android:textSize="16sp" />
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/SurbveyStaffID"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:ems="10"
+                                        android:padding="3dp"
+                                        android:textColor="@color/black"
+                                        android:text="Survey staff ID number"
+                                        android:textSize="16sp"
+                                        />
+
+
+                                    <EditText
+                                        android:id="@+id/SurbveyStaffIDTXT"
+                                        android:layout_width="285dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/edit_text_background"
+                                        android:text=""
+                                        android:textSize="16sp" />
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/ChildParticipantsID"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="10dp"
+                                            android:ems="10"
+                                            android:padding="3dp"
+                                            android:textColor="@color/black"
+                                            android:text="Child's partipants ID number"
+                                            android:textSize="16sp"
+                                            />
+
+
+                                        <EditText
+                                            android:id="@+id/ChildParticipantsIDTXT"
+                                            android:layout_width="283dp"
+                                            android:layout_height="38dp"
+                                            android:background="@drawable/edit_text_background"
+                                            android:text=""
+                                            android:textSize="16sp" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/RapidTestDatetxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:ems="10"
+                            android:padding="3dp"
+                            android:text="Record Date"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                        <RelativeLayout
+                            android:id="@+id/RelativeLayout01" android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+                            <Button android:id="@+id/btndate"
+                                android:layout_alignParentRight="true"
+                                android:text="Tap to record Date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <EditText
+                                android:id="@+id/DateTxt"
+                                android:layout_width="137dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="0dp"
+                                android:layout_toLeftOf="@id/btndate"
+                                android:background="@drawable/edit_text_background"
+                                android:hint="date"
+                                android:inputType="text" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/P02Navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="2"
+                android:drawableLeft="@drawable/ic_arrow_back_blue_24dp"
+                android:text="@string/previous" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="2"
+                android:drawableRight="@drawable/ic_arrow_forward_blue_24dp"
+                android:text="@string/next" />
+
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
