@@ -3,6 +3,7 @@ package bw.org.statsbots.bias;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -73,6 +74,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         super.onCreate(savedInstanceState);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+
         //Intent intent = getIntent();
         //thisHouse = (HouseHold)intent.getSerializableExtra("Household");
 
@@ -279,9 +281,11 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
     //Synchronization HouseHold(House,Roster & Individual)
     private class SyncAssignments extends AsyncTask<Void,Void,String> {
 
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+
         @Override
         protected  void  onPreExecute(){
-           //showProgress(true);
+            showProgress(true);
         }
 
         @Override
@@ -321,7 +325,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         @Override
         protected void onPostExecute(String result){
             //mAuthTask = null
-            //showProgress(false);
+              showProgress(false);
 
             readFromServer(result);
 
@@ -339,7 +343,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
             {
 
                 try {
-                    svrmsg = svrmsg.replaceAll("null","\"null\"");
+                    svrmsg = svrmsg.replaceAll("null","\"\"");
                     JSONArray jsnArray = new JSONArray(svrmsg);
 
                     if(jsnArray.length()==0){

@@ -17,7 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class H03 extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class H03 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -46,9 +48,25 @@ public class H03 extends AppCompatActivity implements View.OnClickListener {
         rbtn8 = (RadioButton) findViewById(R.id.H03_8);
         rbtn9 = (RadioButton) findViewById(R.id.H03_other);
         edt = (EditText) findViewById(R.id.H03_txtOther);
+        edt.setVisibility(View.INVISIBLE);
 
         final RadioGroup rg = (RadioGroup) findViewById(R.id.H03radioGroup);
 
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.H03_other)
+                {
+                    // is checked
+                    edt.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    // not checked
+                    edt.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
         //rbtn1.setOnClickListener(this);
         //rbtn2.setOnClickListener(this);
 
@@ -57,7 +75,7 @@ public class H03 extends AppCompatActivity implements View.OnClickListener {
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
-        Button btnext = findViewById(R.id.btnnext);
+        Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
 
@@ -73,6 +91,7 @@ public class H03 extends AppCompatActivity implements View.OnClickListener {
                 selectedRbtn = (RadioButton) findViewById(selectedId);
 
                 if (selectedRbtn == null) {
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(H03.this);
                     builder.setTitle("MATERIAL OF CONSTRUCTION");
                     builder.setIcon(R.drawable.ic_warning_orange_24dp);
@@ -100,20 +119,46 @@ public class H03 extends AppCompatActivity implements View.OnClickListener {
 
                 } else {
                     //Set q101 for the current individual
-                    thisHouse.setH03(selectedRbtn.getText().toString().substring(0,1));
+                    if(selectedId==R.id.H03_other){
+                        if(edt.getText().toString().equals("")){
+                            AlertDialog.Builder builder = new AlertDialog.Builder(H03.this);
+                            builder.setTitle("MATERIAL OF CONSTRUCTION");
+                            builder.setIcon(R.drawable.ic_warning_orange_24dp);
+                            builder.setMessage("Please select the main material of construction of WALL");
+                            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
 
-                    /**
-                     * If current person LineNumber is equal to TotalPersons-1
-                     * Proceed to next Question in the roster
-                     */
-                    // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
+                                }
+                            });
 
-                    //Next question q102
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
 
+                            AlertDialog alertDialog = builder.show();
+                            final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                            LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                            positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            positiveButton.setTextColor(Color.WHITE);
+                            positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                            positiveButton.setLayoutParams(positiveButtonLL);
+                        }else{
+                            thisHouse.setH03Other(edt.getText().toString());
 
-                    Intent q1o2 = new Intent(H03.this, H04.class);
-                    q1o2.putExtra("Household",  thisHouse);
-                    startActivity(q1o2);
+                            Intent q1o2 = new Intent(H03.this, H04.class);
+                            q1o2.putExtra("Household",  thisHouse);
+                            startActivity(q1o2);
+                        }
+                    }else{
+                        thisHouse.setH03(selectedRbtn.getText().toString().substring(0,2));
+
+                        Intent q1o2 = new Intent(H03.this, H04.class);
+                        q1o2.putExtra("Household",  thisHouse);
+                        startActivity(q1o2);
+                    }
+
 
                 }
 

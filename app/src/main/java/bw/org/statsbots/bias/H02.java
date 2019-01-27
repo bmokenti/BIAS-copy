@@ -17,12 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class H02 extends AppCompatActivity   {
+import java.io.Serializable;
+
+public class H02 extends AppCompatActivity implements Serializable  {
 
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
-    protected EditText edt;
+    protected EditText edt,norooms;
     protected RadioGroup rbtngroup;
     protected RadioButton selectedRbtn;
     PersonRoster p1 = null;
@@ -46,20 +48,18 @@ public class H02 extends AppCompatActivity   {
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
-        Button btnext = findViewById(R.id.btnnext);
-//        PersonRoster pr[] = thisHouse.getPersons();
+
+        Button btnext = findViewById(R.id.button);
 
 
 
         btnext.setOnClickListener(new View.OnClickListener()
-
         {
             @Override
             public void onClick(View v) {
 
                 edt = (EditText) findViewById(R.id.H02_ROOMS);
-               // int selectedId = rg.getCheckedRadioButtonId();
-                //selectedRbtn = (RadioButton) findViewById(selectedId);
+               int numRooms =0;
 
                 if (edt.length() == 0 || edt.getText() == null) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(H02.this);
@@ -88,21 +88,27 @@ public class H02 extends AppCompatActivity   {
 
 
                 } else {
-                    //Set q101 for the current individual
-                    thisHouse.setH02(selectedRbtn.getText().toString());
+                    numRooms = Integer.parseInt(edt.getText().toString());
+                    if(numRooms >=0 && numRooms <= 15){
+                        //True SAve
+                        thisHouse.setH02(String.valueOf(numRooms));
 
-                    /**
-                     * If current person LineNumber is equal to TotalPersons-1
-                     * Proceed to next Question in the roster
-                     */
-                    // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
+                        Intent q1o2 = new Intent(H02.this, H03.class);
+                        q1o2.putExtra("Household",  thisHouse);
+                        startActivity(q1o2);
 
-                    //Next question q102
+                    }else{
+                        lib.showError(H02.this,"H02 Error","Number of rooms expected 0 to 15 only");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+                    }
 
 
-                    Intent q1o2 = new Intent(H02.this, H03.class);
-                    q1o2.putExtra("Household",  thisHouse);
-                    startActivity(q1o2);
+
+
 
                 }
 

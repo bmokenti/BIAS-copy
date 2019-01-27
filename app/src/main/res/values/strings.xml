@@ -735,7 +735,6 @@
     <string name="title_activity_h13">H13</string>
 
 
-
     <string name="q105">
     q105.  What is your employment status?
     </string>
@@ -2171,38 +2170,38 @@
     <string name="q1017_1">1. Yes</string>
     <string name="q1017_2">2. No</string>
 
-    <string name="PipedIndoors">Piped Indoors</string>
-    <string name="StandpipeWithinPlot">Stand pipe within plot</string>
-    <string name="CommunalTap">Communal tap</string>
-    <string name="Borehole">Borehole</string>
-    <string name="Well">Well</string>
-    <string name="FlowingRiver">Flowing river</string>
-    <string name="SandRiver">Sand river</string>
-    <string name="DamLakePan">Dam lake pan</string>
-    <string name="BouserOrTanker">Bouser Or tanker</string>
-    <string name="NeighboursTap">Neighbours tap</string>
-    <string name="ElectricityMains">Electrical Mains</string>
-    <string name="ElectricitySolar">Electricity Solar</string>
-    <string name="Gas">Gas</string>
-    <string name="Paraffin">Parrafin</string>
-    <string name="WoodOrCharcoal">Wood or Charcoal</string>
-    <string name="Coal">Coal</string>
-    <string name="ParaffinOrCandle">Parrafin or Candle</string>
-    <string name="Diesel">Diesel</string>
-    <string name="Wood">Wood</string>
+    <string name="PipedIndoors">01 Piped Indoors</string>
+    <string name="StandpipeWithinPlot">02 Stand pipe within plot</string>
+    <string name="CommunalTap">03 Communal tap</string>
+    <string name="Borehole">04 Borehole</string>
+    <string name="Well">05 Well</string>
+    <string name="FlowingRiver">06 Flowing river</string>
+    <string name="SandRiver">07 Sand river (riverbed)</string>
+    <string name="DamLakePan">08 Dam lake pan</string>
+    <string name="BouserOrTanker">09 Bouser Or tanker</string>
+    <string name="NeighboursTap">10 Neighbours tap</string>
+    <string name="ElectricityMains">1 Electrical Mains</string>
+    <string name="ElectricitySolar">2 Electricity Solar</string>
+    <string name="Gas">3 Gas</string>
+    <string name="Paraffin">4 Parrafin</string>
+    <string name="WoodOrCharcoal">5 Wood or Charcoal</string>
+    <string name="Coal">6 Coal</string>
+    <string name="ParaffinOrCandle">4 Parrafin or Candle</string>
+    <string name="Diesel">5 Diesel</string>
+    <string name="Wood">6 Wood</string>
     <string name="H09Other">Other specify</string>
-    <string name="OwnFlushToilet">Own flush toilet</string>
-    <string name="OwnPitLatrine">Own pit latrine</string>
-    <string name="NeighboursFlushToilet">Neighbours Pitlatrine</string>
-    <string name="NeighboursPitLatrine">Neighbours Pitlaterine</string>
-    <string name="CommunalFlushToilet">Communal flush toilet</string>
-    <string name="CommunalPitLatrine">Communal pit laterine</string>
-    <string name="PailOrBucketLatrine">Pail or bucket latrine</string>
-    <string name="Bush">Bush</string>
-    <string name="Collected">Collected</string>
-    <string name="Burn">Burn</string>
-    <string name="RoadsideDumping">Road side dumping</string>
-    <string name="RubbishPit">Rubbish pit</string>
+    <string name="OwnFlushToilet">1 Own flush toilet</string>
+    <string name="OwnPitLatrine">2 Own pit latrine</string>
+    <string name="NeighboursFlushToilet">3 Neighbours Pitlatrine</string>
+    <string name="NeighboursPitLatrine">4 Neighbours Pitlaterine</string>
+    <string name="CommunalFlushToilet">5 Communal flush toilet</string>
+    <string name="CommunalPitLatrine">6 Communal pit laterine</string>
+    <string name="PailOrBucketLatrine">7 Pail or bucket latrine</string>
+    <string name="Bush">8 Bush</string>
+    <string name="Collected">1 Collected</string>
+    <string name="Burn">2 Burn</string>
+    <string name="RoadsideDumping">3 Road side dumping</string>
+    <string name="RubbishPit">4 Rubbish pit</string>
     <string name="H11OtherSpecify">Other specify</string>
     <string name="title_activity_h06">H06</string>
     <string name="H08Other">Other Specify</string>

@@ -77,15 +77,207 @@ public class MainActivity extends AppCompatActivity implements Serializable{
        // Log.d("DB Name: ",myDB.getDatabaseName().toString() );
         myDB = new DatabaseHelper(this);
         //Log.d("DB Name: ",myDB.getDatabaseName().toString() );
-       myDB.onOpen(myDB.getWritableDatabase());
+        myDB.onOpen(myDB.getWritableDatabase());
+
+        //***************************Read Roster from Database and load it into Object thisHouse
+        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        PersonRoster[] r = new PersonRoster[30];
+
+        for(int t = 0; t<list.size();t++)
+        {
+            r[t]=list.get(t);
+        }
+        thisHouse.setHouseHoldeMembers(r);
+
+        final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.memberlist);
+        linearLayout.setPadding(40,2,2,2);
+
+        for(int ii = 0;ii<thisHouse.getPersons().length;ii++)
+        {
+            if(thisHouse.getPersons()[ii] != null){
+                final EditText personName = new EditText(MainActivity.this);
+                // Create a border programmatically
+                GradientDrawable shape = new GradientDrawable();
+                int myColor = getResources().getColor(R.color.colorPrimaryDark);
+
+                //shape.setColor(myColor);
+                shape.setStroke(2, myColor);
+                shape.setCornerRadius(5);
+
+
+                //Assign the created border to EditText widget
+                personName.setBackground(shape);
+                personName.setPadding(25,25,25,25);
+
+
+                if (counter == 0) {
+                    personName.setHint("Head of House");
+                } else {
+                    personName.setHint("Household Member " + counter);
+                }
+                personName.setText(thisHouse.getPersons()[ii].getP01());
+                personName.setId(counter);
+                personName.setSingleLine();
+                Display display = getWindowManager().getDefaultDisplay();
+                int width = display.getWidth();
+                if (width > 700) {
+                    //personName.setWidth(700);
+                    personName.setWidth(width);
+                } else {
+                    personName.setWidth(width);
+                }
+
+                //store edittext personName in hhArray
+                hhArray[counter] = personName;
+                //remove person button
+                final Button btnPremove = new Button(MainActivity.this);
+                btnPremove.setId(counter);
+                btnPremove.setText("Remove " + thisHouse.getPersons()[ii].getP01());
+                final int PersonNumber = ii;
+                btnPremove.setTextColor(Color.RED);
+                btnPremove.setCompoundDrawablesWithIntrinsicBounds(deleteIcon, null, null, null);
+                btnPremove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        /**
+                         * Throws null pointer exception at some point ----- fix
+                         */
+                        AlertDialog.Builder adBuilder = new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Remove Individual")
+                                .setMessage("Are you sure you want to remove "+thisHouse.getPersons()[PersonNumber].getP01()+" from this household? All data associated with " + thisHouse.getPersons()[PersonNumber].getP01() + " will be lost.")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        ((ViewManager)hhArray[btnPremove.getId()].getParent()).removeView(hhArray[btnPremove.getId()]);
+                                        ((ViewManager)removeArray[btnPremove.getId()].getParent()).removeView(removeArray[btnPremove.getId()]);
+
+
+                                        //set hhArray and removeArray index to null
+                                        hhArray[counter]=null;
+                                        removeArray[counter]=null;
+
+                                        if(counter==1){
+                                            counter=0;
+                                        }
+                                        else{
+
+                                            //make sure to clear the already entered data about the individual and reorder everything
+                                            //Re shuffle the arrays and fill the missing index
+                                            int t=0;
+                                            for (int o = 0; o<hhArray.length;o++)
+                                            {
+                                                if(hhArray[o]==null)
+                                                {
+                                                    continue;
+                                                }else {
+                                                    hhArrayTemp[o]=hhArray[o];
+                                                    t+=1;
+                                                }
+                                            }
+
+                                            int t1=0;
+                                            for (int o = 0; o<removeArray.length;o++)
+                                            {
+                                                if(removeArray[o]==null)
+                                                {
+                                                    continue;
+                                                }
+                                                else {
+                                                    removeArrayTemp[t1]=removeArray[o];
+                                                    t1+=1;
+                                                }
+                                            }
+
+                                            //copy the temp to hhArray
+                                            hhArray=hhArrayTemp.clone();
+                                            removeArray = removeArrayTemp.clone();
+                                            counter-=1;
+
+
+                                            //*******************Remove the prson from database as well
+
+
+                                            setTitle("P01 Total Persons " + counter);
+                                            //add items to the lenearlayout afresh;
+                                            //linearLayout.removeAllViewsInLayout();
+
+
+
+                                        }
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        //call show() to build and show the AlertDialog.
+                        AlertDialog ad = adBuilder.show();
+
+
+
+                    }
+                });
+
+                /**
+                 * Set onKeyListener to text box to update remove person button tex
+                 */
+                personName.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(s.toString().length() == 0)
+                        {
+                            btnPremove.setText("Remove");
+                        }
+                        else{
+                            btnPremove.setText("Remove "+s);
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+
+                linearLayout.addView(hhArray[counter]);
+                hhArray[counter].requestFocus();
+
+                personName.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(5, 10, 5, 10);
+                personName.setLayoutParams(params);
+
+                removeArray[counter] = btnPremove;
+
+                linearLayout.addView(removeArray[counter]);
+                btnPremove.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+
+                counter++;
+                setTitle("P01 Total Persons " + counter);
+
+            }
+
+        }
+
 
         //myDB.dropTables(myDB.getWritableDatabase());
        //myDB.createTables(myDB.getReadableDatabase());
        //myDB.insertTables(myDB.getReadableDatabase());
       // myDB.getAllData(myDB.getWritableDatabase());
         //layout to contain household members
-        final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.memberlist);
-        linearLayout.setPadding(40,2,2,2);
+
 
 
         /**

@@ -11,31 +11,25 @@ import java.util.List;
 public class HouseHold implements Serializable {
     private int currentPerson;
     private int Head;
-
+    private String Current;
+    private String isHIVTB40;
     public PersonRoster[] getHouseHoldeMembers() {
         return HouseHoldeMembers;
     }
-
     public void setHouseHoldeMembers(PersonRoster[] houseHoldeMembers) {
         HouseHoldeMembers = houseHoldeMembers;
     }
-
     private PersonRoster[] HouseHoldeMembers;
     protected Individual[] IndividualQuestionaire;
     protected Assignments[] EA_Assgnment;
     private String  DWELLING_NO;
-
     private String BatchNumber;
-
     private String  HH_NO;
     private String ENUMERATOR;
     private  String SUPERVISOR;
     private  String QUALITY_CONTROLLER;
     private  String INTERVIEWER_VISITS1;
-
-
     private  String NEXT_VISIT_3_TIME;
-
     private String DATE1;
     private  String VISIT1_RESULT;
     private  String COMMENT1;
@@ -54,9 +48,6 @@ public class HouseHold implements Serializable {
     private  String COMMENT_3;
     private  String TOTAL_VISITS;
     private String Assignment_ID;
-
-
-
     private String Sample_FK;
     private String CONSENT;
     private  String CHECKED_BY;
@@ -66,6 +57,13 @@ public class HouseHold implements Serializable {
     private  String Interview_Status;
     private  String SuperComment;
 
+    public void setCurrent(String s){
+        Current = s;
+    }
+
+    public String getCurrent(){
+        return Current;
+    }
 
     public String getNEXT_VISIT_3_TIME() {
         return NEXT_VISIT_3_TIME;
@@ -83,24 +81,165 @@ public class HouseHold implements Serializable {
         this.NEXT_VISIT_2_TIME = NEXT_VISIT_2_TIME;
     }
 
-
     private String H01;
     private String H02;
     private  String H03;
+    private  String H03Other;
     private String H04;
+    public void setH11Other(String h11Other) {
+        H11Other = h11Other;
+    }
+    private String H04Other;
     private String H05;
+    private String H05Other;
     private  String H06;
-
 
     private String H07;
     private String H08;
+    private String H08Other;
     private  String H09;
+    private  String H09Other;
     private String H10;
     private  String H11;
+    private  String H11Other;
     private String H12;
+
+    private String H12Radio;
+    private String H12TV;
+    private String H12Telephone;
+    private String H12CellPhone;
+    private String H12PrintMedia;
+    private String H12ElecMedia;
+    private String H12PerfomArts;
+    private String H13Vehicle;
+    private String H13Tractor;
+    private String H13Motorcycle;
+    private String H13Bicycle;
+    private String H13DonkeyCart;
+    private String H13DonkeyHorse;
+    private String H13Camels;
+
     private String H13;
 
+    public String getH12Radio() {
+        return H12Radio;
+    }
 
+    public void setH12Radio(String h12Radio) {
+        H12Radio = h12Radio;
+    }
+
+    public String getH12TV() {
+        return H12TV;
+    }
+
+    public void setH12TV(String h12TV) {
+        H12TV = h12TV;
+    }
+
+    public String getH12Telephone() {
+        return H12Telephone;
+    }
+
+    public void setH12Telephone(String h12Telephone) {
+        H12Telephone = h12Telephone;
+    }
+
+    public String getH12CellPhone() {
+        return H12CellPhone;
+    }
+
+    public void setH12CellPhone(String h12CellPhone) {
+        H12CellPhone = h12CellPhone;
+    }
+
+    public String getH12PrintMedia() {
+        return H12PrintMedia;
+    }
+
+    public void setH12PrintMedia(String h12PrintMedia) {
+        H12PrintMedia = h12PrintMedia;
+    }
+
+    public String getH12ElecMedia() {
+        return H12ElecMedia;
+    }
+
+    public void setH12ElecMedia(String h12ElecMedia) {
+        H12ElecMedia = h12ElecMedia;
+    }
+
+    public String getH12PerfomArts() {
+        return H12PerfomArts;
+    }
+
+    public void setH12PerfomArts(String h12PerfomArts) {
+        H12PerfomArts = h12PerfomArts;
+    }
+
+    public String getH13Vehicle() {
+        return H13Vehicle;
+    }
+
+    public void setH13Vehicle(String h13Vehicle) {
+        H13Vehicle = h13Vehicle;
+    }
+
+    public String getH13Tractor() {
+        return H13Tractor;
+    }
+
+    public void setH13Tractor(String h13Tractor) {
+        H13Tractor = h13Tractor;
+    }
+
+    public String getH13Motorcycle() {
+        return H13Motorcycle;
+    }
+
+    public void setH13Motorcycle(String h13Motorcycle) {
+        H13Motorcycle = h13Motorcycle;
+    }
+
+    public String getH13Bicycle() {
+        return H13Bicycle;
+    }
+
+    public void setH13Bicycle(String h13Bicycle) {
+        H13Bicycle = h13Bicycle;
+    }
+
+    public String getH13DonkeyCart() {
+        return H13DonkeyCart;
+    }
+
+    public void setH13DonkeyCart(String h13DonkeyCart) {
+        H13DonkeyCart = h13DonkeyCart;
+    }
+
+    public String getH13DonkeyHorse() {
+        return H13DonkeyHorse;
+    }
+
+    public void setH13DonkeyHorse(String h13DonkeyHorse) {
+        H13DonkeyHorse = h13DonkeyHorse;
+    }
+
+    public String getH13Camels() {
+        return H13Camels;
+    }
+
+    public void setH13Camels(String h13Camels) {
+        H13Camels = h13Camels;
+    }
+
+    public String getIsHIVTB40() {
+        return isHIVTB40;
+    }
+
+    public void setIsHIVTB40(String isHIVTB40) {
+        this.isHIVTB40 = isHIVTB40;
+    }
 
     public String getSuperComment() {
         return SuperComment;
@@ -126,7 +265,13 @@ public class HouseHold implements Serializable {
         Interview_Status = interview_Status;
     }
 
+    public String getH03Other() {
+        return H03Other;
+    }
 
+    public void setH03Other(String h03Other) {
+        H03Other = h03Other;
+    }
 
     public String getAssignment_ID() {
         return Assignment_ID;
@@ -135,18 +280,45 @@ public class HouseHold implements Serializable {
     public void setAssignment_ID(String assignment_ID) {
         Assignment_ID = assignment_ID;
     }
+    public String getH04Other() {
+        return H04Other;
+    }
 
+    public void setH04Other(String h04Other) {
+        H04Other = h04Other;
+    }
 
+    public String getH05Other() {
+        return H05Other;
+    }
 
+    public void setH05Other(String h05Other) {
+        H05Other = h05Other;
+    }
+
+    public String getH08Other() {
+        return H08Other;
+    }
+
+    public void setH08Other(String h08Other) {
+        H08Other = h08Other;
+    }
+
+    public String getH09Other() {
+        return H09Other;
+    }
+
+    public void setH09Other(String h09Other) {
+        H09Other = h09Other;
+    }
+
+    public String getH11Other() {
+        return H11Other;
+    }
 
     public HouseHold() {
 
     }
-
-
-
-
-
 
     public String getENUMERATOR() {
         return ENUMERATOR;
@@ -180,8 +352,6 @@ public class HouseHold implements Serializable {
         this.INTERVIEWER_VISITS1 = INTERVIEWER_VISITS1;
     }
 
-
-
     public String getNEXT_VISIT_2() {
         return NEXT_VISIT_2;
     }
@@ -198,8 +368,6 @@ public class HouseHold implements Serializable {
         this.INTERVIEWER_VISITS2 = INTERVIEWER_VISITS2;
     }
 
-
-
     public String getNEXT_VISIT_3() {
         return NEXT_VISIT_3;
     }
@@ -215,8 +383,6 @@ public class HouseHold implements Serializable {
     public void setINTERVIEWER_VISITS3(String INTERVIEWER_VISITS3) {
         this.INTERVIEWER_VISITS3 = INTERVIEWER_VISITS3;
     }
-
-
 
     public String getCOMMENT_3() {
         return COMMENT_3;
@@ -283,17 +449,6 @@ public class HouseHold implements Serializable {
     public void setHH_NO(String HH_NO) {
         this.HH_NO = HH_NO;
     }
-
-
-
-
-
-
-
-
-
-
-
 
     /**VISIT 1*/
     private String INTERVIEWER_VISIT1;
@@ -452,10 +607,6 @@ public class HouseHold implements Serializable {
         this.COMMENT3 = COMMENT3;
     }
 
-
-
-
-
     public String getVILLAGE_NO() {
         return VILLAGE_NO;
     }
@@ -475,11 +626,6 @@ public class HouseHold implements Serializable {
         BatchNumber = batchNumber;
     }
 
-
-
-
-
-
     public String getEA_NO() {
         return EA_NO;
     }
@@ -487,9 +633,6 @@ public class HouseHold implements Serializable {
     public void setEA_NO(String EA_NO) {
         this.EA_NO = EA_NO;
     }
-
-
-
 
     public String getDWELLING_NO() {
         return DWELLING_NO;
@@ -644,6 +787,7 @@ public class HouseHold implements Serializable {
     public PersonRoster[] getPersons(){
         return this.HouseHoldeMembers;
     }
+
 
     public void writeData(String data,Context context){
          try {

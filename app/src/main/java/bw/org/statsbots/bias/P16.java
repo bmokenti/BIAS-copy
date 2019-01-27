@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ public class P16 extends AppCompatActivity implements Serializable {
     protected LibraryClass lib;
     protected DatabaseHelper  myDB;
     protected EditText edt;
+
     protected activity_general_information assginfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,11 @@ public class P16 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
+        thisHouse.setIsHIVTB40("2");
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
 
         final EditText edt = (EditText)findViewById(R.id.P16_txt);
         /**
@@ -41,41 +48,11 @@ public class P16 extends AppCompatActivity implements Serializable {
          * If P02 is null then ask the individual
          */
 
-        for(int r=0; r<thisHouse.getTotalPersons();r++)
-        {
-            p1= thisHouse.getPersons()[r];
-            if(p1.getLineNumber()==thisHouse.getTotalPersons()-1 ){
-                //Next question P05
-                //lib.showError(P07.this,"Members Done","HH members are complete");
-                // assginfo.EAStatus.getText().toString();
-                Intent intent = new Intent(P16.this, P17.class);
-                intent.putExtra("Household", thisHouse);
-                startActivity(intent);
+
+            p1 = thisHouse.getPersons()[Integer.valueOf(thisHouse.getCurrent())];
 
 
 
-
-/*
-                insertEAAssignment(
-                        String EA_Assignment_ID,String STRATUM,String DISTRICT,String VILLAGE,String
-                        LOCALITY,String EA,
-                        String BLOCK_NO ,String EA_STATUS)*/
-            }
-
-
-
-
-            else{
-                if( p1.getP16()==null)
-                {
-                    // Toast.makeText(P07.this,"Data not Inserted",Toast.LENGTH_LONG).show();
-                    break;
-                }else{
-                    continue;
-                }
-            }
-
-        }
 
         if( p1.getP16()==null) {
 
@@ -122,24 +99,54 @@ public class P16 extends AppCompatActivity implements Serializable {
                         //Set P02 fir the current individual
                         thisHouse.getPersons()[p1.getLineNumber()].setP16(edt.getText().toString());
                         //Restart the current activity for next individual
-                        if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
-                            for (PersonRoster p : thisHouse.getPersons())
+
+                        int total = thisHouse.getTotalPersons();
+                        Log.d("sdsdsdssd", thisHouse.getPersons()[total-1].getSRNO() + "::: "  + p1.getSRNO());
+                        if(thisHouse.getPersons()[total-1].getSRNO() == p1.getSRNO())
+                        {
+                            Log.d("Status", sample.getStatusCode());
+                            if(sample.getStatusCode().equals("1") )
                             {
+                                //HIV ONLY
+                                Intent intent = new Intent(P16.this, P17.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent);
+                            }
+                            else if(sample.getStatusCode().equals("2") )
+                            {
+                                if(thisHouse.getIsHIVTB40().equals("2")){
+                                    //TB ONLY
+                                    Intent intent = new Intent(P16.this, P18.class);
+                                    intent.putExtra("Household", thisHouse);
+                                    startActivity(intent);
+                                }else{
+                                    //HIV+TB
+                                    Intent intent = new Intent(P16.this, P19.class);
+                                    intent.putExtra("Household", thisHouse);
+                                    startActivity(intent);
+                                }
+
+
+
+                            }
+                            else{
+                                //TB ONLY
+                                Intent intent = new Intent(P16.this, P18.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent);
 
                             }
 
-                            //Next question P17
-                            Intent intent = new Intent(P16.this, P17.class);
-                            intent.putExtra("Household", thisHouse);
-                            startActivity(intent);
 
 
                         }else{
-                            //Restart the current activity for next individual
 
-                            finish();
-                           // Toast.makeText(P07.this,"Data not Inserted",Toast.LENGTH_LONG).show();
-                            startActivity(getIntent());
+                            //Next question P17
+
+                            Intent intent = new Intent(P16.this, P12.class);
+                            intent.putExtra("Household", thisHouse);
+                            startActivity(intent);
+
                         }
 
 

@@ -189,6 +189,7 @@ public class login extends AppCompatActivity {
         private  final String UserName;
         private  final String PasswordHash;
         private HttpURLConnection conn;
+        protected LibraryClass lib = new LibraryClass();
 
         UserLoginTask(String UserName, String PasswordHash){
             this.UserName=UserName;
@@ -266,6 +267,15 @@ public class login extends AppCompatActivity {
                         editor.putString("last_try", DateHelper.getDateTime().toString());
                         editor.putBoolean("is_logged",false);
                         editor.apply();
+
+                        lib.showError(login.this,"Login Error","Login failed, please use correct credentials");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+
+
                     }else{
                         editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                         editor.putString("last_access", DateHelper.getDateTime().toString());

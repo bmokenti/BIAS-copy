@@ -48,6 +48,8 @@ public class started_household extends AppCompatActivity implements Serializable
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
 
+
+
         Sample s =  myDB.getSample(myDB.getReadableDatabase(), thisHouse.getAssignment_ID());
         String s1[] = s.getDistrictEAVillageLocality().split(":");
         Started_Locality.setText("Locality: "+s1[1]);//thisHouse.getLOCALITY_NO());

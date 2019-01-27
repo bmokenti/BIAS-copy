@@ -16,7 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class H01 extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class H01 extends AppCompatActivity implements Serializable, View.OnClickListener {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -55,7 +57,7 @@ public class H01 extends AppCompatActivity implements View.OnClickListener {
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
-        Button btnext = findViewById(R.id.btnnext);
+        Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
 
@@ -98,7 +100,7 @@ public class H01 extends AppCompatActivity implements View.OnClickListener {
 
                 } else {
                     //Set q101 for the current individual
-                    thisHouse.setH01(selectedRbtn.getText().toString().substring(0,1));
+                    thisHouse.setH01(selectedRbtn.getText().toString().substring(0,2));
 
                     /**
                      * If current person LineNumber is equal to TotalPersons-1

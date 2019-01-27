@@ -3,6 +3,7 @@ package bw.org.statsbots.bias;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,22 +22,37 @@ public class P18 extends AppCompatActivity implements Serializable {
     protected String currentHH = null;
     protected LibraryClass lib;
     ListView Allpersonslist;
+    protected DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p18);
         setTitle("P18 INDIVIDUAL QUESTIONNAIRE (TB)");
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         thisHouse.getPersons();
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
         Button btnNext = (Button) findViewById(R.id.p18_btnNext);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(P18.this, P19.class);
-                intent.putExtra("Household", thisHouse);
-                startActivity(intent);
+                if(sample.getStatusCode().equals("3")){
+                    Intent intent = new Intent(P18.this, P21.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+                }
+                else if(sample.getStatusCode().equals("2") && thisHouse.getIsHIVTB40().equals("2"))
+                {
+                    Intent intent = new Intent(P18.this, P21.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+                }
+                else{
+                    Log.d("Status",sample.getStatusCode());
+                }
             }
         });
 
@@ -45,8 +61,8 @@ public class P18 extends AppCompatActivity implements Serializable {
         for (int r = 0; r < thisHouse.getTotalPersons(); r++) {
             p1 = thisHouse.getPersons()[r];
             if ((((Integer.valueOf(p1.getP04YY()) >= 15) && ((Integer.valueOf(p1.getP06()) == 1) || (Integer.valueOf(p1.getP06()) == 2)) )
-
-                    || ((Integer.valueOf(p1.getP04YY())) >= 15 && (Integer.valueOf(p1.getP06()) == 3 && Integer.valueOf(p1.getP07()) >= 14)))) {
+                    || ((Integer.valueOf(p1.getP04YY())) >= 15 && (Integer.valueOf(p1.getP06()) == 3 && Integer.valueOf(p1.getP07()) >= 14))))
+            {
 
                 //add to listview
                 p18.add(p1.getP01());
@@ -70,7 +86,8 @@ public class P18 extends AppCompatActivity implements Serializable {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-               Intent intent = new Intent(P18.this, q101.class);
+
+                Intent intent = new Intent(P18.this, q101.class);
                 intent.putExtra("Household", thisHouse);
                 startActivity(intent);
             }

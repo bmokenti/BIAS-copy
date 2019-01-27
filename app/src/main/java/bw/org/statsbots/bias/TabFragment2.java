@@ -50,6 +50,7 @@ public class TabFragment2 extends Fragment implements Serializable {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_fragment_2, container, false);
+
         t = (TextView)v.findViewById(R.id.started_heading);
         hhDetails=new ArrayList<>();
 

@@ -104,6 +104,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     private static final String P05 = "P05";
     private static final String P06 = "P06";
     private static final String P07 = "P07";
+
     private static final String P17 = "P17";
     private static final String P18 = "P18";
     private static final String P19 = "P19";
@@ -595,6 +596,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean inserthousehold(HouseHold house) {
         SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(BatchNumber, house.getBatchNumber());
         contentValues.put(DWELLING_NO, house.getDWELLING_NO());
@@ -1003,7 +1005,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             // show message
             //myDB.showMessage("Error","Nothing found");
             Log.d("DB Number of Rows: ", String.valueOf(res.getCount()));
-            return ;
+            return;
         }
 
 
@@ -1089,7 +1091,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
     public Sample getSample(SQLiteDatabase db,String assgmnt) {
         Sample s =new Sample();
-        db = this.getWritableDatabase();
+        //db = this.getWritableDatabase();
         db = this.getReadableDatabase();
 
         Cursor res = db.rawQuery("select * from " + tblAssignments, null);
@@ -1500,7 +1502,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian"));
             String B3_Date = cursor.getString(cursor.getColumnIndexOrThrow("B3_Date"));
             String Barcode = cursor.getString(cursor.getColumnIndexOrThrow("Barcode"));
-            String U15Rapid_Results = cursor.getString(cursor.getColumnIndexOrThrow("U15Rapid_Results"));
+            //String U15Rapid_Results = cursor.getString(cursor.getColumnIndexOrThrow("U15Rapid_Results"));
             String Rapid_Comment = cursor.getString(cursor.getColumnIndexOrThrow("Rapid_Comment"));
 
 
@@ -1526,7 +1528,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             dataModel.setB3_Guardian(B3_Guardian);
             dataModel.setB3_Date(B3_Date);
             dataModel.setBarcode(Barcode);
-            dataModel.setU15Rapid_Results(U15Rapid_Results);
+            //dataModel.setU15Rapid_Results(U15Rapid_Results);
             dataModel.setRapid_Comment(Rapid_Comment);
 
 
@@ -1789,16 +1791,22 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * UPDATE HOUSE HOLD INTERVIEW STATUSES
      */
-    public boolean updateHHStatus(HouseHold houseHold) {
+    public boolean updateHHStatus(HouseHold houseHold)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues hhValues = new ContentValues();
         //contentValues.put("UserId", UserId);
         hhValues.put("Interview_Status",houseHold.getInterview_Status());
         hhValues.put("DWELLING_NO",houseHold.getDWELLING_NO());
         hhValues.put("HH_NO",houseHold.getDWELLING_NO());
-        if(houseHold.getDATE1() != null && !houseHold.getDATE1().isEmpty()){
+
+
+        if((!houseHold.getDATE1().equals("") && houseHold.getDATE2().equals("") && houseHold.getDATE3().equals("") )){
+
+            Log.d("Visit 1: ", houseHold.getDATE1() + "--- " + houseHold.getVISIT1_RESULT()+"---"+houseHold.getVISIT1_RESULT());
+
             //Visit 1
-            hhValues.put("DATE1",houseHold.getDATE1());
+              hhValues.put("DATE1",houseHold.getDATE1());
             hhValues.put("VISIT1_RESULT",houseHold.getVISIT1_RESULT());
             if(houseHold.getVISIT1_RESULT().equals("3") ||
                     houseHold.getVISIT1_RESULT().equals("4") ||
@@ -1811,12 +1819,13 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 hhValues.put("COMMENT1",houseHold.getVisit1Other());
             }
 
-
             hhValues.put("NEXT_VISIT_2_DATE",houseHold.getNEXT_VISIT_2_DATE());
             hhValues.put("NEXT_VISIT_2_TIME",houseHold.getNEXT_VISIT_2_TIME());
         }
-        else if((houseHold.getDATE1() != null && !houseHold.getDATE1().isEmpty()) && (houseHold.getDATE2() != null && !houseHold.getDATE2().isEmpty())){
+        else if((!houseHold.getDATE1().equals("") && !houseHold.getDATE2().equals("") && houseHold.getDATE3().equals("") )){
             //Visit 2
+
+            Log.d("Visit 2: ", houseHold.getDATE2() + "--- " + houseHold.getVISIT2_RESULT()+"---"+houseHold.getVISIT2_RESULT());
 
             hhValues.put("DATE2",houseHold.getDATE2());
             hhValues.put("VISIT2_RESULT",houseHold.getVISIT2_RESULT());
@@ -1834,8 +1843,13 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhValues.put("NEXT_VISIT_3_DATE",houseHold.getNEXT_VISIT_3_DATE());
             hhValues.put("NEXT_VISIT_3_TIME",houseHold.getNEXT_VISIT_3_TIME());
 
-        }else if(houseHold.getDATE3() != null && !houseHold.getDATE3().isEmpty()){
+        }
+
+        else if((!houseHold.getDATE1().equals("") && !houseHold.getDATE2().equals("") && !houseHold.getDATE3().equals("") )){
             //VISIT 3
+
+            Log.d("Visit 3: ", houseHold.getDATE3() + "--- " + houseHold.getVISIT3_RESULT()+"---"+houseHold.getVISIT3_RESULT());
+
             hhValues.put("DATE3",houseHold.getDATE3());
             hhValues.put("VISIT3_RESULT",houseHold.getVISIT3_RESULT());
 
@@ -1844,11 +1858,19 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                     houseHold.getVISIT3_RESULT().equals("4") ||
                     houseHold.getVISIT3_RESULT().equals("5"))
             {
-                hhValues.put("COMMENT3",houseHold.getCOMMENT3());
+                hhValues.put("COMMENT_3",houseHold.getCOMMENT3());
             }
             if(houseHold.getVISIT3_RESULT().equals("6")){
-                hhValues.put("COMMENT3",houseHold.getVisit3Other());
+                hhValues.put("COMMENT_3",houseHold.getVisit3Other());
             }
+        }else{
+
+
+            Log.d("Visit 1",String.valueOf((houseHold.getDATE1().equals(""))));
+            Log.d("Visit 2",String.valueOf((houseHold.getDATE2().equals(""))));
+            Log.d("Visit 3",String.valueOf((houseHold.getDATE3().equals(""))));
+
+
         }
 
 
@@ -1859,12 +1881,126 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                     hhValues, // column/value
                     "EA_Assignment_ID = ? and BatchNumber = ?", // selections
                     new String[] { String.valueOf(houseHold.getAssignment_ID()),String.valueOf(houseHold.getBatchNumber()) }
-                    );
+                );
 
             db.close();
 
         return true;
     }
+
+
+
+    /***
+     * GET STARTED HOUSEHOLD FROM DB
+     * @return
+     */
+    public List<HouseHold> getCompleted(){
+        // DataModel dataModel = new DataModel();
+        List<HouseHold> hhDetails =new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from "+tblhousehold,null);
+        StringBuffer stringBuffer = new StringBuffer();
+        HouseHold dataModel = null;
+        while (cursor.moveToNext())
+        {
+            if((cursor.getString(cursor.getColumnIndexOrThrow("Interview_Status")) != null &&
+                    cursor.getString(cursor.getColumnIndexOrThrow("Interview_Status")).equals("10")))
+            {
+
+                dataModel= new HouseHold();
+                String HH_Assignment_ID = cursor.getString(cursor.getColumnIndexOrThrow("EA_Assignment_ID"));
+                String BatchNumber = cursor.getString(cursor.getColumnIndexOrThrow("BatchNumber"));
+                String DWELLING_NO = cursor.getString(cursor.getColumnIndexOrThrow("DWELLING_NO"));
+                String HH_NO = cursor.getString(cursor.getColumnIndexOrThrow("HH_NO"));
+                String ENUMERATOR = cursor.getString(cursor.getColumnIndexOrThrow("ENUMERATOR"));
+                String SUPERVISOR = cursor.getString(cursor.getColumnIndexOrThrow("SUPERVISOR"));
+                String QUALITY_CONTROLLER = cursor.getString(cursor.getColumnIndexOrThrow("QUALITY_CONTROLLER"));
+                String INTERVIEWER_VISITS1 = cursor.getString(cursor.getColumnIndexOrThrow("INTERVIEWER_VISITS1"));
+                String InterviewDATE1 = cursor.getString(cursor.getColumnIndexOrThrow("DATE1"));
+                String VISIT1_RESULT = cursor.getString(cursor.getColumnIndexOrThrow("VISIT1_RESULT"));
+                String COMMENT1 = cursor.getString(cursor.getColumnIndexOrThrow("COMMENT1"));
+                String NEXT_VISIT_2_DATE = cursor.getString(cursor.getColumnIndexOrThrow("NEXT_VISIT_2_DATE"));
+                String NEXT_VISIT_2_Time = cursor.getString(cursor.getColumnIndexOrThrow("NEXT_VISIT_2_Time"));
+                String INTERVIEWER_VISITS2 = cursor.getString(cursor.getColumnIndexOrThrow("INTERVIEWER_VISITS2"));
+                String InterviewDATE2 = cursor.getString(cursor.getColumnIndexOrThrow("DATE2"));
+                String VISIT2_RESULT = cursor.getString(cursor.getColumnIndexOrThrow("VISIT2_RESULT"));
+                String COMMENT2 = cursor.getString(cursor.getColumnIndexOrThrow("COMMENT2"));
+                String NEXT_VISIT_3_DATE = cursor.getString(cursor.getColumnIndexOrThrow("NEXT_VISIT_3_DATE"));
+                String NEXT_VISIT_3_Time = cursor.getString(cursor.getColumnIndexOrThrow("NEXT_VISIT_3_Time"));
+                String INTERVIEWER_VISITS3 = cursor.getString(cursor.getColumnIndexOrThrow("INTERVIEWER_VISITS3"));
+                String InterviewDATE3 = cursor.getString(cursor.getColumnIndexOrThrow("DATE3"));
+                String VISIT3_RESULT = cursor.getString(cursor.getColumnIndexOrThrow("VISIT3_RESULT"));
+                String COMMENT_3 = cursor.getString(cursor.getColumnIndexOrThrow("COMMENT_3"));
+                String TOTAL_VISITS = cursor.getString(cursor.getColumnIndexOrThrow("TOTAL_VISITS"));
+                String Sample_FK = cursor.getString(cursor.getColumnIndexOrThrow("Sample_FK"));
+                String CONSENT = cursor.getString(cursor.getColumnIndexOrThrow("CONSENT"));
+                String CHECKED_BY = cursor.getString(cursor.getColumnIndexOrThrow("CHECKED_BY"));
+                String CODED = cursor.getString(cursor.getColumnIndexOrThrow("CODED"));
+                String FINAL_RESULT = cursor.getString(cursor.getColumnIndexOrThrow("FINAL_RESULT"));
+                String FINAL_OTHER = cursor.getString(cursor.getColumnIndexOrThrow("FINAL_OTHER"));
+
+                dataModel.setAssignment_ID(HH_Assignment_ID);
+                dataModel.setBatchNumber(BatchNumber);
+                dataModel.setDWELLING_NO(DWELLING_NO);
+                dataModel.setHH_NO(HH_NO);
+                dataModel.setENUMERATOR(ENUMERATOR);
+                dataModel.setSUPERVISOR(SUPERVISOR);
+                dataModel.setQUALITY_CONTROLLER(QUALITY_CONTROLLER);
+                dataModel.setINTERVIEWER_VISIT1(INTERVIEWER_VISITS1);
+                dataModel.setDATE1(InterviewDATE1);
+                dataModel.setVISIT1_RESULT(VISIT1_RESULT);
+                dataModel.setCOMMENT1(COMMENT1);
+                dataModel.setNEXT_VISIT_2_DATE(NEXT_VISIT_2_DATE);
+                dataModel.setNEXT_VISIT_2(NEXT_VISIT_2_Time);
+                dataModel.setINTERVIEWER_VISIT2(INTERVIEWER_VISITS2);
+                dataModel.setDATE2(InterviewDATE2);
+                dataModel.setVISIT2_RESULT(VISIT2_RESULT);
+                dataModel.setCOMMENT2(COMMENT2);
+                dataModel.setNEXT_VISIT_3_DATE(NEXT_VISIT_3_DATE);
+                dataModel.setNEXT_VISIT_3(NEXT_VISIT_3_Time);
+                dataModel.setINTERVIEWER_VISIT3(INTERVIEWER_VISITS3);
+                dataModel.setDATE3(InterviewDATE3);
+                dataModel.setVISIT3_RESULT(VISIT3_RESULT);
+                dataModel.setCOMMENT3(COMMENT_3);
+                dataModel.setTOTAL_VISITS(TOTAL_VISITS);
+                dataModel.setCONSENT(CONSENT);
+                dataModel.setCHECKED_BY(CHECKED_BY);
+                dataModel.setCODED(CODED);
+                dataModel.setFINAL_RESULT(FINAL_RESULT);
+                dataModel.setFINAL_OTHER(FINAL_OTHER);
+                dataModel.setInterview_Status(cursor.getString(cursor.getColumnIndexOrThrow("Interview_Status")));
+
+                stringBuffer.append(dataModel);
+                // stringBuffer.append(dataModel);
+                hhDetails.add(dataModel);
+            }
+        }
+
+        for (HouseHold mo:hhDetails ) {
+
+            // Log.i("Hellomo",""+mo.getCity());
+        }
+
+        //
+
+        return hhDetails;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

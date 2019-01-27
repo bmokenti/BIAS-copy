@@ -4,7 +4,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-
 tools:context=".H11">
 
 
@@ -43,101 +42,92 @@ tools:context=".H11">
 </LinearLayout>
 
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/H11radio"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:layout_marginStart="8dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginBottom="8dp"
-    android:gravity="top"
-    android:paddingTop="20dp"
-    android:paddingBottom="40dp"
-    android:orientation="horizontal"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
-    <ScrollView
-
-        android:id="@+id/scrollView2"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/H11radio"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_height="647dp"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/P02Navigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.291"
-        android:paddingStart="10dp">
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingTop="20dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/H08Linear"
+        tools:layout_editor_absoluteX="8dp">
 
-        <RadioGroup
-            android:id="@+id/H11radioGroup"
+        <ScrollView
+
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:divider="?android:attr/dividerHorizontal"
-            android:showDividers="middle"
             android:layout_marginRight="8dp"
-            android:textSize="16sp">
+            android:layout_marginBottom="8dp"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/P02Navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.291">
 
-            <RadioButton
-                android:id="@+id/H11_1"
+            <RadioGroup
+                android:id="@+id/H11radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/Collected" />
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:divider="?android:attr/dividerHorizontal"
+                android:showDividers="middle"
+                android:textSize="16sp">
 
-            <RadioButton
-                android:id="@+id/H11_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/Burn" />
+                <RadioButton
+                    android:id="@+id/H11_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Collected" />
 
-            <RadioButton
-                android:id="@+id/H11_3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/RoadsideDumping" />
+                <RadioButton
+                    android:id="@+id/H11_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Burn" />
 
-            <RadioButton
-                android:id="@+id/H11_4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/RubbishPit" />
+                <RadioButton
+                    android:id="@+id/H11_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/RoadsideDumping" />
 
-            <RadioButton
-                android:id="@+id/H11_Other"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/H11OtherSpecify" />
+                <RadioButton
+                    android:id="@+id/H11_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/RubbishPit" />
 
-            <EditText
-                android:id="@+id/H11_txtOther"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="other specify" />
+                <RadioButton
+                    android:id="@+id/H11_Other"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/H11OtherSpecify" />
+
+                <EditText
+                    android:id="@+id/H11_txtOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="other specify" />
 
 
-
-
-        </RadioGroup>
-    </ScrollView>
-</LinearLayout>
+            </RadioGroup>
+        </ScrollView>
+    </LinearLayout>
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

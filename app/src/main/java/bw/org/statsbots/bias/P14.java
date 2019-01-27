@@ -21,6 +21,7 @@ public class P14 extends AppCompatActivity implements Serializable {
     protected PersonRoster p1=null;
     protected String currentHH=null;
     protected LibraryClass lib;
+    protected RadioButton selectedRbtn;
     protected RadioButton rbtn1,rbtn2,rbtn3, rbtn4, rbtn5, rbtn6,rbtn7,rbtn8,rbtn9, selected=null;
     protected RadioGroup rbtngroup;
 
@@ -32,22 +33,7 @@ public class P14 extends AppCompatActivity implements Serializable {
 
         setTitle("P14 ECONOMIC ACTIVITY");
         lib = new LibraryClass();
-        rbtn1 =  (RadioButton)findViewById(R.id.P14_1);
-        rbtn2 =  (RadioButton)findViewById(R.id.P14_2);
-        rbtn3 =  (RadioButton)findViewById(R.id.P14_3);
-        rbtn4 =  (RadioButton)findViewById(R.id.P14_4);
-        rbtn5 =  (RadioButton)findViewById(R.id.P14_5);
-
-        rbtn6 =  (RadioButton)findViewById(R.id.P14_6);
-        rbtn7 =  (RadioButton)findViewById(R.id.P14_7);
-        rbtn8 =  (RadioButton)findViewById(R.id.P14_8);
-        rbtn9 =  (RadioButton)findViewById(R.id.P14_9);
-
-        rbtngroup = (RadioGroup)findViewById(R.id.P14radioGroup) ;
-
-
-
-        final int selectedId = rbtngroup.getCheckedRadioButtonId();
+        final RadioGroup rg = (RadioGroup) findViewById(R.id.P14radioGroup);
 
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
@@ -57,21 +43,13 @@ public class P14 extends AppCompatActivity implements Serializable {
          * Loop through the house hold members to check if hh member 's P02 is answered
          * If P02 is null then ask the individual
          */
-        for(int r=0; r<thisHouse.getTotalPersons();r++)
-        {
-            p1= thisHouse.getPersons()[r];
-            if(p1.getP14()==null)
-            {
-                break;
-            }else{
-                continue;
-            }
-        }
+
+            p1= thisHouse.getPersons()[Integer.valueOf(thisHouse.getCurrent())];
 
         //Disable for head of House
 
 
-        if(p1.getP13()==null) {
+        if(p1.getP14()==null) {
 
             TextView textView = (TextView) findViewById(R.id.P14);
             String s = getResources().getString(R.string.P14);
@@ -89,7 +67,8 @@ public class P14 extends AppCompatActivity implements Serializable {
             if(p1.getLineNumber()+1==thisHouse.getTotalPersons()){
                 btnLabel="Next";
             }else{
-                btnLabel="Next > "+ thisHouse.getPersons()[p1.getLineNumber()+1].getP01();
+
+                btnLabel="Next > ";
             }
 
             /**
@@ -101,7 +80,11 @@ public class P14 extends AppCompatActivity implements Serializable {
                 @Override
                 public void onClick(View v)
                 {
-                    if(selected==null)
+                    int selectedId =  rg.getCheckedRadioButtonId();
+                    selectedRbtn = (RadioButton) findViewById(selectedId);
+
+
+                    if(selectedRbtn==null)
                     {
                         lib.showError(P14.this,"P14 Error","What was"+ p1.getP01() + " 'S mainly working as during the past 7 days?");
                         /**
@@ -112,21 +95,22 @@ public class P14 extends AppCompatActivity implements Serializable {
                     }
                     else{
 
-                        //Set P02 fir the current individual
-                        thisHouse.getPersons()[p1.getLineNumber()].setP14(selected.getText().toString().substring(0,1));
+
+                        thisHouse.getPersons()[p1.getLineNumber()].setP14(selectedRbtn.getText().toString().substring(0,1));
                         //Restart the current activity for next individual
-                        if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
+                        //if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
 
                             //Next question P07
+                        thisHouse.setCurrent(String.valueOf(p1.getSRNO()));
                             Intent intent = new Intent(P14.this,P15.class);
                             intent.putExtra("Household",  thisHouse);
                             startActivity(intent);
 
-                        }else{
+                        /*}else{
                             //Restart the current activity for next individual
                             finish();
                             startActivity(getIntent());
-                        }
+                        }*/
 
                     }
 

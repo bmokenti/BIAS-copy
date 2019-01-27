@@ -26,13 +26,13 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p09);
-        setTitle("P08 MARITAL STATUS");
+        setTitle("P09 Educational Attainment");
         lib = new LibraryClass();
         rbtn1 =  (RadioButton)findViewById(R.id.P09_1);
         rbtn2 =  (RadioButton)findViewById(R.id.P09_2);
         rbtn3 =  (RadioButton)findViewById(R.id.P09_3);
 
-        rbtngroup = (RadioGroup)findViewById(R.id.p08radioGroup) ;
+        rbtngroup = (RadioGroup)findViewById(R.id.P09radioGroup) ;
 
         rbtn1.setOnClickListener(this);
         rbtn2.setOnClickListener(this);
@@ -52,11 +52,21 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
         for(int r=0; r<thisHouse.getTotalPersons();r++)
         {
             p1= thisHouse.getPersons()[r];
-            if(p1.getP08()==null)
+            if(p1.getP09()==null)
             {
                 break;
-            }else{
-                continue;
+            }
+            else
+                {
+                    if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
+                        //thisHouse.setCurrent(String.valueOf(p1.getSRNO()));
+                        Intent intent = new Intent(P09.this,P12.class);
+                        intent.putExtra("Household",  thisHouse);
+                        startActivity(intent);
+                    }else{
+                        continue;
+                    }
+
             }
         }
 
@@ -70,7 +80,7 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
         }*/
 
 
-        if(p1.getP08()==null) {
+        if(p1.getP09()==null) {
 
             TextView textView = (TextView) findViewById(R.id.P09);
             String s = getResources().getString(R.string.P09);
@@ -109,22 +119,43 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
                     }
-                    else{
+                    else
+                        {
 
                         //Set P09fir the current individual
                         thisHouse.getPersons()[p1.getLineNumber()].setP09(selected.getText().toString().substring(0,1));
                         //Restart the current activity for next individual
-                        if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
 
-                            //Next question P07
-                            Intent intent = new Intent(P09.this,P10.class);
-                            intent.putExtra("Household",  thisHouse);
-                            startActivity(intent);
+                        if(p1.getLineNumber() == thisHouse.getTotalPersons()-1)
+                        {
+                            if(p1.getP09().equals("1") || p1.getP09().equals("2"))
+                            {
+                                thisHouse.setCurrent(String.valueOf(p1.getSRNO()));
+                                Intent intent = new Intent(P09.this,P10.class);
+                                intent.putExtra("Household",  thisHouse);
+                                startActivity(intent);
+                            }else{
+                                thisHouse.setCurrent(String.valueOf(p1.getSRNO()));
+                                Intent intent = new Intent(P09.this,P12.class);
+                                intent.putExtra("Household",  thisHouse);
+                                startActivity(intent);
+                            }
 
                         }else{
-                            //Restart the current activity for next individual
-                            finish();
-                            startActivity(getIntent());
+
+                            if(p1.getP11()==null && p1.getP09().equals("1") || p1.getP09().equals("2")){
+
+                                thisHouse.setCurrent(String.valueOf(p1.getSRNO()));
+                                Intent intent1 = new Intent(P09.this,P10.class);
+                                intent1.putExtra("Household",  thisHouse);
+                                startActivity(intent1);
+
+                            }
+                            else{
+                                finish();
+                                startActivity(getIntent());
+                            }
+
                         }
 
                     }

@@ -93,6 +93,7 @@ public class activity_general_information extends AppCompatActivity implements S
          * INITIALIZE ALL THE HOUSE HOLD VARIABLES KNOWN
          */
         Button btnNext = (Button)findViewById(R.id.button);
+
         String btnLabel="";
 
 
@@ -162,5 +163,16 @@ public class activity_general_information extends AppCompatActivity implements S
             }
 
         });
+
+
+        Button btnPrev = (Button)findViewById(R.id.button3);
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+
+            }
+        });
+
     }
 }

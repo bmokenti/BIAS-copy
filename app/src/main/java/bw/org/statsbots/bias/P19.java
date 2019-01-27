@@ -18,21 +18,39 @@ public class P19 extends AppCompatActivity {
     protected String currentHH = null;
     protected LibraryClass lib;
     ListView Allpersonslist;
+    protected DatabaseHelper myDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p19);
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
         setTitle("P19 INDIVIDUAL QUESTIONNAIRE (HIVTB)");
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         thisHouse.getPersons();
+        thisHouse.setIsHIVTB40("2");
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
         Button btnNext = (Button)findViewById(R.id.p19_btnNext);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(P19.this,P20.class);
-                intent.putExtra("Household",  thisHouse);
-                startActivity(intent);
+            public void onClick(View view)
+            {
+                if(sample.getStatusCode().equals("2") & thisHouse.getIsHIVTB40().equals("1"))
+                {
+                    //P20 & P21
+                    Intent intent = new Intent(P19.this, P20.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+                }else {
+                    //P21
+                    Intent intent = new Intent(P19.this, P21.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+
+                }
             }
         });
 

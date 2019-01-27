@@ -41,41 +41,8 @@ public class P15 extends AppCompatActivity implements Serializable {
          * If P02 is null then ask the individual
          */
 
-        for(int r=0; r<thisHouse.getTotalPersons();r++)
-        {
-            p1= thisHouse.getPersons()[r];
-            if(p1.getLineNumber()==thisHouse.getTotalPersons()-1 ){
-                //Next question P05
-                //lib.showError(P07.this,"Members Done","HH members are complete");
-                // assginfo.EAStatus.getText().toString();
-                Intent intent = new Intent(P15.this, P16.class);
-                intent.putExtra("Household", thisHouse);
-                startActivity(intent);
+         p1= thisHouse.getPersons()[Integer.valueOf(thisHouse.getCurrent())];
 
-
-
-
-/*
-                insertEAAssignment(
-                        String EA_Assignment_ID,String STRATUM,String DISTRICT,String VILLAGE,String
-                        LOCALITY,String EA,
-                        String BLOCK_NO ,String EA_STATUS)*/
-            }
-
-
-
-
-            else{
-                if( p1.getP15()==null)
-                {
-                    // Toast.makeText(P07.this,"Data not Inserted",Toast.LENGTH_LONG).show();
-                    break;
-                }else{
-                    continue;
-                }
-            }
-
-        }
 
         if( p1.getP15()==null) {
 
@@ -95,7 +62,7 @@ public class P15 extends AppCompatActivity implements Serializable {
             if(p1.getLineNumber()+1==thisHouse.getTotalPersons()){
                 btnLabel="Next";
             }else{
-                btnLabel="Next > "+ thisHouse.getPersons()[p1.getLineNumber()+1].getP01();
+                btnLabel="Next > ";
             }
 
 
@@ -122,25 +89,10 @@ public class P15 extends AppCompatActivity implements Serializable {
                         //Set P02 fir the current individual
                         thisHouse.getPersons()[p1.getLineNumber()].setP15(edt.getText().toString());
                         //Restart the current activity for next individual
-                        if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
-                            for (PersonRoster p : thisHouse.getPersons())
-                            {
-
-                            }
-
-                            //Next question P17
-                            Intent intent = new Intent(P15.this, P16.class);
-                            intent.putExtra("Household", thisHouse);
-                            startActivity(intent);
-
-
-                        }else{
-                            //Restart the current activity for next individual
-
-                            finish();
-                            // Toast.makeText(P07.this,"Data not Inserted",Toast.LENGTH_LONG).show();
-                            startActivity(getIntent());
-                        }
+                        thisHouse.setCurrent(String.valueOf(p1.getSRNO()));
+                        Intent intent = new Intent(P15.this,P16.class);
+                        intent.putExtra("Household",  thisHouse);
+                        startActivity(intent);
 
 
 
