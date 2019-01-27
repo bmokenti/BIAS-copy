@@ -124,14 +124,14 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
 
 
                     } else {
-                        //Set q101 for the current individual
-                       //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                        //individual.setQ404_1(chk1.getText().toString().substring(0,1));
-                       // individual.setQ404_2(chk2.getText().toString().substring(0, 1));
-                        //individual.setQ404_3(chk3.getText().toString().substring(0,1));
+                        //Set q404 for the current individual
 
-                        //individual.setQ404a_1(chk2.getText().toString().substring(0, 1));
-                       // individual.setQ404a_2(chk3.getText().toString().substring(0,1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ404_1(chk1.getText().toString().substring(0,1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ404_2(chk2.getText().toString().substring(0, 1));
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ404_3(chk3.getText().toString().substring(0,1));
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ404a(selectedRbtn.getText().toString().substring(0,1));
+
+
 
                         /**
                          * If current person LineNumber is equal to TotalPersons-1

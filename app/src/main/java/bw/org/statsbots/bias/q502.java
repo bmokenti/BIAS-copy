@@ -35,7 +35,7 @@ public class q502 extends AppCompatActivity implements View.OnClickListener, Ser
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q502);
 
-        setTitle("Q502: ");
+        setTitle("Q502:  MALE CIRCUMICISION");
         lib = new LibraryClass();
         rbtn1 =  (RadioButton)findViewById(R.id.q502_1);
         rbtn2 =  (RadioButton)findViewById(R.id.q502_2);
@@ -63,10 +63,10 @@ public class q502 extends AppCompatActivity implements View.OnClickListener, Ser
 
                 if (selectedRbtn == null) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(q502.this);
-                    builder.setTitle("Q502 Error");
+                    builder.setTitle("Q502: Error");
                     builder.setIcon(R.drawable.ic_warning_orange_24dp);
 
-                    builder.setMessage("Where was \"+ p1.getP01() + \"circumcised");
+                    builder.setMessage("Where were you circumcised");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 
@@ -91,16 +91,9 @@ public class q502 extends AppCompatActivity implements View.OnClickListener, Ser
                 } else
 
                 {
-                        //Set q101 for the current individual
-                        //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                  //  individual.setQ502(selectedRbtn.getText().toString().substring(0,1));
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
+                        //Set q502 for the current individual
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ502(selectedRbtn.getText().toString().substring(0,1));
 
-                        //Next question q102
 
 
                         Intent intent = new Intent(q502.this, q601.class);

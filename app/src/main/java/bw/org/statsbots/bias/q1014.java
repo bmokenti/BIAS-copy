@@ -84,7 +84,7 @@ public class q1014 extends AppCompatActivity {
                     int selectedIda = rga.getCheckedRadioButtonId();
                     selectedRbtna = (RadioButton) findViewById(selectedIda);
 
-                    if (selectedRbtna == null) {
+                    if (selectedRbtna == null && rbtn1.isChecked()) {
                         lib.showError(q1014.this, "Q1014a: ERROR", " What were the results of the child?");
                         /**
                          * VIBRATE DEVICE
@@ -96,7 +96,7 @@ public class q1014 extends AppCompatActivity {
                         int selectedIdb = rgb.getCheckedRadioButtonId();
                         selectedRbtnb = (RadioButton) findViewById(selectedIdb);
 
-                        if (selectedRbtnb == null) {
+                        if (selectedRbtnb == null &&  rbtn1.isChecked() && rbtna1.isChecked()) {
                             lib.showError(q1014.this, "Q1014b: ERROR", "Was the child given ARVs?");
                             /**
                              * VIBRATE DEVICE
@@ -104,7 +104,9 @@ public class q1014 extends AppCompatActivity {
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
                         } else {
-
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1014(selectedRbtn.getText().toString().substring(0,1));
+                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1014a(selectedRbtna.getText().toString().substring(0,1));
+                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1014b(selectedRbtnb.getText().toString().substring(0,1));
                             Intent intent = new Intent(q1014.this, q1015.class);
                             intent.putExtra("Household", thisHouse);
                             startActivity(intent);
@@ -208,7 +210,7 @@ public class q1014 extends AppCompatActivity {
 
                     rbtnb1.setEnabled(true);
                 rbtnb2.setEnabled(true);
-
+                tb.setTextColor(Color.BLACK);
 
 
 

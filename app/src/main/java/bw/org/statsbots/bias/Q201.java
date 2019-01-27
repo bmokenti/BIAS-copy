@@ -92,6 +92,7 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener  {
 
                 } else {
                     if (rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn5.isChecked() || rbtn5.isChecked()) {
+
                         Intent skipto203 = new Intent(Q201.this, q203.class);
                         skipto203.putExtra("Household", thisHouse);
                         startActivity(skipto203);
@@ -99,18 +100,11 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener  {
 
                     } else {
                         //Set q101 for the current individual
-                        individual.setQ201(selectedRbtn.getText().toString().substring(0, 1));
-
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                        //Next question q102
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ201(selectedRbtn.getText().toString().substring(0, 1));
 
 
-                        Intent q1o2 = new Intent(Q201.this, q102.class);
+
+                        Intent q1o2 = new Intent(Q201.this, q202.class);
                         q1o2.putExtra("Household", thisHouse);
                         startActivity(q1o2);
 

@@ -67,7 +67,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
                     builder.setTitle("Select sex of respondent");
                     builder.setIcon(R.drawable.ic_warning_orange_24dp);
 
-                    builder.setMessage("Please select "+ p1.getP01() + "'s gender");
+                    builder.setMessage("Please select gender");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 
@@ -91,7 +91,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
 
                 } else {
                     //Set q101 for the current individual
-                    individual.setQ101(selectedRbtn.getText().toString().substring(0,1));
+                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ101(selectedRbtn.getText().toString().substring(0,1));
 
                     /**
                      * If current person LineNumber is equal to TotalPersons-1

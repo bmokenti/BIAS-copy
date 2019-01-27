@@ -26,6 +26,8 @@ public class q401 extends AppCompatActivity implements View.OnClickListener {
     protected RadioGroup rbtngroup;
     protected RadioButton selectedRbtn;
     protected q102 age;
+
+    Individual pp1 = null;
     protected q101 sex;
     HouseHold thisHose;
 
@@ -48,9 +50,9 @@ public class q401 extends AppCompatActivity implements View.OnClickListener {
 
         //final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
-        //Intent i = getIntent();
-        //thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        //int p=0;
+        Intent i = getIntent();
+        thisHouse = (HouseHold)i.getSerializableExtra("Household");
+        int p=0;
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,9 +90,9 @@ public class q401 extends AppCompatActivity implements View.OnClickListener {
 
 
                 } else{
-                                //Set q101 for the current individual
-                                //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                   // individual.setQ401(selectedRbtn.getText().toString().substring(0,1));
+                                //Set q401 for the current individual
+                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ401(selectedRbtn.getText().toString().substring(0,1));
+
                                 /**
                                  * If current person LineNumber is equal to TotalPersons-1
                                  * Proceed to next Question in the roster

@@ -77,23 +77,33 @@ public class q1011 extends AppCompatActivity {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 } else {
-                    if (rbtn8.isChecked()) {
-                        Intent intent1 = new Intent(q1011.this, q1017.class);
-                        intent1.putExtra("Household", thisHouse);
-                        startActivity(intent1);
+
+                    if (rbtnOther.isChecked()&& edtOther.length()==0) {
+                        lib.showError(q1011.this, "Q1011: ERROR", "Other specify");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
                     } else {
+                        if (rbtn8.isChecked()) {
+                            Intent intent1 = new Intent(q1011.this, q1017.class);
+                            intent1.putExtra("Household", thisHouse);
+                            startActivity(intent1);
+                        } else {
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1011(selectedRbtn.getText().toString().substring(0,1));
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1011_Other(selectedRbtn.getText().toString().substring(0,1));
 
-                        Intent intent = new Intent(q1011.this, q1012.class);
-                        intent.putExtra("Household", thisHouse);
-                        startActivity(intent);
+                            Intent intent = new Intent(q1011.this, q1012.class);
+                            intent.putExtra("Household", thisHouse);
+                            startActivity(intent);
 
 
+                        }
                     }
+
                 }
-
             }
-
-
         });
     }
 
@@ -110,7 +120,8 @@ public class q1011 extends AppCompatActivity {
 
 
 
-
+                    edtOther.setVisibility(View.INVISIBLE);
+                edtOther.setText("");
 
 
 
@@ -119,8 +130,8 @@ public class q1011 extends AppCompatActivity {
             case R.id.q1011_2:
                 if(checked)
 
-
-
+                    edtOther.setVisibility(View.INVISIBLE);
+                edtOther.setText("");
 
 
 
@@ -135,7 +146,8 @@ public class q1011 extends AppCompatActivity {
                     break;
             case R.id.q1011_4:
                 if(checked)
-
+                    edtOther.setVisibility(View.INVISIBLE);
+                edtOther.setText("");
 
 
                     break;
@@ -150,21 +162,24 @@ public class q1011 extends AppCompatActivity {
             case R.id.q1011_6:
                 if(checked)
 
-
+                    edtOther.setVisibility(View.INVISIBLE);
+                edtOther.setText("");
 
                     break;
 
             case R.id.q1011_7:
                 if(checked)
 
-
+                    edtOther.setVisibility(View.INVISIBLE);
+                edtOther.setText("");
 
                     break;
 
             case R.id.q1011_8:
                 if(checked)
 
-
+                    edtOther.setVisibility(View.INVISIBLE);
+                edtOther.setText("");
 
                     break;
 
@@ -175,8 +190,7 @@ public class q1011 extends AppCompatActivity {
                     edtOther.setVisibility(View.VISIBLE);
 
                 else
-                    edtOther.setVisibility(View.INVISIBLE);
-                edtOther.setText("");
+
 
                 break;
 

@@ -40,7 +40,7 @@ public class q405 extends AppCompatActivity implements View.OnClickListener, Ser
 
         rbtn1 =  (RadioButton)findViewById(R.id.q405_1);
         rbtn2 =  (RadioButton)findViewById(R.id.q405_2);
-        // rbtn3 =  (RadioButton)findViewById(R.id.q403_3);
+
 
         rg = (RadioGroup)findViewById(R.id.q405radioGroup) ;
         //rbtn1 =  (RadioButton)findViewById(R.id.q403_1);
@@ -92,19 +92,8 @@ public class q405 extends AppCompatActivity implements View.OnClickListener, Ser
 
                     } else {
                         //Set q405 for the current individual
-                        //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                        //individual.setQ405(selectedRbtn.getText().toString().substring(0,1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ405(selectedRbtn.getText().toString().substring(0,1));
 
-
-
-
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                        //Next question q102
 
 
                         Intent q1o2 = new Intent(q405.this, q406.class);

@@ -105,13 +105,14 @@
                                 android:id="@+id/q1011_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-
+                                android:onClick="onRadioButtonClicked"
                                 android:text="@string/q1011_1" />
 
                             <RadioButton
                                 android:id="@+id/q1011_2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:onClick="onRadioButtonClicked"
                                 android:text="@string/q1011_2" />
 
                             <RadioButton
@@ -125,13 +126,14 @@
                                 android:id="@+id/q1011_4"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-
+                                android:onClick="onRadioButtonClicked"
                                 android:text="@string/q1011_4" />
 
                             <RadioButton
                                 android:id="@+id/q1011_5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:onClick="onRadioButtonClicked"
                                 android:text="@string/q1011_5" />
 
                             <RadioButton
@@ -144,13 +146,14 @@
                                 android:id="@+id/q1011_7"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-
+                                android:onClick="onRadioButtonClicked"
                                 android:text="@string/q1011_7" />
 
                             <RadioButton
                                 android:id="@+id/q1011_8"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:onClick="onRadioButtonClicked"
                                 android:text="@string/q1011_8" />
 
 
@@ -158,6 +161,7 @@
                                 android:id="@+id/q1011_other"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:onClick="onRadioButtonClicked"
                                 android:text="Other Specify" />
 
 

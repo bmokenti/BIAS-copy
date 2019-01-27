@@ -21,6 +21,7 @@ public class q202 extends AppCompatActivity implements View.OnClickListener  {
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2;
     protected RadioGroup rbtngroup;
+    PersonRoster p1 = null;
     protected RadioButton selectedRbtn;
 
 
@@ -95,7 +96,7 @@ public class q202 extends AppCompatActivity implements View.OnClickListener  {
 
                     } else {
                         //Set q101 for the current individual
-                        individual.setQ202(selectedRbtn.getText().toString().substring(0, 1));
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ202(selectedRbtn.getText().toString().substring(0, 1));
 
                         /**
                          * If current person LineNumber is equal to TotalPersons-1

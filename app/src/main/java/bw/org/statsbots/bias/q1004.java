@@ -72,6 +72,20 @@ public class q1004 extends AppCompatActivity {
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
         int p=0;
 
+        rbtnbOther.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtnbOther.isChecked()) {
+                    edtOther.setVisibility(View.VISIBLE);
+
+
+                }
+                else
+                    edtOther.setVisibility(View.INVISIBLE);
+                edtOther.setText("");
+
+            }
+        });
 
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -90,11 +104,8 @@ public class q1004 extends AppCompatActivity {
                 } else {
 
 
-                    int selectedIda = rga.getCheckedRadioButtonId();
-                    selectedRbtna = (RadioButton) findViewById(selectedIda);
-
-                    if (selectedRbtna == null) {
-                        lib.showError(q1004.this, "Q1004a: ERROR", "  Whilst pregnant with your youngest child, did you attend an ante natal care clinic?");
+                    if (Integer.valueOf(edtdays.getText().toString()) > 31) {
+                        lib.showError(q1004.this, "Q1004a: ERROR", "  Days cannot be more thana 31");
                         /**
                          * VIBRATE DEVICE
                          */
@@ -102,11 +113,9 @@ public class q1004 extends AppCompatActivity {
                         vibs.vibrate(100);
                     } else {
 
-                        int selectedIdb = rgb.getCheckedRadioButtonId();
-                        selectedRbtnb = (RadioButton) findViewById(selectedIdb);
 
-                        if (selectedRbtnb == null && rbtna2.isChecked()) {
-                            lib.showError(q1004.this, "Q1004b: ERROR", "What is the MAIN reason you did not visit a clinic for antenatal care when you were pregnant with this child?");
+                        if (Integer.valueOf(edtmonths.getText().toString()) > 12) {
+                            lib.showError(q1004.this, "Q1004a: ERROR", "  Months cannot be more than 12");
                             /**
                              * VIBRATE DEVICE
                              */
@@ -114,15 +123,71 @@ public class q1004 extends AppCompatActivity {
                             vibs.vibrate(100);
                         } else {
 
-                            Intent intent = new Intent(q1004.this, q1005.class);
-                            intent.putExtra("Household", thisHouse);
-                            startActivity(intent);
+
+                            if (Integer.valueOf(edtdays.getText().toString()) > 2019) {
+                                lib.showError(q1004.this, "Q1004a: ERROR", "  Years cannot be more than 2019");
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+                            } else {
 
 
+                                int selectedIda = rga.getCheckedRadioButtonId();
+                                selectedRbtna = (RadioButton) findViewById(selectedIda);
+
+                                if (selectedRbtna == null) {
+                                    lib.showError(q1004.this, "Q1004a: ERROR", "  Whilst pregnant with your youngest child, did you attend an ante natal care clinic?");
+                                    /**
+                                     * VIBRATE DEVICE
+                                     */
+                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                    vibs.vibrate(100);
+                                } else {
+
+                                    int selectedIdb = rgb.getCheckedRadioButtonId();
+                                    selectedRbtnb = (RadioButton) findViewById(selectedIdb);
+
+                                    if (selectedRbtnb == null && rbtna2.isChecked()) {
+                                        lib.showError(q1004.this, "Q1004b: ERROR", "What is the MAIN reason you did not visit a clinic for antenatal care when you were pregnant with this child?");
+                                        /**
+                                         * VIBRATE DEVICE
+                                         */
+                                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                        vibs.vibrate(100);
+                                    } else {
+
+
+                                        if (edtOther.getText() == null && rbtnbOther.isChecked()) {
+                                            lib.showError(q1004.this, "Q1004b: Other", "Other specify");
+                                            /**
+                                             * VIBRATE DEVICE
+                                             */
+                                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                            vibs.vibrate(100);
+                                        } else {
+                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1004_Day(edtdays.getText().toString());
+                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1004_Month(edtmonths.getText().toString());
+                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1004_Year(edtyears.getText().toString());
+
+                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1004a(selectedRbtna.getText().toString().substring(0,1));
+                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1004b(selectedRbtnb.getText().toString().substring(0,1));
+                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1004b_Other(edtOther.getText().toString());
+
+                                            Intent intent = new Intent(q1004.this, q1005.class);
+                                            intent.putExtra("Household", thisHouse);
+                                            startActivity(intent);
+
+
+                                        }
+                                    }
+                                }
+
+                            }
                         }
                     }
                 }
-
             }
 
 

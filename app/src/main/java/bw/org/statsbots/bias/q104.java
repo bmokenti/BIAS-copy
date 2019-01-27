@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class q104 extends AppCompatActivity implements Serializable {
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, rbtn3, selected = null;
     protected RadioGroup rbtngroup;
+    protected EditText edtq104c;
     HouseHold thisHose;
     TextView txtq104text, q104atxt, q104btxt;
     protected ArrayAdapter<String> adapter, adapter1, adapter2;
@@ -40,6 +42,7 @@ public class q104 extends AppCompatActivity implements Serializable {
         lib = new LibraryClass();
         q104atxt = (TextView) findViewById(R.id.q104a) ;
                 q104btxt = (TextView) findViewById(R.id.q104b) ;
+        edtq104c = (EditText) findViewById(R.id.txtq104c) ;
         final String[] lst = getResources().getStringArray(R.array.type_of_education);
 
 
@@ -219,7 +222,14 @@ public class q104 extends AppCompatActivity implements Serializable {
                                     break;
                                 }
                             }
-
+                            if (edtq104c == null || edtq104c.length() == 0) {
+                                lib.showError(q104.this, "Field of education", "Please type field of education");
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+                            }
 
                             if (Selectedyear == null || Selectedyear.length() == 0) {
                                 lib.showError(q104.this, "Year Error", "Please select Year");
@@ -240,13 +250,13 @@ public class q104 extends AppCompatActivity implements Serializable {
                                 //Log.d("P05", String.valueOf(exists));
                                 if (exists && exist && existsY) {
                                     //Set q104 fir the current individual
-                                    //p1.setP05(Selectedtype.substring(0, 2));
-                                    //Log.d("P05", Selected.substring(0,3));
-                                    //Got to next Person / question
+                                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ104(autoTypeEducation.getText().toString().substring(0,1));
+                                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ104a(autoLevel.getText().toString().substring(0,1));
+                                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ104b(autoYear.getText().toString().substring(0,1));
+                                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ104c(edtq104c.getText().toString());
 
-                                    //if (p1.getLineNumber() == thisHouse.getTotalPersons() - 1) {
-                                    //Next question P06
-                                    Intent intent = new Intent(q104.this, q401.class);
+
+                                    Intent intent = new Intent(q104.this, q105.class);
                                     intent.putExtra("Household", thisHouse);
                                     startActivity(intent);
 

@@ -42,6 +42,7 @@ public class q1010 extends AppCompatActivity {
         rbtn2 = (RadioButton) findViewById(R.id.q1010_2);
         rbtn3 = (RadioButton) findViewById(R.id.q1010_3);
         rbtnOther = (RadioButton) findViewById(R.id.q1010_other);
+        edtOther = (EditText)  findViewById(R.id.q1010_other1);
 
         //rga = (RadioGroup)findViewById(R.id.q1010aGroup1) ;
 
@@ -72,17 +73,28 @@ public class q1010 extends AppCompatActivity {
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
-                }  else {
+                } else {
 
-                    Intent intent = new Intent(q1010.this, q1011.class);
-                    intent.putExtra("Household", thisHouse);
-                    startActivity(intent);
+                    if (rbtnOther.isChecked() && edtOther.length() == 0) {
+                        lib.showError(q1010.this, "Q1010: ERROR: Other specify", "Other specify");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+                    } else {
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ1010(selectedRbtn.getText().toString().substring(0,1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ1010_Other(edtOther.getText().toString());
+
+                        Intent intent = new Intent(q1010.this, q1011.class);
+                        intent.putExtra("Household", thisHouse);
+                        startActivity(intent);
 
 
+                    }
                 }
+
             }
-
-
 
 
         });
@@ -97,42 +109,48 @@ public class q1010 extends AppCompatActivity {
 
             case R.id.q1010_1:
                 if(checked)
+                {
+                    edtOther.setVisibility(View.INVISIBLE);
+                    edtOther.setText("");
 
+                }
 
-
-
-
-
-
+                else
 
                 break;
 
             case R.id.q1010_2:
                 if(checked)
 
+                {
+                    edtOther.setVisibility(View.INVISIBLE);
+                    edtOther.setText("");
 
+                }
 
-
-
+                else
 
 
                 break;
 
             case R.id.q1010_3:
                 if(checked)
+                {
+                    edtOther.setVisibility(View.INVISIBLE);
+                    edtOther.setText("");
 
+                }
 
+            else
 
                 break;
 
             case R.id.q1010_other:
-                if(checked)
+                if(checked) {
 
-edtOther.setVisibility(View.VISIBLE);
-
+                    edtOther.setVisibility(View.VISIBLE);
+                }
                 else
-                    edtOther.setVisibility(View.INVISIBLE);
-                edtOther.setText("");
 
                     break;
 

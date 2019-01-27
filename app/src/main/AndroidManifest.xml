@@ -73,13 +73,18 @@
 
         <activity android:name=".started_household" />
         <activity android:name=".P17" />
-        <activity android:name=".q101" />
+        <activity android:name=".q101" >
+
+        </activity>
+
         <activity android:name=".q102" />
         <activity android:name=".q103" />
         <activity android:name=".q104" >
 
         </activity>
+        <activity android:name=".q105" >
 
+        </activity>
         <activity android:name=".q106" >
 
         </activity>
@@ -128,7 +133,9 @@
         </activity>
 
 
-        <activity android:name=".q401" />
+        <activity android:name=".q401" >
+
+    </activity>
         <activity android:name=".q402" />
         <activity android:name=".q403" />
         <activity android:name=".q404" >
@@ -154,6 +161,12 @@
 
         </activity>
         <activity android:name=".q502" />
+        <activity android:name=".q503" >
+
+        </activity>
+        <activity android:name=".q504" >
+
+        </activity>
         <activity android:name=".q606" >
 
         </activity>
@@ -245,8 +258,7 @@
         <activity android:name=".q804" >
 
         </activity>
-        <activity android:name=".q503" />
-        <activity android:name=".q504" />
+
 
 
         <activity android:name=".q601">
@@ -264,7 +276,11 @@
             <activity android:name=".q605">
 
 
-        </activity>
+    </activity>
+
+
+
+
 
         <activity android:name=".q901">
 
@@ -296,11 +312,7 @@
 
         </activity>
         <activity android:name=".q1005">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
 

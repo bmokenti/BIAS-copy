@@ -67,17 +67,20 @@ public class q1012 extends AppCompatActivity {
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
-                } else {
-                    if ((edtmnths.length() == 0 || edtmnths.getText() == null) && !chkb.isChecked()) {
-                        lib.showError(q1012.this, "Q1012: ERROR: months", "For how long did you breastfeed?");
+                }
+                else {
+
+
+                    if ( !chkb.isChecked() && Integer.valueOf(edtwks.getText().toString()) > 3  ) {
+                        lib.showError(q1012.this, "Q1012: ERROR", "  Weeks cannot be more thana 3");
                         /**
                          * VIBRATE DEVICE
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
                     } else {
-                        if ((edtyear.length() == 0 || edtyear.getText() == null) && !chkb.isChecked()) {
-                            lib.showError(q1012.this, "Q1012: ERROR: years", "For how long did you breastfeed?");
+                        if ((edtmnths.length() == 0 || edtmnths.getText() == null) && !chkb.isChecked()) {
+                            lib.showError(q1012.this, "Q1012: ERROR: months", "For how long did you breastfeed?");
                             /**
                              * VIBRATE DEVICE
                              */
@@ -86,14 +89,47 @@ public class q1012 extends AppCompatActivity {
                         } else {
 
 
-                            Intent intent = new Intent(q1012.this, q1012.class);
-                            intent.putExtra("Household", thisHouse);
-                            startActivity(intent);
+                            if ( !chkb.isChecked() && Integer.valueOf(edtmnths.getText().toString()) > 12  ) {
+                                lib.showError(q1012.this, "Q1012: ERROR", "  Months cannot be more than 12");
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+                            } else {
+                                if ((edtyear.length() == 0 || edtyear.getText() == null) && !chkb.isChecked()) {
+                                    lib.showError(q1012.this, "Q1012: ERROR: years", "For how long did you breastfeed?");
+                                    /**
+                                     * VIBRATE DEVICE
+                                     */
+                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                    vibs.vibrate(100);
+                                } else {
 
 
+                                    if (  !chkb.isChecked() && Integer.valueOf(edtwks.getText().toString()) > 5) {
+                                        lib.showError(q1012.this, "Q1012a: ERROR", "  Weeks cannot be more thana 5");
+                                        /**
+                                         * VIBRATE DEVICE
+                                         */
+                                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                        vibs.vibrate(100);
+                                    } else {
+                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ1012_Week(edtwks.getText().toString());
+                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ1012_Month(edtmnths.getText().toString());
+                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ1012_Year(edtyear.getText().toString());
+
+                                        Intent intent = new Intent(q1012.this, q1013.class);
+                                        intent.putExtra("Household", thisHouse);
+                                        startActivity(intent);
+
+
+                                    }
+                                }
+
+                            }
                         }
                     }
-
                 }
             }
 

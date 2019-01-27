@@ -58,7 +58,7 @@ public class q1007 extends AppCompatActivity implements Serializable {
         int p=0;
 
 
-        Button btnnext = findViewById(R.id.button);
+        Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,24 +77,17 @@ public class q1007 extends AppCompatActivity implements Serializable {
                     int selectedIda = rga.getCheckedRadioButtonId();
                     selectedRbtna = (RadioButton) findViewById(selectedIda);
 
-                    if (selectedRbtna == null) {
+                    if (selectedRbtna == null && rbtn1.isChecked()) {
                         lib.showError(q1007.this, "Q1007a: ERROR", "What was the result of your last HIV test during your pregnancy?");
                         /**
                          * VIBRATE DEVICE
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
-                    } else {
+                    }  else {
 
-
-                        if (rbtn2.isChecked()) {
-                            Intent skipto1008 = new Intent(q1007.this, q1009.class);
-                            skipto1008.putExtra("Household", thisHouse);
-                            startActivity(skipto1008);
-                        } else {
-
-
-                            if (rbtna2.isChecked() || rbtna3.isChecked() || rbtna4.isChecked() || rbtna5.isChecked()) {
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ1007(selectedRbtn.getText().toString().substring(0,1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ1007a(selectedRbtna.getText().toString().substring(0,1));
                                 Intent skipto1009 = new Intent(q1007.this, q1009.class);
                                 skipto1009.putExtra("Household", thisHouse);
                                 startActivity(skipto1009);
@@ -103,11 +96,6 @@ public class q1007 extends AppCompatActivity implements Serializable {
 
 
                     }
-                }
-            }
-
-
-
 
         });
     }

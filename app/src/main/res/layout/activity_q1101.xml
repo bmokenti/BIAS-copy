@@ -203,7 +203,13 @@
                         android:layout_height="wrap_content"
                         android:onClick="onRadioButtonClicked"
                         android:text="5. Traditional Healer" />
+
                     </RadioGroup>
+                    <EditText
+                        android:id="@+id/q1101a_Other"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
 
 
                 </LinearLayout>

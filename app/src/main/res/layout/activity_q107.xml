@@ -172,11 +172,11 @@
 
 
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/q107_99"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:onClick="onRadioButtonClicked"
+                                android:onClick="onCheckboxClicked"
                                 android:text="99. Dont know" />
 
 
@@ -274,7 +274,7 @@
 
 
                             <EditText
-                                android:id="@+id/q107b_specifyy"
+                                android:id="@+id/q107b_other1"
                                 android:layout_width="244dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -380,7 +380,7 @@
 
 
                             <EditText
-                                android:id="@+id/q107_other"
+                                android:id="@+id/q107c_other1"
                                 android:layout_width="244dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"

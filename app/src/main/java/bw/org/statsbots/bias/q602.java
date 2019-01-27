@@ -21,7 +21,7 @@ public class q602 extends AppCompatActivity implements Serializable{
     protected CheckBox ck1txt, ck2txt, ck3txt, ck4txt, ck5txt, ck6txt, ck7txt, ck8txt, ck10txt,ck11txt, ck12txt, ck13txt, ck14txt, ck15txt,chkOther, selected = null;
     protected Button btn;
     protected EditText Q602edt;
-    HouseHold thisHose;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,8 @@ public class q602 extends AppCompatActivity implements Serializable{
             @Override
             public void onClick(View view) {
 
-                if ((((!ck1txt.isChecked() && !ck2txt.isChecked() && !ck3txt.isChecked() && !ck4txt.isChecked() && !ck5txt.isChecked() && !ck6txt.isChecked() && !ck7txt.isChecked() && !ck8txt.isChecked() && !ck10txt.isChecked() && !ck11txt.isChecked() && !ck12txt.isChecked() && !ck13txt.isChecked() && !ck14txt.isChecked() && !ck15txt.isChecked() && !chkOther.isChecked())))) {
+                if ((((!ck1txt.isChecked() && !ck2txt.isChecked() && !ck3txt.isChecked() && !ck4txt.isChecked() && !ck5txt.isChecked() && !ck6txt.isChecked() && !ck7txt.isChecked() && !ck8txt.isChecked()
+                        && !ck10txt.isChecked() && !ck11txt.isChecked() && !ck12txt.isChecked() && !ck13txt.isChecked() && !ck14txt.isChecked() && !ck15txt.isChecked() && !chkOther.isChecked())))) {
                     lib.showError(q602.this, "Q602:", "From what source(s) did you receive information about HIV and AIDS?" +
                             "Please select atleast one checkbox");
                     /**
@@ -76,8 +77,25 @@ public class q602 extends AppCompatActivity implements Serializable{
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
                     } else {
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ602_1(ck1txt.getText().toString().substring(0,1));
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_2(ck2txt.getText().toString().substring(0,1));
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_3(ck3txt.getText().toString().substring(0,1));
+                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_4(ck4txt.getText().toString().substring(0,1));
+                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_5(ck5txt.getText().toString().substring(0,1));
+                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_6(ck6txt.getText().toString().substring(0,1));
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_7(ck7txt.getText().toString().substring(0,1));
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_8(ck8txt.getText().toString().substring(0,1));
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_10(ck10txt.getText().toString().substring(0,1));
+                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_11(ck11txt.getText().toString().substring(0,1));
+                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_12(ck12txt.getText().toString().substring(0,1));
+                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_13(ck13txt.getText().toString().substring(0,1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ602_14(ck14txt.getText().toString().substring(0,1));
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_15(ck15txt.getText().toString().substring(0,1));
+                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_Other(chkOther.getText().toString().substring(0,1));
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_Otherspecify(Q602edt.getText().toString());
+
                         Intent intent = new Intent(q602.this, q603.class);
-                        //intent.putExtra("Household", thisHose);
+                        intent.putExtra("Household", thisHouse);
                         startActivity(intent);
                     }
 
@@ -161,6 +179,46 @@ public class q602 extends AppCompatActivity implements Serializable{
                     // Remove the meat
                     break;
             case R.id.q602_10:
+                if (checked) {
+
+                }
+                // Put some meat on the sandwich
+                else
+                    // Remove the meat
+                    break;
+            case R.id.q602_11:
+                if (checked) {
+
+                }
+                // Put some meat on the sandwich
+                else
+                    // Remove the meat
+                    break;
+            case R.id.q602_12:
+                if (checked) {
+
+                }
+                // Put some meat on the sandwich
+                else
+                    // Remove the meat
+                    break;
+            case R.id.q602_13:
+                if (checked) {
+
+                }
+                // Put some meat on the sandwich
+                else
+                    // Remove the meat
+                    break;
+            case R.id.q602_14:
+                if (checked) {
+
+                }
+                // Put some meat on the sandwich
+                else
+                    // Remove the meat
+                    break;
+            case R.id.q602_15:
                 if (checked) {
 
                 }

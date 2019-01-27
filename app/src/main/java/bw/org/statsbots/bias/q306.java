@@ -26,6 +26,8 @@ public class q306 extends AppCompatActivity {
 
     protected CheckBox chkb9;
     protected EditText q306_dd;
+    PersonRoster p1 = null;
+    Individual pp1 = null;
 
 
     @Override
@@ -90,7 +92,8 @@ public class q306 extends AppCompatActivity {
                         vibs.vibrate(100);
                     } else {
 
-                        //individual.setQ306(q306_dd.getText().toString().substring(0, 1));
+                //thisHouse.getIndividual()[p1.getLineNumber()].setQ306(q306_dd.getText().toString());
+
                         Intent q1o3 = new Intent(q306.this, q307.class);
                         q1o3.putExtra("Household", thisHouse);
                         startActivity(q1o3);

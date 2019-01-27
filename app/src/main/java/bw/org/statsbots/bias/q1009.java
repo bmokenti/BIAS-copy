@@ -49,6 +49,7 @@ public class q1009 extends AppCompatActivity {
         rbtna5 = (RadioButton) findViewById(R.id.q1009a_9);
 
 
+
         t1 = (TextView) findViewById(R.id.q1009a) ;
 
 
@@ -59,7 +60,7 @@ public class q1009 extends AppCompatActivity {
         int p=0;
 
 
-        Button btnnext = findViewById(R.id.button);
+        Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +79,7 @@ public class q1009 extends AppCompatActivity {
                     int selectedIda = rga.getCheckedRadioButtonId();
                     selectedRbtna = (RadioButton) findViewById(selectedIda);
 
-                    if (selectedRbtna == null) {
+                    if (selectedRbtna == null && rbtn1.isChecked()) {
                         lib.showError(q1009.this, "Q1009a: ERROR", "What was the result of that test?");
                         /**
                          * VIBRATE DEVICE
@@ -86,6 +87,9 @@ public class q1009 extends AppCompatActivity {
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
                     } else {
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ1009(selectedRbtn.getText().toString().substring(0,1));
+                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ1009a(selectedRbtna.getText().toString().substring(0,1));
+
 
                             Intent intent = new Intent(q1009.this, q1010.class);
                         intent.putExtra("Household", thisHouse);
@@ -130,11 +134,11 @@ public class q1009 extends AppCompatActivity {
             case R.id.q1009_2:
                 if(checked)
 
-                rbtna1.setEnabled(true);
-                rbtna2.setEnabled(true);
-                rbtna3.setEnabled(true);
-                rbtna4.setEnabled(true);
-                rbtna5.setEnabled(true);
+                rbtna1.setEnabled(false);
+                rbtna2.setEnabled(false);
+                rbtna3.setEnabled(false);
+                rbtna4.setEnabled(false);
+                rbtna5.setEnabled(false);
 
 
                 rbtna1.setChecked(false);

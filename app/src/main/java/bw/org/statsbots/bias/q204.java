@@ -21,16 +21,17 @@ public class q204 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
-
+    PersonRoster p1 = null;
+    Individual pp1 = null;
     protected EditText edt;
-    protected RadioButton selectedRbtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q204);
 
 
-        setTitle("Q203: MARITAL STATUS AND RELATIONSHIP");
+        setTitle("Q204: MARITAL STATUS AND RELATIONSHIP");
         lib = new LibraryClass();
         edt = (EditText) findViewById(R.id.q204_years);
 
@@ -38,9 +39,11 @@ public class q204 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
-        Button btnext = findViewById(R.id.btnnext);
+        Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
+// skip condition
 
+        /*
         if (individual.getQ201().equals("2")|| individual.getQ201().equals("3")) {
             Intent skipto301 = new Intent(q204.this, q301.class);
             skipto301.putExtra("Household", thisHouse);
@@ -50,7 +53,7 @@ public class q204 extends AppCompatActivity implements Serializable {
 
 //break and do nothing
         }
-
+*/
 
         btnext.setOnClickListener(new View.OnClickListener()
 
@@ -93,7 +96,7 @@ public class q204 extends AppCompatActivity implements Serializable {
 
                 } else {
                     //Set q101 for the current individual
-                    individual.setQ204(selectedRbtn.getText().toString());
+                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ204(edt.getText().toString());
 
                     /**
                      * If current person LineNumber is equal to TotalPersons-1

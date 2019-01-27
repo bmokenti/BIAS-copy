@@ -150,7 +150,7 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                             //individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
 
-                            if (!chkb9999.isChecked() && (rbtn1.isChecked() || rbtn2.isChecked()) && ((edtbyear.length() == 0 || Integer.valueOf(edtbyear.getText().toString()) >= 13))) {
+                            if (!chkb9999.isChecked() && (rbtn1.isChecked() || rbtn2.isChecked()) && ((edtbyear.length() == 0  || Integer.valueOf(edtbyear.getText().toString()) >= 2020))) {
                                 lib.showError(q904.this, "Q904b: ERROR: Year", "What month and year did you first start taking ARVs?" +
                                         "Please provide YEAR or select dont know year");
                                 /**
@@ -185,10 +185,15 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                                     }
                                     else {
-                                        //Set q101 for the current individual
-                                        //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                                        //individual.setQ901(selectedRbtn.getText().toString().substring(0,1));
-                                        //individual.setQ901a(selectedRbtn.getText().toString().substring(0,1));
+                                        //Set q904 for the current individual
+                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ904(selectedRbtn.getText().toString().substring(0,1));
+                                       //thisHouse.getIndividual()[p1.getLineNumber()].setQ904a(selectedRbtna.getText().toString().substring(0,1));
+                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ904aOther(edta.getText().toString());
+                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ904bMM(edtbmnths.getText().toString());
+                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ904bYYYY(edtbyear.getText().toString());
+                                       //thisHouse.getIndividual()[p1.getLineNumber()].setQ904c(selectedRbtnc.getText().toString().substring(0,1));
+                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ904cOther(edtc.getText().toString());
+
 
 
                                         Intent intent = new Intent(q904.this, q905.class);

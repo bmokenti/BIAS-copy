@@ -21,7 +21,6 @@ public class q603 extends AppCompatActivity implements Serializable {
     protected Button btn;
     protected EditText q603edt;
 
-    HouseHold thisHose;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +66,20 @@ public class q603 extends AppCompatActivity implements Serializable {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 }  else{
+                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ603_1(ck1txt.getText().toString().substring(0,1));
+                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ603_2(ck2txt.getText().toString().substring(0,1));
+                  // thisHouse.getIndividual()[p1.getLineNumber()].setQ603_3(ck3txt.getText().toString().substring(0,1));
+                    //  thisHouse.getIndividual()[p1.getLineNumber()].setQ603_4(ck4txt.getText().toString().substring(0,1));
+                    //  thisHouse.getIndividual()[p1.getLineNumber()].setQ603_5(ck5txt.getText().toString().substring(0,1));
+                    //  thisHouse.getIndividual()[p1.getLineNumber()].setQ603_6(ck6txt.getText().toString().substring(0,1));
+                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ603_7(ck7txt.getText().toString().substring(0,1));
+                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ603_8(ck8txt.getText().toString().substring(0,1));
+                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ603_9(ck9txt.getText().toString().substring(0,1));
+                    //  thisHouse.getIndividual()[p1.getLineNumber()].setQ603_Other(chkOther.getText().toString().substring(0,1));
+                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ603_Otherspecify(q603edt.getText().toString());
+
                     Intent intent = new Intent(q603.this, q604.class);
-                    //intent.putExtra("Household", thisHose);
+                    intent.putExtra("Household", thisHouse);
                     startActivity(intent);
                 }
 

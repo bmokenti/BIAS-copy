@@ -79,19 +79,7 @@ public class q406 extends AppCompatActivity implements  Serializable {
 
                     } else {
                         //Set q406 for the current individual
-                        //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                        //individual.setQ406(edt.getText().toString().substring(0,1));
-
-
-
-
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                        //Next question q102
+                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ406(edt.getText().toString());
 
 
                         Intent q1o2 = new Intent(q406.this, q407.class);
