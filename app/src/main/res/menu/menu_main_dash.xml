@@ -25,4 +25,11 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_sync_blue_24dp"
         android:title="@string/action_sync" />
+
+    <item
+        android:id="@+id/action_send"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_arrow_upward_black_24dp"
+        android:title="@string/action_sync" />
 </menu>

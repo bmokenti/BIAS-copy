@@ -57,6 +57,7 @@
                     android:text="Barcode: "
                     android:textColor="@color/WHITE"
                     android:textIsSelectable="true"
+                    android:visibility="invisible"
                     android:textSize="18dp" />
 
             </LinearLayout>

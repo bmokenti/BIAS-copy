@@ -5,13 +5,10 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class PersonRoster implements Serializable{
-    Map<String,String> comments;
 
 
 
-    /**Stores list of comments for every question*/
-    private String AssignmentID;
-    private String Batch;
+    Map<String,String> comments; /**Stores list of comments for every question*/
     private int SRNO;/**Sets person line number for consistency*/
     private String P01; /**sets person name*/
     private String P02; /**Relationship to head of house [2 digits]*/
@@ -19,21 +16,26 @@ public class PersonRoster implements Serializable{
     private String P04YY,P04MM,P04WKS;/**Age [YY] for > 2 and [YY] [MM] [WKS] for <=2 */
     private String P05;/** Citizenship [3 digits]*/
     private String P06;
+    private String P07;
+    private  String P08;
+    private  String P09;
+    private  String P10;
+    private  String P11;
+    private  String P12;
+    private  String P13;
 
+    public String getP13Other() {
+        return P13Other;
+    }
 
+    public void setP13Other(String p13Other) {
+        P13Other = p13Other;
+    }
 
-    private String P08;
-    private String P09;
-    private String P10;
-    private String P11;
-
-
-
-    private String P12;
-    private String P13;
-    private String P14;
-    private String P15;
-    private String P16;
+    private  String P13Other;
+    private  String P14;
+    private  String P15;
+    private  String P16;
     private  String P17;
     private  String P18;
     private  String P19;
@@ -44,6 +46,34 @@ public class PersonRoster implements Serializable{
     private String B3_Date;
     private  String B3_Guardian;
     private  String RapidDate;
+    private String EAStatus;
+
+    public String getEAStatus() {
+        return EAStatus;
+    }
+
+    public void setEAStatus(String EAStatus) {
+        this.EAStatus = EAStatus;
+    }
+
+    public String getAssignmentID() {
+        return AssignmentID;
+    }
+
+    public void setAssignmentID(String assignmentID) {
+        AssignmentID = assignmentID;
+    }
+
+    public String getBatch() {
+        return Batch;
+    }
+
+    public void setBatch(String batch) {
+        Batch = batch;
+    }
+
+    private String Batch;
+    private String  AssignmentID;
     private String U15Rapid_Results;
     private String Barcode;
 
@@ -94,21 +124,7 @@ public class PersonRoster implements Serializable{
         Results = results;
     }
 
-    public String getAssignmentID() {
-        return AssignmentID;
-    }
 
-    public void setAssignmentID(String assignmentID) {
-        AssignmentID = assignmentID;
-    }
-
-    public String getBatch() {
-        return Batch;
-    }
-
-    public void setBatch(String batch) {
-        Batch = batch;
-    }
 
     public String getB3_RapidConsent_Yes_No() {
         return B3_RapidConsent_Yes_No;
@@ -374,8 +390,6 @@ public class PersonRoster implements Serializable{
     }
 
     /** Usual Palace of residence */
-    private String P07;/** Usual Palace of residence Days Spent*/
-
 
     /**Checks the ages for under 2 or over 2*/
     public int checkP04(){
@@ -472,6 +486,8 @@ public class PersonRoster implements Serializable{
     public void setP06(String p06) {
         P06 = p06;
     }
+
+
     public String getP08() {
         return P08;
     }
@@ -479,6 +495,7 @@ public class PersonRoster implements Serializable{
     public void setP08(String p08) {
         P08 = p08;
     }
+
 
     public String getP09() {
         return P09;
@@ -488,61 +505,42 @@ public class PersonRoster implements Serializable{
         P09 = p09;
     }
 
-    public String getP10() {
-        return P10;
-    }
 
-    public void setP10(String p10) {
-        P10 = p10;
-    }
+    public String getP10() { return P10; }
 
-    public String getP11() {
-        return P11;
-    }
+    public void setP10(String p10) { P10 = p10; }
 
-    public void setP11(String p11) {
-        P11 = p11;
-    }
 
-    public String getP12() {
-        return P12;
-    }
+    public String getP11() { return P11; }
 
-    public void setP12(String p12) {
-        P12 = p12;
-    }
+    public void setP11(String p11) { P11 = p11; }
 
-    public String getP13() {
-        return P13;
-    }
 
-    public void setP13(String p13) {
-        P13 = p13;
-    }
 
-    public String getP14() {
-        return P14;
-    }
+    public String getP12() { return P12; }
 
-    public void setP14(String p14) {
-        P14 = p14;
-    }
+    public void setP12(String p12) { P12 = p12; }
 
-    public String getP15() {
-        return P15;
-    }
 
-    public void setP15(String p15) {
-        P15 = p15;
-    }
 
-    public String getP16() {
-        return P16;
-    }
+    public String getP13() { return P13; }
 
-    public void setP16(String p16) {
-        P16 = p16;
-    }
+    public void setP13(String p13) { P13 = p13; }
+
+
+    public String getP14() { return P14; }
+
+    public void setP14(String p14) { P14 = p14; }
+
+
+    public String getP15() { return P15; }
+
+    public void setP15(String p15) { P15 = p15; }
+
+
+    public String getP16() { return P16; }
+
+    public void setP16(String p16) { P16 = p16; }
 
     public void setP02(String rel){
         this.P02=rel;
