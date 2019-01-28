@@ -25,6 +25,7 @@ public class q1002 extends AppCompatActivity {
     protected CheckBox chka1, chka2, chka3,chka4, chka5,  chka6, chka7,  chka8, chka10, chka11, chka12, chka13, chka14, chka15, chka16, chka17, chka18, chkaOther ;
     protected RadioGroup rg, rga, rgb;
     protected TextView ta, tb;
+    protected  Individual individual;
     protected EditText edtOthertxt, edtbOther;
     protected RadioButton selectedRbtn, selectedRbtna, selectedRbtnb;
     @Override
@@ -87,8 +88,8 @@ public class q1002 extends AppCompatActivity {
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         Button btnnext = findViewById(R.id.btnNext);
@@ -138,31 +139,31 @@ public class q1002 extends AppCompatActivity {
                                 Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                 vibs.vibrate(100);
                             } else {
-                                //thisHouse.getIndividual()[p1.getLineNumber()].setQ1002(selectedRbtn.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_1(chka1.getText().toString().substring(0,1));
-                              //  thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_2(chka2.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_3(chka3.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_3(chka4.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_4(chka5.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_6(chka6.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_7(chka7.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_8(chka8.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_10(chka10.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_11(chka11.getText().toString().substring(0,1));
-                              //  thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_12(chka12.getText().toString().substring(0,1));
-                              //  thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_13(chka13.getText().toString().substring(0,1));
-                              //  thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_14(chka14.getText().toString().substring(0,1));
-                              //  thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_15(chka15.getText().toString().substring(0,1));
-                              //  thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_16(chka16.getText().toString().substring(0,1));
-                              //  thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_17(chka17.getText().toString().substring(0,1));
-                              //  thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_18(chka18.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1002a_Other(edtOthertxt.getText().toString());
+                                individual.setQ1002(selectedRbtn.getText().toString().substring(0,1));
+                                individual.setQ1002a_1(chka1.getText().toString().substring(0,1));
+                                individual.setQ1002a_2(chka2.getText().toString().substring(0,1));
+                                individual.setQ1002a_3(chka3.getText().toString().substring(0,1));
+                               individual.setQ1002a_3(chka4.getText().toString().substring(0,1));
+                                individual.setQ1002a_4(chka5.getText().toString().substring(0,1));
+                                individual.setQ1002a_6(chka6.getText().toString().substring(0,1));
+                                individual.setQ1002a_7(chka7.getText().toString().substring(0,1));
+                                individual.setQ1002a_8(chka8.getText().toString().substring(0,1));
+                                individual.setQ1002a_10(chka10.getText().toString().substring(0,1));
+                                individual.setQ1002a_11(chka11.getText().toString().substring(0,1));
+                                individual.setQ1002a_12(chka12.getText().toString().substring(0,1));
+                                individual.setQ1002a_13(chka13.getText().toString().substring(0,1));
+                              individual.setQ1002a_14(chka14.getText().toString().substring(0,1));
+                                individual.setQ1002a_15(chka15.getText().toString().substring(0,1));
+                               individual.setQ1002a_16(chka16.getText().toString().substring(0,1));
+                                individual.setQ1002a_17(chka17.getText().toString().substring(0,1));
+                                individual.setQ1002a_18(chka18.getText().toString().substring(0,1));
+                                individual.setQ1002a_Other(edtOthertxt.getText().toString());
 
-                                //thisHouse.getIndividual()[p1.getLineNumber()].setQ1002b(selectedRbtnb.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1002b_Other(edtbOther.getText().toString());
+                                individual.setQ1002b(selectedRbtnb.getText().toString().substring(0,1));
+                                individual.setQ1002b_Other(edtbOther.getText().toString());
 
                                 Intent intent = new Intent(q1002.this, q1003.class);
-                                intent.putExtra("Household", thisHouse);
+                                intent.putExtra("Individual", individual);
                                 startActivity(intent);
 
 
