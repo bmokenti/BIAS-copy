@@ -3227,6 +3227,20 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 dataModel.setFINAL_OTHER(FINAL_OTHER);
                 dataModel.setInterview_Status(cursor.getString(cursor.getColumnIndexOrThrow("Interview_Status")));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 stringBuffer.append(dataModel);
                 // stringBuffer.append(dataModel);
                 hhDetails.add(dataModel);
