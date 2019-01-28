@@ -17,7 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class H07 extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class H07 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -58,7 +60,7 @@ public class H07 extends AppCompatActivity implements View.OnClickListener {
             Intent i = getIntent();
             thisHouse = (HouseHold) i.getSerializableExtra("Household");
             int p = 0;
-            Button btnext = findViewById(R.id.btnnext);
+            Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
 
@@ -101,17 +103,7 @@ public class H07 extends AppCompatActivity implements View.OnClickListener {
 
                     } else {
                         //Set q101 for the current individual
-                        thisHouse.setH07(selectedRbtn.getText().toString().substring(0,1));
-
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                        //Next question q102
-
-
+                        thisHouse.setH07(selectedRbtn.getText().toString().substring(0,2));
                         Intent q1o2 = new Intent(bw.org.statsbots.bias.H07.this, H08.class);
                         q1o2.putExtra("Household",  thisHouse);
                         startActivity(q1o2);

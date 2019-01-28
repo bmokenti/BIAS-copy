@@ -35,9 +35,10 @@ public class P21 extends AppCompatActivity {
         Log.d("DB Name: ",myDB.getDatabaseName().toString() );
         myDB.onOpen(myDB.getWritableDatabase());
 
-      myDB.dropTables(myDB.getWritableDatabase());
-        myDB.createTables(myDB.getReadableDatabase());
+      /*myDB.dropTables(myDB.getWritableDatabase());
+        myDB.createTables(myDB.getReadableDatabase());*/
 
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
 
 
 
@@ -71,6 +72,17 @@ public class P21 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+               /* if(sample.getStatusCode().equals("2") & thisHouse.getIsHIVTB40().equals("1"))
+                {
+                    //XRAY
+                    Intent intent = new Intent(P21.this, P21.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+
+                }*/
+
+
+
                 boolean isInserted = myDB.insertHhroster(thisHouse);
                 Log.d("DB Name: ",myDB.getDatabaseName().toString() );
 
@@ -87,8 +99,8 @@ public class P21 extends AppCompatActivity {
                         String EA_Assignment_ID,String STRATUM,String DISTRICT,String VILLAGE,String
                         LOCALITY,String EA,
                         String BLOCK_NO ,String EA_STATUS)*/
-                Intent intent = new Intent(P21.this, Dashboard.class);
-                intent.putExtra("Household", thisHouse);
+                Intent intent = new Intent(P21.this,H01.class);
+                intent.putExtra("Household",  thisHouse);
                 startActivity(intent);
             }
         });

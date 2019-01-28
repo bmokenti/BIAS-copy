@@ -32,28 +32,38 @@ public class P17 extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p17);
         setTitle("P17 INDIVIDUAL QUESTIONNAIRE (HIV)");
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+
+
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         thisHouse.getPersons();
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
         Button btnNext = (Button) findViewById(R.id.p17_btnNext);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(P17.this, Dashboard.class);
-                intent.putExtra("Household", thisHouse);
-                startActivity(intent);
+                if (sample.EACode.equals("1") ) {
+                    Intent intent = new Intent(P17.this, P20.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+                }
+
 
             }
 
         });
 
-
-
-                List<String> p17 = new ArrayList<>();
+        List<String> p17 = new ArrayList<>();
 
                 for (int r = 0; r < thisHouse.getTotalPersons(); r++) {
                     p1 = thisHouse.getPersons()[r];
-                    if (Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 64 ) {
+                    Sample s = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
+
+
+                    if (Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 64 && s.EACode.equals("1") ) {
 
                         //add to listview
                         p17.add(p1.getP01());
@@ -64,12 +74,12 @@ public class P17 extends AppCompatActivity implements Serializable {
                         //Set P02 fir the current individual
                         thisHouse.getPersons()[p1.getLineNumber()].setP17("2");
                         continue;
+
                     }
 
 
                 }
-                ArrayAdapter<String> itemsAdapter =
-                        new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, p17);
+                ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, p17);
 
                 Allpersonslist = (ListView) findViewById(R.id.personslist);
                 Allpersonslist.setAdapter(itemsAdapter);
@@ -77,8 +87,7 @@ public class P17 extends AppCompatActivity implements Serializable {
         Allpersonslist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                    long arg3) {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
                 Intent intent = new Intent(P17.this, Barcode.class);
                 intent.putExtra("Household", thisHouse);

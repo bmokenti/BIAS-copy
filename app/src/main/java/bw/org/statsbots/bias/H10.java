@@ -17,7 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class H10 extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class H10 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -42,22 +44,15 @@ public class H10 extends AppCompatActivity implements View.OnClickListener {
             rbtn5 = (RadioButton) findViewById(R.id.H10_5);
             rbtn6 = (RadioButton) findViewById(R.id.H10_6);
             rbtn7 = (RadioButton) findViewById(R.id.H10_7);
-        rbtn8 = (RadioButton) findViewById(R.id.H10_8);
-            edt = (EditText) findViewById(R.id.H09_txtOther);
+            rbtn8 = (RadioButton) findViewById(R.id.H10_8);
+            //edt = (EditText) findViewById(R.id.H09_txtOther);
             final RadioGroup rg = (RadioGroup) findViewById(R.id.H10radioGroup);
 
-            //rbtn1.setOnClickListener(this);
-            //rbtn2.setOnClickListener(this);
-
-            // final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
             Intent i = getIntent();
             thisHouse = (HouseHold) i.getSerializableExtra("Household");
             int p = 0;
-            Button btnext = findViewById(R.id.btnnext);
-//        PersonRoster pr[] = thisHouse.getPersons();
-
-
+            Button btnext = findViewById(R.id.button);
 
             btnext.setOnClickListener(new View.OnClickListener()
 
@@ -98,16 +93,6 @@ public class H10 extends AppCompatActivity implements View.OnClickListener {
                     } else {
                         //Set q101 for the current individual
                         thisHouse.setH09(selectedRbtn.getText().toString().substring(0,1));
-
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                        //Next question q102
-
-
                         Intent q1o2 = new Intent(bw.org.statsbots.bias.H10.this, H11.class);
                         q1o2.putExtra("Household",  thisHouse);
                         startActivity(q1o2);

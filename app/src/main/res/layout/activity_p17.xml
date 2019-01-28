@@ -31,8 +31,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="TextView"
-            android:textColor="@color/black"
+            android:textStyle="italic"
+
+            android:text="Persons aged 15 to 64 years and are usual members or visitors who spent last night in this household"
+            android:textColor="@color/red"
             android:textSize="16dp" />
 
 
@@ -41,22 +43,25 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/P03radio"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="638dp"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="8dp"
         android:gravity="top"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
         android:paddingTop="20dp"
         android:paddingRight="16dp"
         android:paddingBottom="40dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="98dp">
+        app:layout_constraintTop_toBottomOf="@+id/P03Linear"
+        tools:layout_editor_absoluteX="8dp">
 
 
         <ListView
             android:id="@+id/personslist"
             android:layout_width="wrap_content"
-            android:layout_height="433dp" />
+
+            android:layout_height="433dp"
+            android:paddingTop="20dp" />
 
 
     </LinearLayout>

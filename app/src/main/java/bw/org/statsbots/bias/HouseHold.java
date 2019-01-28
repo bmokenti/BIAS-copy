@@ -21,6 +21,11 @@ public class HouseHold implements Serializable {
     }
 
     private PersonRoster[] HouseHoldeMembers;
+
+    public void setIndividualQuestionaire(Individual[] individualQuestionaire) {
+        IndividualQuestionaire = individualQuestionaire;
+    }
+
     protected Individual[] IndividualQuestionaire;
     protected Assignments[] EA_Assgnment;
     private String  DWELLING_NO;
@@ -65,6 +70,18 @@ public class HouseHold implements Serializable {
     private  String FINAL_OTHER;
     private  String Interview_Status;
     private  String SuperComment;
+    private  String QcComment;
+
+    public String getH13Camels() {
+        return H13Camels;
+    }
+
+    public void setH13Camels(String h13Camels) {
+        H13Camels = h13Camels;
+    }
+
+    private  String HQComment;
+
 
 
     public String getNEXT_VISIT_3_TIME() {
@@ -87,16 +104,196 @@ public class HouseHold implements Serializable {
     private String H01;
     private String H02;
     private  String H03;
+    private  String H03Other;
     private String H04;
+    private String H04Other;
     private String H05;
+    private String H05Other;
     private  String H06;
+    private String Current;
 
+    public String getCurrent() {
+        return Current;
+    }
+
+    public void setCurrent(String current) {
+        Current = current;
+    }
+
+    public String getIsHIVTB40() {
+        return IsHIVTB40;
+    }
+
+    public void setIsHIVTB40(String isHIVTB40) {
+        IsHIVTB40 = isHIVTB40;
+    }
+
+    public String getH13Tractor() {
+        return H13Tractor;
+    }
+
+    public void setH13Tractor(String h13Tractor) {
+        H13Tractor = h13Tractor;
+    }
+
+    public String getH13Motorcycle() {
+        return H13Motorcycle;
+    }
+
+    public void setH13Motorcycle(String h13Motorcycle) {
+        H13Motorcycle = h13Motorcycle;
+    }
+
+    public String getH13Bicycle() {
+        return H13Bicycle;
+    }
+
+    public void setH13Bicycle(String h13Bicycle) {
+        H13Bicycle = h13Bicycle;
+    }
+
+    public String getH13DonkeyCart() {
+        return H13DonkeyCart;
+    }
+
+    public void setH13DonkeyCart(String h13DonkeyCart) {
+        H13DonkeyCart = h13DonkeyCart;
+    }
+
+    public String getH13DonkeyHorse() {
+        return H13DonkeyHorse;
+    }
+
+    public void setH13DonkeyHorse(String h13DonkeyHorse) {
+        H13DonkeyHorse = h13DonkeyHorse;
+    }
+
+
+
+    private String IsHIVTB40;
+
+    private  String H13Tractor;
+    private  String H13Motorcycle;
+    private  String H13Bicycle;
+    private  String H13DonkeyCart;
+    private  String H13DonkeyHorse;
+    private  String H13Camels;
+
+
+    private  String H12TV;
+
+    public String getH12TV() {
+        return H12TV;
+    }
+
+    public void setH12TV(String h12TV) {
+        H12TV = h12TV;
+    }
+
+    public String getH12Telephone() {
+        return H12Telephone;
+    }
+
+    public void setH12Telephone(String h12Telephone) {
+        H12Telephone = h12Telephone;
+    }
+
+    public String getH12CellPhone() {
+        return H12CellPhone;
+    }
+
+    public void setH12CellPhone(String h12CellPhone) {
+        H12CellPhone = h12CellPhone;
+    }
+
+    public String getH12PrintMedia() {
+        return H12PrintMedia;
+    }
+
+    public void setH12PrintMedia(String h12PrintMedia) {
+        H12PrintMedia = h12PrintMedia;
+    }
+
+    public String getH12ElecMedia() {
+        return H12ElecMedia;
+    }
+
+    public void setH12ElecMedia(String h12ElecMedia) {
+        H12ElecMedia = h12ElecMedia;
+    }
+
+    public String getH12PerfomArts() {
+        return H12PerfomArts;
+    }
+
+    public void setH12PerfomArts(String h12PerfomArts) {
+        H12PerfomArts = h12PerfomArts;
+    }
+
+    private  String H12Telephone;
+    private  String H12CellPhone;
+    private  String H12PrintMedia;
+    private  String H12ElecMedia;
+    private  String  H12PerfomArts;
 
     private String H07;
     private String H08;
+
+    public String getH08Other() {
+        return H08Other;
+    }
+
+    public void setH08Other(String h08Other) {
+        H08Other = h08Other;
+    }
+
+    private String H08Other;
     private  String H09;
+    private  String H09Other;
     private String H10;
     private  String H11;
+
+    public String getH03Other() {
+        return H03Other;
+    }
+
+    public void setH03Other(String h03Other) {
+        H03Other = h03Other;
+    }
+
+    public String getH04Other() {
+        return H04Other;
+    }
+
+    public void setH04Other(String h04Other) {
+        H04Other = h04Other;
+    }
+
+    public String getH05Other() {
+        return H05Other;
+    }
+
+    public void setH05Other(String h05Other) {
+        H05Other = h05Other;
+    }
+
+    public String getH09Other() {
+        return H09Other;
+    }
+
+    public void setH09Other(String h09Other) {
+        H09Other = h09Other;
+    }
+
+    public String getH11Other() {
+        return H11Other;
+    }
+
+    public void setH11Other(String h11Other) {
+        H11Other = h11Other;
+    }
+
+    private  String H11Other;
     private String H12;
     private String H13;
 
@@ -109,6 +306,26 @@ public class HouseHold implements Serializable {
     public void setSuperComment(String superComment) {
         SuperComment = superComment;
     }
+
+
+
+    public String getQcComment() {
+        return QcComment;
+    }
+    public void setQcComment(String qcComment) {
+        QcComment = qcComment;
+    }
+
+
+
+    public String getHQComment() {
+        return HQComment;
+    }
+    public void setHQComment(String hqComment) {
+        SuperComment = hqComment;
+    }
+
+
 
     public String getSample_FK() {
         return Sample_FK;
@@ -646,14 +863,14 @@ public class HouseHold implements Serializable {
     }
 
     public void writeData(String data,Context context){
-         try {
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("BiasData.txt", Context.MODE_PRIVATE));
-                outputStreamWriter.write(data);
-                outputStreamWriter.close();
-            }
-            catch (IOException e) {
-                Log.e("Exception", "File write failed: " + e.toString());
-            }
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("BiasData.txt", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
 
     }
 

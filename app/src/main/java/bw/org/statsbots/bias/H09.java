@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,7 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class H09 extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class H09 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -43,19 +46,29 @@ public class H09 extends AppCompatActivity implements View.OnClickListener {
             rbtn6 = (RadioButton) findViewById(R.id.H09_6);
             rbtn7 = (RadioButton) findViewById(R.id.H09_other);
             edt = (EditText) findViewById(R.id.H09_txtOther);
+            edt.setVisibility(View.INVISIBLE);
             final RadioGroup rg = (RadioGroup) findViewById(R.id.H09radioGroup);
 
-            //rbtn1.setOnClickListener(this);
-            //rbtn2.setOnClickListener(this);
-
-            // final int selectedId = rbtngroup.getCheckedRadioButtonId();
+            rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                    if(i == R.id.H09_other)
+                    {
+                        // is checked
+                        edt.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        // not checked
+                        edt.setVisibility(View.INVISIBLE);
+                    }
+                }
+            });
 
             Intent i = getIntent();
             thisHouse = (HouseHold) i.getSerializableExtra("Household");
             int p = 0;
-            Button btnext = findViewById(R.id.btnnext);
-//        PersonRoster pr[] = thisHouse.getPersons();
-
+            Button btnext = findViewById(R.id.button);
 
 
             btnext.setOnClickListener(new View.OnClickListener()
@@ -67,7 +80,7 @@ public class H09 extends AppCompatActivity implements View.OnClickListener {
 
                     int selectedId = rg.getCheckedRadioButtonId();
                     selectedRbtn = (RadioButton) findViewById(selectedId);
-
+                    Log.d("Checked",selectedRbtn.getText().toString());
                     if (selectedRbtn == null) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(bw.org.statsbots.bias.H09.this);
                         builder.setTitle("SOURCE OF ENERGY");
@@ -95,21 +108,53 @@ public class H09 extends AppCompatActivity implements View.OnClickListener {
 
 
                     } else {
-                        //Set q101 for the current individual
-                        thisHouse.setH09(selectedRbtn.getText().toString().substring(0,1));
-
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                        //Next question q102
 
 
-                        Intent q1o2 = new Intent(bw.org.statsbots.bias.H09.this, H10.class);
-                        q1o2.putExtra("Household",  thisHouse);
-                        startActivity(q1o2);
+                        if(selectedId == R.id.H09_other)
+                        {
+                            if(edt.getText().toString().equals(""))
+                            {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(bw.org.statsbots.bias.H09.this);
+                                builder.setTitle("SOURCE OF ENERGY");
+                                builder.setIcon(R.drawable.ic_warning_orange_24dp);
+                                builder.setMessage("What is the main source of energy used for: LIGHTING");
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                    }
+                                });
+
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+
+                                AlertDialog alertDialog = builder.show();
+                                final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                                LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                                positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                                positiveButton.setTextColor(Color.WHITE);
+                                positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                                positiveButton.setLayoutParams(positiveButtonLL);
+
+
+                            }else{
+                                thisHouse.setH09Other(edt.getText().toString());
+                                Intent q1o2 = new Intent(bw.org.statsbots.bias.H09.this, H10.class);
+                                q1o2.putExtra("Household",  thisHouse);
+                                startActivity(q1o2);
+                            }
+
+                        }else{
+
+                            thisHouse.setH09(selectedRbtn.getText().toString().substring(0,1));
+                            Intent q1o2 = new Intent(bw.org.statsbots.bias.H09.this, H10.class);
+                            q1o2.putExtra("Household",  thisHouse);
+                            startActivity(q1o2);
+
+                        }
+
 
                     }
 

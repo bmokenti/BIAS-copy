@@ -68,7 +68,7 @@ public class individual_assgn extends AppCompatActivity implements Serializable 
             Toast.makeText(this,"You have no assignments",Toast.LENGTH_LONG);
         }
         else
-            {
+        {
             setTitle(selectedEA + " Assignments ("+ myAssignments.size()+")");
             recyclerView = (RecyclerView)findViewById(R.id.my_recycler_view) ;
 
@@ -96,7 +96,6 @@ public class individual_assgn extends AppCompatActivity implements Serializable 
     public void populateAssignments()
     {
         myDb= new DatabaseHelper(this);
-
         myAssignments=myDb.getHouseHold(myDb.getReadableDatabase(),selectedEA,Assgn);
 
     }
@@ -147,7 +146,8 @@ public class individual_assgn extends AppCompatActivity implements Serializable 
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public MyAdapter(ArrayList<HouseHold>myDataset) {
+        public MyAdapter(ArrayList<HouseHold>myDataset)
+        {
             values = myDataset;
         }
 
@@ -168,7 +168,6 @@ public class individual_assgn extends AppCompatActivity implements Serializable 
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position)
         {
-
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
 
@@ -176,7 +175,8 @@ public class individual_assgn extends AppCompatActivity implements Serializable 
             Log.d("Position ***** ", "onBindViewHolder: "+ position);
             holder.tvAssigNo.setText(houseHold.getAssignment_ID());
             Sample s = myDb.getSample(myDb.getReadableDatabase(),houseHold.getAssignment_ID());
-            try{
+            try
+            {
                 holder.tvDistrict.setText(s.getDistrictName());
                 holder.tvVillage.setText(s.getVillageCode());
                 Log.d("########",s.getDistrictEAVillageLocality());
@@ -186,7 +186,9 @@ public class individual_assgn extends AppCompatActivity implements Serializable 
                 }
                 Log.d("########",s.getDistrictEAVillageLocality());
                 holder.tvEA.setText(s.getEACode());
-            }catch (Exception g){
+            }
+            catch(Exception g)
+            {
                 g.printStackTrace();
             }
 

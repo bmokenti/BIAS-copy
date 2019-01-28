@@ -24,10 +24,15 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
     protected RadioButton rbtn1,rbtn2,rbtn3, rbtn4, rbtn5, rbtn6, selected=null;
     protected RadioGroup rbtngroup;
     protected EditText edt;
+    protected DatabaseHelper myDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p13);
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
 
         setTitle("P13 ECONOMIC ACTIVITY");
         lib = new LibraryClass();
@@ -53,19 +58,57 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
         int p=0;
 
+        thisHouse.setIsHIVTB40("2");
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
         /**
          * Loop through the house hold members to check if hh member 's P02 is answered
          * If P02 is null then ask the individual
          */
         for(int r=0; r<thisHouse.getTotalPersons();r++)
         {
-            p1= thisHouse.getPersons()[r];
-            if(p1.getP13()==null)
-            {
-                break;
-            }else{
-                continue;
+            p1 = thisHouse.getPersons()[r];
+
+            if(p1.getP12()==null){
+                //Next question P07
+                if(sample.getStatusCode().equals("1") )
+                {
+                    //HIV ONLY
+                    Intent intent = new Intent(P13.this, P17.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+                }
+                else if(sample.getStatusCode().equals("2") )
+                {
+                    if(thisHouse.getIsHIVTB40().equals("2")){
+                        //TB ONLY
+                        Intent intent = new Intent(P13.this, P18.class);
+                        intent.putExtra("Household", thisHouse);
+                        startActivity(intent);
+                    }else{
+                        //HIV+TB
+                        Intent intent = new Intent(P13.this, P19.class);
+                        intent.putExtra("Household", thisHouse);
+                        startActivity(intent);
+                    }
+
+                }
+                else{
+                    //TB ONLY
+                    Intent intent = new Intent(P13.this, P18.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+
+                }
+            }else {
+                if(p1.getP13()==null && p1.getP12().equals("2"))
+                {
+                    break;
+                }else{
+                    continue;
+                }
             }
+
         }
 
         //Disable for head of House
@@ -89,7 +132,7 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
             if(p1.getLineNumber()+1==thisHouse.getTotalPersons()){
                 btnLabel="Next";
             }else{
-                btnLabel="Next > "+ thisHouse.getPersons()[p1.getLineNumber()+1].getP01();
+                btnLabel="Next > ";
             }
 
             /**
@@ -110,22 +153,54 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
                     }
-                    else{
+                    else
+                        {
 
                         //Set P02 fir the current individual
                         thisHouse.getPersons()[p1.getLineNumber()].setP13(selected.getText().toString().substring(0,1));
                         //Restart the current activity for next individual
-                        if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
 
+                        int total = thisHouse.getTotalPersons();
+                        if((p1.getP13() != null && thisHouse.getPersons()[total-1].getSRNO() == p1.getSRNO() ) || p1.getLineNumber() == thisHouse.getTotalPersons()-1 ){
                             //Next question P07
-                            Intent intent = new Intent(P13.this,P14.class);
-                            intent.putExtra("Household",  thisHouse);
-                            startActivity(intent);
+                            if(sample.getStatusCode().equals("1") )
+                            {
+                                //HIV ONLY
+                                Intent intent = new Intent(P13.this, P17.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent);
+                            }
+                            else if(sample.getStatusCode().equals("2") )
+                            {
+                                if(thisHouse.getIsHIVTB40().equals("2")){
+                                    //TB ONLY
+                                    Intent intent = new Intent(P13.this, P18.class);
+                                    intent.putExtra("Household", thisHouse);
+                                    startActivity(intent);
+                                }else{
+                                    //HIV+TB
+                                    Intent intent = new Intent(P13.this, P19.class);
+                                    intent.putExtra("Household", thisHouse);
+                                    startActivity(intent);
+                                }
+
+
+
+                            }
+                            else{
+                                //TB ONLY
+                                Intent intent = new Intent(P13.this, P18.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent);
+
+                            }
 
                         }else{
                             //Restart the current activity for next individual
-                            finish();
-                            startActivity(getIntent());
+                            Intent intent = new Intent(P13.this,P12.class);
+
+                            intent.putExtra("Household",  thisHouse);
+                            startActivity(intent);
                         }
 
                     }

@@ -6,6 +6,7 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -60,9 +61,32 @@ public class p08 extends AppCompatActivity implements Serializable, View.OnClick
             p1= thisHouse.getPersons()[r];
             if(p1.getP08()==null)
             {
-                break;
-            }else{
-                continue;
+                int age = Integer.parseInt(thisHouse.getPersons()[p1.getLineNumber()].getP04YY());
+                int age1 = Integer.parseInt(thisHouse.getPersons()[p1.getSRNO()].getP04YY());
+                if(p1.getLineNumber() == thisHouse.getTotalPersons()-1 && age<12 ){
+
+                    Intent intent = new Intent(p08.this,P09.class);
+                    intent.putExtra("Household",  thisHouse);
+                    startActivity(intent);
+
+                }else{
+                    if(age<12){
+                        Log.d(" Continue Age: ",String.valueOf(age) + " - " + String.valueOf(r));
+                        if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
+
+                            Intent intent = new Intent(p08.this,P09.class);
+                            intent.putExtra("Household",  thisHouse);
+                            startActivity(intent);
+
+                        }
+
+                    }else{
+                        Log.d(" break Age: ",String.valueOf(age)+ " - " + String.valueOf(r));
+                        break;
+                    }
+
+                }
+
             }
         }
 
@@ -94,7 +118,7 @@ public class p08 extends AppCompatActivity implements Serializable, View.OnClick
             if(p1.getLineNumber()+1==thisHouse.getTotalPersons()){
                 btnLabel="Next";
             }else{
-                btnLabel="Next > "+ thisHouse.getPersons()[p1.getLineNumber()+1].getP01();
+                btnLabel="Next > ";
             }
 
             /**
@@ -117,21 +141,33 @@ public class p08 extends AppCompatActivity implements Serializable, View.OnClick
                     }
                     else{
 
-                        //Set P02 fir the current individual
-                        thisHouse.getPersons()[p1.getLineNumber()].setP08(selected.getText().toString().substring(0,1));
-                        //Restart the current activity for next individual
-                        if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
+                        int age = Integer.parseInt(thisHouse.getPersons()[p1.getLineNumber()].getP04YY());
 
-                            //Next question P07
-                            Intent intent = new Intent(p08.this,P09.class);
-                            intent.putExtra("Household",  thisHouse);
-                            startActivity(intent);
-
+                        if(age<12){
+                            lib.showError(p08.this,"P08 Error",thisHouse.getPersons()[p1.getLineNumber()].getP01() +" is under 12 and cannot be married");
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
                         }else{
+                            //Set P02 fir the current individual
+                            thisHouse.getPersons()[p1.getLineNumber()].setP08(selected.getText().toString().substring(0,1));
                             //Restart the current activity for next individual
-                            finish();
-                            startActivity(getIntent());
+                            if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
+
+                                //Next question P07
+                                Intent intent = new Intent(p08.this,P09.class);
+                                intent.putExtra("Household",  thisHouse);
+                                startActivity(intent);
+
+                            }else{
+                                //Restart the current activity for next individual
+                                finish();
+                                startActivity(getIntent());
+                            }
                         }
+
 
                     }
 

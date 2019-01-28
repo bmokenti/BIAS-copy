@@ -5,10 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,8 +18,7 @@ import android.widget.RadioGroup;
 
 import java.io.Serializable;
 
-public class H02 extends AppCompatActivity implements Serializable  {
-
+public class H06 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -32,37 +30,25 @@ public class H02 extends AppCompatActivity implements Serializable  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_h02);
-
-        setTitle("H02: NUMBER OF ROOMS");
+        setContentView(R.layout.activity_h06);
+        setTitle("H06: NUMBER OF ROOMS");
         lib = new LibraryClass();
-
-
-        final RadioGroup rg = (RadioGroup) findViewById(R.id.H01radioGroup);
-
-        //rbtn1.setOnClickListener(this);
-        //rbtn2.setOnClickListener(this);
-
-        // final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
 
         Button btnext = findViewById(R.id.button);
-
-
-
         btnext.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
 
                 edt = (EditText) findViewById(R.id.H02_ROOMS);
-               int numRooms =0;
+                int numRooms =0;
 
                 if (edt.length() == 0 || edt.getText() == null) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(H02.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(H06.this);
                     builder.setTitle("Number of rooms");
                     builder.setIcon(R.drawable.ic_warning_orange_24dp);
                     builder.setMessage("Please enter number of rooms");
@@ -89,16 +75,16 @@ public class H02 extends AppCompatActivity implements Serializable  {
 
                 } else {
                     numRooms = Integer.parseInt(edt.getText().toString());
-                    if(numRooms >=0 && numRooms <= 15){
+                    if(numRooms >=0 && numRooms <= 15 && numRooms <= Integer.parseInt(thisHouse.getH02())){
                         //True SAve
                         thisHouse.setH02(String.valueOf(numRooms));
 
-                        Intent q1o2 = new Intent(H02.this, H03.class);
+                        Intent q1o2 = new Intent(H06.this, H07.class);
                         q1o2.putExtra("Household",  thisHouse);
                         startActivity(q1o2);
 
                     }else{
-                        lib.showError(H02.this,"H02 Error","Number of rooms expected 0 to 15 only");
+                        lib.showError(H06.this,"H06 Error","Number of rooms expected 0 to 15 only");
                         /**
                          * VIBRATE DEVICE
                          */
@@ -114,10 +100,11 @@ public class H02 extends AppCompatActivity implements Serializable  {
 
             }
         });
+
+
+
+
+
+
     }
-
 }
-
-
-
-

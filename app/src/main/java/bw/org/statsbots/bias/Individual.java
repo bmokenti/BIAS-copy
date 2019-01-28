@@ -379,15 +379,71 @@ public class Individual implements Serializable {
     }
 
 
-    public String getQ410() {
-        return Q410;
+    private String Q410Slapped;
+    private String Q410Pushed;
+    private String Q410Choked;
+    private String Q410Threatened;
+    private String Q410Physical;
+    private String Q410Forced;
+
+    public String getQ410Slapped() {
+        return Q410Slapped;
     }
 
-    public void setQ410(String q410) {
-        Q410 = q410;
+    public void setQ410Slapped(String q410Slapped) {
+        Q410Slapped = q410Slapped;
     }
 
-    private String Q410;
+    public String getQ410Pushed() {
+        return Q410Pushed;
+    }
+
+    public void setQ410Pushed(String q410Pushed) {
+        Q410Pushed = q410Pushed;
+    }
+
+    public String getQ410Choked() {
+        return Q410Choked;
+    }
+
+    public void setQ410Choked(String q410Choked) {
+        Q410Choked = q410Choked;
+    }
+
+    public String getQ410Threatened() {
+        return Q410Threatened;
+    }
+
+    public void setQ410Threatened(String q410Threatened) {
+        Q410Threatened = q410Threatened;
+    }
+
+    public String getQ410Physical() {
+        return Q410Physical;
+    }
+
+    public void setQ410Physical(String q410Physical) {
+        Q410Physical = q410Physical;
+    }
+
+    public String getQ410Forced() {
+        return Q410Forced;
+    }
+
+    public void setQ410Forced(String q410Forced) {
+        Q410Forced = q410Forced;
+    }
+
+    public String getQ410MadeAfraid() {
+        return Q410MadeAfraid;
+    }
+
+    public void setQ410MadeAfraid(String q410MadeAfraid) {
+        Q410MadeAfraid = q410MadeAfraid;
+    }
+
+    private String Q410MadeAfraid;
+
     private String Q501;
     private String Q502;
     private String Q503;
@@ -402,6 +458,7 @@ public class Individual implements Serializable {
     private String Q504_10;
     private String Q504_Other;
     private String Q504_OtherSpecify;
+
     private String Q602_4;
     private String Q602_5;
     private String Q602_6;
@@ -1080,15 +1137,117 @@ public class Individual implements Serializable {
         Q615 = q615;
     }
 
-    public String getQ616() {
-        return Q616;
+    public String getQ616_1() {
+        return Q616_1;
     }
 
     public void setQ616(String q616) {
-        Q616 = q616;
+        Q616_1 = q616;
     }
 
-    private String Q616;
+    private String Q616_1;
+    private String Q616_2;
+    private String Q616_3;
+    private String Q616_4;
+    private String Q616_5;
+    private String Q616_6;
+    private String Q616_7;
+    private String Q616_8;
+    private String Q616_9;
+    private String Q616_10;
+
+
+    public void setQ616_1(String q616_1) {
+        Q616_1 = q616_1;
+    }
+
+
+    public String getQ616_2() {
+        return Q616_2;
+    }
+    public void setQ616_2(String q616_2) {
+        Q616_2 = q616_2;
+    }
+
+    public String getQ616_3() {
+        return Q616_3;
+    }
+    public void setQ616_3(String q616_3) {
+        Q616_3 = q616_3;
+    }
+
+    public String getQ616_4() {
+        return Q616_4;
+    }
+
+
+    public void setQ616_4(String q616_4) {
+        Q616_4 = q616_4;
+    }
+
+
+    public String getQ616_5() {
+        return Q616_5;
+    }
+
+
+    public void setQ616_5(String q616_5) {
+        Q616_5 = q616_5;
+    }
+
+
+    public String getQ616_6() {
+        return Q616_6;
+    }
+
+
+
+    public void setQ616_6(String q616_6) {
+        Q616_6 = q616_6;
+    }
+
+
+
+    public String getQ616_7() {
+        return Q616_7;
+    }
+
+
+    public void setQ616_7(String q616_7) {
+        Q616_7 = q616_7;
+    }
+
+
+    public String getQ616_8() {
+        return Q616_8;
+    }
+
+    public void setQ616_8(String q616_8) {
+        Q616_8 = q616_8;
+    }
+
+
+
+    public String getQ616_9() {
+        return Q616_9;
+    }
+
+
+    public void setQ616_9(String q616_9) {
+        Q616_9 = q616_9;
+    }
+
+
+    public String getQ616_10() {
+        return Q616_10;
+    }
+
+
+    public void setQ616_10(String q616_10) {
+        Q616_10 = q616_10;
+    }
+
+
 
 
     private String Q617a;
@@ -1182,7 +1341,195 @@ public class Individual implements Serializable {
     private String Q617h;
     private String Q617_0ther;
     private String Q618;
+    private String Q619_1;
+    private String Q619_2;
+    private String Q619_3;
+    private String Q619_4;
+    private String Q619_5;
+    private String Q619_6;
+    private String Q619_7;
+    private String Q619_8;
+    private String Q619_9;
 
+    public void setQ619_10(String q619_10) {
+        Q619_10 = q619_10;
+    }
+
+    private String Q619_10;
+    private String Q619_11;
+    private String Q619_12;
+
+    public void setQ619_13(String q619_13) {
+        Q619_13 = q619_13;
+    }
+
+    private String Q619_13;
+    private String Q619_14;
+    private String Q619_15;
+    private String Q619_Other;
+    private String Q620_Other;
+    private String Q621;
+    private String Q621a_1;
+    private String Q621a_2;
+    private String Q621a_3;
+    private String Q621a_4;
+    private String Q621a_5;
+    private String Q621a_6;
+    private String Q621a_7;
+    private String Q621a_Other;
+    private String Q621bOther;
+    private String Q621b;
+    private String Q622aOther;
+    private String Q622bOther;
+
+
+
+
+
+
+    public String getQ619_1() {
+        return Q619_1;
+    }
+
+    public void setQ619_1(String q619_1) {
+        Q619_1 = q619_1;
+    }
+
+
+    public String getQ619_2() {
+        return Q619_2;
+    }
+    public void setQ619_2(String q619_2) {
+        Q619_2 = q619_2;
+    }
+
+    public String getQ619_3() {
+        return Q619_3;
+    }
+    public void setQ619_3(String q619_3) {
+        Q619_3 = q619_3;
+    }
+
+    public String getQ619_4() {
+        return Q619_4;
+    }
+
+
+    public void setQ619_4(String q619_4) {
+        Q619_4 = q619_4;
+    }
+
+
+    public String getQ619_5() {
+        return Q619_5;
+    }
+
+
+    public void setQ619_5(String q619_5) {
+        Q619_5 = q619_5;
+    }
+
+
+    public String getQ619_6() {
+        return Q619_6;
+    }
+
+
+
+    public void setQ619_6(String q619_6) {
+        Q619_6 = q619_6;
+    }
+
+
+
+    public String getQ619_7() {
+        return Q619_7;
+    }
+
+
+    public void setQ619_7(String q619_7) {
+        Q619_7 = q619_7;
+    }
+
+
+    public String getQ619_8() {
+        return Q619_8;
+    }
+
+    public void setQ619_8(String q619_8) {
+        Q619_8 = q619_8;
+    }
+
+
+
+    public String getQ619_9() {
+        return Q619_9;
+    }
+
+
+    public void setQ619_9(String q619_9) {
+        Q619_9 = q619_9;
+    }
+
+
+    public String getQ619_10() {
+        return Q619_10;
+    }
+
+
+
+
+    public String getQ619_11() {
+        return Q619_11;
+    }
+
+
+    public String getQ619_12() {
+        return Q619_12;
+    }
+
+
+    public void setQ619_12(String q619_12) {
+        Q619_12 = q619_12;
+    }
+
+
+    public String getQ619_13() {
+        return Q619_13;
+    }
+
+
+    public void setQ619_11(String q619_13) {
+        Q619_13 = q619_13;
+    }
+
+
+    public String getQ619_14() {
+        return Q619_14;
+    }
+
+
+    public void setQ619_14(String q619_14) {
+        Q619_14 = q619_14;
+    }
+
+    public String getQ619_15() {
+        return Q619_15;
+    }
+
+
+    public void setQ619_15(String q619_15) {
+        Q619_15 = q619_15;
+    }
+
+    public String getQ619_Other() {
+        return Q619_Other;
+    }
+
+
+    public void setQ619_Other(String q619_Other) {
+        Q619_Other = q619_Other;
+    }
 
 
     private String Q620;
@@ -1194,6 +1541,152 @@ public class Individual implements Serializable {
     public void setQ620(String q620) {
         Q620 = q620;
     }
+
+
+    public String getQ620_Other() {
+        return Q620_Other;
+    }
+
+
+    public void setQ620_Other(String q620_Other) {
+        Q620_Other = q620_Other;
+    }
+
+
+
+
+
+    public String getQ621a_1() {
+        return Q621a_1;
+    }
+
+    public void setQ621a_1(String q621a_1) {
+        Q621a_1 = q621a_1;
+    }
+
+
+    public String getQ621a_2() {
+        return Q621a_2;
+    }
+    public void setQ621a_2(String q621a_2) {
+        Q621a_2 = q621a_2;
+    }
+
+    public String getQ621a_3() {
+        return Q621a_3;
+    }
+    public void setQ621a_3(String q621a_3) {
+        Q621a_3 = q621a_3;
+    }
+
+    public String getQ621a_4() {
+        return Q621a_4;
+    }
+
+
+    public void setQ621a_4(String q621a_4) {
+        Q621a_4 = q621a_4;
+    }
+
+
+    public String getQ621a_5() {
+        return Q621a_5;
+    }
+
+
+    public void setQ621a_5(String q621a_5) {
+        Q621a_5 = q621a_5;
+    }
+
+
+    public String getQ621a_6() {
+        return Q621a_6;
+    }
+
+
+
+    public void setQ621a_6(String q621a_6) {
+        Q621a_6 = q621a_6;
+    }
+
+
+
+    public String getQ621a_7() {
+        return Q621a_7;
+    }
+
+
+    public void setQ621a_7(String q621a_7) {
+        Q621a_7 = q621a_7;
+    }
+
+
+
+    public String getQ621a_Other() {
+        return Q621a_Other;
+    }
+
+
+    public void setQ621a_Other(String q621a_Other) {
+        Q621a_Other = q621a_Other;
+    }
+
+
+
+    public String getQ621() {
+        return Q621;
+    }
+
+
+    public void setQ621(String q621) {
+        Q621 = q621;
+    }
+
+
+
+
+    public String getQ621b() {
+        return Q621b;
+    }
+
+
+    public void setQ621b(String q621b) {
+        Q621b = q621b;
+    }
+
+
+    public String getQ621bOther() {
+        return Q621bOther;
+    }
+
+
+    public void setQ621bOther(String q621bOther) {
+        Q621bOther = q621bOther;
+    }
+
+
+
+
+    public String getQ622aOther() {
+        return Q622aOther;
+    }
+
+
+    public void setQ622aOther(String q622aOther) {
+        Q622aOther = q622aOther;
+    }
+
+
+
+    public String getQ622bOther() {
+        return Q622bOther;
+    }
+
+
+    public void setQ622bOther(String q622bOther) {
+        Q622bOther = q622bOther;
+    }
+
 
     public String getQ622() {
         return Q622;
@@ -1633,16 +2126,6 @@ public class Individual implements Serializable {
     private String Q1002a_7;
     private String Q1002a_8;
     private String Q1002a_10;
-
-    public String getQ1002a_11() {
-        return Q1002a_11;
-    }
-
-    public void setQ1002a_11(String q1002a_11) {
-        Q1002a_11 = q1002a_11;
-    }
-
-    private String Q1002a_11;
     private String Q1002a_12;
     private String Q1002a_13;
     private String Q1002a_14;
@@ -1651,58 +2134,10 @@ public class Individual implements Serializable {
     private String Q1002a_17;
     private String Q1002a_18;
     private String Q1002a_Other;
-
-    public String getQ1002b() {
-        return Q1002b;
-    }
-
-    public void setQ1002b(String q1002b) {
-        Q1002b = q1002b;
-    }
-
-    public String getQ1002b_Other() {
-        return Q1002b_Other;
-    }
-
-    public void setQ1002b_Other(String q1002b_Other) {
-        Q1002b_Other = q1002b_Other;
-    }
-
-    private String Q1002b;
-    private String Q1002b_Other;
     private String Q1003;
     private String Q1004_Month;
     private String Q1004_Year;
     private String Q1004_Day;
-
-    public String getQ1004a() {
-        return Q1004a;
-    }
-
-    public void setQ1004a(String q1004a) {
-        Q1004a = q1004a;
-    }
-
-    public String getQ1004b() {
-        return Q1004b;
-    }
-
-    public void setQ1004b(String q1004b) {
-        Q1004b = q1004b;
-    }
-
-    public String getQ1004b_Other() {
-        return Q1004b_Other;
-    }
-
-    public void setQ1004b_Other(String q1004b_Other) {
-        Q1004b_Other = q1004b_Other;
-    }
-
-    private String Q1004a;
-    private String Q1004b;
-    private String Q1004b_Other;
-
     private String Q1005;
     private String Q1005a;
     private String Q1006;
@@ -1710,29 +2145,9 @@ public class Individual implements Serializable {
     private String Q1007a;
     private String Q1008;
     private String Q1008a;
-
-    public String getQ1008a_Other() {
-        return Q1008a_Other;
-    }
-
-    public void setQ1008a_Other(String q1008a_Other) {
-        Q1008a_Other = q1008a_Other;
-    }
-
-    private String Q1008a_Other;
     private String Q1009;
     private String Q1009a;
     private String Q1010;
-
-    public String getQ1010_Other() {
-        return Q1010_Other;
-    }
-
-    public void setQ1010_Other(String q1010_Other) {
-        Q1010_Other = q1010_Other;
-    }
-
-    private String Q1010_Other;
     private String Q1011;
     private String Q1011_Other;
     private String Q1012_Week;
@@ -1747,6 +2162,34 @@ public class Individual implements Serializable {
     private String Q1015b;
     private String Q1016;
     private String Q1017;
+
+    public void setQ1002a_11(String q1002a_11) {
+        Q1002a_11 = q1002a_11;
+    }
+
+    private String Q1002a_11;
+
+    public String getQ1002b() {
+        return Q1002b;
+    }
+
+    public void setQ1002b(String q1002b) {
+        Q1002b = q1002b;
+    }
+
+    public String getQ1004() {
+        return Q1004;
+    }
+
+    private String Q1002b;
+    private String Q1002bOther;
+    private String Q1004a;
+    private String Q1004b;
+    private String Q1004bOther;
+    private String Q1008aOther;
+    private String Q1010Other;
+    private String Q1004;
+
 
     public String getQ1001() {
         return Q1001;
@@ -1836,6 +2279,13 @@ public class Individual implements Serializable {
         Q1002a_10 = q1002a_10;
     }
 
+
+
+    public String getQ1002a_11() {
+        return Q1002a_11;
+    }
+
+
     public String getQ1002a_12() {
         return Q1002a_12;
     }
@@ -1900,6 +2350,70 @@ public class Individual implements Serializable {
         Q1002a_Other = q1002a_Other;
     }
 
+
+    public String getQ1002bOther() {
+        return Q1002bOther;
+    }
+
+    public void setQ1002bOther(String q1002bOther) {
+        Q1002bOther = q1002bOther;
+    }
+
+
+    public String getQ1004a() {
+        return Q1004a;
+    }
+
+    public void setQ1004a(String q1004a) {
+        Q1004a = q1004a;
+    }
+
+
+
+    public String getQ1004b() {
+        return Q1004b;
+    }
+
+    public void setQ1004b(String q1004b) {
+        Q1004b = q1004b;
+    }
+
+
+    public String getQ1004bOther() {
+        return Q1004bOther;
+    }
+
+    public void setQ1004bOther(String q1004bOther) {
+        Q1004bOther = q1004bOther;
+    }
+
+
+    public String getQ1008aOther() {
+        return Q1008aOther;
+    }
+
+    public void setQ1008aOther(String q1008aOther) {
+        Q1008aOther = q1008aOther;
+    }
+
+
+
+    public String getQ1010Other() {
+        return Q1010Other;
+    }
+
+    public void setQ1010Other(String q1010Other) {
+        Q1010Other = q1010Other;
+    }
+
+
+    public void setQ1004(String q1004) {
+        Q1004 = q1004;
+    }
+
+
+
+
     public String getQ1003() {
         return Q1003;
     }
@@ -1932,6 +2446,7 @@ public class Individual implements Serializable {
         Q1004_Day = q1004_Day;
     }
 
+
     public String getQ1005() {
         return Q1005;
     }
@@ -1939,6 +2454,7 @@ public class Individual implements Serializable {
     public void setQ1005(String q1005) {
         Q1005 = q1005;
     }
+
 
     public String getQ1005a() {
         return Q1005a;

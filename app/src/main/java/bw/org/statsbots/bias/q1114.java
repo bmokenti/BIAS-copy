@@ -102,7 +102,7 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
                         //Next question q102
 
 
-                        Intent intent = new Intent(q1114.this, P17.class);
+                        Intent intent = new Intent(q1114.this, Dashboard.class);
                         intent.putExtra("Household",  thisHouse);
                         startActivity(intent);
 

@@ -17,15 +17,18 @@ public class P20 extends AppCompatActivity {
     protected String currentHH = null;
     protected LibraryClass lib;
     ListView Allpersonslist;
+    protected DatabaseHelper myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p20);
         setTitle("P20 BLOOD SPECIMEN");
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         thisHouse.getPersons();
-
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
 
         List<String> p20 = new ArrayList<>();
 
@@ -55,9 +58,23 @@ public class P20 extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(P20.this,P21.class);
-                intent.putExtra("Household",  thisHouse);
-                startActivity(intent);
+
+                if(sample.getStatusCode().equals("2") & thisHouse.getIsHIVTB40().equals("1"))
+                {
+                    //XRAY
+                    Intent intent = new Intent(P20.this, P21.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+
+                }else{
+                    //Show HOUSE DETAILS
+
+                    Intent intent = new Intent(P20.this,H01.class);
+                    intent.putExtra("Household",  thisHouse);
+                    startActivity(intent);
+                }
+
+
             }
         });
     }

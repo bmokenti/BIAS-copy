@@ -17,7 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class H08 extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class H08 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -42,17 +44,29 @@ public class H08 extends AppCompatActivity implements View.OnClickListener {
             rbtn6 = (RadioButton) findViewById(R.id.H08_6);
             rbtn7 = (RadioButton) findViewById(R.id.H08_other);
             edt = (EditText) findViewById(R.id.H08_txtOther);
+            edt.setVisibility(View.INVISIBLE);
             final RadioGroup rg = (RadioGroup) findViewById(R.id.H08radioGroup);
 
-            //rbtn1.setOnClickListener(this);
-            //rbtn2.setOnClickListener(this);
-
-            // final int selectedId = rbtngroup.getCheckedRadioButtonId();
+            rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                    if(i == R.id.H08_other)
+                    {
+                        // is checked
+                        edt.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        // not checked
+                        edt.setVisibility(View.INVISIBLE);
+                    }
+                }
+            });
 
             Intent i = getIntent();
             thisHouse = (HouseHold) i.getSerializableExtra("Household");
             int p = 0;
-            Button btnext = findViewById(R.id.btnnext);
+            Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
 
@@ -67,48 +81,81 @@ public class H08 extends AppCompatActivity implements View.OnClickListener {
                     int selectedId = rg.getCheckedRadioButtonId();
                     selectedRbtn = (RadioButton) findViewById(selectedId);
 
-                    if (selectedRbtn == null) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(bw.org.statsbots.bias.H08.this);
-                        builder.setTitle("SOURCE OF ENERGY");
-                        builder.setIcon(R.drawable.ic_warning_orange_24dp);
-                        builder.setMessage("What is the main source of energy used for: COOKING?");
-                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+                    if(selectedRbtn == null) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(bw.org.statsbots.bias.H08.this);
+                            builder.setTitle("SOURCE OF ENERGY");
+                            builder.setIcon(R.drawable.ic_warning_orange_24dp);
+                            builder.setMessage("What is the main source of energy used for: COOKING?");
+                            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
 
-                            }
-                        });
+                                }
+                            });
 
-                        /**
-                         * VIBRATE DEVICE
-                         */
-                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        vibs.vibrate(100);
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
 
-                        AlertDialog alertDialog = builder.show();
-                        final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                        LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
-                        positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
-                        positiveButton.setTextColor(Color.WHITE);
-                        positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
-                        positiveButton.setLayoutParams(positiveButtonLL);
+                            AlertDialog alertDialog = builder.show();
+                            final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                            LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                            positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            positiveButton.setTextColor(Color.WHITE);
+                            positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                            positiveButton.setLayoutParams(positiveButtonLL);
+
 
 
                     } else {
                         //Set q101 for the current individual
-                        thisHouse.setH08(selectedRbtn.getText().toString().substring(0,1));
+                        if(selectedId == R.id.H08_other)
+                        {
+                           if(edt.getText().toString().equals(""))
+                            {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(bw.org.statsbots.bias.H08.this);
+                                builder.setTitle("SOURCE OF ENERGY");
+                                builder.setIcon(R.drawable.ic_warning_orange_24dp);
+                                builder.setMessage("What is the main source of energy used for: COOKING?");
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
 
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
+                                    }
+                                });
 
-                        //Next question q102
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+
+                                AlertDialog alertDialog = builder.show();
+                                final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                                LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                                positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                                positiveButton.setTextColor(Color.WHITE);
+                                positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                                positiveButton.setLayoutParams(positiveButtonLL);
 
 
-                        Intent q1o2 = new Intent(bw.org.statsbots.bias.H08.this, H09.class);
-                        q1o2.putExtra("Household",  thisHouse);
-                        startActivity(q1o2);
+                            }else{
+                               thisHouse.setH08(edt.getText().toString());
+
+                               Intent q1o2 = new Intent(H08.this, H09.class);
+                               q1o2.putExtra("Household",  thisHouse);
+                               startActivity(q1o2);
+
+
+                           }
+
+                        }else{
+                            thisHouse.setH08(selectedRbtn.getText().toString().substring(0,1));
+                            Intent q1o2 = new Intent(H08.this, H09.class);
+                            q1o2.putExtra("Household",  thisHouse);
+                            startActivity(q1o2);
+                        }
+
 
                     }
 

@@ -30,7 +30,7 @@ import bw.org.statsbots.bias.google.zxing.integration.android.*;
 
 public class ScanBarcode extends AppCompatActivity implements Serializable {
 
-    private Button scanBtn;
+    private Button scanBtn; protected LibraryClass lib;
     private TextView formatTxt, contentTxt;
 
 
@@ -50,9 +50,11 @@ public class ScanBarcode extends AppCompatActivity implements Serializable {
 
         myDB = new DatabaseHelper(this);
         myDB.onOpen(myDB.getReadableDatabase());
-
+        lib = new LibraryClass();
         Intent i = getIntent();
-        cont =  (PersonRoster) i.getSerializableExtra("toscan");
+        cont =  (PersonRoster) i.getSerializableExtra("Roster");
+
+        Log.d("Check ", cont.getP01());
 
         scanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,71 +68,7 @@ public class ScanBarcode extends AppCompatActivity implements Serializable {
 
         ScrollView l = findViewById(R.id.scrollView3);
         LinearLayout linear = findViewById(R.id.RosterButton);
-
-
-        if(cont.getU15Rapid_Results().isEmpty() ||
-                cont.getU15Rapid_Results()==null ||
-                cont.getU15Rapid_Results().equals("null"))
-        {
-            l.setVisibility(View.GONE);
-            linear.setVisibility(View.VISIBLE);
-            Log.d("rESULTS NULL", cont.getP04YY());
-
-
-        }
-        else {
-            Log.d("Herre", cont.getP04YY());
-            l.setVisibility(View.GONE);
-            int yy = Integer.parseInt(cont.getP04YY());
-            int mm = Integer.parseInt(cont.getP04MM());
-            int wks = Integer.parseInt(cont.getP04WKS());
-            if(yy==0 && mm<=1 && wks <2)
-            {
-                //less
-            }
-            else if(yy>9 && yy < 14) {
-
-            }
-            else if(yy>14 && yy < 18) {
-
-            }
-            else if(yy>17 && yy < 64) {
-
-            }else if(yy > 63){
-
-            }else{
-                //6 weeks to 9 Years
-                l.setVisibility(View.VISIBLE);
-                linear.setVisibility(View.GONE);
-                EditText EdtBarcode = findViewById(R.id.EdtBarcode);
-                RadioGroup grp = findViewById(R.id.B3_Rapid_ConsentGroup);
-                EditText lsGuard = findViewById(R.id.ListGuardians);
-                EditText txtDate = findViewById(R.id.DateTxt);
-                RadioGroup status = findViewById(R.id.bloodCollectStatusRGB);
-                RadioGroup results = findViewById(R.id.ParentalradioGroup1);
-                EditText comment = findViewById(R.id.RapidComment);
-
-                EdtBarcode.setText(cont.getBarcode());
-                EdtBarcode.setEnabled(false);
-                //Set parental consent
-                lsGuard.setText(cont.getHIVAssentParticipantsID());
-                txtDate.setText(cont.getHIVAssentDate());
-                //setn blood collected status
-                results.check(Integer.valueOf(cont.getU15Rapid_Results()));
-                comment.setText(cont.getRapid_Comment());
-
-
-
-            }
-
-
-
-
-
-
-        }
-
-
+        //contentTxt.setText("25534493");
 
 
     }
@@ -146,7 +84,7 @@ public class ScanBarcode extends AppCompatActivity implements Serializable {
             if(scanFormat.equals("CODE_128") && scanContent.length()==8)
             {
                 //formatTxt.setText("FORMAT: " + scanFormat);
-                contentTxt.setText("INDIVIDUAL BARCODE : " + scanContent);
+                contentTxt.setText(scanContent);
 
                 //Check if the Barcode has been used
                 List<PersonRoster> r = myDB.getPersonsBarCheck(cont.getAssignmentID());
@@ -203,7 +141,26 @@ public class ScanBarcode extends AppCompatActivity implements Serializable {
                             {
                                 if(p.getSRNO() == Integer.valueOf(cont.getSRNO()))
                                 {
-                                    int yy = Integer.parseInt(p.getP04YY());
+
+                                    Individual individual = new Individual();
+                                    individual.setAssignmentID(p.getAssignmentID());
+                                    individual.setBatch(p.getBatch());
+                                    individual.setSRNO(p.getSRNO());
+                                    HouseHold intentHouse = null;
+                                    List<HouseHold> hh = myDB.getStarted();
+                                    for(HouseHold started:hh){
+                                        if(started.getAssignment_ID().equals(p.getAssignmentID()) && started.getBatchNumber().equals(p.getBatch())){
+                                            intentHouse = started;
+                                            break;
+                                        }
+                                    }
+
+                                    Intent intent1 = new Intent(ScanBarcode.this,q101.class);
+                                    intent.putExtra("Household",  intentHouse);
+                                    startActivity(intent);
+
+
+                                    /*int yy = Integer.parseInt(p.getP04YY());
                                     int mm = Integer.parseInt(p.getP04MM());
                                     int wks = Integer.parseInt(p.getP04WKS());
                                     if(yy==0 && mm<=1 && wks <2)
@@ -231,7 +188,7 @@ public class ScanBarcode extends AppCompatActivity implements Serializable {
                                     }
 
                                     person = p;
-                                    break;
+*/                                    break;
                                 }
                             }
 

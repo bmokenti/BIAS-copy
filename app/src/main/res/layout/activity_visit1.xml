@@ -106,6 +106,17 @@
                     android:textSize="18sp" />
 
                 <Button
+                    android:id="@+id/btnStart"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/WHITE"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttons_bg"
+                    android:layout_gravity="start"
+                    android:layout_weight="2"
+                    android:text="@string/start" />
+
+                <Button
                     android:id="@+id/btnEnd"
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
@@ -116,16 +127,7 @@
                     android:layout_weight="2"
                     android:text="@string/end" />
 
-                <Button
-                    android:id="@+id/btnStart"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/WHITE"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttons_bg"
-                    android:layout_gravity="start"
-                    android:layout_weight="2"
-                    android:text="@string/start" />
+
 
                 <RadioGroup
 

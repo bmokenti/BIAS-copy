@@ -17,7 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class H11 extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class H11 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -42,18 +44,30 @@ public class H11 extends AppCompatActivity implements View.OnClickListener {
         rbtn4 = (RadioButton) findViewById(R.id.H11_4);
         rbtn5 = (RadioButton) findViewById(R.id.H11_Other);
         edt = (EditText) findViewById(R.id.H11_txtOther);
+        edt.setVisibility(View.INVISIBLE);
 
         final RadioGroup rg = (RadioGroup) findViewById(R.id.H11radioGroup);
 
-        //rbtn1.setOnClickListener(this);
-        //rbtn2.setOnClickListener(this);
-
-        // final int selectedId = rbtngroup.getCheckedRadioButtonId();
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.H11_Other)
+                {
+                    // is checked
+                    edt.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    // not checked
+                    edt.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
-        Button btnext = findViewById(R.id.btnnext);
+        Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
 
@@ -95,21 +109,56 @@ public class H11 extends AppCompatActivity implements View.OnClickListener {
 
 
                 } else {
-                    //Set q101 for the current individual
-                    thisHouse.setH11(selectedRbtn.getText().toString().substring(0,1));
-
-                    /**
-                     * If current person LineNumber is equal to TotalPersons-1
-                     * Proceed to next Question in the roster
-                     */
-                    // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                    //Next question q102
 
 
-                    Intent q1o2 = new Intent(bw.org.statsbots.bias.H11.this, H12.class);
-                    q1o2.putExtra("Household",  thisHouse);
-                    startActivity(q1o2);
+                    if(selectedId == R.id.H11_Other)
+                    {
+                        if(edt.getText().toString().equals(""))
+                        {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(bw.org.statsbots.bias.H11.this);
+                            builder.setTitle("REFUSE DISPOSAL");
+                            builder.setIcon(R.drawable.ic_warning_orange_24dp);
+                            builder.setMessage("How do you dispose off refuse in this household?");
+                            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                }
+                            });
+
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
+
+                            AlertDialog alertDialog = builder.show();
+                            final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                            LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                            positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            positiveButton.setTextColor(Color.WHITE);
+                            positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                            positiveButton.setLayoutParams(positiveButtonLL);
+
+
+                        }else{
+                            //Set q101 for the current individual
+                            thisHouse.setH11Other(edt.getText().toString());
+                            Intent q1o2 = new Intent(bw.org.statsbots.bias.H11.this, H12.class);
+                            q1o2.putExtra("Household",  thisHouse);
+                            startActivity(q1o2);
+                        }
+
+                    }else{
+
+                        //Set q101 for the current individual
+                        thisHouse.setH11(selectedRbtn.getText().toString().substring(0,1));
+                        Intent q1o2 = new Intent(bw.org.statsbots.bias.H11.this, H12.class);
+                        q1o2.putExtra("Household",  thisHouse);
+                        startActivity(q1o2);
+
+                    }
+
+
 
                 }
 

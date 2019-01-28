@@ -39,6 +39,8 @@ public class activity_general_information extends AppCompatActivity implements S
         myDb = new DatabaseHelper(this);
         Sample s = myDb.getSample(myDb.getReadableDatabase(),thisHouse.getAssignment_ID());
 
+        Log.d("Batch Number",thisHouse.getBatchNumber());
+
         txtstratum_code = (TextView)findViewById(R.id.stratum_code);
         txtdistrict_name = (TextView)findViewById(R.id.district_name);
         txtdistrict_code = (TextView)findViewById(R.id.district_code);
@@ -77,6 +79,8 @@ public class activity_general_information extends AppCompatActivity implements S
         txt_status_code.setText(s.getStatusCode());
         txtEAStatus.setText(s.getSTATUS());
 
+
+
         //If update
         if(thisHouse.getDWELLING_NO()!=null && !thisHouse.getDWELLING_NO().isEmpty()){
             dwellingNum.setText(thisHouse.getDWELLING_NO());
@@ -93,6 +97,7 @@ public class activity_general_information extends AppCompatActivity implements S
          * INITIALIZE ALL THE HOUSE HOLD VARIABLES KNOWN
          */
         Button btnNext = (Button)findViewById(R.id.button);
+
         String btnLabel="";
 
 
@@ -162,5 +167,16 @@ public class activity_general_information extends AppCompatActivity implements S
             }
 
         });
+
+
+        Button btnPrev = (Button)findViewById(R.id.button3);
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+
+            }
+        });
+
     }
 }

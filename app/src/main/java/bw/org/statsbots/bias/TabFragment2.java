@@ -22,6 +22,8 @@ import android.widget.TextView;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class TabFragment2 extends Fragment implements Serializable {
     protected HouseHold thisHouse;
     protected LibraryClass lib;
@@ -50,14 +52,28 @@ public class TabFragment2 extends Fragment implements Serializable {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_fragment_2, container, false);
+
         t = (TextView)v.findViewById(R.id.started_heading);
         hhDetails=new ArrayList<>();
+        RejectedHH=new ArrayList<>();
+        StartedHH=new ArrayList<>();
 
             myDB = new DatabaseHelper(container.getContext());
             myDB.onOpen(myDB.getWritableDatabase());
-            myDB.getdataHouseInfo();
-            RejectedHH = (ArrayList<HouseHold>) myDB.getReject();
-            StartedHH = (ArrayList<HouseHold>) myDB.getStarted();
+
+            try
+            {
+                myDB.getdataHouseInfo();
+                RejectedHH = (ArrayList<HouseHold>) myDB.getReject();
+                StartedHH = (ArrayList<HouseHold>) myDB.getStarted();
+            }catch (SQLiteException e){
+                if (e.getMessage().contains("no such table")){
+                    Log.e(TAG, "No Household info available" );
+                    // create table
+                    // re-run query, etc.
+                }
+            }
+
 
 
             if(RejectedHH.size() !=0)

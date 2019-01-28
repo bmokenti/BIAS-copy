@@ -350,13 +350,14 @@
 
                     <EditText
                         android:id="@+id/dwelling_number"
-                        android:layout_width="20dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
                         android:hint="00000"
                         android:textAlignment="center"
                         android:background="@drawable/edit_text_background"
                         android:layout_weight="6"
+
                         />
 
                 </LinearLayout>

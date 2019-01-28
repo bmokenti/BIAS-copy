@@ -3,6 +3,7 @@ package bw.org.statsbots.bias;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -43,9 +44,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -73,6 +76,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         super.onCreate(savedInstanceState);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+
         //Intent intent = getIntent();
         //thisHouse = (HouseHold)intent.getSerializableExtra("Household");
 
@@ -270,6 +274,48 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
 
                 return true;
+
+            case R.id.action_send:
+                LibraryClass lib = new LibraryClass();
+                //Send data to server
+
+                List<HouseHold> CompleteddHH = myDB.getCompleted();
+
+                String request = "http://10.30.3.169:8080/Webservice/dataFromField";
+                try{
+                    URL url = new URL(request);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoOutput(true);
+                    connection.setDoInput(true);
+
+                    connection.setInstanceFollowRedirects(false);
+                    connection.setRequestMethod("POST");
+                    connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    connection.setRequestProperty("charset", "utf-8");
+                    connection.setUseCaches (false);
+
+                    DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+                    Gson gson = new Gson();
+                    String json = gson.toJson(CompleteddHH);
+
+                    wr.writeBytes(json.toString());
+                    wr.flush();
+                    wr.close();
+
+
+                }catch (Exception e){
+                    lib.showError(Dashboard.this,"Synchronization Error","An error has been encountered while sending data to the server");
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+                }
+
+
+
+
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -279,9 +325,11 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
     //Synchronization HouseHold(House,Roster & Individual)
     private class SyncAssignments extends AsyncTask<Void,Void,String> {
 
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+
         @Override
         protected  void  onPreExecute(){
-           //showProgress(true);
+            showProgress(true);
         }
 
         @Override
@@ -321,7 +369,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         @Override
         protected void onPostExecute(String result){
             //mAuthTask = null
-            //showProgress(false);
+              showProgress(false);
 
             readFromServer(result);
 
@@ -335,11 +383,12 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         private void readFromServer(String svrmsg)
         {
 
+            Log.d("Data from Webservice", svrmsg);
             if (svrmsg != null)
             {
 
                 try {
-                    svrmsg = svrmsg.replaceAll("null","\"null\"");
+                    svrmsg = svrmsg.replaceAll("null","\"\"");
                     JSONArray jsnArray = new JSONArray(svrmsg);
 
                     if(jsnArray.length()==0){
@@ -403,9 +452,44 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setFINAL_OTHER(jObject.get("FINAL_OTHER").toString());
                             hh.setSuperComment(jObject.get("SuperComment").toString());
                             hh.setInterview_Status(jObject.get("Interview_Status").toString());
-                            //hh.setInterview_Status(jObject.get("Interview_Status").toString());
+                            hh.setH01(jObject.get("H01").toString());
 
-                            //hh.setSuperComment(jObject.get("SuperComment").toString());
+                            hh.setH02(jObject.get("Interview_Status").toString());
+                            hh.setH03(jObject.get("H02").toString());
+                            hh.setH03Other(jObject.get("H03Other").toString());
+                            hh.setH04(jObject.get("H04").toString());
+                            hh.setH04Other(jObject.get("H04Other").toString());
+                            hh.setH05(jObject.get("H05").toString());
+                            hh.setH05Other(jObject.get("H05Other").toString());
+                            hh.setH06(jObject.get("H06").toString());
+                            hh.setH07(jObject.get("H07").toString());
+                            hh.setH08(jObject.get("H08").toString());
+                            hh.setH08Other(jObject.get("H08Other").toString());
+                            hh.setH09(jObject.get("H09").toString());
+                            hh.setH09Other(jObject.get("H09Other").toString());
+                            hh.setH10(jObject.get("H10").toString());
+                            hh.setH11(jObject.get("H11").toString());
+                            hh.setH11Other(jObject.get("H11Other").toString());
+
+
+                            hh.setH12(jObject.get("H12Radio").toString());
+                            hh.setH12TV(jObject.get("H12TV").toString());
+                            hh.setH12Telephone(jObject.get("H12Telephone").toString());
+                            hh.setH12CellPhone(jObject.get("H12CellPhone").toString());
+                            hh.setH12PrintMedia(jObject.get("H12PrintMedia").toString());
+                            hh.setH12ElecMedia(jObject.get("H12ElecMedia").toString());
+                            hh.setH12PerfomArts(jObject.get("H12PerformArts").toString());
+
+
+                            hh.setH13(jObject.get("H13Vehicle").toString());
+                            hh.setH13Tractor(jObject.get("H13Tractor").toString());
+                            hh.setH13Motorcycle(jObject.get("H13Motorcycle").toString());
+                            hh.setH13Bicycle(jObject.get("H13Bicycle").toString());
+                            hh.setH13DonkeyCart(jObject.get("H13DonkeyCart").toString());
+                            hh.setH13DonkeyHorse(jObject.get("H13DonkeyHorse").toString());
+                            hh.setH13Camels(jObject.get("H13Camels").toString());
+
+
 
                             //INSERT INTO HOUSEHOLD
                             myDB.inserthousehold(hh);
@@ -441,6 +525,17 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 pp.setRapid_Comment( roster.get("Rapid_Comment").toString());
                                 pp.setBarcode( roster.get("BarCode").toString());
 
+                                pp.setP08( roster.get("P08").toString());
+                                pp.setP08( roster.get("P08").toString());
+                                pp.setP10( roster.get("P10").toString());
+                                pp.setP11( roster.get("P11").toString());
+                                pp.setP12( roster.get("P12").toString());
+                                pp.setP13( roster.get("P13").toString());
+                                pp.setP13Other( roster.get("P13Other").toString());
+                                pp.setP14( roster.get("P14").toString());
+                                pp.setP15( roster.get("P15").toString());
+                                pp.setP16 ( roster.get("P16").toString());
+
 
 
 
@@ -459,43 +554,453 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 //PersonRoster
                                 Individual ind = new Individual();
                                 ind.setSRNO(Integer.parseInt(roster.get("SRNO").toString()));
-                                ind.setIndBarcode(roster.get("BarCode").toString());
-                                ind.setIndBarcode(roster.get("BarCode").toString());
+
+
+                                ind.setIndBarcode(roster.get("IndBarcode").toString());
                                 ind.setQ101(roster.get("Q101").toString());
                                 ind.setQ102(roster.get("Q102").toString());
                                 ind.setQ103(roster.get("Q103").toString());
                                 ind.setQ104(roster.get("Q104").toString());
+                                ind.setQ104a(roster.get("Q104a").toString());
+                                ind.setQ104b(roster.get("Q104b").toString());
                                 ind.setQ104c(roster.get("Q104c").toString());
                                 ind.setQ104cBISCED(roster.get("Q104cBISCED").toString());
+
+                                ind.setQ105(roster.get("Q105").toString());
+                                ind.setQ105Other(roster.get("Q105Other").toString());
+                                ind.setQ105a(roster.get("Q105a").toString());
+
+                                ind.setQ105b(roster.get("Q105b").toString());
+
+                                ind.setQ106(roster.get("Q106").toString());
+                                ind.setQ106a(roster.get("Q106a").toString());
+                                ind.setQ106aOther(roster.get("Q106aOther").toString());
+
+                                ind.setQ106b(roster.get("Q106b").toString());
+                                ind.setQ106c(roster.get("Q106c").toString());
+
+                                ind.setQ106d(roster.get("Q106d").toString());
+
+                                ind.setQ107(roster.get("Q107").toString());
+                                if(roster.get("Q107a").toString().equals(null) || roster.get("Q107a").toString().equals("")){
+
+                                }else{
+                                    ind.setQ107aMnth(roster.get("Q107a").toString().substring(2,3));
+                                    ind.setQ107aYY(roster.get("Q107a").toString().substring(0,1));
+                                }
+
+                                ind.setQ107b(roster.get("Q107b").toString());
+                                ind.setQ107bOther(roster.get("Q107bOther").toString());
+                                ind.setQ107c(roster.get("Q107c").toString());
+                                ind.setQ107cOther(roster.get("Q107cOther").toString());
+
+                                ind.setQ201(roster.get("Q201").toString());
+                                ind.setQ202(roster.get("Q202").toString());
+                                ind.setQ203(roster.get("Q203").toString());
+                                ind.setQ204(roster.get("Q204").toString());
+                                ind.setQ205(roster.get("Q205").toString());
+                                ind.setQ205a(roster.get("Q205a").toString());
+
+
+
+                                ind.setQ301(roster.get("Q301").toString());
+                                ind.setQ301a(roster.get("Q301").toString());
+
+                                ind.setQ302(roster.get("Q301").toString());
+
+                                ind.setQ303(roster.get("Q301").toString());
+                                ind.setQ303a(roster.get("Q301").toString());
+
+                                ind.setQ304(roster.get("Q301").toString());
+                                ind.setQ304a(roster.get("Q301").toString());
+
+                                ind.setQ305_1(roster.get("Q305Smoking").toString());
+                                ind.setQ305_2(roster.get("Q305Sniffing").toString());
+                                ind.setQ305_3(roster.get("Q305Chewing").toString());
+                                ind.setQ305_4(roster.get("Q305None").toString());
+
+                                ind.setQ306(roster.get("Q306").toString());
+                                ind.setQ307(roster.get("Q307").toString());
+
                                 ind.setQ401(roster.get("Q401").toString());ind.setQ101(roster.get("Q101").toString());
                                 ind.setQ402(roster.get("Q402").toString());
                                 ind.setQ402a(roster.get("Q402a").toString());
                                 ind.setQ402b(roster.get("Q402b").toString());
                                 ind.setQ403(roster.get("Q403").toString());
+
+
+                                ind.setQ404_1(roster.get("Q404Vaginal").toString());
+                                ind.setQ404_2(roster.get("Q404Anal").toString());
+                                ind.setQ404_3(roster.get("Q404Oral").toString());
+
+                                ind.setQ404a(roster.get("Q404a").toString());
+
+                                ind.setQ405(roster.get("Q405").toString());
+                                ind.setQ406(roster.get("Q406").toString());
+                                ind.setQ407(roster.get("Q407").toString());
+
+                                ind.setQ408(roster.get("Q408").toString());
+                                ind.setQ408a(roster.get("Q408a").toString());
+
+                                ind.setQ410Slapped(roster.get("Q410Slapped").toString());
+                                ind.setQ410Pushed(roster.get("Q410Pushed").toString());
+                                ind.setQ410Choked(roster.get("Q410Chocked").toString());
+                                ind.setQ410Threatened(roster.get("Q410Threatened").toString());
+                                ind.setQ410Physical(roster.get("Q410Physical").toString());
+                                ind.setQ410Forced(roster.get("Q410Forced").toString());
+                                ind.setQ410MadeAfraid(roster.get("Q410MadeAfraid").toString());
+
+
+
+
+
+
                                 ind.setQ501(roster.get("Q501").toString());
                                 ind.setQ502(roster.get("Q502").toString());
                                 ind.setQ503(roster.get("Q503").toString());
-                                //ind.setQ504_1(roster.get("Q504_1").toString());
-                               // ind.setQ504_2(roster.get("Q504_2").toString());
-                               // ind.setQ504_3(roster.get("Q504_3").toString());
-                               // ind.setQ504_4(roster.get("Q504_4").toString());
-                                //ind.setQ504_5(roster.get("Q504_5").toString());
-                               // ind.setQ504_6(roster.get("Q504_6").toString());
-                               // ind.setQ504_7(roster.get("Q504_7").toString());
-                               // ind.setQ504_8(roster.get("Q504_8").toString());
-                               // ind.setQ504_10(roster.get("Q504_10").toString());
-                               // ind.setQ504_Other(roster.get("Q504_Other").toString());
-                                //ind.setQ504_OtherSpecify(roster.get("Q504_OtherSpecify").toString());
-                                //ind.setQ504(roster.get("Q501").toString());
-                                //ind.setQ504Other(roster.get("Q504Other").toString());
+
+                                ind.setQ504_1(roster.get("Q504Pain").toString());
+                               ind.setQ504_2(roster.get("Q504Reduced").toString());
+                               ind.setQ504_3(roster.get("Q504Fear").toString());
+                               ind.setQ504_4(roster.get("Q504Culture").toString());
+                                ind.setQ504_5(roster.get("Q504Religion").toString());
+                               ind.setQ504_6(roster.get("Q504Spouse").toString());
+                               ind.setQ504_7(roster.get("Q504Parental").toString());
+                               ind.setQ504_8(roster.get("Q504Long").toString());
+                               ind.setQ504_10(roster.get("Q504FearHIV").toString());
+
+                               ind.setQ504_Other(roster.get("Q504Other").toString());
+
+                               ind.setQ601(roster.get("Q601").toString());
+                               ind.setQ601a(roster.get("Q601a").toString());
+
+                                ind.setQ602_1(roster.get("Q602Youth").toString());
+                                ind.setQ602_2(roster.get("Q602TV").toString());
+                                ind.setQ602_3(roster.get("Q602Radio").toString());
+                                ind.setQ602_4(roster.get("Q602NewsPaper").toString());
+                                ind.setQ602_5(roster.get("Q602Hospital").toString());
+                                ind.setQ602_6(roster.get("Q602Posters").toString());
+                                ind.setQ602_7(roster.get("Q602Traditional").toString());
+                                ind.setQ602_8(roster.get("Q602Workshop").toString());
+                                ind.setQ602_10(roster.get("Q602Individual").toString());
+                                ind.setQ602_11(roster.get("Q602Church").toString());
+                                ind.setQ602_12(roster.get("Q602Kgotla").toString());
+                                ind.setQ602_13(roster.get("Q602WorkPlace").toString());
+                                ind.setQ602_14(roster.get("Q602Peer").toString());
+                                ind.setQ602_15(roster.get("Q602School").toString());
+                                ind.setQ602_Other(roster.get("Q602Other").toString());
+
+                                ind.setQ603_1(roster.get("Q603Condom").toString());
+                                ind.setQ603_2(roster.get("Q603FewerP").toString());
+                                ind.setQ603_3(roster.get("Q603Both").toString());
+                                ind.setQ603_4(roster.get("Q603NoCasual").toString());
+                                ind.setQ603_5(roster.get("Q603Abstain").toString());
+                                ind.setQ603_6(roster.get("Q603NoCommercial").toString());
+                                ind.setQ603_7(roster.get("Q603Injection").toString());
+                                ind.setQ603_8(roster.get("Q603Blood").toString());
+                                ind.setQ603_9(roster.get("Q603DontKnow").toString());
+                                ind.setQ603_Other(roster.get("Q603Other").toString());
+
+
+                                ind.setQ604(roster.get("Q604").toString());
+                                ind.setQ604a(roster.get("Q604a").toString());
+                                ind.setQ604b_1(roster.get("Q604bYouth").toString());
+                                ind.setQ604b_2(roster.get("Q604bTV").toString());
+                                ind.setQ604b_3(roster.get("Q604bRadio").toString());
+                                ind.setQ604b_4(roster.get("Q604bNewsPaper").toString());
+                                ind.setQ604b_5(roster.get("Q604bHospital").toString());
+                                ind.setQ604b_6(roster.get("Q604bPoster").toString());
+                                ind.setQ604b_7(roster.get("Q604bTraditional").toString());
+                                ind.setQ604b_8(roster.get("Q602Workshop").toString());
+                                ind.setQ604b_10(roster.get("Q604bIndividual").toString());
+                                ind.setQ604b_11(roster.get("Q604bChurch").toString());
+                                ind.setQ604b_12(roster.get("Q604bKgotal").toString());
+                                ind.setQ604b_13(roster.get("Q604bWorkPlace").toString());
+                                ind.setQ604b_14(roster.get("Q604bPeer").toString());
+                                ind.setQ604b_15(roster.get("Q604bSchool").toString());
+                                ind.setQ604b_Other(roster.get("Q604bOther").toString());
+
+
+                                ind.setQ605_1(roster.get("Q605Windows").toString());
+                                ind.setQ605_2(roster.get("Q605Mouth").toString());
+                                ind.setQ605_3(roster.get("Q605Hands").toString());
+                                ind.setQ605_4(roster.get("Q605Nutrition").toString());
+                                ind.setQ605_5(roster.get("Q605Praying").toString());
+                                ind.setQ605_9(roster.get("Q605DontKnow").toString());
+                                ind.setQ605_Other(roster.get("Q605Other").toString());
+
+
+                                ind.setQ606(roster.get("Q606").toString());
+                                ind.setQ607(roster.get("Q607").toString());
+                                ind.setQ608(roster.get("Q608").toString());
+                                ind.setQ609(roster.get("Q609").toString());
+                                ind.setQ610(roster.get("Q610").toString());
+
+                                ind.setQ611a(roster.get("Q611a").toString());
+                                ind.setQ611b(roster.get("Q611b").toString());
+                                ind.setQ611c(roster.get("Q611c").toString());
+
+                                ind.setQ612(roster.get("Q612").toString());
+                                ind.setQ612a (roster.get("Q612a").toString());
+                                ind.setQ612aOther (roster.get("Q612Other").toString());
+
+                                ind.setQ613 (roster.get("Q613").toString());
+                                ind.setQ613a (roster.get("Q613a").toString());
+                                ind.setQ613aOther (roster.get("Q613aOther").toString());
+                                ind.setQ614 (roster.get("Q614").toString());
+                                ind.setQ614Other (roster.get("Q614Other").toString());
+                                ind.setQ615 (roster.get("Q615").toString());
+
+                                ind.setQ616_1(roster.get("Q616Anybody").toString());
+                                ind.setQ616_2(roster.get("Q616Poor").toString());
+                                ind.setQ616_3(roster.get("Q616Homelesee").toString());
+                                ind.setQ616_4(roster.get("Q616Alcoholics").toString());
+                                ind.setQ616_5(roster.get("Q616Drugs").toString());
+                                ind.setQ616_6(roster.get("Q616PeopHIV").toString());
+                                ind.setQ616_7(roster.get("Q616PeopPrison").toString());
+                                ind.setQ616_8(roster.get("Q616Smokers").toString());
+                                ind.setQ616_9(roster.get("Q616DntKnw").toString());
+                                ind.setQ616_10(roster.get("Q616Other").toString());
+
+
+                                ind.setQ617a(roster.get("Q617Meal").toString());
+                                ind.setQ617b(roster.get("Q617Clothes").toString());
+                                ind.setQ617c (roster.get("Q617Miscarried").toString());
+                                ind.setQ617d (roster.get("Q617Widow").toString());
+                                ind.setQ617e (roster.get("Q617FamilyHIV").toString());
+                                ind.setQ617f(roster.get("Q617Sejeso").toString());
+                                ind.setQ617g (roster.get("Q617Touching").toString());
+                                ind.setQ617h (roster.get("Q617Someone").toString());
+                                ind.setQ617_0ther(roster.get("Q617Other").toString());
+                                ind.setQ618(roster.get("Q618").toString());
+
+                                ind.setQ619_1(roster.get("Q619Rash").toString());
+                                ind.setQ619_2(roster.get("Q619Cough").toString());
+                                ind.setQ619_3(roster.get("Q619LongCough").toString());
+                                ind.setQ619_4(roster.get("Q619Blood").toString());
+                                ind.setQ619_5(roster.get("Q619Headache").toString());
+                                ind.setQ619_6(roster.get("Q619Nausea").toString());
+                                ind.setQ619_7(roster.get("Q619Weight").toString());
+                                ind.setQ619_8(roster.get("Q619Fever").toString());
+                                ind.setQ619_10(roster.get("Q619Fever7Days").toString());
+                                ind.setQ619_11(roster.get("Q619ChestPain").toString());
+                                ind.setQ619_12(roster.get("Q619Breath").toString());
+                                ind.setQ619_13(roster.get("Q619Fatigue").toString());
+                                ind.setQ619_14(roster.get("Q619Sweats").toString());
+                                ind.setQ619_9(roster.get("Q619DontKnw").toString());
+                                ind.setQ619_Other(roster.get("Q619Other").toString());
+                                ind.setQ620(roster.get("Q620").toString());
+                                ind.setQ620_Other(roster.get("Q620Other").toString());
+
+                                ind.setQ621(roster.get("Q621").toString());
+                                ind.setQ621a_1(roster.get("Q621aSpouse").toString());
+                                ind.setQ621a_2(roster.get("Q621aPartner").toString());
+                                ind.setQ621a_3(roster.get("Q621aFriend").toString());
+                                ind.setQ621a_4(roster.get("Q621aFamily").toString());
+                                ind.setQ621a_5(roster.get("Q621aRelative").toString());
+                                ind.setQ621a_6(roster.get("Q621aHCWorker").toString());
+                                ind.setQ621a_7(roster.get("Q621aCoWorker").toString());
+                                ind.setQ621a_Other(roster.get("Q621aOther").toString());
+                                ind.setQ621b(roster.get("Q621b").toString());
+
+                                ind.setQ621bOther(roster.get("Q621bOther").toString());
+
+                                ind.setQ622(roster.get("Q622").toString());
+
+                                ind.setQ622a(roster.get("Q622a").toString());
+                                ind.setQ622aOther(roster.get("Q622aOther").toString());
+
+                                ind.setQ622b(roster.get("Q622b").toString());
+                                ind.setQ622bOther(roster.get("Q622bOther").toString());
+
+
+                                ind.setQ623(roster.get("Q623").toString());
+                                ind.setQ624(roster.get("Q624").toString());
+                                ind.setQ625(roster.get("Q625").toString());
+                                ind.setQ701(roster.get("Q701").toString());
+                                ind.setQ702(roster.get("Q702").toString());
+                                ind.setQ703(roster.get("Q703").toString());
+                                ind.setQ704(roster.get("Q704").toString());
+                                ind.setQ705(roster.get("Q705").toString());
+                                ind.setQ801(roster.get("Q801").toString());
+
+
+                                ind.setQ801a(roster.get("Q801a").toString());
+                                ind.setQ801b(roster.get("Q801b").toString());
+
+                                if(roster.get("Q801c").toString().equals(null) || roster.get("Q801c").toString().equals("")){
+
+                                }else{
+                                    ind.setQ801cMonth(roster.get("Q801c").toString().substring(0,1));
+                                    ind.setQ801cYear(roster.get("Q801c").toString().substring(2,5));
+                                }
+
+
+
+                                ind.setQ801d(roster.get("Q801d").toString());
+                                ind.setQ801dOther(roster.get("Q801dOther").toString());
+
+                                ind.setQ801e(roster.get("Q801e").toString());
+                                ind.setQ801eOther(roster.get("Q801eOther").toString());
+
+
+                                ind.setQ801f(roster.get("Q801f").toString());
+
+                                ind.setQ802(roster.get("Q802").toString());
+                                ind.setQ802a(roster.get("Q802a").toString());
+                                ind.setQ802aOther(roster.get("Q802aOther").toString());
+
+
+                                ind.setQ803(roster.get("Q803").toString());
+                                ind.setQ803Other(roster.get("Q803Other").toString());
+
+                                ind.setQ804(roster.get("Q804").toString());
+                                ind.setQ804Other(roster.get("Q804Other").toString());
+
+                                ind.setQ901(roster.get("Q901").toString());
+                                ind.setQ901a(roster.get("Q901a").toString());
+                                ind.setQ901aOther(roster.get("Q901aOther").toString());
+
+                                if(roster.get("Q902").toString().equals(null) || roster.get("Q902").toString().equals("")){
+
+                                }else{
+                                    ind.setQ902Month(roster.get("Q902").toString().substring(0,1));
+                                    ind.setQ902Year(roster.get("Q902").toString().substring(2,5));
+                                }
+
+
+                                ind.setQ903a(roster.get("Q903DenyCare").toString());
+                                ind.setQ903b(roster.get("Q903Gossip").toString());
+                                ind.setQ903c(roster.get("Q903NoSex").toString());
+                                ind.setQ903d(roster.get("Q903VerbalAbuse").toString());
+                                ind.setQ903e(roster.get("Q903PhysicalAbuse").toString());
+                                ind.setQ903f(roster.get("Q903NoContact").toString());
+                                ind.setQ903g(roster.get("Q903SharingStatus").toString());
+
+
                                 ind.setQ904(roster.get("Q904").toString());
+                                ind.setQ904a(roster.get("Q904a").toString());
+                                ind.setQ904aOther(roster.get("Q904aOther").toString());
+
+
+                                if(roster.get("Q904b").toString().equals(null) || roster.get("Q904b").toString().equals("")){
+
+                                }else{
+                                    ind.setQ904bMM(roster.get("Q904b").toString().substring(0,1));
+                                    ind.setQ904bYYYY(roster.get("Q904b").toString().substring(2,5));
+                                }
+
+
+                                ind.setQ904c(roster.get("Q904c").toString());
+                                ind.setQ904cOther(roster.get("Q904cOther").toString());
+
+
+                                ind.setQ905(roster.get("Q905").toString());
+                                ind.setQ905a(roster.get("Q905a").toString());
+                                ind.setQ905aOther(roster.get("Q905aOther").toString());
+
+                                ind.setQ1001(roster.get("Q1001").toString());
+                                ind.setQ1002(roster.get("Q1002").toString());
+
+                                ind.setQ1002a_1(roster.get("Q1002aMCondom").toString());
+                                ind.setQ1002a_2(roster.get("Q1002aFCondom").toString());
+                                ind.setQ1002a_3(roster.get("Q1002aInjectContra").toString());
+                                ind.setQ1002a_4(roster.get("Q1002aOralContra").toString());
+                                ind.setQ1002a_5(roster.get("Q1002aUID").toString());
+                                ind.setQ1002a_6(roster.get("Q1002aBTL").toString());
+                                ind.setQ1002a_7(roster.get("Q1002aFSterilization").toString());
+                                ind.setQ1002a_8(roster.get("Q1002aMSterilization").toString());
+                                ind.setQ1002a_10(roster.get("Q1002aImplants").toString());
+                                ind.setQ1002a_11(roster.get("Q1002aEContra").toString());
+                                ind.setQ1002a_12(roster.get("Q1002aSafePeriod").toString());
+                                ind.setQ1002a_13(roster.get("Q1002aLAM").toString());
+                                ind.setQ1002a_14(roster.get("Q1002aDiagraphm").toString());
+                                ind.setQ1002a_15(roster.get("Q1002aSpermicides").toString());
+                                ind.setQ1002a_16(roster.get("Q1002aNatural").toString());
+                                ind.setQ1002a_17(roster.get("Q1002aTraditional").toString());
+                                ind.setQ1002a_18(roster.get("Q1002aSpritual").toString());
+                                ind.setQ1002a_Other(roster.get("Q1002aOther").toString());
+
+                                ind.setQ1002b(roster.get("Q1002b").toString());
+                                ind.setQ1002bOther(roster.get("Q1002bOther").toString());
+
+                                ind.setQ1003(roster.get("Q1003").toString());
+
+                                if(roster.get("Q1004").toString().equals(null) || roster.get("Q1004").toString().equals("")){
+
+                                }else{
+                                    ind.setQ1004_Day(roster.get("Q1004").toString().substring(0,1));
+                                    ind.setQ1004_Month(roster.get("Q1004").toString().substring(2,3));
+                                    ind.setQ1004_Year(roster.get("Q1004").toString().substring(4,7));
+                                }
+
+
+                                ind.setQ1004a(roster.get("Q1004a").toString());
+                                ind.setQ1004b(roster.get("Q1004b").toString());
+                                ind.setQ1004bOther(roster.get("Q1004bOther").toString());
+
+
+                                ind.setQ1005(roster.get("Q1005").toString());
+                                ind.setQ1005a(roster.get("Q1005a").toString());
+                                ind.setQ1006(roster.get("Q1006").toString());
+
+                                ind.setQ1007(roster.get("Q1007").toString());
+                                ind.setQ1007a(roster.get("Q1007a").toString());
+
+                                ind.setQ1008(roster.get("Q1008").toString());
+                                ind.setQ1008a(roster.get("Q1008a").toString());
+                                ind.setQ1008aOther(roster.get("Q1008aOther").toString());
+
+
+                                ind.setQ1009(roster.get("Q1009").toString());
+                                ind.setQ1009a(roster.get("Q1009a").toString());
+
+                                ind.setQ1010(roster.get("Q1010").toString());
+                                ind.setQ1010Other(roster.get("Q1010Other").toString());
+
+                                ind.setQ1011(roster.get("Q1011").toString());
+                                ind.setQ1011_Other(roster.get("Q1011Other").toString());
+
+                                if(roster.get("Q1012").toString().equals(null) || roster.get("Q1012").toString().equals("")){
+
+                                }else{
+                                    ind.setQ1012_Week(roster.get("Q1012").toString().substring(0,1));
+                                    ind.setQ1012_Month(roster.get("Q1012").toString().substring(2,3));
+                                    ind.setQ1012_Year(roster.get("Q1012").toString().substring(4,7));
+
+                                }
+
+
+                                ind.setQ1013(roster.get("Q1013").toString());
+                                ind.setQ1014(roster.get("Q1014").toString());
+                                ind.setQ1014a(roster.get("Q1014a").toString());
+                                ind.setQ1014b(roster.get("Q1014b").toString());
+
+                                ind.setQ1015(roster.get("Q1015").toString());
+                                ind.setQ1015a(roster.get("Q1015a").toString());
+                                ind.setQ1015b(roster.get("Q1015b").toString());
+                                ind.setQ1016(roster.get("Q1016").toString());
+                                ind.setQ1017(roster.get("Q1017").toString());
+
+
+
                                 ind.setQ1101(roster.get("Q1101").toString());
                                 ind.setQ1101a(roster.get("Q1101a").toString());
                                 ind.setQ1101aOther(roster.get("Q1101aOther").toString());
                                 ind.setQ1102(roster.get("Q1102").toString());
                                 ind.setQ1102a(roster.get("Q1102a").toString());
                                 ind.setQ1103(roster.get("Q1103").toString());
-                                //ind.setQ1103a(roster.get("Q1103a").toString());
+
+                                if(roster.get("Q1103a").toString().equals(null) || roster.get("Q1103a").toString().equals("")){
+
+                                }else{
+                                    ind.setQ1103aDD(roster.get("Q1103a").toString().substring(0,1));
+                                    ind.setQ1103aWks(roster.get("Q1103a").toString().substring(2,3));
+
+                                }
+
+                                ind.setQ1103aDontKnow(roster.get("Q1103a").toString());
+
                                 ind.setQ1104(roster.get("Q1104").toString());
                                 ind.setQ1105(roster.get("Q1105").toString());
                                 ind.setQ1106(roster.get("Q1106").toString());
@@ -503,17 +1008,44 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 ind.setQ1106b(roster.get("Q1106b").toString());
                                 ind.setQ1106bOther(roster.get("Q1106bOther").toString());
                                 ind.setQ1107(roster.get("Q1107").toString());
-                                //ind.setQ1107a(roster.get("Q1107a").toString());
+
+
+                                if(roster.get("Q1107a").toString().equals(null) || roster.get("Q1107a").toString().equals("")){
+
+                                }else{
+                                    ind.setQ1107aDD(roster.get("Q1107a").toString().substring(0,1));
+                                    ind.setQ1107aWks(roster.get("Q1107a").toString().substring(2,3));
+
+                                }
+
+
+                                ind.setQ1107aDontKnow(roster.get("Q1107a").toString());
+
                                 ind.setQ1108(roster.get("Q1108").toString());
-                                //ind.setQ1108a(roster.get("Q1108a").toString());
+
+                                if(roster.get("Q1108a").toString().equals(null) || roster.get("Q1108a").toString().equals("")){
+
+                                }
+                                else
+                                    {
+                                    ind.setQ1108aDD(roster.get("Q1108a").toString().substring(0,1));
+                                    ind.setQ1108aWks(roster.get("Q1108a").toString().substring(2,3));
+                                }
+
+                                ind.setQ1108aDontKnow(roster.get("Q1108a").toString());
+
+
                                 ind.setQ1109(roster.get("Q1109").toString());
                                 ind.setQ1110(roster.get("Q1110").toString());
                                 ind.setQ1111(roster.get("Q1111").toString());
                                 ind.setQ1111Other(roster.get("Q1111Other").toString());
+
                                 ind.setQ1112(roster.get("Q1112").toString());
                                 ind.setQ1112_Other(roster.get("Q1112Other").toString());
+
                                 ind.setQ1113(roster.get("Q1113").toString());
                                 ind.setQ1113Other(roster.get("Q1113Other").toString());
+
                                 ind.setQ1114(roster.get("Q1114").toString());
 
                                 ind.setB8_Yes_No(roster.get("B8_Yes_No").toString());
@@ -521,10 +1053,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 ind.setB8_O15_Rapid(roster.get("B8_O15Rapid").toString());
                                 ind.setQ801f(roster.get("Q801f").toString());
                                 ind.setIndRapid_Comment(roster.get("RapidComment").toString());
-
-
-
-
 
                                 //INSERT INDIVIDUALS FROM THIS HOUSE
                                 myDB.insertSyncIndividual(ind,hh.getAssignment_ID() ,hh.getBatchNumber(),ind.getSRNO());
@@ -867,10 +1395,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
          */
         private void readFromServer(String svrmsg)
         {
-
             if (svrmsg != null)
             {
-
                 try {
                     svrmsg = svrmsg.replaceAll("null","\"null\"");
                     JSONArray jsnArray = new JSONArray(svrmsg);

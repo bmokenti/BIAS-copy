@@ -17,7 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class H04 extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class H04 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -47,15 +49,26 @@ public class H04 extends AppCompatActivity implements View.OnClickListener {
 
         final RadioGroup rg = (RadioGroup) findViewById(R.id.H04radioGroup);
 
-        //rbtn1.setOnClickListener(this);
-        //rbtn2.setOnClickListener(this);
-
-        // final int selectedId = rbtngroup.getCheckedRadioButtonId();
+        /*rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.H03_other)
+                {
+                    // is checked
+                    edt.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    // not checked
+                    edt.setVisibility(View.INVISIBLE);
+                }
+            }
+        });*/
 
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
-        Button btnext = findViewById(R.id.btnnext);
+        Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
 
@@ -71,44 +84,45 @@ public class H04 extends AppCompatActivity implements View.OnClickListener {
                 selectedRbtn = (RadioButton) findViewById(selectedId);
 
                 if (selectedRbtn == null) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(H04.this);
-                    builder.setTitle("MATERIAL OF CONSTRUCTION");
-                    builder.setIcon(R.drawable.ic_warning_orange_24dp);
-                    builder.setMessage("Please select the main material of construction of FLOOR");
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
+                    if(edt.getText().toString().equals(""))
+                    {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(H04.this);
+                        builder.setTitle("MATERIAL OF CONSTRUCTION");
+                        builder.setIcon(R.drawable.ic_warning_orange_24dp);
+                        builder.setMessage("Please select the main material of construction of FLOOR");
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
 
-                        }
-                    });
+                            }
+                        });
 
-                    /**
-                     * VIBRATE DEVICE
-                     */
-                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                    vibs.vibrate(100);
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
 
-                    AlertDialog alertDialog = builder.show();
-                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
-                    positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
-                    positiveButton.setTextColor(Color.WHITE);
-                    positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
-                    positiveButton.setLayoutParams(positiveButtonLL);
+                        AlertDialog alertDialog = builder.show();
+                        final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                        positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                        positiveButton.setTextColor(Color.WHITE);
+                        positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                        positiveButton.setLayoutParams(positiveButtonLL);
+
+                    }
+                    else
+                    {
+                        thisHouse.setH04Other(edt.getText().toString());
+                        Intent q1o2 = new Intent(H04.this, H05.class);
+                        q1o2.putExtra("Household",  thisHouse);
+                        startActivity(q1o2);
+                    }
 
 
                 } else {
                     //Set q101 for the current individual
                     thisHouse.setH04(selectedRbtn.getText().toString().substring(0,1));
-
-                    /**
-                     * If current person LineNumber is equal to TotalPersons-1
-                     * Proceed to next Question in the roster
-                     */
-                    // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                    //Next question q102
-
-
                     Intent q1o2 = new Intent(H04.this, H05.class);
                     q1o2.putExtra("Household",  thisHouse);
                     startActivity(q1o2);
