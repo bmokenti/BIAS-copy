@@ -44,9 +44,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -274,19 +276,44 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 return true;
 
             case R.id.action_send:
-
+                LibraryClass lib = new LibraryClass();
                 //Send data to server
-                LibraryClass lib;
+
                 List<HouseHold> CompleteddHH = myDB.getCompleted();
 
-                for(int i = 0 ; i<CompleteddHH.size();i++){
+                String request = "http://10.30.3.169:8080/Webservice/dataFromField";
+                try{
+                    URL url = new URL(request);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoOutput(true);
+                    connection.setDoInput(true);
+
+                    connection.setInstanceFollowRedirects(false);
+                    connection.setRequestMethod("POST");
+                    connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    connection.setRequestProperty("charset", "utf-8");
+                    connection.setUseCaches (false);
+
+                    DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+                    Gson gson = new Gson();
+                    String json = gson.toJson(CompleteddHH);
+
+                    wr.writeBytes(json.toString());
+                    wr.flush();
+                    wr.close();
 
 
-
-
-
-
+                }catch (Exception e){
+                    lib.showError(Dashboard.this,"Synchronization Error","An error has been encountered while sending data to the server");
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
                 }
+
+
+
 
                 return true;
             default:
