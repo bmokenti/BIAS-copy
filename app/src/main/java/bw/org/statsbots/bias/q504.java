@@ -33,7 +33,7 @@ public class q504 extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q504);
 
-        setTitle("Q504:");
+        setTitle("Q504: MALE CIRCUMICISION");
         lib = new LibraryClass();
 
 //btn = findViewById(R.id.btn);
@@ -50,6 +50,9 @@ public class q504 extends AppCompatActivity implements Serializable {
         chkOther = findViewById(R.id.Q504_Other);
         Q504edt = findViewById(R.id.Q504edt_Other);
 
+        Intent i = getIntent();
+        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        int p = 0;
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -69,11 +72,24 @@ public class q504 extends AppCompatActivity implements Serializable {
                     /**
                      * VIBRATE DEVICE
                      */
+
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 }  else{
+                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ504_1(ck1txt.getText().toString().substring(0,1));
+                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ504_2(ck2txt.getText().toString().substring(0,1));
+                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ504_3(ck3txt.getText().toString().substring(0,1));
+                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ504_4(ck4txt.getText().toString().substring(0,1));
+                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_5(ck5txt.getText().toString().substring(0,1));
+                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ504_6(ck6txt.getText().toString().substring(0,1));
+                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_7(ck7txt.getText().toString().substring(0,1));
+                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_8(ck8txt.getText().toString().substring(0,1));
+                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_10(ck10txt.getText().toString().substring(0,1));
+                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_Other(chkOther.getText().toString().substring(0,1));
+                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_OtherSpecify(Q504edt.getText().toString());
+
                     Intent intent = new Intent(q504.this, q601.class);
-                    //intent.putExtra("Household", thisHose);
+                    intent.putExtra("Household", thisHose);
                     startActivity(intent);
                 }
 
@@ -169,10 +185,11 @@ public class q504 extends AppCompatActivity implements Serializable {
                         Q504edt.setVisibility(View.VISIBLE);
                     }
 
-                    // Put some meat on the sandwich
+
                     else
-                    // Remove the meat
+
                         Q504edt.setVisibility(View.INVISIBLE);
+                      Q504edt.setText("");
 
                     break;
 

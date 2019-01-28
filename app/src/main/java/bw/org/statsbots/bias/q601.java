@@ -102,9 +102,9 @@ public class q601 extends AppCompatActivity implements Serializable {
                                 skipto603.putExtra("Household", thisHouse);
                                 startActivity(skipto603);
                             } else {
-                                //individual.setQ402a(selectedRbtn.getText().toString().substring(0,1));
-                                //individual.setQ402b(selectedRbtn1.getText().toString().substring(0,1));
-                                //Check if country entered is in the list
+                           //thisHouse.getIndividual()[p1.getLineNumber()].setQ601(selectedRbtn.getText().toString().substring(0,1));
+                               //thisHouse.getIndividual()[p1.getLineNumber()].setQ601a(selectedRbtn1.getText().toString().substring(0,1));
+
                                 Intent intent = new Intent(q601.this, q602.class);
                                 intent.putExtra("Household", thisHouse);
                                 startActivity(intent);

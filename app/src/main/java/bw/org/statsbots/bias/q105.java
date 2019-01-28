@@ -65,7 +65,98 @@ public class q105 extends AppCompatActivity implements Serializable{
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
 
+        rbtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn3.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
 
+                }
+            }
+        });
+
+        rbtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn3.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+
+                }
+            }
+        });
+        rbtn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn3.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+
+                }
+            }
+        });
+
+        rbtn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn3.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+
+                }
+            }
+        });
+        rbtn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn3.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+
+                }
+            }
+        });
+        rbtn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn3.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+
+                }
+            }
+        });
+
+        rbtn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn3.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+
+                }
+            }
+        });
+        rbtn8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn3.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+
+                }
+            }
+        });
+        rbtn9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn9.isChecked()) {
+                    edt.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
 
         /**
          * NEXT Person BUTTON
@@ -78,14 +169,14 @@ public class q105 extends AppCompatActivity implements Serializable{
             @Override
             public void onClick(View v) {
                 int Years;
-                edt = (EditText)findViewById(R.id.q102_years);
-                String years=edt.getText().toString();
+
+
                 int selectedId = rg.getCheckedRadioButtonId();
                 selectedRbtn = (RadioButton) findViewById(selectedId);
 
                 if(selectedRbtn == null)
                 {
-                    lib.showError(q105.this,"q105 Error","What is"+p1.getP01()+"'s  employment status");
+                    lib.showError(q105.this,"q105 Error","Please select employment status");
                     /**
                      * VIBRATE DEVICE
                      */
@@ -94,7 +185,7 @@ public class q105 extends AppCompatActivity implements Serializable{
 
                 }
                 else {
-                    if (selectedRbtn == rbtn9 && edt.getText() == null || edt.length() == 0) {
+                    if (rbtn9.isChecked() && (edt.getText() == null || edt.length() == 0)) {
                         lib.showError(q105.this, "q105 Other specify", "If the Other specify button is selected, other specify box should have a value");
                         /**
                          * VIBRATE DEVICE
@@ -103,9 +194,11 @@ public class q105 extends AppCompatActivity implements Serializable{
                         vibs.vibrate(100);
 
 
-                    } else {
-                        if (edt.length() == 0 || edt1.getText() == null) {
-                            lib.showError(q105.this, "q105a Error", "What is" + p1.getP01() + "'s current occupation?");
+                    }
+                    else
+                        {
+                        if (edt1.length() == 0 || edt1.getText() == null) {
+                            lib.showError(q105.this, "q105a Error", "Please state current occupation?");
                             /**
                              * VIBRATE DEVICE
                              */
@@ -115,7 +208,7 @@ public class q105 extends AppCompatActivity implements Serializable{
 
                         } else {
                             if (edt2.length() == 0 || edt2.getText() == null) {
-                                lib.showError(q105.this, "q105b Error", "What is the main product, service or activity at " + p1.getP01() + "'s place of work?");
+                                lib.showError(q105.this, "q105b Error", "What is the main product, service or activity at your place of work?");
                                 /**
                                  * VIBRATE DEVICE
                                  */
@@ -124,10 +217,10 @@ public class q105 extends AppCompatActivity implements Serializable{
 
 
                             } else {
-                                individual.setQ105(edt.getText().toString().substring(0,1));
-                                individual.setQ105Other(selectedRbtn.getText().toString());
-                                individual.setQ105a(selectedRbtn.getText().toString());
-                                individual.setQ105b(selectedRbtn.getText().toString());
+                                //thisHouse.getIndividual()[p1.getLineNumber()].setQ105(edt.getText().toString().substring(0,1));
+                                //thisHouse.getIndividual()[p1.getLineNumber()].setQ105Other(selectedRbtn.getText().toString());
+                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ105a(selectedRbtn.getText().toString());
+                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ105b(selectedRbtn.getText().toString());
                                 //Set P02 fir the current individual
                                 //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
                                 //Restart the current activity for next individual

@@ -35,7 +35,7 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
         setContentView(R.layout.activity_q501);
 
 
-        setTitle("Q501:");
+        setTitle("Q501: MALE CIRCUMICISION");
         lib = new LibraryClass();
         rbtn1 = (RadioButton) findViewById(R.id.q501_1);
         rbtn2 = (RadioButton) findViewById(R.id.q501_2);
@@ -46,7 +46,6 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
         rbtn2.setOnClickListener(this);
         rbtn3.setOnClickListener(this);
 
-        final int selectedId = rg.getCheckedRadioButtonId();
 
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
@@ -64,7 +63,7 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
                     builder.setTitle("Q501 Error");
                     builder.setIcon(R.drawable.ic_warning_orange_24dp);
 
-                    builder.setMessage("Is \"+ p1.getP01() + \" circumcised");
+                    builder.setMessage("Are you circumcised");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 
@@ -93,23 +92,19 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
 
 
                     if (rbtn2.isChecked() || rbtn3.isChecked()) {
-                     //   individual.setQ501(selectedRbtn.getText().toString().substring(0,1));
+
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ501(selectedRbtn.getText().toString().substring(0,1));
+
+
                         Intent q1o2 = new Intent(q501.this, q503.class);
                         q1o2.putExtra("Household", thisHouse);
                         startActivity(q1o2);
                     }
                     else
                     {
-                        //Set q101 for the current individual
-                        //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                       // individual.setQ501(selectedRbtn.getText().toString().substring(0,1));
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
+                        //Set q501 for the current individual
+                       //thisHouse.getIndividual()[p1.getLineNumber()].setQ501(selectedRbtn.getText().toString().substring(0,1));
 
-                        //Next question q102
 
 
                         Intent intent = new Intent(q501.this, q502.class);

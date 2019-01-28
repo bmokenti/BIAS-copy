@@ -22,7 +22,7 @@ public class q804 extends AppCompatActivity implements Serializable{
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtnother, selected;
     protected RadioGroup rbtngroup;
-    protected EditText edt;
+    protected EditText edt804other;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,7 @@ public class q804 extends AppCompatActivity implements Serializable{
         rbtn6 = (RadioButton) findViewById(R.id.q804_6);
         rbtn7 = (RadioButton) findViewById(R.id.q804_7);
         rbtnother = (RadioButton) findViewById(R.id.q804_other);
+        edt804other = (EditText) findViewById(R.id.q804_otherr);
         rbtngroup = (RadioGroup) findViewById(R.id.q804radioGroup);
 
 
@@ -47,6 +48,96 @@ public class q804 extends AppCompatActivity implements Serializable{
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
 
+        rbtnother.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtnother.isChecked()) {
+                    edt804other.setVisibility(View.VISIBLE);
+                    //edt804other.setText("");
+
+
+                }
+            }
+        });
+
+        rbtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn1.isChecked()) {
+                    edt804other.setVisibility(View.INVISIBLE);
+                    edt804other.setText("");
+
+
+                }
+            }
+        });
+        rbtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn2.isChecked()) {
+                    edt804other.setVisibility(View.INVISIBLE);
+                    edt804other.setText("");
+
+
+                }
+            }
+        });
+        rbtn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn3.isChecked()) {
+                    edt804other.setVisibility(View.INVISIBLE);
+                    edt804other.setText("");
+
+
+                }
+            }
+        });
+
+        rbtn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn4.isChecked()) {
+                    edt804other.setVisibility(View.INVISIBLE);
+                    edt804other.setText("");
+
+
+                }
+            }
+        });
+        rbtn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn5.isChecked()) {
+                    edt804other.setVisibility(View.INVISIBLE);
+                    edt804other.setText("");
+
+
+                }
+            }
+        });
+        rbtn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn6.isChecked()) {
+                    edt804other.setVisibility(View.INVISIBLE);
+                    edt804other.setText("");
+
+
+                }
+            }
+        });
+        rbtn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtn7.isChecked()) {
+                    edt804other.setVisibility(View.INVISIBLE);
+                    edt804other.setText("");
+
+
+                }
+            }
+        });
 
         /**
          * NEXT question
@@ -74,14 +165,17 @@ public class q804 extends AppCompatActivity implements Serializable{
                     vibs.vibrate(100);
                 } else {
 
-                    if (selected == rbtnother && edt.length() == 0 || edt.getText() == null) {
-                        lib.showError(q804.this, "Q804 Error", "Please type OTHER specify for q804");
+                    if (selected == rbtnother && (edt804other.length() == 0 || edt804other.getText() == null)) {
+                        lib.showError(q804.this, "Q804 Error", "Please specify Other for q804");
                         /**
                          * VIBRATE DEVICE
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
-
+                    }
+                    else {
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ804(selected.getText().toString().substring(0, 1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ804Other(edt804other.getText().toString());
 
                         Intent intent = new Intent(q804.this, q901.class);
                         intent.putExtra("Household", thisHouse);

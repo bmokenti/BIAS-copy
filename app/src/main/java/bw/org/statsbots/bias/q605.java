@@ -63,8 +63,18 @@ public class q605 extends AppCompatActivity implements Serializable {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 } else {
+                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ605_1(ck1txt.getText().toString().substring(0,1));
+                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ605_2(ck2txt.getText().toString().substring(0,1));
+                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ605_3(ck3txt.getText().toString().substring(0,1));
+                    //  thisHouse.getIndividual()[p1.getLineNumber()].setQ605_4(ck4txt.getText().toString().substring(0,1));
+                    //  thisHouse.getIndividual()[p1.getLineNumber()].setQ605_5(ck5txt.getText().toString().substring(0,1));
+                     //thisHouse.getIndividual()[p1.getLineNumber()].setQ605_5(ck9txt.getText().toString().substring(0,1));
+
+                    //  thisHouse.getIndividual()[p1.getLineNumber()].setQ605_Other(chkOther.getText().toString().substring(0,1));
+                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ605_Otherspecify(q605edt.getText().toString());
+
                     Intent intent = new Intent(q605.this, q606.class);
-                    //intent.putExtra("Household", thisHose);
+                    intent.putExtra("Household", thisHouse);
                     startActivity(intent);
                 }
 

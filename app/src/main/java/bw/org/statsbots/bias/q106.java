@@ -44,8 +44,8 @@ public class q106 extends AppCompatActivity implements Serializable {
         rbtna4 = (RadioButton) findViewById(R.id.q106a_4);
         rbtna5 = (RadioButton) findViewById(R.id.q106a_5);
         rbtna6 = (RadioButton) findViewById(R.id.q106a_Other);
-        edt = findViewById(R.id.q106a_txtother);
-        edt = (EditText) findViewById(R.id.Q105_txtOther);
+
+        edt = (EditText) findViewById(R.id.q106a_txtother);
 
 
         rbtnb1 = (RadioButton) findViewById(R.id.q106b_1);
@@ -76,10 +76,63 @@ public class q106 extends AppCompatActivity implements Serializable {
         //edittext = (EditText) findViewById(R.id.q102_years);
         //edittext.setVisibility(View.VISIBLE);
 
+
+
+
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
 
+        rbtna1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtna1.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+
+                }
+            }
+        });
+        rbtna3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtna3.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+
+                }
+            }
+        });
+        rbtna4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtna4.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+
+                }
+            }
+        });
+        rbtna5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtna5.isChecked()) {
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+
+                }
+            }
+        });
+        rbtna6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rbtna6.isChecked()) {
+                    edt.setVisibility(View.VISIBLE);
+                    //edt.setText("");
+
+                }
+            }
+        });
 
         /**
          * NEXT Person BUTTON
@@ -97,19 +150,21 @@ public class q106 extends AppCompatActivity implements Serializable {
                 selectedRbtn = (RadioButton) findViewById(selectedId);
 
                 if (selectedRbtn == null) {
-                    lib.showError(q106.this, "q106 Error", "In the past 7 days did " + p1.getP01() + " work for payment, profit or home use for atleast 1 hour");
+                    lib.showError(q106.this, "q106 Error", "In the past 7 days did  work for payment, profit or home use for atleast 1 hour");
                     /**
                      * VIBRATE DEVICE
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
 
-                } else {
+                }
+                else
+                    {
                     int selectedIda = rga.getCheckedRadioButtonId();
                     selectedRbtna = (RadioButton) findViewById(selectedIda);
 
-                    if (selectedRbtn == null) {
-                        lib.showError(q106.this, "q106a Error", "Since did not work for payment, profit or home use, what did" + p1.getP01() + " do?");
+                    if (selectedRbtna == null && rbtn2.isChecked()) {
+                        lib.showError(q106.this, "q106a Error", "Since did not work for payment, profit or home use, what did you do?");
                         /**
                          * VIBRATE DEVICE
                          */
@@ -119,11 +174,9 @@ public class q106 extends AppCompatActivity implements Serializable {
 
                     } else {
 
-                        int selectedIdb = rgb.getCheckedRadioButtonId();
-                        selectedRbtnb = (RadioButton) findViewById(selectedIdb);
 
-                        if (edt.length() == 0 || edt1.getText() == null) {
-                            lib.showError(q106.this, "q106b Error", "What is" + p1.getP01() + "'s current occupation?");
+                        if (rbtna6.isChecked() && edt.getText() == null) {
+                            lib.showError(q106.this, "q106a Error", "Other specify OR uncheck other specify option?");
                             /**
                              * VIBRATE DEVICE
                              */
@@ -132,8 +185,11 @@ public class q106 extends AppCompatActivity implements Serializable {
 
 
                         } else {
-                            if (edt2.length() == 0 || edt2.getText() == null) {
-                                lib.showError(q106.this, "q106b Error", "What were you mainly working as during the past 7 days?");
+                            int selectedIdb = rgb.getCheckedRadioButtonId();
+                            selectedRbtnb = (RadioButton) findViewById(selectedIdb);
+
+                            if (selectedRbtnb == null && rbtn1.isChecked()) {
+                                lib.showError(q106.this, "q106b Error", "What were you mainly working as in the past 7 days?");
                                 /**
                                  * VIBRATE DEVICE
                                  */
@@ -142,26 +198,48 @@ public class q106 extends AppCompatActivity implements Serializable {
 
 
                             } else {
-                                individual.setQ106(edt.getText().toString().substring(0, 1));
-                                individual.setQ106a(selectedRbtn.getText().toString());
-                                individual.setQ106aOther(selectedRbtn.getText().toString());
-                                individual.setQ106b(selectedRbtn.getText().toString());
-                                individual.setQ106c(selectedRbtn.getText().toString());
-                                individual.setQ106d(selectedRbtn.getText().toString());
-                                //Set P02 fir the current individual
-                                //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
-                                //Restart the current activity for next individual
 
 
-                                //Next question P17
-                                Intent intent = new Intent(q106.this, q107.class);
-                                intent.putExtra("Household", thisHouse);
-                                startActivity(intent);
+                                if ((edt1.length() == 0 || edt1.getText() == null) && rbtn1.isChecked()) {
+                                    lib.showError(q106.this, "q106c Error", "What is your current occupation?");
+                                    /**
+                                     * VIBRATE DEVICE
+                                     */
+                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                    vibs.vibrate(100);
 
 
+                                } else {
+                                    if ((edt2.length() == 0 || edt2.getText() == null) && rbtn1.isChecked()) {
+                                        lib.showError(q106.this, "q106d Error", "What were you mainly working as during the past 7 days?");
+                                        /**
+                                         * VIBRATE DEVICE
+                                         */
+                                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                        vibs.vibrate(100);
+
+
+                                    } else {
+                                        //set values for q106
+                                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ106(selectedRbtn.getText().toString().substring(0, 1));
+                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ106a(selectedRbtna.getText().toString());
+                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ106aOther(edt.getText().toString());
+                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ106b(selectedRbtnb.getText().toString());
+                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ106c(edt1.getText().toString());
+                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ106d(edt2.getText().toString());
+
+
+                                        //Next question q107
+                                        Intent intent = new Intent(q106.this, q107.class);
+                                        intent.putExtra("Household", thisHouse);
+                                        startActivity(intent);
+
+
+                                    }
+
+
+                                }
                             }
-
-
                         }
                     }
                 }
@@ -186,6 +264,13 @@ public class q106 extends AppCompatActivity implements Serializable {
                     rbtna4.setEnabled(false);
                     rbtna5.setEnabled(false);
                     rbtna6.setEnabled(false);
+
+                    rbtna1.setChecked(false);
+                    rbtna2.setChecked(false);
+                    rbtna3.setChecked(false);
+                    rbtna4.setChecked(false);
+                    rbtna5.setChecked(false);
+                    rbtna6.setChecked(false);
                     q106atext.setTextColor(Color.LTGRAY);
 
 
@@ -237,11 +322,24 @@ public class q106 extends AppCompatActivity implements Serializable {
                 rbtnb8.setEnabled(false);
                 rbtnb10.setEnabled(false);
 
+                rbtnb1.setChecked(false);
+                rbtnb2.setChecked(false);
+                rbtnb3.setChecked(false);
+                rbtnb4.setChecked(false);
+                rbtnb5.setChecked(false);
+                rbtnb6.setChecked(false);
+                rbtnb7.setChecked(false);
+                rbtnb8.setChecked(false);
+                rbtnb10.setChecked(false);
+
+
                 q106dtext.setTextColor(Color.LTGRAY);
                 q106ctext.setTextColor(Color.LTGRAY);
                 //edt,
                 edt1.setEnabled(false);
                 edt2.setEnabled(false);
+                edt1.setText("");
+                edt2.setText("'");
 
 
                 }

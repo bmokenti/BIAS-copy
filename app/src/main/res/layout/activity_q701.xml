@@ -89,6 +89,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/q701q"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="Q701. If a member of your family became sick with HIV AND AIDS, would you be willing to care for him or her in your household?"
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
 
                         <RadioGroup
                             android:id="@+id/q701radioGroup"

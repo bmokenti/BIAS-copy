@@ -66,7 +66,7 @@ public class q702 extends AppCompatActivity implements Serializable {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 } else {
-
+                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ702(selected.getText().toString().substring(0, 1));
                     Intent intent = new Intent(q702.this, q703.class);
                     intent.putExtra("Household", thisHouse);
                     startActivity(intent);

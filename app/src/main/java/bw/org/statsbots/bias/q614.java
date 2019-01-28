@@ -82,6 +82,8 @@ public class q614 extends AppCompatActivity implements Serializable {
                     }
                     else
                     {
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ614(selected.getText().toString().substring(0, 1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ614Other(edt.getText().toString());
 
                         Intent intent = new Intent(q614.this, q615.class);
                         intent.putExtra("Household", thisHouse);

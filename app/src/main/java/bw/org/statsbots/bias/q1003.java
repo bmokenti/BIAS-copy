@@ -61,12 +61,12 @@ public class q1003 extends AppCompatActivity {
 
                     if (rbtn2.isChecked()) {
                         Intent skipto1017 = new Intent(q1003.this, q1017.class);
-                        //skipto1017.putExtra("Household", thisHose);
+                        skipto1017.putExtra("Household", thisHouse);
                         startActivity(skipto1017);
                     } else {
-
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ1003(selectedRbtn.getText().toString().substring(0,1));
                         Intent intent = new Intent(q1003.this, q1004.class);
-                        //intent.putExtra("Household", thisHose);
+                        intent.putExtra("Household", thisHouse);
                         startActivity(intent);
                     }
                 }

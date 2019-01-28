@@ -117,9 +117,9 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
                     else
                         {
                             //Set q408 for the current individual
-                            //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                            //individual.setQ408(selectedRbtn.getText().toString().substring(0,1));
-                            //individual.setQ408a(selectedRbtn.getText().toString().substring(0,1));
+
+                            thisHouse.getIndividual()[p1.getLineNumber()].setQ408(selectedRbtn.getText().toString().substring(0,1));
+                            thisHouse.getIndividual()[p1.getLineNumber()].setQ408a(selectedRbtna.getText().toString().substring(0,1));
 
 
 

@@ -83,7 +83,7 @@ public class q1008 extends AppCompatActivity implements Serializable {
                     int selectedIda = rga.getCheckedRadioButtonId();
                     selectedRbtna = (RadioButton) findViewById(selectedIda);
 
-                    if (selectedRbtna == null) {
+                    if (selectedRbtna == null && rbtn2.isChecked()) {
                         lib.showError(q1008.this, "Q1008a: ERROR", "What was the MAIN REASON you did not take ARVs while you were pregnant?");
                         /**
                          * VIBRATE DEVICE
@@ -93,28 +93,27 @@ public class q1008 extends AppCompatActivity implements Serializable {
                     } else {
 
 
-                        if (rbtn2.isChecked()) {
-                            Intent skipto1010 = new Intent(q1008.this, q1010.class);
-                            skipto1010.putExtra("Household", thisHouse);
-                            startActivity(skipto1010);
+                        if (rbtnaOther.isChecked() && edtOther.length() == 0) {
+                            lib.showError(q1008.this, "Q1008a: ERROR : Other specify", "Please specify or deselect other option");
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
                         } else {
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1008(selectedRbtn.getText().toString().substring(0,1));
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1008a(selectedRbtna.getText().toString().substring(0,1));
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1008a_Other(edtOther.getText().toString());
 
-
-                            if (rbtna1.isChecked() || rbtna2.isChecked() || rbtna3.isChecked() || rbtna4.isChecked() || rbtna5.isChecked() || rbtna6.isChecked() || rbtna7.isChecked() || rbtna8.isChecked() || rbtna10.isChecked() || rbtnaOther.isChecked()) {
-                                Intent skipto1009 = new Intent(q1008.this, q1010.class);
-                                skipto1009.putExtra("Household", thisHouse);
-                                startActivity(skipto1009);
-                            }
+                            Intent skipto1009 = new Intent(q1008.this, q1010.class);
+                            skipto1009.putExtra("Household", thisHouse);
+                            startActivity(skipto1009);
                         }
+                    }
+                }
 
 
                     }
-                }
-            }
-
-
-
-
         });
     }
 
@@ -175,9 +174,9 @@ public class q1008 extends AppCompatActivity implements Serializable {
                 break;
 
             case R.id.q1008a_other:
-                if(checked)
-                edtOther.setVisibility(View.VISIBLE);
-
+                if(checked) {
+                    edtOther.setVisibility(View.VISIBLE);
+                }
                 else
                     edtOther.setVisibility(View.INVISIBLE);
                 edtOther.setText("");

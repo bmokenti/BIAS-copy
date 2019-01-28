@@ -212,7 +212,6 @@
                             android:ems="3"
                             android:gravity="center"
                             android:inputType="text"
-                            android:maxLength="2"
                             android:padding="3dp"
                             android:visibility="invisible"/>
 

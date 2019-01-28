@@ -50,7 +50,7 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
         q1101atext = findViewById(R.id.q1101atxt);
         rg1 = (RadioGroup) findViewById(R.id.q1101radioGroup);
         rg2 = (RadioGroup) findViewById(R.id.q1101radioGroupa);
-        //q1101aOther = findViewById(R.id.q1101)
+
 
         //rbtn1.setOnClickListener(this);
         //rbtn2.setOnClickListener(this);
@@ -153,16 +153,11 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
 
 
                     } else {
-                        //Set q101 for the current individual
-                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ103(selectedRbtn.getText().toString().substring(0,1));
+                        //Set q1101 for the current individual
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ1101(selectedRbtn.getText().toString().substring(0,1));
+                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ1101a(selectedRbtn1.getText().toString().substring(0,1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ1101aOther(ed.getText().toString().substring(0,1));
 
-                       // individual.setQ1101a(selectedRbtn1.getText().toString().substring(0,1));
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-                        // selectedRbtn.getText().toString().substring(0, 1);
                         Intent q1o3 = new Intent(q1101.this, q1102.class);
                         q1o3.putExtra("Household", thisHouse);
                         startActivity(q1o3);

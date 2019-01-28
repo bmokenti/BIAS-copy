@@ -23,6 +23,8 @@ public class q302 extends AppCompatActivity {
     protected RadioButton rbtn1, rbtn2;
     protected RadioGroup rg ;
     protected TextView txt1;
+    PersonRoster p1 = null;
+    Individual pp1 = null;
     protected RadioButton selectedRbtn1 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class q302 extends AppCompatActivity {
 
 
 
-        setTitle("Q301: ALCOHOL CONSUMPTION AND SUBSTANCE USE");
+        setTitle("Q302: ALCOHOL CONSUMPTION AND SUBSTANCE USE");
         lib = new LibraryClass();
         rbtn1 = (RadioButton) findViewById(R.id.q302_1);
         rbtn2 = (RadioButton) findViewById(R.id.q302_2);
@@ -93,9 +95,24 @@ public class q302 extends AppCompatActivity {
                     positiveButton.setLayoutParams(positiveButtonLL);
 
 
-                }  else {
+                }
+                else
+                {
+                    if(rbtn2.isChecked()){
                         //Set q302 for the current individual
-                        //individual.setQ302(selectedRbtn1.getText().toString().substring(0,1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ302(selectedRbtn1.getText().toString().substring(0,1));
+
+
+
+                        Intent q1o2 = new Intent(q302.this, q305.class);
+                        q1o2.putExtra("Household", thisHouse);
+                        startActivity(q1o2);
+
+                    }
+
+                    else {
+                        //Set q302 for the current individual
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ302(selectedRbtn1.getText().toString().substring(0,1));
 
 
 
@@ -104,6 +121,7 @@ public class q302 extends AppCompatActivity {
                         startActivity(q1o2);
 
                     }
+                }
 
                 }
 

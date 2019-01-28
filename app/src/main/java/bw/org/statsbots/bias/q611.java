@@ -87,6 +87,9 @@ public class q611 extends AppCompatActivity implements Serializable {
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
 
+                    }
+                    else
+                    {
                         int selectedId3 = rbtngroupc.getCheckedRadioButtonId();
                         selected2 = (RadioButton) findViewById(selectedId3);
                         if (selected2 == null) {
@@ -95,14 +98,15 @@ public class q611 extends AppCompatActivity implements Serializable {
                             /**
                              * VIBRATE DEVICE
                              */
-                            Vibrator vibs1 = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
-                        } else {
+                        }
+                        else {
 
                             //Set Q611 and Q611a, 611b, 611c for the current individual
-                            //indv.setQ611a(selected.getText().toString().substring(0, 1));
-                           // indv.setQ611b(selected1.getText().toString().substring(0, 1));
-                            //indv.setQ611c(selected2.getText().toString().substring(0, 1));
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ611a(selected.getText().toString().substring(0, 1));
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ611b(selected1.getText().toString().substring(0, 1));
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ611c(selected2.getText().toString().substring(0, 1));
 
                             Intent intent = new Intent(q611.this, q612.class);
                             intent.putExtra("Household", thisHouse);

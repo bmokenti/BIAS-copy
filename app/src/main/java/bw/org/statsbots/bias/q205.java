@@ -25,6 +25,8 @@ public class q205 extends AppCompatActivity implements Serializable {
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5, rbtna6, rbtna7;
     protected RadioGroup rg, rga;
     protected TextView txt1, txt2;
+    PersonRoster p1 = null;
+    Individual pp1 = null;
     protected RadioButton selectedRbtn1, selectedRbtn2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,8 +134,8 @@ public class q205 extends AppCompatActivity implements Serializable {
 
                     } else {
                         //Set q205 for the current individual
-                        individual.setQ205(selectedRbtn1.getText().toString().substring(0, 1));
-                        individual.setQ205a(selectedRbtn2.getText().toString().substring(0, 1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ205(selectedRbtn1.getText().toString().substring(0, 1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ205a(selectedRbtn2.getText().toString().substring(0, 1));
 
 
                         Intent q1o2 = new Intent(q205.this, q301.class);

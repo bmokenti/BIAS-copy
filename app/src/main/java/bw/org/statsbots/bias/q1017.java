@@ -68,6 +68,7 @@ public class q1017 extends AppCompatActivity {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 }  else {
+                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ1017(selectedRbtn.getText().toString().substring(0,1));
 
                     Intent intent = new Intent(q1017.this, q1101.class);
                     intent.putExtra("Household", thisHouse);

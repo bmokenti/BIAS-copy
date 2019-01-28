@@ -104,7 +104,7 @@
                             android:id="@+id/q1015_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
+                            android:onClick="onRadioButtonClicked"
                             android:text="@string/q1015_1" />
 
 
@@ -112,14 +112,14 @@
                             android:id="@+id/q1015_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
+                            android:onClick="onRadioButtonClicked"
                             android:text="@string/q1015_2" />
 
                         <RadioButton
                             android:id="@+id/q1015_9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
+                            android:onClick="onRadioButtonClicked"
                             android:text="@string/q1015_9" />
 
                     </RadioGroup>
@@ -160,34 +160,36 @@
                             android:id="@+id/q1015a_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:onClick="onRadioButtonClicked"
                             android:text="@string/q1015a_1" />
 
                         <RadioButton
                             android:id="@+id/q1015a_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:onClick="onRadioButtonClicked"
                             android:text="@string/q1015a_2" />
 
                         <RadioButton
                             android:id="@+id/q1015a_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:onClick="onRadioButtonClicked"
                             android:text="@string/q1015a_3" />
 
                         <RadioButton
                             android:id="@+id/q1015a_4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:onClick="onRadioButtonClicked"
                             android:text="@string/q1015a_4" />
 
                         <RadioButton
                             android:id="@+id/q1015a_9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:onClick="onRadioButtonClicked"
                             android:text="@string/q1015a_9" />
-
-
-
 
                     </RadioGroup>
 

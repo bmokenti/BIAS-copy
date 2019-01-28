@@ -51,9 +51,9 @@ public class q612 extends AppCompatActivity  implements Serializable{
 
         //final int selectedId1 = rbtngroup1.getCheckedRadioButtonId();
 
-        //Intent i = getIntent();
-       // thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        //int p=0;
+        Intent i = getIntent();
+        thisHouse = (HouseHold)i.getSerializableExtra("Household");
+       int p=0;
 
 
         /**
@@ -81,10 +81,12 @@ public class q612 extends AppCompatActivity  implements Serializable{
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
-               } else {
+               } else
+                   {
                     int selectedId1 = rbtngroup1.getCheckedRadioButtonId();
                     selected1 = (RadioButton) findViewById(selectedId1);
                     if (selected1  == null && rbtn1.isChecked() ) {
+
                         lib.showError(q612.this, "Q612a Error", "Please select a value for q612a");
                         /**
                          * VIBRATE DEVICE
@@ -103,8 +105,9 @@ public class q612 extends AppCompatActivity  implements Serializable{
                         } else {
 
                             //Set Q612 and Q612a for the current individual
-                           // indv.setQ612(selected.getText().toString().substring(0, 1));
-                            //indv.setQ612a(selected.getText().toString().substring(0, 1));
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ612(selected.getText().toString().substring(0, 1));
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ612a(selected1.getText().toString().substring(0, 1));
+                          //thisHouse.getIndividual()[p1.getLineNumber()].setQ612aOther(edt.getText().toString());
 
                             Intent intent = new Intent(q612.this, q613.class);
                             intent.putExtra("Household", thisHouse);
@@ -148,6 +151,8 @@ public class q612 extends AppCompatActivity  implements Serializable{
                         rbtna2.setChecked(false);
                         rbtna9.setChecked(false);
                         rbtnaOther.setChecked(false);
+                        edt.setVisibility(View.INVISIBLE);
+                        edt.setText("");
                         q612atext.setTextColor(Color.LTGRAY);
 
                     }
@@ -161,6 +166,8 @@ public class q612 extends AppCompatActivity  implements Serializable{
                         rbtna2.setChecked(false);
                         rbtna9.setChecked(false);
                         rbtnaOther.setChecked(false);
+                        edt.setVisibility(View.INVISIBLE);
+                        edt.setText("");
                         q612atext.setTextColor(Color.LTGRAY);
 
                     }
@@ -169,19 +176,20 @@ public class q612 extends AppCompatActivity  implements Serializable{
                 if (checked)
 
                     edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
 
                 break;
             case R.id.q612a_2:
                 if (checked)
 
                     edt.setVisibility(View.INVISIBLE);
-
+                edt.setText("");
                 break;
             case R.id.q612a_9:
                 if (checked)
 
                     edt.setVisibility(View.INVISIBLE);
-
+                edt.setText("");
 
                 break;
             case R.id.q612a_other:

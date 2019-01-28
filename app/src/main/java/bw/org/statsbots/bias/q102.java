@@ -67,10 +67,9 @@ public class q102 extends AppCompatActivity implements Serializable {
 
                     }
                     else{
-                        //individual.setQ102(edt.getText().toString());
-                        //Set P02 fir the current individual
-                        //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
-                        //Restart the current activity for next individual
+                        //Set Q102 for the current individual
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ102(edt.getText().toString());
+
 
 
                             //Next question P17

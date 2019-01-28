@@ -25,6 +25,8 @@ public class q301 extends AppCompatActivity {
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2;
     protected RadioGroup rg, rga;
     protected TextView txt1;
+    PersonRoster p1 = null;
+    Individual pp1 = null;
     protected RadioButton selectedRbtn1, selectedRbtn2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,8 +133,8 @@ public class q301 extends AppCompatActivity {
 
                     } else {
                         //Set q301 for the current individual
-                        //individual.setQ301(selectedRbtn1.getText().toString().substring(0, 1));
-                        //individual.setQ301a(selectedRbtn2.getText().toString().substring(0, 1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ301(selectedRbtn1.getText().toString().substring(0, 1));
+                      // thisHouse.getIndividual()[p1.getLineNumber()].setQ301a(selectedRbtn2.getText().toString().substring(0, 1));
 
 
                         Intent q1o2 = new Intent(q301.this, q302.class);

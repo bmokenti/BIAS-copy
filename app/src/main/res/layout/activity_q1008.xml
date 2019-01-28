@@ -240,7 +240,6 @@
                             android:ems="3"
                             android:gravity="center"
                             android:inputType="text"
-                            android:maxLength="2"
                             android:padding="3dp"
                             android:visibility="invisible"/>
 
@@ -275,7 +274,7 @@
             android:text="@string/previous" />
 
         <Button
-            android:id="@+id/btnNext"
+            android:id="@+id/button"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

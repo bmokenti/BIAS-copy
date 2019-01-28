@@ -113,8 +113,12 @@ public class q905 extends AppCompatActivity implements Serializable {
                     }
                     else {
 
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ905(edtdays.getText().toString());
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ905a(selectedRbtna.getText().toString().substring(0,1));
+                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ905aOther(edtaother.getText().toString());
+
                         Intent intent = new Intent(q905.this, q1001.class);
-                        //intent.putExtra("Household", thisHose);
+                        intent.putExtra("Household", thisHouse);
                         startActivity(intent);
                     }
 
@@ -136,12 +140,13 @@ public class q905 extends AppCompatActivity implements Serializable {
                 if (checked) {
                     edtdays.setText("99");
                     edtdays.setEnabled(false);
-
+                    ck2txt.setChecked(false);
                 }
                 // Put some meat on the sandwich
                 else {
                     edtdays.setText("");
                     edtdays.setEnabled(true);
+
                     // Remove the meat
                 }
                 break;
@@ -150,6 +155,7 @@ public class q905 extends AppCompatActivity implements Serializable {
                 if (checked) {
                     edtdays.setText("00");
                     edtdays.setEnabled(false);
+                    ck1txt.setChecked(false);
 
                     // Put some meat on the sandwich
                 } else {

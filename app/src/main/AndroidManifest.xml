@@ -80,92 +80,286 @@
         <activity android:name=".P20" />
         <activity android:name=".P21" />
         <activity android:name=".q101" />
+
+
         <activity android:name=".q102" />
         <activity android:name=".q103" />
-        <activity android:name=".q104"></activity>
-        <activity android:name=".q106"></activity>
-        <activity android:name=".q107"></activity>
-        <activity android:name=".Q201"></activity>
-        <activity android:name=".q202"></activity>
-        <activity android:name=".q203"></activity>
-        <activity android:name=".q204"></activity>
-        <activity android:name=".q205"></activity>
-        <activity android:name=".q301"></activity>
-        <activity android:name=".q302"></activity>
-        <activity android:name=".q303"></activity>
-        <activity android:name=".q304"></activity>
-        <activity android:name=".q305"></activity>
-        <activity android:name=".q306"></activity>
-        <activity android:name=".q307"></activity>
-        <activity android:name=".q401" />
+        <activity android:name=".q104" >
+
+        </activity>
+        <activity android:name=".q105" >
+
+        </activity>
+        <activity android:name=".q106" >
+
+        </activity>
+
+        <activity android:name=".q107" >
+
+        </activity>
+        <activity android:name=".Q201" >
+
+        </activity>
+        <activity android:name=".q202" >
+
+        </activity>
+        <activity android:name=".q203" >
+
+        </activity>
+        <activity android:name=".q204" >
+
+        </activity>
+        <activity android:name=".q205" >
+
+        </activity>
+
+        <activity android:name=".q301" >
+
+        </activity>
+        <activity android:name=".q302" >
+
+        </activity>
+        <activity android:name=".q303" >
+
+        </activity>
+        <activity android:name=".q304" >
+
+        </activity>
+        <activity android:name=".q305" >
+
+        </activity>
+
+        <activity android:name=".q306" >
+
+        </activity>
+
+        <activity android:name=".q307" >
+
+        </activity>
+
+
+        <activity android:name=".q401" >
+
+    </activity>
         <activity android:name=".q402" />
         <activity android:name=".q403" />
-        <activity android:name=".q404"></activity>
-        <activity android:name=".q405"></activity>
-        <activity android:name=".q406"></activity>
-        <activity android:name=".q407"></activity>
-        <activity android:name=".q408"></activity>
-        <activity android:name=".q410"></activity>
-        <activity android:name=".q501"></activity>
+        <activity android:name=".q404" >
+
+        </activity>
+        <activity android:name=".q405" >
+
+        </activity>
+        <activity android:name=".q406" >
+
+        </activity>
+        <activity android:name=".q407" >
+
+        </activity>
+        <activity android:name=".q408" >
+
+        </activity>
+
+        <activity android:name=".q410" >
+
+        </activity>
+        <activity android:name=".q501" >
+
+        </activity>
         <activity android:name=".q502" />
-        <activity android:name=".q606"></activity>
-        <activity android:name=".q607"></activity>
-        <activity android:name=".q608"></activity>
-        <activity android:name=".q609"></activity>
-        <activity android:name=".q610"></activity>
-        <activity android:name=".q611"></activity>
-        <activity android:name=".q612"></activity>
-        <activity android:name=".q613"></activity>
-        <activity android:name=".q614"></activity>
-        <activity android:name=".q615"></activity>
-        <activity android:name=".q616"></activity>
-        <activity android:name=".q617"></activity>
-        <activity android:name=".q618"></activity>
-        <activity android:name=".q619"></activity>
-        <activity android:name=".q620"></activity>
-        <activity android:name=".q621"></activity>
-        <activity android:name=".q622"></activity>
-        <activity android:name=".q623"></activity>
-        <activity android:name=".q624"></activity>
-        <activity android:name=".q625"></activity>
-        <activity android:name=".q701"></activity>
-        <activity android:name=".q702"></activity>
-        <activity android:name=".q703"></activity>
-        <activity android:name=".q704"></activity>
-        <activity android:name=".q705"></activity>
-        <activity android:name=".q801"></activity>
-        <activity android:name=".q802"></activity>
-        <activity android:name=".q803"></activity>
-        <activity android:name=".q804"></activity>
-        <activity android:name=".q503" />
-        <activity android:name=".q504" />
-        <activity android:name=".q601"></activity>
-        <activity android:name=".q602"></activity>
-        <activity android:name=".q603"></activity>
-        <activity android:name=".q604"></activity>
-        <activity android:name=".q605"></activity>
-        <activity android:name=".q901"></activity>
-        <activity android:name=".q902"></activity>
-        <activity android:name=".q903"></activity>
-        <activity android:name=".q904"></activity>
-        <activity android:name=".q905"></activity>
-        <activity android:name=".q1001"></activity>
-        <activity android:name=".q1002"></activity>
-        <activity android:name=".q1003"></activity>
-        <activity android:name=".q1004"></activity>
-        <activity android:name=".q1005"></activity>
-        <activity android:name=".q1006"></activity>
-        <activity android:name=".q1007"></activity>
-        <activity android:name=".q1008"></activity>
-        <activity android:name=".q1009"></activity>
-        <activity android:name=".q1010"></activity>
-        <activity android:name=".q1011"></activity>
-        <activity android:name=".q1012"></activity>
-        <activity android:name=".q1013"></activity>
-        <activity android:name=".q1014"></activity>
-        <activity android:name=".q1015"></activity>
-        <activity android:name=".q1016"></activity>
-        <activity android:name=".q1017"></activity>
+        <activity android:name=".q503" >
+
+        </activity>
+        <activity android:name=".q504" >
+
+        </activity>
+        <activity android:name=".q606" >
+
+        </activity>
+        <activity android:name=".q607" >
+
+        </activity>
+        <activity android:name=".q608" >
+
+        </activity>
+        <activity android:name=".q609" >
+
+        </activity>
+        <activity android:name=".q610" >
+
+        </activity>
+        <activity android:name=".q611" >
+
+        </activity>
+        <activity android:name=".q612" >
+
+        </activity>
+        <activity android:name=".q613" >
+
+        </activity>
+        <activity android:name=".q614" >
+
+        </activity>
+        <activity android:name=".q615" >
+
+        </activity>
+        <activity android:name=".q616" >
+
+        </activity>
+        <activity android:name=".q617" >
+
+        </activity>
+        <activity android:name=".q618" >
+
+        </activity>
+        <activity android:name=".q619" >
+
+        </activity>
+        <activity android:name=".q620" >
+
+        </activity>
+        <activity android:name=".q621" >
+
+        </activity>
+        <activity android:name=".q622" >
+
+        </activity>
+
+
+        <activity android:name=".q623" >
+
+        </activity>
+        <activity android:name=".q624" >
+
+        </activity>
+        <activity android:name=".q625" >
+
+        </activity>
+
+        <activity android:name=".q701" >
+
+        </activity>
+        <activity android:name=".q702" >
+
+        </activity>
+        <activity android:name=".q703" >
+
+        </activity>
+        <activity android:name=".q704" >
+
+        </activity>
+        <activity android:name=".q705" >
+
+        </activity>
+
+        <activity android:name=".q801" >
+
+        </activity>
+        <activity android:name=".q802" >
+
+        </activity>
+        <activity android:name=".q803" >
+
+        </activity>
+        <activity android:name=".q804" >
+
+        </activity>
+
+
+
+        <activity android:name=".q601">
+
+        </activity>
+        <activity android:name=".q602">
+
+        </activity>
+            <activity android:name=".q603">
+
+            </activity>
+            <activity android:name=".q604">
+
+            </activity>
+            <activity android:name=".q605">
+
+
+    </activity>
+
+
+
+
+
+        <activity android:name=".q901">
+
+        </activity>
+        <activity android:name=".q902">
+
+        </activity>
+
+        <activity android:name=".q903">
+
+        </activity>
+
+        <activity android:name=".q904">
+
+        </activity>
+        <activity android:name=".q905">
+
+        </activity>
+        <activity android:name=".q1001">
+
+        </activity>
+        <activity android:name=".q1002">
+
+        </activity>
+        <activity android:name=".q1003">
+
+        </activity>
+        <activity android:name=".q1004">
+
+        </activity>
+        <activity android:name=".q1005">
+
+        </activity>
+
+
+        <activity android:name=".q1006">
+
+        </activity>
+        <activity android:name=".q1007">
+
+        </activity>
+        <activity android:name=".q1008">
+
+        </activity>
+
+        <activity android:name=".q1009">
+
+        </activity>
+        <activity android:name=".q1010">
+
+        </activity>
+        <activity android:name=".q1011">
+
+        </activity>
+        <activity android:name=".q1012">
+
+        </activity>
+        <activity android:name=".q1013">
+
+        </activity>
+        <activity android:name=".q1014">
+
+        </activity>
+        <activity android:name=".q1015">
+
+        </activity>
+        <activity android:name=".q1016">
+
+        </activity>
+
+        <activity android:name=".q1017">
+
+        </activity>
+
         <activity android:name=".q1101" />
         <activity android:name=".q1102" />
         <activity android:name=".q1103" />
@@ -173,7 +367,9 @@
         <activity
             android:name=".q1105"
             android:label="@string/title_activity_q1105" />
-        <activity android:name=".q1106"></activity>
+        <activity android:name=".q1106" >
+
+        </activity>
         <activity android:name=".q1107" />
         <activity android:name=".q1108" />
         <activity android:name=".q1109" />
@@ -232,7 +428,7 @@
             android:name=".Barcode"
             android:label="@string/title_activity_barcode" />
         <activity android:name=".deletethisone" />
-        <activity android:name=".ScanBarcode" />
+        <activity android:name=".ScanBarcode"></activity>
         <activity
             android:name=".HIV_15_17_P_Consent"
             android:label="@string/title_activity_hiv_15_16__p__consent" />
@@ -284,6 +480,7 @@
         <activity
             android:name=".H13"
             android:label="@string/title_activity_h13" />
+
     </application>
 
 </manifest>

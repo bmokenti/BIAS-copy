@@ -90,19 +90,12 @@ public class q403 extends AppCompatActivity implements View.OnClickListener, Ser
 
 
                 } else {
-                    //Set q101 for the current individual
-                    //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                   // individual.setQ403(selectedRbtn.getText().toString().substring(0,1));
-                    /**
-                     * If current person LineNumber is equal to TotalPersons-1
-                     * Proceed to next Question in the roster
-                     */
-                    // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                    //Next question q102
+                    //Set q402 for the current individual
+                 // thisHouse.getIndividual()[p1.getLineNumber()].setQ403(selectedRbtn.getText().toString().substring(0,1));
 
 
-                    Intent q1o2 = new Intent(q403.this, q501.class);
+
+                    Intent q1o2 = new Intent(q403.this, q404.class);
                     q1o2.putExtra("Household",  thisHouse);
                     startActivity(q1o2);
 

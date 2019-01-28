@@ -444,7 +444,6 @@
         I know it may be difficult to remember exactly , but I would like you to answer the questions to the best of your knowledge, as this
         information is very important for the survey. Again, this information is all completely private and anonymous and cannot be linked to you or any partner in any way.
         ...........................................................
-      Q401.  Have you ever had sexual intercourse?
 
     </string>
     <string name="q401_1">1. Yes</string>
@@ -908,9 +907,7 @@
     <string name="q301"> READ OUT..........Now i am going to ask you questions about alcohol and substance use. By alcohol we mean beer, spirits, wine,
         home brews (khadi etc), chibuku, whisky, etc. By substances we mean cocaine, heroin, glue, mandrax, ecstasy, marijuana (motokwane) etc. I would like you
         to answer the question to the best of your knowledge, as this information is very important for the survey. Again, this information is all completely is all
-        completely private and anonymous and cannot be linked to you or any way................................................................
-
-    q301.  Have you ever taken alcohol?
+        completely private and anonymous and cannot be linked to you or any way.................
     </string>
 
     <string name="q301_1">1. Yes</string>
@@ -1092,9 +1089,7 @@
 
 
     <string name="q601">
-        READ OUT::::::Now i am going to ask you some questions about knowledge about HIV and AIDS and TB. i would like you to answer the questions to the best of your knowledge.........................................
-
-        Q601.  Have you EVER heard of HIV or an illness called AIDS?
+        READ OUT::::::Now i am going to ask you some questions about knowledge about HIV and AIDS and TB. i would like you to answer the questions to the best of your knowledge.................
 
     </string>
     <string name="q601_1">1. Yes</string>
@@ -1556,7 +1551,7 @@
     <string name="q701">
 
         READ OUT::::::::::: Now i would like to ask you some questions about attitudes and what you think about people who are living with HIV and AIDS and TB............................................................
-      Q701. If a member of your family became sick with HIV AND AIDS, would you be willing to care for him or her in your household?
+
 
     </string>
     <string name="q701_1">1. Yes</string>
@@ -1890,7 +1885,7 @@
         and your children. Some of these questions may seem repetitive but please answer them all............................................................
 
 
-        Q1001. Are you currently pregnant?
+
 
     </string>
     <string name="q1001_1">1. Yes</string>

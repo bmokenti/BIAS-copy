@@ -172,14 +172,15 @@ public class q901 extends AppCompatActivity implements Serializable {
                         if (rbtn2.isChecked() && (rbtna1.isChecked() || rbtna2.isChecked() || rbtna3.isChecked()|| rbtna4.isChecked() || rbtna5.isChecked() || rbtna6.isChecked() || rbtna7.isChecked() || rbtna8.isChecked() || rbtna10.isChecked() || rbtna11.isChecked()|| rbtnaOther.isChecked())) {
                             // to include ea status code on the check
                             Intent q1o2 = new Intent(q901.this, q1001.class);
-                           //q1o2.putExtra("Household", thisHouse);
+                            q1o2.putExtra("Household", thisHouse);
                             startActivity(q1o2);
 
                         }  else {
                                 //Set q101 for the current individual
-                                //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                                //individual.setQ901(selectedRbtn.getText().toString().substring(0,1));
-                                //individual.setQ901a(selectedRbtn.getText().toString().substring(0,1));
+
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ901(selectedRbtn.getText().toString().substring(0,1));
+                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ901a(selectedRbtna.getText().toString().substring(0,1));
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ901a(edt.getText().toString());
 
 
                                 Intent intent = new Intent(q901.this, q902.class);

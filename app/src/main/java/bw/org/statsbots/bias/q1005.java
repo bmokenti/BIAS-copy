@@ -26,14 +26,12 @@ public class q1005 extends AppCompatActivity implements Serializable {
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5 ;
     protected RadioGroup rga, rg;
     protected TextView ta, tb;
-    protected EditText edtdays, edtmonths, edtyears, edtOther;
     protected RadioButton selectedRbtna, selectedRbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        setContentView(R.layout.activity_q1005);
 
         setTitle("Q1005: CHILD BEARING");
         lib = new LibraryClass();
@@ -41,36 +39,47 @@ public class q1005 extends AppCompatActivity implements Serializable {
 //btn = findViewById(R.id.btn);
 
 
-
-        rg = (RadioGroup)findViewById(R.id.q1005radioGroup) ;
+        rg = (RadioGroup) findViewById(R.id.q1005radioGroup);
         rbtn1 = (RadioButton) findViewById(R.id.q1005_1);
         rbtn2 = (RadioButton) findViewById(R.id.q1005_2);
 
-        rga = (RadioGroup)findViewById(R.id.q1005aGroup1) ;
+        rga = (RadioGroup) findViewById(R.id.q1005aGroup1);
         rbtna1 = (RadioButton) findViewById(R.id.q1005a_1);
         rbtna2 = (RadioButton) findViewById(R.id.q1005a_2);
         rbtna3 = (RadioButton) findViewById(R.id.q1005a_3);
         rbtna4 = (RadioButton) findViewById(R.id.q1005a_4);
         rbtna5 = (RadioButton) findViewById(R.id.q1005a_9);
 
-        ta = (TextView) findViewById(R.id.q1005a) ;
+        ta = (TextView) findViewById(R.id.q1005a);
 
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        int p = 0;
 
-        Button btnnext = findViewById(R.id.button);
-        btnnext.setOnClickListener(new View.OnClickListener() {
+        Button btnnext = (Button) findViewById(R.id.btnNext);
+        btnnext.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {
 
-                    int selectedId = rg.getCheckedRadioButtonId();
-                    selectedRbtn = (RadioButton) findViewById(selectedId);
+                int selectedId = rg.getCheckedRadioButtonId();
+                selectedRbtn = (RadioButton) findViewById(selectedId);
 
-                    if (selectedRbtn == null) {
-                        lib.showError(q1005.this, "Q1005: ERROR", " Have you ever tested for HIV before your pregnancy with this child?");
+                if (selectedRbtn == null) {
+                    lib.showError(q1005.this, "Q1005: ERROR", " Have you ever tested for HIV before your pregnancy with this child?");
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+                } else {
+
+                    int selectedIda = rga.getCheckedRadioButtonId();
+                    selectedRbtna = (RadioButton) findViewById(selectedIda);
+
+                    if (selectedRbtna == null && rbtn1.isChecked()) {
+                        lib.showError(q1005.this, "Q1005a: ERROR", "What was the result of the test?");
                         /**
                          * VIBRATE DEVICE
                          */
@@ -78,17 +87,15 @@ public class q1005 extends AppCompatActivity implements Serializable {
                         vibs.vibrate(100);
                     } else {
 
-                        int selectedIda = rga.getCheckedRadioButtonId();
-                        selectedRbtna = (RadioButton) findViewById(selectedIda);
 
-                        if (selectedRbtna == null) {
-                            lib.showError(q1005.this, "Q1005a: ERROR", "What was the result of the test?");
-                            /**
-                             * VIBRATE DEVICE
-                             */
-                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                            vibs.vibrate(100);
+                        if (rbtna2.isChecked() || rbtna3.isChecked() || rbtna4.isChecked() || rbtna5.isChecked()) {
+
+                            Intent intent = new Intent(q1005.this, q1007.class);
+                            intent.putExtra("Household", thisHouse);
+                            startActivity(intent);
                         } else {
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1005(selectedRbtn.getText().toString().substring(0,1));
+                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1005a(selectedRbtna.getText().toString().substring(0,1));
 
                             Intent intent = new Intent(q1005.this, q1006.class);
                             intent.putExtra("Household", thisHouse);
@@ -98,6 +105,7 @@ public class q1005 extends AppCompatActivity implements Serializable {
                         }
                     }
                 }
+            }
 
         });
     }

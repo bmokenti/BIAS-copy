@@ -166,9 +166,16 @@ public class q903 extends AppCompatActivity implements Serializable {
                                             vibs.vibrate(100);
                                         }
                                         else {
+                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903a(selectedRbtn1.getText().toString().substring(0,1));
+                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903b(selectedRbtn2.getText().toString().substring(0,1));
+                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903c(selectedRbtn3.getText().toString().substring(0,1));
+                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903d(selectedRbtn4.getText().toString().substring(0,1));
+                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ903e(selectedRbtn5.getText().toString().substring(0,1));
+                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903f(selectedRbtn6.getText().toString().substring(0,1));
+                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903g(selectedRbtn7.getText().toString().substring(0,1));
 
                                             Intent intent = new Intent(q903.this, q904.class);
-                                            //intent.putExtra("Household", thisHose);
+                                            intent.putExtra("Household", thisHouse);
                                             startActivity(intent);
                                         }
                                     }

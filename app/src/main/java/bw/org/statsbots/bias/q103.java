@@ -42,8 +42,9 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
 
 //        final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
-       // Intent i = getIntent();
-       // thisHouse = (HouseHold)i.getSerializableExtra("Household");
+       Intent i = getIntent();
+       thisHouse = (HouseHold)i.getSerializableExtra("Household");
+
         int p=0;
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +58,7 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
                     builder.setTitle("Q103: Attended school?");
                     builder.setIcon(R.drawable.ic_warning_orange_24dp);
 
-                    builder.setMessage("Have \"+ p1.getP01() + \"' ever attended school?");
+                    builder.setMessage("Have ever attended school?");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 
@@ -81,8 +82,8 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
 
                 } else {
 
-                    individual.setQ103(selectedRbtn.getText().toString().substring(0, 1));
-                    if (individual.getQ103().equals("3")) {
+
+                    if (rbtn3.isChecked()) {
                         Intent q1o3 = new Intent(q103.this, q105.class);
                         q1o3.putExtra("Household", thisHouse);
                         startActivity(q1o3);

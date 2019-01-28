@@ -38,7 +38,7 @@ public class q1015 extends AppCompatActivity {
         lib = new LibraryClass();
 
 //btn = findViewById(R.id.btn);
-        rg = (RadioGroup)findViewById(R.id.q1014radioGroup) ;
+        rg = (RadioGroup)findViewById(R.id.q1015radioGroup) ;
         rbtn1 = (RadioButton) findViewById(R.id.q1015_1);
         rbtn2 = (RadioButton) findViewById(R.id.q1015_2);
         rbtn3 = (RadioButton) findViewById(R.id.q1015_9);
@@ -69,6 +69,7 @@ public class q1015 extends AppCompatActivity {
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 int selectedId = rg.getCheckedRadioButtonId();
                 selectedRbtn = (RadioButton) findViewById(selectedId);
 
@@ -84,7 +85,7 @@ public class q1015 extends AppCompatActivity {
                     int selectedIda = rga.getCheckedRadioButtonId();
                     selectedRbtna = (RadioButton) findViewById(selectedIda);
 
-                    if (selectedRbtna == null) {
+                    if (selectedRbtna == null && rbtn1.isChecked()) {
                         lib.showError(q1015.this, "Q1015a: ERROR", " What were the results of the child?");
                         /**
                          * VIBRATE DEVICE
@@ -93,10 +94,10 @@ public class q1015 extends AppCompatActivity {
                         vibs.vibrate(100);
                     } else {
 
-                        int selectedIdb = rga.getCheckedRadioButtonId();
+                        int selectedIdb = rgb.getCheckedRadioButtonId();
                         selectedRbtnb = (RadioButton) findViewById(selectedIdb);
 
-                        if (selectedRbtna == null) {
+                        if (selectedRbtnb == null && rbtna1.isChecked() && rbtn1.isChecked() ) {
                             lib.showError(q1015.this, "Q1015b: ERROR", "Was the child given ARVs?");
                             /**
                              * VIBRATE DEVICE
@@ -104,16 +105,23 @@ public class q1015 extends AppCompatActivity {
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
                         } else {
+                            if (rbtn2.isChecked() || rbtn3.isChecked()) {
+                                Intent intent1 = new Intent(q1015.this, q1101.class);
+                                intent1.putExtra("Household", thisHouse);
+                                startActivity(intent1);
+                            } else {
+                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1015(selectedRbtn.getText().toString().substring(0,1));
+                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1015a(selectedRbtna.getText().toString().substring(0,1));
+                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1015b(selectedRbtnb.getText().toString().substring(0,1));
+                                Intent intent = new Intent(q1015.this, q1016.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent);
 
-                            Intent intent = new Intent(q1015.this, q1016.class);
-                            intent.putExtra("Household", thisHouse);
-                            startActivity(intent);
 
-
+                            }
                         }
                     }
                 }
-
             }
 
 

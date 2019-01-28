@@ -20,10 +20,11 @@ public class q402 extends AppCompatActivity implements Serializable {
 
     protected HouseHold thisHouse;
     protected Individual individual;
+    Individual pp1 = null;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib, lib2;
-    protected RadioButton rbtn99, rbtn1a, rbtn2a, rbtn4, rbtn1b, rbtn2b, rbtn3b,  selectedRbtn, selectedRbtn1 ;
+    protected RadioButton rbtn99, rbtn1a, rbtn2a, rbtn4, rbtn1b, rbtn2b, rbtn3b,  selectedRbtn, selectedRbtn1;
     protected RadioGroup rbtngroupa, rbtngroupb;
     protected EditText edtq402;
     protected CheckBox chk99;
@@ -76,20 +77,25 @@ public class q402 extends AppCompatActivity implements Serializable {
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (chk99.isChecked() && edtq402.length() > 0) {
-                    lib.showError(q402.this, "Q402 Other", "If age has value, dont know should not be selected");
-                    rbtn99.setChecked(false);
-                    edtq402.setText("");
+
+                //  individual.setQ402(edtq402.getText().toString());
+
+                if (!chk99.isChecked() && edtq402.length() == 0) {
+                    lib.showError(q402.this, "Q402 Other", "Please enter age or select Don't know");
+
                     /**
                      * VIBRATE DEVICE
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 } else {
-                  //  individual.setQ402(edtq402.getText().toString());
+                    //individual.setQ402(selectedRbtn.getText().toString().substring(0,1));
+                    int selectedId = rbtngroupa.getCheckedRadioButtonId();
+                    selectedRbtn = (RadioButton) findViewById(selectedId);
 
-                    if (!chk99.isChecked() && edtq402.length() == 0) {
-                        lib.showError(q402.this, "Q402 Other", "Please enter age or select Don't know");
+
+                    if (selectedRbtn == null) {
+                        lib.showError(q402.this, "Q402A: Error ", "Q402a Please select an answer");
 
                         /**
                          * VIBRATE DEVICE
@@ -98,33 +104,36 @@ public class q402 extends AppCompatActivity implements Serializable {
                         vibs.vibrate(100);
                     } else {
                         //individual.setQ402(selectedRbtn.getText().toString().substring(0,1));
-                        int selectedId = rbtngroupa.getCheckedRadioButtonId();
-                        selectedRbtn = (RadioButton) findViewById(selectedId);
+
 
                         int selectedId1 = rbtngroupb.getCheckedRadioButtonId();
                         selectedRbtn1 = (RadioButton) findViewById(selectedId1);
 
-                        if (selectedRbtn == null || selectedRbtn1 == null) {
-                            lib.showError(q402.this, "Q402 ", "Q402a/Q402b Please select an answer");
+                        if (selectedRbtn1 == null) {
+                            lib.showError(q402.this, "Q402B: Error ", "Q402b Please select an answer");
 
                             /**
                              * VIBRATE DEVICE
                              */
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
-                        }  else {
-                            //individual.setQ402a(selectedRbtn.getText().toString().substring(0,1));
-                            //individual.setQ402b(selectedRbtn1.getText().toString().substring(0,1));
-                                //Check if country entered is in the list
-                                Intent intent = new Intent(q402.this, q403.class);
-                                intent.putExtra("Household", thisHouse);
-                                startActivity(intent);
+                        } else {
+
+                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ402(edtq402.getText().toString());
+                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ402a(selectedRbtn.getText().toString().substring(0, 1));
+                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ402b(selectedRbtn1.getText().toString().substring(0, 1));
+
+                            //Check if country entered is in the list
+                            Intent intent = new Intent(q402.this, q403.class);
+                            intent.putExtra("Household", thisHouse);
+                            startActivity(intent);
 
 
-                            }
                         }
                     }
+
                 }
+            }
 
         });
     }
@@ -172,7 +181,7 @@ public class q402 extends AppCompatActivity implements Serializable {
             // viewa.setEnabled(true);
 
             edtq402.setEnabled(false);
-            edtq402.setText("");
+            edtq402.setText("99");
 
         }
         // Put some meat on the sandwich
@@ -186,31 +195,6 @@ public class q402 extends AppCompatActivity implements Serializable {
 
 
 }
-
-/*
-  String txtq402cvalue = txtq402text.getText().toString();
-        if (txtq402cvalue == null || txtq402cvalue.length() == 0) {
-           lib.showError(q402.this, " Q402 Error ", "Please enter age");
-
-Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            vibs.vibrate(100);
-                    rbtn1.setVisibility(View.VISIBLE);
-                    } else {
-                    //Check if country entered is in the list
-                    if (rbtn1.getText().equals(selected))
-                    {
-                    txtq402text.setVisibility(View.INVISIBLE);
-                    }
-                    else {
-                    // txtq402text.setVisibility(View.VISIBLE);
-                    //rbtn1.setVisibility(View.INVISIBLE);
-                    }
-
-                    }
- */
-
-
-
 
 
 

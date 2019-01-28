@@ -22,7 +22,8 @@ public class q203 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
-
+    PersonRoster p1 = null;
+    Individual pp1 = null;
     protected EditText edt;
     protected RadioButton selectedRbtn;
     @Override
@@ -39,7 +40,7 @@ public class q203 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
-        Button btnext = findViewById(R.id.btnnext);
+        Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
 
@@ -85,7 +86,7 @@ public class q203 extends AppCompatActivity implements Serializable {
 
                     } else {
                         //Set q101 for the current individual
-                        individual.setQ203(selectedRbtn.getText().toString());
+                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ203(edt.getText().toString());
 
                         /**
                          * If current person LineNumber is equal to TotalPersons-1

@@ -12,6 +12,25 @@ public class Individual implements Serializable {
     private String Q102;
     private String Q103;
     private String Q104;
+
+    public String getQ104a() {
+        return Q104a;
+    }
+
+    public void setQ104a(String q104a) {
+        Q104a = q104a;
+    }
+
+    public String getQ104b() {
+        return Q104b;
+    }
+
+    public void setQ104b(String q104b) {
+        Q104b = q104b;
+    }
+
+    private String Q104a;
+    private String Q104b;
     private String Q104c;
     private String Q104cBISCED;
     private String Q105;
@@ -26,6 +45,72 @@ public class Individual implements Serializable {
     private String Q106b;
     private String Q106c;
     private String Q106d;
+
+    public String getQ107() {
+        return Q107;
+    }
+
+    public void setQ107(String q107) {
+        Q107 = q107;
+    }
+
+    public String getQ107aYY() {
+        return Q107aYY;
+    }
+
+    public void setQ107aYY(String q107aYY) {
+        Q107aYY = q107aYY;
+    }
+
+    public String getQ107aMnth() {
+        return Q107aMnth;
+    }
+
+    public void setQ107aMnth(String q107aMnth) {
+        Q107aMnth = q107aMnth;
+    }
+
+    public String getQ107b() {
+        return Q107b;
+    }
+
+    public void setQ107b(String q107b) {
+        Q107b = q107b;
+    }
+
+    public String getQ107bOther() {
+        return Q107bOther;
+    }
+
+    public void setQ107bOther(String q107bOther) {
+        Q107bOther = q107bOther;
+    }
+
+    public String getQ107c() {
+        return Q107c;
+    }
+
+    public void setQ107c(String q107c) {
+        Q107c = q107c;
+    }
+
+    public String getQ107cOther() {
+        return Q107cOther;
+    }
+
+    public void setQ107cOther(String q107cOther) {
+        Q107cOther = q107cOther;
+    }
+
+    private String Q107;
+    private String Q107aYY;
+    private String Q107aMnth;
+    private String Q107b;
+    private String Q107bOther;
+    private String Q107c;
+    private String Q107cOther;
+
+
 
     public String getQ201() {
         return Q201;
@@ -236,24 +321,18 @@ public class Individual implements Serializable {
         Q404_3 = q404_3;
     }
 
-    public String getQ404a_1() {
-        return Q404a_1;
+
+
+    public String getQ404a() {
+        return Q404a;
     }
 
-    public void setQ404a_1(String q404a_1) {
-        Q404a_1 = q404a_1;
+    public void setQ404a(String q404a) {
+        Q404a = q404a;
     }
 
-    public String getQ404a_2() {
-        return Q404a_2;
-    }
+    private String Q404a;
 
-    public void setQ404a_2(String q404a_2) {
-        Q404a_2 = q404a_2;
-    }
-
-    private String Q404a_1;
-    private String Q404a_2;
     private String Q405;
     private String Q406;
     private String Q407;
@@ -323,6 +402,64 @@ public class Individual implements Serializable {
     private String Q504_10;
     private String Q504_Other;
     private String Q504_OtherSpecify;
+    private String Q602_4;
+    private String Q602_5;
+    private String Q602_6;
+    private String Q602_7;
+    private String Q602_8;
+    private String Q602_10;
+    private String Q602_11;
+    private String Q602_12;
+    private String Q602_13;
+    private String Q602_14;
+    private String Q602_15;
+    private String Q602_Other;
+    private String Q602_Otherspecify;
+
+
+    private String Q603_1;
+    private String Q603_2;
+    private String Q603_3;
+    private String Q603_4;
+    private String Q603_5;
+    private String Q603_6;
+    private String Q603_7;
+    private String Q603_8;
+    private String Q603_9;
+    private String Q603_Other;
+    private String Q603_Otherspecify;
+
+
+    private String Q604;
+    private String Q604a;
+    private String Q604b_1;
+    private String Q604b_2;
+    private String Q604b_3;
+    private String Q604b_4;
+    private String Q604b_5;
+    private String Q604b_6;
+    private String Q604b_7;
+    private String Q604b_8;
+    private String Q604b_10;
+    private String Q604b_11;
+    private String Q604b_12;
+    private String Q604b_13;
+    private String Q604b_14;
+    private String Q604b_15;
+    private String Q604b_Other;
+    private String Q604b_Otherspecify;
+
+    private String Q605_1;
+    private String Q605_2;
+    private String Q605_3;
+    private String Q605_4;
+    private String Q605_5;
+    private String Q605_9;
+    private String Q605_Other;
+    private String Q605_Otherspecify;
+
+
+
 
     public String getQ601() {
         return Q601;
@@ -342,6 +479,435 @@ public class Individual implements Serializable {
 
     private String Q601;
     private String Q601a;
+    private String Q602_1;
+    private String Q602_2;
+    private String Q602_3;
+
+    public String getQ602_1() {
+        return Q602_1;
+    }
+
+    public void setQ602_1(String q602_1) {
+        Q602_1 = q602_1;
+    }
+
+    public String getQ602_2() {
+        return Q602_2;
+    }
+
+    public void setQ602_2(String q602_2) {
+        Q602_2 = q602_2;
+    }
+
+    public String getQ602_3() {
+        return Q602_3;
+    }
+
+    public void setQ602_3(String q602_3) {
+        Q602_3 = q602_3;
+    }
+
+    public String getQ602_4() {
+        return Q602_4;
+    }
+
+    public void setQ602_4(String q602_4) {
+        Q602_4 = q602_4;
+    }
+
+    public String getQ602_5() {
+        return Q602_5;
+    }
+
+    public void setQ602_5(String q602_5) {
+        Q602_5 = q602_5;
+    }
+
+    public String getQ602_6() {
+        return Q602_6;
+    }
+
+    public void setQ602_6(String q602_6) {
+        Q602_6 = q602_6;
+    }
+
+    public String getQ602_7() {
+        return Q602_7;
+    }
+
+    public void setQ602_7(String q602_7) {
+        Q602_7 = q602_7;
+    }
+
+    public String getQ602_8() {
+        return Q602_8;
+    }
+
+    public void setQ602_8(String q602_8) {
+        Q602_8 = q602_8;
+    }
+
+    public String getQ602_10() {
+        return Q602_10;
+    }
+
+    public void setQ602_10(String q602_10) {
+        Q602_10 = q602_10;
+    }
+
+    public String getQ602_11() {
+        return Q602_11;
+    }
+
+    public void setQ602_11(String q602_11) {
+        Q602_11 = q602_11;
+    }
+
+    public String getQ602_12() {
+        return Q602_12;
+    }
+
+    public void setQ602_12(String q602_12) {
+        Q602_12 = q602_12;
+    }
+
+    public String getQ602_13() {
+        return Q602_13;
+    }
+
+    public void setQ602_13(String q602_13) {
+        Q602_13 = q602_13;
+    }
+
+    public String getQ602_14() {
+        return Q602_14;
+    }
+
+    public void setQ602_14(String q602_14) {
+        Q602_14 = q602_14;
+    }
+
+    public String getQ602_15() {
+        return Q602_15;
+    }
+
+    public void setQ602_15(String q602_15) {
+        Q602_15 = q602_15;
+    }
+
+    public String getQ602_Other() {
+        return Q602_Other;
+    }
+
+    public void setQ602_Other(String q602_Other) {
+        Q602_Other = q602_Other;
+    }
+
+    public String getQ602_Otherspecify() {
+        return Q602_Otherspecify;
+    }
+
+    public void setQ602_Otherspecify(String q602_Otherspecify) {
+        Q602_Otherspecify = q602_Otherspecify;
+    }
+
+    public String getQ603_1() {
+        return Q603_1;
+    }
+
+    public void setQ603_1(String q603_1) {
+        Q603_1 = q603_1;
+    }
+
+    public String getQ603_2() {
+        return Q603_2;
+    }
+
+    public void setQ603_2(String q603_2) {
+        Q603_2 = q603_2;
+    }
+
+    public String getQ603_3() {
+        return Q603_3;
+    }
+
+    public void setQ603_3(String q603_3) {
+        Q603_3 = q603_3;
+    }
+
+    public String getQ603_4() {
+        return Q603_4;
+    }
+
+    public void setQ603_4(String q603_4) {
+        Q603_4 = q603_4;
+    }
+
+    public String getQ603_5() {
+        return Q603_5;
+    }
+
+    public void setQ603_5(String q603_5) {
+        Q603_5 = q603_5;
+    }
+
+    public String getQ603_6() {
+        return Q603_6;
+    }
+
+    public void setQ603_6(String q603_6) {
+        Q603_6 = q603_6;
+    }
+
+    public String getQ603_7() {
+        return Q603_7;
+    }
+
+    public void setQ603_7(String q603_7) {
+        Q603_7 = q603_7;
+    }
+
+    public String getQ603_8() {
+        return Q603_8;
+    }
+
+    public void setQ603_8(String q603_8) {
+        Q603_8 = q603_8;
+    }
+
+    public String getQ603_9() {
+        return Q603_9;
+    }
+
+    public void setQ603_9(String q603_9) {
+        Q603_9 = q603_9;
+    }
+
+    public String getQ603_Other() {
+        return Q603_Other;
+    }
+
+    public void setQ603_Other(String q603_Other) {
+        Q603_Other = q603_Other;
+    }
+
+    public String getQ603_Otherspecify() {
+        return Q603_Otherspecify;
+    }
+
+    public void setQ603_Otherspecify(String q603_Otherspecify) {
+        Q603_Otherspecify = q603_Otherspecify;
+    }
+
+    public String getQ604() {
+        return Q604;
+    }
+
+    public void setQ604(String q604) {
+        Q604 = q604;
+    }
+
+    public String getQ604a() {
+        return Q604a;
+    }
+
+    public void setQ604a(String q604a) {
+        Q604a = q604a;
+    }
+
+    public String getQ604b_1() {
+        return Q604b_1;
+    }
+
+    public void setQ604b_1(String q604b_1) {
+        Q604b_1 = q604b_1;
+    }
+
+    public String getQ604b_2() {
+        return Q604b_2;
+    }
+
+    public void setQ604b_2(String q604b_2) {
+        Q604b_2 = q604b_2;
+    }
+
+    public String getQ604b_3() {
+        return Q604b_3;
+    }
+
+    public void setQ604b_3(String q604b_3) {
+        Q604b_3 = q604b_3;
+    }
+
+    public String getQ604b_4() {
+        return Q604b_4;
+    }
+
+    public void setQ604b_4(String q604b_4) {
+        Q604b_4 = q604b_4;
+    }
+
+    public String getQ604b_5() {
+        return Q604b_5;
+    }
+
+    public void setQ604b_5(String q604b_5) {
+        Q604b_5 = q604b_5;
+    }
+
+    public String getQ604b_6() {
+        return Q604b_6;
+    }
+
+    public void setQ604b_6(String q604b_6) {
+        Q604b_6 = q604b_6;
+    }
+
+    public String getQ604b_7() {
+        return Q604b_7;
+    }
+
+    public void setQ604b_7(String q604b_7) {
+        Q604b_7 = q604b_7;
+    }
+
+    public String getQ604b_8() {
+        return Q604b_8;
+    }
+
+    public void setQ604b_8(String q604b_8) {
+        Q604b_8 = q604b_8;
+    }
+
+    public String getQ604b_10() {
+        return Q604b_10;
+    }
+
+    public void setQ604b_10(String q604b_10) {
+        Q604b_10 = q604b_10;
+    }
+
+    public String getQ604b_11() {
+        return Q604b_11;
+    }
+
+    public void setQ604b_11(String q604b_11) {
+        Q604b_11 = q604b_11;
+    }
+
+    public String getQ604b_12() {
+        return Q604b_12;
+    }
+
+    public void setQ604b_12(String q604b_12) {
+        Q604b_12 = q604b_12;
+    }
+
+    public String getQ604b_13() {
+        return Q604b_13;
+    }
+
+    public void setQ604b_13(String q604b_13) {
+        Q604b_13 = q604b_13;
+    }
+
+    public String getQ604b_14() {
+        return Q604b_14;
+    }
+
+    public void setQ604b_14(String q604b_14) {
+        Q604b_14 = q604b_14;
+    }
+
+    public String getQ604b_15() {
+        return Q604b_15;
+    }
+
+    public void setQ604b_15(String q604b_15) {
+        Q604b_15 = q604b_15;
+    }
+
+    public String getQ604b_Other() {
+        return Q604b_Other;
+    }
+
+    public void setQ604b_Other(String q604b_Other) {
+        Q604b_Other = q604b_Other;
+    }
+
+    public String getQ604b_Otherspecify() {
+        return Q604b_Otherspecify;
+    }
+
+    public void setQ604b_Otherspecify(String q604b_Otherspecify) {
+        Q604b_Otherspecify = q604b_Otherspecify;
+    }
+
+    public String getQ605_1() {
+        return Q605_1;
+    }
+
+    public void setQ605_1(String q605_1) {
+        Q605_1 = q605_1;
+    }
+
+    public String getQ605_2() {
+        return Q605_2;
+    }
+
+    public void setQ605_2(String q605_2) {
+        Q605_2 = q605_2;
+    }
+
+    public String getQ605_3() {
+        return Q605_3;
+    }
+
+    public void setQ605_3(String q605_3) {
+        Q605_3 = q605_3;
+    }
+
+    public String getQ605_4() {
+        return Q605_4;
+    }
+
+    public void setQ605_4(String q605_4) {
+        Q605_4 = q605_4;
+    }
+
+    public String getQ605_5() {
+        return Q605_5;
+    }
+
+    public void setQ605_5(String q605_5) {
+        Q605_5 = q605_5;
+    }
+
+    public String getQ605_9() {
+        return Q605_9;
+    }
+
+    public void setQ605_9(String q605_9) {
+        Q605_9 = q605_9;
+    }
+
+    public String getQ605_Other() {
+        return Q605_Other;
+    }
+
+    public void setQ605_Other(String q605_Other) {
+        Q605_Other = q605_Other;
+    }
+
+    public String getQ605_Otherspecify() {
+        return Q605_Otherspecify;
+    }
+
+    public void setQ605_Otherspecify(String q605_Otherspecify) {
+        Q605_Otherspecify = q605_Otherspecify;
+    }
+
+
 
     public String getQ606() {
         return Q606;
@@ -445,7 +1011,28 @@ public class Individual implements Serializable {
 
     private String Q612;
     private String Q612a;
+
+    public String getQ612aOther() {
+        return Q612aOther;
+    }
+
+    public void setQ612aOther(String q612aOther) {
+        Q612aOther = q612aOther;
+    }
+
+    private String Q612aOther;
     private String Q613;
+
+    public String getQ613aOther() {
+
+        return Q613aOther;
+    }
+
+    public void setQ613aOther(String q613aOther) {
+        Q613aOther = q613aOther;
+    }
+
+    private String Q613aOther;
 
     public String getQ613() {
         return Q613;
@@ -465,6 +1052,16 @@ public class Individual implements Serializable {
 
     private String Q613a;
     private String Q614;
+
+    public String getQ614Other() {
+        return Q614Other;
+    }
+
+    public void setQ614Other(String q614Other) {
+        Q614Other = q614Other;
+    }
+
+    private String Q614Other;
     private String Q615;
 
     public String getQ614() {
@@ -725,13 +1322,7 @@ public class Individual implements Serializable {
         Q801b = q801b;
     }
 
-    public String getQ801c() {
-        return Q801c;
-    }
 
-    public void setQ801c(String q801c) {
-        Q801c = q801c;
-    }
 
     public String getQ801d() {
         return Q801d;
@@ -749,11 +1340,49 @@ public class Individual implements Serializable {
         Q801e = q801e;
     }
 
+
     private String Q801a;
     private String Q801b;
-    private String Q801c;
+
+    public String getQ801cMonth() {
+        return Q801cMonth;
+    }
+
+    public void setQ801cMonth(String q801cMonth) {
+        Q801cMonth = q801cMonth;
+    }
+
+    public String getQ801cYear() {
+        return Q801cYear;
+    }
+
+    public void setQ801cYear(String q801cYear) {
+        Q801cYear = q801cYear;
+    }
+
+    public String getQ801dOther() {
+        return Q801dOther;
+    }
+
+    public void setQ801dOther(String q801dOther) {
+        Q801dOther = q801dOther;
+    }
+
+    public String getQ801eOther() {
+        return Q801eOther;
+    }
+
+    public void setQ801eOther(String q801eOther) {
+        Q801eOther = q801eOther;
+    }
+
+    private String Q801cMonth;
+    private String Q801cYear;
     private String Q801d;
+    private String Q801dOther;
     private String Q801e;
+    private String Q801eOther;
+    private String Q801f;
 
 
     private String Q802;
@@ -761,9 +1390,6 @@ public class Individual implements Serializable {
     private String Q803;
     private String Q804;
 
-    private String Q901;
-    private String Q901a;
-    private String Q902;
 
     public String getQ802() {
         return Q802;
@@ -807,13 +1433,6 @@ public class Individual implements Serializable {
 
 
 
-    public String getQ902() {
-        return Q902;
-    }
-
-    public void setQ902(String q902) {
-        Q902 = q902;
-    }
 
     public String getQ904a() {
         return Q904a;
@@ -823,13 +1442,7 @@ public class Individual implements Serializable {
         Q904a = q904a;
     }
 
-    public String getQ904b() {
-        return Q904b;
-    }
 
-    public void setQ904b(String q904b) {
-        Q904b = q904b;
-    }
 
     public String getQ904c() {
         return Q904c;
@@ -855,12 +1468,664 @@ public class Individual implements Serializable {
         Q905a = q905a;
     }
 
+    private String Q901;
+    private String Q901a;
+
+    public String getQ901aOther() {
+        return Q901aOther;
+    }
+
+    public void setQ901aOther(String q901aOther) {
+        Q901aOther = q901aOther;
+    }
+
+    public String getQ902Month() {
+        return Q902Month;
+    }
+
+    public void setQ902Month(String q902Month) {
+        Q902Month = q902Month;
+    }
+
+    public String getQ902Year() {
+        return Q902Year;
+    }
+
+    public void setQ902Year(String q902Year) {
+        Q902Year = q902Year;
+    }
+
+    public String getQ903a() {
+        return Q903a;
+    }
+
+    public void setQ903a(String q903a) {
+        Q903a = q903a;
+    }
+
+    public String getQ903b() {
+        return Q903b;
+    }
+
+    public void setQ903b(String q903b) {
+        Q903b = q903b;
+    }
+
+    public String getQ903c() {
+        return Q903c;
+    }
+
+    public void setQ903c(String q903c) {
+        Q903c = q903c;
+    }
+
+    public String getQ903d() {
+        return Q903d;
+    }
+
+    public void setQ903d(String q903d) {
+        Q903d = q903d;
+    }
+
+    public String getQ903e() {
+        return Q903e;
+    }
+
+    public void setQ903e(String q903e) {
+        Q903e = q903e;
+    }
+
+    public String getQ903f() {
+        return Q903f;
+    }
+
+    public void setQ903f(String q903f) {
+        Q903f = q903f;
+    }
+
+    public String getQ903g() {
+        return Q903g;
+    }
+
+    public void setQ903g(String q903g) {
+        Q903g = q903g;
+    }
+
+    public String getQ903h() {
+        return Q903h;
+    }
+
+    public void setQ903h(String q903h) {
+        Q903h = q903h;
+    }
+
+    public String getQ904aOther() {
+        return Q904aOther;
+    }
+
+    public void setQ904aOther(String q904aOther) {
+        Q904aOther = q904aOther;
+    }
+
+    public String getQ904bMM() {
+        return Q904bMM;
+    }
+
+    public void setQ904bMM(String q904bMM) {
+        Q904bMM = q904bMM;
+    }
+
+    public String getQ904bYYYY() {
+        return Q904bYYYY;
+    }
+
+    public void setQ904bYYYY(String q904bYYYY) {
+        Q904bYYYY = q904bYYYY;
+    }
+
+    public String getQ904cOther() {
+        return Q904cOther;
+    }
+
+    public void setQ904cOther(String q904cOther) {
+        Q904cOther = q904cOther;
+    }
+
+    public String getQ905aOther() {
+        return Q905aOther;
+    }
+
+    public void setQ905aOther(String q905aOther) {
+        Q905aOther = q905aOther;
+    }
+
+    private String Q901aOther;
+    private String Q902Month;
+    private String Q902Year;
+    private String Q903a;
+    private String Q903b;
+    private String Q903c;
+    private String Q903d;
+    private String Q903e;
+    private String Q903f;
+    private String Q903g;
+    private String Q903h;
     private String Q904;
     private String Q904a;
-    private String Q904b;
+    private String Q904aOther;
+    private String Q904bMM;
+    private String Q904bYYYY;
     private String Q904c;
+    private String Q904cOther;
     private String Q905;
     private String Q905a;
+    private String Q905aOther;
+
+
+    private String Q1001;
+    private String Q1002;
+    private String Q1002a_1;
+    private String Q1002a_2;
+    private String Q1002a_3;
+    private String Q1002a_4;
+    private String Q1002a_5;
+    private String Q1002a_6;
+    private String Q1002a_7;
+    private String Q1002a_8;
+    private String Q1002a_10;
+
+    public String getQ1002a_11() {
+        return Q1002a_11;
+    }
+
+    public void setQ1002a_11(String q1002a_11) {
+        Q1002a_11 = q1002a_11;
+    }
+
+    private String Q1002a_11;
+    private String Q1002a_12;
+    private String Q1002a_13;
+    private String Q1002a_14;
+    private String Q1002a_15;
+    private String Q1002a_16;
+    private String Q1002a_17;
+    private String Q1002a_18;
+    private String Q1002a_Other;
+
+    public String getQ1002b() {
+        return Q1002b;
+    }
+
+    public void setQ1002b(String q1002b) {
+        Q1002b = q1002b;
+    }
+
+    public String getQ1002b_Other() {
+        return Q1002b_Other;
+    }
+
+    public void setQ1002b_Other(String q1002b_Other) {
+        Q1002b_Other = q1002b_Other;
+    }
+
+    private String Q1002b;
+    private String Q1002b_Other;
+    private String Q1003;
+    private String Q1004_Month;
+    private String Q1004_Year;
+    private String Q1004_Day;
+
+    public String getQ1004a() {
+        return Q1004a;
+    }
+
+    public void setQ1004a(String q1004a) {
+        Q1004a = q1004a;
+    }
+
+    public String getQ1004b() {
+        return Q1004b;
+    }
+
+    public void setQ1004b(String q1004b) {
+        Q1004b = q1004b;
+    }
+
+    public String getQ1004b_Other() {
+        return Q1004b_Other;
+    }
+
+    public void setQ1004b_Other(String q1004b_Other) {
+        Q1004b_Other = q1004b_Other;
+    }
+
+    private String Q1004a;
+    private String Q1004b;
+    private String Q1004b_Other;
+
+    private String Q1005;
+    private String Q1005a;
+    private String Q1006;
+    private String Q1007;
+    private String Q1007a;
+    private String Q1008;
+    private String Q1008a;
+
+    public String getQ1008a_Other() {
+        return Q1008a_Other;
+    }
+
+    public void setQ1008a_Other(String q1008a_Other) {
+        Q1008a_Other = q1008a_Other;
+    }
+
+    private String Q1008a_Other;
+    private String Q1009;
+    private String Q1009a;
+    private String Q1010;
+
+    public String getQ1010_Other() {
+        return Q1010_Other;
+    }
+
+    public void setQ1010_Other(String q1010_Other) {
+        Q1010_Other = q1010_Other;
+    }
+
+    private String Q1010_Other;
+    private String Q1011;
+    private String Q1011_Other;
+    private String Q1012_Week;
+    private String Q1012_Month;
+    private String Q1012_Year;
+    private String Q1013;
+    private String Q1014;
+    private String Q1014a;
+    private String Q1014b;
+    private String Q1015;
+    private String Q1015a;
+    private String Q1015b;
+    private String Q1016;
+    private String Q1017;
+
+    public String getQ1001() {
+        return Q1001;
+    }
+
+    public void setQ1001(String q1001) {
+        Q1001 = q1001;
+    }
+
+    public String getQ1002() {
+        return Q1002;
+    }
+
+    public void setQ1002(String q1002) {
+        Q1002 = q1002;
+    }
+
+    public String getQ1002a_1() {
+        return Q1002a_1;
+    }
+
+    public void setQ1002a_1(String q1002a_1) {
+        Q1002a_1 = q1002a_1;
+    }
+
+    public String getQ1002a_2() {
+        return Q1002a_2;
+    }
+
+    public void setQ1002a_2(String q1002a_2) {
+        Q1002a_2 = q1002a_2;
+    }
+
+    public String getQ1002a_3() {
+        return Q1002a_3;
+    }
+
+    public void setQ1002a_3(String q1002a_3) {
+        Q1002a_3 = q1002a_3;
+    }
+
+    public String getQ1002a_4() {
+        return Q1002a_4;
+    }
+
+    public void setQ1002a_4(String q1002a_4) {
+        Q1002a_4 = q1002a_4;
+    }
+
+    public String getQ1002a_5() {
+        return Q1002a_5;
+    }
+
+    public void setQ1002a_5(String q1002a_5) {
+        Q1002a_5 = q1002a_5;
+    }
+
+    public String getQ1002a_6() {
+        return Q1002a_6;
+    }
+
+    public void setQ1002a_6(String q1002a_6) {
+        Q1002a_6 = q1002a_6;
+    }
+
+    public String getQ1002a_7() {
+        return Q1002a_7;
+    }
+
+    public void setQ1002a_7(String q1002a_7) {
+        Q1002a_7 = q1002a_7;
+    }
+
+    public String getQ1002a_8() {
+        return Q1002a_8;
+    }
+
+    public void setQ1002a_8(String q1002a_8) {
+        Q1002a_8 = q1002a_8;
+    }
+
+    public String getQ1002a_10() {
+        return Q1002a_10;
+    }
+
+    public void setQ1002a_10(String q1002a_10) {
+        Q1002a_10 = q1002a_10;
+    }
+
+    public String getQ1002a_12() {
+        return Q1002a_12;
+    }
+
+    public void setQ1002a_12(String q1002a_12) {
+        Q1002a_12 = q1002a_12;
+    }
+
+    public String getQ1002a_13() {
+        return Q1002a_13;
+    }
+
+    public void setQ1002a_13(String q1002a_13) {
+        Q1002a_13 = q1002a_13;
+    }
+
+    public String getQ1002a_14() {
+        return Q1002a_14;
+    }
+
+    public void setQ1002a_14(String q1002a_14) {
+        Q1002a_14 = q1002a_14;
+    }
+
+    public String getQ1002a_15() {
+        return Q1002a_15;
+    }
+
+    public void setQ1002a_15(String q1002a_15) {
+        Q1002a_15 = q1002a_15;
+    }
+
+    public String getQ1002a_16() {
+        return Q1002a_16;
+    }
+
+    public void setQ1002a_16(String q1002a_16) {
+        Q1002a_16 = q1002a_16;
+    }
+
+    public String getQ1002a_17() {
+        return Q1002a_17;
+    }
+
+    public void setQ1002a_17(String q1002a_17) {
+        Q1002a_17 = q1002a_17;
+    }
+
+    public String getQ1002a_18() {
+        return Q1002a_18;
+    }
+
+    public void setQ1002a_18(String q1002a_18) {
+        Q1002a_18 = q1002a_18;
+    }
+
+    public String getQ1002a_Other() {
+        return Q1002a_Other;
+    }
+
+    public void setQ1002a_Other(String q1002a_Other) {
+        Q1002a_Other = q1002a_Other;
+    }
+
+    public String getQ1003() {
+        return Q1003;
+    }
+
+    public void setQ1003(String q1003) {
+        Q1003 = q1003;
+    }
+
+    public String getQ1004_Month() {
+        return Q1004_Month;
+    }
+
+    public void setQ1004_Month(String q1004_Month) {
+        Q1004_Month = q1004_Month;
+    }
+
+    public String getQ1004_Year() {
+        return Q1004_Year;
+    }
+
+    public void setQ1004_Year(String q1004_Year) {
+        Q1004_Year = q1004_Year;
+    }
+
+    public String getQ1004_Day() {
+        return Q1004_Day;
+    }
+
+    public void setQ1004_Day(String q1004_Day) {
+        Q1004_Day = q1004_Day;
+    }
+
+    public String getQ1005() {
+        return Q1005;
+    }
+
+    public void setQ1005(String q1005) {
+        Q1005 = q1005;
+    }
+
+    public String getQ1005a() {
+        return Q1005a;
+    }
+
+    public void setQ1005a(String q1005a) {
+        Q1005a = q1005a;
+    }
+
+    public String getQ1006() {
+        return Q1006;
+    }
+
+    public void setQ1006(String q1006) {
+        Q1006 = q1006;
+    }
+
+    public String getQ1007() {
+        return Q1007;
+    }
+
+    public void setQ1007(String q1007) {
+        Q1007 = q1007;
+    }
+
+    public String getQ1007a() {
+        return Q1007a;
+    }
+
+    public void setQ1007a(String q1007a) {
+        Q1007a = q1007a;
+    }
+
+    public String getQ1008() {
+        return Q1008;
+    }
+
+    public void setQ1008(String q1008) {
+        Q1008 = q1008;
+    }
+
+    public String getQ1008a() {
+        return Q1008a;
+    }
+
+    public void setQ1008a(String q1008a) {
+        Q1008a = q1008a;
+    }
+
+    public String getQ1009() {
+        return Q1009;
+    }
+
+    public void setQ1009(String q1009) {
+        Q1009 = q1009;
+    }
+
+    public String getQ1009a() {
+        return Q1009a;
+    }
+
+    public void setQ1009a(String q1009a) {
+        Q1009a = q1009a;
+    }
+
+    public String getQ1010() {
+        return Q1010;
+    }
+
+    public void setQ1010(String q1010) {
+        Q1010 = q1010;
+    }
+
+    public String getQ1011() {
+        return Q1011;
+    }
+
+    public void setQ1011(String q1011) {
+        Q1011 = q1011;
+    }
+
+    public String getQ1011_Other() {
+        return Q1011_Other;
+    }
+
+    public void setQ1011_Other(String q1011_Other) {
+        Q1011_Other = q1011_Other;
+    }
+
+    public String getQ1012_Week() {
+        return Q1012_Week;
+    }
+
+    public void setQ1012_Week(String q1012_Week) {
+        Q1012_Week = q1012_Week;
+    }
+
+    public String getQ1012_Month() {
+        return Q1012_Month;
+    }
+
+    public void setQ1012_Month(String q1012_Month) {
+        Q1012_Month = q1012_Month;
+    }
+
+    public String getQ1012_Year() {
+        return Q1012_Year;
+    }
+
+    public void setQ1012_Year(String q1012_Year) {
+        Q1012_Year = q1012_Year;
+    }
+
+    public String getQ1013() {
+        return Q1013;
+    }
+
+    public void setQ1013(String q1013) {
+        Q1013 = q1013;
+    }
+
+    public String getQ1014() {
+        return Q1014;
+    }
+
+    public void setQ1014(String q1014) {
+        Q1014 = q1014;
+    }
+
+    public String getQ1014a() {
+        return Q1014a;
+    }
+
+    public void setQ1014a(String q1014a) {
+        Q1014a = q1014a;
+    }
+
+    public String getQ1014b() {
+        return Q1014b;
+    }
+
+    public void setQ1014b(String q1014b) {
+        Q1014b = q1014b;
+    }
+
+    public String getQ1015() {
+        return Q1015;
+    }
+
+    public void setQ1015(String q1015) {
+        Q1015 = q1015;
+    }
+
+    public String getQ1015a() {
+        return Q1015a;
+    }
+
+    public void setQ1015a(String q1015a) {
+        Q1015a = q1015a;
+    }
+
+    public String getQ1015b() {
+        return Q1015b;
+    }
+
+    public void setQ1015b(String q1015b) {
+        Q1015b = q1015b;
+    }
+
+    public String getQ1016() {
+        return Q1016;
+    }
+
+    public void setQ1016(String q1016) {
+        Q1016 = q1016;
+    }
+
+    public String getQ1017() {
+        return Q1017;
+    }
+
+    public void setQ1017(String q1017) {
+        Q1017 = q1017;
+    }
+
+
+
 
 
 
@@ -943,6 +2208,36 @@ public class Individual implements Serializable {
     private String IndRapidResults ;
     private String IndRapidDate ;
     private String IndRapid_Comment ;
+
+    public String getQ802aOther() {
+        return Q802aOther;
+    }
+
+    public void setQ802aOther(String q802aOther) {
+        Q802aOther = q802aOther;
+    }
+
+    private String Q802aOther;
+
+    public String getQ804Other() {
+        return Q804Other;
+    }
+
+    public void setQ804Other(String q804Other) {
+        Q804Other = q804Other;
+    }
+
+    private String Q804Other;
+
+    public String getQ803Other() {
+        return Q803Other;
+    }
+
+    public void setQ803Other(String q803Other) {
+        Q803Other = q803Other;
+    }
+
+    private String Q803Other;
 
 
     public String getAssignmentID() {
@@ -1247,8 +2542,6 @@ public class Individual implements Serializable {
     public void setQ801f(String q801f) {
         Q801f = q801f;
     }
-
-    private String Q801f;
 
     public String getQ504_1() {
         return Q504_1;

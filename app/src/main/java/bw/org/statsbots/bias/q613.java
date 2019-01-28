@@ -53,9 +53,9 @@ public class q613 extends AppCompatActivity implements Serializable {
 
                 //final int selectedId1 = rbtngroup1.getCheckedRadioButtonId();
 
-                //Intent i = getIntent();
-                // thisHouse = (HouseHold)i.getSerializableExtra("Household");
-                //int p=0;
+               Intent i = getIntent();
+               thisHouse = (HouseHold)i.getSerializableExtra("Household");
+                int p=0;
 
 
                 /**
@@ -96,7 +96,7 @@ public class q613 extends AppCompatActivity implements Serializable {
                                 vibs.vibrate(100);
                             } else {
 
-                                if (selected1 == rbtnaOther && edt.length() == 0 || edt.getText() == null) {
+                                if (rbtnaOther.isChecked() && edt.length() == 0 || edt.getText() == null) {
                                     lib.showError(bw.org.statsbots.bias.q613.this, "Q613a Error", "Please specify");
                                     /**
                                      * VIBRATE DEVICE
@@ -105,6 +105,9 @@ public class q613 extends AppCompatActivity implements Serializable {
                                     vibs.vibrate(100);
                                 } else {
 
+                                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ613(selected.getText().toString().substring(0, 1));
+                                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ613a(selected1.getText().toString().substring(0, 1));
+                                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ613aOther(edt.getText().toString());
 
 
                                         //Next question q614
@@ -157,7 +160,7 @@ public class q613 extends AppCompatActivity implements Serializable {
                 rbtna2.setChecked(false);
                 rbtna3.setChecked(false);
                 rbtna9.setChecked(false);
-                rbtnaOther.setEnabled(false);
+                rbtnaOther.setChecked(false);
                 txt1.setTextColor(Color.LTGRAY);
 
 
@@ -174,7 +177,7 @@ public class q613 extends AppCompatActivity implements Serializable {
                 rbtna2.setChecked(false);
                 rbtna3.setChecked(false);
                 rbtna9.setChecked(false);
-                rbtnaOther.setEnabled(false);
+                rbtnaOther.setChecked(false);
                 txt1.setTextColor(Color.LTGRAY);
 
 

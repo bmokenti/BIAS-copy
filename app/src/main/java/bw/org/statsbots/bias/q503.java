@@ -90,24 +90,21 @@ public class q503 extends AppCompatActivity implements View.OnClickListener, Ser
 
                 } else
 
-                    //individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
+
 
                     if (rbtn1.isChecked()  || rbtn3.isChecked() ) {
                         // to include ea status code on the check
+                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ503(selectedRbtn.getText().toString().substring(0,1));
+
                         Intent q1o2 = new Intent(q503.this, q601.class);
                         q1o2.putExtra("Household", thisHouse);
                         startActivity(q1o2);
                     } else{
-                    //Set q101 for the current individual
-                    //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                      //  individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
-                    /**
-                     * If current person LineNumber is equal to TotalPersons-1
-                     * Proceed to next Question in the roster
-                     */
-                    // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
+                    //Set q503 for the current individual
 
-                    //Next question q102
+                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ503(selectedRbtn.getText().toString().substring(0,1));
+
+                    //Next question q504
 
 
                     Intent intent = new Intent(q503.this, q504.class);

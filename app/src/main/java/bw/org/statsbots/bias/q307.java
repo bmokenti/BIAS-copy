@@ -91,7 +91,7 @@ public class q307 extends AppCompatActivity implements View.OnClickListener{
 
                 } else {
                         //Set q101 for the current individual
-                        //individual.setQ307(selectedRbtn.getText().toString().substring(0, 1));
+                       //thisHouse.getIndividual()[p1.getLineNumber()].setQ307(selectedRbtn.getText().toString().substring(0, 1));
 
                         /**
                          * If current person LineNumber is equal to TotalPersons-1

@@ -23,20 +23,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
-        <TextView
-            android:id="@+id/q401"
-            android:layout_width="338dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/q401"
 
-            android:textColor="@color/black"
-            android:textSize="16dp" />
 
 
     </LinearLayout>
@@ -75,35 +62,76 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.291">
 
-            <RadioGroup
-                android:id="@+id/q401radioGroup"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <TextView
+                android:id="@+id/q401"
+                android:layout_width="338dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-
                 android:layout_marginRight="8dp"
-                android:textSize="16sp">
+                android:layout_marginBottom="8dp"
+                android:text="@string/q401"
 
-                <RadioButton
-                    android:id="@+id/q401_1"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="124dp"
+                    android:orientation="vertical">
 
-                    android:text="1. Yes" />
+                    <TextView
+                        android:id="@+id/q401q"
+                        android:layout_width="338dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text=" Q401.  Have you ever had sexual intercourse?"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
 
 
-                <RadioButton
-                    android:id="@+id/q401_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/q401radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="93dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
 
-                    android:text="2. No" />
+                        android:layout_marginRight="8dp"
+                        android:textSize="16sp">
+
+                        <RadioButton
+                            android:id="@+id/q401_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:text="1. Yes" />
 
 
-            </RadioGroup>
+                        <RadioButton
+                            android:id="@+id/q401_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:text="2. No" />
+
+
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
         </ScrollView>
     </LinearLayout>
 
