@@ -45,6 +45,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
@@ -281,36 +282,30 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                 List<HouseHold> CompleteddHH = myDB.getCompleted();
 
-                String request = "http://10.30.3.169:8080/Webservice/dataFromField";
-                try{
-                    URL url = new URL(request);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setDoOutput(true);
-                    connection.setDoInput(true);
-
-                    connection.setInstanceFollowRedirects(false);
-                    connection.setRequestMethod("POST");
-                    connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-                    connection.setRequestProperty("charset", "utf-8");
-                    connection.setUseCaches (false);
-
-                    DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+                String Response=null;
+                try
+                {
                     Gson gson = new Gson();
                     String json = gson.toJson(CompleteddHH);
 
-                    wr.writeBytes(json.toString());
-                    wr.flush();
-                    wr.close();
+                    String url="http://10.30.3.169:8080/Webservice/dataFromField?Username=" + preferences.getString("Username",null)+ "&data=" + json;
+                    HttpHandler sh = new HttpHandler();
+                    String jsonStr = sh.makeServiceCall(url);
 
+                    if (jsonStr != null)
+                    {
+                        Response=jsonStr;
+                    }
 
                 }catch (Exception e){
-                    lib.showError(Dashboard.this,"Synchronization Error","An error has been encountered while sending data to the server");
-                    /**
-                     * VIBRATE DEVICE
-                     */
-                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                    vibs.vibrate(100);
+                    e.printStackTrace();
                 }
+
+                Log.d("Response: ", Response);
+
+
+
+
 
 
 
@@ -478,7 +473,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setH12CellPhone(jObject.get("H12CellPhone").toString());
                             hh.setH12PrintMedia(jObject.get("H12PrintMedia").toString());
                             hh.setH12ElecMedia(jObject.get("H12ElecMedia").toString());
-                            hh.setH12PerfomArts(jObject.get("H12PerformArts").toString());
+                            hh.setH12PerfomArts(jObject.get("H12PerfomArts").toString());
 
 
                             hh.setH13(jObject.get("H13Vehicle").toString());
@@ -556,7 +551,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 ind.setSRNO(Integer.parseInt(roster.get("SRNO").toString()));
 
 
-                                ind.setIndBarcode(roster.get("IndBarcode").toString());
+                                ind.setIndBarcode(roster.get("BarCode").toString());
                                 ind.setQ101(roster.get("Q101").toString());
                                 ind.setQ102(roster.get("Q102").toString());
                                 ind.setQ103(roster.get("Q103").toString());
@@ -644,7 +639,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                                 ind.setQ410Slapped(roster.get("Q410Slapped").toString());
                                 ind.setQ410Pushed(roster.get("Q410Pushed").toString());
-                                ind.setQ410Choked(roster.get("Q410Chocked").toString());
+                                ind.setQ410Choked(roster.get("Q410Choked").toString());
                                 ind.setQ410Threatened(roster.get("Q410Threatened").toString());
                                 ind.setQ410Physical(roster.get("Q410Physical").toString());
                                 ind.setQ410Forced(roster.get("Q410Forced").toString());
