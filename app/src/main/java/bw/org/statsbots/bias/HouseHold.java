@@ -21,6 +21,11 @@ public class HouseHold implements Serializable {
     }
 
     private PersonRoster[] HouseHoldeMembers;
+
+    public void setIndividualQuestionaire(Individual[] individualQuestionaire) {
+        IndividualQuestionaire = individualQuestionaire;
+    }
+
     protected Individual[] IndividualQuestionaire;
     protected Assignments[] EA_Assgnment;
     private String  DWELLING_NO;
