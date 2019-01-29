@@ -99,11 +99,11 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
 
                        individual.setQ1114(selectedRbtn.getText().toString().substring(0,1));
                             myDB.insertIndividual(thisHouse);
-
+/*
                         Intent intent = new Intent(q1114.this, Dashboard.class);
                         intent.putExtra("Individual",  individual);
                         startActivity(intent);
-
+*/
                     }
 
                 }
