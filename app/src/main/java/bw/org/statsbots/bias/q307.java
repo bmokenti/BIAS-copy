@@ -43,10 +43,10 @@ public class q307 extends AppCompatActivity implements View.OnClickListener{
         final RadioGroup rg = (RadioGroup) findViewById(R.id.q307radioGroup);
 
 
-
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
@@ -91,7 +91,7 @@ public class q307 extends AppCompatActivity implements View.OnClickListener{
 
                 } else {
                         //Set q101 for the current individual
-                       //thisHouse.getIndividual()[p1.getLineNumber()].setQ307(selectedRbtn.getText().toString().substring(0, 1));
+                       individual.setQ307(selectedRbtn.getText().toString().substring(0, 1));
 
                         /**
                          * If current person LineNumber is equal to TotalPersons-1
@@ -103,7 +103,7 @@ public class q307 extends AppCompatActivity implements View.OnClickListener{
 
 
                         Intent q1o2 = new Intent(q307.this, q401.class);
-                        q1o2.putExtra("Household", thisHouse);
+                        q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
 
                     }

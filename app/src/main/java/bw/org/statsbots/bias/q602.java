@@ -17,6 +17,7 @@ public class q602 extends AppCompatActivity implements Serializable{
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
+    protected Individual individual;
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt, ck3txt, ck4txt, ck5txt, ck6txt, ck7txt, ck8txt, ck10txt,ck11txt, ck12txt, ck13txt, ck14txt, ck15txt,chkOther, selected = null;
     protected Button btn;
@@ -31,6 +32,11 @@ public class q602 extends AppCompatActivity implements Serializable{
 
         setTitle("Q602: KNOWLEDGE ABOUT HIV/AIDS AND TB");
         lib = new LibraryClass();
+
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
+
 
 //btn = findViewById(R.id.btn);
 
@@ -77,25 +83,25 @@ public class q602 extends AppCompatActivity implements Serializable{
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
                     } else {
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ602_1(ck1txt.getText().toString().substring(0,1));
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_2(ck2txt.getText().toString().substring(0,1));
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_3(ck3txt.getText().toString().substring(0,1));
-                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_4(ck4txt.getText().toString().substring(0,1));
-                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_5(ck5txt.getText().toString().substring(0,1));
-                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_6(ck6txt.getText().toString().substring(0,1));
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_7(ck7txt.getText().toString().substring(0,1));
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_8(ck8txt.getText().toString().substring(0,1));
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_10(ck10txt.getText().toString().substring(0,1));
-                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_11(ck11txt.getText().toString().substring(0,1));
-                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_12(ck12txt.getText().toString().substring(0,1));
-                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_13(ck13txt.getText().toString().substring(0,1));
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ602_14(ck14txt.getText().toString().substring(0,1));
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_15(ck15txt.getText().toString().substring(0,1));
-                      //  thisHouse.getIndividual()[p1.getLineNumber()].setQ602_Other(chkOther.getText().toString().substring(0,1));
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ602_Otherspecify(Q602edt.getText().toString());
+                        individual.setQ602_1(ck1txt.getText().toString().substring(0,1));
+                        individual.setQ602_2(ck2txt.getText().toString().substring(0,1));
+                        individual.setQ602_3(ck3txt.getText().toString().substring(0,1));
+                        individual.setQ602_4(ck4txt.getText().toString().substring(0,1));
+                        individual.setQ602_5(ck5txt.getText().toString().substring(0,1));
+                        individual.setQ602_6(ck6txt.getText().toString().substring(0,1));
+                        individual.setQ602_7(ck7txt.getText().toString().substring(0,1));
+                        individual.setQ602_8(ck8txt.getText().toString().substring(0,1));
+                        individual.setQ602_10(ck10txt.getText().toString().substring(0,1));
+                       individual.setQ602_11(ck11txt.getText().toString().substring(0,1));
+                       individual.setQ602_12(ck12txt.getText().toString().substring(0,1));
+                       individual.setQ602_13(ck13txt.getText().toString().substring(0,1));
+                        individual.setQ602_14(ck14txt.getText().toString().substring(0,1));
+                        individual.setQ602_15(ck15txt.getText().toString().substring(0,1));
+                       individual.setQ602_Other(chkOther.getText().toString().substring(0,1));
+                        individual.setQ602_Otherspecify(Q602edt.getText().toString());
 
                         Intent intent = new Intent(q602.this, q603.class);
-                        intent.putExtra("Household", thisHouse);
+                        intent.putExtra("Individual", individual);
                         startActivity(intent);
                     }
 

@@ -43,8 +43,10 @@ public class q202 extends AppCompatActivity implements View.OnClickListener  {
 
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+
         Button btnext = findViewById(R.id.btnnext);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
@@ -90,13 +92,13 @@ public class q202 extends AppCompatActivity implements View.OnClickListener  {
                 } else {
                     if (rbtn2.isChecked()) {
                         Intent skipto203 = new Intent(q202.this, q301.class);
-                        skipto203.putExtra("Household", thisHouse);
+                        skipto203.putExtra("Individual", individual);
                         startActivity(skipto203);
 
 
                     } else {
-                        //Set q101 for the current individual
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ202(selectedRbtn.getText().toString().substring(0, 1));
+                        //Set q201 for the current individual
+                        individual.setQ202(selectedRbtn.getText().toString().substring(0, 1));
 
                         /**
                          * If current person LineNumber is equal to TotalPersons-1
@@ -108,7 +110,7 @@ public class q202 extends AppCompatActivity implements View.OnClickListener  {
 
 
                         Intent q1o2 = new Intent(q202.this, q203.class);
-                        q1o2.putExtra("Household", thisHouse);
+                        q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
 
                     }

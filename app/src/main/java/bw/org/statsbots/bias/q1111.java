@@ -25,6 +25,7 @@ public class q1111 extends AppCompatActivity implements  Serializable {
     protected  RadioButton selectedRbtn;
     protected EditText text1111other;
     protected Individual individual;
+    protected PersonRoster p1 = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +48,10 @@ public class q1111 extends AppCompatActivity implements  Serializable {
         //rbtn2.setOnClickListener(this);
 
         // final int selectedId = rbtngroup.getCheckedRadioButtonId();
-
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         Button btnext = findViewById(R.id.btnNext);
 
 
@@ -94,19 +95,15 @@ public class q1111 extends AppCompatActivity implements  Serializable {
 
                 } else {
                     //Set q101 for the current individual
-                    //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                   // individual.setQ1111(selectedRbtn.getText().toString().substring(0,1));
-                    /**
-                     * If current person LineNumber is equal to TotalPersons-1
-                     * Proceed to next Question in the roster
-                     */
-                    // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
 
-                    //Next question q102
+                   individual.setQ1111(selectedRbtn.getText().toString().substring(0,1));
+                   individual.setQ1111Other(text1111other.getText().toString());
+
+
 
 
                     Intent intent = new Intent(q1111.this, q1112.class);
-                    intent.putExtra("Household",  thisHouse);
+                    intent.putExtra("Individual",  individual);
                     startActivity(intent);
 
                 }

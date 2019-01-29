@@ -20,6 +20,7 @@ public class q606 extends AppCompatActivity implements Serializable{
     protected String currentHH=null;
     protected Individual indv;
     protected LibraryClass lib;
+    protected Individual individual;
     protected RadioButton rbtn1,rbtn2,rbtn9,  selected;
     protected RadioGroup rbtngroup;
 
@@ -39,8 +40,8 @@ public class q606 extends AppCompatActivity implements Serializable{
 
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         /**
@@ -69,9 +70,10 @@ public class q606 extends AppCompatActivity implements Serializable{
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 } else {
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ606(selected.getText().toString().substring(0,1));
+                    individual.setQ606(selected.getText().toString().substring(0,1));
+
                     Intent intent = new Intent(q606.this, q607.class);
-                    intent.putExtra("Household", thisHouse);
+                    intent.putExtra("Individual", individual);
                     startActivity(intent);
 
                 }

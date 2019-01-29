@@ -273,13 +273,16 @@ public class started_household extends AppCompatActivity implements Serializable
                             btn.setCompoundDrawablesWithIntrinsicBounds( d,null, null, null);
 
                             Info="Pending Questionnaire, Blood Collection";
-
+                            individual.setSRNO(r.get(o).getSRNO());
+                            individual.setAssignmentID(r.get(o).getAssignmentID());
+                            individual.setBatch(r.get(o).getBatch());
+                            final Individual temp1 = individual;
                             btn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     //**Replace This house with 1 individual
                                     Intent q1o2 = new Intent(started_household.this, q101.class);
-                                    q1o2.putExtra("Household", thisHouse);
+                                    q1o2.putExtra("Individual", temp1);
                                     startActivity(q1o2);
 
 

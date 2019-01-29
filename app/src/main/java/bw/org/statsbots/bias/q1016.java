@@ -20,6 +20,7 @@ public class q1016 extends AppCompatActivity {
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt;
     protected Button btn;
+    protected Individual individual;
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5 ;
     protected RadioGroup rg, rga;
     protected TextView t1;
@@ -49,8 +50,8 @@ public class q1016 extends AppCompatActivity {
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         Button btnnext = findViewById(R.id.button);
@@ -69,9 +70,11 @@ public class q1016 extends AppCompatActivity {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 }  else {
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ1016(selectedRbtn.getText().toString().substring(0,1));
+
+                    individual.setQ1016(selectedRbtn.getText().toString().substring(0,1));
+
                     Intent intent = new Intent(q1016.this, q1017.class);
-                    intent.putExtra("Household", thisHouse);
+                    intent.putExtra("Individual", individual);
                     startActivity(intent);
 
 

@@ -29,6 +29,8 @@ protected EditText txtq1108dd, txtq1108wks;
 protected TextView q1108aques, t1108dd, t1108wks;
     protected CheckBox chkq1108;
     protected Individual individual;
+    PersonRoster p1 = null;
+
 protected  LinearLayout viewa;
 protected LibraryClass lib;
 
@@ -49,8 +51,11 @@ protected LibraryClass lib;
         viewa = findViewById(R.id.q1108alinear);
         chkq1108 = findViewById(R.id.q1108a_99);
         t1108dd = findViewById(R.id.dd);
-                t1108wks = findViewById(R.id.tvwks);
+        t1108wks = findViewById(R.id.tvwks);
 
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +92,7 @@ protected LibraryClass lib;
 
                 } else {
 
-                   // individual.setQ1108(selectedRbtn.getText().toString().substring(0,1));
+
                     if ((((txtq1108dd.length() == 0 && txtq1108wks.length() == 0 && !chkq1108.isChecked()))) && (rbty.isChecked())) {
                         lib.showError(q1108.this, "Q1108:", "How long have you had the fever");
                         /**
@@ -96,7 +101,13 @@ protected LibraryClass lib;
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
                     }  else {
+
+                        individual.setQ1108(selectedRbtn.getText().toString().substring(0,1));
+                        individual.setQ1108aDD(txtq1108dd.getText().toString());
+                        individual.setQ1108aWks(txtq1108wks.getText().toString());
+
                             Intent intent = new Intent(q1108.this, q1109.class);
+                            intent.putExtra("Individual", individual);
                             startActivity(intent);
                         }
 
@@ -107,12 +118,7 @@ protected LibraryClass lib;
         });
     }
 
-/*
 
-                    Intent intent = new Intent(q1108.this, q1109.class);
-                    intent.putExtra("Household",  thisHouse);
-                    startActivity(intent);
- */
 
     public void onRadioButtonClicked(View v) {
 

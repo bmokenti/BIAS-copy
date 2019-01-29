@@ -26,7 +26,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
     protected RadioButton rbtn1, rbtn2, selected = null;
     protected RadioGroup rbtngroup;
     protected RadioButton selectedRbtn;
-    PersonRoster p1 = null;
+    Individual p1 = null;
     Individual pp1 = null;
 
 
@@ -42,11 +42,10 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
 
        final RadioGroup rg = (RadioGroup) findViewById(R.id.q101radioGroup);
 
-
-
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         Button btnext = findViewById(R.id.btnnext);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
@@ -91,7 +90,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
 
                 } else {
                     //Set q101 for the current individual
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ101(selectedRbtn.getText().toString().substring(0,1));
+                   individual.setQ101(selectedRbtn.getText().toString().substring(0,1));
 
                     /**
                      * If current person LineNumber is equal to TotalPersons-1
@@ -100,10 +99,8 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
                     // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
 
                     //Next question q102
-
-
                     Intent q1o2 = new Intent(q101.this, q102.class);
-                q1o2.putExtra("Household",  thisHouse);
+                q1o2.putExtra("Individual",  individual);
                 startActivity(q1o2);
 
             }
@@ -120,10 +117,11 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()) {
 
             case R.id.q101_1:
-
+                selectedRbtn = (RadioButton)findViewById(R.id.q101_1);
                 break;
 
             case R.id.q101_2:
+                selectedRbtn = (RadioButton)findViewById(R.id.q101_2);
               break;
 
 
@@ -134,8 +132,6 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
     }
 
 }
-
-
 
 
 

@@ -38,9 +38,8 @@ public class q107 extends AppCompatActivity implements Serializable{
         setTitle("Q107: WORKED IN MINE");
         lib = new LibraryClass();
 
-
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
 
@@ -338,20 +337,27 @@ public class q107 extends AppCompatActivity implements Serializable{
 
 
                                     } else {
+if(rbtn2.isChecked()){
+    individual.setQ107(selectedRbtn.getText().toString().substring(0, 1));
 
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ107(selectedRbtn.getText().toString().substring(0, 1));
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ107aYY(txtyy.getText().toString());
-                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ107aMnth(txtmnth.getText().toString());
-                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ107b(selectedRbtn1.getText().toString().substring(0, 1));
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ107bOther(edtbOther.getText().toString());
-                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ107c(selectedRbtn2.getText().toString().substring(0, 1));
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ107cOther(edtcOther.getText().toString());
+    Intent q1o3 = new Intent(q107.this, Q201.class);
+    q1o3.putExtra("Individual", individual);
+    startActivity(q1o3);
+}
+else {
+    individual.setQ107(selectedRbtn.getText().toString().substring(0, 1));
+    individual.setQ107aYY(txtyy.getText().toString());
+    individual.setQ107aMnth(txtmnth.getText().toString());
+    individual.setQ107b(selectedRbtn1.getText().toString().substring(0, 1));
+    individual.setQ107bOther(edtbOther.getText().toString());
+    individual.setQ107c(selectedRbtn2.getText().toString().substring(0, 1));
+    individual.setQ107cOther(edtcOther.getText().toString());
 
 
-                                        Intent q1o3 = new Intent(q107.this, Q201.class);
-                                        q1o3.putExtra("Household", thisHouse);
-                                        startActivity(q1o3);
-
+    Intent q1o3 = new Intent(q107.this, Q201.class);
+    q1o3.putExtra("Individual", individual);
+    startActivity(q1o3);
+}
                                     }
                                 }
                             }

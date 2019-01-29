@@ -54,11 +54,23 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
         //rbtn2.setOnClickListener(this);
 
 
-        // final int selectedId = rbtngroup.getCheckedRadioButtonId();
-
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
+
+
+
+        if (individual.getQ403().equals("2") && individual.getQ101().equals("1")) {
+            Intent intent = new Intent(q404.this, q501.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
+
+       //skip
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -126,10 +138,10 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
                     } else {
                         //Set q404 for the current individual
 
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ404_1(chk1.getText().toString().substring(0,1));
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ404_2(chk2.getText().toString().substring(0, 1));
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ404_3(chk3.getText().toString().substring(0,1));
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ404a(selectedRbtn.getText().toString().substring(0,1));
+                      individual.setQ404_1(chk1.getText().toString().substring(0,1));
+                       individual.setQ404_2(chk2.getText().toString().substring(0, 1));
+                        individual.setQ404_3(chk3.getText().toString().substring(0,1));
+                       individual.setQ404a(selectedRbtn.getText().toString().substring(0,1));
 
 
 
@@ -143,7 +155,7 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
 
 
                         Intent q1o2 = new Intent(q404.this, q405.class);
-                        q1o2.putExtra("Household", thisHouse);
+                        q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
 
                     }

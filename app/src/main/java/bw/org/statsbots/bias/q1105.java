@@ -41,8 +41,10 @@ public class q1105 extends AppCompatActivity implements  Serializable {
 
         Q1105_2 = findViewById(R.id.q1105_2);
         final RadioGroup rg = (RadioGroup) findViewById(R.id.q1105radioGroup);
+
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
         Button btnNext = (Button) findViewById(R.id.btnNext);
         //btnNext.setText(btnLabel);
@@ -81,17 +83,13 @@ public class q1105 extends AppCompatActivity implements  Serializable {
 
                 } else {
                     //Set q1105 for the current individual
-                    //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                  //  individual.setQ1105(selectedRbtn.getText().toString().substring(0,1));
-                    /**
-                     * If current person LineNumber is equal to TotalPersons-1
-                     * Proceed to next Question in the roster
-                     */
-                   // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
+
+               individual.setQ1105(selectedRbtn.getText().toString().substring(0,1));
+
 
                         //Next question P04
                         Intent intent = new Intent(q1105.this, q1106.class);
-                        intent.putExtra("Household", thisHouse);
+                        intent.putExtra("Individual", individual);
                         startActivity(intent);
 
 

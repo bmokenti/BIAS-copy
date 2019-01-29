@@ -20,6 +20,7 @@ public class q1015 extends AppCompatActivity {
     protected String currentHH = null;
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt;
+    protected Individual individual;
     protected Button btn;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5, rbtnb1, rbtnb2 ;
     protected RadioGroup rg, rga, rgb;
@@ -30,8 +31,6 @@ public class q1015 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q1015);
-
-
 
 
         setTitle("Q1015: CHILD BEARING");
@@ -61,8 +60,8 @@ public class q1015 extends AppCompatActivity {
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         Button btnnext = findViewById(R.id.btnNext);
@@ -107,14 +106,16 @@ public class q1015 extends AppCompatActivity {
                         } else {
                             if (rbtn2.isChecked() || rbtn3.isChecked()) {
                                 Intent intent1 = new Intent(q1015.this, q1101.class);
-                                intent1.putExtra("Household", thisHouse);
+                                intent1.putExtra("Individual", individual);
                                 startActivity(intent1);
                             } else {
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1015(selectedRbtn.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1015a(selectedRbtna.getText().toString().substring(0,1));
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ1015b(selectedRbtnb.getText().toString().substring(0,1));
+
+                               individual.setQ1015(selectedRbtn.getText().toString().substring(0,1));
+                               individual.setQ1015a(selectedRbtna.getText().toString().substring(0,1));
+                               individual.setQ1015b(selectedRbtnb.getText().toString().substring(0,1));
+
                                 Intent intent = new Intent(q1015.this, q1016.class);
-                                intent.putExtra("Household", thisHouse);
+                                intent.putExtra("Individual", individual);
                                 startActivity(intent);
 
 

@@ -24,6 +24,7 @@ public class q1007 extends AppCompatActivity implements Serializable {
     protected Button btn;
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5 ;
     protected RadioGroup rg, rga;
+    protected Individual individual;
     protected TextView t1;
     protected RadioButton selectedRbtn, selectedRbtna;
     @Override
@@ -54,8 +55,8 @@ public class q1007 extends AppCompatActivity implements Serializable {
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         Button btnnext = findViewById(R.id.btnNext);
@@ -86,10 +87,11 @@ public class q1007 extends AppCompatActivity implements Serializable {
                         vibs.vibrate(100);
                     }  else {
 
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ1007(selectedRbtn.getText().toString().substring(0,1));
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ1007a(selectedRbtna.getText().toString().substring(0,1));
+                       individual.setQ1007(selectedRbtn.getText().toString().substring(0,1));
+                        individual.setQ1007a(selectedRbtna.getText().toString().substring(0,1));
+
                                 Intent skipto1009 = new Intent(q1007.this, q1009.class);
-                                skipto1009.putExtra("Household", thisHouse);
+                                skipto1009.putExtra("Individual", individual);
                                 startActivity(skipto1009);
                             }
                         }

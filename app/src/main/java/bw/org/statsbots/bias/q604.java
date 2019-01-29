@@ -20,6 +20,7 @@ public class q604 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
+    protected Individual individual;
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt, ck3txt, ck4txt, ck5txt, ck6txt, ck7txt, ck8txt, ck10txt, ck11txt, ck12txt, ck13txt, ck14txt, ck15txt, chkOther;
     protected Button btn;
@@ -38,6 +39,9 @@ public class q604 extends AppCompatActivity implements Serializable {
         lib = new LibraryClass();
 
 //btn = findViewById(R.id.btn);
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
         rbtn1 = findViewById(R.id.q604_1);
         rbtn2 = findViewById(R.id.q604_2);
@@ -124,29 +128,31 @@ public class q604 extends AppCompatActivity implements Serializable {
                                     else
                                     {
                                         if (rbtn2.isChecked()) {
+                                            individual.setQ604b_1(ck1txt.getText().toString().substring(0,1));
                                             Intent intent1 = new Intent(q604.this, q606.class);
                                             intent1.putExtra("Household", thisHouse);
                                             startActivity(intent1);
                                         }else {
-                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_1(ck1txt.getText().toString().substring(0,1));
-                                            // thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_2(ck2txt.getText().toString().substring(0,1));
-                                            // thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_3(ck3txt.getText().toString().substring(0,1));
-                                            //  thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_4(ck4txt.getText().toString().substring(0,1));
-                                            //  thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_5(ck5txt.getText().toString().substring(0,1));
-                                            //  thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_6(ck6txt.getText().toString().substring(0,1));
-                                            // thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_7(ck7txt.getText().toString().substring(0,1));
-                                            // thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_8(ck8txt.getText().toString().substring(0,1));
-                                            // thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_10(ck10txt.getText().toString().substring(0,1));
-                                            //  thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_11(ck11txt.getText().toString().substring(0,1));
-                                            //  thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_12(ck12txt.getText().toString().substring(0,1));
-                                            //  thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_13(ck13txt.getText().toString().substring(0,1));
-                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_14(ck14txt.getText().toString().substring(0,1));
-                                            // thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_15(ck15txt.getText().toString().substring(0,1));
-                                            //  thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_Other(chkOther.getText().toString().substring(0,1));
-                                            // thisHouse.getIndividual()[p1.getLineNumber()].setQ604b_Otherspecify(q604edt.getText().toString());
+
+                                            individual.setQ604b_1(ck1txt.getText().toString().substring(0,1));
+                                             individual.setQ604b_2(ck2txt.getText().toString().substring(0,1));
+                                             individual.setQ604b_3(ck3txt.getText().toString().substring(0,1));
+                                              individual.setQ604b_4(ck4txt.getText().toString().substring(0,1));
+                                             individual.setQ604b_5(ck5txt.getText().toString().substring(0,1));
+                                              individual.setQ604b_6(ck6txt.getText().toString().substring(0,1));
+                                             individual.setQ604b_7(ck7txt.getText().toString().substring(0,1));
+                                             individual.setQ604b_8(ck8txt.getText().toString().substring(0,1));
+                                             individual.setQ604b_10(ck10txt.getText().toString().substring(0,1));
+                                              individual.setQ604b_11(ck11txt.getText().toString().substring(0,1));
+                                              individual.setQ604b_12(ck12txt.getText().toString().substring(0,1));
+                                              individual.setQ604b_13(ck13txt.getText().toString().substring(0,1));
+                                             individual.setQ604b_14(ck14txt.getText().toString().substring(0,1));
+                                             individual.setQ604b_15(ck15txt.getText().toString().substring(0,1));
+                                              individual.setQ604b_Other(chkOther.getText().toString().substring(0,1));
+                                              individual.setQ604b_Otherspecify(q604edt.getText().toString());
 
                                             Intent intent = new Intent(q604.this, q605.class);
-                                            intent.putExtra("Household", thisHouse);
+                                            intent.putExtra("Individual", individual);
                                             startActivity(intent);
                                         }
                                     }

@@ -29,6 +29,8 @@ public class q1107 extends AppCompatActivity implements  Serializable {
     protected TextView txtq1107aq, txt1107dd, txt1107wks;
     protected LinearLayout viewa;
     protected Individual individual;
+    PersonRoster p1 = null;
+    protected  HouseHold thisHouse;
     protected CheckBox chk1107a, selectedchk;
     protected LibraryClass lib;
 
@@ -51,6 +53,9 @@ public class q1107 extends AppCompatActivity implements  Serializable {
         txt1107dd = findViewById(R.id.dd);
         txt1107wks = findViewById(R.id.tvwks);
 
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +92,7 @@ public class q1107 extends AppCompatActivity implements  Serializable {
 
                 } else {
 
-                    //individual.setQ1107(selectedRbtn.getText().toString().substring(0,1));
+
                     if ((((txtdays.length() == 0 && txtweeks.length() == 0 && !chk1107a.isChecked()))) && (rb1.isChecked())) {
                         lib.showError(q1107.this, "Q1107:", "How long have you had the fever");
                         /**
@@ -97,7 +102,12 @@ public class q1107 extends AppCompatActivity implements  Serializable {
                         vibs.vibrate(100);
                     }
                         else {
+                        individual.setQ1107(selectedRbtn.getText().toString().substring(0,1));
+                      individual.setQ1107aDD(txtdays.getText().toString());
+                        individual.setQ1107aWks(txtweeks.getText().toString());
+
                             Intent intent = new Intent(q1107.this, q1108.class);
+                        intent.putExtra("Individual", individual);
                             startActivity(intent);
                         }
                     }

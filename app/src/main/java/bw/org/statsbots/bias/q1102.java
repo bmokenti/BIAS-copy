@@ -61,10 +61,10 @@ public class q1102 extends AppCompatActivity implements  Serializable {
 
         // final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
-
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +101,7 @@ public class q1102 extends AppCompatActivity implements  Serializable {
 
 
                 } else {
-                    //individual.setQ1102(selectedRbtn.getText().toString().substring(0,1));
+
 
                     if ((q1102ay.getText().equals(null) || ((q1102ay.length() == 0)) && (rbtn1.isChecked()))) {
                         lib.showError(q1102.this, "Q1102", "a) When were you treated for TB?");
@@ -111,14 +111,13 @@ public class q1102 extends AppCompatActivity implements  Serializable {
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
                     } else {
-                        //Check if country entered is in the list
-                        // Intent intent = new Intent(q1102.this, q1103.class);
-                        //intent.putExtra("Household", thisHouse);
+
                         //startActivity(intent);
-                        //individual.setQ1102a(q1102ay.getText().toString());
+                        individual.setQ1102(selectedRbtn.getText().toString().substring(0,1));
+                        individual.setQ1102a(q1102ay.getText().toString());
 
                         Intent q1o3 = new Intent(q1102.this, q1103.class);
-                        q1o3.putExtra("Household", thisHouse);
+                        q1o3.putExtra("Individual", individual);
                         startActivity(q1o3);
 
                     }

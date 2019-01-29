@@ -205,6 +205,7 @@
                         android:text="5. Traditional Healer" />
 
                     </RadioGroup>
+
                     <EditText
                         android:id="@+id/q1101a_Other"
                         android:layout_width="wrap_content"

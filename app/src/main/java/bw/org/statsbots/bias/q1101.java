@@ -82,10 +82,10 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
 
         // final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
-        //Intent i = getIntent();
-        //thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        // int p=0;
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,12 +154,12 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
 
                     } else {
                         //Set q1101 for the current individual
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ1101(selectedRbtn.getText().toString().substring(0,1));
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ1101a(selectedRbtn1.getText().toString().substring(0,1));
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ1101aOther(ed.getText().toString().substring(0,1));
+                        individual.setQ1101(selectedRbtn.getText().toString().substring(0,1));
+                        individual.setQ1101a(selectedRbtn1.getText().toString().substring(0,1));
+                       // individual.setQ1101aOther(ed.getText().toString().substring(0,1));
 
                         Intent q1o3 = new Intent(q1101.this, q1102.class);
-                        q1o3.putExtra("Household", thisHouse);
+                        q1o3.putExtra("Individual", individual);
                         startActivity(q1o3);
                         //setting q103 value
                     }

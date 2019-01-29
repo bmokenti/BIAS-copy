@@ -54,9 +54,9 @@ public class q601 extends AppCompatActivity implements Serializable {
 
 
 
-        //Intent i = getIntent();
-        //thisHouse = (HouseHold) i.getSerializableExtra("Household");
-        //int p = 0;
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
 
@@ -92,21 +92,29 @@ public class q601 extends AppCompatActivity implements Serializable {
 
                         if (selectedRbtn == rbtn2) {
                             Intent skipto604 = new Intent(q601.this, q604.class);
-                            skipto604.putExtra("Household", thisHouse);
+                            skipto604.putExtra("Individual", individual);
                             startActivity(skipto604);
                         } else {
 
 
                             if (selectedRbtn1 == rbtna2) {
                                 Intent skipto603 = new Intent(q601.this, q603.class);
-                                skipto603.putExtra("Household", thisHouse);
+                                skipto603.putExtra("Individual", individual);
                                 startActivity(skipto603);
                             } else {
-                           //thisHouse.getIndividual()[p1.getLineNumber()].setQ601(selectedRbtn.getText().toString().substring(0,1));
-                               //thisHouse.getIndividual()[p1.getLineNumber()].setQ601a(selectedRbtn1.getText().toString().substring(0,1));
+                                if(rbtn2.isChecked())
+                                {
+                                    individual.setQ601(selectedRbtn.getText().toString().substring(0,1));
+                                    Intent intent = new Intent(q601.this, q602.class);
+                                    intent.putExtra("Individual", individual);
+                                    startActivity(intent);
+                                }
+                                else
+                          individual.setQ601(selectedRbtn.getText().toString().substring(0,1));
+                          individual.setQ601a(selectedRbtn1.getText().toString().substring(0,1));
 
                                 Intent intent = new Intent(q601.this, q602.class);
-                                intent.putExtra("Household", thisHouse);
+                                intent.putExtra("Individual", individual);
                                 startActivity(intent);
 
 

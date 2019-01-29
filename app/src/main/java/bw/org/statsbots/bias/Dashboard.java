@@ -478,7 +478,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setH12CellPhone(jObject.get("H12CellPhone").toString());
                             hh.setH12PrintMedia(jObject.get("H12PrintMedia").toString());
                             hh.setH12ElecMedia(jObject.get("H12ElecMedia").toString());
-                            hh.setH12PerfomArts(jObject.get("H12PerformArts").toString());
+                            hh.setH12PerfomArts(jObject.get("H12PerfomArts").toString());
 
 
                             hh.setH13(jObject.get("H13Vehicle").toString());
@@ -556,7 +556,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 ind.setSRNO(Integer.parseInt(roster.get("SRNO").toString()));
 
 
-                                ind.setIndBarcode(roster.get("IndBarcode").toString());
+                                ind.setIndBarcode(roster.get("BarCode").toString());
                                 ind.setQ101(roster.get("Q101").toString());
                                 ind.setQ102(roster.get("Q102").toString());
                                 ind.setQ103(roster.get("Q103").toString());
@@ -644,7 +644,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                                 ind.setQ410Slapped(roster.get("Q410Slapped").toString());
                                 ind.setQ410Pushed(roster.get("Q410Pushed").toString());
-                                ind.setQ410Choked(roster.get("Q410Chocked").toString());
+                                ind.setQ410Choked(roster.get("Q410Choked").toString());
                                 ind.setQ410Threatened(roster.get("Q410Threatened").toString());
                                 ind.setQ410Physical(roster.get("Q410Physical").toString());
                                 ind.setQ410Forced(roster.get("Q410Forced").toString());

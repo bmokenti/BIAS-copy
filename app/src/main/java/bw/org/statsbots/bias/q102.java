@@ -19,7 +19,7 @@ public class q102 extends AppCompatActivity implements Serializable {
 
     protected HouseHold thisHouse;
     protected Individual individual;
-    protected PersonRoster p1 = null;
+    Individual p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
     protected EditText edt;
@@ -37,7 +37,7 @@ public class q102 extends AppCompatActivity implements Serializable {
         //edittext.setVisibility(View.VISIBLE);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
         edt = (EditText)findViewById(R.id.q102_years);
 
@@ -68,13 +68,13 @@ public class q102 extends AppCompatActivity implements Serializable {
                     }
                     else{
                         //Set Q102 for the current individual
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ102(edt.getText().toString());
+                       individual.setQ102(edt.getText().toString());
 
 
 
                             //Next question P17
                             Intent intent = new Intent(q102.this, q103.class);
-                            intent.putExtra("Household", thisHouse);
+                            intent.putExtra("Individual", individual);
                             startActivity(intent);
 
 

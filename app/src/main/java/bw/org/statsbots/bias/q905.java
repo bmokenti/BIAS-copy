@@ -22,6 +22,7 @@ public class q905 extends AppCompatActivity implements Serializable {
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt;
     protected Button btn;
+    protected  Individual individual;
     protected EditText edtdays, edtaother;
     protected RadioButton rbtna1, rbtna2, rbtna3, rbtna4, rbtna5, rbtna6, rbtnaother, selectedRbtna;
     protected RadioGroup rg;
@@ -56,7 +57,7 @@ public class q905 extends AppCompatActivity implements Serializable {
         rg = (RadioGroup) findViewById(R.id.q905rGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
 
@@ -113,12 +114,12 @@ public class q905 extends AppCompatActivity implements Serializable {
                     }
                     else {
 
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ905(edtdays.getText().toString());
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ905a(selectedRbtna.getText().toString().substring(0,1));
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ905aOther(edtaother.getText().toString());
+                       individual.setQ905(edtdays.getText().toString());
+                       individual.setQ905a(selectedRbtna.getText().toString().substring(0,1));
+                        individual.setQ905aOther(edtaother.getText().toString());
 
                         Intent intent = new Intent(q905.this, q1001.class);
-                        intent.putExtra("Household", thisHouse);
+                        intent.putExtra("Individual", individual);
                         startActivity(intent);
                     }
 

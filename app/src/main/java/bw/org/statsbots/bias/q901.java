@@ -64,7 +64,7 @@ public class q901 extends AppCompatActivity implements Serializable {
         final int selectedId = rg.getCheckedRadioButtonId();
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
         Button btnnext = findViewById(R.id.button);
@@ -171,20 +171,21 @@ public class q901 extends AppCompatActivity implements Serializable {
 
                         if (rbtn2.isChecked() && (rbtna1.isChecked() || rbtna2.isChecked() || rbtna3.isChecked()|| rbtna4.isChecked() || rbtna5.isChecked() || rbtna6.isChecked() || rbtna7.isChecked() || rbtna8.isChecked() || rbtna10.isChecked() || rbtna11.isChecked()|| rbtnaOther.isChecked())) {
                             // to include ea status code on the check
+
                             Intent q1o2 = new Intent(q901.this, q1001.class);
-                            q1o2.putExtra("Household", thisHouse);
+                            q1o2.putExtra("Individual", individual);
                             startActivity(q1o2);
 
                         }  else {
                                 //Set q101 for the current individual
 
-                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ901(selectedRbtn.getText().toString().substring(0,1));
-                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ901a(selectedRbtna.getText().toString().substring(0,1));
-                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ901a(edt.getText().toString());
+                          individual.setQ901(selectedRbtn.getText().toString().substring(0,1));
+                            individual.setQ901a(selectedRbtna.getText().toString().substring(0,1));
+                            individual.setQ901a(edt.getText().toString());
 
 
                                 Intent intent = new Intent(q901.this, q902.class);
-                                intent.putExtra("Household", thisHouse);
+                                intent.putExtra("Individual", individual);
                                 startActivity(intent);
 
                             }

@@ -41,8 +41,9 @@ public class q406 extends AppCompatActivity implements  Serializable {
 
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -79,11 +80,11 @@ public class q406 extends AppCompatActivity implements  Serializable {
 
                     } else {
                         //Set q406 for the current individual
-                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ406(edt.getText().toString());
+                   individual.setQ406(edt.getText().toString());
 
 
                         Intent q1o2 = new Intent(q406.this, q407.class);
-                        q1o2.putExtra("Household", thisHouse);
+                        q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
 
                     }

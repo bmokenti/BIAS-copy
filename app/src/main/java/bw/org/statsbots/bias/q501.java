@@ -46,10 +46,10 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
         rbtn2.setOnClickListener(this);
         rbtn3.setOnClickListener(this);
 
-
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -93,22 +93,22 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
 
                     if (rbtn2.isChecked() || rbtn3.isChecked()) {
 
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ501(selectedRbtn.getText().toString().substring(0,1));
+                        individual.setQ501(selectedRbtn.getText().toString().substring(0,1));
 
 
                         Intent q1o2 = new Intent(q501.this, q503.class);
-                        q1o2.putExtra("Household", thisHouse);
+                        q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
                     }
                     else
                     {
                         //Set q501 for the current individual
-                       //thisHouse.getIndividual()[p1.getLineNumber()].setQ501(selectedRbtn.getText().toString().substring(0,1));
+                       individual.setQ501(selectedRbtn.getText().toString().substring(0,1));
 
 
 
                         Intent intent = new Intent(q501.this, q502.class);
-                        intent.putExtra("Household", thisHouse);
+                        intent.putExtra("Individual", individual);
                         startActivity(intent);
 
                     }

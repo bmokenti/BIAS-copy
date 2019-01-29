@@ -18,7 +18,7 @@ public class q804 extends AppCompatActivity implements Serializable{
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
-    protected Individual indv;
+    protected Individual individual;
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtnother, selected;
     protected RadioGroup rbtngroup;
@@ -45,7 +45,7 @@ public class q804 extends AppCompatActivity implements Serializable{
 
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
         rbtnother.setOnClickListener(new View.OnClickListener() {
@@ -174,11 +174,11 @@ public class q804 extends AppCompatActivity implements Serializable{
                         vibs.vibrate(100);
                     }
                     else {
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ804(selected.getText().toString().substring(0, 1));
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ804Other(edt804other.getText().toString());
+                       individual.setQ804(selected.getText().toString().substring(0, 1));
+                        individual.setQ804Other(edt804other.getText().toString());
 
                         Intent intent = new Intent(q804.this, q901.class);
-                        intent.putExtra("Household", thisHouse);
+                        intent.putExtra("Individual", individual);
                         startActivity(intent);
 
                     }

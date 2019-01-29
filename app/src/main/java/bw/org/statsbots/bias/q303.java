@@ -54,8 +54,9 @@ public class q303 extends AppCompatActivity {
 
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
@@ -130,16 +131,25 @@ public class q303 extends AppCompatActivity {
 
                     } else {
                         //Set q303 for the current individual
-                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ303(selectedRbtn1.getText().toString().substring(0, 1));
-                       //  thisHouse.getIndividual()[p1.getLineNumber()].setQ303a(selectedRbtn2.getText().toString().substring(0, 1));
+                        if (rbtn2.isChecked()) {
+                            individual.setQ303(selectedRbtn1.getText().toString().substring(0, 1));
+
+                            Intent q1o2 = new Intent(q303.this, q304.class);
+                            q1o2.putExtra("Individual", individual);
+                            startActivity(q1o2);
+
+                        } else {
+
+                            individual.setQ303(selectedRbtn1.getText().toString().substring(0, 1));
+                            individual.setQ303a(selectedRbtn2.getText().toString().substring(0, 1));
 
 
-                        Intent q1o2 = new Intent(q303.this, q304.class);
-                        q1o2.putExtra("Household", thisHouse);
-                        startActivity(q1o2);
+                            Intent q1o2 = new Intent(q303.this, q304.class);
+                            q1o2.putExtra("Individual", individual);
+                            startActivity(q1o2);
 
+                        }
                     }
-
                 }
             }
 

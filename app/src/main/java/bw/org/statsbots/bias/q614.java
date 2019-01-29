@@ -20,7 +20,7 @@ public class q614 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
-    protected Individual indv;
+    protected Individual individual;
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn9, rbtnother, selected;
     protected RadioGroup rbtngroup;
@@ -82,11 +82,11 @@ public class q614 extends AppCompatActivity implements Serializable {
                     }
                     else
                     {
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ614(selected.getText().toString().substring(0, 1));
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ614Other(edt.getText().toString());
+                        individual.setQ614(selected.getText().toString().substring(0, 1));
+                        individual.setQ614Other(edt.getText().toString());
 
                         Intent intent = new Intent(q614.this, q615.class);
-                        intent.putExtra("Household", thisHouse);
+                        intent.putExtra("Individual", individual);
                         startActivity(intent);
                     }
                 }
