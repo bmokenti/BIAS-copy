@@ -45,6 +45,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
@@ -281,36 +282,30 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                 List<HouseHold> CompleteddHH = myDB.getCompleted();
 
-                String request = "http://10.30.3.169:8080/Webservice/dataFromField";
-                try{
-                    URL url = new URL(request);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setDoOutput(true);
-                    connection.setDoInput(true);
-
-                    connection.setInstanceFollowRedirects(false);
-                    connection.setRequestMethod("POST");
-                    connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-                    connection.setRequestProperty("charset", "utf-8");
-                    connection.setUseCaches (false);
-
-                    DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+                String Response=null;
+                try
+                {
                     Gson gson = new Gson();
                     String json = gson.toJson(CompleteddHH);
 
-                    wr.writeBytes(json.toString());
-                    wr.flush();
-                    wr.close();
+                    String url="http://10.30.3.169:8080/Webservice/dataFromField?Username=" + preferences.getString("Username",null)+ "&data=" + json;
+                    HttpHandler sh = new HttpHandler();
+                    String jsonStr = sh.makeServiceCall(url);
 
+                    if (jsonStr != null)
+                    {
+                        Response=jsonStr;
+                    }
 
                 }catch (Exception e){
-                    lib.showError(Dashboard.this,"Synchronization Error","An error has been encountered while sending data to the server");
-                    /**
-                     * VIBRATE DEVICE
-                     */
-                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                    vibs.vibrate(100);
+                    e.printStackTrace();
                 }
+
+                Log.d("Response: ", Response);
+
+
+
+
 
 
 
