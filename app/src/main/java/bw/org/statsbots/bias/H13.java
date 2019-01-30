@@ -250,6 +250,10 @@ public class H13 extends AppCompatActivity implements Serializable {
 
                     myDB.updateHHStatus(thisHouse);
 
+
+
+
+
                     Intent q1o2 = new Intent(bw.org.statsbots.bias.H13.this, Dashboard.class);
                     q1o2.putExtra("Household",  thisHouse);
                     startActivity(q1o2);

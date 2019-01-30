@@ -2,9 +2,11 @@ package bw.org.statsbots.bias;
 
 import android.app.AlertDialog;
 import android.app.Application;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
@@ -82,10 +84,12 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         //***************************Read Roster from Database and load it into Object thisHouse
         List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
         PersonRoster[] r = new PersonRoster[30];
+        final int memberExist[]= new int[1];//tracker of exist roster
 
         for(int t = 0; t<list.size();t++)
         {
             r[t]=list.get(t);
+            memberExist[0] = 1;
         }
         thisHouse.setHouseHoldeMembers(r);
 
@@ -328,7 +332,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                 if (counter == 0) {
                     personName.setHint("Head of House");
                 } else {
-                    personName.setHint("Household Member " + counter);
+                    personName.setHint("Household Member " + (counter + 1));
                 }
 
                 personName.setId(counter);
@@ -473,6 +477,8 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
             @Override
             public void onClick(View v) {
+                int Head=0;
+
                 if(hhArray[0]==null){
                     AlertDialog.Builder builderErr = new AlertDialog.Builder(MainActivity.this);
                     builderErr.setTitle("P01 Error");
@@ -504,37 +510,55 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                     //Complete the list entry
                     final CharSequence[] list = new String[counter];
                     for(int i =0;i<counter;i++){
+
                         list[i]= (i+1) + " - " + hhArray[i].getText().toString();
+                        if(memberExist[0]==1){
+                            if(thisHouse.getPersons()[i]!=null){
+                                if(thisHouse.getPersons()[i].getP02() != null ){
+                                    if(thisHouse.getPersons()[i].getP02().equals("00")){
+                                        Head = i;
+                                    }
+
+                                }
+                            }
+
+                        }
+
                     }
+
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-                    builder.setTitle("Select head of House");
+                    builder.setTitle("Select/Confirm head of House");
+                    int selected = Head; // or whatever you want
+
 
                     builder.setIcon(R.drawable.ic_person_black_24dp);
                     //builder.setMessage("The person you are about to remove is considered Head of Household. Are you sure you want to remove head?" + list[2].toString());
-                    builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                   /* builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             //Do nothing only when the Head of House is selected we proceed.
 
                         }
-                    });
+                    });*/
 
 
 
-                    builder.setItems(list, new DialogInterface.OnClickListener() {
+                    builder.setSingleChoiceItems(list, selected, new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(DialogInterface dialogInterface, int which) {
 
                             //Start New House Class Activity
                             String[] plist = new String[counter];
-                            for(int i =0;i<counter;i++){
+                            for(int i =0;i<counter;i++)
+                            {
                                 plist[i]= hhArray[i].getText().toString();
                             }
 
                             //Set the Head of house to index of selected array
+                            Log.d("Head",String.valueOf(which));
                             HeadofHouse = which;
-                             thisHouse.setHead(HeadofHouse);
+                            thisHouse.setHead(HeadofHouse);
                             PersonRoster[] p = new PersonRoster[plist.length];
 
                             /**
@@ -548,6 +572,13 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
                             thisHouse.setHouseHoldeMembers(p);
 
+                            //SQLiteDatabase db = myDB.getWritableDatabase();
+                            //ContentValues hhValues = new ContentValues();
+
+                            //myDB.insertHhroster(thisHouse);
+
+
+
                             Intent intent = new Intent(MainActivity.this,P02.class);
                             intent.putExtra("Household",  thisHouse);
                             startActivity(intent);
@@ -555,6 +586,15 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
                         }
                     });
+
+                    /*builder.setItems(list, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+
+                        }
+                    });*/
 
 
 

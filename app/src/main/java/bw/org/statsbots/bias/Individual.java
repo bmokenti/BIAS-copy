@@ -6,12 +6,399 @@ public class Individual implements Serializable {
     private String AssignmentID;
 
 
+    private String Q404a;
+    private String Q304a;
+    private String Q305_1;
+    private String Q305_2;
+    private String Q305_3;
+    private String Q305_4;
+    private String Q306;
+    private String Q307;
+    private String Q204;
+    private String Q202;
+    private String Q203;
+    private String Q201;
 
+    private String Q401;
+    private String Q402;
+    private String Q402a;
+    private String Q402b;
+    private String Q403;
+    private String Q404_1;
+    private String Q404_2;
+    private String Q404_3;
+    private String Q405;
+    private String Q406;
+    private String Q407;
+    private String Q408;
+    private String Q408a;
     private String Batch;
     private String Q101;
     private String Q102;
     private String Q103;
     private String Q104;
+    private String Q1101;
+    private String Q1101a;
+    private String Q1101aOther;
+    private String Q1102;
+    private String Q1102a;
+    private String Q1103;
+    private String Q1103aDD;
+    private String Q1103aWks;
+    private String Q1103aDontKnow;
+    private String Q1104;
+    private String Q1105;
+    private String Q1106;
+    private String Q1106a;
+    private String Q1106b;
+    private String Q1106bOther;
+    private String Q1107;
+    private String Q1107aDD;
+    private String Q1107aWks;
+    private String Q1107aDontKnow;
+    private String Q1108;
+    private String Q1108aDD;
+    private String Q1108aWks;
+    private String Q1108aDontKnow;
+    private String Q1109;
+    private String Q1110;
+    private String Q1111;
+    private String Q1111Other;
+    private String Q1112;
+    private String Q1112_Other;
+    private String Q1113;
+    private String Q1113Other;
+    private String Q1114;
+    private String Q613a;
+    private String Q614;
+    private String Q612aOther;
+    private String Q613;
+    private String Q612;
+    private String Q612a;
+    private String Q611b;
+    private String Q611c;
+    private String Q609;
+    private String Q610;
+    private String Q611;
+    private String Q611a;
+    private String Q606;
+    private String Q607;
+    private String Q608;
+    private String Q601;
+    private String Q601a;
+    private String Q602_1;
+    private String Q602_2;
+    private String Q602_3;
+    private String Q613aOther;
+    private String Q614Other;
+    private String Q615;
+    private String Q616_1;
+    private String Q616_2;
+    private String Q616_3;
+    private String Q616_4;
+    private String Q616_5;
+    private String Q616_6;
+    private String Q616_7;
+    private String Q616_8;
+    private String Q616_9;
+    private String Q616_10;
+    private String Q619_10;
+    private String Q619_11;
+    private String Q619_12;
+    private String Q617a;
+    private String Q617b;
+    private String Q617c;
+    private String Q617d;
+    private String Q617e;
+    private String Q617f;
+    private String Q617g;
+    private String Q617h;
+    private String Q617_0ther;
+    private String Q618;
+    private String Q619_1;
+    private String Q619_2;
+    private String Q619_3;
+    private String Q619_4;
+    private String Q619_5;
+    private String Q619_6;
+    private String Q619_7;
+    private String Q619_8;
+    private String Q619_9;
+    private String Q619_13;
+    private String Q619_14;
+    private String Q619_15;
+    private String Q619_Other;
+    private String Q620_Other;
+    private String Q621;
+    private String Q621a_1;
+    private String Q621a_2;
+    private String Q621a_3;
+    private String Q621a_4;
+    private String Q621a_5;
+    private String Q621a_6;
+    private String Q621a_7;
+    private String Q621a_Other;
+    private String Q621bOther;
+    private String Q621b;
+    private String Q622aOther;
+    private String Q622bOther;
+    private int SRNO;
+    private String IndHIVChildParentalConsentQ1 ;
+    private String IndHIVChildParentalConsentQ2 ;
+    private String IndHIVChildParentalConsentQ3 ;
+    private String IndHIVChildParentalConsentQ4 ;
+    private String IndHIVChildParentalConsentNameOfInterviewer ;
+    private String IndHIVChildParentalConsentInterviewerID ;
+    private String IndHIVChildParentalConsentParticipantsID ;
+    private String IndHIVChildParentalConsentDate ;
+    private String IndHIVAssentQ1 ;
+    private String B8_Yes_No;
+    private String B8_Date;
+    private String B8_O15_Rapid;
+
+
+    private String IndHIVAssentQ2 ;
+    private String IndHIVAssentQ3 ;
+    private String IndHIVAssentQ4 ;
+    private String IndHIVAssentNameOfInterviewer ;
+    private String IndHIVAssentInterviewerID ;
+    private String IndHIVAssentParticipantsID ;
+    private String IndHIVAssentDate ;
+    private String IndHIVAdult64lessConsentQ1 ;
+    private String IndHIVAdult64lessConsentQ2 ;
+    private String IndHIVAdult64lessConsentQ3 ;
+    private String IndHIVAdult64lessConsentQ4 ;
+    private String IndHIVAdult64lessConsentNameOfInterviewer ;
+    private String IndHIVAdult64lessConsentInterviewerID ;
+    private String IndHIVAdult64lessConsentParticipantsID ;
+    private String IndHIVAdult64lessConsentDate ;
+    private String IndBloodSampleCollected ;
+    private String IndBarcode ;
+    private String IndRapidResults ;
+    private String IndRapidDate ;
+    private String IndRapid_Comment ;
+    private String Q104a;
+    private String Q104b;
+    private String Q104c;
+    private String Q104cBISCED;
+    private String Q105;
+    private String Q105Other;
+    private String Q105a;
+    private String Q105b;
+    private String Q106;
+    private String Q106a;
+    private String Q205;
+    private String Q205a;
+
+    private String Q301;
+    private String Q301a;
+    private String Q302;
+    private String Q303;
+    private String Q303a;
+    private String Q304;
+
+    private String Q106aOther;
+    private String Q106b;
+    private String Q106c;
+    private String Q106d;
+
+    private String Q107;
+    private String Q107aYY;
+    private String Q107aMnth;
+    private String Q107b;
+    private String Q107bOther;
+    private String Q107c;
+    private String Q107cOther;
+    private String Q410MadeAfraid;
+
+    private String Q501;
+    private String Q502;
+    private String Q503;
+    private String Q504_1;
+    private String Q504_2;
+    private String Q504_3;
+    private String Q504_4;
+    private String Q504_5;
+    private String Q504_6;
+    private String Q504_7;
+    private String Q504_8;
+    private String Q504_10;
+    private String Q504_Other;
+    private String Q504_OtherSpecify;
+
+    private String Q602_4;
+    private String Q602_5;
+    private String Q602_6;
+    private String Q602_7;
+    private String Q602_8;
+    private String Q602_10;
+    private String Q602_11;
+    private String Q602_12;
+    private String Q602_13;
+    private String Q602_14;
+    private String Q602_15;
+    private String Q602_Other;
+    private String Q602_Otherspecify;
+
+
+    private String Q603_1;
+    private String Q603_2;
+    private String Q603_3;
+    private String Q603_4;
+    private String Q603_5;
+    private String Q603_6;
+    private String Q603_7;
+    private String Q603_8;
+    private String Q603_9;
+    private String Q603_Other;
+    private String Q603_Otherspecify;
+
+    private String Q410Slapped;
+    private String Q410Pushed;
+    private String Q410Choked;
+    private String Q410Threatened;
+    private String Q410Physical;
+    private String Q410Forced;
+    private String Q604;
+    private String Q604a;
+    private String Q604b_1;
+    private String Q604b_2;
+    private String Q604b_3;
+    private String Q604b_4;
+    private String Q604b_5;
+    private String Q604b_6;
+    private String Q604b_7;
+    private String Q604b_8;
+    private String Q604b_10;
+    private String Q604b_11;
+    private String Q604b_12;
+    private String Q604b_13;
+    private String Q604b_14;
+    private String Q604b_15;
+    private String Q604b_Other;
+    private String Q604b_Otherspecify;
+
+    private String Q605_1;
+    private String Q605_2;
+    private String Q605_3;
+    private String Q605_4;
+    private String Q605_5;
+    private String Q605_9;
+    private String Q605_Other;
+    private String Q605_Otherspecify;
+    private String Q901aOther;
+    private String Q902Month;
+    private String Q902Year;
+    private String Q903a;
+    private String Q903b;
+    private String Q903c;
+    private String Q903d;
+    private String Q903e;
+    private String Q903f;
+    private String Q903g;
+    private String Q903h;
+    private String Q904;
+    private String Q904a;
+    private String Q904aOther;
+    private String Q904bMM;
+    private String Q904bYYYY;
+    private String Q904c;
+    private String Q904cOther;
+    private String Q905;
+    private String Q905a;
+    private String Q905aOther;
+
+
+    private String Q1001;
+    private String Q1002;
+    private String Q1002a_1;
+    private String Q1002a_2;
+    private String Q1002a_3;
+    private String Q1002a_4;
+    private String Q1002a_5;
+    private String Q1002a_6;
+    private String Q1002a_7;
+    private String Q1002a_8;
+    private String Q1002a_10;
+    private String Q1002a_12;
+    private String Q1002a_13;
+    private String Q1002a_14;
+    private String Q1002a_15;
+    private String Q1002a_16;
+    private String Q1002a_17;
+    private String Q1002a_18;
+    private String Q1002a_Other;
+    private String Q1003;
+    private String Q1004_Month;
+    private String Q1004_Year;
+    private String Q1004_Day;
+    private String Q1005;
+    private String Q1005a;
+    private String Q1006;
+    private String Q1007;
+    private String Q1007a;
+    private String Q1008;
+    private String Q1008a;
+    private String Q1009;
+    private String Q1009a;
+    private String Q1010;
+    private String Q1011;
+    private String Q1011_Other;
+    private String Q1012_Week;
+    private String Q1012_Month;
+    private String Q1012_Year;
+    private String Q1013;
+    private String Q1014;
+    private String Q1014a;
+    private String Q1014b;
+    private String Q1015;
+    private String Q1015a;
+    private String Q1015b;
+    private String Q1016;
+    private String Q1017;
+    private String Q901;
+    private String Q901a;
+    private String Q801cMonth;
+    private String Q801cYear;
+    private String Q801d;
+    private String Q801dOther;
+    private String Q801e;
+    private String Q801eOther;
+    private String Q801f;
+
+    private String Q801a;
+    private String Q801b;
+    private String Q622;
+    private String Q622a;
+    private String Q622b;
+    private String Q623;
+    private String Q624;
+    private String Q625;
+
+
+    private String Q701;
+    private String Q702;
+    private String Q703;
+    private String Q704;
+    private String Q705;
+    private String Q801;
+    private String Q802;
+    private String Q802a;
+    private String Q803;
+    private String Q804;
+    private String Q802aOther;
+    private String Q1002b;
+    private String Q1002bOther;
+    private String Q1004a;
+    private String Q1004b;
+    private String Q1004bOther;
+    private String Q1008aOther;
+    private String Q1010Other;
+    private String Q1004;
+    private String Q804Other;
+    private String Q803Other;
+    private String Q1002a_11;
+
 
     public String getQ104a() {
         return Q104a;
@@ -29,22 +416,7 @@ public class Individual implements Serializable {
         Q104b = q104b;
     }
 
-    private String Q104a;
-    private String Q104b;
-    private String Q104c;
-    private String Q104cBISCED;
-    private String Q105;
-    private String Q105Other;
-    private String Q105a;
-    private String Q105b;
-    private String Q106;
-    private String Q106a;
 
-
-    private String Q106aOther;
-    private String Q106b;
-    private String Q106c;
-    private String Q106d;
 
     public String getQ107() {
         return Q107;
@@ -102,13 +474,6 @@ public class Individual implements Serializable {
         Q107cOther = q107cOther;
     }
 
-    private String Q107;
-    private String Q107aYY;
-    private String Q107aMnth;
-    private String Q107b;
-    private String Q107bOther;
-    private String Q107c;
-    private String Q107cOther;
 
 
 
@@ -120,7 +485,7 @@ public class Individual implements Serializable {
         Q201 = q201;
     }
 
-    private String Q201;
+
     public String getQ203() {
         return Q203;
     }
@@ -137,8 +502,7 @@ public class Individual implements Serializable {
         Q202 = q202;
     }
 
-    private String Q202;
-    private String Q203;
+
 
     public String getQ204() {
         return Q204;
@@ -148,7 +512,6 @@ public class Individual implements Serializable {
         Q204 = q204;
     }
 
-    private String Q204;
 
     public String getQ205() {
         return Q205;
@@ -166,15 +529,7 @@ public class Individual implements Serializable {
         Q205a = q205a;
     }
 
-    private String Q205;
-    private String Q205a;
 
-    private String Q301;
-    private String Q301a;
-    private String Q302;
-    private String Q303;
-    private String Q303a;
-    private String Q304;
 
     public String getQ301() {
         return Q301;
@@ -280,22 +635,7 @@ public class Individual implements Serializable {
         Q307 = q307;
     }
 
-    private String Q304a;
-    private String Q305_1;
-    private String Q305_2;
-    private String Q305_3;
-    private String Q305_4;
-    private String Q306;
-    private String Q307;
 
-    private String Q401;
-    private String Q402;
-    private String Q402a;
-    private String Q402b;
-    private String Q403;
-    private String Q404_1;
-    private String Q404_2;
-    private String Q404_3;
 
     public String getQ404_1() {
         return Q404_1;
@@ -331,13 +671,7 @@ public class Individual implements Serializable {
         Q404a = q404a;
     }
 
-    private String Q404a;
 
-    private String Q405;
-    private String Q406;
-    private String Q407;
-    private String Q408;
-    private String Q408a;
     public String getQ405() {
         return Q405;
     }
@@ -379,12 +713,7 @@ public class Individual implements Serializable {
     }
 
 
-    private String Q410Slapped;
-    private String Q410Pushed;
-    private String Q410Choked;
-    private String Q410Threatened;
-    private String Q410Physical;
-    private String Q410Forced;
+
 
     public String getQ410Slapped() {
         return Q410Slapped;
@@ -442,78 +771,6 @@ public class Individual implements Serializable {
         Q410MadeAfraid = q410MadeAfraid;
     }
 
-    private String Q410MadeAfraid;
-
-    private String Q501;
-    private String Q502;
-    private String Q503;
-    private String Q504_1;
-    private String Q504_2;
-    private String Q504_3;
-    private String Q504_4;
-    private String Q504_5;
-    private String Q504_6;
-    private String Q504_7;
-    private String Q504_8;
-    private String Q504_10;
-    private String Q504_Other;
-    private String Q504_OtherSpecify;
-
-    private String Q602_4;
-    private String Q602_5;
-    private String Q602_6;
-    private String Q602_7;
-    private String Q602_8;
-    private String Q602_10;
-    private String Q602_11;
-    private String Q602_12;
-    private String Q602_13;
-    private String Q602_14;
-    private String Q602_15;
-    private String Q602_Other;
-    private String Q602_Otherspecify;
-
-
-    private String Q603_1;
-    private String Q603_2;
-    private String Q603_3;
-    private String Q603_4;
-    private String Q603_5;
-    private String Q603_6;
-    private String Q603_7;
-    private String Q603_8;
-    private String Q603_9;
-    private String Q603_Other;
-    private String Q603_Otherspecify;
-
-
-    private String Q604;
-    private String Q604a;
-    private String Q604b_1;
-    private String Q604b_2;
-    private String Q604b_3;
-    private String Q604b_4;
-    private String Q604b_5;
-    private String Q604b_6;
-    private String Q604b_7;
-    private String Q604b_8;
-    private String Q604b_10;
-    private String Q604b_11;
-    private String Q604b_12;
-    private String Q604b_13;
-    private String Q604b_14;
-    private String Q604b_15;
-    private String Q604b_Other;
-    private String Q604b_Otherspecify;
-
-    private String Q605_1;
-    private String Q605_2;
-    private String Q605_3;
-    private String Q605_4;
-    private String Q605_5;
-    private String Q605_9;
-    private String Q605_Other;
-    private String Q605_Otherspecify;
 
 
 
@@ -534,11 +791,7 @@ public class Individual implements Serializable {
         Q601a = q601a;
     }
 
-    private String Q601;
-    private String Q601a;
-    private String Q602_1;
-    private String Q602_2;
-    private String Q602_3;
+
 
     public String getQ602_1() {
         return Q602_1;
@@ -982,9 +1235,7 @@ public class Individual implements Serializable {
         Q607 = q607;
     }
 
-    private String Q606;
-    private String Q607;
-    private String Q608;
+
 
     public String getQ608() {
         return Q608;
@@ -1018,10 +1269,7 @@ public class Individual implements Serializable {
         Q611 = q611;
     }
 
-    private String Q609;
-    private String Q610;
-    private String Q611;
-    private String Q611a;
+
 
     public String getQ611a() {
         return Q611a;
@@ -1047,8 +1295,7 @@ public class Individual implements Serializable {
         Q611c = q611c;
     }
 
-    private String Q611b;
-    private String Q611c;
+
 
     public String getQ612() {
         return Q612;
@@ -1066,8 +1313,7 @@ public class Individual implements Serializable {
         Q612a = q612a;
     }
 
-    private String Q612;
-    private String Q612a;
+
 
     public String getQ612aOther() {
         return Q612aOther;
@@ -1077,8 +1323,7 @@ public class Individual implements Serializable {
         Q612aOther = q612aOther;
     }
 
-    private String Q612aOther;
-    private String Q613;
+
 
     public String getQ613aOther() {
 
@@ -1089,7 +1334,7 @@ public class Individual implements Serializable {
         Q613aOther = q613aOther;
     }
 
-    private String Q613aOther;
+
 
     public String getQ613() {
         return Q613;
@@ -1107,8 +1352,7 @@ public class Individual implements Serializable {
         Q613a = q613a;
     }
 
-    private String Q613a;
-    private String Q614;
+
 
     public String getQ614Other() {
         return Q614Other;
@@ -1118,8 +1362,7 @@ public class Individual implements Serializable {
         Q614Other = q614Other;
     }
 
-    private String Q614Other;
-    private String Q615;
+
 
     public String getQ614() {
         return Q614;
@@ -1145,16 +1388,7 @@ public class Individual implements Serializable {
         Q616_1 = q616;
     }
 
-    private String Q616_1;
-    private String Q616_2;
-    private String Q616_3;
-    private String Q616_4;
-    private String Q616_5;
-    private String Q616_6;
-    private String Q616_7;
-    private String Q616_8;
-    private String Q616_9;
-    private String Q616_10;
+
 
 
     public void setQ616_1(String q616_1) {
@@ -1250,8 +1484,7 @@ public class Individual implements Serializable {
 
 
 
-    private String Q617a;
-    private String Q617b;
+
 
     public String getQ617a() {
         return Q617a;
@@ -1333,54 +1566,18 @@ public class Individual implements Serializable {
         Q618 = q618;
     }
 
-    private String Q617c;
-    private String Q617d;
-    private String Q617e;
-    private String Q617f;
-    private String Q617g;
-    private String Q617h;
-    private String Q617_0ther;
-    private String Q618;
-    private String Q619_1;
-    private String Q619_2;
-    private String Q619_3;
-    private String Q619_4;
-    private String Q619_5;
-    private String Q619_6;
-    private String Q619_7;
-    private String Q619_8;
-    private String Q619_9;
 
     public void setQ619_10(String q619_10) {
         Q619_10 = q619_10;
     }
 
-    private String Q619_10;
-    private String Q619_11;
-    private String Q619_12;
+
 
     public void setQ619_13(String q619_13) {
         Q619_13 = q619_13;
     }
 
-    private String Q619_13;
-    private String Q619_14;
-    private String Q619_15;
-    private String Q619_Other;
-    private String Q620_Other;
-    private String Q621;
-    private String Q621a_1;
-    private String Q621a_2;
-    private String Q621a_3;
-    private String Q621a_4;
-    private String Q621a_5;
-    private String Q621a_6;
-    private String Q621a_7;
-    private String Q621a_Other;
-    private String Q621bOther;
-    private String Q621b;
-    private String Q622aOther;
-    private String Q622bOther;
+
 
 
 
@@ -1736,20 +1933,7 @@ public class Individual implements Serializable {
         Q625 = q625;
     }
 
-    private String Q622;
-    private String Q622a;
-    private String Q622b;
-    private String Q623;
-    private String Q624;
-    private String Q625;
 
-
-    private String Q701;
-    private String Q702;
-    private String Q703;
-    private String Q704;
-    private String Q705;
-    private String Q801;
 
     public String getQ701() {
         return Q701;
@@ -1834,8 +2018,7 @@ public class Individual implements Serializable {
     }
 
 
-    private String Q801a;
-    private String Q801b;
+
 
     public String getQ801cMonth() {
         return Q801cMonth;
@@ -1869,19 +2052,7 @@ public class Individual implements Serializable {
         Q801eOther = q801eOther;
     }
 
-    private String Q801cMonth;
-    private String Q801cYear;
-    private String Q801d;
-    private String Q801dOther;
-    private String Q801e;
-    private String Q801eOther;
-    private String Q801f;
 
-
-    private String Q802;
-    private String Q802a;
-    private String Q803;
-    private String Q804;
 
 
     public String getQ802() {
@@ -1961,8 +2132,7 @@ public class Individual implements Serializable {
         Q905a = q905a;
     }
 
-    private String Q901;
-    private String Q901a;
+
 
     public String getQ901aOther() {
         return Q901aOther;
@@ -2092,82 +2262,13 @@ public class Individual implements Serializable {
         Q905aOther = q905aOther;
     }
 
-    private String Q901aOther;
-    private String Q902Month;
-    private String Q902Year;
-    private String Q903a;
-    private String Q903b;
-    private String Q903c;
-    private String Q903d;
-    private String Q903e;
-    private String Q903f;
-    private String Q903g;
-    private String Q903h;
-    private String Q904;
-    private String Q904a;
-    private String Q904aOther;
-    private String Q904bMM;
-    private String Q904bYYYY;
-    private String Q904c;
-    private String Q904cOther;
-    private String Q905;
-    private String Q905a;
-    private String Q905aOther;
 
-
-    private String Q1001;
-    private String Q1002;
-    private String Q1002a_1;
-    private String Q1002a_2;
-    private String Q1002a_3;
-    private String Q1002a_4;
-    private String Q1002a_5;
-    private String Q1002a_6;
-    private String Q1002a_7;
-    private String Q1002a_8;
-    private String Q1002a_10;
-    private String Q1002a_12;
-    private String Q1002a_13;
-    private String Q1002a_14;
-    private String Q1002a_15;
-    private String Q1002a_16;
-    private String Q1002a_17;
-    private String Q1002a_18;
-    private String Q1002a_Other;
-    private String Q1003;
-    private String Q1004_Month;
-    private String Q1004_Year;
-    private String Q1004_Day;
-    private String Q1005;
-    private String Q1005a;
-    private String Q1006;
-    private String Q1007;
-    private String Q1007a;
-    private String Q1008;
-    private String Q1008a;
-    private String Q1009;
-    private String Q1009a;
-    private String Q1010;
-    private String Q1011;
-    private String Q1011_Other;
-    private String Q1012_Week;
-    private String Q1012_Month;
-    private String Q1012_Year;
-    private String Q1013;
-    private String Q1014;
-    private String Q1014a;
-    private String Q1014b;
-    private String Q1015;
-    private String Q1015a;
-    private String Q1015b;
-    private String Q1016;
-    private String Q1017;
 
     public void setQ1002a_11(String q1002a_11) {
         Q1002a_11 = q1002a_11;
     }
 
-    private String Q1002a_11;
+
 
     public String getQ1002b() {
         return Q1002b;
@@ -2181,14 +2282,6 @@ public class Individual implements Serializable {
         return Q1004;
     }
 
-    private String Q1002b;
-    private String Q1002bOther;
-    private String Q1004a;
-    private String Q1004b;
-    private String Q1004bOther;
-    private String Q1008aOther;
-    private String Q1010Other;
-    private String Q1004;
 
 
     public String getQ1001() {
@@ -2656,74 +2749,7 @@ public class Individual implements Serializable {
     }
 
 
-    private String Q1101;
-    private String Q1101a;
-    private String Q1101aOther;
-    private String Q1102;
-    private String Q1102a;
-    private String Q1103;
-    private String Q1103aDD;
-    private String Q1103aWks;
-    private String Q1103aDontKnow;
-    private String Q1104;
-    private String Q1105;
-    private String Q1106;
-    private String Q1106a;
-    private String Q1106b;
-    private String Q1106bOther;
-    private String Q1107;
-    private String Q1107aDD;
-    private String Q1107aWks;
-    private String Q1107aDontKnow;
-    private String Q1108;
-    private String Q1108aDD;
-    private String Q1108aWks;
-    private String Q1108aDontKnow;
-    private String Q1109;
-    private String Q1110;
-    private String Q1111;
-    private String Q1111Other;
-    private String Q1112;
-    private String Q1112_Other;
-    private String Q1113;
-    private String Q1113Other;
-    private String Q1114;
 
-    private int SRNO;
-    private String IndHIVChildParentalConsentQ1 ;
-    private String IndHIVChildParentalConsentQ2 ;
-    private String IndHIVChildParentalConsentQ3 ;
-    private String IndHIVChildParentalConsentQ4 ;
-    private String IndHIVChildParentalConsentNameOfInterviewer ;
-    private String IndHIVChildParentalConsentInterviewerID ;
-    private String IndHIVChildParentalConsentParticipantsID ;
-    private String IndHIVChildParentalConsentDate ;
-    private String IndHIVAssentQ1 ;
-    private String B8_Yes_No;
-    private String B8_Date;
-    private String B8_O15_Rapid;
-
-
-    private String IndHIVAssentQ2 ;
-    private String IndHIVAssentQ3 ;
-    private String IndHIVAssentQ4 ;
-    private String IndHIVAssentNameOfInterviewer ;
-    private String IndHIVAssentInterviewerID ;
-    private String IndHIVAssentParticipantsID ;
-    private String IndHIVAssentDate ;
-    private String IndHIVAdult64lessConsentQ1 ;
-    private String IndHIVAdult64lessConsentQ2 ;
-    private String IndHIVAdult64lessConsentQ3 ;
-    private String IndHIVAdult64lessConsentQ4 ;
-    private String IndHIVAdult64lessConsentNameOfInterviewer ;
-    private String IndHIVAdult64lessConsentInterviewerID ;
-    private String IndHIVAdult64lessConsentParticipantsID ;
-    private String IndHIVAdult64lessConsentDate ;
-    private String IndBloodSampleCollected ;
-    private String IndBarcode ;
-    private String IndRapidResults ;
-    private String IndRapidDate ;
-    private String IndRapid_Comment ;
 
     public String getQ802aOther() {
         return Q802aOther;
@@ -2733,7 +2759,9 @@ public class Individual implements Serializable {
         Q802aOther = q802aOther;
     }
 
-    private String Q802aOther;
+
+
+
 
     public String getQ804Other() {
         return Q804Other;
@@ -2743,7 +2771,6 @@ public class Individual implements Serializable {
         Q804Other = q804Other;
     }
 
-    private String Q804Other;
 
     public String getQ803Other() {
         return Q803Other;
@@ -2753,7 +2780,7 @@ public class Individual implements Serializable {
         Q803Other = q803Other;
     }
 
-    private String Q803Other;
+
 
 
     public String getAssignmentID() {

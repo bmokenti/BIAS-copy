@@ -70,35 +70,8 @@ public class P21 extends AppCompatActivity {
         Button btnNext = (Button)findViewById(R.id.p121_btnNext);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-               /* if(sample.getStatusCode().equals("2") & thisHouse.getIsHIVTB40().equals("1"))
-                {
-                    //XRAY
-                    Intent intent = new Intent(P21.this, P21.class);
-                    intent.putExtra("Household", thisHouse);
-                    startActivity(intent);
-
-                }*/
-
-
-
-                boolean isInserted = myDB.insertHhroster(thisHouse);
-                Log.d("DB Name: ",myDB.getDatabaseName().toString() );
-
-                if(isInserted == true)
-                    Toast.makeText(P21.this,"Data Inserted",Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(P21.this,"Data not Inserted",Toast.LENGTH_LONG).show();
-/*
-
-
-
-
-                insertEAAssignment(
-                        String EA_Assignment_ID,String STRATUM,String DISTRICT,String VILLAGE,String
-                        LOCALITY,String EA,
-                        String BLOCK_NO ,String EA_STATUS)*/
+            public void onClick(View view)
+            {
                 Intent intent = new Intent(P21.this,H01.class);
                 intent.putExtra("Household",  thisHouse);
                 startActivity(intent);

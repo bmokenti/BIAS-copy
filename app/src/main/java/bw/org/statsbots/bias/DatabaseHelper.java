@@ -1245,6 +1245,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     public boolean inserthousehold(HouseHold house) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+
         contentValues.put(BatchNumber, house.getBatchNumber());
         contentValues.put(Assignment_ID, house.getAssignment_ID());
         contentValues.put(DWELLING_NO, house.getDWELLING_NO());
@@ -1298,6 +1299,20 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(tblhousehold, null, contentValues);
         return true;
 
+
+    }
+    public boolean checkUser(PersonRoster p){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        int nombr = 0;
+        Cursor cursor = db.rawQuery("SELECT * FROM "+tblhhroster+" WHERE Assignment_ID = "+p.getAssignmentID()+" and BatchNumber="+p.getBatch()+" and SRNO="+p.getSRNO(), null);
+        nombr = cursor.getCount();
+        if(nombr==1){
+            return  true;
+        }else{
+            return false;
+        }
 
     }
 
@@ -1393,6 +1408,22 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhrosterValues.put(Barcode, houseHold.getPersons()[i].getBarcode());
             // hhrosterValues.put(RapidResults, houseHold.getPersons()[i].getRapidResults());
             //hhrosterValues.put(RapidDate, houseHold.getPersons()[i].getRapidDate());
+            /*hhrosterValues.put(H01, houseHold.getH01());
+            hhrosterValues.put(H02, houseHold.getH02());
+            hhrosterValues.put(H03, houseHold.getH03());
+            hhrosterValues.put(H03Other, houseHold.getH03Other());
+            hhrosterValues.put(H04, houseHold.getH04());
+            hhrosterValues.put(H04Other, houseHold.getH04Other());
+            hhrosterValues.put(H05, houseHold.getH05());
+            hhrosterValues.put(H05Other, houseHold.getH05Other());
+            hhrosterValues.put(H06, houseHold.getH06());
+            hhrosterValues.put(H07, houseHold.getH07());
+            hhrosterValues.put(H08, houseHold.getH08());
+            hhrosterValues.put(H09, houseHold.getH09());
+            hhrosterValues.put(H09Other, houseHold.getH09Other());
+            hhrosterValues.put(H10, houseHold.getH10());
+            hhrosterValues.put(H11, houseHold.getH11());*/
+
 
 
             hhrosterValues.put(B3_RapidConsent_Yes_No, houseHold.getPersons()[i].getB3_RapidConsent_Yes_No());
@@ -2083,8 +2114,9 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         individualValues.put(Q801,  ind.getQ801() );
         individualValues.put(Q801a,  ind.getQ801a() );
         individualValues.put(Q801b,  ind.getQ801b() );
-        individualValues.put(Q801c,  ind.getQ801cMonth() );
-        individualValues.put(Q801c,  ind.getQ801cYear() );
+
+        individualValues.put(Q801c,  ind.getQ801cMonth() + ind.getQ801cYear());
+
         individualValues.put(Q801d,  ind.getQ801d() );
         individualValues.put(Q801dOther,  ind.getQ801dOther() );
         individualValues.put(Q801e,  ind.getQ801e() );
@@ -2100,8 +2132,9 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         individualValues.put(Q901,  ind.getQ901() );
         individualValues.put(Q901a,  ind.getQ901a() );
         individualValues.put(Q901aOther,  ind.getQ901aOther() );
-        individualValues.put(Q902,  ind.getQ902Month() );
-        individualValues.put(Q902,  ind.getQ902Year() );
+
+        individualValues.put(Q902,  ind.getQ902Month() + ind.getQ902Year());
+
         individualValues.put(Q903DenyCare,  ind.getQ903a() );
         individualValues.put(Q903Gossip,  ind.getQ903b() );
         individualValues.put(Q903NoSex,  ind.getQ903c() );
@@ -2112,8 +2145,9 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         individualValues.put(Q904,  ind.getQ904() );
         individualValues.put(Q904a,  ind.getQ904a() );
         individualValues.put(Q904aOther,  ind.getQ904aOther() );
-        individualValues.put(Q904b,  ind.getQ904bMM() );
-        individualValues.put(Q904b,  ind.getQ904bYYYY() );
+
+        individualValues.put(Q904b,  ind.getQ904bMM() + ind.getQ904bYYYY());
+
         individualValues.put(Q904c,  ind.getQ904c() );
         individualValues.put(Q904cOther,  ind.getQ904cOther() );
         individualValues.put(Q905,  ind.getQ905() );
@@ -2162,9 +2196,9 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         individualValues.put(Q1010Other,  ind.getQ1010Other() );
         individualValues.put(Q1011,  ind.getQ1011() );
         individualValues.put(Q1011Other,  ind.getQ1011_Other() );
-        individualValues.put(Q1012,  ind.getQ1012_Week() );
-        individualValues.put(Q1012,  ind.getQ1012_Month() );
-        individualValues.put(Q1012,  ind.getQ1012_Year() );
+
+        individualValues.put(Q1012,  ind.getQ1012_Week() + ind.getQ1012_Month() + ind.getQ1012_Year() );
+
         individualValues.put(Q1013,  ind.getQ1013() );
         individualValues.put(Q1014,  ind.getQ1014() );
         individualValues.put(Q1014a,  ind.getQ1014a() );
@@ -3167,13 +3201,12 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("select * from "+tblhousehold,null);
 
-
         StringBuffer stringBuffer = new StringBuffer();
         HouseHold dataModel = null;
         while (cursor.moveToNext())
         {
             if((cursor.getString(cursor.getColumnIndexOrThrow("Interview_Status")) != null &&
-                    cursor.getString(cursor.getColumnIndexOrThrow("Interview_Status")).equals("2")))
+                    cursor.getString(cursor.getColumnIndexOrThrow("Interview_Status")).equals("10")))
             {
 
                 dataModel= new HouseHold();
@@ -3620,8 +3653,13 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ801a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801a")));
                 ind.setQ801b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801b")));
 
-                ind.setQ801cMonth(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")));
-                ind.setQ801cYear(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")));
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c"))!= null){
+
+                    ind.setQ801cMonth(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")).substring(0,2));
+                    ind.setQ801cYear(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")).substring(2,4));
+
+                }
+
 
                 ind.setQ801d(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801d")));
                 ind.setQ801dOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801dOther")));
@@ -3647,8 +3685,11 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ901a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901a")));
                 ind.setQ901aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901aOther")));
 
-                ind.setQ902Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")));
-                ind.setQ902Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")));
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902"))!=null){
+                    ind.setQ902Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(0,2));
+                    ind.setQ902Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(2,6));
+                }
+
 
 
 
@@ -3665,9 +3706,11 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ904a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904a")));
                 ind.setQ904aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904aOther")));
 
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b"))!=null){
+                    ind.setQ904bMM(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")).substring(0,2));
+                    ind.setQ904bYYYY(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")).substring(2,6));
+                }
 
-                ind.setQ904bMM(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")));
-                ind.setQ904bYYYY(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")));
 
 
 
@@ -3738,9 +3781,12 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ1011(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1011")));
                 ind.setQ1011_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1011Other")));
 
-                ind.setQ1012_Week(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")));
-                ind.setQ1012_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")));
-                ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")));
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012"))!=null){
+                    ind.setQ1012_Week(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(0,2));
+                    ind.setQ1012_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(2,4));
+                    ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4,8));
+                }
+
 
 
 
@@ -3783,6 +3829,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ1107aDD(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1107aDD")));
                 ind.setQ1107aWks(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1107aWks")));
 
+
                 ind.setQ1107aDontKnow(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1107aDontKnow")));
 
                 ind.setQ1108(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1108")));
@@ -3815,10 +3862,8 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                 individuals[cursor2.getPosition()]=(ind);
             }
-
             hhDetails.get(i).setIndividualQuestionaire(individuals);
             Log.d("Individual: ",String.valueOf(hhDetails.get(i).getIndividual().length));
-
         }
 
         return hhDetails;
