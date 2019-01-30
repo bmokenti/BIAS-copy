@@ -89,6 +89,8 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
 
                    // individual.setQ1104(selectedRbtn.getText().toString().substring(0,1));
                     if (rbtn2.isChecked()) {
+                        individual.setQ1104(selectedRbtn.getText().toString().substring(0,1));
+
                         Intent q11047 = new Intent(q1104.this, q1107.class);
                         q11047.putExtra("Individual", individual);
                         startActivity(q11047);

@@ -104,9 +104,18 @@ public class q613 extends AppCompatActivity implements Serializable {
                                     vibs.vibrate(100);
                                 } else {
 
-                                   individual.setQ613(selected.getText().toString().substring(0, 1));
-                                   individual.setQ613a(selected1.getText().toString().substring(0, 1));
-                                   individual.setQ613aOther(edt.getText().toString());
+
+                                    if (rbtn2.isChecked() || rbtn9.isChecked()) {
+                                        individual.setQ613(selected.getText().toString().substring(0, 1));
+
+                                        Intent intent = new Intent(q613.this, q614.class);
+                                        intent.putExtra("Individual", individual);
+                                        startActivity(intent);
+                                    } else {
+
+                                        individual.setQ613(selected.getText().toString().substring(0, 1));
+                                        individual.setQ613a(selected1.getText().toString().substring(0, 1));
+                                        individual.setQ613aOther(edt.getText().toString());
 
 
                                         //Next question q614
@@ -116,7 +125,7 @@ public class q613 extends AppCompatActivity implements Serializable {
 
                                     }
                                 }
-
+                            }
                         }
                                 }
                             });

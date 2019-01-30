@@ -89,20 +89,28 @@ public class q1009 extends AppCompatActivity {
                         vibs.vibrate(100);
                     } else {
 
-                        individual.setQ1009(selectedRbtn.getText().toString().substring(0,1));
-                      individual.setQ1009a(selectedRbtna.getText().toString().substring(0,1));
+
+                        if (rbtn2.isChecked()) {
+                            individual.setQ1009(selectedRbtn.getText().toString().substring(0, 1));
+
+                            Intent intent = new Intent(q1009.this, q1010.class);
+                            intent.putExtra("Individaul", individual);
+                            startActivity(intent);
+                        } else {
+
+                            individual.setQ1009(selectedRbtn.getText().toString().substring(0, 1));
+                            individual.setQ1009a(selectedRbtna.getText().toString().substring(0, 1));
 
 
                             Intent intent = new Intent(q1009.this, q1010.class);
-                        intent.putExtra("Individaul", individual);
+                            intent.putExtra("Individaul", individual);
                             startActivity(intent);
 
 
-
+                        }
                     }
                 }
             }
-
 
 
 

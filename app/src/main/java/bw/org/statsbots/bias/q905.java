@@ -61,6 +61,48 @@ public class q905 extends AppCompatActivity implements Serializable {
         int p = 0;
 
 
+        if(individual.getQ101().equals("2") && individual.getQ102().equals("2"))
+        {
+            Intent intent = new Intent(q905.this, q1001.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
+
+
+        if(individual.getQ101().equals("1") || individual.getQ101().equals("2") && Integer.parseInt(individual.getQ102())>49 )
+        {
+            Intent intent = new Intent(q905.this, q1101.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
+
+        if(individual.getQ101().equals("2")  && Integer.parseInt(individual.getQ102())>14 && Integer.parseInt(individual.getQ102())>50 && individual.getQ401().equals("1"))
+        {
+            Intent intent = new Intent(q905.this, q1001.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
+
+        if(!individual.getQ101().equals("2")  && Integer.parseInt(individual.getQ102())>14 && Integer.parseInt(individual.getQ102())>50 && individual.getQ401().equals("1"))
+        {
+            Intent intent = new Intent(q905.this, q1101.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
+
+
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +153,17 @@ public class q905 extends AppCompatActivity implements Serializable {
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
+                    }
+
+                    else
+
+                    if (Integer.valueOf(edtdays.getText().toString()).equals("00"))
+                    {
+
+                        individual.setQ905(edtdays.getText().toString());
+                        Intent intent = new Intent(q905.this, q1001.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
                     }
                     else {
 

@@ -150,7 +150,7 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                             //individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
 
-                            if (!chkb9999.isChecked() && (rbtn1.isChecked() || rbtn2.isChecked()) && ((edtbyear.length() == 0  || Integer.valueOf(edtbyear.getText().toString()) >= 2020))) {
+                            if (!chkb9999.isChecked() && (rbtn1.isChecked() || rbtn2.isChecked()) && ((edtbyear.length() == 0 || Integer.valueOf(edtbyear.getText().toString()) >= 2020))) {
                                 lib.showError(q904.this, "Q904b: ERROR: Year", "What month and year did you first start taking ARVs?" +
                                         "Please provide YEAR or select dont know year");
                                 /**
@@ -158,10 +158,10 @@ public class q904 extends AppCompatActivity implements Serializable {
                                  */
                                 Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                 vibs.vibrate(100);
-                            }
-                            else {
+                            } else {
 
                                 int selectedIdc = rgc.getCheckedRadioButtonId();
+
                                 selectedRbtnc = (RadioButton) findViewById(selectedIdc);
 
                                 if (selectedRbtnc == null && (rbtn3.isChecked() || rbtn4.isChecked())) {
@@ -172,40 +172,57 @@ public class q904 extends AppCompatActivity implements Serializable {
                                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                     vibs.vibrate(100);
 
-                                }
-                                else {
+                                } else {
 
-                                    //individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
+                                    //********************************
 
-                                    if (rbtn1.isChecked() || rbtn2.isChecked()) {
+
+                                    if (rbtn3.isChecked()) {
                                         // to include ea status code on the check
-                                        Intent q1o2 = new Intent(q904.this, q1001.class);
-                                        //q1o2.putExtra("Household", thisHouse);
-                                        startActivity(q1o2);
 
-                                    }
-                                    else {
-                                        //Set q904 for the current individual
-                                       individual.setQ904(selectedRbtn.getText().toString().substring(0,1));
-                                       individual.setQ904a(selectedRbtna.getText().toString().substring(0,1));
-                                        individual.setQ904aOther(edta.getText().toString());
-                                        individual.setQ904bMM(edtbmnths.getText().toString());
-                                        individual.setQ904bYYYY(edtbyear.getText().toString());
-                                       individual.setQ904c(selectedRbtnc.getText().toString().substring(0,1));
+                                        individual.setQ904(selectedRbtn.getText().toString().substring(0, 1));
+                                        individual.setQ904c(selectedRbtnc.getText().toString().substring(0, 1));
                                         individual.setQ904cOther(edtc.getText().toString());
 
+                                        Intent q1o2 = new Intent(q904.this, q1001.class);
+                                        q1o2.putExtra("Household", thisHouse);
+                                        startActivity(q1o2);
+
+                                    } else {
+
+                                        //********************************
 
 
-                                        Intent intent = new Intent(q904.this, q905.class);
-                                        intent.putExtra("Individual", individual);
-                                        startActivity(intent);
+                                        if (rbtn4.isChecked()) {
+                                            // to include ea status code on the check
+
+                                            individual.setQ904(selectedRbtn.getText().toString().substring(0, 1));
+
+                                            Intent q1o2 = new Intent(q904.this, q905.class);
+                                            q1o2.putExtra("Household", thisHouse);
+                                            startActivity(q1o2);
+
+                                        } else {
+                                            //Set q904 for the current individual
+                                            individual.setQ904(selectedRbtn.getText().toString().substring(0, 1));
+                                            individual.setQ904a(selectedRbtna.getText().toString().substring(0, 1));
+                                            individual.setQ904aOther(edta.getText().toString());
+                                            individual.setQ904bMM(edtbmnths.getText().toString());
+                                            individual.setQ904bYYYY(edtbyear.getText().toString());
+                                            individual.setQ904c(selectedRbtnc.getText().toString().substring(0, 1));
+                                            individual.setQ904cOther(edtc.getText().toString());
+
+
+                                            Intent intent = new Intent(q904.this, q905.class);
+                                            intent.putExtra("Individual", individual);
+                                            startActivity(intent);
+
+                                        }
 
                                     }
-
                                 }
                             }
                         }
-
                     }
                 }
             }

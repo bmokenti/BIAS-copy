@@ -42,8 +42,27 @@ public class q606 extends AppCompatActivity implements Serializable{
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+/*
+        if (individual.getQ601().equals("2") ) {
 
+            Intent intent = new Intent(q606.this, q615.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
 
+        } else {
+            //do nothing
+        }
+*/
+
+        if ( Integer.valueOf(individual.getQ102()) >= 25) {
+
+            Intent intent = new Intent(q606.this, q611.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
         /**
          * NEXT question
          */

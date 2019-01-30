@@ -50,6 +50,13 @@ public class q1110 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        if (individual.getQ1103().equals("2") && individual.getQ1107().equals("2") && individual.getQ1108().equals("2") && individual.getQ1109().equals("2") )
+        {
+            Intent intent = new Intent(q1110.this, q1114.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
         Button btnext = findViewById(R.id.btnNext);
 
 
@@ -93,6 +100,9 @@ public class q1110 extends AppCompatActivity implements Serializable {
                 }else {
                    // individual.setQ1110(selectedRbtn.getText().toString().substring(0,1));
                     if (rbtn2.isChecked()) {
+
+                        individual.setQ1110(selectedRbtn.getText().toString().substring(0,1));
+
                         Intent intent = new Intent(q1110.this, q1113.class);
                         intent.putExtra("Individual", individual);
                         startActivity(intent);

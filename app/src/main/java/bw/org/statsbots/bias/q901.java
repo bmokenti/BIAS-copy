@@ -67,6 +67,28 @@ public class q901 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+
+
+        if(!individual.getQ801f().equals("1") && individual.getQ101().equals("2"))
+        {
+            Intent intent = new Intent(q901.this, q1001.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
+
+        if(!individual.getQ801f().equals("1") && individual.getQ101().equals("1"))
+        {
+            Intent intent = new Intent(q901.this, q1101.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,33 +185,43 @@ public class q901 extends AppCompatActivity implements Serializable {
                             positiveButton.setTextColor(Color.WHITE);
                             positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
                             positiveButton.setLayoutParams(positiveButtonLL);
-                        }
-                        else
-                            {
+                        } else {
 
-                        //individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
+                            //individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
 
-                        if (rbtn2.isChecked() && (rbtna1.isChecked() || rbtna2.isChecked() || rbtna3.isChecked()|| rbtna4.isChecked() || rbtna5.isChecked() || rbtna6.isChecked() || rbtna7.isChecked() || rbtna8.isChecked() || rbtna10.isChecked() || rbtna11.isChecked()|| rbtnaOther.isChecked())) {
-                            // to include ea status code on the check
+                            if (rbtn2.isChecked() && (rbtna1.isChecked() || rbtna2.isChecked() || rbtna3.isChecked() || rbtna4.isChecked() || rbtna5.isChecked() || rbtna6.isChecked() || rbtna7.isChecked() || rbtna8.isChecked() || rbtna10.isChecked() || rbtna11.isChecked() || rbtnaOther.isChecked())) {
+                                // to include ea status code on the check
 
-                            Intent q1o2 = new Intent(q901.this, q1001.class);
-                            q1o2.putExtra("Individual", individual);
-                            startActivity(q1o2);
+                                Intent q1o2 = new Intent(q901.this, q1001.class);
+                                q1o2.putExtra("Individual", individual);
+                                startActivity(q1o2);
 
-                        }  else {
-                                //Set q101 for the current individual
+                            } else {
 
-                          individual.setQ901(selectedRbtn.getText().toString().substring(0,1));
-                            individual.setQ901a(selectedRbtna.getText().toString().substring(0,1));
-                            individual.setQ901a(edt.getText().toString());
+                                //individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
 
+                                if (rbtn1.isChecked()) {
+                                    // to include ea status code on the check
+                                    individual.setQ901(selectedRbtn.getText().toString().substring(0, 1));
 
-                                Intent intent = new Intent(q901.this, q902.class);
-                                intent.putExtra("Individual", individual);
-                                startActivity(intent);
+                                    Intent q1o2 = new Intent(q901.this, q902.class);
+                                    q1o2.putExtra("Individual", individual);
+                                    startActivity(q1o2);
+
+                                } else {
+                                    //Set q101 for the current individual
+
+                                    individual.setQ901(selectedRbtn.getText().toString().substring(0, 1));
+                                    individual.setQ901a(selectedRbtna.getText().toString().substring(0, 1));
+                                    individual.setQ901a(edt.getText().toString());
+
+                                    Intent intent = new Intent(q901.this, q902.class);
+                                    intent.putExtra("Individual", individual);
+                                    startActivity(intent);
+
+                                }
 
                             }
-
                         }
                     }
                 }
@@ -219,18 +251,18 @@ public class q901 extends AppCompatActivity implements Serializable {
                     rbtna11.setEnabled(false);
                     rbtnaOther.setEnabled(false);
                     t1.setTextColor(Color.LTGRAY);
-                rbtna1.setChecked(false);
-                rbtna1.setChecked(false);
-                rbtna2.setChecked(false);
-                rbtna3.setChecked(false);
-                rbtna4.setChecked(false);
-                rbtna5.setChecked(false);
-                rbtna6.setChecked(false);
-                rbtna7.setChecked(false);
-                rbtna8.setChecked(false);
-                rbtna10.setChecked(false);
-                rbtna11.setChecked(false);
-                rbtnaOther.setChecked(false);
+                    rbtna1.setChecked(false);
+                    rbtna1.setChecked(false);
+                    rbtna2.setChecked(false);
+                    rbtna3.setChecked(false);
+                    rbtna4.setChecked(false);
+                    rbtna5.setChecked(false);
+                    rbtna6.setChecked(false);
+                    rbtna7.setChecked(false);
+                    rbtna8.setChecked(false);
+                    rbtna10.setChecked(false);
+                    rbtna11.setChecked(false);
+                    rbtnaOther.setChecked(false);
 
 
 

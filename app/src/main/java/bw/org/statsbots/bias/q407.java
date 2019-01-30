@@ -46,6 +46,15 @@ public class q407 extends AppCompatActivity implements View.OnClickListener, Ser
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        if (individual.getQ301().equals("2") && individual.getQ301().equals("1")) {
+
+            Intent intent = new Intent(q407.this, q408.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

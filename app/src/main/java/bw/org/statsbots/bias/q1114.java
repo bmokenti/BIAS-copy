@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -98,12 +100,25 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
                         //Set q101 for the current individual
 
                        individual.setQ1114(selectedRbtn.getText().toString().substring(0,1));
-                            myDB.insertIndividual(thisHouse);
-/*
+
+                       // HouseHold house = new HouseHold();
+                       // house.getAssignment_ID();
+                        //house.getBatchNumber();
+                        //house.getPersons();
+                        boolean isInserted = myDB.insertIndividual(individual);
+                        Log.d("DB Name: ",myDB.getDatabaseName().toString() );
+
+                        if(isInserted == true)
+                            Toast.makeText(q1114.this,"Data Inserted",Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(q1114.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+
+                      // myDB.insertIndividual(individual);
+
                         Intent intent = new Intent(q1114.this, Dashboard.class);
                         intent.putExtra("Individual",  individual);
                         startActivity(intent);
-*/
+
                     }
 
                 }

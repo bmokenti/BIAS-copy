@@ -93,22 +93,20 @@ public class q504 extends AppCompatActivity implements Serializable {
                     individual.setQ504_10(ck10txt.getText().toString().substring(0,1));
                    individual.setQ504_Other(chkOther.getText().toString().substring(0,1));
                     individual.setQ504_OtherSpecify(Q504edt.getText().toString());
-
+/*
                     HouseHold house = new HouseHold();
                     house.getAssignment_ID();
                     house.getBatchNumber();
                     house.getPersons();
 
                     myDB.insertIndividual(house);
+*/
 
-                    Intent intent = new Intent(q504.this, Dashboard.class);
-                    intent.putExtra("Individual",  individual);
-                    startActivity(intent);
-                    /*
+
                     Intent intent = new Intent(q504.this, q601.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);
-                    */
+
                 }
 
             }

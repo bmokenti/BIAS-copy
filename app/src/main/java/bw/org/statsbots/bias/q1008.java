@@ -101,19 +101,32 @@ public class q1008 extends AppCompatActivity implements Serializable {
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
                         } else {
-                            individual.setQ1008(selectedRbtn.getText().toString().substring(0,1));
-                            individual.setQ1008a(selectedRbtna.getText().toString().substring(0,1));
-                            individual.setQ1008a_Other(edtOther.getText().toString());
 
-                            Intent skipto1009 = new Intent(q1008.this, q1010.class);
-                            skipto1009.putExtra("Individual", individual);
-                            startActivity(skipto1009);
+
+                            if (rbtn1.isChecked()) {
+
+
+                                individual.setQ1008(selectedRbtn.getText().toString().substring(0, 1));
+
+
+                                Intent skipto1009 = new Intent(q1008.this, q1010.class);
+                                skipto1009.putExtra("Individual", individual);
+                                startActivity(skipto1009);
+
+                            } else {
+                                individual.setQ1008(selectedRbtn.getText().toString().substring(0, 1));
+                                individual.setQ1008a(selectedRbtna.getText().toString().substring(0, 1));
+                                individual.setQ1008a_Other(edtOther.getText().toString());
+
+                                Intent skipto1009 = new Intent(q1008.this, q1010.class);
+                                skipto1009.putExtra("Individual", individual);
+                                startActivity(skipto1009);
+                            }
                         }
                     }
-                }
 
 
-                    }
+                }        }
         });
     }
 

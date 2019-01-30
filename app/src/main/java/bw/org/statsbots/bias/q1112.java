@@ -91,12 +91,11 @@ public class q1112 extends AppCompatActivity implements View.OnClickListener, Se
                     positiveButton.setLayoutParams(positiveButtonLL);
 
 
-                } else {
+                }
+                else {
 
-                 individual.setQ1112(selectedRbtn.getText().toString().substring(0,1));
+                    individual.setQ1112(selectedRbtn.getText().toString().substring(0,1));
                     individual.setQ1112_Other(text1112other.getText().toString());
-
-
 
                     Intent intent = new Intent(q1112.this, q1114.class);
                     intent.putExtra("Individual",  individual);

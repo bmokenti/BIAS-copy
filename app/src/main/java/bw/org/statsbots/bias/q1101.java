@@ -121,7 +121,7 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
 
 
                 } else {
-                   // individual.setQ1101(selectedRbtn.getText().toString().substring(0,1));
+                    // individual.setQ1101(selectedRbtn.getText().toString().substring(0,1));
                     int selectedId1 = rg2.getCheckedRadioButtonId();
                     selectedRbtn1 = (RadioButton) findViewById(selectedId1);
 
@@ -153,18 +153,29 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
 
 
                     } else {
-                        //Set q1101 for the current individual
-                        individual.setQ1101(selectedRbtn.getText().toString().substring(0,1));
-                        individual.setQ1101a(selectedRbtn1.getText().toString().substring(0,1));
-                       // individual.setQ1101aOther(ed.getText().toString().substring(0,1));
 
-                        Intent q1o3 = new Intent(q1101.this, q1102.class);
-                        q1o3.putExtra("Individual", individual);
-                        startActivity(q1o3);
-                        //setting q103 value
+
+                        if (rbtn3.isChecked() && rbtn4.isChecked()) {
+
+                            individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
+
+
+                            Intent intent = new Intent(q1101.this, q1102.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+
+                        } else {
+                            //Set q1101 for the current individual
+                            individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
+                            individual.setQ1101a(selectedRbtn1.getText().toString().substring(0, 1));
+                            //individual.setQ1101aOther(ed.getText().toString().substring(0,1));
+
+                            Intent q1o3 = new Intent(q1101.this, q1102.class);
+                            q1o3.putExtra("Individual", individual);
+                            startActivity(q1o3);
+                            //setting q103 value
+                        }
                     }
-
-
                 }
             }
         });

@@ -60,6 +60,9 @@ public class q1003 extends AppCompatActivity {
 
 
                     if (rbtn2.isChecked()) {
+
+                        individual.setQ1003(selectedRbtn.getText().toString().substring(0,1));
+
                         Intent skipto1017 = new Intent(q1003.this, q1017.class);
                         skipto1017.putExtra("Individual", individual);
                         startActivity(skipto1017);

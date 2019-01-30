@@ -117,8 +117,7 @@ public class q1002 extends AppCompatActivity {
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
-                    } else
-                        {
+                    } else {
                         if ((((chkaOther.isChecked() && edtOthertxt.length() == 0)))) {
                             lib.showError(q1002.this, "Q1002:", "Please specify other or uncheck Other specify");
                             /**
@@ -139,38 +138,63 @@ public class q1002 extends AppCompatActivity {
                                 Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                 vibs.vibrate(100);
                             } else {
-                                individual.setQ1002(selectedRbtn.getText().toString().substring(0,1));
-                                individual.setQ1002a_1(chka1.getText().toString().substring(0,1));
-                                individual.setQ1002a_2(chka2.getText().toString().substring(0,1));
-                                individual.setQ1002a_3(chka3.getText().toString().substring(0,1));
-                               individual.setQ1002a_3(chka4.getText().toString().substring(0,1));
-                                individual.setQ1002a_4(chka5.getText().toString().substring(0,1));
-                                individual.setQ1002a_6(chka6.getText().toString().substring(0,1));
-                                individual.setQ1002a_7(chka7.getText().toString().substring(0,1));
-                                individual.setQ1002a_8(chka8.getText().toString().substring(0,1));
-                                individual.setQ1002a_10(chka10.getText().toString().substring(0,1));
-                                individual.setQ1002a_11(chka11.getText().toString().substring(0,1));
-                                individual.setQ1002a_12(chka12.getText().toString().substring(0,1));
-                                individual.setQ1002a_13(chka13.getText().toString().substring(0,1));
-                              individual.setQ1002a_14(chka14.getText().toString().substring(0,1));
-                                individual.setQ1002a_15(chka15.getText().toString().substring(0,1));
-                               individual.setQ1002a_16(chka16.getText().toString().substring(0,1));
-                                individual.setQ1002a_17(chka17.getText().toString().substring(0,1));
-                                individual.setQ1002a_18(chka18.getText().toString().substring(0,1));
-                                individual.setQ1002a_Other(edtOthertxt.getText().toString());
-
-                                individual.setQ1002b(selectedRbtnb.getText().toString().substring(0,1));
-                                individual.setQ1002b_Other(edtbOther.getText().toString());
-
-                                Intent intent = new Intent(q1002.this, q1003.class);
-                                intent.putExtra("Individual", individual);
-                                startActivity(intent);
 
 
+                                if (rbtn2.isChecked()) {
+
+                                    individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
+                                    individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
+                                    individual.setQ1002b_Other(edtbOther.getText().toString());
+
+                                    Intent intent = new Intent(q1002.this, q1003.class);
+                                    intent.putExtra("Individual", individual);
+                                    startActivity(intent);
+                                } else {
+
+
+                                    if (rbtn3.isChecked()) {
+
+                                        individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
+
+
+                                        Intent intent = new Intent(q1002.this, q1003.class);
+                                        intent.putExtra("Individual", individual);
+                                        startActivity(intent);
+                                    } else {
+                                        individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_1(chka1.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_2(chka2.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_3(chka3.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_3(chka4.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_4(chka5.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_6(chka6.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_7(chka7.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_8(chka8.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_10(chka10.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_11(chka11.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_12(chka12.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_13(chka13.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_14(chka14.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_15(chka15.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_16(chka16.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_17(chka17.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_18(chka18.getText().toString().substring(0, 1));
+                                        individual.setQ1002a_Other(edtOthertxt.getText().toString());
+
+                                        individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
+                                        individual.setQ1002b_Other(edtbOther.getText().toString());
+
+                                        Intent intent = new Intent(q1002.this, q1003.class);
+                                        intent.putExtra("Individual", individual);
+                                        startActivity(intent);
+
+
+                                    }
+                                }
                             }
+
                         }
                     }
-
                 }
             }
 

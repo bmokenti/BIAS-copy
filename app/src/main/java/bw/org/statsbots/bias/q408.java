@@ -47,6 +47,23 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        if (!individual.getQ201().equals("2") || !individual.getQ201().equals("3") && individual.getQ401().equals("2") && Integer.valueOf(individual.getQ102()) >= 50 && individual.getQ101().equals("1")) {
+            Intent intent = new Intent(q408.this, q504.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
+
+        if (!individual.getQ201().equals("2") || !individual.getQ201().equals("3") && individual.getQ401().equals("2") && Integer.valueOf(individual.getQ102()) >= 50 && individual.getQ101().equals("2")) {
+            Intent intent = new Intent(q408.this, q601.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +139,7 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
                            individual.setQ408a(selectedRbtna.getText().toString().substring(0,1));
 
 
-                            Intent q1o2 = new Intent(q408.this, q501.class);
+                            Intent q1o2 = new Intent(q408.this, q410.class);
                             q1o2.putExtra("Individual", individual);
                             startActivity(q1o2);
 

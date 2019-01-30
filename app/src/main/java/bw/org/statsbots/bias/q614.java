@@ -43,7 +43,7 @@ public class q614 extends AppCompatActivity implements Serializable {
         edt = (EditText) findViewById(R.id.q614_other1) ;
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
         /**

@@ -89,7 +89,7 @@ public class q402 extends AppCompatActivity implements Serializable {
 
 
             }
-/*
+
 
         if (individual.getQ401().equals("2") && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64))
         {
@@ -103,7 +103,7 @@ public class q402 extends AppCompatActivity implements Serializable {
 
 
         }
-*/
+
 
 
 

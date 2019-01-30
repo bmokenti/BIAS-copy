@@ -54,10 +54,30 @@ public class q802 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+if(!individual.getQ801f().equals("1") && individual.getQ801a().equals("2"))
+{
+    Intent intent = new Intent(q802.this, q803.class);
+    intent.putExtra("Individual", individual);
+    startActivity(intent);
+}
+else {
 
+}
+
+        if(!individual.getQ801f().equals("1") && individual.getQ801a().equals("1"))
+        {
+            Intent intent = new Intent(q802.this, q1001.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
         /**
          * NEXT question
          */
+
+
         Button btnNext = (Button) findViewById(R.id.button);
 
 
@@ -107,7 +127,7 @@ public class q802 extends AppCompatActivity implements Serializable {
 
                             //If No is selected, skip to Q901
                             if (selected == rbtn2) {
-
+                                individual.setQ802(selected.getText().toString().substring(0, 1));
                                 //Next question q901
                                 Intent intent = new Intent(q802.this, q901.class);
                                 intent.putExtra("Individual", individual);
@@ -115,6 +135,9 @@ public class q802 extends AppCompatActivity implements Serializable {
 
                             } else {
 
+                                individual.setQ802(selected.getText().toString().substring(0, 1));
+                                individual.setQ802a(selected1.getText().toString().substring(0, 1));
+                                individual.setQ802aOther(edtnaOther.getText().toString());
 
                                 Intent intent = new Intent(q802.this, q803.class);
                                 intent.putExtra("Individual", individual);

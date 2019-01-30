@@ -68,14 +68,16 @@ public class q1006 extends AppCompatActivity {
                     } else {
 
 
-                        if (rbtn2.isChecked()) {
-                            Intent skipto1008 = new Intent(q1006.this, q1008.class);
+                        if (rbtn1.isChecked()) {
+                            individual.setQ1006(selectedRbtn.getText().toString().substring(0,1));
+
+                            Intent skipto1008 = new Intent(q1006.this, q1010.class);
                             skipto1008.putExtra("Individual", individual);
                             startActivity(skipto1008);
                         } else {
                             individual.setQ1006(selectedRbtn.getText().toString().substring(0,1));
 
-                            Intent intent = new Intent(q1006.this, q1007.class);
+                            Intent intent = new Intent(q1006.this, q1008.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);
                         }

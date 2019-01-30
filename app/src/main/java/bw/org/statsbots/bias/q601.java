@@ -79,7 +79,7 @@ public class q601 extends AppCompatActivity implements Serializable {
                     int selectedId1 = rga.getCheckedRadioButtonId();
                     selectedRbtn1 = (RadioButton) findViewById(selectedId1);
 
-                    if (selectedRbtn1 == null &&  rbtn1.isChecked()) {
+                    if (selectedRbtn1 == null && rbtn1.isChecked()) {
                         lib.showError(q601.this, "Q601a: ERROR", "In the past 4 weeks, have you heard or seen any information about HIV / AIDS?");
 
                         /**
@@ -89,42 +89,35 @@ public class q601 extends AppCompatActivity implements Serializable {
                         vibs.vibrate(100);
                     } else {
 
+                        if (rbtn2.isChecked()) {
+                            individual.setQ601(selectedRbtn.getText().toString().substring(0, 1));
 
-                        if (selectedRbtn == rbtn2) {
-                            Intent skipto604 = new Intent(q601.this, q604.class);
-                            skipto604.putExtra("Individual", individual);
-                            startActivity(skipto604);
+                            Intent intent = new Intent(q601.this, q604.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
                         } else {
 
+                            if (rbtna2.isChecked() && rbtn1.isChecked()) {
+                                individual.setQ601(selectedRbtn.getText().toString().substring(0, 1));
+                                individual.setQ601a(selectedRbtn1.getText().toString().substring(0, 1));
 
-                            if (selectedRbtn1 == rbtna2) {
-                                Intent skipto603 = new Intent(q601.this, q603.class);
-                                skipto603.putExtra("Individual", individual);
-                                startActivity(skipto603);
-                            } else {
-                                if(rbtn2.isChecked())
-                                {
-                                    individual.setQ601(selectedRbtn.getText().toString().substring(0,1));
-                                    Intent intent = new Intent(q601.this, q602.class);
-                                    intent.putExtra("Individual", individual);
-                                    startActivity(intent);
-                                }
-                                else
-                          individual.setQ601(selectedRbtn.getText().toString().substring(0,1));
-                          individual.setQ601a(selectedRbtn1.getText().toString().substring(0,1));
-
-                                Intent intent = new Intent(q601.this, q602.class);
+                                Intent intent = new Intent(q601.this, q603.class);
                                 intent.putExtra("Individual", individual);
                                 startActivity(intent);
 
+                            } else
+                                individual.setQ601(selectedRbtn.getText().toString().substring(0, 1));
+                                individual.setQ601a(selectedRbtn1.getText().toString().substring(0, 1));
 
-                            }
+                            Intent intent = new Intent(q601.this, q602.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+
+
                         }
                     }
                 }
             }
-
-
         });
     }
 
