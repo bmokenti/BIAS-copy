@@ -44,10 +44,10 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener  {
         final RadioGroup rg = (RadioGroup) findViewById(R.id.q201radioGroup);
 
 
-
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         Button btnext = findViewById(R.id.btnnext);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
@@ -93,19 +93,20 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener  {
                 } else {
                     if (rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn5.isChecked() || rbtn5.isChecked()) {
 
+                        individual.setQ201(selectedRbtn.getText().toString().substring(0, 1));
                         Intent skipto203 = new Intent(Q201.this, q203.class);
-                        skipto203.putExtra("Household", thisHouse);
+                        skipto203.putExtra("Individual", individual);
                         startActivity(skipto203);
 
 
                     } else {
                         //Set q101 for the current individual
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ201(selectedRbtn.getText().toString().substring(0, 1));
+                        individual.setQ201(selectedRbtn.getText().toString().substring(0, 1));
 
 
 
                         Intent q1o2 = new Intent(Q201.this, q202.class);
-                        q1o2.putExtra("Household", thisHouse);
+                        q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
 
                     }

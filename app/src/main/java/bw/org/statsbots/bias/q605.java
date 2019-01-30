@@ -17,6 +17,7 @@ public class q605 extends AppCompatActivity implements Serializable {
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
+    protected Individual individual;
     protected CheckBox ck1txt, ck2txt, ck3txt, ck4txt, ck5txt, ck9txt, chkOther, selected = null;
     protected Button btn;
     protected EditText q605edt;
@@ -31,6 +32,9 @@ public class q605 extends AppCompatActivity implements Serializable {
         lib = new LibraryClass();
 
 //btn = findViewById(R.id.btn);
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
         ck1txt = findViewById(R.id.q605_1);
         ck2txt = findViewById(R.id.q605_2);
@@ -63,18 +67,18 @@ public class q605 extends AppCompatActivity implements Serializable {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 } else {
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ605_1(ck1txt.getText().toString().substring(0,1));
-                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ605_2(ck2txt.getText().toString().substring(0,1));
-                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ605_3(ck3txt.getText().toString().substring(0,1));
-                    //  thisHouse.getIndividual()[p1.getLineNumber()].setQ605_4(ck4txt.getText().toString().substring(0,1));
-                    //  thisHouse.getIndividual()[p1.getLineNumber()].setQ605_5(ck5txt.getText().toString().substring(0,1));
-                     //thisHouse.getIndividual()[p1.getLineNumber()].setQ605_5(ck9txt.getText().toString().substring(0,1));
+                    individual.setQ605_1(ck1txt.getText().toString().substring(0,1));
+                   individual.setQ605_2(ck2txt.getText().toString().substring(0,1));
+                    individual.setQ605_3(ck3txt.getText().toString().substring(0,1));
+                    individual.setQ605_4(ck4txt.getText().toString().substring(0,1));
+                    individual.setQ605_5(ck5txt.getText().toString().substring(0,1));
+                     individual.setQ605_5(ck9txt.getText().toString().substring(0,1));
 
-                    //  thisHouse.getIndividual()[p1.getLineNumber()].setQ605_Other(chkOther.getText().toString().substring(0,1));
-                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ605_Otherspecify(q605edt.getText().toString());
+                     individual.setQ605_Other(chkOther.getText().toString().substring(0,1));
+                    individual.setQ605_Otherspecify(q605edt.getText().toString());
 
                     Intent intent = new Intent(q605.this, q606.class);
-                    intent.putExtra("Household", thisHouse);
+                    intent.putExtra("Individual", individual);
                     startActivity(intent);
                 }
 

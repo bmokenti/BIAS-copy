@@ -43,8 +43,8 @@ public class q407 extends AppCompatActivity implements View.OnClickListener, Ser
 
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -83,11 +83,11 @@ public class q407 extends AppCompatActivity implements View.OnClickListener, Ser
 
                     } else {
                         //Set q407 for the current individual
-                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ407(selectedRbtn.getText().toString().substring(0,1));
+                    individual.setQ407(selectedRbtn.getText().toString().substring(0,1));
 
 
                         Intent q1o2 = new Intent(q407.this, q408.class);
-                        q1o2.putExtra("Household", thisHouse);
+                        q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
 
                     }

@@ -17,8 +17,9 @@ public class q610 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
-    protected Individual indv;
+    protected Individual individual;
     protected LibraryClass lib;
+
     protected RadioButton rbtn1, rbtn2, rbtn9, selected;
     protected RadioGroup rbtngroup;
 
@@ -36,7 +37,7 @@ public class q610 extends AppCompatActivity implements Serializable {
 
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
 
@@ -65,10 +66,10 @@ public class q610 extends AppCompatActivity implements Serializable {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 } else {
-                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ610(selected.getText().toString().substring(0,1));
+                   individual.setQ610(selected.getText().toString().substring(0,1));
 
                     Intent intent = new Intent(q610.this, q611.class);
-                    intent.putExtra("Household", thisHouse);
+                    intent.putExtra("Individual", individual);
                     startActivity(intent);
 
                 }

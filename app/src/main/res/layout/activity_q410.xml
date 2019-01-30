@@ -7,7 +7,7 @@
     tools:context=".q410">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/q410Linear"
+        android:id="@+id/Q410Linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -17,43 +17,72 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-
         android:orientation="horizontal"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
-
-
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/q410radiovalues"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:gravity="top"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingTop="20dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="40dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
-        <ScrollView
-
-            android:id="@+id/scrollView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <TextView
+            android:id="@+id/q410"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
+            android:text="Have you experinced physical or sexual violence from a male partner in the past 12 months?"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/Q410radio"
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/Q410Linear"
+        tools:layout_editor_absoluteX="3dp">
+
+        <TextView
+            android:id="@+id/Q410rot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="READ OUT RESPONSE"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+        <TextView
+            android:id="@+id/Q410rottxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Physical or sexual violence is determined by asking whether they were:"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
+        <ScrollView
+
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="50dp"
             android:paddingStart="10dp"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
+            android:paddingBottom="10dp"
             app:layout_constraintBottom_toTopOf="@+id/P02Navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.291">
@@ -61,367 +90,414 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:paddingBottom="100dp"
+                android:layout_height="wrap_content">
 
-
-                <TextView
-                    android:id="@+id/q410txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/q410"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
 
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/gray" />
-
-                    <TextView
-                        android:id="@+id/q402aq"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Q410a. Slapped or threw something that could hurt you?"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
 
                     <RadioGroup
-                        android:id="@+id/q410arGroup1"
+                        android:id="@+id/rg1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="8dp"
-
-                        android:layout_marginRight="8dp"
-                        android:textSize="16sp">
-
-                        <RadioButton
-                            android:id="@+id/q410a_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="1. Yes" />
-
-                        <RadioButton
-                            android:id="@+id/q410a_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="2. No" />
-
-                    </RadioGroup>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/gray" />
-
-                    <TextView
-                        android:id="@+id/q410b"
-                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Q410b.  Pushed or shoved you?"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
+                        >
 
-                    <RadioGroup
-                        android:id="@+id/q410bGroup2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:textSize="16sp">
+                        <TextView
+                            android:id="@+id/tv01"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="1 Slap or threw something that could hurt you"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
+
 
                         <RadioButton
-                            android:id="@+id/q410b_1"
-                            android:layout_width="match_parent"
+                            android:id="@+id/rg1_01"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1. Yes" />
+                            android:text="YES"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:textColor="@color/black" />
 
                         <RadioButton
-                            android:id="@+id/q410b_2"
-                            android:layout_width="match_parent"
+                            android:id="@+id/rg1_02"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2. No" />
-
+                            android:text="NO"
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
 
                     </RadioGroup>
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#949292"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/gray" />
-
-                    <TextView
-                        android:id="@+id/q410c"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Q410c.  Choked or burned you?"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
 
                     <RadioGroup
-                        android:id="@+id/q410cGroup2"
+                        android:id="@+id/rg2"
+                        android:layout_width="100dp"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:id="@+id/rg2_txt"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="2 Pushed or shoved you"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
+
+
+                        <RadioButton
+                            android:id="@+id/rg2_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:textColor="@color/black" />
+
+                        <RadioButton
+                            android:id="@+id/rg2_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#949292"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioGroup
+                        android:id="@+id/rg3"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:textSize="16sp">
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:id="@+id/rg3_txt"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="3Choked or burned you"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
+
 
                         <RadioButton
-                            android:id="@+id/q410c_1"
-                            android:layout_width="match_parent"
+                            android:id="@+id/rg3_1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1. Yes" />
+                            android:text=""
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:textColor="@color/black" />
 
                         <RadioButton
-                            android:id="@+id/q410c_2"
-                            android:layout_width="match_parent"
+                            android:id="@+id/rg3_2"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2. No" />
+                            android:text=""
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
 
+                    </RadioGroup>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#949292"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioGroup
+                        android:id="@+id/rg4"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:id="@+id/rg04txt"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="4 Threatened or used a gun gun, knife or other weapon against you"
+                            android:textColor="@color/black" />
+
+
+                        <RadioButton
+                            android:id="@+id/rg4_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:textColor="@color/black" />
+
+                        <RadioButton
+                            android:id="@+id/rg4_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#949292"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioGroup
+                        android:id="@+id/rg5"
+                        android:layout_width="100dp"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:id="@+id/rg5txt"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="5 Physically forced you to have sexual intercourse against your will"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
+
+
+                        <RadioButton
+                            android:id="@+id/rg5_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:textColor="@color/black" />
+
+                        <RadioButton
+                            android:id="@+id/rg5_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#949292"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioGroup
+                        android:id="@+id/rg6"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:id="@+id/rg6txt"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="6 Forced you to to something sexual you found degrading or humiliating"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
+
+
+                        <RadioButton
+                            android:id="@+id/rg6_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:textColor="@color/black" />
+
+                        <RadioButton
+                            android:id="@+id/rg6_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
 
                     </RadioGroup>
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#949292"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/gray" />
-
-                    <TextView
-                        android:id="@+id/q410d"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Q410d.  Threatened or used a gun, knife or other weapon against you?"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
 
                     <RadioGroup
-                        android:id="@+id/q410dGroup2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:textSize="16sp">
+                        android:id="@+id/rg7"
+                        android:layout_width="100dp"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:id="@+id/rg7txt"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="7 Made you afraid of what would happen if you did not have sexual intercourse"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
+
 
                         <RadioButton
-                            android:id="@+id/q410d_1"
-                            android:layout_width="match_parent"
+                            android:id="@+id/rg7_1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1. Yes" />
+                            android:text=""
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:textColor="@color/black" />
 
                         <RadioButton
-                            android:id="@+id/q410d_2"
-                            android:layout_width="match_parent"
+                            android:id="@+id/rg7_2"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2. No" />
-
+                            android:text=""
+                            android:button="@null"
+                            android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                            android:gravity="center_horizontal|bottom"
+                            android:layout_weight="1"
+                            android:textColor="@color/black" />
 
                     </RadioGroup>
 
                 </LinearLayout>
 
-                <LinearLayout
+
+
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/gray" />
-
-                    <TextView
-                        android:id="@+id/q410e"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Q410e.  Physically forced you to have sexual intercourse against your will?"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <RadioGroup
-                        android:id="@+id/q410eGroup2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:textSize="16sp">
-
-                        <RadioButton
-                            android:id="@+id/q410e_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="1. Yes" />
-
-                        <RadioButton
-                            android:id="@+id/q410e_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="2. No" />
+                    android:layout_height="2dp"
+                    android:background="#949292"/>
 
 
-                    </RadioGroup>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/gray" />
-
-                    <TextView
-                        android:id="@+id/q410f"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Q410f.  Forced you to do something sexual you found degrading or humiliating?"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <RadioGroup
-                        android:id="@+id/q410fGroup2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:textSize="16sp">
-
-                        <RadioButton
-                            android:id="@+id/q410f_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="1. Yes" />
-
-                        <RadioButton
-                            android:id="@+id/q410f_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="2. No" />
 
 
-                    </RadioGroup>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/gray" />
-
-                    <TextView
-                        android:id="@+id/q410g"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Q410g.  Made you afraid of what would happen if you did not have sexual intercourse?"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <RadioGroup
-                        android:id="@+id/q410gGroup2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:textSize="16sp">
-
-                        <RadioButton
-                            android:id="@+id/q410g_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="1. Yes" />
-
-
-                        <RadioButton
-                            android:id="@+id/q410g_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="2. No" />
-
-
-                    </RadioGroup>
-
-
-                </LinearLayout>
 
             </LinearLayout>
+
+
+
         </ScrollView>
+
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -20,6 +20,7 @@ public class q1004 extends AppCompatActivity {
     protected String currentHH = null;
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt;
+    protected Individual individual;
     protected Button btn;
     protected RadioButton rbtna1, rbtna2, rbtnb1, rbtnb2, rbtnb3, rbtnb4, rbtnb5, rbtnb6, rbtnb7, rbtnb8, rbtnb10, rbtnb11, rbtnb12, rbtnbOther ;
     protected RadioGroup rgb, rga;
@@ -69,8 +70,8 @@ public class q1004 extends AppCompatActivity {
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
         rbtnbOther.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,16 +168,16 @@ public class q1004 extends AppCompatActivity {
                                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                             vibs.vibrate(100);
                                         } else {
-                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1004_Day(edtdays.getText().toString());
-                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1004_Month(edtmonths.getText().toString());
-                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1004_Year(edtyears.getText().toString());
+                                            individual.setQ1004_Day(edtdays.getText().toString());
+                                            individual.setQ1004_Month(edtmonths.getText().toString());
+                                           individual.setQ1004_Year(edtyears.getText().toString());
 
-                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1004a(selectedRbtna.getText().toString().substring(0,1));
-                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1004b(selectedRbtnb.getText().toString().substring(0,1));
-                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ1004b_Other(edtOther.getText().toString());
+                                            individual.setQ1004a(selectedRbtna.getText().toString().substring(0,1));
+                                            individual.setQ1004b(selectedRbtnb.getText().toString().substring(0,1));
+                                            individual.setQ1004b_Other(edtOther.getText().toString());
 
                                             Intent intent = new Intent(q1004.this, q1005.class);
-                                            intent.putExtra("Household", thisHouse);
+                                            intent.putExtra("Individual", individual);
                                             startActivity(intent);
 
 

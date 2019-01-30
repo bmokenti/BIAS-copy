@@ -24,6 +24,7 @@ public class q1012 extends AppCompatActivity {
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtn8, rbtnOther;
     protected RadioGroup rg;
     protected TextView t1;
+    protected Individual individual;
     protected EditText edtwks, edtmnths, edtyear;
     protected CheckBox chkb;
 
@@ -50,7 +51,7 @@ public class q1012 extends AppCompatActivity {
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
 
@@ -115,12 +116,12 @@ public class q1012 extends AppCompatActivity {
                                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                         vibs.vibrate(100);
                                     } else {
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ1012_Week(edtwks.getText().toString());
-                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ1012_Month(edtmnths.getText().toString());
-                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ1012_Year(edtyear.getText().toString());
+                                        individual.setQ1012_Week(edtwks.getText().toString());
+                                        individual.setQ1012_Month(edtmnths.getText().toString());
+                                       individual.setQ1012_Year(edtyear.getText().toString());
 
                                         Intent intent = new Intent(q1012.this, q1013.class);
-                                        intent.putExtra("Household", thisHouse);
+                                        intent.putExtra("Individual", individual);
                                         startActivity(intent);
 
 

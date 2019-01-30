@@ -19,7 +19,7 @@ public class q612 extends AppCompatActivity  implements Serializable{
     protected HouseHold thisHouse;
     protected PersonRoster p1=null;
     protected String currentHH=null;
-    protected Individual indv;
+    protected Individual individual;
     protected LibraryClass lib;
     protected RadioButton rbtn1,rbtn2,rbtn9,rbtna1, rbtna2, rbtna9, rbtnaOther, selected, selected1;
     protected RadioGroup rbtngroup, rbtngroup1;
@@ -52,8 +52,8 @@ public class q612 extends AppCompatActivity  implements Serializable{
         //final int selectedId1 = rbtngroup1.getCheckedRadioButtonId();
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-       int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         /**
@@ -105,12 +105,13 @@ public class q612 extends AppCompatActivity  implements Serializable{
                         } else {
 
                             //Set Q612 and Q612a for the current individual
-                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ612(selected.getText().toString().substring(0, 1));
-                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ612a(selected1.getText().toString().substring(0, 1));
-                          //thisHouse.getIndividual()[p1.getLineNumber()].setQ612aOther(edt.getText().toString());
+
+                            individual.setQ612(selected.getText().toString().substring(0, 1));
+                            individual.setQ612a(selected1.getText().toString().substring(0, 1));
+                            individual.setQ612aOther(edt.getText().toString());
 
                             Intent intent = new Intent(q612.this, q613.class);
-                            intent.putExtra("Household", thisHouse);
+                            intent.putExtra("Individual", individual);
                             startActivity(intent);
                         }
 

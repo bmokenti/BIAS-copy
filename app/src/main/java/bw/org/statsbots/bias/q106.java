@@ -80,7 +80,7 @@ public class q106 extends AppCompatActivity implements Serializable {
 
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
         rbtna1.setOnClickListener(new View.OnClickListener() {
@@ -157,9 +157,7 @@ public class q106 extends AppCompatActivity implements Serializable {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
 
-                }
-                else
-                    {
+                } else {
                     int selectedIda = rga.getCheckedRadioButtonId();
                     selectedRbtna = (RadioButton) findViewById(selectedIda);
 
@@ -220,31 +218,38 @@ public class q106 extends AppCompatActivity implements Serializable {
 
 
                                     } else {
-                                        //set values for q106
-                                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ106(selectedRbtn.getText().toString().substring(0, 1));
-                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ106a(selectedRbtna.getText().toString());
-                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ106aOther(edt.getText().toString());
-                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ106b(selectedRbtnb.getText().toString());
-                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ106c(edt1.getText().toString());
-                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ106d(edt2.getText().toString());
+                                        if (rbtn1.isChecked()) {
+
+                                            individual.setQ106(selectedRbtn.getText().toString().substring(0, 1));
+                                            individual.setQ106b(selectedRbtnb.getText().toString().substring(0, 1));
+                                            individual.setQ106c(edt1.getText().toString());
+                                            individual.setQ106d(edt2.getText().toString());
+
+                                            Intent intent = new Intent(q106.this, q107.class);
+                                            intent.putExtra("Individual", individual);
+                                            startActivity(intent);
+                                        } else {
+
+                                            individual.setQ106(selectedRbtn.getText().toString().substring(0, 1));
+                                            individual.setQ106a(selectedRbtna.getText().toString().substring(0, 1));
+                                            individual.setQ106aOther(edt.getText().toString());
+                                            //set values for q106
 
 
-                                        //Next question q107
-                                        Intent intent = new Intent(q106.this, q107.class);
-                                        intent.putExtra("Household", thisHouse);
-                                        startActivity(intent);
+                                            Intent intent = new Intent(q106.this, q107.class);
+                                            intent.putExtra("Individual", individual);
+                                            startActivity(intent);
+                                        }
 
 
                                     }
-
-
                                 }
                             }
                         }
                     }
                 }
-
             }
+
         });
 
     }

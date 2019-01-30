@@ -103,7 +103,7 @@ public class q801 extends AppCompatActivity {
         // final int selectedId = rg.getCheckedRadioButtonId();
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
         Button btnnext = findViewById(R.id.button);
@@ -239,25 +239,25 @@ public class q801 extends AppCompatActivity {
 
                                                         if (rbtn2.isChecked()) {
                                                             Intent intent = new Intent(q801.this, q804.class);
-                                                            intent.putExtra("Household", thisHouse);
+                                                            intent.putExtra("Individual", individual);
                                                             startActivity(intent);
 
                                                         } else {
                                                             //Set q801 for the current individual
-                                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ801(selectedRbtn.getText().toString().substring(0, 1));
-                                                            // thisHouse.getIndividual()[p1.getLineNumber()].setQ801a(selectedRbtna.getText().toString().substring(0, 1));
-                                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ801b(selectedRbtnb.getText().toString().substring(0, 1));
-                                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ801cMonth(edtcmnths.getText().toString());
-                                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ801cYear(edtcyear.getText().toString());
-                                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
-                                                           //thisHouse.getIndividual()[p1.getLineNumber()].setQ801dOther(edtdother.getText().toString());
-                                                            // thisHouse.getIndividual()[p1.getLineNumber()].setQ801e(selectedRbtne.getText().toString().substring(0, 1));
-                                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ801eOther(edteother.getText().toString());
-                                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
+                                                            individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
+                                                             individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
+                                                            individual.setQ801b(selectedRbtnb.getText().toString().substring(0, 1));
+                                                            individual.setQ801cMonth(edtcmnths.getText().toString());
+                                                            individual.setQ801cYear(edtcyear.getText().toString());
+                                                            individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
+                                                           individual.setQ801dOther(edtdother.getText().toString());
+                                                           individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
+                                                           individual.setQ801eOther(edteother.getText().toString());
+                                                           individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
 
 
                                                             Intent intent = new Intent(q801.this, q802.class);
-                                                            intent.putExtra("Household", thisHouse);
+                                                            intent.putExtra("Individual", individual);
                                                             startActivity(intent);
 
                                                         }

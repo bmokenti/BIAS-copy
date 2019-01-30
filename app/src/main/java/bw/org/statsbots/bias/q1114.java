@@ -25,9 +25,12 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
+    private DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2;
     protected RadioButton selectedRbtn;
     protected EditText edittext;
+    protected Individual individual;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,15 +42,17 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
             rbtn2 = (RadioButton) findViewById(R.id.q1114_2);
 
             final RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroupq1114);
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
             //rbtn1.setOnClickListener(this);
             //rbtn2.setOnClickListener(this);
 
             // final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
-            Intent i = getIntent();
-            thisHouse = (HouseHold) i.getSerializableExtra("Household");
-            int p = 0;
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
+
             Button btnext = findViewById(R.id.btnnext);
 
 
@@ -91,21 +96,14 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
 
                     } else {
                         //Set q101 for the current individual
-                        //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
 
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                        //Next question q102
-
-
+                       individual.setQ1114(selectedRbtn.getText().toString().substring(0,1));
+                            myDB.insertIndividual(thisHouse);
+/*
                         Intent intent = new Intent(q1114.this, Dashboard.class);
-                        intent.putExtra("Household",  thisHouse);
+                        intent.putExtra("Individual",  individual);
                         startActivity(intent);
-
+*/
                     }
 
                 }

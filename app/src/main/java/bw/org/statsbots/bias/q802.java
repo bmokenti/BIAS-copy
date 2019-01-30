@@ -51,7 +51,7 @@ public class q802 extends AppCompatActivity implements Serializable {
         final int selectedId1 = rbtngroup1.getCheckedRadioButtonId();
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
 
@@ -101,23 +101,23 @@ public class q802 extends AppCompatActivity implements Serializable {
                         } else {
 
                             //Set Q802 and Q802a for the current individual
-                            // thisHouse.getIndividual()[p1.getLineNumber()].setQ802(selected.getText().toString().substring(0, 1));
-                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ802a(selected1.getText().toString().substring(0, 1));
-                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ802aOther(edtnaOther.getText().toString());
+                            individual.setQ802(selected.getText().toString().substring(0, 1));
+                            individual.setQ802a(selected1.getText().toString().substring(0, 1));
+                            individual.setQ802aOther(edtnaOther.getText().toString());
 
                             //If No is selected, skip to Q901
                             if (selected == rbtn2) {
 
                                 //Next question q901
                                 Intent intent = new Intent(q802.this, q901.class);
-                                intent.putExtra("Household", thisHouse);
+                                intent.putExtra("Individual", individual);
                                 startActivity(intent);
 
                             } else {
 
 
                                 Intent intent = new Intent(q802.this, q803.class);
-                                intent.putExtra("Household", thisHouse);
+                                intent.putExtra("Individual", individual);
                                 startActivity(intent);
 
                             }

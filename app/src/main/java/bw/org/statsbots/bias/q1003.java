@@ -17,6 +17,7 @@ public class q1003 extends AppCompatActivity {
     protected String currentHH = null;
     protected LibraryClass lib;
     protected Button btn;
+    protected Individual individual;
     protected RadioButton rbtn1, rbtn2, rbtn3;
     protected RadioGroup rg;
     protected RadioButton selectedRbtn;
@@ -36,10 +37,9 @@ public class q1003 extends AppCompatActivity {
 
 
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
-
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         Button btnnext = findViewById(R.id.button);
@@ -61,12 +61,14 @@ public class q1003 extends AppCompatActivity {
 
                     if (rbtn2.isChecked()) {
                         Intent skipto1017 = new Intent(q1003.this, q1017.class);
-                        skipto1017.putExtra("Household", thisHouse);
+                        skipto1017.putExtra("Individual", individual);
                         startActivity(skipto1017);
                     } else {
-                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ1003(selectedRbtn.getText().toString().substring(0,1));
+
+                       individual.setQ1003(selectedRbtn.getText().toString().substring(0,1));
+
                         Intent intent = new Intent(q1003.this, q1004.class);
-                        intent.putExtra("Household", thisHouse);
+                        intent.putExtra("Individual", individual);
                         startActivity(intent);
                     }
                 }

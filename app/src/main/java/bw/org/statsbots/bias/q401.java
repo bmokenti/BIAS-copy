@@ -51,8 +51,11 @@ public class q401 extends AppCompatActivity implements View.OnClickListener {
         //final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
+
+
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +94,7 @@ public class q401 extends AppCompatActivity implements View.OnClickListener {
 
                 } else{
                                 //Set q401 for the current individual
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ401(selectedRbtn.getText().toString().substring(0,1));
+                               individual.setQ401(selectedRbtn.getText().toString().substring(0,1));
 
                                 /**
                                  * If current person LineNumber is equal to TotalPersons-1
@@ -103,7 +106,7 @@ public class q401 extends AppCompatActivity implements View.OnClickListener {
 
 
                                 Intent q1o2 = new Intent(q401.this, q402.class);
-                                q1o2.putExtra("Household", thisHouse);
+                                q1o2.putExtra("Individual", individual);
                                 startActivity(q1o2);
 
                             }

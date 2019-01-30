@@ -61,9 +61,11 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
 
         final int selectedId = rg.getCheckedRadioButtonId();
 
-        //Intent i = getIntent();
-       // thisHouse = (HouseHold) i.getSerializableExtra("Household");
-        //int p = 0;
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
+
+
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +102,7 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
 
 
                 } else {
-                    //individual.setQ1103(selectedRbtn.getText().toString().substring(0,1));
+
 
                     if ((((q1103dd.length() == 0 && q1103wks.length() == 0 && !chkb99.isChecked()))) && (rbtnY.isChecked())) {
 
@@ -124,18 +126,18 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
 
 
                             if (rbtnN.isChecked()) {
-                                Intent q1o3 = new Intent(q1103.this, q1107.class);
-                                q1o3.putExtra("Household", thisHouse);
-                                startActivity(q1o3);
+                                Intent q1o3i = new Intent(q1103.this, q1107.class);
+                                q1o3i.putExtra("Individual", individual);
+                                startActivity(q1o3i);
 
                             } else {
 
-                                //Check if country entered is in the list
-                                // Intent intent = new Intent(q1102.this, q1103.class);
-                                //intent.putExtra("Household", thisHouse);
-                                //startActivity(intent);
+                                individual.setQ1103(selectedRbtn.getText().toString().substring(0,1));
+                                individual.setQ1103aDD(q1103dd.getText().toString());
+                                individual.setQ1103aWks(q1103wks.getText().toString());
+
                                 Intent q1o3 = new Intent(q1103.this, q1104.class);
-                                q1o3.putExtra("Household", thisHouse);
+                                q1o3.putExtra("Individual", individual);
                                 startActivity(q1o3);
 
                             }

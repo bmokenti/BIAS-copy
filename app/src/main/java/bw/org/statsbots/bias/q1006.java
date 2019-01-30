@@ -18,6 +18,7 @@ public class q1006 extends AppCompatActivity {
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt;
     protected Button btn;
+    protected Individual individual;
     protected RadioButton rbtn1, rbtn2;
     protected RadioGroup rg;
     protected RadioButton selectedRbtn;
@@ -39,8 +40,8 @@ public class q1006 extends AppCompatActivity {
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         Button btnnext = findViewById(R.id.button);
@@ -62,19 +63,20 @@ public class q1006 extends AppCompatActivity {
 
                     if (rbtn1.isChecked()) {
                         Intent skipto1010 = new Intent(q1006.this, q1010.class);
-                        //skipto1010.putExtra("Household", thisHose);
+                        skipto1010.putExtra("Individual", individual);
                         startActivity(skipto1010);
                     } else {
 
 
                         if (rbtn2.isChecked()) {
                             Intent skipto1008 = new Intent(q1006.this, q1008.class);
-                            skipto1008.putExtra("Household", thisHouse);
+                            skipto1008.putExtra("Individual", individual);
                             startActivity(skipto1008);
                         } else {
-                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1006(selectedRbtn.getText().toString().substring(0,1));
+                            individual.setQ1006(selectedRbtn.getText().toString().substring(0,1));
+
                             Intent intent = new Intent(q1006.this, q1007.class);
-                            intent.putExtra("Household", thisHouse);
+                            intent.putExtra("Individual", individual);
                             startActivity(intent);
                         }
                     }

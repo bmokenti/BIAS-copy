@@ -27,6 +27,7 @@ public class q1106 extends AppCompatActivity implements Serializable {
     protected RadioButton rbtn1, rbtn61, rbtn62, rbtn6a1 ,rbtn6a2, rbtn6a3, rbtn6a9, rbtn6b1, rbtn6b2, rbtn6b3, rbtn6b4,rbtn6b5other, selectedRbtn1, selectedRbtn2, selectedRbtn3;
     protected EditText q1106btxtOther;
     protected LibraryClass lib;
+    PersonRoster p1 = null;
     protected Individual individual;
     protected TextView txt1, txt2, txt3;
 
@@ -55,6 +56,10 @@ public class q1106 extends AppCompatActivity implements Serializable {
 
         txt2 = findViewById(R.id.txt1106q2);
         txt3 = findViewById(R.id.txt1106q3);
+
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
         Button btnnext = findViewById(R.id.btnNext);
 
@@ -94,7 +99,7 @@ public class q1106 extends AppCompatActivity implements Serializable {
 
 
                 } else {
-                   // individual.setQ1106(selectedRbtn1.getText().toString().substring(0,1));
+
                     int selectedId1 = rGroup2.getCheckedRadioButtonId();
                     selectedRbtn2 = (RadioButton) findViewById(selectedId1);
 
@@ -126,7 +131,7 @@ public class q1106 extends AppCompatActivity implements Serializable {
 
 
                     } else {
-                        //individual.setQ1106a(selectedRbtn2.getText().toString().substring(0,1));
+                        thisHouse.getIndividual()[p1.getLineNumber()].setQ1106a(selectedRbtn2.getText().toString().substring(0,1));
                         int selectedId2 = rGroup3.getCheckedRadioButtonId();
                         selectedRbtn3 = (RadioButton) findViewById(selectedId2);
 
@@ -157,7 +162,7 @@ public class q1106 extends AppCompatActivity implements Serializable {
 
 
                         } else {
-                            //individual.setQ1106b(selectedRbtn3.getText().toString().substring(0,1));
+
 
                             if (rbtn62.isChecked() && q1106btxtOther.length() == 0 && rbtn6b5other.isChecked()) {
                                 lib.showError(q1106.this, "Q1106 Other", "Please specify");
@@ -167,13 +172,13 @@ public class q1106 extends AppCompatActivity implements Serializable {
                                 Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                 vibs.vibrate(100);
                             } else {
-                              //  individual.setQ1106bOther(q1106btxtOther.getText().toString());
-                                //Check if country entered is in the list
-                                // Intent intent = new Intent(q1102.this, q1103.class);
-                                //intent.putExtra("Household", thisHouse);
-                                //startActivity(intent);
+                                individual.setQ1106(selectedRbtn1.getText().toString().substring(0,1));
+                               individual.setQ1106a(selectedRbtn2.getText().toString().substring(0,1));
+                                individual.setQ1106b(selectedRbtn3.getText().toString().substring(0,1));
+                                individual.setQ1106bOther(q1106btxtOther.getText().toString());
+
                                 Intent q1o3 = new Intent(q1106.this, q1107.class);
-                                q1o3.putExtra("Household", thisHouse);
+                                q1o3.putExtra("Individual", individual);
                                 startActivity(q1o3);
 
                             }

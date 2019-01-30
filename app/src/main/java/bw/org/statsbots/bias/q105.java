@@ -62,8 +62,9 @@ public class q105 extends AppCompatActivity implements Serializable{
         //edittext.setVisibility(View.VISIBLE);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
 
         rbtn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,10 +218,10 @@ public class q105 extends AppCompatActivity implements Serializable{
 
 
                             } else {
-                                //thisHouse.getIndividual()[p1.getLineNumber()].setQ105(edt.getText().toString().substring(0,1));
-                                //thisHouse.getIndividual()[p1.getLineNumber()].setQ105Other(selectedRbtn.getText().toString());
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ105a(selectedRbtn.getText().toString());
-                               // thisHouse.getIndividual()[p1.getLineNumber()].setQ105b(selectedRbtn.getText().toString());
+                                individual.setQ105(edt.getText().toString());
+                                individual.setQ105Other(selectedRbtn.getText().toString());
+                                individual.setQ105a(selectedRbtn.getText().toString());
+                                individual.setQ105b(selectedRbtn.getText().toString());
                                 //Set P02 fir the current individual
                                 //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
                                 //Restart the current activity for next individual
@@ -228,7 +229,7 @@ public class q105 extends AppCompatActivity implements Serializable{
 
                                 //Next question P17
                                 Intent intent = new Intent(q105.this, q106.class);
-                                intent.putExtra("Household", thisHouse);
+                                intent.putExtra("Individual", individual);
                                 startActivity(intent);
 
 

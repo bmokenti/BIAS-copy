@@ -23,6 +23,7 @@ public class q1008 extends AppCompatActivity implements Serializable {
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt;
     protected Button btn;
+    protected Individual individual;
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5, rbtna6, rbtna7, rbtna8, rbtna10, rbtnaOther ;
     protected RadioGroup rg, rga;
     protected TextView t1;
@@ -58,10 +59,9 @@ public class q1008 extends AppCompatActivity implements Serializable {
 
 
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
-
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         Button btnnext = findViewById(R.id.button);
@@ -101,12 +101,12 @@ public class q1008 extends AppCompatActivity implements Serializable {
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
                         } else {
-                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1008(selectedRbtn.getText().toString().substring(0,1));
-                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1008a(selectedRbtna.getText().toString().substring(0,1));
-                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ1008a_Other(edtOther.getText().toString());
+                            individual.setQ1008(selectedRbtn.getText().toString().substring(0,1));
+                            individual.setQ1008a(selectedRbtna.getText().toString().substring(0,1));
+                            individual.setQ1008a_Other(edtOther.getText().toString());
 
                             Intent skipto1009 = new Intent(q1008.this, q1010.class);
-                            skipto1009.putExtra("Household", thisHouse);
+                            skipto1009.putExtra("Individual", individual);
                             startActivity(skipto1009);
                         }
                     }

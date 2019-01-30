@@ -51,8 +51,9 @@ public class q503 extends AppCompatActivity implements View.OnClickListener, Ser
         final int selectedId = rg.getCheckedRadioButtonId();
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -94,21 +95,25 @@ public class q503 extends AppCompatActivity implements View.OnClickListener, Ser
 
                     if (rbtn1.isChecked()  || rbtn3.isChecked() ) {
                         // to include ea status code on the check
-                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ503(selectedRbtn.getText().toString().substring(0,1));
-
+                        individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
+/*
                         Intent q1o2 = new Intent(q503.this, q601.class);
-                        q1o2.putExtra("Household", thisHouse);
-                        startActivity(q1o2);
+                        q1o2.putExtra("Individual", individual);
+                        startActivity(q1o2);*/
+
+                        Intent intent = new Intent(q503.this, q504.class);
+                        intent.putExtra("Individual",  individual);
+                        startActivity(intent);
                     } else{
                     //Set q503 for the current individual
 
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ503(selectedRbtn.getText().toString().substring(0,1));
+                   individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
 
                     //Next question q504
 
 
                     Intent intent = new Intent(q503.this, q504.class);
-                    intent.putExtra("Household",  thisHouse);
+                    intent.putExtra("Individual",  individual);
                     startActivity(intent);
 
                 }

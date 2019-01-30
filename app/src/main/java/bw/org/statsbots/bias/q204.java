@@ -37,23 +37,26 @@ public class q204 extends AppCompatActivity implements Serializable {
 
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         Button btnext = findViewById(R.id.button);
+
 //        PersonRoster pr[] = thisHouse.getPersons();
 // skip condition
 
-        /*
-        if (individual.getQ201().equals("2")|| individual.getQ201().equals("3")) {
+
+        if (individual.getQ201().equals("2")|| individual.getQ201().equals("3")||individual.getQ201().equals("4")|| individual.getQ201().equals("5") || individual.getQ201().equals("6"))
+        {
             Intent skipto301 = new Intent(q204.this, q301.class);
-            skipto301.putExtra("Household", thisHouse);
+            skipto301.putExtra("Individual", individual);
             startActivity(skipto301);
 
         } else {
 
 //break and do nothing
         }
-*/
+
 
         btnext.setOnClickListener(new View.OnClickListener()
 
@@ -96,19 +99,12 @@ public class q204 extends AppCompatActivity implements Serializable {
 
                 } else {
                     //Set q101 for the current individual
-                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ204(edt.getText().toString());
+                    individual.setQ204(edt.getText().toString());
 
-                    /**
-                     * If current person LineNumber is equal to TotalPersons-1
-                     * Proceed to next Question in the roster
-                     */
-                    // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                    //Next question q102
 
 
                     Intent q1o2 = new Intent(q204.this, q205.class);
-                    q1o2.putExtra("Household", thisHouse);
+                    q1o2.putExtra("Individual", individual);
                     startActivity(q1o2);
 
                 }

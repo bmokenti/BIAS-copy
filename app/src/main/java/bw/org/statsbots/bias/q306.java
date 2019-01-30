@@ -44,8 +44,9 @@ public class q306 extends AppCompatActivity {
 
 
         Intent i = getIntent();
-         thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,10 +93,10 @@ public class q306 extends AppCompatActivity {
                         vibs.vibrate(100);
                     } else {
 
-                //thisHouse.getIndividual()[p1.getLineNumber()].setQ306(q306_dd.getText().toString());
+                         individual.setQ306(q306_dd.getText().toString());
 
                         Intent q1o3 = new Intent(q306.this, q307.class);
-                        q1o3.putExtra("Household", thisHouse);
+                        q1o3.putExtra("Individual", individual);
                         startActivity(q1o3);
 
                     }

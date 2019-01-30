@@ -23,6 +23,7 @@ public class q1013 extends AppCompatActivity {
     protected Button btn;
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5 ;
     protected RadioGroup rg, rga;
+    protected Individual individual;
     protected TextView t1;
     protected EditText edtOther;
     protected RadioButton selectedRbtn, selectedRbtna;
@@ -50,8 +51,8 @@ public class q1013 extends AppCompatActivity {
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         Button btnnext = findViewById(R.id.button);
@@ -69,9 +70,10 @@ public class q1013 extends AppCompatActivity {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 }  else {
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ1013(selectedRbtn.getText().toString().substring(0,1));
+                   individual.setQ1013(selectedRbtn.getText().toString().substring(0,1));
+
                         Intent intent = new Intent(q1013.this, q1014.class);
-                        intent.putExtra("Household", thisHouse);
+                        intent.putExtra("Individual", individual);
                         startActivity(intent);
 
 

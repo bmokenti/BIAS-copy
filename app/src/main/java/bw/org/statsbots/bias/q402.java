@@ -24,7 +24,7 @@ public class q402 extends AppCompatActivity implements Serializable {
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib, lib2;
-    protected RadioButton rbtn99, rbtn1a, rbtn2a, rbtn4, rbtn1b, rbtn2b, rbtn3b,  selectedRbtn, selectedRbtn1;
+    protected RadioButton rbtn99, rbtn1a, rbtn2a, rbtn4, rbtn1b, rbtn2b, rbtn3b, selectedRbtn, selectedRbtn1;
     protected RadioGroup rbtngroupa, rbtngroupb;
     protected EditText edtq402;
     protected CheckBox chk99;
@@ -44,11 +44,9 @@ public class q402 extends AppCompatActivity implements Serializable {
         rbtngroupb = findViewById(R.id.q402rGroup2);
         //rbtn1.setVisibility(View.INVISIBLE);
 
-
-//        rbtn1.setOnClickListener(this);
-
-
-        //rbtn1.setVisibility(View.INVISIBLE);
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         // final int selectedId = rbtngroup.getCheckedRadioButtonId();
@@ -70,6 +68,47 @@ public class q402 extends AppCompatActivity implements Serializable {
         //Intent i = getIntent();
         //thisHouse = (HouseHold) i.getSerializableExtra("Household");
         //int p = 0;
+        if (individual.getQ401().equals("1") && (Integer.valueOf(individual.getQ102()) <= 24)) {
+
+        } else {
+            //do nothing
+            Intent intent = new Intent(q402.this, q403.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        }
+
+
+        if (individual.getQ401().equals("2") && individual.getQ101().equals("1") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64))
+        {
+            Intent intent = new Intent(q402.this, q501.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+
+
+            }
+/*
+
+        if (individual.getQ401().equals("2") && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64))
+        {
+            Intent intent = new Intent(q402.this, q601.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else
+
+            {
+
+
+        }
+*/
+
+
+
+
+
 
 
 
@@ -119,13 +158,13 @@ public class q402 extends AppCompatActivity implements Serializable {
                             vibs.vibrate(100);
                         } else {
 
-                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ402(edtq402.getText().toString());
-                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ402a(selectedRbtn.getText().toString().substring(0, 1));
-                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ402b(selectedRbtn1.getText().toString().substring(0, 1));
+                            individual.setQ402(edtq402.getText().toString());
+                            individual.setQ402a(selectedRbtn.getText().toString().substring(0, 1));
+                            individual.setQ402b(selectedRbtn1.getText().toString().substring(0, 1));
 
                             //Check if country entered is in the list
                             Intent intent = new Intent(q402.this, q403.class);
-                            intent.putExtra("Household", thisHouse);
+                            intent.putExtra("Individual", individual);
                             startActivity(intent);
 
 
@@ -133,6 +172,7 @@ public class q402 extends AppCompatActivity implements Serializable {
                     }
 
                 }
+
             }
 
         });

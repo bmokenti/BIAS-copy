@@ -58,8 +58,9 @@ public class q205 extends AppCompatActivity implements Serializable {
 
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
@@ -133,19 +134,32 @@ public class q205 extends AppCompatActivity implements Serializable {
 
 
                     } else {
-                        //Set q205 for the current individual
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ205(selectedRbtn1.getText().toString().substring(0, 1));
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ205a(selectedRbtn2.getText().toString().substring(0, 1));
+                        if (rbtn1.isChecked()) {
+                            //Set q205 for the current individual
+                            individual.setQ205(selectedRbtn1.getText().toString().substring(0, 1));
+
+                            Intent q1o2 = new Intent(q205.this, q301.class);
+                            q1o2.putExtra("Individual", individual);
+                            startActivity(q1o2);
+                        }
+                        else {
 
 
-                        Intent q1o2 = new Intent(q205.this, q301.class);
-                        q1o2.putExtra("Household", thisHouse);
-                        startActivity(q1o2);
+                            individual.setQ205(selectedRbtn1.getText().toString().substring(0, 1));
+                            individual.setQ205a(selectedRbtn2.getText().toString().substring(0, 1));
+
+
+                            Intent q1o2 = new Intent(q205.this, q301.class);
+                            q1o2.putExtra("Individual", individual);
+                            startActivity(q1o2);
+
+                        }
 
                     }
 
                 }
             }
+
 
         });
     }
@@ -249,10 +263,6 @@ public class q205 extends AppCompatActivity implements Serializable {
 
                 }
                 break;
-
-
-
-
 
 
         }

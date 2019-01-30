@@ -43,10 +43,10 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
         rg = (RadioGroup)findViewById(R.id.q408radioGroup) ;
         rga = (RadioGroup)findViewById(R.id.q408radioGroupa) ;
 
-
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -118,14 +118,12 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
                         {
                             //Set q408 for the current individual
 
-                            thisHouse.getIndividual()[p1.getLineNumber()].setQ408(selectedRbtn.getText().toString().substring(0,1));
-                            thisHouse.getIndividual()[p1.getLineNumber()].setQ408a(selectedRbtna.getText().toString().substring(0,1));
-
-
+                           individual.setQ408(selectedRbtn.getText().toString().substring(0,1));
+                           individual.setQ408a(selectedRbtna.getText().toString().substring(0,1));
 
 
                             Intent q1o2 = new Intent(q408.this, q501.class);
-                            q1o2.putExtra("Household", thisHouse);
+                            q1o2.putExtra("Individual", individual);
                             startActivity(q1o2);
 
                         }

@@ -42,10 +42,11 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
 
 //        final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
-       Intent i = getIntent();
-       thisHouse = (HouseHold)i.getSerializableExtra("Household");
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
-        int p=0;
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,12 +86,12 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
 
                     if (rbtn3.isChecked()) {
                         Intent q1o3 = new Intent(q103.this, q105.class);
-                        q1o3.putExtra("Household", thisHouse);
+                        q1o3.putExtra("Individual", individual);
                         startActivity(q1o3);
 
                     } else {
                         //Set q101 for the current individual
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ103(selectedRbtn.getText().toString().substring(0,1));
+                        individual.setQ103(selectedRbtn.getText().toString().substring(0,1));
 
 
                         /**
@@ -99,8 +100,9 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
                          */
                         // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
                         // selectedRbtn.getText().toString().substring(0, 1);
+
                         Intent q1o3 = new Intent(q103.this, q104.class);
-                        q1o3.putExtra("Household", thisHouse);
+                        q1o3.putExtra("Individual", individual);
                         startActivity(q1o3);
                         //setting q103 value
                     }
@@ -118,13 +120,13 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
 
         switch (view.getId()) {
 
-            case R.id.q106_1:
+            case R.id.q103_1:
                 selected = (RadioButton)findViewById(R.id.q103_1);
 
                 //startActivity(intent3);
                 break;
 
-            case R.id.q106_2:
+            case R.id.q103_2:
                 selected = (RadioButton)findViewById(R.id.q103_2);
                // startActivity(intent4);
                 break;

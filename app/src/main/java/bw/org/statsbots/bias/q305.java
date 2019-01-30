@@ -42,8 +42,9 @@ public class q305 extends AppCompatActivity {
         // txt2 = (TextView) findViewById(R.id.q205atxt);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
 
         Button btnext = findViewById(R.id.button);
 
@@ -86,13 +87,13 @@ public class q305 extends AppCompatActivity {
                 else {
                         //Set q305 for the current individual
 
-                   //thisHouse.getIndividual()[p1.getLineNumber()].setQ305_1(chk1.getText().toString().substring(0, 1));
-                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ305_2(chk2.getText().toString().substring(0, 1));
-                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ305_3(chk3.getText().toString().substring(0, 1));
-                    // thisHouse.getIndividual()[p1.getLineNumber()].setQ305_4(chk4.getText().toString().substring(0, 1));
+                 individual.setQ305_1(chk1.getText().toString().substring(0, 1));
+                   individual.setQ305_2(chk2.getText().toString().substring(0, 1));
+                    individual.setQ305_3(chk3.getText().toString().substring(0, 1));
+                   individual.setQ305_4(chk4.getText().toString().substring(0, 1));
 
                         Intent q1o2 = new Intent(q305.this, q306.class);
-                        q1o2.putExtra("Household", thisHouse);
+                        q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
 
                     }

@@ -100,7 +100,7 @@ public class q904 extends AppCompatActivity implements Serializable {
        // final int selectedId = rg.getCheckedRadioButtonId();
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
         Button btnnext = findViewById(R.id.button);
@@ -186,18 +186,18 @@ public class q904 extends AppCompatActivity implements Serializable {
                                     }
                                     else {
                                         //Set q904 for the current individual
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ904(selectedRbtn.getText().toString().substring(0,1));
-                                       //thisHouse.getIndividual()[p1.getLineNumber()].setQ904a(selectedRbtna.getText().toString().substring(0,1));
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ904aOther(edta.getText().toString());
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ904bMM(edtbmnths.getText().toString());
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ904bYYYY(edtbyear.getText().toString());
-                                       //thisHouse.getIndividual()[p1.getLineNumber()].setQ904c(selectedRbtnc.getText().toString().substring(0,1));
-                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ904cOther(edtc.getText().toString());
+                                       individual.setQ904(selectedRbtn.getText().toString().substring(0,1));
+                                       individual.setQ904a(selectedRbtna.getText().toString().substring(0,1));
+                                        individual.setQ904aOther(edta.getText().toString());
+                                        individual.setQ904bMM(edtbmnths.getText().toString());
+                                        individual.setQ904bYYYY(edtbyear.getText().toString());
+                                       individual.setQ904c(selectedRbtnc.getText().toString().substring(0,1));
+                                        individual.setQ904cOther(edtc.getText().toString());
 
 
 
                                         Intent intent = new Intent(q904.this, q905.class);
-                                        intent.putExtra("Household", thisHouse);
+                                        intent.putExtra("Individual", individual);
                                         startActivity(intent);
 
                                     }

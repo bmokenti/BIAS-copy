@@ -47,8 +47,9 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
         final int selectedId = rg.getCheckedRadioButtonId();
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,23 +89,19 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
 
                    // individual.setQ1104(selectedRbtn.getText().toString().substring(0,1));
                     if (rbtn2.isChecked()) {
-                        Intent q1o3 = new Intent(q1104.this, q1107.class);
-                        q1o3.putExtra("Household", thisHouse);
-                        startActivity(q1o3);
+                        Intent q11047 = new Intent(q1104.this, q1107.class);
+                        q11047.putExtra("Individual", individual);
+                        startActivity(q11047);
 
                     } else {
                         //Set q1105 for the current individual
-                        //thisHouse.getPersons()[p1.getLineNumber()].setq1105(selectedRbtn.getText().toString().substring(0,1));
-                        //individual.setQ1104(selectedRbtn.getText().toString().substring(0,1));
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
+
+                        individual.setQ1104(selectedRbtn.getText().toString().substring(0,1));
+
 
                         //Next question P04
                         Intent intent = new Intent(q1104.this, q1105.class);
-                        intent.putExtra("Household", thisHouse);
+                        intent.putExtra("Individual", individual);
                         startActivity(intent);
 
 

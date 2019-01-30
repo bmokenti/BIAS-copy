@@ -22,6 +22,7 @@ public class q104 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
+    protected Individual individual;
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, rbtn3, selected = null;
     protected RadioGroup rbtngroup;
@@ -155,10 +156,11 @@ public class q104 extends AppCompatActivity implements Serializable {
 
 
         // final int selectedId = rbtngroup.getCheckedRadioButtonId();
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
-        // Intent i = getIntent();
-        // thisHouse = (HouseHold) i.getSerializableExtra("Household");
-        // int p = 0;
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -250,14 +252,14 @@ public class q104 extends AppCompatActivity implements Serializable {
                                 //Log.d("P05", String.valueOf(exists));
                                 if (exists && exist && existsY) {
                                     //Set q104 fir the current individual
-                                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ104(autoTypeEducation.getText().toString().substring(0,1));
-                                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ104a(autoLevel.getText().toString().substring(0,1));
-                                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ104b(autoYear.getText().toString().substring(0,1));
-                                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ104c(edtq104c.getText().toString());
+                                    individual.setQ104(autoTypeEducation.getText().toString().substring(0,1));
+                                    individual.setQ104a(autoLevel.getText().toString().substring(0,1));
+                                    individual.setQ104b(autoYear.getText().toString().substring(0,1));
+                                    individual.setQ104c(edtq104c.getText().toString());
 
 
                                     Intent intent = new Intent(q104.this, q105.class);
-                                    intent.putExtra("Household", thisHouse);
+                                    intent.putExtra("Individual", individual);
                                     startActivity(intent);
 
 

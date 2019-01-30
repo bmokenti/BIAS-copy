@@ -21,6 +21,7 @@ public class q903 extends AppCompatActivity implements Serializable {
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt;
     protected Button btn;
+    protected Individual individual;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtn8, rbtn9, rbtn10, rbtn11, rbtn12, rbtn13, rbtn14;
     protected RadioGroup rg1,  rg2, rg3, rg4, rg5, rg6, rg7;
     protected RadioButton selectedRbtn1, selectedRbtn2, selectedRbtn3, selectedRbtn4, selectedRbtn5, selectedRbtn6, selectedRbtn7;
@@ -72,8 +73,8 @@ public class q903 extends AppCompatActivity implements Serializable {
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         Button btnnext = findViewById(R.id.button);
@@ -166,16 +167,16 @@ public class q903 extends AppCompatActivity implements Serializable {
                                             vibs.vibrate(100);
                                         }
                                         else {
-                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903a(selectedRbtn1.getText().toString().substring(0,1));
-                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903b(selectedRbtn2.getText().toString().substring(0,1));
-                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903c(selectedRbtn3.getText().toString().substring(0,1));
-                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903d(selectedRbtn4.getText().toString().substring(0,1));
-                                           // thisHouse.getIndividual()[p1.getLineNumber()].setQ903e(selectedRbtn5.getText().toString().substring(0,1));
-                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903f(selectedRbtn6.getText().toString().substring(0,1));
-                                            //thisHouse.getIndividual()[p1.getLineNumber()].setQ903g(selectedRbtn7.getText().toString().substring(0,1));
+                                           individual.setQ903a(selectedRbtn1.getText().toString().substring(0,1));
+                                           individual.setQ903b(selectedRbtn2.getText().toString().substring(0,1));
+                                            individual.setQ903c(selectedRbtn3.getText().toString().substring(0,1));
+                                            individual.setQ903d(selectedRbtn4.getText().toString().substring(0,1));
+                                           individual.setQ903e(selectedRbtn5.getText().toString().substring(0,1));
+                                            individual.setQ903f(selectedRbtn6.getText().toString().substring(0,1));
+                                            individual.setQ903g(selectedRbtn7.getText().toString().substring(0,1));
 
                                             Intent intent = new Intent(q903.this, q904.class);
-                                            intent.putExtra("Household", thisHouse);
+                                            intent.putExtra("Individual", individual);
                                             startActivity(intent);
                                         }
                                     }

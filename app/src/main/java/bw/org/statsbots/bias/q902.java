@@ -19,6 +19,7 @@ public class q902 extends AppCompatActivity {
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt;
     protected Button btn;
+    protected  Individual individual;
     protected EditText edtmnths, edtyear;
     protected RadioGroup rg;
 
@@ -40,8 +41,8 @@ public class q902 extends AppCompatActivity {
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
 
         Button btnnext = findViewById(R.id.btnNext);
@@ -69,12 +70,12 @@ public class q902 extends AppCompatActivity {
                         vibs.vibrate(100);
                     }
                             else {
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ902Month(edtmnths.getText().toString().substring(0,1));
-                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ902Year(edtyear.getText().toString().substring(0,1));
+                       individual.setQ902Month(edtmnths.getText().toString().substring(0,1));
+                       individual.setQ902Year(edtyear.getText().toString().substring(0,1));
 
 
                                 Intent intent = new Intent(q902.this, q903.class);
-                                intent.putExtra("Household", thisHouse);
+                                intent.putExtra("Individual", individual);
                                 startActivity(intent);
                             }
 

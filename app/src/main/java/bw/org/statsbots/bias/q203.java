@@ -38,8 +38,9 @@ public class q203 extends AppCompatActivity implements Serializable {
 
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
@@ -86,7 +87,7 @@ public class q203 extends AppCompatActivity implements Serializable {
 
                     } else {
                         //Set q101 for the current individual
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ203(edt.getText().toString());
+                  individual.setQ203(edt.getText().toString());
 
                         /**
                          * If current person LineNumber is equal to TotalPersons-1
@@ -98,7 +99,7 @@ public class q203 extends AppCompatActivity implements Serializable {
 
 
                         Intent q1o2 = new Intent(q203.this, q204.class);
-                        q1o2.putExtra("Household", thisHouse);
+                        q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
 
                     }

@@ -21,7 +21,9 @@ public class q504 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
+    protected Individual individual;
     protected LibraryClass lib;
+    private DatabaseHelper myDB;
     protected CheckBox ck1txt, ck2txt, ck3txt, ck4txt, ck5txt, ck6txt, ck7txt, ck8txt, ck10txt,chkOther, selected = null;
     protected Button btn;
     protected EditText Q504edt;
@@ -50,9 +52,13 @@ public class q504 extends AppCompatActivity implements Serializable {
         chkOther = findViewById(R.id.Q504_Other);
         Q504edt = findViewById(R.id.Q504edt_Other);
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -76,21 +82,33 @@ public class q504 extends AppCompatActivity implements Serializable {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 }  else{
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ504_1(ck1txt.getText().toString().substring(0,1));
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ504_2(ck2txt.getText().toString().substring(0,1));
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ504_3(ck3txt.getText().toString().substring(0,1));
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ504_4(ck4txt.getText().toString().substring(0,1));
-                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_5(ck5txt.getText().toString().substring(0,1));
-                    //thisHouse.getIndividual()[p1.getLineNumber()].setQ504_6(ck6txt.getText().toString().substring(0,1));
-                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_7(ck7txt.getText().toString().substring(0,1));
-                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_8(ck8txt.getText().toString().substring(0,1));
-                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_10(ck10txt.getText().toString().substring(0,1));
-                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_Other(chkOther.getText().toString().substring(0,1));
-                   // thisHouse.getIndividual()[p1.getLineNumber()].setQ504_OtherSpecify(Q504edt.getText().toString());
+                    individual.setQ504_1(ck1txt.getText().toString().substring(0,1));
+                    individual.setQ504_2(ck2txt.getText().toString().substring(0,1));
+                   individual.setQ504_3(ck3txt.getText().toString().substring(0,1));
+                   individual.setQ504_4(ck4txt.getText().toString().substring(0,1));
+                   individual.setQ504_5(ck5txt.getText().toString().substring(0,1));
+                    individual.setQ504_6(ck6txt.getText().toString().substring(0,1));
+                    individual.setQ504_7(ck7txt.getText().toString().substring(0,1));
+                   individual.setQ504_8(ck8txt.getText().toString().substring(0,1));
+                    individual.setQ504_10(ck10txt.getText().toString().substring(0,1));
+                   individual.setQ504_Other(chkOther.getText().toString().substring(0,1));
+                    individual.setQ504_OtherSpecify(Q504edt.getText().toString());
 
-                    Intent intent = new Intent(q504.this, q601.class);
-                    intent.putExtra("Household", thisHose);
+                    HouseHold house = new HouseHold();
+                    house.getAssignment_ID();
+                    house.getBatchNumber();
+                    house.getPersons();
+
+                    myDB.insertIndividual(house);
+
+                    Intent intent = new Intent(q504.this, Dashboard.class);
+                    intent.putExtra("Individual",  individual);
                     startActivity(intent);
+                    /*
+                    Intent intent = new Intent(q504.this, q601.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                    */
                 }
 
             }
