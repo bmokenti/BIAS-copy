@@ -66,15 +66,26 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/update_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:layout_gravity="end"
                 android:layout_height="wrap_content">
+
+
+                <Button
+                    android:id="@+id/btnComplete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_done_all_black_24dp"
+                    android:text="Complete"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btnUpdate"
                     android:layout_width="wrap_content"
                     android:layout_gravity="end"
+                    android:layout_weight="1"
                     android:layout_height="40dp"
                     android:drawableLeft="@drawable/ic_edit_blue_16dp"
                     android:text="Update HouseHold"

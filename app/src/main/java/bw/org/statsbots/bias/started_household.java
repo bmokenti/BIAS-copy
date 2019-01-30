@@ -1,14 +1,22 @@
 package bw.org.statsbots.bias;
 
+import android.app.ActivityOptions;
+import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Vibrator;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,9 +28,9 @@ import java.util.List;
 public class started_household extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected LibraryClass lib;
-    protected TextView Started_Locality,Timestarted,startedStatus,startedDwelling,HH_NO,more,commentHead, commenttxt;
+    protected TextView Started_Locality,Timestarted,tvcompleted,startedStatus,startedDwelling,HH_NO,more,commentHead, commenttxt;
     protected LinearLayout lcomment ;
-    protected Button btnUpdate;
+    protected Button btnUpdate,btnComplete;
     protected LinearLayout tb,hiv;
     protected DatabaseHelper myDB;
 
@@ -41,6 +49,7 @@ public class started_household extends AppCompatActivity implements Serializable
         lcomment=findViewById(R.id.superComment);
         commentHead=findViewById(R.id.commentHead);
         commenttxt=findViewById(R.id.Comment);
+        //tvcompleted=findViewById(R.id.tvcompleted);
 
         myDB = new DatabaseHelper(this);
         myDB.onOpen(myDB.getReadableDatabase());
@@ -48,7 +57,51 @@ public class started_household extends AppCompatActivity implements Serializable
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
 
+        btnComplete=findViewById(R.id.btnComplete);
+        btnComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SQLiteDatabase db = myDB.getWritableDatabase();
+                ContentValues hhValues = new ContentValues();
 
+                hhValues.put("Interview_Status","10");
+
+                int  i = db.update
+                        (   "House_Hold_Assignments", // table
+                                hhValues, // column/value
+                                "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
+                        );
+                if(i==1)
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
+                    builder.setTitle("Done");
+                    builder.setIcon(R.drawable.ic_done_all_black_24dp);
+
+                    builder.setMessage("House hold Status has been changed to Completed");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //Do nothing only when the Head of House is selected we proceed.
+                            Intent intent = new Intent(started_household.this, Dashboard.class);
+                            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(started_household.this).toBundle());
+
+                        }
+                    });
+
+
+                    AlertDialog alertDialog =  builder.show();
+                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                    positiveButtonLL.width= ViewGroup.LayoutParams.MATCH_PARENT;
+                    positiveButton.setTextColor(Color.WHITE);
+                    positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
+                    positiveButton.setLayoutParams(positiveButtonLL);
+
+                }
+
+                db.close();
+            }
+        });
 
         Sample s =  myDB.getSample(myDB.getReadableDatabase(), thisHouse.getAssignment_ID());
         String s1[] = s.getDistrictEAVillageLocality().split(":");
@@ -169,10 +222,6 @@ public class started_household extends AppCompatActivity implements Serializable
                 String Info="";
                 //btn.setEnabled(false);
                 final  PersonRoster temp = r.get(o);
-
-
-
-
                 s.setStatusCode("1");
                 if(s.getStatusCode().equals("1")){//************************************HIV
                     if(Integer.parseInt(r.get(o).getP04YY()) <15 || Integer.parseInt(r.get(o).getP04YY()) > 64)
@@ -206,11 +255,6 @@ public class started_household extends AppCompatActivity implements Serializable
                                 Info="Pending Blood Collection & Rapid";
                                 Drawable d1 = ContextCompat.getDrawable(started_household.this, R.drawable.ic_face_blue_24dp);
                                 btn.setCompoundDrawablesWithIntrinsicBounds( d1,null, null, null);
-
-
-
-
-
 
                             }
                             if(yy<15){
@@ -269,7 +313,7 @@ public class started_household extends AppCompatActivity implements Serializable
                         }
                         if(individual==null || individual.getIndRapidResults() == null)
                         {
-                            Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_face_blue_24dp);
+                            Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_person_black_24dp);
                             btn.setCompoundDrawablesWithIntrinsicBounds( d,null, null, null);
 
                             Info="Pending Questionnaire, Blood Collection";

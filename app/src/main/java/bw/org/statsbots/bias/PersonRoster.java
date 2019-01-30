@@ -23,15 +23,6 @@ public class PersonRoster implements Serializable{
     private  String P11;
     private  String P12;
     private  String P13;
-
-    public String getP13Other() {
-        return P13Other;
-    }
-
-    public void setP13Other(String p13Other) {
-        P13Other = p13Other;
-    }
-
     private  String P13Other;
     private  String P14;
     private  String P15;
@@ -47,6 +38,45 @@ public class PersonRoster implements Serializable{
     private  String B3_Guardian;
     private  String RapidDate;
     private String EAStatus;
+    private String Batch;
+    private String  AssignmentID;
+    private String U15Rapid_Results;
+    private String Barcode;
+    private String HIVChildParentalConsentQ2 ;
+    private String HIVChildParentalConsentQ3;
+    private String HIVChildParentalConsentQ4 ;
+    private String HIVChildParentalConsentNameOfInterviewer ;
+    private String HIVChildParentalConsentInterviewerID ;
+    private String HIVChildParentalConsentParticipantsID ;
+    private String HIVChildParentalConsentDate ;
+    private String HIVAssentQ1 ;
+    private String HIVAssentQ2 ;
+    private String HIVAssentQ3 ;
+    private String HIVAssentQ4 ;
+    private String HIVAssentNameOfInterviewer ;
+    private String HIVAssentInterviewerID ;
+    private String HIVAssentParticipantsID ;
+    private String HIVAssentDate ;
+    private String HIVConsentAdultsQ1 ;
+    private String HIVConsentAdultsQ2;
+    private String HIVConsentAdultsQ3;
+    private String HIVConsentAdultsQ4 ;
+    private String HIVConsentAdultsNameOfInterviewer;
+    private String HIVConsentAdultsInterviewerID ;
+    private String HIVConsentAdultsParticipantsID ;
+    private String HIVConsentAdultsDate ;
+    private String BloodSampleCollected ;
+    private  String Rapid_Comment;
+
+    public String getP13Other() {
+        return P13Other;
+    }
+
+    public void setP13Other(String p13Other) {
+        P13Other = p13Other;
+    }
+
+
 
     public String getEAStatus() {
         return EAStatus;
@@ -72,10 +102,7 @@ public class PersonRoster implements Serializable{
         Batch = batch;
     }
 
-    private String Batch;
-    private String  AssignmentID;
-    private String U15Rapid_Results;
-    private String Barcode;
+
 
     public String getU15Rapid_Results() {
         return U15Rapid_Results;
@@ -87,34 +114,7 @@ public class PersonRoster implements Serializable{
 
 
 
-    private String HIVChildParentalConsentQ2 ;
-    private String HIVChildParentalConsentQ3;
-    private String HIVChildParentalConsentQ4 ;
-    private String HIVChildParentalConsentNameOfInterviewer ;
-    private String HIVChildParentalConsentInterviewerID ;
-    private String HIVChildParentalConsentParticipantsID ;
-    private String HIVChildParentalConsentDate ;
-    private String HIVAssentQ1 ;
-    private String HIVAssentQ2 ;
-    private String HIVAssentQ3 ;
-    private String HIVAssentQ4 ;
-    private String HIVAssentNameOfInterviewer ;
-    private String HIVAssentInterviewerID ;
-    private String HIVAssentParticipantsID ;
-    private String HIVAssentDate ;
-    private String HIVConsentAdultsQ1 ;
-    private String HIVConsentAdultsQ2;
-    private String HIVConsentAdultsQ3;
-    private String HIVConsentAdultsQ4 ;
-    private String HIVConsentAdultsNameOfInterviewer;
-    private String HIVConsentAdultsInterviewerID ;
-    private String HIVConsentAdultsParticipantsID ;
-    private String HIVConsentAdultsDate ;
-    private String BloodSampleCollected ;
 
-
-
-    private  String Rapid_Comment;
 
     public String getResults() {
         return Results;

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class P02 extends AppCompatActivity implements Serializable {
     protected RadioButton selectedRbtn;
     PersonRoster p1=null;
     String currentHH=null;
+    protected DatabaseHelper myDB;
 
 
     @Override
@@ -40,6 +42,10 @@ public class P02 extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_p02);
         final RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroup);
         setTitle("P02 Relationship");
+
+        myDB = new DatabaseHelper(this);
+        myDB.onOpen(myDB.getReadableDatabase());
+
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
 
@@ -180,6 +186,7 @@ public class P02 extends AppCompatActivity implements Serializable {
             /**
              * This is reserved for loading existing data
              */
+
 
 
 

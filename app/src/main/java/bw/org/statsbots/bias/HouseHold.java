@@ -11,26 +11,37 @@ import java.util.List;
 public class HouseHold implements Serializable {
     private int currentPerson;
     private int Head;
-
-    public PersonRoster[] getHouseHoldeMembers() {
-        return HouseHoldeMembers;
-    }
-
-    public void setHouseHoldeMembers(PersonRoster[] houseHoldeMembers) {
-        HouseHoldeMembers = houseHoldeMembers;
-    }
-
-    private PersonRoster[] HouseHoldeMembers;
-
-    public void setIndividualQuestionaire(Individual[] individualQuestionaire) {
-        IndividualQuestionaire = individualQuestionaire;
-    }
-
     protected Individual[] IndividualQuestionaire;
-    protected Assignments[] EA_Assgnment;
     private String  DWELLING_NO;
-
+    private String H08Other;
+    private  String H09;
+    private  String H09Other;
+    private String H10;
+    private  String H11;
     private String BatchNumber;
+    private  String H11Other;
+    private String H12;
+    private String H13;
+
+
+
+    /**VISIT 1*/
+    private String INTERVIEWER_VISIT1;
+
+    private  String Visit1Other;
+
+
+    /**VISIT 2*/
+    private String INTERVIEWER_VISIT2;
+
+    private  String Visit2Other;
+
+
+    /**VISIT 3*/
+    private String INTERVIEWER_VISIT3;
+
+    private String COMMENT3;
+    private  String Visit3Other;
 
     private String  HH_NO;
     private String ENUMERATOR;
@@ -38,8 +49,19 @@ public class HouseHold implements Serializable {
     private  String QUALITY_CONTROLLER;
     private  String INTERVIEWER_VISITS1;
 
+    private  String H12Telephone;
+    private  String H12CellPhone;
+    private  String H12PrintMedia;
+    private  String H12ElecMedia;
+    private  String  H12PerfomArts;
+
+    private String H07;
+    private String H08;
 
     private  String NEXT_VISIT_3_TIME;
+
+    private String VILLAGE_NO;
+    private String EA_NO;
 
     private String DATE1;
     private  String VISIT1_RESULT;
@@ -60,8 +82,32 @@ public class HouseHold implements Serializable {
     private  String TOTAL_VISITS;
     private String Assignment_ID;
 
+    private  String HQComment;
 
 
+
+    private String H01;
+    private String H02;
+    private  String H03;
+    private  String H03Other;
+    private String H04;
+    private String H04Other;
+    private String H05;
+    private String H05Other;
+    private  String H06;
+    private String Current;
+
+    private String IsHIVTB40;
+
+    private  String H13Tractor;
+    private  String H13Motorcycle;
+    private  String H13Bicycle;
+    private  String H13DonkeyCart;
+    private  String H13DonkeyHorse;
+    private  String H13Camels;
+
+
+    private  String H12TV;
     private String Sample_FK;
     private String CONSENT;
     private  String CHECKED_BY;
@@ -72,6 +118,20 @@ public class HouseHold implements Serializable {
     private  String SuperComment;
     private  String QcComment;
 
+    public PersonRoster[] getHouseHoldeMembers() {
+        return HouseHoldeMembers;
+    }
+
+    public void setHouseHoldeMembers(PersonRoster[] houseHoldeMembers) {
+        HouseHoldeMembers = houseHoldeMembers;
+    }
+
+    private PersonRoster[] HouseHoldeMembers;
+
+    public void setIndividualQuestionaire(Individual[] individualQuestionaire) {
+        IndividualQuestionaire = individualQuestionaire;
+    }
+
     public String getH13Camels() {
         return H13Camels;
     }
@@ -79,8 +139,6 @@ public class HouseHold implements Serializable {
     public void setH13Camels(String h13Camels) {
         H13Camels = h13Camels;
     }
-
-    private  String HQComment;
 
 
 
@@ -100,17 +158,6 @@ public class HouseHold implements Serializable {
         this.NEXT_VISIT_2_TIME = NEXT_VISIT_2_TIME;
     }
 
-
-    private String H01;
-    private String H02;
-    private  String H03;
-    private  String H03Other;
-    private String H04;
-    private String H04Other;
-    private String H05;
-    private String H05Other;
-    private  String H06;
-    private String Current;
 
     public String getCurrent() {
         return Current;
@@ -170,17 +217,6 @@ public class HouseHold implements Serializable {
 
 
 
-    private String IsHIVTB40;
-
-    private  String H13Tractor;
-    private  String H13Motorcycle;
-    private  String H13Bicycle;
-    private  String H13DonkeyCart;
-    private  String H13DonkeyHorse;
-    private  String H13Camels;
-
-
-    private  String H12TV;
 
     public String getH12TV() {
         return H12TV;
@@ -230,14 +266,6 @@ public class HouseHold implements Serializable {
         H12PerfomArts = h12PerfomArts;
     }
 
-    private  String H12Telephone;
-    private  String H12CellPhone;
-    private  String H12PrintMedia;
-    private  String H12ElecMedia;
-    private  String  H12PerfomArts;
-
-    private String H07;
-    private String H08;
 
     public String getH08Other() {
         return H08Other;
@@ -247,11 +275,7 @@ public class HouseHold implements Serializable {
         H08Other = h08Other;
     }
 
-    private String H08Other;
-    private  String H09;
-    private  String H09Other;
-    private String H10;
-    private  String H11;
+
 
     public String getH03Other() {
         return H03Other;
@@ -292,10 +316,6 @@ public class HouseHold implements Serializable {
     public void setH11Other(String h11Other) {
         H11Other = h11Other;
     }
-
-    private  String H11Other;
-    private String H12;
-    private String H13;
 
 
 
@@ -512,23 +532,6 @@ public class HouseHold implements Serializable {
 
 
 
-    /**VISIT 1*/
-    private String INTERVIEWER_VISIT1;
-
-    private  String Visit1Other;
-
-
-    /**VISIT 2*/
-    private String INTERVIEWER_VISIT2;
-
-    private  String Visit2Other;
-
-
-    /**VISIT 3*/
-    private String INTERVIEWER_VISIT3;
-
-    private String COMMENT3;
-    private  String Visit3Other;
 
 
 
@@ -680,9 +683,6 @@ public class HouseHold implements Serializable {
     public void setVILLAGE_NO(String VILLAGE_NO) {
         this.VILLAGE_NO = VILLAGE_NO;
     }
-
-    private String VILLAGE_NO;
-    private String EA_NO;
 
     public String getBatchNumber() {
         return BatchNumber;

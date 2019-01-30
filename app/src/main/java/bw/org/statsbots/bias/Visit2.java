@@ -75,15 +75,20 @@ public class Visit2 extends AppCompatActivity {
                 String d = dateFormat.format(date);
 
                 //********************************************SAVE DATE FOR VISIT 2
-                if(thisHouse.getDATE1().equals("")){
+                if(thisHouse.getDATE1()==null)
+                {
                     thisHouse.setDATE2(d);
                     thisHouse.setCOMMENT2(editxtComment.getText().toString());
-                }else {
-                    if (thisHouse.getDATE2().equals("")) {
+                }
+                else
+                {
+                    if (thisHouse.getDATE2()==null)
+                    {
                         thisHouse.setDATE2(d);
                         thisHouse.setCOMMENT2(editxtComment.getText().toString());
-                    } else {
-                        if (thisHouse.getDATE3().equals("")) {
+                    }
+                    else {
+                        if (thisHouse.getDATE3()==null) {
                             thisHouse.setDATE2(d);
                             thisHouse.setCOMMENT2(editxtComment.getText().toString());
                         }

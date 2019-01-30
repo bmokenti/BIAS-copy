@@ -117,7 +117,8 @@ public class q1002 extends AppCompatActivity {
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
-                    } else {
+                    } else
+                        {
                         if ((((chkaOther.isChecked() && edtOthertxt.length() == 0)))) {
                             lib.showError(q1002.this, "Q1002:", "Please specify other or uncheck Other specify");
                             /**
@@ -181,20 +182,18 @@ public class q1002 extends AppCompatActivity {
                                         individual.setQ1002a_18(chka18.getText().toString().substring(0, 1));
                                         individual.setQ1002a_Other(edtOthertxt.getText().toString());
 
-                                        individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
-                                        individual.setQ1002b_Other(edtbOther.getText().toString());
+                                individual.setQ1002b(selectedRbtnb.getText().toString().substring(0,1));
+                                individual.setQ1002bOther(edtbOther.getText().toString());
 
-                                        Intent intent = new Intent(q1002.this, q1003.class);
-                                        intent.putExtra("Individual", individual);
-                                        startActivity(intent);
+                                Intent intent = new Intent(q1002.this, q1003.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
 
 
-                                    }
-                                }
                             }
-
                         }
                     }
+
                 }
             }
 

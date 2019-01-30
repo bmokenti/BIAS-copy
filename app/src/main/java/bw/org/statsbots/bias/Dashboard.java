@@ -14,7 +14,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Vibrator;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -27,6 +26,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.Toast;
@@ -34,29 +36,40 @@ import android.widget.Toast;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Dashboard extends AppCompatActivity implements Serializable, NavigationView.OnNavigationItemSelectedListener {
@@ -262,6 +275,10 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 return true;
             case R.id.action_settings:
                 // Show the settings activity
+                Intent intent = new Intent(Dashboard.this, Settings.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(Dashboard.this).toBundle());
+
+
 
                 return true;
             case R.id.action_sync:
@@ -277,37 +294,20 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 return true;
 
             case R.id.action_send:
-                LibraryClass lib = new LibraryClass();
-                //Send data to server
-
                 List<HouseHold> CompleteddHH = myDB.getCompleted();
+                LibraryClass lib = new LibraryClass();
+                if(CompleteddHH.size()==0){
+                    lib.showError(Dashboard.this,"Synchronization","You have no completed assignments to synchronize");
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
 
-                String Response=null;
-                try
-                {
-                    Gson gson = new Gson();
-                    String json = gson.toJson(CompleteddHH);
-
-                    String url="http://10.30.3.169:8080/Webservice/dataFromField?Username=" + preferences.getString("Username",null)+ "&data=" + json;
-                    HttpHandler sh = new HttpHandler();
-                    String jsonStr = sh.makeServiceCall(url);
-
-                    if (jsonStr != null)
-                    {
-                        Response=jsonStr;
-                    }
-
-                }catch (Exception e){
-                    e.printStackTrace();
                 }
-
-                Log.d("Response: ", Response);
-
-
-
-
-
-
+                else{
+                    new syncDataToServer().execute();
+                }
 
 
                 return true;
@@ -319,12 +319,16 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
     //Synchronization HouseHold(House,Roster & Individual)
     private class SyncAssignments extends AsyncTask<Void,Void,String> {
+        ProgressDialog d;
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 
         @Override
         protected  void  onPreExecute(){
-            showProgress(true);
+            d = new ProgressDialog(Dashboard.this);
+            d.setMessage("Reaching for Households....");
+            d.setIndeterminate(true);
+            d.show();
         }
 
         @Override
@@ -364,9 +368,9 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         @Override
         protected void onPostExecute(String result){
             //mAuthTask = null
-              showProgress(false);
 
             readFromServer(result);
+            d.dismiss();
 
 
         }
@@ -412,9 +416,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             JSONObject jObject = new JSONObject(jsonItem);
 
                             //CREATE HOUSEHOLD
-
                             HouseHold hh = new HouseHold();
-
                             hh.setBatchNumber(jObject.get("BatchNumber").toString());
                             hh.setDWELLING_NO(jObject.get("DWELLING_NO").toString());
                             hh.setHH_NO(jObject.get("HH_NO").toString());
@@ -422,19 +424,105 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setSUPERVISOR(jObject.get("SUPERVISOR").toString());
                             hh.setQUALITY_CONTROLLER(jObject.get("QUALITY_CONTROLLER").toString());
                             hh.setINTERVIEWER_VISITS1(jObject.get("INTERVIEWER_VISITS1").toString());
-                            hh.setDATE1(jObject.get("DATE1").toString());
+
+
+                            String dateInString = jObject.get("DATE1").toString();
+
+
+                            DateTime result = null;
+                            if (dateInString != null) {
+                                Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                Matcher m = datePatt.matcher(dateInString);
+                                if (m.matches()) {
+                                    Long l = Long.parseLong(m.group(1));
+                                    result = new DateTime(l);
+                                    hh.setDATE1(result.toString());
+                                    // Time zone is not needed to calculate date
+                                } else {
+                                    //throw new IllegalArgumentException("Wrong date format");
+                                }
+                            }
+
+
+
+
+
                             hh.setVISIT1_RESULT(jObject.get("VISIT1_RESULT").toString());
                             hh.setCOMMENT1(jObject.get("COMMENT1").toString());
-                            hh.setNEXT_VISIT_2_DATE(jObject.get("NEXT_VISIT_2_DATE").toString());
+
+
+                            dateInString = jObject.get("NEXT_VISIT_2_DATE").toString();
+                            DateTime DateNext2 = null;
+                            if (dateInString != null) {
+                                Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                Matcher m = datePatt.matcher(dateInString);
+                                if (m.matches()) {
+                                    Long l = Long.parseLong(m.group(1));
+                                    DateNext2 = new DateTime(l);
+                                    hh.setNEXT_VISIT_2_DATE(DateNext2.toString());
+                                    // Time zone is not needed to calculate date
+                                } else {
+                                    //throw new IllegalArgumentException("Wrong date format");
+                                }
+                            }
+
                             hh.setNEXT_VISIT_2(jObject.get("NEXT_VISIT_2").toString());
                             hh.setINTERVIEWER_VISITS2(jObject.get("INTERVIEWER_VISITS2").toString());
-                            hh.setDATE2(jObject.get("DATE2").toString());
+
+                            dateInString = jObject.get("DATE2").toString();
+                            DateTime DateNext3 = null;
+                            if (dateInString != null) {
+                                Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                Matcher m = datePatt.matcher(dateInString);
+                                if (m.matches()) {
+                                    Long l = Long.parseLong(m.group(1));
+                                    DateNext3 = new DateTime(l);
+                                    hh.setDATE2(DateNext3.toString());
+                                    // Time zone is not needed to calculate date
+                                } else {
+                                    //throw new IllegalArgumentException("Wrong date format");
+                                }
+                            }
+
+
                             hh.setVISIT2_RESULT(jObject.get("VISIT2_RESULT").toString());
                             hh.setCOMMENT2(jObject.get("COMMENT2").toString());
-                            hh.setNEXT_VISIT_3_DATE(jObject.get("NEXT_VISIT_3_DATE").toString());
+
+                            dateInString = jObject.get("NEXT_VISIT_3_DATE").toString();
+                            DateTime DateNext4 = null;
+                            if (dateInString != null) {
+                                Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                Matcher m = datePatt.matcher(dateInString);
+                                if (m.matches()) {
+                                    Long l = Long.parseLong(m.group(1));
+                                    DateNext4 = new DateTime(l);
+                                    hh.setNEXT_VISIT_3_DATE(DateNext4.toString());
+                                    // Time zone is not needed to calculate date
+                                } else {
+                                    //throw new IllegalArgumentException("Wrong date format");
+                                }
+                            }
+
                             hh.setNEXT_VISIT_3(jObject.get("NEXT_VISIT_3").toString());
                             hh.setINTERVIEWER_VISITS3(jObject.get("INTERVIEWER_VISITS3").toString());
-                            hh.setDATE3(jObject.get("DATE3").toString());
+
+
+                            dateInString = jObject.get("DATE3").toString();
+                            DateTime DateNext5 = null;
+                            if (dateInString != null) {
+                                Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                Matcher m = datePatt.matcher(dateInString);
+                                if (m.matches()) {
+                                    Long l = Long.parseLong(m.group(1));
+                                    DateNext5 = new DateTime(l);
+                                    hh.setDATE3(DateNext5.toString());
+                                    // Time zone is not needed to calculate date
+                                } else {
+                                    //throw new IllegalArgumentException("Wrong date format");
+                                }
+                            }
+
+
                             hh.setVISIT3_RESULT(jObject.get("VISIT3_RESULT").toString());
                             hh.setCOMMENT_3(jObject.get("COMMENT_3").toString());
                             hh.setTOTAL_VISITS(jObject.get("TOTAL_VISITS").toString());
@@ -484,7 +572,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setH13DonkeyHorse(jObject.get("H13DonkeyHorse").toString());
                             hh.setH13Camels(jObject.get("H13Camels").toString());
 
-
+                            //Check if the entry exisits in the database firs
 
                             //INSERT INTO HOUSEHOLD
                             myDB.inserthousehold(hh);
@@ -513,14 +601,30 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 pp.setP20( roster.get("P20").toString());
                                 pp.setP21( roster.get("P21").toString());
 
+
                                 pp.setB3_RapidConsent_Yes_No( roster.get("B3_RapidConsent_Yes_No").toString());
                                 pp.setB3_Guardian( roster.get("B3_Guardian").toString());
-                                pp.setB3_Date( roster.get("B3_Date").toString());
+                                //pp.setB3_Date( roster.get("B3_Date").toString());
+
+                                String dateInString1 = roster.get("B3_Date").toString();
+                                DateTime resulty = null;
+                                if (dateInString1 != null) {
+                                    Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                    Matcher m = datePatt.matcher(dateInString1);
+                                    if (m.matches()) {
+                                        Long l = Long.parseLong(m.group(1));
+                                        resulty = new DateTime(l);
+                                        pp.setB3_Date(resulty.toString());
+                                        // Time zone is not needed to calculate date
+                                    } else {
+                                        //throw new IllegalArgumentException("Wrong date format");
+                                    }
+                                }
+
                                 pp.setU15Rapid_Results( roster.get("U15Rapid_Result").toString());
                                 pp.setRapid_Comment( roster.get("Rapid_Comment").toString());
                                 pp.setBarcode( roster.get("BarCode").toString());
 
-                                pp.setP08( roster.get("P08").toString());
                                 pp.setP08( roster.get("P08").toString());
                                 pp.setP10( roster.get("P10").toString());
                                 pp.setP11( roster.get("P11").toString());
@@ -530,9 +634,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 pp.setP14( roster.get("P14").toString());
                                 pp.setP15( roster.get("P15").toString());
                                 pp.setP16 ( roster.get("P16").toString());
-
-
-
 
                                 //INSERT ROSTER FOR THIS HOUSE  HOLD
                                 myDB.insertSyncRoster(pp,hh.getAssignment_ID(),hh.getBatchNumber());
@@ -549,7 +650,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 //PersonRoster
                                 Individual ind = new Individual();
                                 ind.setSRNO(Integer.parseInt(roster.get("SRNO").toString()));
-
 
                                 ind.setIndBarcode(roster.get("BarCode").toString());
                                 ind.setQ101(roster.get("Q101").toString());
@@ -580,8 +680,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 if(roster.get("Q107a").toString().equals(null) || roster.get("Q107a").toString().equals("")){
 
                                 }else{
-                                    ind.setQ107aMnth(roster.get("Q107a").toString().substring(2,3));
-                                    ind.setQ107aYY(roster.get("Q107a").toString().substring(0,1));
+                                    ind.setQ107aMnth(roster.get("Q107a").toString().substring(2,4));
+                                    ind.setQ107aYY(roster.get("Q107a").toString().substring(0,2));
                                 }
 
                                 ind.setQ107b(roster.get("Q107b").toString());
@@ -644,11 +744,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 ind.setQ410Physical(roster.get("Q410Physical").toString());
                                 ind.setQ410Forced(roster.get("Q410Forced").toString());
                                 ind.setQ410MadeAfraid(roster.get("Q410MadeAfraid").toString());
-
-
-
-
-
 
                                 ind.setQ501(roster.get("Q501").toString());
                                 ind.setQ502(roster.get("Q502").toString());
@@ -826,8 +921,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 if(roster.get("Q801c").toString().equals(null) || roster.get("Q801c").toString().equals("")){
 
                                 }else{
-                                    ind.setQ801cMonth(roster.get("Q801c").toString().substring(0,1));
-                                    ind.setQ801cYear(roster.get("Q801c").toString().substring(2,5));
+                                    ind.setQ801cMonth(roster.get("Q801c").toString().substring(0,2));
+                                    ind.setQ801cYear(roster.get("Q801c").toString().substring(2,6));
                                 }
 
 
@@ -859,8 +954,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 if(roster.get("Q902").toString().equals(null) || roster.get("Q902").toString().equals("")){
 
                                 }else{
-                                    ind.setQ902Month(roster.get("Q902").toString().substring(0,1));
-                                    ind.setQ902Year(roster.get("Q902").toString().substring(2,5));
+                                    ind.setQ902Month(roster.get("Q902").toString().substring(0,2));
+                                    ind.setQ902Year(roster.get("Q902").toString().substring(2,6));
                                 }
 
 
@@ -881,8 +976,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 if(roster.get("Q904b").toString().equals(null) || roster.get("Q904b").toString().equals("")){
 
                                 }else{
-                                    ind.setQ904bMM(roster.get("Q904b").toString().substring(0,1));
-                                    ind.setQ904bYYYY(roster.get("Q904b").toString().substring(2,5));
+                                    ind.setQ904bMM(roster.get("Q904b").toString().substring(0,2));
+                                    ind.setQ904bYYYY(roster.get("Q904b").toString().substring(2,6));
                                 }
 
 
@@ -924,9 +1019,9 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 if(roster.get("Q1004").toString().equals(null) || roster.get("Q1004").toString().equals("")){
 
                                 }else{
-                                    ind.setQ1004_Day(roster.get("Q1004").toString().substring(0,1));
-                                    ind.setQ1004_Month(roster.get("Q1004").toString().substring(2,3));
-                                    ind.setQ1004_Year(roster.get("Q1004").toString().substring(4,7));
+                                    ind.setQ1004_Day(roster.get("Q1004").toString().substring(0,2));
+                                    ind.setQ1004_Month(roster.get("Q1004").toString().substring(2,4));
+                                    ind.setQ1004_Year(roster.get("Q1004").toString().substring(4,8));
                                 }
 
 
@@ -959,9 +1054,18 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 if(roster.get("Q1012").toString().equals(null) || roster.get("Q1012").toString().equals("")){
 
                                 }else{
-                                    ind.setQ1012_Week(roster.get("Q1012").toString().substring(0,1));
-                                    ind.setQ1012_Month(roster.get("Q1012").toString().substring(2,3));
-                                    ind.setQ1012_Year(roster.get("Q1012").toString().substring(4,7));
+                                    if(roster.get("Q1012").toString().length()==8){
+                                        ind.setQ1012_Week(roster.get("Q1012").toString().substring(0,2));
+                                        ind.setQ1012_Month(roster.get("Q1012").toString().substring(2,4));
+                                        ind.setQ1012_Year(roster.get("Q1012").toString().substring(4,8));
+                                        Log.d("WW", roster.get("Q1012").toString().substring(0,2));
+                                        Log.d("MM", roster.get("Q1012").toString().substring(2,4));
+                                        Log.d("YYYY", roster.get("Q1012").toString().substring(4,8));
+                                    }else{
+                                        ind.setQ1012_Week(roster.get("Q1012").toString());
+
+                                    }
+
 
                                 }
 
@@ -989,8 +1093,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 if(roster.get("Q1103a").toString().equals(null) || roster.get("Q1103a").toString().equals("")){
 
                                 }else{
-                                    ind.setQ1103aDD(roster.get("Q1103a").toString().substring(0,1));
-                                    ind.setQ1103aWks(roster.get("Q1103a").toString().substring(2,3));
+                                    ind.setQ1103aDD(roster.get("Q1103a").toString().substring(0,2));
+                                    ind.setQ1103aWks(roster.get("Q1103a").toString().substring(2,4));
 
                                 }
 
@@ -1008,8 +1112,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 if(roster.get("Q1107a").toString().equals(null) || roster.get("Q1107a").toString().equals("")){
 
                                 }else{
-                                    ind.setQ1107aDD(roster.get("Q1107a").toString().substring(0,1));
-                                    ind.setQ1107aWks(roster.get("Q1107a").toString().substring(2,3));
+                                    ind.setQ1107aDD(roster.get("Q1107a").toString().substring(0,2));
+                                    ind.setQ1107aWks(roster.get("Q1107a").toString().substring(2,4));
 
                                 }
 
@@ -1023,8 +1127,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 }
                                 else
                                     {
-                                    ind.setQ1108aDD(roster.get("Q1108a").toString().substring(0,1));
-                                    ind.setQ1108aWks(roster.get("Q1108a").toString().substring(2,3));
+                                    ind.setQ1108aDD(roster.get("Q1108a").toString().substring(0,2));
+                                    ind.setQ1108aWks(roster.get("Q1108a").toString().substring(2,4));
                                 }
 
                                 ind.setQ1108aDontKnow(roster.get("Q1108a").toString());
@@ -1044,10 +1148,30 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 ind.setQ1114(roster.get("Q1114").toString());
 
                                 ind.setB8_Yes_No(roster.get("B8_Yes_No").toString());
-                                ind.setB8_Date(roster.get("B8_Date").toString());
+                                //ind.setB8_Date(roster.get("B8_Date").toString());
+
+
+                                String dateInString1 = roster.get("B8_Date").toString();
+                                DateTime resulty = null;
+                                if (dateInString1 != null) {
+                                    Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                    Matcher m = datePatt.matcher(dateInString1);
+                                    if (m.matches()) {
+                                        Long ll = Long.parseLong(m.group(1));
+                                        resulty = new DateTime(ll);
+                                        ind.setB8_Date(resulty.toString());
+                                        // Time zone is not needed to calculate date
+                                    } else {
+                                        //throw new IllegalArgumentException("Wrong date format");
+                                    }
+                                }
+
                                 ind.setB8_O15_Rapid(roster.get("B8_O15Rapid").toString());
                                 ind.setQ801f(roster.get("Q801f").toString());
                                 ind.setIndRapid_Comment(roster.get("RapidComment").toString());
+
+                                //check if the entry exists in the database first
+
 
                                 //INSERT INDIVIDUALS FROM THIS HOUSE
                                 myDB.insertSyncIndividual(ind,hh.getAssignment_ID() ,hh.getBatchNumber(),ind.getSRNO());
@@ -1085,10 +1209,14 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
     //Synchronization Sample
     private class SyncSample extends AsyncTask<Void,Void,String> {
-
+        ProgressDialog d;
         @Override
         protected  void  onPreExecute(){
             //showProgress(true);
+            d = new ProgressDialog(Dashboard.this);
+            d.setMessage("Getting Sample....");
+            d.setIndeterminate(true);
+            d.show();
         }
 
         @Override
@@ -1131,6 +1259,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
             //showProgress(false);
 
             readFromServer(result);
+            d.dismiss();
 
 
         }
@@ -1209,12 +1338,16 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
     }
 
-    //Synchronization EA Assignments
+    //###################################Synchronization EA Assignments
     private class SyncEAssgn extends AsyncTask<Void,Void,String> {
-
+        ProgressDialog d;
         @Override
         protected  void  onPreExecute(){
             //showProgress(true);
+            d = new ProgressDialog(Dashboard.this);
+            d.setMessage("Checking EA Assignments....");
+            d.setIndeterminate(true);
+            d.show();
         }
 
         @Override
@@ -1231,6 +1364,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 {
                     Response=jsonStr;
                 }
+
 
             }
             catch (Exception e){
@@ -1255,11 +1389,11 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         protected void onPostExecute(String result){
             //mAuthTask = null
             //showProgress(false);
-
+            d.dismiss();
             readFromServer(result);
             Intent intent=new Intent(Dashboard.this,Dashboard.class);
             startActivity(intent);
-            finish();
+
 
         }
 
@@ -1276,7 +1410,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 try {
                     svrmsg = svrmsg.replaceAll("null","\"null\"");
                     JSONArray jsnArray = new JSONArray(svrmsg);
-
+                    writeToFile(svrmsg,Dashboard.this);
                     if(jsnArray.length()==0){
 
 
@@ -1332,36 +1466,90 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
     }
 
-    //Synchronization Sample
+
+
+    private void writeToFile(String data,Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("json.txt", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+    //####################################Synchronization Data to database
     private class syncDataToServer extends AsyncTask<Void,Void,String> {
+        String status = null;
+        int done = 0;
+        ProgressDialog d;
+
+
+        String s="Sending data. Please wait....";
 
         @Override
         protected  void  onPreExecute(){
-            //showProgress(true);
+            super.onPreExecute();
+            d = new ProgressDialog(Dashboard.this);
+            d.setMessage(s);
+            d.setIndeterminate(true);
+            d.show();
         }
 
         @Override
         protected String doInBackground(Void... voids)
         {
-            String Response=null;
-            try {
+            List<HouseHold> CompleteddHH = myDB.getCompleted();
+           // Gson gson = new Gson();
+            Gson gson = new Gson();/*Builder()
+                    .setDateFormat(DateFormat.FULL, DateFormat.FULL).create();*/
+            String json = gson.toJson(CompleteddHH);
+            //Log.d("This",json);
+            writeToFile(json,Dashboard.this);
+            if(CompleteddHH.size()==0)
+            {
+                d.dismiss();
 
-                String url="http://10.30.3.169:8080/WebService/syncSample?Username=" + preferences.getString("Username",null);
-                HttpHandler sh = new HttpHandler();
-                String jsonStr = sh.makeServiceCall(url);
-
-                if (jsonStr != null)
+            }
+            else
+            {
+                /***
+                 *SYNCHRONIZE*
+                 */
+                try
                 {
-                    Response=jsonStr;
+                    URL url = new URL("http://10.30.3.169:8080/Webservice/dataFromField");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setDoOutput(true);
+                    conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    conn.setRequestProperty("Accept", "application/json");
+
+
+                    OutputStream os = conn.getOutputStream();
+                    os.write(json.getBytes());
+                    os.flush();
+
+                    BufferedReader br = new BufferedReader(new InputStreamReader(
+                            (conn.getInputStream())));
+                    String output;
+                    while ((output = br.readLine()) != null)
+                    {
+                        status = output;
+                    }
+                    Log.d("data P01", status);
+                    conn.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.d("Error in Send", e.toString());
                 }
-
-            }
-            catch (Exception e){
-
             }
 
-            return Response;
+
+        return  status;
         }
+
 
         private void showProgress(boolean b) {
             if(b){
@@ -1376,136 +1564,28 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
         @Override
         protected void onPostExecute(String result){
-            //mAuthTask = null
-            //showProgress(false);
+                d.dismiss();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
+                    builder.setTitle("Success");
+                    builder.setIcon(R.drawable.ic_done_all_black_24dp);
 
-            readFromServer(result);
-
-
-        }
-
-        /**
-         * Method to verify that the loggin was successful by checking the HTTP response text
-         * @param svrmsg
-         */
-        private void readFromServer(String svrmsg)
-        {
-            if (svrmsg != null)
-            {
-                try {
-                    svrmsg = svrmsg.replaceAll("null","\"null\"");
-                    JSONArray jsnArray = new JSONArray(svrmsg);
-
-                    if(jsnArray.length()==0){
-                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        vibs.vibrate(100);
-                        AlertDialog.Builder adBuilder = new AlertDialog.Builder(Dashboard.this)
-                                .setTitle("Synchronization")
-                                .setMessage("No sample received from Server")
-                                .setNegativeButton("Done", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.cancel();
-                                    }
-                                });
-
-                        //call show() to build and show the AlertDialog.
-                        AlertDialog ad = adBuilder.show();
-
-                    }else
-                    {
-                        for(int i=0;i<jsnArray.length();i++)
-                        {
-                            String jsonItem = jsnArray.get(i).toString();
-
-
-                            JSONObject jObject = new JSONObject(jsonItem);
-                            //CREAT HOUSEHOLD
-
-                            HouseHold hh = new HouseHold();
-                            hh.setAssignment_ID(jObject.get("Assignment_ID").toString());
-                            hh.setBatchNumber(jObject.get("BatchNumber").toString());
-
-                            Gson gson = new Gson();
-                            String json = gson.toJson(hh);
-
-                            try{
-                                URL url = new URL("http://10.30.3.169:8080/WebService/dataFromField");
-                                //Open the connection here, and remember to close it when job its done.
-                                URLConnection conn = url.openConnection();
-                                conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                                conn.setDoOutput(true);
-
-                                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-                                //theJSONYouWantToSend should be the JSONObject as String
-                                wr.write(json);  //<--- sending data.
-
-                                wr.flush();
-
-                                //  Here you read any answer from server.
-                                BufferedReader serverAnswer = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                                String line;
-                                while ((line = serverAnswer.readLine()) != null) {
-
-                                    System.out.println("LINE: " + line); //<--If any response from server
-                                    //use it as you need, if server send something back you will get it here.
-                                }
-
-                                wr.close();
-                                serverAnswer.close();
-
-                            } catch (Exception e) {
-                                Log.e("Cuack", "Something its wrong");
-                            }
-
-                            break;
-                            /*
-                            //Person Roster
-                            JSONArray k = (JSONArray)jObject.get("roster");
-
-                            for(int o=0;o<k.length();o++)
-                            {
-                                JSONObject roster = (JSONObject)k.get(o);
-                                Log.d("SRNO", roster.get("SRNO").toString());
-                                //PersonRoster
-                                PersonRoster pp = new PersonRoster();
-                                pp.setLineNumber( Integer.parseInt(roster.get("SRNO").toString()));
-
-                            }
-
-                            //Individual
-                            JSONArray l= (JSONArray)jObject.get("ind");
-
-                            for(int o=0;o<l.length();o++)
-                            {
-                                JSONObject roster = (JSONObject)l.get(o);
-                                Log.d("SRNO", roster.get("SRNO").toString());
-                                //PersonRoster
-                                PersonRoster pp = new PersonRoster();
-                                pp.setLineNumber( Integer.parseInt(roster.get("SRNO").toString()));
-
-                            }
-
-                            //Save to DB
-
-                            */
-
+                    builder.setMessage("Your work has been synchronized successfully");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //Do nothing only when the Head of House is selected we proceed.
 
                         }
-                    }
+                    });
 
 
-                    //Send HTTP OK
+                    AlertDialog alertDialog =  builder.show();
+                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                    positiveButtonLL.width= ViewGroup.LayoutParams.MATCH_PARENT;
+                    positiveButton.setTextColor(Color.WHITE);
+                    positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
+                    positiveButton.setLayoutParams(positiveButtonLL);
 
-
-
-                } catch (Exception g) {
-                    g.printStackTrace();
-                    Log.d("Exception 1 :", "from JSONArray: ");
-                }
-
-
-            }
 
         }
 
