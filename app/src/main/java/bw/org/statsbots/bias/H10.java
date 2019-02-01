@@ -92,7 +92,7 @@ public class H10 extends AppCompatActivity implements View.OnClickListener, Seri
 
                     } else {
                         //Set q101 for the current individual
-                        thisHouse.setH09(selectedRbtn.getText().toString().substring(0,1));
+                        thisHouse.setH10(selectedRbtn.getText().toString().substring(0,1));
                         Intent q1o2 = new Intent(bw.org.statsbots.bias.H10.this, H11.class);
                         q1o2.putExtra("Household",  thisHouse);
                         startActivity(q1o2);

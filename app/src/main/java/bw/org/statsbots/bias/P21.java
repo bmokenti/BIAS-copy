@@ -72,6 +72,13 @@ public class P21 extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
+
+                myDB = new DatabaseHelper(P21.this);
+                myDB.onOpen(myDB.getReadableDatabase());
+
+                //UPDATE HOUSEHOLD
+                myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
+
                 Intent intent = new Intent(P21.this,H01.class);
                 intent.putExtra("Household",  thisHouse);
                 startActivity(intent);

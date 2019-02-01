@@ -25,7 +25,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:text="@string/assNo"
+        android:text="Dwelling Number:"
         android:textColor="@color/WHITE"
         android:textStyle="bold"
         android:textSize="16sp" />
@@ -36,6 +36,32 @@
             android:textColor="@color/gray"
             android:textSize="16sp" />
     </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvVillage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:textColor="@color/WHITE"
+                android:text="HouseHold Number:"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tvVillageValue"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="@color/gray"
+                android:text="[0101] Gaborone"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/WHITE"
+            android:layout_height="1dp"></LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:orientation="horizontal"
@@ -62,28 +88,7 @@
             android:textSize="14sp" />
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/tvVillage"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:textStyle="bold"
-        android:textColor="@color/WHITE"
-        android:text="@string/AssVillage"
-        android:textSize="14sp" />
-        <TextView
-            android:id="@+id/tvVillageValue"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textColor="@color/gray"
-            android:text="[0101] Gaborone"
-            android:textSize="14sp" />
-    </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:orientation="horizontal"

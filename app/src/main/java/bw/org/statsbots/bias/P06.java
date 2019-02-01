@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class P06 extends AppCompatActivity implements Serializable, View.OnClickListener {
     protected HouseHold thisHouse;
@@ -21,6 +22,7 @@ public class P06 extends AppCompatActivity implements Serializable, View.OnClick
     protected LibraryClass lib;
     protected  RadioButton rbtn1,rbtn2,rbtn3, selected=null;
     protected RadioGroup rbtngroup;
+    DatabaseHelper myDB;
 
 
     @Override
@@ -44,6 +46,7 @@ public class P06 extends AppCompatActivity implements Serializable, View.OnClick
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
         int p=0;
+
 
         /**
          * Loop through the house hold members to check if hh member 's P02 is answered
@@ -115,6 +118,23 @@ public class P06 extends AppCompatActivity implements Serializable, View.OnClick
                             thisHouse.getPersons()[p1.getLineNumber()].setP06(selected.getText().toString().substring(0,1));
                             //Restart the current activity for next individual
                             if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
+
+
+                                //First save
+                                myDB = new DatabaseHelper(P06.this);
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                List<PersonRoster> roster = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+
+                                if(roster.size()>0){
+                                    //Update
+                                    myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
+
+                                }else{
+                                    //Insert
+                                    myDB.insertHhroster(thisHouse);
+
+                                }
+
 
                                 //Next question P07
                                 Intent intent = new Intent(P06.this,P07.class);

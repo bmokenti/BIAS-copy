@@ -77,7 +77,7 @@ public class H06 extends AppCompatActivity implements Serializable {
                     numRooms = Integer.parseInt(edt.getText().toString());
                     if(numRooms >=0 && numRooms <= 15 && numRooms <= Integer.parseInt(thisHouse.getH02())){
                         //True SAve
-                        thisHouse.setH02(String.valueOf(numRooms));
+                        thisHouse.setH06(String.valueOf(numRooms));
 
                         Intent q1o2 = new Intent(H06.this, H07.class);
                         q1o2.putExtra("Household",  thisHouse);

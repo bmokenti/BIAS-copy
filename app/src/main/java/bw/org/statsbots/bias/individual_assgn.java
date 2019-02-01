@@ -173,12 +173,12 @@ public class individual_assgn extends AppCompatActivity implements Serializable 
 
             final HouseHold houseHold = values.get(position);
             Log.d("Position ***** ", "onBindViewHolder: "+ position);
-            holder.tvAssigNo.setText(houseHold.getAssignment_ID());
+            holder.tvAssigNo.setText(houseHold.getDWELLING_NO());
             Sample s = myDb.getSample(myDb.getReadableDatabase(),houseHold.getAssignment_ID());
             try
             {
                 holder.tvDistrict.setText(s.getDistrictName());
-                holder.tvVillage.setText(s.getVillageCode());
+                holder.tvVillage.setText(houseHold.getHH_NO());
                 Log.d("########",s.getDistrictEAVillageLocality());
                 if(s.getDistrictEAVillageLocality()!=null){
                     String[] loc = s.getDistrictEAVillageLocality().split(":");

@@ -36,6 +36,7 @@ public class activity_general_information extends AppCompatActivity implements S
 
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
+
         myDb = new DatabaseHelper(this);
         Sample s = myDb.getSample(myDb.getReadableDatabase(),thisHouse.getAssignment_ID());
 
@@ -61,7 +62,8 @@ public class activity_general_information extends AppCompatActivity implements S
         txtstratum_code.setText(s.getStratumNo());
         txtdistrict_name.setText(s.getDistrictName());
         txtdistrict_code.setText(s.getDistrictCode());
-        try{
+        try
+        {
             Log.d("------- ",s.getDistrictEAVillageLocality());
             String s1[] = s.getDistrictEAVillageLocality().split(":");
 
