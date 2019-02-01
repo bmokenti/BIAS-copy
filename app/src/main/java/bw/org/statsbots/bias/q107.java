@@ -265,16 +265,15 @@ public class q107 extends AppCompatActivity implements Serializable{
                     vibs.vibrate(100);
 
 
-
                 } else {
                     // individual.setQ1106(selectedRbtn1.getText().toString().substring(0,1));
                     //int selectedId1 = rg1.getCheckedRadioButtonId();
                     //selectedRbtn1 = (RadioButton) findViewById(selectedId1);
 
-                    if (rbtn1.isChecked() && !chk99.isChecked() && (txtyy.length() == 0 || txtmnth.length() == 0)) {
+                    if (rbtn1.isChecked() && !chk99.isChecked() && txtyy.length() == 0) {
 
 
-                        lib.showError(q107.this, "Q107: Error", "For how long have you worked in a mine?");
+                        lib.showError(q107.this, "Q107: Error: Year", "For how long have you worked in a mine?");
                         /**
                          * VIBRATE DEVICE
                          */
@@ -282,14 +281,16 @@ public class q107 extends AppCompatActivity implements Serializable{
                         vibs.vibrate(100);
 
 
-                    } else {
-                        //individual.setQ1106a(selectedRbtn2.getText().toString().substring(0,1));
-                        int selectedId1 = rg1.getCheckedRadioButtonId();
-                        selectedRbtn1 = (RadioButton) findViewById(selectedId1);
+                    }
+                    else {
+                        // individual.setQ1106(selectedRbtn1.getText().toString().substring(0,1));
+                        //int selectedId1 = rg1.getCheckedRadioButtonId();
+                        //selectedRbtn1 = (RadioButton) findViewById(selectedId1);
 
-                        if (selectedRbtn1 == null && rbtn1.isChecked()) {
+                        if (rbtn1.isChecked() && !chk99.isChecked() && txtmnth.length() == 0) {
 
-                            lib.showError(q107.this, "Q107: Error", "b) What was your occupation?");
+
+                            lib.showError(q107.this, "Q107: Error: Months", "Please provide months ");
                             /**
                              * VIBRATE DEVICE
                              */
@@ -298,12 +299,14 @@ public class q107 extends AppCompatActivity implements Serializable{
 
 
                         } else {
-                            //individual.setQ1106a(selectedRbtn2.getText().toString().substring(0,1));
+                            // individual.setQ1106(selectedRbtn1.getText().toString().substring(0,1));
+                            //int selectedId1 = rg1.getCheckedRadioButtonId();
+                            //selectedRbtn1 = (RadioButton) findViewById(selectedId1);
+
+                            if (!chk99.isChecked() && txtmnth.length() > 0 && Integer.valueOf(txtmnth.getText().toString()) > 11) {
 
 
-                            if (rbtnbOther.isChecked() && edtbOther.length() == 0) {
-
-                                lib.showError(q107.this, "Q107b: Error", "Please specify");
+                                lib.showError(q107.this, "Q107: Error: Months", "Months should be 12 or less ");
                                 /**
                                  * VIBRATE DEVICE
                                  */
@@ -312,23 +315,27 @@ public class q107 extends AppCompatActivity implements Serializable{
 
 
                             } else {
-                                //individual.setQ1106b(selectedRbtn3.getText().toString().substring(0,1));
-                                int selectedId2 = rg2.getCheckedRadioButtonId();
-                                selectedRbtn2 = (RadioButton) findViewById(selectedId2);
-                                if (selectedRbtn2 == null && rbtn1.isChecked()) {
-                                    lib.showError(q107.this, "Q107 Error", "What is /was the type of the commodity mined?");
+                                //individual.setQ1106a(selectedRbtn2.getText().toString().substring(0,1));
+                                int selectedId1 = rg1.getCheckedRadioButtonId();
+                                selectedRbtn1 = (RadioButton) findViewById(selectedId1);
+
+                                if (selectedRbtn1 == null && rbtn1.isChecked()) {
+
+                                    lib.showError(q107.this, "Q107: Error", "b) What was your occupation?");
                                     /**
                                      * VIBRATE DEVICE
                                      */
                                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                     vibs.vibrate(100);
+
+
                                 } else {
                                     //individual.setQ1106a(selectedRbtn2.getText().toString().substring(0,1));
 
 
-                                    if (rbtncOther.isChecked() && edtcOther.length() == 0) {
+                                    if (rbtnbOther.isChecked() && edtbOther.length() == 0) {
 
-                                        lib.showError(q107.this, "Q107c: Error", "Please specify");
+                                        lib.showError(q107.this, "Q107b: Error", "Please specify");
                                         /**
                                          * VIBRATE DEVICE
                                          */
@@ -337,35 +344,60 @@ public class q107 extends AppCompatActivity implements Serializable{
 
 
                                     } else {
-if(rbtn2.isChecked()){
-    individual.setQ107(selectedRbtn.getText().toString().substring(0, 1));
-
-    Intent q1o3 = new Intent(q107.this, Q201.class);
-    q1o3.putExtra("Individual", individual);
-    startActivity(q1o3);
-}
-else {
-    individual.setQ107(selectedRbtn.getText().toString().substring(0, 1));
-    individual.setQ107aYY(txtyy.getText().toString());
-    individual.setQ107aMnth(txtmnth.getText().toString());
-    individual.setQ107b(selectedRbtn1.getText().toString().substring(0, 1));
-    individual.setQ107bOther(edtbOther.getText().toString());
-    individual.setQ107c(selectedRbtn2.getText().toString().substring(0, 1));
-    individual.setQ107cOther(edtcOther.getText().toString());
+                                        //individual.setQ1106b(selectedRbtn3.getText().toString().substring(0,1));
+                                        int selectedId2 = rg2.getCheckedRadioButtonId();
+                                        selectedRbtn2 = (RadioButton) findViewById(selectedId2);
+                                        if (selectedRbtn2 == null && rbtn1.isChecked()) {
+                                            lib.showError(q107.this, "Q107 Error", "What is /was the type of the commodity mined?");
+                                            /**
+                                             * VIBRATE DEVICE
+                                             */
+                                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                            vibs.vibrate(100);
+                                        } else {
+                                            //individual.setQ1106a(selectedRbtn2.getText().toString().substring(0,1));
 
 
-    Intent q1o3 = new Intent(q107.this, Q201.class);
-    q1o3.putExtra("Individual", individual);
-    startActivity(q1o3);
-}
+                                            if (rbtncOther.isChecked() && edtcOther.length() == 0) {
+
+                                                lib.showError(q107.this, "Q107c: Error", "Please specify");
+                                                /**
+                                                 * VIBRATE DEVICE
+                                                 */
+                                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                                vibs.vibrate(100);
+
+
+                                            } else {
+                                                if (rbtn2.isChecked()) {
+                                                    individual.setQ107(selectedRbtn.getText().toString().substring(0, 1));
+
+                                                    Intent q1o3 = new Intent(q107.this, Q201.class);
+                                                    q1o3.putExtra("Individual", individual);
+                                                    startActivity(q1o3);
+                                                } else {
+                                                    individual.setQ107(selectedRbtn.getText().toString().substring(0, 1));
+                                                    individual.setQ107aYY(txtyy.getText().toString());
+                                                    individual.setQ107aMnth(txtmnth.getText().toString());
+                                                    individual.setQ107b(selectedRbtn1.getText().toString().substring(0, 1));
+                                                    individual.setQ107bOther(edtbOther.getText().toString());
+                                                    individual.setQ107c(selectedRbtn2.getText().toString().substring(0, 1));
+                                                    individual.setQ107cOther(edtcOther.getText().toString());
+
+
+                                                    Intent q1o3 = new Intent(q107.this, Q201.class);
+                                                    q1o3.putExtra("Individual", individual);
+                                                    startActivity(q1o3);
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-                    }
-
+            }
         });
     }
 

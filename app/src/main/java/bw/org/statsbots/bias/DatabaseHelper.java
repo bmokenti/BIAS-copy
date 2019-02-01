@@ -1499,7 +1499,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //FROM HOUSE HOLD
-    public boolean insertIndividual(HouseHold houseHold) {
+    public boolean insertIndividuals (HouseHold houseHold) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues individualValues = new ContentValues();
         //contentValues.put("UserId", UserId);

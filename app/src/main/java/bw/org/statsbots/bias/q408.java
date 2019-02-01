@@ -47,16 +47,7 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-        if (!individual.getQ201().equals("2") || !individual.getQ201().equals("3") && individual.getQ401().equals("2") && Integer.valueOf(individual.getQ102()) >= 50 && individual.getQ101().equals("1")) {
-            Intent intent = new Intent(q408.this, q504.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-
-        } else {
-            //do nothing
-        }
-
-        if (!individual.getQ201().equals("2") || !individual.getQ201().equals("3") && individual.getQ401().equals("2") && Integer.valueOf(individual.getQ102()) >= 50 && individual.getQ101().equals("2")) {
+        if (individual.getQ101().equals("2") && (individual.getQ201().equals("2") || individual.getQ201().equals("3")) && individual.getQ401().equals("1") && Integer.valueOf(individual.getQ102()) >= 50 ) {
             Intent intent = new Intent(q408.this, q601.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
@@ -64,6 +55,28 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
         } else {
             //do nothing
         }
+
+
+
+        if (individual.getQ101().equals("1") && (individual.getQ201().equals("1") || individual.getQ201().equals("4") || individual.getQ201().equals("5") || individual.getQ201().equals("6")) || Integer.valueOf(individual.getQ102()) >= 50 && individual.getQ401().equals("1") ) {
+            Intent intent = new Intent(q408.this, q501.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
+
+
+        if (individual.getQ101().equals("1") && (individual.getQ201().equals("1") || individual.getQ201().equals("4") || individual.getQ201().equals("5") || individual.getQ201().equals("6")) && Integer.valueOf(individual.getQ102()) < 50 && individual.getQ401().equals("1") ) {
+            Intent intent = new Intent(q408.this, q501.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

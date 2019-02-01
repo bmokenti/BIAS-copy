@@ -76,20 +76,10 @@ public class q410 extends AppCompatActivity {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-/*
 
-        if ((Integer.valueOf(individual.getQ102()) >14 || Integer.valueOf(individual.getQ102()) <50   )&&
-                individual.getQ101().equals("2") && !individual.getQ201().equals("1") && individual.getQ202().equals("1") ){
-            Intent intent = new Intent(q410.this, q501.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
 
-        } else {
-            //do nothing
-        }
-
-        if (individual.getQ101().equals("1") && individual.getQ201().equals("1") && individual.getQ202().equals("2")
-                && Integer.valueOf(individual.getQ102()) >= 50 ) {
+        if (individual.getQ101().equals("1"))
+        {
 
             Intent intent = new Intent(q410.this, q501.class);
             intent.putExtra("Individual", individual);
@@ -99,8 +89,10 @@ public class q410 extends AppCompatActivity {
             //do nothing
         }
 
-        if ( Integer.valueOf(individual.getQ102()) >50   &&  individual.getQ101().equals("2") && !individual.getQ201().equals("1") && individual.getQ202().equals("1") ){
-            Intent intent = new Intent(q410.this, q501.class);
+        if (individual.getQ101().equals("2") && ((individual.getQ201().equals("1")  && individual.getQ202().equals("2")) || individual.getQ201().equals("6")) )
+        {
+
+            Intent intent = new Intent(q410.this, q601.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
 
@@ -108,7 +100,20 @@ public class q410 extends AppCompatActivity {
             //do nothing
         }
 
-*/
+        if (individual.getQ101().equals("2") && (individual.getQ201().equals("2") || individual.getQ201().equals("3") || individual.getQ201().equals("4") || individual.getQ201().equals("5") )
+                && Integer.valueOf(individual.getQ102()) >= 50)
+        {
+
+            Intent intent = new Intent(q410.this, q601.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
+
+
+
 
 
         Button btnnext = findViewById(R.id.button);

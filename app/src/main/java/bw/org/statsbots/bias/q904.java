@@ -103,6 +103,7 @@ public class q904 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +165,7 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                                 selectedRbtnc = (RadioButton) findViewById(selectedIdc);
 
-                                if (selectedRbtnc == null && (rbtn3.isChecked() || rbtn4.isChecked())) {
+                                if (selectedRbtnc == null &&  rbtn3.isChecked()) {
                                     lib.showError(q904.this, "Q904c: ERROR", "What is the MAIN reason you are not taking ARVs?");
                                     /**
                                      * VIBRATE DEVICE
@@ -184,7 +185,7 @@ public class q904 extends AppCompatActivity implements Serializable {
                                         individual.setQ904c(selectedRbtnc.getText().toString().substring(0, 1));
                                         individual.setQ904cOther(edtc.getText().toString());
 
-                                        Intent q1o2 = new Intent(q904.this, q1001.class);
+                                        Intent q1o2 = new Intent(q904.this, q905.class);
                                         q1o2.putExtra("Household", thisHouse);
                                         startActivity(q1o2);
 
@@ -198,19 +199,37 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                                             individual.setQ904(selectedRbtn.getText().toString().substring(0, 1));
 
-                                            Intent q1o2 = new Intent(q904.this, q905.class);
+                                            Intent q1o2 = new Intent(q904.this, q1001.class);
                                             q1o2.putExtra("Household", thisHouse);
                                             startActivity(q1o2);
 
-                                        } else {
+                                        }
+                                        else {
+
+                                            //********************************
+
+
+                                            if (individual.getQ101().equals("1") || (individual.getQ101().equals("2") && Integer.parseInt(individual.getQ102())>49 )) {
+                                                // to include ea status code on the check
+
+                                                individual.setQ904(selectedRbtn.getText().toString().substring(0, 1));
+                                                individual.setQ904a(selectedRbtna.getText().toString().substring(0, 1));
+                                                individual.setQ904aOther(edta.getText().toString());
+                                                individual.setQ904bMM(edtbmnths.getText().toString());
+                                                individual.setQ904bYYYY(edtbyear.getText().toString());
+
+                                                Intent q1o2 = new Intent(q904.this, q1001.class);
+                                                q1o2.putExtra("Household", thisHouse);
+                                                startActivity(q1o2);
+
+                                            }
+                                        else {
                                             //Set q904 for the current individual
                                             individual.setQ904(selectedRbtn.getText().toString().substring(0, 1));
                                             individual.setQ904a(selectedRbtna.getText().toString().substring(0, 1));
                                             individual.setQ904aOther(edta.getText().toString());
                                             individual.setQ904bMM(edtbmnths.getText().toString());
                                             individual.setQ904bYYYY(edtbyear.getText().toString());
-                                            individual.setQ904c(selectedRbtnc.getText().toString().substring(0, 1));
-                                            individual.setQ904cOther(edtc.getText().toString());
 
 
                                             Intent intent = new Intent(q904.this, q905.class);
@@ -224,6 +243,7 @@ public class q904 extends AppCompatActivity implements Serializable {
                             }
                         }
                     }
+                        }
                 }
             }
         });
@@ -432,21 +452,37 @@ public class q904 extends AppCompatActivity implements Serializable {
                     rbtnaOther.setEnabled(false);
 
 
-                    rbtnc1.setEnabled(true);
-                    rbtnc1.setEnabled(true);
-                    rbtnc2.setEnabled(true);
-                    rbtnc3.setEnabled(true);
-                    rbtnc4.setEnabled(true);
-                    rbtnc5.setEnabled(true);
-                    rbtnc6.setEnabled(true);
-                    rbtnc7.setEnabled(true);
-                    rbtnc8.setEnabled(true);
-                    rbtnc10.setEnabled(true);
-                    rbtnc11.setEnabled(true);
-                    rbtnc12.setEnabled(true);
-                    rbtnc13.setEnabled(true);
-                    rbtncOther.setEnabled(true);
-                    t4.setTextColor(Color.BLACK);
+                    rbtnc1.setEnabled(false);
+                    rbtnc1.setEnabled(false);
+                    rbtnc2.setEnabled(false);
+                    rbtnc3.setEnabled(false);
+                    rbtnc4.setEnabled(false);
+                    rbtnc5.setEnabled(false);
+                    rbtnc6.setEnabled(false);
+                    rbtnc7.setEnabled(false);
+                    rbtnc8.setEnabled(false);
+                    rbtnc10.setEnabled(false);
+                    rbtnc11.setEnabled(false);
+                    rbtnc12.setEnabled(false);
+                    rbtnc13.setEnabled(false);
+                    rbtncOther.setEnabled(false);
+                    t4.setTextColor(Color.LTGRAY);
+
+                    rbtnc1.setChecked(false);
+                    rbtnc1.setChecked(false);
+                    rbtnc2.setChecked(false);
+                    rbtnc3.setChecked(false);
+                    rbtnc4.setChecked(false);
+                    rbtnc5.setChecked(false);
+                    rbtnc6.setChecked(false);
+                    rbtnc7.setChecked(false);
+                    rbtnc8.setChecked(false);
+                    rbtnc10.setChecked(false);
+                    rbtnc11.setChecked(false);
+                    rbtnc12.setChecked(false);
+                    rbtnc13.setChecked(false);
+                    rbtncOther.setChecked(false);
+
 
 
 

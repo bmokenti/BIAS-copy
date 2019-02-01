@@ -46,7 +46,7 @@ public class q407 extends AppCompatActivity implements View.OnClickListener, Ser
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-        if (individual.getQ301().equals("2") && individual.getQ301().equals("1")) {
+        if (individual.getQ301().equals("2") && individual.getQ302().equals("2")) {
 
             Intent intent = new Intent(q407.this, q408.class);
             intent.putExtra("Individual", individual);

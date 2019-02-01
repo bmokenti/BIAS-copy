@@ -46,7 +46,7 @@ public class q204 extends AppCompatActivity implements Serializable {
 // skip condition
 
 
-        if (individual.getQ201().equals("2")|| individual.getQ201().equals("3")||individual.getQ201().equals("4")|| individual.getQ201().equals("5") || individual.getQ201().equals("6"))
+        if ( individual.getQ201().equals("1") || individual.getQ201().equals("4")|| individual.getQ201().equals("5")|| individual.getQ201().equals("6"))
         {
             Intent skipto301 = new Intent(q204.this, q301.class);
             skipto301.putExtra("Individual", individual);

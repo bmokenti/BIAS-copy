@@ -25,6 +25,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, selected = null;
     protected RadioGroup rbtngroup;
+    protected DatabaseHelper myDB;
     protected RadioButton selectedRbtn;
     Individual p1 = null;
     Individual pp1 = null;
@@ -39,13 +40,16 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
         lib = new LibraryClass();
         rbtn1 = (RadioButton) findViewById(R.id.q101_1);
         rbtn2 = (RadioButton) findViewById(R.id.q101_2);
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
        final RadioGroup rg = (RadioGroup) findViewById(R.id.q101radioGroup);
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),individual.getAssignmentID());
+        sample.getSTATUS();
         Button btnext = findViewById(R.id.btnnext);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
@@ -90,22 +94,25 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
 
                 } else {
                     //Set q101 for the current individual
-                   individual.setQ101(selectedRbtn.getText().toString().substring(0,1));
+                    individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
 
-                    /**
-                     * If current person LineNumber is equal to TotalPersons-1
-                     * Proceed to next Question in the roster
-                     */
-                    // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
 
-                    //Next question q102
-                    Intent q1o2 = new Intent(q101.this, q102.class);
-                q1o2.putExtra("Individual",  individual);
-                startActivity(q1o2);
 
-            }
+                        /**
+                         * If current person LineNumber is equal to TotalPersons-1
+                         * Proceed to next Question in the roster
+                         */
+                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
 
-        }
+                        //Next question q102
+                        Intent q1o2 = new Intent(q101.this, q102.class);
+                        q1o2.putExtra("Individual", individual);
+                        startActivity(q1o2);
+
+                    }
+                }
+
+
     });
         }
 

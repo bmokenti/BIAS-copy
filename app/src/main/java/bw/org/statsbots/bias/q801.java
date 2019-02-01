@@ -238,7 +238,7 @@ public class q801 extends AppCompatActivity {
                                                         vibs.vibrate(100);
 
                                                     } else {
-
+                                                        //individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
 
                                                         if (rbtn2.isChecked()) {
 
@@ -249,13 +249,19 @@ public class q801 extends AppCompatActivity {
                                                             startActivity(intent);
 
                                                         } else {
-                                                            if (rbtna2.isChecked()) {
+
+                                                            if (rbtna2.isChecked() ) {
 
 
                                                                 individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
                                                                 individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
                                                                 individual.setQ801cMonth(edtcmnths.getText().toString());
                                                                 individual.setQ801cYear(edtcyear.getText().toString());
+                                                                individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
+                                                                individual.setQ801dOther(edtdother.getText().toString());
+                                                                individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
+                                                                individual.setQ801eOther(edteother.getText().toString());
+                                                                individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
 
                                                                 Intent intent = new Intent(q801.this, q802.class);
                                                                 intent.putExtra("Individual", individual);

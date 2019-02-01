@@ -50,6 +50,7 @@ public class q105 extends AppCompatActivity implements Serializable{
         rbtn7 =  (RadioButton)findViewById(R.id.q105_1g);
         rbtn8 =  (RadioButton)findViewById(R.id.q105_1h);
         rbtn9 = findViewById(R.id.q105_other);
+
         edt = (EditText) findViewById(R.id.Q105_txtOther);
         edt1 = (EditText) findViewById(R.id.Q105atxt);
         edt2 = (EditText) findViewById(R.id.Q105btxt);
@@ -66,98 +67,6 @@ public class q105 extends AppCompatActivity implements Serializable{
         int p = 0;
 
 
-        rbtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rbtn3.isChecked()) {
-                    edt.setVisibility(View.INVISIBLE);
-                    edt.setText("");
-
-                }
-            }
-        });
-
-        rbtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rbtn3.isChecked()) {
-                    edt.setVisibility(View.INVISIBLE);
-                    edt.setText("");
-
-                }
-            }
-        });
-        rbtn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rbtn3.isChecked()) {
-                    edt.setVisibility(View.INVISIBLE);
-                    edt.setText("");
-
-                }
-            }
-        });
-
-        rbtn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rbtn3.isChecked()) {
-                    edt.setVisibility(View.INVISIBLE);
-                    edt.setText("");
-
-                }
-            }
-        });
-        rbtn5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rbtn3.isChecked()) {
-                    edt.setVisibility(View.INVISIBLE);
-                    edt.setText("");
-
-                }
-            }
-        });
-        rbtn6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rbtn3.isChecked()) {
-                    edt.setVisibility(View.INVISIBLE);
-                    edt.setText("");
-
-                }
-            }
-        });
-
-        rbtn7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rbtn3.isChecked()) {
-                    edt.setVisibility(View.INVISIBLE);
-                    edt.setText("");
-
-                }
-            }
-        });
-        rbtn8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rbtn3.isChecked()) {
-                    edt.setVisibility(View.INVISIBLE);
-                    edt.setText("");
-
-                }
-            }
-        });
-        rbtn9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rbtn9.isChecked()) {
-                    edt.setVisibility(View.VISIBLE);
-
-                }
-            }
-        });
 
         /**
          * NEXT Person BUTTON
@@ -195,10 +104,8 @@ public class q105 extends AppCompatActivity implements Serializable{
                         vibs.vibrate(100);
 
 
-                    }
-                    else
-                        {
-                        if (edt1.length() == 0 || edt1.getText() == null) {
+                    } else {
+                        if ((rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn9.isChecked()) && edt1.length() == 0 || edt1.getText() == null) {
                             lib.showError(q105.this, "q105a Error", "Please state current occupation?");
                             /**
                              * VIBRATE DEVICE
@@ -208,7 +115,7 @@ public class q105 extends AppCompatActivity implements Serializable{
 
 
                         } else {
-                            if (edt2.length() == 0 || edt2.getText() == null) {
+                            if ((rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn9.isChecked()) && edt2.length() == 0 || edt2.getText() == null  ) {
                                 lib.showError(q105.this, "q105b Error", "What is the main product, service or activity at your place of work?");
                                 /**
                                  * VIBRATE DEVICE
@@ -218,34 +125,160 @@ public class q105 extends AppCompatActivity implements Serializable{
 
 
                             } else {
-                                individual.setQ105(edt.getText().toString());
-                                individual.setQ105Other(selectedRbtn.getText().toString());
-                                individual.setQ105a(selectedRbtn.getText().toString());
-                                individual.setQ105b(selectedRbtn.getText().toString());
-                                //Set P02 fir the current individual
-                                //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
-                                //Restart the current activity for next individual
+                                if (rbtn4.isChecked() || rbtn5.isChecked() || rbtn6.isChecked() || rbtn7.isChecked()) {
+                                    individual.setQ105Other(selectedRbtn.getText().toString());
+                                    individual.setQ105(edt.getText().toString());
+
+                                    Intent intent = new Intent(q105.this, q106.class);
+                                    intent.putExtra("Individual", individual);
+                                    startActivity(intent);
 
 
-                                //Next question P17
-                                Intent intent = new Intent(q105.this, q106.class);
-                                intent.putExtra("Individual", individual);
-                                startActivity(intent);
+                                } else {
+
+                                    individual.setQ105Other(selectedRbtn.getText().toString());
+                                    individual.setQ105(edt.getText().toString());
+
+                                    individual.setQ105a(selectedRbtn.getText().toString());
+                                    individual.setQ105b(selectedRbtn.getText().toString());
+                                    //Set P02 fir the current individual
+                                    //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
+                                    //Restart the current activity for next individual
+
+
+                                    //Next question P17
+                                    Intent intent = new Intent(q105.this, q106.class);
+                                    intent.putExtra("Individual", individual);
+                                    startActivity(intent);
+
+
+                                }
 
 
                             }
-
-
                         }
                     }
                 }
-
             }
         });
 
     }
 
+    public void onRadioButtonClicked(View v) {
+
+        TextView q802atext = findViewById(R.id.q802a_other);
+        RadioGroup rg1 = (RadioGroup) findViewById(R.id.q802radioGroupa);
+        // Is the current Radio Button checked?
+        boolean checked = ((RadioButton) v).isChecked();
+
+        switch (v.getId()) {
+            case R.id.q105_1a:
+                if (checked)
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+                edt2.setEnabled(true);
+                edt1.setEnabled(true);
+
+
+
+                break;
+
+
+            case R.id.q105_1b:
+                if (checked)
+
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+                edt2.setEnabled(true);
+                edt1.setEnabled(true);
+
+
+
+
+                break;
+            case R.id.q105_1c:
+                if (checked)
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+                edt2.setEnabled(true);
+                edt1.setEnabled(true);
+
+
+                break;
+            case R.id.q105_1d:
+                if (checked)
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+                edt2.setEnabled(true);
+                edt1.setEnabled(true);
+
+
+                break;
+            case R.id.q105_1e:
+                if (checked)
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+                edt1.setText("");
+                edt1.setEnabled(false);
+                edt2.setEnabled(false);
+                edt2.setText("");
+
+
+                break;
+            case R.id.q105_1f:
+                if (checked)
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+                edt1.setText("");
+                edt1.setEnabled(false);
+                edt2.setEnabled(false);
+                edt2.setText("");
+
+                break;
+            case R.id.q105_1g:
+                if (checked)
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+                edt1.setText("");
+                edt1.setEnabled(false);
+                edt2.setEnabled(false);
+                edt2.setText("");
+
+                break;
+
+            case R.id.q105_1h:
+                if (checked)
+                    edt.setVisibility(View.INVISIBLE);
+                edt.setText("");
+                edt1.setText("");
+                edt1.setEnabled(false);
+                edt2.setEnabled(false);
+                edt2.setText("");
+
+                break;
+            case R.id.q105_other:
+                if (checked)
+                    edt.setVisibility(View.VISIBLE);
+
+
+                edt1.setEnabled(true);
+                edt2.setEnabled(true);
+
+
+                break;
+
+
+
+
+
+
+        }
+    }
 }
+
+
+
+
 /*
     @Override
     public void onClick(View view) {

@@ -21,11 +21,11 @@ public class q1010 extends AppCompatActivity {
     protected LibraryClass lib;
     protected Button btn;
     protected Individual individual;
-    protected RadioButton rbtn1, rbtn2, rbtn3, rbtnOther ;
+    protected RadioButton rbtn1, rbtn2, rbtn3, rbtnOther, selectedRbtn ;
     protected RadioGroup rg, rga;
     protected TextView t1;
     protected EditText edtOther;
-    protected RadioButton selectedRbtn ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,8 @@ public class q1010 extends AppCompatActivity {
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
-                } else {
+                } else
+                    {
 
                     if (rbtnOther.isChecked() && edtOther.length() == 0) {
                         lib.showError(q1010.this, "Q1010: ERROR: Other specify", "Other specify");
@@ -78,15 +79,15 @@ public class q1010 extends AppCompatActivity {
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
-                    } else {
+                    } else
+                        {
 
-                      individual.setQ1010(selectedRbtn.getText().toString().substring(0,1));
+                        individual.setQ1010(selectedRbtn.getText().toString().substring(0,1));
                         individual.setQ1010_Other(edtOther.getText().toString());
 
                         Intent intent = new Intent(q1010.this, q1011.class);
                         intent.putExtra("Individual", individual);
                         startActivity(intent);
-
 
                     }
                 }

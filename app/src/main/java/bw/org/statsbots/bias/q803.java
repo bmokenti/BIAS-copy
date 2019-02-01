@@ -148,16 +148,21 @@ public class q803 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-        if(individual.getQ801a().equals("2") )
+
+        if(individual.getQ801a().equals("1") && individual.getQ101().equals("2")  && individual.getQ401().equals("1") && (Integer.parseInt( individual.getQ102() )>14
+                && Integer.parseInt( individual.getQ102() )<50) && individual.getQ801f().equals("1"))
         {
-            Intent intent = new Intent(q803.this, q803.class);
+            Intent intent = new Intent(q803.this, q901.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
         }
         else {
 
         }
-        if(individual.getQ801a().equals("1") && individual.getQ101().equals("2")  && individual.getQ401().equals("1") && Integer.parseInt( individual.getQ102() )>14 && Integer.parseInt( individual.getQ102() )<50)
+
+
+        if(individual.getQ801a().equals("1") && individual.getQ101().equals("2") && individual.getQ401().equals("1")   && (Integer.parseInt( individual.getQ102() )>14
+                && Integer.parseInt( individual.getQ102() )<50) && !individual.getQ801f().equals("1"))
         {
             Intent intent = new Intent(q803.this, q1001.class);
             intent.putExtra("Individual", individual);
@@ -214,7 +219,7 @@ public class q803 extends AppCompatActivity implements Serializable {
                     } else {
 
 
-                    if (selected  == rbtn8 ) {
+                    if (rbtn8.isChecked() ) {
                       //  Intent intent = new Intent(q803.this, q901.class);;
 
                         Intent intent = new Intent(q803.this, q901.class);

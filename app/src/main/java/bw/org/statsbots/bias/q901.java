@@ -69,7 +69,7 @@ public class q901 extends AppCompatActivity implements Serializable {
 
 
 
-        if(!individual.getQ801f().equals("1") && individual.getQ101().equals("2"))
+        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ101().equals("2"))
         {
             Intent intent = new Intent(q901.this, q1001.class);
             intent.putExtra("Individual", individual);
@@ -79,7 +79,7 @@ public class q901 extends AppCompatActivity implements Serializable {
 
         }
 
-        if(!individual.getQ801f().equals("1") && individual.getQ101().equals("1"))
+        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9"))&& individual.getQ101().equals("1"))
         {
             Intent intent = new Intent(q901.this, q1101.class);
             intent.putExtra("Individual", individual);

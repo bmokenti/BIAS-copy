@@ -68,13 +68,16 @@ public class q402 extends AppCompatActivity implements Serializable {
         //Intent i = getIntent();
         //thisHouse = (HouseHold) i.getSerializableExtra("Household");
         //int p = 0;
-        if (individual.getQ401().equals("1") && (Integer.valueOf(individual.getQ102()) <= 24)) {
+        if (individual.getQ101().equals("1") && individual.getQ401().equals("1") && Integer.valueOf(individual.getQ102()) >= 24) {
 
-        } else {
-            //do nothing
             Intent intent = new Intent(q402.this, q403.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
+        }
+
+        else {
+            //do nothing
+
 
         }
 

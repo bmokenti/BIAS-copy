@@ -23,6 +23,7 @@ public class q102 extends AppCompatActivity implements Serializable {
     protected String currentHH = null;
     protected LibraryClass lib;
     protected EditText edt;
+    protected DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,19 +33,43 @@ public class q102 extends AppCompatActivity implements Serializable {
         setTitle("Q102 Age");
 
         lib = new LibraryClass();
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
         //edittext = (EditText) findViewById(R.id.q102_years);
         //edittext.setVisibility(View.VISIBLE);
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         edt = (EditText)findViewById(R.id.q102_years);
+/*
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),individual.getAssignmentID());
+        sample.getStatusCode();
 
 
-            /**
-             * NEXT Person BUTTON
-             */
+
+        if(sample.getStatusCode().equals("2"))
+
+        {
+            Intent intent = new Intent(q102.this, q104.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
+        if(sample.getStatusCode().equals("3"))
+
+        {
+            Intent intent = new Intent(q102.this, q105.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
+*/
+
+        /**
+         * NEXT Person BUTTON
+         */
             Button btnNext = (Button)findViewById(R.id.button);
 
 

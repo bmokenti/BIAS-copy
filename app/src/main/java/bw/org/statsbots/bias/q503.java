@@ -55,7 +55,7 @@ public class q503 extends AppCompatActivity implements View.OnClickListener, Ser
         int p = 0;
 
 
-        if(individual.getQ502().equals("1") || individual.getQ502().equals("2") || individual.getQ502().equals("3") || individual.getQ502().equals("9"))
+        if(individual.getQ501().equals("1"))
         {
             Intent q1o2 = new Intent(q503.this, q601.class);
             q1o2.putExtra("Individual", individual);

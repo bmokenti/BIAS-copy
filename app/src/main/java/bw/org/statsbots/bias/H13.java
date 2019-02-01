@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -247,11 +248,29 @@ public class H13 extends AppCompatActivity implements Serializable {
 
                     //Save all responses
                     thisHouse.setVISIT1_RESULT("9");
+                    //house.getPersons();
+                    /*
+                    boolean isInserted = myDB.inserthousehold(thisHouse);
+
+
+                    Log.d("DB Name: ",myDB.getDatabaseName().toString() );
+
+                    if(isInserted == true)
+                        Toast.makeText(H13.this,"Data Inserted",Toast.LENGTH_LONG).show();
+                    else
+                        Toast.makeText(H13.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+*/
+                    boolean isInsertedhh = myDB.insertHhroster(thisHouse);
+
+
+                    Log.d("DB Name: ",myDB.getDatabaseName().toString() );
+
+                    if(isInsertedhh == true)
+                        Toast.makeText(H13.this,"Data Inserted hh",Toast.LENGTH_LONG).show();
+                    else
+                        Toast.makeText(H13.this,"Data not Inserted hh",Toast.LENGTH_LONG).show();
 
                     myDB.updateHHStatus(thisHouse);
-
-
-
 
 
                     Intent q1o2 = new Intent(bw.org.statsbots.bias.H13.this, Dashboard.class);

@@ -54,7 +54,8 @@ public class q802 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-if(!individual.getQ801f().equals("1") && individual.getQ801a().equals("2"))
+if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("2"))
+
 {
     Intent intent = new Intent(q802.this, q803.class);
     intent.putExtra("Individual", individual);
@@ -64,7 +65,7 @@ else {
 
 }
 
-        if(!individual.getQ801f().equals("1") && individual.getQ801a().equals("1"))
+        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("1"))
         {
             Intent intent = new Intent(q802.this, q1001.class);
             intent.putExtra("Individual", individual);
@@ -121,9 +122,7 @@ else {
                         } else {
 
                             //Set Q802 and Q802a for the current individual
-                            individual.setQ802(selected.getText().toString().substring(0, 1));
-                            individual.setQ802a(selected1.getText().toString().substring(0, 1));
-                            individual.setQ802aOther(edtnaOther.getText().toString());
+
 
                             //If No is selected, skip to Q901
                             if (selected == rbtn2) {
