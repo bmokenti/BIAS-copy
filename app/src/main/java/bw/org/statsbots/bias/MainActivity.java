@@ -511,18 +511,20 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                     final CharSequence[] list = new String[counter];
                     for(int i =0;i<counter;i++){
 
-                        list[i]= (i+1) + " - " + hhArray[i].getText().toString();
-                        if(memberExist[0]==1){
-                            if(thisHouse.getPersons()[i]!=null){
-                                if(thisHouse.getPersons()[i].getP02() != null ){
-                                    if(thisHouse.getPersons()[i].getP02().equals("00")){
-                                        Head = i;
-                                    }
+                            list[i]= (i+1) + " - " + hhArray[i].getText().toString();
+                            if(memberExist[0]==1){
+                                if(thisHouse.getPersons()[i]!=null){
+                                    if(thisHouse.getPersons()[i].getP02() != null ){
+                                        if(thisHouse.getPersons()[i].getP02().equals("00")){
+                                            Head = i;
+                                        }
 
+                                    }
                                 }
+
                             }
 
-                        }
+
 
                     }
 

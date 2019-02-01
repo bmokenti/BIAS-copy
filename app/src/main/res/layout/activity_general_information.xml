@@ -89,13 +89,13 @@
             <!--STRATUM-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-
+                android:layout_height="50dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/stratum"
                     android:layout_width="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_lock_outline_blue_16dp"
 
@@ -109,6 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:paddingEnd="8dp"
                     android:textAlignment="viewEnd"
                     android:text="@string/STRATUM_CODE" />
@@ -121,7 +122,7 @@
             <!--DISTRICT-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
 
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -132,12 +133,14 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_lock_outline_blue_16dp"
                     android:layout_weight="2"
+                    android:layout_gravity="center"
                     android:textStyle="bold"
                     android:text="@string/DISTRICT" />
 
                 <TextView
                     android:id="@+id/district_name"
                     android:layout_width="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:text="@string/DISTRICT_NAME" />
@@ -147,6 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:paddingEnd="8dp"
                     android:textAlignment="viewEnd"
                     android:text="@string/DISTRICT_CODE" />
@@ -160,12 +164,13 @@
                 <!--VILLAGE-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/village"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:drawableLeft="@drawable/ic_lock_outline_blue_16dp"
                         android:layout_height="wrap_content"
@@ -177,7 +182,7 @@
                         android:id="@+id/village_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:text="@string/VILLAGE_NAME" />
 
@@ -186,6 +191,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingEnd="8dp"
+                        android:layout_gravity="center"
                         android:textAlignment="viewEnd"
                         android:layout_weight="1"
                         android:text="@string/VILLAGE_CODE" />
@@ -199,7 +205,7 @@
                 <!--LOCALITY-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
@@ -209,6 +215,7 @@
                         android:drawableLeft="@drawable/ic_lock_outline_blue_16dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_gravity="center"
                         android:textStyle="bold"
                         android:text="@string/LOCALITY" />
 
@@ -216,7 +223,7 @@
                         android:id="@+id/locality_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:text="@string/LOCALITY_NAME" />
 
@@ -225,6 +232,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_gravity="center"
                         android:paddingEnd="8dp"
                         android:textAlignment="viewEnd"
                         android:text="@string/LOCALITY_CODE" />
@@ -237,7 +245,7 @@
                 <!--EA-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
@@ -247,6 +255,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_lock_outline_blue_16dp"
                         android:layout_weight="2"
+                        android:layout_gravity="center"
                         android:textStyle="bold"
                         android:text="@string/EA" />
 
@@ -256,6 +265,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
+                        android:layout_gravity="center"
                         android:paddingEnd="8dp"
                         android:textAlignment="viewEnd"
                         android:text="@string/EA_CODE" />
@@ -269,7 +279,7 @@
                 <!--BLOCK-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
@@ -279,6 +289,7 @@
                         android:drawableLeft="@drawable/ic_lock_outline_blue_16dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:layout_gravity="center"
                         android:textStyle="bold"
                         android:text="@string/BLOCK" />
 
@@ -289,6 +300,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:paddingEnd="8dp"
+                        android:layout_gravity="center"
                         android:textAlignment="viewEnd"
                         android:text="@string/BLOCK_NUMBER" />
 
@@ -301,7 +313,7 @@
                 <!--EA STATUS-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
@@ -312,6 +324,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:textStyle="bold"
+                        android:layout_gravity="center"
                         android:text="@string/EA_STATUS" />
 
 
@@ -321,6 +334,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:paddingEnd="8dp"
+                        android:layout_gravity="center"
                         android:textAlignment="viewEnd"
                         android:text="@string/EA_STATUS_CODE" />
 
@@ -333,7 +347,7 @@
                 <!--DWELLING-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
@@ -343,7 +357,7 @@
                         android:drawableLeft="@drawable/ic_lock_open_blue_24dp"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-
+                        android:layout_gravity="center"
                         android:paddingEnd="5dp"
                         android:text="@string/DWELLING" />
 
@@ -354,7 +368,9 @@
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
                         android:hint="00000"
+                        android:layout_gravity="center"
                         android:textAlignment="center"
+                        android:enabled="false"
                         android:background="@drawable/edit_text_background"
                         android:layout_weight="6"
 
@@ -370,7 +386,7 @@
                 <!--HOUSEHOLD-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
@@ -380,6 +396,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_lock_open_blue_24dp"
                         android:layout_weight="2"
+                        android:layout_gravity="center"
                         android:textStyle="bold"
                         android:text="@string/HOUSEHOLD" />
 
@@ -390,9 +407,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="18dp"
+                        android:layout_gravity="center"
                         android:inputType="number"
                         android:maxLength="3"
                         android:hint="000"
+                        android:enabled="false"
                         android:textAlignment="center"
                         android:background="@drawable/edit_text_background"
                           />
@@ -407,7 +426,7 @@
                 <!--RESPONDENT LINE-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
@@ -417,6 +436,7 @@
                         android:drawableLeft="@drawable/ic_lock_outline_blue_16dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:layout_gravity="center"
                         android:textStyle="bold"
                         android:text="@string/RESPONDENT_LINE" />
 
@@ -424,6 +444,7 @@
                     <TextView
                         android:id="@+id/respondent_line_number"
                         android:layout_width="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:paddingEnd="8dp"
@@ -439,7 +460,7 @@
                 <!--ENUMERATORS-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
@@ -449,6 +470,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_lock_outline_blue_16dp"
                         android:layout_weight="2"
+                        android:layout_gravity="center"
                         android:textStyle="bold"
                         android:text="@string/ENUMERATOR" />
 
@@ -458,6 +480,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
+                        android:layout_gravity="center"
                         android:paddingEnd="8dp"
                         android:textAlignment="viewEnd"
                         android:text="@string/ENUMERATOR_CODE" />
@@ -472,7 +495,7 @@
                 <!--SUPERVISOR-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
@@ -483,6 +506,7 @@
                         android:drawableLeft="@drawable/ic_lock_outline_blue_16dp"
                         android:layout_weight="2"
                         android:textStyle="bold"
+                        android:layout_gravity="center"
                         android:text="@string/SUPERVISOR" />
 
 
@@ -492,6 +516,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:paddingEnd="8dp"
+                        android:layout_gravity="center"
                         android:textAlignment="viewEnd"
                         android:text="@string/SUPERVISOR_CODE" />
 

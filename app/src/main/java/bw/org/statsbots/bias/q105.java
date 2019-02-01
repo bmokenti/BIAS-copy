@@ -147,6 +147,13 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
                                     //Restart the current activity for next individual
 
+                                    //update individual
+                                    DatabaseHelper myDB = new DatabaseHelper(q105.this);
+
+                                    myDB.onOpen(myDB.getReadableDatabase());
+                                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                    myDB.close();
+
 
                                     //Next question P17
                                     Intent intent = new Intent(q105.this, q106.class);

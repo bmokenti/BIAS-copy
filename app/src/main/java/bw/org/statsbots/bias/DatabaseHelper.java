@@ -10,6 +10,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import org.joda.time.DateTime;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.URL;
@@ -20,6 +22,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static java.net.Proxy.Type.HTTP;
 
@@ -709,7 +713,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + H13Bicycle + " nvarchar(1),"
             + H13DonkeyCart + " nvarchar(1),"
             + H13DonkeyHorse +" nvarchar(1),"
-            + H13Camels + " nvarchar(1))";
+            + H13Camels + " nvarchar(1), HIVTB40 nvarchar(10))";
 
 
 
@@ -1301,6 +1305,8 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
 
     }
+
+
     public boolean checkUser(PersonRoster p){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -1315,6 +1321,23 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
+
+    public boolean checkIndividual(Individual ind){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        int nombr = 0;
+        Cursor cursor = db.rawQuery("SELECT * FROM "+tblindividual+" WHERE Assignment_ID = "+ind.getAssignmentID()+" and BatchNumber="+ind.getBatch()+" and SRNO="+ind.getSRNO(), null);
+        nombr = cursor.getCount();
+        if(nombr==1){
+            return  true;
+        }else{
+            return false;
+        }
+
+    }
+
+
 
     //INSERT ROSTER FIRST SYNC
     public boolean insertSyncRoster(PersonRoster pr,String AsID,String Batch) {
@@ -2298,7 +2321,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(IndRapid_Comment, houseHold.getIndRapid_Comment() );
 
 
-            db.insert("tblindividual", null, individualValues);
+            db.insert("Individual", null, individualValues);
 
         }
 
@@ -2687,6 +2710,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         Date date = new Date();
         return dateFormat.format(date);
     }
+
     public void getAllData(SQLiteDatabase db) {
 
         db = this.getWritableDatabase();
@@ -2737,11 +2761,15 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+
+    //Pull from TBL Assignments
     public ArrayList<String> getEA(SQLiteDatabase db) {
     ArrayList<String> a= new ArrayList<>();
         db = this.getWritableDatabase();
         db = this.getReadableDatabase();
         //Cursor res = db.rawQuery("select * from " + table, null);
+
+
         Cursor res = db.rawQuery("select * from " + tblAssignments, null);
         //return res;
 
@@ -2752,7 +2780,8 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
             //a.add("EA NO: "+res.getString(4));
            a.add("EA NO: "+res.getString(5)+ "#"+res.getString(0)+"#"+res.getString(1)+"#"+res.getString(2)+"#"+res.getString(3)+"#"+res.getString(4)+"#"+res.getString(6)+"#"+res.getString(7));
-            Log.d("Broken: ", "EA NO: "+res.getString(5)+ "#"+res.getString(0)+"#"+res.getString(1)+"#"+res.getString(2)+"#"+res.getString(3)+"#"+res.getString(4)+"#"+res.getString(6)+"#"+res.getString(7));
+
+           Log.d("Broken: ", "EA NO: "+res.getString(5)+ "#"+res.getString(0)+"#"+res.getString(1)+"#"+res.getString(2)+"#"+res.getString(3)+"#"+res.getString(4)+"#"+res.getString(6)+"#"+res.getString(7));
         }
         return a;
     }
@@ -2766,10 +2795,10 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor res = db.rawQuery("select * from "+tblhousehold+" where EA_Assignment_ID = "+assgmnt + " and Interview_Status=3;", null);
 
-        HouseHold buffer = new HouseHold(null,0,0);
+
         while (res.moveToNext())
         {
-
+                HouseHold buffer = new HouseHold(null,0,0);
                 buffer.setBatchNumber(res.getString(0));
                 buffer.setAssignment_ID(res.getString(1));
                 buffer.setDWELLING_NO(res.getString(2));
@@ -3583,6 +3612,689 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         return true;
     }
+
+    //SEARCH FOR HOUSEHOLD
+    public HouseHold searchHouse(SQLiteDatabase db, String assignment_ID, String batchnumber){
+        HouseHold h = null;
+         db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from House_Hold_Assignments where EA_Assignment_ID = " + assignment_ID + " and BatchNumber="+batchnumber, null);
+
+        while (cursor.moveToNext()) {
+            h = new HouseHold();
+            h.setAssignment_ID(cursor.getString(cursor.getColumnIndexOrThrow("EA_Assignment_ID")));
+            h.setBatchNumber(cursor.getString(cursor.getColumnIndexOrThrow("BatchNumber")));
+        }
+
+        return  h;
+    }
+
+
+    //UPDATE HOUSEHOLD COLUMNS EACH
+    public void updateHousehold(SQLiteDatabase db,String assignment_ID, String batchnumber, String columnName, String value){
+        SQLiteDatabase db1 = this.getWritableDatabase();
+        ContentValues hhValues = new ContentValues();
+        hhValues.put(columnName,value);
+
+        int  i = db1.update
+                (   tblhousehold, // table
+                        hhValues, // column/value
+                        "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                        new String[] { String.valueOf(assignment_ID),String.valueOf(batchnumber) }
+                );
+
+            db1.close();
+
+    }
+
+
+    //UPDATE HOUSEHOLD COLUMNS EACH
+    public void updateHouseholdAllColumns(SQLiteDatabase db,HouseHold houseHold){
+        SQLiteDatabase db1 = this.getWritableDatabase();
+        ContentValues hhValues = new ContentValues();
+
+
+        //String HH_Assignment_ID = cursor.getString(cursor.getColumnIndexOrThrow("EA_Assignment_ID"));
+        //String BatchNumber = cursor.getString(cursor.getColumnIndexOrThrow("BatchNumber"));
+        hhValues.put("DWELLING_NO",houseHold.getDWELLING_NO());
+        hhValues.put("HH_NO",houseHold.getHH_NO());
+        //String ENUMERATOR = cursor.getString(cursor.getColumnIndexOrThrow("ENUMERATOR"));
+        //String SUPERVISOR = cursor.getString(cursor.getColumnIndexOrThrow("SUPERVISOR"));
+       // String QUALITY_CONTROLLER = cursor.getString(cursor.getColumnIndexOrThrow("QUALITY_CONTROLLER"));
+        hhValues.put("INTERVIEWER_VISITS1",houseHold.getINTERVIEWER_VISIT1());
+        hhValues.put("DATE1",houseHold.getDATE1());
+        hhValues.put("VISIT1_RESULT",houseHold.getVISIT1_RESULT());
+        hhValues.put("COMMENT1",houseHold.getCOMMENT1());
+        hhValues.put("NEXT_VISIT_2_DATE",houseHold.getNEXT_VISIT_2_DATE());
+        hhValues.put("NEXT_VISIT_2_Time",houseHold.getNEXT_VISIT_2_TIME());
+        hhValues.put("INTERVIEWER_VISITS2",houseHold.getINTERVIEWER_VISIT2());
+        hhValues.put("DATE2",houseHold.getDATE2());
+        hhValues.put("VISIT2_RESULT",houseHold.getVISIT2_RESULT());
+        hhValues.put("COMMENT2",houseHold.getCOMMENT2());
+        hhValues.put("NEXT_VISIT_3_DATE",houseHold.getNEXT_VISIT_3_DATE());
+        hhValues.put("NEXT_VISIT_3_Time",houseHold.getNEXT_VISIT_3_TIME());
+        hhValues.put("INTERVIEWER_VISITS3",houseHold.getINTERVIEWER_VISIT3());
+        hhValues.put("DATE3",houseHold.getDATE3());
+        hhValues.put("VISIT3_RESULT",houseHold.getVISIT3_RESULT());
+        hhValues.put("COMMENT_3",houseHold.getCOMMENT3());
+        hhValues.put("TOTAL_VISITS",houseHold.getTOTAL_VISITS());
+
+        hhValues.put("CONSENT",houseHold.getCONSENT());
+        //hhValues.put("CHECKED_BY",houseHold.get);
+        //hhValues.put("CODED",houseHold);
+        hhValues.put("FINAL_RESULT",houseHold.getFINAL_RESULT());
+        hhValues.put("FINAL_OTHER",houseHold.getFINAL_OTHER());
+        hhValues.put("H01", houseHold.getH01());
+        hhValues.put("Interview_Status",houseHold.getInterview_Status());
+        hhValues.put("H02",houseHold.getH02());
+        hhValues.put("H03",houseHold.getH03());
+        hhValues.put("H03Other",houseHold.getH03Other());
+        hhValues.put("H04",houseHold.getH04());
+        hhValues.put("H04Other",houseHold.getH04Other());
+        hhValues.put("H05",houseHold.getH05());
+        hhValues.put("H05Other",houseHold.getH05Other());
+        hhValues.put("H06",houseHold.getH06());
+        hhValues.put("H07",houseHold.getH07());
+        hhValues.put("H08",houseHold.getH08());
+        hhValues.put("H08Other",houseHold.getH08Other());
+        hhValues.put("H09",houseHold.getH09());
+        hhValues.put("H09Other",houseHold.getH09Other());
+        hhValues.put("H10",houseHold.getH10());
+        hhValues.put("H11",houseHold.getH11());
+        hhValues.put("H11Other",houseHold.getH11Other());
+
+        hhValues.put("H12Radio",houseHold.getH12());
+        hhValues.put("H12TV",houseHold.getH12TV());
+        hhValues.put("H12Telephone",houseHold.getH12Telephone());
+        hhValues.put("H12CellPhone",houseHold.getH12CellPhone());
+        hhValues.put("H12PrintMedia",houseHold.getH12PrintMedia());
+        hhValues.put("H12ElecMedia",houseHold.getH12ElecMedia());
+        hhValues.put("H12PerformArts",houseHold.getH12PerfomArts());
+
+        hhValues.put("H13Vehicle",houseHold.getH13());
+        hhValues.put("H13Tractor",houseHold.getH13Tractor());
+        hhValues.put("H13Motorcycle",houseHold.getH13Motorcycle());
+        hhValues.put("H13Bicycle",houseHold.getH13Bicycle());
+        hhValues.put("H13DonkeyCart",houseHold.getH13DonkeyCart());
+        hhValues.put("H13DonkeyHorse",houseHold.getH13DonkeyHorse());
+        hhValues.put("H13Camels",houseHold.getH13Camels());
+
+        int  i = db1.update
+                (   tblhousehold, // table
+                        hhValues, // column/value
+                        "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                        new String[] { String.valueOf(houseHold.getAssignment_ID()),String.valueOf(houseHold.getBatchNumber()) }
+                );
+
+        //db1.close();
+
+        for(int k=0;k<houseHold.getPersons().length;k++)
+        {
+
+            hhValues = new ContentValues();
+            hhValues.put("EA_Assignment_ID",houseHold.getAssignment_ID());
+            hhValues.put("BatchNumber",houseHold.getBatchNumber());
+            Log.d("From update Roster", houseHold.getPersons()[k].getP01());
+            hhValues.put("SRNO", houseHold.getPersons()[k].getSRNO());
+            hhValues.put("P01", houseHold.getPersons()[k].getP01());
+            hhValues.put("P02", houseHold.getPersons()[k].getP02());
+            hhValues.put("P03", houseHold.getPersons()[k].getP03());
+            hhValues.put("P04_YY", houseHold.getPersons()[k].getP04YY());
+            hhValues.put("P04_MM", houseHold.getPersons()[k].getP04MM());
+            hhValues.put("P04_WKS", houseHold.getPersons()[k].getP04WKS());
+            hhValues.put("P06", houseHold.getPersons()[k].getP06());
+            hhValues.put("P07", houseHold.getPersons()[k].getP07());
+            hhValues.put("P17", houseHold.getPersons()[k].getP17());
+            hhValues.put("P18", houseHold.getPersons()[k].getP18());
+            hhValues.put("P19", houseHold.getPersons()[k].getP19());
+            hhValues.put("P20", houseHold.getPersons()[k].getP20());
+            hhValues.put("P21", houseHold.getPersons()[k].getP21());
+
+            hhValues.put("B3_RapidConsent_Yes_No", houseHold.getPersons()[k].getB3_RapidConsent_Yes_No());
+            hhValues.put("B3_Guardian", houseHold.getPersons()[k].getB3_Guardian());
+            hhValues.put("B3_Date", houseHold.getPersons()[k].getB3_Date());
+            hhValues.put("U15Rapid_Result", houseHold.getPersons()[k].getU15Rapid_Results());
+            hhValues.put("Rapid_Comment", houseHold.getPersons()[k].getRapid_Comment());
+            hhValues.put("BarCodeHHR", houseHold.getPersons()[k].getBarcode());
+            hhValues.put("P08", houseHold.getPersons()[k].getP08());
+            hhValues.put("P10", houseHold.getPersons()[k].getP10());
+            hhValues.put("P11", houseHold.getPersons()[k].getP11());
+            hhValues.put("P12", houseHold.getPersons()[k].getP12());
+            hhValues.put("P13", houseHold.getPersons()[k].getP13());
+            hhValues.put("P13Other", houseHold.getPersons()[k].getP13Other());
+            hhValues.put("P14", houseHold.getPersons()[k].getP14());
+            hhValues.put("P15", houseHold.getPersons()[k].getP15());
+            hhValues.put("P16", houseHold.getPersons()[k].getP16());
+
+
+
+            int  ii = db1.update
+                    (   tblhhroster, // table
+                            hhValues, // column/value
+                            "EA_Assignment_ID = ? and BatchNumber = ? and SRNO =?", // selections
+                            new String[] { String.valueOf(houseHold.getAssignment_ID()),String.valueOf(houseHold.getBatchNumber()), String.valueOf(houseHold.getPersons()[k].getSRNO()) }
+                    );
+
+            if(ii>0){
+                Log.d("HH Roster", "Person roster updated");
+            }
+        }
+        db1.close();
+
+    }
+
+    //UPDATE INDIVIDUAL
+    public void updateIndividual(SQLiteDatabase db, Individual ind)
+    {
+        SQLiteDatabase db1 = this.getWritableDatabase();
+        ContentValues hhValues = new ContentValues();
+        hhValues.put("SRNO",ind.getSRNO());
+
+        hhValues.put("IndBarcode",ind.getIndBarcode());
+        hhValues.put("Q101",ind.getQ101());
+        hhValues.put("Q102",ind.getQ102());
+        hhValues.put("Q103",ind.getQ103());
+        hhValues.put("Q104",ind.getQ104());
+        hhValues.put("Q104a",ind.getQ104a());
+        hhValues.put("Q104b",ind.getQ104b());
+        hhValues.put("Q104c",ind.getQ104c());
+
+
+        hhValues.put("Q105",ind.getQ105());
+        hhValues.put("Q105Other",ind.getQ105Other());
+        hhValues.put("Q105a",ind.getQ105a());
+
+        hhValues.put("Q105b",ind.getQ105b());
+
+        hhValues.put("Q106",ind.getQ106());
+        hhValues.put("Q106a",ind.getQ106a());
+        hhValues.put("Q106aOther",ind.getQ106aOther());
+
+        hhValues.put("Q106b",ind.getQ106b());
+        hhValues.put("Q106c",ind.getQ106c());
+
+        hhValues.put("Q106d",ind.getQ106d());
+
+        hhValues.put("Q107",ind.getQ107());
+        hhValues.put("Q107a",ind.getQ107aYY()+ ind.getQ107aMnth());
+        hhValues.put("Q107b",ind.getQ107b());
+
+
+        hhValues.put("Q107bOther",ind.getQ107bOther());
+        hhValues.put("Q107c",ind.getQ107c());
+        hhValues.put("Q107cOther",ind.getQ107cOther());
+
+        hhValues.put("Q201",ind.getQ201());
+        hhValues.put("Q202",ind.getQ202());
+        hhValues.put("Q203",ind.getQ203());
+        hhValues.put("Q204",ind.getQ204());
+        hhValues.put("Q205",ind.getQ205());
+        hhValues.put("Q205a",ind.getQ205a());
+
+
+        hhValues.put("Q301",ind.getQ301());
+        hhValues.put("Q301a",ind.getQ301a());
+
+        hhValues.put("Q302",ind.getQ302());
+
+        hhValues.put("Q303",ind.getQ303());
+        hhValues.put("Q303a",ind.getQ303a());
+
+        hhValues.put("Q304",ind.getQ304());
+        hhValues.put("Q304a",ind.getQ304a());
+
+        hhValues.put("Q305Smoking",ind.getQ305_1());
+        hhValues.put("Q305Sniffing",ind.getQ305_2());
+        hhValues.put("Q305Chewing",ind.getQ305_3());
+        hhValues.put("Q305None",ind.getQ305_4());
+
+        hhValues.put("Q306",ind.getQ306());
+        hhValues.put("Q307",ind.getQ307());
+
+        hhValues.put("Q401",ind.getQ401());
+        hhValues.put("Q402",ind.getQ402());
+        hhValues.put("Q402a",ind.getQ402a());
+        hhValues.put("Q402b",ind.getQ402b());
+        hhValues.put("Q403",ind.getQ403());
+
+
+        hhValues.put("Q404Vaginal",ind.getQ404_1());
+        hhValues.put("Q404Anal",ind.getQ404_2());
+        hhValues.put("Q404Oral",ind.getQ404_3());
+
+        hhValues.put("Q404a",ind.getQ404a());
+
+        hhValues.put("Q405",ind.getQ405());
+        hhValues.put("Q406",ind.getQ406());
+        hhValues.put("Q407",ind.getQ407());
+
+        hhValues.put("Q408",ind.getQ408());
+        hhValues.put("Q408a",ind.getQ408a());
+
+        hhValues.put("Q410Slapped",ind.getQ410Slapped());
+        hhValues.put("Q410Pushed",ind.getQ410Pushed());
+        hhValues.put("Q410Chocked",ind.getQ410Choked());
+        hhValues.put("Q410Threatened",ind.getQ410Threatened());
+        hhValues.put("Q410Physical",ind.getQ410Physical());
+         hhValues.put("Q410Forced",ind.getQ410Forced());
+        hhValues.put("Q410MadeAfraid",ind.getQ410MadeAfraid());
+
+        hhValues.put("Q501",ind.getQ501());
+        hhValues.put("Q502",ind.getQ502());
+        hhValues.put("Q503",ind.getQ503());
+
+        hhValues.put("Q504_Pain",ind.getQ504_1());
+        hhValues.put("Q504_Reduced",ind.getQ504_2());
+        hhValues.put("Q504_Fear",ind.getQ504_3());
+        hhValues.put("Q504_Culture",ind.getQ504_4());
+        hhValues.put("Q504_Religion",ind.getQ504_5());
+        hhValues.put("Q504_Spouse",ind.getQ504_6());
+        hhValues.put("Q504_Parental",ind.getQ504_7());
+        hhValues.put("Q504_Long",ind.getQ504_8());
+        hhValues.put("Q504_FearHIV",ind.getQ504_10());
+
+        hhValues.put("Q504_Other",ind.getQ504_Other());
+
+        //ind.setQ601"Q601",ind.get
+        //ind.setQ601a"Q601a",ind.get
+
+        hhValues.put("Q602Youth",ind.getQ602_1());
+        hhValues.put("Q602TV",ind.getQ602_2());
+        hhValues.put("Q602Radio",ind.getQ602_3());
+        hhValues.put("Q602NewsPaper",ind.getQ602_4());
+        hhValues.put("Q602Hospital",ind.getQ602_5());
+        hhValues.put("Q602Posters",ind.getQ602_6());
+        hhValues.put("Q602Traditional",ind.getQ602_7());
+        hhValues.put("Q602Workshop",ind.getQ602_8());
+        hhValues.put("Q602Individual",ind.getQ602_10());
+        hhValues.put("Q602Church",ind.getQ602_11());
+        hhValues.put("Q602Kgotla",ind.getQ602_12());
+        hhValues.put("Q602WorkPlace",ind.getQ602_13());
+        hhValues.put("Q602Peer",ind.getQ602_14());
+        hhValues.put("Q602School",ind.getQ602_15());
+        hhValues.put("Q602_Other",ind.getQ602_Other());
+
+        hhValues.put("Q603Condom",ind.getQ603_1());
+        hhValues.put("Q603FewerP",ind.getQ603_2());
+        hhValues.put("Q603Both",ind.getQ603_3());
+        hhValues.put("Q603NoCasual",ind.getQ603_4());
+        hhValues.put("Q603Abstain",ind.getQ603_5());
+        hhValues.put("Q603NoCommercial",ind.getQ603_6());
+        hhValues.put("Q603Injection",ind.getQ603_7());
+        hhValues.put("Q603Blood",ind.getQ603_8());
+        hhValues.put("Q603DontKnow",ind.getQ603_9());
+        hhValues.put("Q603Other",ind.getQ603_Other());
+
+
+        hhValues.put("Q604",ind.getQ604());
+        hhValues.put("Q604a",ind.getQ604a());
+        hhValues.put("Q604bYouth",ind.getQ604b_1());
+        hhValues.put("Q604bTV",ind.getQ604b_2());
+        hhValues.put("Q604bRadio",ind.getQ604b_3());
+        hhValues.put("Q604bNewsPaper",ind.getQ604b_4());
+        hhValues.put("Q604bHospital",ind.getQ604b_5());
+        hhValues.put(Q604bPoster,ind.getQ604b_6());
+        hhValues.put("Q604bTraditional",ind.getQ604b_7());
+        hhValues.put("Q604bWorkshop",ind.getQ604b_8());
+        hhValues.put("Q604bIndividual",ind.getQ604b_10());
+        hhValues.put("Q604bChurch",ind.getQ604b_11());
+        hhValues.put("Q604bKgotla",ind.getQ604b_12());
+        hhValues.put("Q604bWorkPlace",ind.getQ604b_13());
+        hhValues.put("Q604bPeer",ind.getQ604b_14());
+        hhValues.put("Q604bSchool",ind.getQ604b_15());
+        hhValues.put("Q604bOther",ind.getQ604b_Other());
+
+
+        hhValues.put("Q605Windows",ind.getQ605_1());
+        hhValues.put("Q605Mouth",ind.getQ605_2());
+        hhValues.put("Q605Hands",ind.getQ605_3());
+        hhValues.put("Q605Nutrition",ind.getQ605_4());
+        hhValues.put("Q605Praying",ind.getQ605_5());
+        hhValues.put("Q605DontKnow",ind.getQ609());
+        hhValues.put("Q605Other",ind.getQ605_Other());
+
+
+        hhValues.put("Q606",ind.getQ606());
+        hhValues.put("Q607",ind.getQ607());
+        hhValues.put("Q608",ind.getQ608());
+        hhValues.put("Q609",ind.getQ609());
+        hhValues.put("Q610",ind.getQ610());
+
+        hhValues.put("Q611a",ind.getQ611a());
+        hhValues.put("Q611b",ind.getQ611b());
+                hhValues.put("Q611c",ind.getQ611c());
+
+        hhValues.put("Q612",ind.getQ612());
+        hhValues.put("Q612a",ind.getQ612a());
+        hhValues.put("Q612Other",ind.getQ612aOther());
+
+        hhValues.put("Q613",ind.getQ613());
+        hhValues.put("Q613a",ind.getQ613a());
+        hhValues.put("Q613aOther",ind.getQ613aOther());
+        hhValues.put("Q614",ind.getQ614());
+        hhValues.put("Q614Other",ind.getQ614Other());
+        hhValues.put("Q615",ind.getQ615());
+
+        hhValues.put("Q616Anybody",ind.getQ616_1());
+        hhValues.put("Q616Poor",ind.getQ616_2());
+        hhValues.put("Q616Homeless",ind.getQ616_3());
+        hhValues.put("Q616Alcoholics",ind.getQ616_4());
+        hhValues.put("Q616Drugs",ind.getQ616_5());
+        hhValues.put("Q616PeopHIV",ind.getQ616_6());
+        hhValues.put("Q616PeopPrison",ind.getQ616_7());
+        hhValues.put("Q616Smokers",ind.getQ616_8());
+        hhValues.put("Q616DntKnow",ind.getQ616_9());
+        hhValues.put("Q616Other",ind.getQ616_10());
+
+
+        hhValues.put("Q617Meal",ind.getQ617a());
+        hhValues.put("Q617Clothes",ind.getQ617b());
+        hhValues.put("Q617Miscarried",ind.getQ617c());
+        hhValues.put("Q617Widow",ind.getQ617d());
+        hhValues.put("Q617FamilyHIV",ind.getQ617e());
+        hhValues.put("Q617Sejeso",ind.getQ617f());
+        hhValues.put("Q617Touching",ind.getQ617g());
+        hhValues.put("Q617Someone",ind.getQ617h());
+        hhValues.put("Q617Other",ind.getQ617_0ther());
+        hhValues.put("Q618",ind.getQ618());
+
+        hhValues.put("Q619Rash",ind.getQ619_1());
+        hhValues.put("Q619Cough",ind.getQ619_2());
+        hhValues.put("Q619LongCough",ind.getQ619_3());
+        hhValues.put("Q619Blood",ind.getQ619_4());
+        hhValues.put("Q619Headache",ind.getQ619_5());
+        hhValues.put("Q619Nausea",ind.getQ619_6());
+        hhValues.put("Q619Weight",ind.getQ619_7());
+        hhValues.put("Q619Fever",ind.getQ619_8());
+        hhValues.put("Q619Fever7Days",ind.getQ619_10());
+        hhValues.put("Q619ChestPain",ind.getQ619_11());
+        hhValues.put("Q619Breath",ind.getQ619_12());
+        hhValues.put("Q619Fatigue",ind.getQ619_13());
+        hhValues.put("Q619Sweats",ind.getQ619_14());
+        hhValues.put("Q619DontKnow",ind.getQ619_9());
+        hhValues.put("Q619Other",ind.getQ619_Other());
+
+        hhValues.put("Q620",ind.getQ620());
+        hhValues.put("Q620Other",ind.getQ620_Other());
+
+        hhValues.put("Q621",ind.getQ621());
+        hhValues.put("Q621aSpouse",ind.getQ621a_1());
+        hhValues.put("Q621aPartner",ind.getQ621a_2());
+        hhValues.put("Q621aFriend",ind.getQ621a_3());
+        hhValues.put("Q621aFamily",ind.getQ621a_4());
+        hhValues.put("Q621aRelative",ind.getQ621a_5());
+        hhValues.put("Q621aHCWorker",ind.getQ621a_6());
+        hhValues.put("Q621aCoWorker",ind.getQ621a_7());
+        hhValues.put("Q621aOther",ind.getQ621a_Other());
+        hhValues.put("Q621b",ind.getQ621b());
+
+        hhValues.put("Q621bOther",ind.getQ621bOther());
+
+        hhValues.put("Q622",ind.getQ622());
+
+        hhValues.put("Q622a",ind.getQ622a());
+        hhValues.put("Q622aOther",ind.getQ622aOther());
+
+        hhValues.put("Q622b",ind.getQ622b());
+        hhValues.put("Q622bOther",ind.getQ622bOther());
+
+
+        hhValues.put("Q623",ind.getQ623());
+        hhValues.put("Q624",ind.getQ624());
+        hhValues.put("Q625",ind.getQ625());
+        hhValues.put("Q701",ind.getQ701());
+        hhValues.put("Q702",ind.getQ702());
+        hhValues.put("Q703",ind.getQ703());
+        hhValues.put("Q704",ind.getQ704());
+        hhValues.put("Q705",ind.getQ705());
+        hhValues.put("Q801",ind.getQ801());
+
+
+        hhValues.put("Q801a",ind.getQ801a());
+        hhValues.put("Q801b",ind.getQ801b());
+
+        hhValues.put("Q801c", ind.getQ801cMonth() + ind.getQ801cYear());
+
+
+
+        hhValues.put("Q801d",ind.getQ801d());
+        hhValues.put("Q801dOther",ind.getQ801dOther());
+
+        hhValues.put("Q801e",ind.getQ801e());
+        hhValues.put("Q801eOther",ind.getQ801eOther());
+
+
+        hhValues.put("Q801f",ind.getQ801f());
+
+        hhValues.put("Q802",ind.getQ802());
+        hhValues.put("Q802a",ind.getQ802a());
+        hhValues.put("Q802aOther",ind.getQ802aOther());
+
+
+        hhValues.put("Q803",ind.getQ803());
+        hhValues.put("Q803Other",ind.getQ803Other());
+
+        hhValues.put("Q804",ind.getQ804());
+        hhValues.put("Q804Other",ind.getQ804Other());
+
+        hhValues.put("Q901",ind.getQ901());
+        hhValues.put("Q901a",ind.getQ901a());
+        hhValues.put("Q901aOther",ind.getQ901aOther());
+
+        hhValues.put("Q902", ind.getQ902Month() + ind.getQ902Year());
+
+        hhValues.put("Q903DenyCare",ind.getQ903a());
+        hhValues.put("Q903Gossip",ind.getQ903b());
+        hhValues.put("Q903NoSex",ind.getQ903c());
+        hhValues.put("Q903VerbalAbuse",ind.getQ903d());
+        hhValues.put("Q903PhysicalAbuse",ind.getQ903e());
+        hhValues.put("Q903NoContact",ind.getQ903f());
+        hhValues.put("Q903SharingStatus",ind.getQ903g());
+
+
+        hhValues.put("Q904",ind.getQ904());
+        hhValues.put("Q904a",ind.getQ904a());
+        hhValues.put("Q904aOther",ind.getQ904aOther());
+
+
+        hhValues.put("Q904b", ind.getQ904bMM() + ind.getQ904bYYYY());
+
+
+
+        hhValues.put("Q904c",ind.getQ904c());
+        hhValues.put("Q904cOther",ind.getQ904cOther());
+
+
+        hhValues.put("Q905",ind.getQ905());
+        hhValues.put("Q905a",ind.getQ905a());
+        hhValues.put("Q905aOther",ind.getQ905aOther());
+
+        hhValues.put("Q1001",ind.getQ1001());
+        hhValues.put("Q1002",ind.getQ1002());
+
+        hhValues.put("Q1002aMCondom",ind.getQ1002a_1());
+        hhValues.put("Q1002aFCondom",ind.getQ1002a_2());
+        hhValues.put("Q1002aInjectContra",ind.getQ1002a_3());
+        hhValues.put("Q1002aOralContra",ind.getQ1002a_4());
+        hhValues.put("Q1002aUID",ind.getQ1002a_5());
+        hhValues.put("Q1002aBTL",ind.getQ1002a_6());
+        hhValues.put("Q1002aFSterilization",ind.getQ1002a_7());
+        hhValues.put("Q1002aMSterilization",ind.getQ1002a_8());
+        hhValues.put("Q1002aImplants",ind.getQ1002a_10());
+        hhValues.put("Q1002aEContra",ind.getQ1002a_11());
+        hhValues.put("Q1002aSafePeriod",ind.getQ1002a_12());
+        hhValues.put("Q1002aLAM",ind.getQ1002a_13());
+        hhValues.put("Q1002aDiagraphm",ind.getQ1002a_14());
+        hhValues.put("Q1002aSpermicides",ind.getQ1002a_15());
+        hhValues.put("Q1002aNatural",ind.getQ1002a_16());
+        hhValues.put("Q1002aTraditional",ind.getQ1002a_17());
+        hhValues.put("Q1002aSpiritual",ind.getQ1002a_18());
+        hhValues.put("Q1002aOther",ind.getQ1002a_Other());
+
+        hhValues.put("Q1002b",ind.getQ1002b());
+        hhValues.put("Q1002bOther",ind.getQ1002bOther());
+
+        hhValues.put("Q1003",ind.getQ1003());
+
+        hhValues.put("Q1004",ind.getQ1004_Day() + ind.getQ1004_Month() + ind.getQ1004_Year());
+
+        hhValues.put("Q1004a",ind.getQ1004a());
+        hhValues.put("Q1004b",ind.getQ1004b());
+        hhValues.put("Q1004bOther",ind.getQ1004bOther());
+
+
+        hhValues.put("Q1005",ind.getQ1005());
+
+        hhValues.put("Q1005a",ind.getQ1005a());
+        hhValues.put("Q1006",ind.getQ1006());
+
+        hhValues.put("Q1007",ind.getQ1007());
+        hhValues.put("Q1007a",ind.getQ1007a());
+
+        hhValues.put("Q1008",ind.getQ1008());
+        hhValues.put("Q1008a",ind.getQ1008a());
+        hhValues.put("Q1008aOther",ind.getQ1008aOther());
+
+
+        hhValues.put("Q1009",ind.getQ1009());
+        hhValues.put("Q1009a",ind.getQ1009a());
+
+         hhValues.put("Q1010",ind.getQ1010());
+         hhValues.put("Q1010Other",ind.getQ1010Other());
+
+         hhValues.put("Q1011",ind.getQ1011());
+         hhValues.put("Q1011Other",ind.getQ1011_Other());
+
+
+        hhValues.put("Q1012",ind.getQ1012_Week() + ind.getQ1012_Month() + ind.getQ1012_Year());
+
+
+
+        hhValues.put("Q1013",ind.getQ1013());
+        hhValues.put("Q1014",ind.getQ1014());
+        hhValues.put("Q1014a",ind.getQ1014a());
+         hhValues.put("Q1014b",ind.getQ1014b());
+
+         hhValues.put("Q1015",ind.getQ1015());
+        hhValues.put("Q1015a",ind.getQ1015a());
+         hhValues.put("Q1015b",ind.getQ1015b());
+         hhValues.put("Q1016",ind.getQ1016());
+         hhValues.put("Q1017",ind.getQ1017());
+
+
+
+         hhValues.put("Q1101",ind.getQ1008a());
+         hhValues.put("Q1101a",ind.getQ1101a());
+         hhValues.put("Q1101aOther",ind.getQ1101aOther());
+         hhValues.put("Q1102",ind.getQ1102());
+         hhValues.put("Q1102a",ind.getQ1102a());
+        hhValues.put("Q1103",ind.getQ1103());
+
+
+        hhValues.put("Q1103",ind.getQ1103aDD() + ind.getQ1103aWks());
+
+
+        //hhValues.put("Q1103a",ind.getQ1103aDontKnow());
+
+        hhValues.put("Q1104",ind.getQ1104());
+        hhValues.put("Q1105",ind.getQ1105());
+        hhValues.put("Q1106",ind.getQ1106());
+        hhValues.put("Q1106a",ind.getQ1106a());
+        hhValues.put("Q1106b",ind.getQ1106b());
+        hhValues.put("Q1106bOther",ind.getQ1106bOther());
+        hhValues.put("Q1107",ind.getQ1107());
+
+
+        hhValues.put("Q1107aDD",ind.getQ1107aDD());
+        hhValues.put("Q1107aWks",ind.getQ1107aWks());
+
+
+
+        hhValues.put("Q1107aDontKnow",ind.getQ1107aDontKnow());
+
+        hhValues.put("Q1108",ind.getQ1108());
+
+        hhValues.put("Q1108aDD",ind.getQ1108());
+        hhValues.put("Q1108aWks",ind.getQ1108aWks());
+
+
+        hhValues.put("Q1108aDontKnow",ind.getQ1107aDontKnow());
+
+
+        hhValues.put("Q1109",ind.getQ1109());
+        hhValues.put("Q1110",ind.getQ1110());
+        hhValues.put("Q1111",ind.getQ1111());
+        hhValues.put("Q1111Other",ind.getQ1111Other());
+
+        hhValues.put("Q1112",ind.getQ1112());
+        hhValues.put("Q1112Other",ind.getQ1112_Other());
+
+        hhValues.put("Q1113",ind.getQ1113());
+        hhValues.put("Q1113Other",ind.getQ1113Other());
+
+        hhValues.put("Q1114",ind.getQ1114());
+
+        hhValues.put("B8_Yes_No",ind.getB8_Yes_No());
+
+        hhValues.put("B8_Date",ind.getB8_Date());
+
+        hhValues.put("B8_O15_Rapid",ind.getB8_O15_Rapid());
+
+
+
+        hhValues.put("Q801f",ind.getQ801f());
+
+        hhValues.put("Rapid_Comment",ind.getIndRapid_Comment());
+
+
+        //INSERT INDIVIDUALS FROM THIS HOUSE
+        int  ii = db1.update
+                (   tblindividual, // table
+                        hhValues, // column/value
+                        "Assignment_ID = ? and BatchNumber = ? and SRNO = ?", // selections
+                        new String[] { String.valueOf(ind.getAssignmentID()),String.valueOf(ind.getBatch()), String.valueOf(ind.getSRNO()) }
+                );
+
+        if(ii>0){
+            Log.d("Individual updated: ", "individual has been updated");
+        }
+
+        db1.close();
+
+
+
+    }
+
+
+    //Deleting data from the
+    public void cleardata(SQLiteDatabase db, HouseHold thisHouse){
+
+        SQLiteDatabase db1 = this.getWritableDatabase();
+        ContentValues hhValues = new ContentValues();
+
+        int  i = db1.delete
+                (   tblindividual,
+                        "EA_Assignment_ID = ? and BatchNumber = ?", // where clause
+                        new String[] { String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber())}
+                );
+
+        int  ii = db1.delete
+                (   tblhhroster,
+                        "EA_Assignment_ID = ? and BatchNumber = ?", // where clause
+                        new String[] { String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber())}
+                );
+
+        int  iii = db1.delete
+                (   tblhousehold,
+                        "EA_Assignment_ID = ? and BatchNumber = ?", // where clause
+                        new String[] { String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber())}
+                );
+
+        db1.close();
+
+
+
+    }
+
 
 
 

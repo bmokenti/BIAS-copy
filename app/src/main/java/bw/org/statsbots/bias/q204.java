@@ -102,6 +102,12 @@ public class q204 extends AppCompatActivity implements Serializable {
                     individual.setQ204(edt.getText().toString());
 
 
+                    //update individual
+                    DatabaseHelper myDB = new DatabaseHelper(q204.this);
+
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
 
                     Intent q1o2 = new Intent(q204.this, q205.class);
                     q1o2.putExtra("Individual", individual);

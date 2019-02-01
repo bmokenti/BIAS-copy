@@ -72,16 +72,13 @@ public class P21 extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-/*
-                //house.getPersons();
-                boolean isInserted = myDB.insertHhroster(thisHouse);
-                Log.d("DB Name: ",myDB.getDatabaseName().toString() );
 
-                if(isInserted == true)
-                    Toast.makeText(P21.this,"Data Inserted",Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(P21.this,"Data not Inserted",Toast.LENGTH_LONG).show();
-*/
+                myDB = new DatabaseHelper(P21.this);
+                myDB.onOpen(myDB.getReadableDatabase());
+
+                //UPDATE HOUSEHOLD
+                myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
+
                 Intent intent = new Intent(P21.this,H01.class);
                 intent.putExtra("Household",  thisHouse);
                 startActivity(intent);

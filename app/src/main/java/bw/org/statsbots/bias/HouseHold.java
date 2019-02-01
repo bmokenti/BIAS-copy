@@ -10,6 +10,8 @@ import java.util.List;
 
 public class HouseHold implements Serializable {
     private int currentPerson;
+    public String previous;
+    public String next;
     private int Head;
     protected Individual[] IndividualQuestionaire;
     private String  DWELLING_NO;
@@ -22,6 +24,16 @@ public class HouseHold implements Serializable {
     private  String H11Other;
     private String H12;
     private String H13;
+
+    public String getHIVTB40() {
+        return HIVTB40;
+    }
+
+    public void setHIVTB40(String HIVTB40) {
+        this.HIVTB40 = HIVTB40;
+    }
+
+    private String HIVTB40;
 
 
 

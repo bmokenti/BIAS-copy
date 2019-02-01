@@ -198,7 +198,7 @@ public class started_household extends AppCompatActivity implements Serializable
         tb.setVisibility(View.GONE);
 
         LinearLayout ll = (LinearLayout)findViewById(R.id.Roster);
-        ll.setVisibility(View.GONE);
+        ll.setVisibility(View.VISIBLE);
 
 
         //############################populate Roster
@@ -304,6 +304,7 @@ public class started_household extends AppCompatActivity implements Serializable
 
                     }else{
                         //15 years and over
+
                         List<Individual> Ind = myDB.getdataIndivisual(thisHouse);
                         Individual individual = null;
                         for(Individual ii : Ind){
@@ -316,10 +317,28 @@ public class started_household extends AppCompatActivity implements Serializable
                             Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_person_black_24dp);
                             btn.setCompoundDrawablesWithIntrinsicBounds( d,null, null, null);
 
-                            Info="Pending Questionnaire, Blood Collection";
+                            individual = new Individual();
+                            Info="Pending Questionnaire, X-Ray";
+
                             individual.setSRNO(r.get(o).getSRNO());
                             individual.setAssignmentID(r.get(o).getAssignmentID());
                             individual.setBatch(r.get(o).getBatch());
+
+
+
+                            List<HouseHold> h = myDB.getHouseHold(myDB.getReadableDatabase(),"",individual.getAssignmentID());
+                            for (HouseHold hhh:h)
+                            {
+                                if(hhh.getAssignment_ID().equals(individual.getAssignmentID()) &&hhh.getBatchNumber().equals(individual.getBatch())  && hhh.getIsHIVTB40().equals("True")){
+                                    if(thisHouse.getIsHIVTB40().equals("True"))
+                                    {
+                                        Info=Info+", Blood Collection";
+                                    }
+                                }
+                            }
+
+
+
                             final Individual temp1 = individual;
                             btn.setOnClickListener(new View.OnClickListener() {
                                 @Override

@@ -51,6 +51,9 @@ public class P07 extends AppCompatActivity implements Serializable {
                 //Next question P05
                 //lib.showError(P07.this,"Members Done","HH members are complete");
                 // assginfo.EAStatus.getText().toString();
+
+
+
                 Intent intent = new Intent(P07.this, p08.class);
                 intent.putExtra("Household", thisHouse);
                startActivity(intent);

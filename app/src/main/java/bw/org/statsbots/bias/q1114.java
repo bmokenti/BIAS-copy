@@ -105,15 +105,23 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
                        // house.getAssignment_ID();
                         //house.getBatchNumber();
                         //house.getPersons();
-                        boolean isInserted = myDB.insertIndividual(individual);
+                       /* boolean isInserted = myDB.insertIndividual(individual);
                         Log.d("DB Name: ",myDB.getDatabaseName().toString() );
 
                         if(isInserted == true)
                             Toast.makeText(q1114.this,"Data Inserted",Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(q1114.this,"Data not Inserted",Toast.LENGTH_LONG).show();
-
+*/
                       // myDB.insertIndividual(individual);
+
+                        //update individual
+                        DatabaseHelper myDB = new DatabaseHelper(q1114.this);
+
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
+
 
                         Intent intent = new Intent(q1114.this, Dashboard.class);
                         intent.putExtra("Individual",  individual);

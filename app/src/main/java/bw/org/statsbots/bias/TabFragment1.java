@@ -62,11 +62,10 @@ public class TabFragment1 extends Fragment implements Serializable {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState)
     {
         View v =  inflater.inflate(R.layout.tab_fragment_1, container, false);
+
         //Read EA using Assignment ID join [EA_Assignments]
         myDb= new DatabaseHelper(container.getContext());
-
-
-            try {
+            try{
                 mobileArray=myDb.getEA(myDb.getReadableDatabase());
             }catch(Exception e)
             {
@@ -75,18 +74,16 @@ public class TabFragment1 extends Fragment implements Serializable {
 
             final ArrayList<String> tmp = new ArrayList<>();
 
-            for(int i=0;i<mobileArray.size();i++){
+            for(int i=0;i<mobileArray.size();i++)
+            {
                 String S[] = mobileArray.get(i).split("#");
                 tmp.add(S[0]);
             }
+
             preferences = container.getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-
-
             tvTotal=(TextView)v.findViewById(R.id.EaCount);
             tvTotal.setText(Html.fromHtml("<b>Welcome "+ preferences.getString("Name",null)+ " "+preferences.getString("Surname_Name",null) + "</b> <br/> <i>You have <b>"+mobileArray.size()+" EA's</b> to be attended</i>"));
-
             ListView listView = (ListView)v.findViewById(R.id.ea_list);
-
             m_arrayAdapter = new ArrayAdapter<String>(container.getContext(), R.layout.ea_grouping_layout , tmp);
             listView.setAdapter(m_arrayAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -99,10 +96,10 @@ public class TabFragment1 extends Fragment implements Serializable {
                     Intent intent = new Intent(container.getContext(),individual_assgn.class);
                     int s=0;
                     for(int ii =0;ii<tmp.size();ii++){
-
                         s = tmp.indexOf(selectedEA);
-
                     }
+
+                    //-----------------------------PASS AN EA TO THE NEXT ACTIVITY
                     intent.putExtra("EA",mobileArray.get(s));
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -110,7 +107,8 @@ public class TabFragment1 extends Fragment implements Serializable {
                         // Apply activity transition
                         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
 
-                    } else {
+                    }
+                    else {
                         // Swap without transition
                         startActivity(intent);
                     }

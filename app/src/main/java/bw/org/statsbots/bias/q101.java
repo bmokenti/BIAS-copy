@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q101 extends AppCompatActivity implements View.OnClickListener {
 
@@ -52,6 +53,9 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
         sample.getSTATUS();
         Button btnext = findViewById(R.id.btnnext);
 //        PersonRoster pr[] = thisHouse.getPersons();
+
+
+
 
 
 
@@ -93,8 +97,25 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
 
 
                 } else {
-                    //Set q101 for the current individual
-                    individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
+                            //Set q101 for the current individual
+                            individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
+
+
+                    //Check if individual already been saved and update
+                    myDB = new DatabaseHelper(q101.this);
+                    myDB.onOpen(myDB.getReadableDatabase());
+
+                    if(myDB.checkIndividual(individual)){
+                        //Update
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                    }else{
+                        //Insert
+                        myDB.insertIndividual(individual);
+
+                    }
+
+
 
 
 
