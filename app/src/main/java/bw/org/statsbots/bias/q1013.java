@@ -43,18 +43,13 @@ public class q1013 extends AppCompatActivity {
         rbtn2 = (RadioButton) findViewById(R.id.q1013_2);
 
 
-
-
-
-
-
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-
+/*
 
         if(!individual.getQ1005a().equals("1")|| !individual.getQ1007a().equals("1") || !individual.getQ1009a().equals("1"))
         {
@@ -65,7 +60,7 @@ public class q1013 extends AppCompatActivity {
         else{
 
         }
-
+*/
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
