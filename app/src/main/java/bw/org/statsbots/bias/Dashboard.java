@@ -576,7 +576,10 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setH13DonkeyCart(jObject.get("H13DonkeyCart").toString());
                             hh.setH13DonkeyHorse(jObject.get("H13DonkeyHorse").toString());
                             hh.setH13Camels(jObject.get("H13Camels").toString());
-                            hh.setIsHIVTB40(jObject.get("HIVTB40").toString());
+                            if(jObject.has("HIVTB40")){
+                                hh.setIsHIVTB40(jObject.get("HIVTB40").toString());
+                            }
+
 
                             //Check if the entry exisits in the database firs
 

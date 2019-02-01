@@ -324,6 +324,8 @@ public class started_household extends AppCompatActivity implements Serializable
                             individual.setAssignmentID(r.get(o).getAssignmentID());
                             individual.setBatch(r.get(o).getBatch());
 
+
+
                             List<HouseHold> h = myDB.getHouseHold(myDB.getReadableDatabase(),"",individual.getAssignmentID());
                             for (HouseHold hhh:h)
                             {

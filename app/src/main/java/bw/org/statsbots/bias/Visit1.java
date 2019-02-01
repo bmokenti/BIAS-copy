@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -17,7 +18,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.joda.time.DateTime;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Visit1 extends Activity  {
 
@@ -148,11 +154,17 @@ public class Visit1 extends Activity  {
     {
         public void onClick(View v)
         {
-            Date d = new Date();
 
-            txtshowdate.setText(d.toString());
-            thisHouse.setDATE1(txtshowdate.getText().toString());
-            thisHouse.setInterview_Status("9");
+            Date d = new Date();
+            CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss",d.getTime());
+            Log.d("Date",s.toString());
+
+
+
+
+            txtshowdate.setText(s.toString());
+            thisHouse.setDATE1(s.toString());
+            //thisHouse.setInterview_Status("9");
 
             btnEndVisits.setVisibility(View.VISIBLE);
             btnBegin.setVisibility(View.VISIBLE);

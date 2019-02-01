@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -187,9 +188,11 @@ public class Visit2 extends AppCompatActivity {
         public void onClick(View v)
         {
             Date d = new Date();
+            CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss",d.getTime());
+            Log.d("Date",s.toString());
 
-            txtshowdate.setText(d.toString());
-            thisHouse.setDATE2(txtshowdate.getText().toString());
+            txtshowdate.setText(s.toString());
+            thisHouse.setDATE2(s.toString());
             thisHouse.setInterview_Status("9");
 
             btnEndVisits.setVisibility(View.VISIBLE);

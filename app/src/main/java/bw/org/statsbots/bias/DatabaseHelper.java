@@ -1322,6 +1322,23 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean checkIndividual(Individual ind){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        int nombr = 0;
+        Cursor cursor = db.rawQuery("SELECT * FROM "+tblindividual+" WHERE Assignment_ID = "+ind.getAssignmentID()+" and BatchNumber="+ind.getBatch()+" and SRNO="+ind.getSRNO(), null);
+        nombr = cursor.getCount();
+        if(nombr==1){
+            return  true;
+        }else{
+            return false;
+        }
+
+    }
+
+
+
     //INSERT ROSTER FIRST SYNC
     public boolean insertSyncRoster(PersonRoster pr,String AsID,String Batch) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -2304,7 +2321,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(IndRapid_Comment, houseHold.getIndRapid_Comment() );
 
 
-            db.insert("tblindividual", null, individualValues);
+            db.insert("Individual", null, individualValues);
 
         }
 
@@ -3772,7 +3789,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues hhValues = new ContentValues();
         hhValues.put("SRNO",ind.getSRNO());
 
-        hhValues.put("BarCode",ind.getIndBarcode());
+        hhValues.put("IndBarcode",ind.getIndBarcode());
         hhValues.put("Q101",ind.getQ101());
         hhValues.put("Q102",ind.getQ102());
         hhValues.put("Q103",ind.getQ103());
@@ -3855,7 +3872,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         hhValues.put("Q410Slapped",ind.getQ410Slapped());
         hhValues.put("Q410Pushed",ind.getQ410Pushed());
-        hhValues.put("Q410Choked",ind.getQ410Choked());
+        hhValues.put("Q410Chocked",ind.getQ410Choked());
         hhValues.put("Q410Threatened",ind.getQ410Threatened());
         hhValues.put("Q410Physical",ind.getQ410Physical());
          hhValues.put("Q410Forced",ind.getQ410Forced());
@@ -3865,17 +3882,17 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("Q502",ind.getQ502());
         hhValues.put("Q503",ind.getQ503());
 
-        hhValues.put("Q504Pain",ind.getQ504_1());
-        hhValues.put("Q504Reduced",ind.getQ504_2());
-        hhValues.put("Q504Fear",ind.getQ504_3());
-        hhValues.put("Q504Culture",ind.getQ504_4());
-        hhValues.put("Q504Religion",ind.getQ504_5());
-        hhValues.put("Q504Spouse",ind.getQ504_6());
-        hhValues.put("Q504Parental",ind.getQ504_7());
-        hhValues.put("Q504Long",ind.getQ504_8());
-        hhValues.put("Q504FearHIV",ind.getQ504_10());
+        hhValues.put("Q504_Pain",ind.getQ504_1());
+        hhValues.put("Q504_Reduced",ind.getQ504_2());
+        hhValues.put("Q504_Fear",ind.getQ504_3());
+        hhValues.put("Q504_Culture",ind.getQ504_4());
+        hhValues.put("Q504_Religion",ind.getQ504_5());
+        hhValues.put("Q504_Spouse",ind.getQ504_6());
+        hhValues.put("Q504_Parental",ind.getQ504_7());
+        hhValues.put("Q504_Long",ind.getQ504_8());
+        hhValues.put("Q504_FearHIV",ind.getQ504_10());
 
-        hhValues.put("Q504Other",ind.getQ504_Other());
+        hhValues.put("Q504_Other",ind.getQ504_Other());
 
         //ind.setQ601"Q601",ind.get
         //ind.setQ601a"Q601a",ind.get
@@ -3894,7 +3911,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("Q602WorkPlace",ind.getQ602_13());
         hhValues.put("Q602Peer",ind.getQ602_14());
         hhValues.put("Q602School",ind.getQ602_15());
-        hhValues.put("Q602Other",ind.getQ602_Other());
+        hhValues.put("Q602_Other",ind.getQ602_Other());
 
         hhValues.put("Q603Condom",ind.getQ603_1());
         hhValues.put("Q603FewerP",ind.getQ603_2());
@@ -3915,12 +3932,12 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("Q604bRadio",ind.getQ604b_3());
         hhValues.put("Q604bNewsPaper",ind.getQ604b_4());
         hhValues.put("Q604bHospital",ind.getQ604b_5());
-        hhValues.put("Q604bPoster",ind.getQ604b_6());
+        hhValues.put(Q604bPoster,ind.getQ604b_6());
         hhValues.put("Q604bTraditional",ind.getQ604b_7());
         hhValues.put("Q604bWorkshop",ind.getQ604b_8());
         hhValues.put("Q604bIndividual",ind.getQ604b_10());
         hhValues.put("Q604bChurch",ind.getQ604b_11());
-        hhValues.put("Q604bKgotal",ind.getQ604b_12());
+        hhValues.put("Q604bKgotla",ind.getQ604b_12());
         hhValues.put("Q604bWorkPlace",ind.getQ604b_13());
         hhValues.put("Q604bPeer",ind.getQ604b_14());
         hhValues.put("Q604bSchool",ind.getQ604b_15());
@@ -3959,13 +3976,13 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         hhValues.put("Q616Anybody",ind.getQ616_1());
         hhValues.put("Q616Poor",ind.getQ616_2());
-        hhValues.put("Q616Homelesee",ind.getQ616_3());
+        hhValues.put("Q616Homeless",ind.getQ616_3());
         hhValues.put("Q616Alcoholics",ind.getQ616_4());
         hhValues.put("Q616Drugs",ind.getQ616_5());
         hhValues.put("Q616PeopHIV",ind.getQ616_6());
         hhValues.put("Q616PeopPrison",ind.getQ616_7());
         hhValues.put("Q616Smokers",ind.getQ616_8());
-        hhValues.put("Q616DntKnw",ind.getQ616_9());
+        hhValues.put("Q616DntKnow",ind.getQ616_9());
         hhValues.put("Q616Other",ind.getQ616_10());
 
 
@@ -3993,7 +4010,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("Q619Breath",ind.getQ619_12());
         hhValues.put("Q619Fatigue",ind.getQ619_13());
         hhValues.put("Q619Sweats",ind.getQ619_14());
-        hhValues.put("Q619DontKnw",ind.getQ619_9());
+        hhValues.put("Q619DontKnow",ind.getQ619_9());
         hhValues.put("Q619Other",ind.getQ619_Other());
 
         hhValues.put("Q620",ind.getQ620());
@@ -4035,7 +4052,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("Q801a",ind.getQ801a());
         hhValues.put("Q801b",ind.getQ801b());
 
-        hhValues.put("Q801c", ind.getQ801cMonth().substring(0, 2) + ind.getQ801cYear().substring(2, 6));
+        hhValues.put("Q801c", ind.getQ801cMonth() + ind.getQ801cYear());
 
 
 
@@ -4110,7 +4127,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("Q1002aSpermicides",ind.getQ1002a_15());
         hhValues.put("Q1002aNatural",ind.getQ1002a_16());
         hhValues.put("Q1002aTraditional",ind.getQ1002a_17());
-        hhValues.put("Q1002aSpritual",ind.getQ1002a_18());
+        hhValues.put("Q1002aSpiritual",ind.getQ1002a_18());
         hhValues.put("Q1002aOther",ind.getQ1002a_Other());
 
         hhValues.put("Q1002b",ind.getQ1002b());
@@ -4126,6 +4143,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
 
         hhValues.put("Q1005",ind.getQ1005());
+
         hhValues.put("Q1005a",ind.getQ1005a());
         hhValues.put("Q1006",ind.getQ1006());
 
@@ -4172,10 +4190,10 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("Q1103",ind.getQ1103());
 
 
-        hhValues.put("Q1103a",ind.getQ1103aDD() + ind.getQ1103aWks());
+        hhValues.put("Q1103",ind.getQ1103aDD() + ind.getQ1103aWks());
 
 
-        hhValues.put("Q1103a",ind.getQ1103aDontKnow());
+        //hhValues.put("Q1103a",ind.getQ1103aDontKnow());
 
         hhValues.put("Q1104",ind.getQ1104());
         hhValues.put("Q1105",ind.getQ1105());
@@ -4186,20 +4204,20 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("Q1107",ind.getQ1107());
 
 
-        hhValues.put("Q1107a",ind.getQ1107aDD());
-        hhValues.put("Q1107a",ind.getQ1107aWks());
+        hhValues.put("Q1107aDD",ind.getQ1107aDD());
+        hhValues.put("Q1107aWks",ind.getQ1107aWks());
 
 
 
-        hhValues.put("Q1107a",ind.getQ1107aDontKnow());
+        hhValues.put("Q1107aDontKnow",ind.getQ1107aDontKnow());
 
         hhValues.put("Q1108",ind.getQ1108());
 
-        hhValues.put("Q1108a",ind.getQ1108());
-        hhValues.put("Q1108a",ind.getQ1108aWks());
+        hhValues.put("Q1108aDD",ind.getQ1108());
+        hhValues.put("Q1108aWks",ind.getQ1108aWks());
 
 
-        hhValues.put("Q1108a",ind.getQ1107aDontKnow());
+        hhValues.put("Q1108aDontKnow",ind.getQ1107aDontKnow());
 
 
         hhValues.put("Q1109",ind.getQ1109());
@@ -4219,20 +4237,20 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         hhValues.put("B8_Date",ind.getB8_Date());
 
-        hhValues.put("B8_O15Rapid",ind.getB8_O15_Rapid());
+        hhValues.put("B8_O15_Rapid",ind.getB8_O15_Rapid());
 
 
 
         hhValues.put("Q801f",ind.getQ801f());
 
-        hhValues.put("RapidComment",ind.getIndRapid_Comment());
+        hhValues.put("Rapid_Comment",ind.getIndRapid_Comment());
 
 
         //INSERT INDIVIDUALS FROM THIS HOUSE
         int  ii = db1.update
-                (   tblhousehold, // table
+                (   tblindividual, // table
                         hhValues, // column/value
-                        "EA_Assignment_ID = ? and BatchNumber = ? and SRNO = ?", // selections
+                        "Assignment_ID = ? and BatchNumber = ? and SRNO = ?", // selections
                         new String[] { String.valueOf(ind.getAssignmentID()),String.valueOf(ind.getBatch()), String.valueOf(ind.getSRNO()) }
                 );
 
