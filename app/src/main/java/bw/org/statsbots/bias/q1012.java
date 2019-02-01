@@ -53,7 +53,15 @@ public class q1012 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+if(individual.getQ1011().equals("1")||individual.getQ1011().equals("4") || individual.getQ1011().equals("7"))
+{
+    Intent intent = new Intent(q1012.this, q1014.class);
+    intent.putExtra("Individual", individual);
+    startActivity(intent);
+}
+else{
 
+        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

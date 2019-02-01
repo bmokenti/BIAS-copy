@@ -24,7 +24,7 @@ public class q1106 extends AppCompatActivity implements Serializable {
     protected  HouseHold thisHouse;
     protected  Individual idv;
     protected RadioGroup rGroup1, rGroup2,rGroup3;
-    protected RadioButton rbtn1, rbtn61, rbtn62, rbtn6a1 ,rbtn6a2, rbtn6a3, rbtn6a9, rbtn6b1, rbtn6b2, rbtn6b3, rbtn6b4,rbtn6b5other, selectedRbtn1, selectedRbtn2, selectedRbtn3;
+    protected RadioButton rbtn1, rbtn2, rbtn6a1 ,rbtn6a2, rbtn6a3, rbtn6a9, rbtn6b1, rbtn6b2, rbtn6b3, rbtn6b4,rbtn6b5other, selectedRbtn1, selectedRbtn2, selectedRbtn3;
     protected EditText q1106btxtOther;
     protected LibraryClass lib;
     PersonRoster p1 = null;
@@ -42,8 +42,9 @@ public class q1106 extends AppCompatActivity implements Serializable {
         rGroup2 = findViewById(R.id.q1106rgruop2);
         rGroup3 = findViewById(R.id.q1106rgruop3);
         q1106btxtOther = findViewById(R.id.q1106btxtOther);
-        rbtn61 = findViewById(R.id.q1106_1);
-        rbtn62 = findViewById(R.id.q1106_2);
+        rbtn1 = findViewById(R.id.q1106_1);
+        rbtn2 = findViewById(R.id.q1106_2);
+
         rbtn6a1 = findViewById(R.id.q1106a_1);
         rbtn6a2 = findViewById(R.id.q1106a_2);
         rbtn6a3 = findViewById(R.id.q1106a_3);
@@ -103,7 +104,7 @@ public class q1106 extends AppCompatActivity implements Serializable {
                     int selectedId1 = rGroup2.getCheckedRadioButtonId();
                     selectedRbtn2 = (RadioButton) findViewById(selectedId1);
 
-                    if (selectedRbtn2 == null && rbtn61.isChecked()) {
+                    if (selectedRbtn2 == null && rbtn1.isChecked()) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(q1106.this);
                         builder.setTitle("Q1106: Error");
                         builder.setIcon(R.drawable.ic_warning_orange_24dp);
@@ -131,11 +132,11 @@ public class q1106 extends AppCompatActivity implements Serializable {
 
 
                     } else {
-                        thisHouse.getIndividual()[p1.getLineNumber()].setQ1106a(selectedRbtn2.getText().toString().substring(0,1));
-                        int selectedId2 = rGroup3.getCheckedRadioButtonId();
-                        selectedRbtn3 = (RadioButton) findViewById(selectedId2);
 
-                        if (rbtn62.isChecked() && selectedRbtn3 == null) {
+
+
+
+                        if (rbtn2.isChecked() && selectedRbtn3 == null) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(q1106.this);
                             builder.setTitle("Q1106: Error");
                             builder.setIcon(R.drawable.ic_warning_orange_24dp);
@@ -164,7 +165,7 @@ public class q1106 extends AppCompatActivity implements Serializable {
                         } else {
 
 
-                            if (rbtn62.isChecked() && q1106btxtOther.length() == 0 && rbtn6b5other.isChecked()) {
+                            if (rbtn2.isChecked() && q1106btxtOther.length() == 0 && rbtn6b5other.isChecked()) {
                                 lib.showError(q1106.this, "Q1106 Other", "Please specify");
                                 /**
                                  * VIBRATE DEVICE
@@ -172,15 +173,34 @@ public class q1106 extends AppCompatActivity implements Serializable {
                                 Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                 vibs.vibrate(100);
                             } else {
-                                individual.setQ1106(selectedRbtn1.getText().toString().substring(0,1));
-                               individual.setQ1106a(selectedRbtn2.getText().toString().substring(0,1));
-                                individual.setQ1106b(selectedRbtn3.getText().toString().substring(0,1));
-                                individual.setQ1106bOther(q1106btxtOther.getText().toString());
 
-                                Intent q1o3 = new Intent(q1106.this, q1107.class);
-                                q1o3.putExtra("Individual", individual);
-                                startActivity(q1o3);
 
+                                if (rbtn2.isChecked()) {
+
+
+                                    individual.setQ1106(selectedRbtn1.getText().toString().substring(0, 1));
+                                    individual.setQ1106b(selectedRbtn3.getText().toString().substring(0, 1));
+                                    individual.setQ1106bOther(q1106btxtOther.getText().toString());
+
+                                    Intent q1o3 = new Intent(q1106.this, q1107.class);
+                                    q1o3.putExtra("Individual", individual);
+                                    startActivity(q1o3);
+
+                                } else {
+
+
+                                    if (rbtn1.isChecked() && selectedRbtn2 != null) {
+
+
+                                        individual.setQ1106(selectedRbtn1.getText().toString().substring(0, 1));
+                                        individual.setQ1106a(selectedRbtn2.getText().toString().substring(0, 1));
+
+                                        Intent q1o3 = new Intent(q1106.this, q1107.class);
+                                        q1o3.putExtra("Individual", individual);
+                                        startActivity(q1o3);
+
+                                    }
+                                }
                             }
                         }
                     }

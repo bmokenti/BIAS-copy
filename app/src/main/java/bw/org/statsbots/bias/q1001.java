@@ -60,11 +60,15 @@ public class q1001 extends AppCompatActivity {
 
 
                     if (rbtn1.isChecked()) {
+                        individual.setQ1001(selectedRbtn.getText().toString().substring(0,1));
 
                         Intent skipto1003 = new Intent(q1001.this, q1003.class);
                         skipto1003.putExtra("Individual", individual);
                         startActivity(skipto1003);
-                    } else {
+                    }
+                    else
+                        {
+
                         individual.setQ1001(selectedRbtn.getText().toString().substring(0,1));
 
                         Intent intent = new Intent(q1001.this, q1002.class);

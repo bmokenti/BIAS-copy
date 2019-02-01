@@ -50,6 +50,14 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        if(individual.getQ101().equals("2"))
+        {
+            Intent intent = new Intent(q501.this, q601.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        }
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

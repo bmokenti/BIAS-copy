@@ -78,6 +78,41 @@ public class q410 extends AppCompatActivity {
 
 
 
+        if (individual.getQ101().equals("1"))
+        {
+
+            Intent intent = new Intent(q410.this, q501.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
+
+        if (individual.getQ101().equals("2") && ((individual.getQ201().equals("1")  && individual.getQ202().equals("2")) || individual.getQ201().equals("6")) )
+        {
+
+            Intent intent = new Intent(q410.this, q601.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
+
+        if (individual.getQ101().equals("2") && (individual.getQ201().equals("2") || individual.getQ201().equals("3") || individual.getQ201().equals("4") || individual.getQ201().equals("5") )
+                && Integer.valueOf(individual.getQ102()) >= 50)
+        {
+
+            Intent intent = new Intent(q410.this, q601.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
+
+
 
 
 
@@ -166,13 +201,14 @@ public class q410 extends AppCompatActivity {
                                     vibs.vibrate(100);
 
                                 } else {
-                                     individual.setQ410Slapped(selected1.getText().toString().substring(0,1));
-                                    individual.setQ410Pushed(selected2.getText().toString().substring(0,1));
-                                     individual.setQ410Choked(selected3.getText().toString().substring(0,1));
-                                   individual.setQ410Threatened(selected4.getText().toString().substring(0,1));
-                                    individual.setQ410Physical(selected5.getText().toString().substring(0,1));
-                                   individual.setQ410Forced(selected6.getText().toString().substring(0,1));
-                                    individual.setQ410MadeAfraid(selected7.getText().toString().substring(0,1));
+
+                                   // individual.setQ410Slapped(selected1.getText().toString().substring(0,1));
+                                    // individual.setQ410Pushed(selected2.getText().toString().substring(0,1));
+                                    // individual.setQ410Choked(selected3.getText().toString().substring(0,1));
+                                    // individual.setQ410Threatened(selected4.getText().toString().substring(0,1));
+                                   //  individual.setQ410Physical(selected5.getText().toString().substring(0,1));
+                                   //  individual.setQ410Forced(selected6.getText().toString().substring(0,1));
+                                   //  individual.setQ410MadeAfraid(selected7.getText().toString().substring(0,1));
 
 
                                     Intent intent = new Intent(q410.this, q501.class);

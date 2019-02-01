@@ -64,7 +64,13 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
+{
+    Intent q1o3 = new Intent(q1103.this, q1114.class);
+    q1o3.putExtra("Individual", individual);
+    startActivity(q1o3);
 
+}
 
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +132,8 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
 
 
                             if (rbtnN.isChecked()) {
+                                individual.setQ1103(selectedRbtn.getText().toString().substring(0,1));
+
                                 Intent q1o3i = new Intent(q1103.this, q1107.class);
                                 q1o3i.putExtra("Individual", individual);
                                 startActivity(q1o3i);

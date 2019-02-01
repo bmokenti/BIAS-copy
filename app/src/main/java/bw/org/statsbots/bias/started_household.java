@@ -313,7 +313,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             }
                         }
                         if(individual==null || individual.getIndRapidResults() == null)
-                        {
+                        {individual = new Individual();
                             Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_person_black_24dp);
                             btn.setCompoundDrawablesWithIntrinsicBounds( d,null, null, null);
 

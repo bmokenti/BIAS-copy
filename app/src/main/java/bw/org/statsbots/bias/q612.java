@@ -81,11 +81,10 @@ public class q612 extends AppCompatActivity  implements Serializable{
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
-               } else
-                   {
+                } else {
                     int selectedId1 = rbtngroup1.getCheckedRadioButtonId();
                     selected1 = (RadioButton) findViewById(selectedId1);
-                    if (selected1  == null && rbtn1.isChecked() ) {
+                    if (selected1 == null && rbtn1.isChecked()) {
 
                         lib.showError(q612.this, "Q612a Error", "Please select a value for q612a");
                         /**
@@ -103,21 +102,29 @@ public class q612 extends AppCompatActivity  implements Serializable{
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
                         } else {
+                            if (rbtn2.isChecked() || rbtn9.isChecked()) {
+                                individual.setQ612(selected.getText().toString().substring(0, 1));
 
-                            //Set Q612 and Q612a for the current individual
+                                Intent intent = new Intent(q612.this, q613.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                            } else {
 
-                            individual.setQ612(selected.getText().toString().substring(0, 1));
-                            individual.setQ612a(selected1.getText().toString().substring(0, 1));
-                            individual.setQ612aOther(edt.getText().toString());
+                                //Set Q612 and Q612a for the current individual
 
-                            Intent intent = new Intent(q612.this, q613.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
+                                individual.setQ612(selected.getText().toString().substring(0, 1));
+                                individual.setQ612a(selected1.getText().toString().substring(0, 1));
+                                individual.setQ612aOther(edt.getText().toString());
+
+                                Intent intent = new Intent(q612.this, q613.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                            }
+
                         }
 
+
                     }
-
-
                 }
             }
 

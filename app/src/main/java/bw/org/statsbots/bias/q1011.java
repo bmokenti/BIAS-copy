@@ -88,6 +88,8 @@ public class q1011 extends AppCompatActivity {
                         vibs.vibrate(100);
                     } else {
                         if (rbtn8.isChecked()) {
+                            individual.setQ1011(selectedRbtn.getText().toString().substring(0,1));
+
                             Intent intent1 = new Intent(q1011.this, q1017.class);
                             intent1.putExtra("Individual", individual);
                             startActivity(intent1);

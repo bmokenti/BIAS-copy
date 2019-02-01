@@ -23,7 +23,7 @@ import java.io.Serializable;
 
 public class q1107 extends AppCompatActivity implements  Serializable {
 
-    protected RadioButton rb1, rb2, rb3, selectedRbtn;
+    protected RadioButton rbtn1, rbtn2, rb3, selectedRbtn;
     protected RadioGroup rg1;
     protected EditText txtweeks, txtdays;
     protected TextView txtq1107aq, txt1107dd, txt1107wks;
@@ -42,8 +42,8 @@ public class q1107 extends AppCompatActivity implements  Serializable {
         setTitle("Q1107:");
 
         rg1 = findViewById(R.id.q1107radiogroup);
-        rb1 = findViewById(R.id.q1107_y);
-        rb2 = findViewById(R.id.q1107_n);
+        rbtn1 = findViewById(R.id.q1107_y);
+        rbtn2 = findViewById(R.id.q1107_n);
         txtdays = findViewById(R.id.txtdd);
         txtweeks = findViewById(R.id.txtwks);
         txtq1107aq = findViewById(R.id.q1107aques);
@@ -93,29 +93,35 @@ public class q1107 extends AppCompatActivity implements  Serializable {
                 } else {
 
 
-                    if ((((txtdays.length() == 0 && txtweeks.length() == 0 && !chk1107a.isChecked()))) && (rb1.isChecked())) {
+                    if ((((txtdays.length() == 0 && txtweeks.length() == 0 && !chk1107a.isChecked()))) && (rbtn1.isChecked())) {
                         lib.showError(q1107.this, "Q1107:", "How long have you had the fever");
                         /**
                          * VIBRATE DEVICE
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
-                    }
-                        else {
-                        individual.setQ1107(selectedRbtn.getText().toString().substring(0,1));
-                      individual.setQ1107aDD(txtdays.getText().toString());
-                        individual.setQ1107aWks(txtweeks.getText().toString());
+                    } else {
+
+
+                        if (rbtn2.isChecked()) {
+
+                            individual.setQ1107(selectedRbtn.getText().toString().substring(0, 1));
 
                             Intent intent = new Intent(q1107.this, q1108.class);
-                        intent.putExtra("Individual", individual);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+                        } else {
+                            individual.setQ1107(selectedRbtn.getText().toString().substring(0, 1));
+                            individual.setQ1107aDD(txtdays.getText().toString());
+                            individual.setQ1107aWks(txtweeks.getText().toString());
+
+                            Intent intent = new Intent(q1107.this, q1108.class);
+                            intent.putExtra("Individual", individual);
                             startActivity(intent);
                         }
                     }
                 }
-
-
-
-
+            }
         });
     }
 
@@ -178,8 +184,8 @@ public class q1107 extends AppCompatActivity implements  Serializable {
             txtq1107aq.setTextColor(Color.BLACK);
             txtweeks.setEnabled(false);
             txtdays.setEnabled(false);
-            txtweeks.setText("");
-            txtdays.setText("");
+            txtweeks.setText("99");
+            txtdays.setText("99");
 
 
             // viewa.setVisibility(View.VISIBLE);
@@ -192,8 +198,8 @@ public class q1107 extends AppCompatActivity implements  Serializable {
            // txtq1107aq.setTextColor(Color.BLACK);
             txtweeks.setEnabled(true);
             txtdays.setEnabled(true);
-           // txtweeks.setText("");
-           // txtdays.setText("");
+            txtweeks.setText("");
+            txtdays.setText("");
 
 
             // viewa.setVisibility(View.VISIBLE);

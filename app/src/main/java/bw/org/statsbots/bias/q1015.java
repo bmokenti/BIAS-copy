@@ -96,7 +96,7 @@ public class q1015 extends AppCompatActivity {
                         int selectedIdb = rgb.getCheckedRadioButtonId();
                         selectedRbtnb = (RadioButton) findViewById(selectedIdb);
 
-                        if (selectedRbtnb == null && rbtna1.isChecked() && rbtn1.isChecked() ) {
+                        if (selectedRbtnb == null && rbtna1.isChecked() && rbtn1.isChecked()) {
                             lib.showError(q1015.this, "Q1015b: ERROR", "Was the child given ARVs?");
                             /**
                              * VIBRATE DEVICE
@@ -105,26 +105,41 @@ public class q1015 extends AppCompatActivity {
                             vibs.vibrate(100);
                         } else {
                             if (rbtn2.isChecked() || rbtn3.isChecked()) {
+                                individual.setQ1015(selectedRbtn.getText().toString().substring(0, 1));
+
                                 Intent intent1 = new Intent(q1015.this, q1101.class);
                                 intent1.putExtra("Individual", individual);
                                 startActivity(intent1);
                             } else {
 
-                               individual.setQ1015(selectedRbtn.getText().toString().substring(0,1));
-                               individual.setQ1015a(selectedRbtna.getText().toString().substring(0,1));
-                               individual.setQ1015b(selectedRbtnb.getText().toString().substring(0,1));
 
-                                Intent intent = new Intent(q1015.this, q1016.class);
-                                intent.putExtra("Individual", individual);
-                                startActivity(intent);
+                                if (rbtn1.isChecked() && !rbtna1.isChecked()) {
 
 
+                                    individual.setQ1014(selectedRbtn.getText().toString().substring(0, 1));
+                                    individual.setQ1014a(selectedRbtna.getText().toString().substring(0, 1));
+
+                                    Intent intent = new Intent(q1015.this, q1016.class);
+                                    intent.putExtra("Individual", individual);
+                                    startActivity(intent);
+
+                                } else {
+
+                                    individual.setQ1015(selectedRbtn.getText().toString().substring(0, 1));
+                                    individual.setQ1015a(selectedRbtna.getText().toString().substring(0, 1));
+                                    individual.setQ1015b(selectedRbtnb.getText().toString().substring(0, 1));
+
+                                    Intent intent = new Intent(q1015.this, q1016.class);
+                                    intent.putExtra("Individual", individual);
+                                    startActivity(intent);
+
+
+                                }
                             }
                         }
                     }
                 }
             }
-
 
         });
     }

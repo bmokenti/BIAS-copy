@@ -1505,7 +1505,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //FROM HOUSE HOLD
-    public boolean insertIndividual(HouseHold houseHold) {
+    public boolean insertIndividuals (HouseHold houseHold) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues individualValues = new ContentValues();
         //contentValues.put("UserId", UserId);
@@ -1913,6 +1913,403 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+
+
+
+    //FROM HOUSE HOLD
+    public boolean insertIndividual(Individual houseHold) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues individualValues = new ContentValues();
+        //contentValues.put("UserId", UserId);
+
+        //for (int i = 0; i < houseHold.getPersons().length; i++)
+        {
+            individualValues.put(BatchNumberi, houseHold.getBatch());
+            individualValues.put(Assignment_IDi, houseHold.getAssignmentID());
+            individualValues.put(SRNOi, houseHold.getSRNO());
+            individualValues.put(IndBarcode, houseHold.getIndBarcode() );
+            individualValues.put(Q101, houseHold.getQ101());
+            individualValues.put(Q102, houseHold.getQ102() );
+            individualValues.put(Q103, houseHold.getQ103() );
+            individualValues.put(Q104, houseHold.getQ104() );
+            individualValues.put(Q104c, houseHold.getQ104c() );
+            individualValues.put(Q104cBISCED, houseHold.getQ104cBISCED());
+
+            individualValues.put(Q105, houseHold.getQ105());
+            individualValues.put(Q105Other, houseHold.getQ105Other());
+            individualValues.put(Q105a, houseHold.getQ105a() );
+            //individualValues.put(Q105aBOSCO, houseHold.getQ105aBosco() );
+            individualValues.put(Q105b, houseHold.getQ105b() );
+            // individualValues.put(Q105bBISIC, houseHold.getQ105bBISIC() );
+            individualValues.put(Q106, houseHold.getQ106());
+            individualValues.put(Q106a, houseHold.getQ106a());
+            individualValues.put(Q106aOther, houseHold.getQ106aOther() );
+            individualValues.put(Q106b, houseHold.getQ106b() );
+            individualValues.put(Q106c, houseHold.getQ106c() );
+            //individualValues.put(Q106cBOSCO, houseHold.getQ106cBOSCO() );
+            individualValues.put(Q106d, houseHold.getQ106d());
+            //individualValues.put(Q106dBISIC, houseHold.getQ106dBISIC());
+            individualValues.put(Q107, houseHold.getQ107() );
+            individualValues.put(Q107a, houseHold.getQ107aMnth() );
+            individualValues.put(Q107b, houseHold.getQ107b() );
+            individualValues.put(Q107bOther, houseHold.getQ107bOther() );
+            individualValues.put(Q107c, houseHold.getQ107c());
+            individualValues.put(Q107cOther, houseHold.getQ107cOther());
+
+            individualValues.put(Q201, houseHold.getQ201() );
+            individualValues.put(Q202, houseHold.getQ202() );
+            individualValues.put(Q203, houseHold.getQ203() );
+            individualValues.put(Q204, houseHold.getQ204() );
+            individualValues.put(Q205, houseHold.getQ205());
+            individualValues.put(Q205a, houseHold.getQ205a());
+
+
+            individualValues.put(Q301, houseHold.getQ301() );
+            individualValues.put(Q301a, houseHold.getQ301a() );
+            individualValues.put(Q302, houseHold.getQ302() );
+            individualValues.put(Q303, houseHold.getQ303() );
+            individualValues.put(Q303a, houseHold.getQ303a());
+            individualValues.put(Q304, houseHold.getQ304());
+            individualValues.put(Q304a, houseHold.getQ304a());
+
+            individualValues.put(Q305Smoking, houseHold.getQ305_1() );
+            individualValues.put(Q305Sniffing, houseHold.getQ305_2() );
+            individualValues.put(Q305Chewing, houseHold.getQ305_3() );
+            individualValues.put(Q305None, houseHold.getQ305_4() );
+
+            individualValues.put(Q306, houseHold.getQ306());
+            individualValues.put(Q307, houseHold.getQ307());
+
+            individualValues.put(Q401, houseHold.getQ401() );
+            individualValues.put(Q402,  houseHold.getQ402() );
+            individualValues.put(Q402a, houseHold.getQ402a() );
+            individualValues.put(Q402b,  houseHold.getQ402b() );
+            individualValues.put(Q403,  houseHold.getQ403() );
+            individualValues.put(Q501, houseHold.getQ501() );
+            individualValues.put(Q502,  houseHold.getQ502() );
+            individualValues.put(Q503, houseHold.getQ503() );
+            individualValues.put(Q504_Pain,  houseHold.getQ504_1() );
+            individualValues.put(Q504_Reduced,  houseHold.getQ504_2() );
+            individualValues.put(Q504_Fear,  houseHold.getQ504_3() );
+            individualValues.put(Q504_Culture,  houseHold.getQ504_4() );
+            individualValues.put(Q504_Religion,  houseHold.getQ504_5() );
+            individualValues.put(Q504_Spouse,  houseHold.getQ504_6() );
+            individualValues.put(Q504_Parental,  houseHold.getQ504_7() );
+            individualValues.put(Q504_Long,  houseHold.getQ504_8() );
+            individualValues.put(Q504_FearHIV,  houseHold.getQ504_10() );
+            individualValues.put(Q504_Other,  houseHold.getQ504_Other() );
+            individualValues.put(Q504_OtherSpecify,  houseHold.getQ504_OtherSpecify() );
+
+
+
+            individualValues.put(Q601,  houseHold.getQ601() );
+            individualValues.put(Q601a,  houseHold.getQ601a() );
+            individualValues.put(Q602Youth,  houseHold.getQ602_1() );
+            individualValues.put(Q602TV,  houseHold.getQ602_2() );
+            individualValues.put(Q602Radio,  houseHold.getQ602_3() );
+            individualValues.put(Q602Newspaper,  houseHold.getQ602_4() );
+            individualValues.put(Q602Hospital,  houseHold.getQ602_5() );
+            individualValues.put(Q602Posters,  houseHold.getQ602_6() );
+            individualValues.put(Q602Traditional,  houseHold.getQ602_7() );
+            individualValues.put(Q602Workshop,  houseHold.getQ602_8() );
+            individualValues.put(Q602Individual,  houseHold.getQ602_10() );
+            individualValues.put(Q602Church,  houseHold.getQ602_11() );
+            individualValues.put(Q602Kgotla,  houseHold.getQ602_12() );
+            individualValues.put(Q602Workplace,  houseHold.getQ602_13() );
+            individualValues.put(Q602Peer,  houseHold.getQ602_14() );
+            individualValues.put(Q602School,  houseHold.getQ602_15() );
+            individualValues.put(Q602_Other,  houseHold.getQ602_Other() );
+
+            individualValues.put(Q603Condom,  houseHold.getQ603_1() );
+            individualValues.put(Q603FewerP,  houseHold.getQ603_2() );
+            individualValues.put(Q603Both,  houseHold.getQ603_3() );
+            individualValues.put(Q603NoCasual,  houseHold.getQ603_4() );
+            individualValues.put(Q603Abstain,  houseHold.getQ603_5() );
+            individualValues.put(Q603NoCommercial,  houseHold.getQ603_6() );
+            individualValues.put(Q603Injection,  houseHold.getQ603_7() );
+            individualValues.put(Q603Blood,  houseHold.getQ603_8() );
+            individualValues.put(Q603DontKnow,  houseHold.getQ603_9() );
+            individualValues.put(Q603Other,  houseHold.getQ603_Other() );
+
+
+            individualValues.put(Q604,  houseHold.getQ604() );
+            individualValues.put(Q604a,  houseHold.getQ604a() );
+            individualValues.put(Q604bYouth,  houseHold.getQ604b_1() );
+            individualValues.put(Q604bTV,  houseHold.getQ604b_2() );
+            individualValues.put(Q604bRadio,  houseHold.getQ604b_3() );
+            individualValues.put(Q604bNewspaper,  houseHold.getQ604b_4() );
+            individualValues.put(Q604bHospital,  houseHold.getQ604b_5() );
+            individualValues.put(Q604bPoster,  houseHold.getQ604b_6() );
+            individualValues.put(Q604bTraditional,  houseHold.getQ604b_7() );
+            individualValues.put(Q604bWorkshop,  houseHold.getQ604b_8() );
+            individualValues.put(Q604bIndividual,  houseHold.getQ604b_10() );
+            individualValues.put(Q604bChurch,  houseHold.getQ604b_11() );
+            individualValues.put(Q604bKgotla,  houseHold.getQ604b_12() );
+            individualValues.put(Q604bWorkplace,  houseHold.getQ604b_13() );
+            individualValues.put(Q604bPeer,  houseHold.getQ604b_14() );
+            individualValues.put(Q604bSchool,  houseHold.getQ604b_15() );
+            individualValues.put(Q604bOther,  houseHold.getQ604b_Other() );
+
+            individualValues.put(Q605Windows,  houseHold.getQ605_1() );
+            individualValues.put(Q605Mouth,  houseHold.getQ605_2() );
+            individualValues.put(Q605Hands,  houseHold.getQ605_3() );
+            individualValues.put(Q605Nutrition,  houseHold.getQ605_4() );
+            individualValues.put(Q605Praying,  houseHold.getQ605_5() );
+            individualValues.put(Q605DontKnow,  houseHold.getQ605_9() );
+            individualValues.put(Q605Other,  houseHold.getQ605_Other() );
+
+
+            individualValues.put(Q606,  houseHold.getQ606() );
+            individualValues.put(Q607,  houseHold.getQ607() );
+            individualValues.put(Q608,  houseHold.getQ608() );
+            individualValues.put(Q609,  houseHold.getQ609() );
+            individualValues.put(Q610,  houseHold.getQ610() );
+            individualValues.put(Q611a,  houseHold.getQ611a() );
+            individualValues.put(Q611b,  houseHold.getQ611b() );
+            individualValues.put(Q612,  houseHold.getQ612() );
+            individualValues.put(Q612a,  houseHold.getQ612a() );
+            individualValues.put(Q612Other,  houseHold.getQ612aOther() );
+
+            individualValues.put(Q613,  houseHold.getQ613() );
+            individualValues.put(Q613a,  houseHold.getQ613a() );
+            individualValues.put(Q613aOther,  houseHold.getQ613aOther() );
+            individualValues.put(Q614,  houseHold.getQ614() );
+            individualValues.put(Q614Other,  houseHold.getQ614Other() );
+
+
+
+            individualValues.put(Q615,  houseHold.getQ615() );
+            individualValues.put(Q616Anybody,  houseHold.getQ616_1() );
+            individualValues.put(Q616Poor,  houseHold.getQ616_2() );
+            individualValues.put(Q616Homeless,  houseHold.getQ616_3() );
+            individualValues.put(Q616Alcoholics,  houseHold.getQ616_4() );
+            individualValues.put(Q616Drugs,  houseHold.getQ616_5() );
+            individualValues.put(Q616PeopHIV,  houseHold.getQ616_6() );
+            individualValues.put(Q616PeopPrison,  houseHold.getQ616_7() );
+            individualValues.put(Q616Smokers,  houseHold.getQ616_8() );
+            individualValues.put(Q616DntKnow,  houseHold.getQ616_9() );
+            individualValues.put(Q616Other,  houseHold.getQ616_10() );
+
+
+            individualValues.put(Q617Meal,  houseHold.getQ617a() );
+            individualValues.put(Q617Clothes,  houseHold.getQ617b() );
+            individualValues.put(Q617Miscarried,  houseHold.getQ617c() );
+            individualValues.put(Q617Widow,  houseHold.getQ617d() );
+            individualValues.put(Q617FamilyHIV,  houseHold.getQ617e() );
+            individualValues.put(Q617Sejeso,  houseHold.getQ617f() );
+            individualValues.put(Q617Touching,  houseHold.getQ617g() );
+            individualValues.put(Q617Someone,  houseHold.getQ617h() );
+            individualValues.put(Q617Other,  houseHold.getQ617_0ther() );
+
+
+            individualValues.put(Q618,  houseHold.getQ618() );
+
+
+            individualValues.put(Q619Rash,  houseHold.getQ619_1() );
+            individualValues.put(Q619Cough,  houseHold.getQ619_2() );
+            individualValues.put(Q619LongCough,  houseHold.getQ619_3() );
+            individualValues.put(Q619Blood,  houseHold.getQ619_4() );
+            individualValues.put(Q619Headache,  houseHold.getQ619_5() );
+            individualValues.put(Q619Nausea,  houseHold.getQ619_6() );
+            individualValues.put(Q619Weight,  houseHold.getQ619_7() );
+            individualValues.put(Q619Fever,  houseHold.getQ619_8() );
+            individualValues.put(Q619Fever7Days,  houseHold.getQ619_10() );
+            individualValues.put(Q619ChestPain,  houseHold.getQ619_11() );
+            individualValues.put(Q619Breath,  houseHold.getQ619_12() );
+            individualValues.put(Q619Fatigue,  houseHold.getQ619_13() );
+            individualValues.put(Q619Sweats,  houseHold.getQ619_14() );
+            individualValues.put(Q619DontKnow,  houseHold.getQ619_9() );
+            individualValues.put(Q619Other,  houseHold.getQ619_Other() );
+
+
+            individualValues.put(Q620,  houseHold.getQ620() );
+            individualValues.put(Q620Other,  houseHold.getQ620_Other() );
+
+
+            individualValues.put(Q621,  houseHold.getQ621() );
+            individualValues.put(Q621aSpouse,  houseHold.getQ621a_1() );
+            individualValues.put(Q621aPartner,  houseHold.getQ621a_2() );
+            individualValues.put(Q621aFriend,  houseHold.getQ621a_3() );
+            individualValues.put(Q621aFamily,  houseHold.getQ621a_4() );
+            individualValues.put(Q621aRelative,  houseHold.getQ621a_5() );
+            individualValues.put(Q621aHCWorker,  houseHold.getQ621a_6() );
+            individualValues.put(Q621aCoWorker,  houseHold.getQ621a_7() );
+
+
+
+
+            individualValues.put(Q621b,  houseHold.getQ621b() );
+            individualValues.put(Q621bOther,  houseHold.getQ621bOther() );
+
+            individualValues.put(Q622,  houseHold.getQ622() );
+            individualValues.put(Q622a,  houseHold.getQ622a() );
+            individualValues.put(Q622aOther,  houseHold.getQ622aOther() );
+            individualValues.put(Q622b,  houseHold.getQ622b() );
+            individualValues.put(Q622bOther,  houseHold.getQ622bOther() );
+            individualValues.put(Q623,  houseHold.getQ623() );
+            individualValues.put(Q624,  houseHold.getQ624() );
+            individualValues.put(Q625,  houseHold.getQ625() );
+
+
+
+            individualValues.put(Q701,  houseHold.getQ701() );
+            individualValues.put(Q702,  houseHold.getQ702() );
+            individualValues.put(Q703,  houseHold.getQ703() );
+            individualValues.put(Q704,  houseHold.getQ704() );
+            individualValues.put(Q705,  houseHold.getQ705() );
+
+
+            individualValues.put(Q801,  houseHold.getQ801() );
+            individualValues.put(Q801a,  houseHold.getQ801a() );
+            individualValues.put(Q801b,  houseHold.getQ801b() );
+            individualValues.put(Q801c,  houseHold.getQ801cMonth() );
+            individualValues.put(Q801c,  houseHold.getQ801cYear() );
+            individualValues.put(Q801d,  houseHold.getQ801d() );
+            individualValues.put(Q801dOther,  houseHold.getQ801dOther() );
+            individualValues.put(Q801e,  houseHold.getQ801e() );
+            individualValues.put(Q801eOther,  houseHold.getQ801eOther() );
+            individualValues.put(Q801f,  houseHold.getQ801f() );
+
+
+            individualValues.put(Q802,  houseHold.getQ802() );
+            individualValues.put(Q802a,  houseHold.getQ802a() );
+            individualValues.put(Q802aOther,  houseHold.getQ802aOther() );
+            individualValues.put(Q803,  houseHold.getQ803() );
+            individualValues.put(Q803Other,  houseHold.getQ803Other() );
+            individualValues.put(Q804,  houseHold.getQ804() );
+            individualValues.put(Q804Other,  houseHold.getQ804Other() );
+
+
+
+
+
+            individualValues.put(Q901,  houseHold.getQ901() );
+            individualValues.put(Q901a,  houseHold.getQ901a() );
+            individualValues.put(Q901aOther,  houseHold.getQ901aOther() );
+            individualValues.put(Q902,  houseHold.getQ902Month() );
+            individualValues.put(Q902,  houseHold.getQ902Year() );
+
+            individualValues.put(Q903DenyCare,  houseHold.getQ903a() );
+            individualValues.put(Q903Gossip,  houseHold.getQ903b() );
+            individualValues.put(Q903NoSex,  houseHold.getQ903c() );
+            individualValues.put(Q903VerbalAbuse,  houseHold.getQ903d() );
+            individualValues.put(Q903PhysicalAbuse,  houseHold.getQ903e() );
+            individualValues.put(Q903NoContact,  houseHold.getQ903f() );
+            individualValues.put(Q903SharingStatus,  houseHold.getQ903g() );
+            individualValues.put(Q904,  houseHold.getQ904() );
+            individualValues.put(Q904a,  houseHold.getQ904a() );
+            individualValues.put(Q904aOther,  houseHold.getQ904aOther() );
+            individualValues.put(Q904b,  houseHold.getQ904bMM() );
+            individualValues.put(Q904b,  houseHold.getQ904bYYYY() );
+            individualValues.put(Q904c,  houseHold.getQ904c() );
+            individualValues.put(Q904cOther,  houseHold.getQ904cOther() );
+            individualValues.put(Q905,  houseHold.getQ905() );
+            individualValues.put(Q905a,  houseHold.getQ905a() );
+            individualValues.put(Q905aOther,  houseHold.getQ905aOther() );
+            individualValues.put(Q1001,  houseHold.getQ1001() );
+            individualValues.put(Q1002,  houseHold.getQ1002() );
+            individualValues.put(Q1002aMCondom,  houseHold.getQ1002a_1() );
+            individualValues.put(Q1002aFCondom,  houseHold.getQ1002a_2() );
+            individualValues.put(Q1002aInjectContra,  houseHold.getQ1002a_3() );
+            individualValues.put(Q1002aOralContra,  houseHold.getQ1002a_4() );
+            individualValues.put(Q1002aUID,  houseHold.getQ1002a_5() );
+            individualValues.put(Q1002aBTL,  houseHold.getQ1002a_6() );
+            individualValues.put(Q1002aFSterilization,  houseHold.getQ1002a_7() );
+            individualValues.put(Q1002aMSterilization,  houseHold.getQ1002a_8() );
+            individualValues.put(Q1002aImplants,  houseHold.getQ1002a_10() );
+            individualValues.put(Q1002aEContra,  houseHold.getQ1002a_11() );
+            individualValues.put(Q1002aSafePeriod,  houseHold.getQ1002a_12() );
+            individualValues.put(Q1002aLAM,  houseHold.getQ1002a_13() );
+            individualValues.put(Q1002aDiagraphm,  houseHold.getQ1002a_14() );
+            individualValues.put(Q1002aSpermicides,  houseHold.getQ1002a_15() );
+            individualValues.put(Q1002aNatural,  houseHold.getQ1002a_16() );
+            individualValues.put(Q1002aTraditional,  houseHold.getQ1002a_17() );
+            individualValues.put(Q1002aSpiritual,  houseHold.getQ1002a_Other() );
+            individualValues.put(Q1002aOther,  houseHold.getQ1005() );
+            individualValues.put(Q1002,  houseHold.getQ1002() );
+            individualValues.put(Q1002bOther,  houseHold.getQ1002bOther() );
+            individualValues.put(Q1003,  houseHold.getQ1003() );
+            individualValues.put(Q1004,  houseHold.getQ1004_Day() );
+            individualValues.put(Q1004,  houseHold.getQ1004_Month() );
+            individualValues.put(Q1004,  houseHold.getQ1004_Year() );
+            individualValues.put(Q1004a,  houseHold.getQ1004a() );
+            individualValues.put(Q1004b,  houseHold.getQ1004b() );
+            individualValues.put(Q1004bOther,  houseHold.getQ1004bOther() );
+            individualValues.put(Q1005,  houseHold.getQ1005() );
+            individualValues.put(Q1005a,  houseHold.getQ1005a() );
+            individualValues.put(Q1006,  houseHold.getQ1006() );
+            individualValues.put(Q1007,  houseHold.getQ1007() );
+            individualValues.put(Q1007a,  houseHold.getQ1007a() );
+            individualValues.put(Q1008,  houseHold.getQ1008() );
+            individualValues.put(Q1008a,  houseHold.getQ1008a() );
+            individualValues.put(Q1008aOther,  houseHold.getQ1008aOther() );
+            individualValues.put(Q1009,  houseHold.getQ1009() );
+            individualValues.put(Q1009a,  houseHold.getQ1009a() );
+            individualValues.put(Q1010,  houseHold.getQ1010() );
+            individualValues.put(Q1010Other,  houseHold.getQ1010Other() );
+            individualValues.put(Q1011,  houseHold.getQ1011() );
+            individualValues.put(Q1011Other,  houseHold.getQ1011_Other() );
+            individualValues.put(Q1012,  houseHold.getQ1012_Week() );
+            individualValues.put(Q1012,  houseHold.getQ1012_Month() );
+            individualValues.put(Q1012,  houseHold.getQ1012_Year() );
+            individualValues.put(Q1013,  houseHold.getQ1013() );
+            individualValues.put(Q1014,  houseHold.getQ1014() );
+            individualValues.put(Q1014a,  houseHold.getQ1014a() );
+            individualValues.put(Q1014b,  houseHold.getQ1014b() );
+            individualValues.put(Q1015,  houseHold.getQ1015() );
+            individualValues.put(Q1015a,  houseHold.getQ1015a() );
+            individualValues.put(Q1015b,  houseHold.getQ1015b() );
+            individualValues.put(Q1016,  houseHold.getQ1016() );
+            individualValues.put(Q1017,  houseHold.getQ1017() );
+            individualValues.put(Q1101, houseHold.getQ1101() );
+            individualValues.put(Q1101a, houseHold.getQ1101a() );
+            individualValues.put(Q1101aOther,  houseHold.getQ1101aOther() );
+            individualValues.put(Q1102, houseHold.getQ1102() );
+            individualValues.put(Q1102a,  houseHold.getQ1102a() );
+            individualValues.put(Q1103,  houseHold.getQ1103());
+            individualValues.put(Q1103aDD, houseHold.getQ1103aDD() );
+            individualValues.put(Q1103aWks, houseHold.getQ1103aWks() );
+            individualValues.put(Q1103aDontKnow, houseHold.getQ1103aDontKnow() );
+            individualValues.put(Q1104,  houseHold.getQ1104() );
+            individualValues.put(Q1105, houseHold.getQ1105() );
+            individualValues.put(Q1106,  houseHold.getQ1106() );
+            individualValues.put(Q1106a,  houseHold.getQ1106a() );
+            individualValues.put(Q1106b,  houseHold.getQ1106b() );
+            individualValues.put(Q1106bOther,  houseHold.getQ1106bOther() );
+            individualValues.put(Q1107,  houseHold.getQ1107() );
+            individualValues.put(Q1107aDD,  houseHold.getQ1107aDD() );
+            individualValues.put(Q1107aWks,  houseHold.getQ1107aWks() );
+            individualValues.put(Q1107aDontKnow,  houseHold.getQ1107aDontKnow() );
+            individualValues.put(Q1108,  houseHold.getQ1108() );
+            individualValues.put(Q1108aDD, houseHold.getQ1108aDD() );
+            individualValues.put(Q1108aWks, houseHold.getQ1108aWks() );
+            individualValues.put(Q1108aDontKnow, houseHold.getQ1108aDontKnow() );
+            individualValues.put(Q1109, houseHold.getQ1109() );
+            individualValues.put(Q1110,  houseHold.getQ1110() );
+            individualValues.put(Q1111, houseHold.getQ1111() );
+            individualValues.put(Q1111Other, houseHold.getQ1111Other() );
+            individualValues.put(Q1112, houseHold.getQ1112() );
+            individualValues.put(Q1112Other,  houseHold.getQ1112_Other() );
+            individualValues.put(Q1113, houseHold.getQ1113() );
+            individualValues.put(Q1113Other, houseHold.getQ1113Other() );
+            individualValues.put(Q1114, houseHold.getQ1114() );
+            // individualValues.put(IndBloodSampleCollected, houseHold.getIndBloodSampleCollected() );
+            individualValues.put(B8_Yes_No, houseHold.getB8_Yes_No() );
+            individualValues.put(B8_Date, houseHold.getB8_Date() );
+            individualValues.put(B8_O15_Rapid, houseHold.getB8_O15_Rapid() );
+            individualValues.put(Q801f, houseHold.getQ801f() );
+            //individualValues.put(IndRapidResults, houseHold.getIndRapidResults() );
+            // individualValues.put(IndRapidDate, houseHold.getIndRapidDate() );
+
+            individualValues.put(IndRapid_Comment, houseHold.getIndRapid_Comment() );
+
+
+            db.insert("tblindividual", null, individualValues);
+
+        }
+
+        return true;
+    }
     //INSERT INDIVIDUAL FROM SYNC
     public boolean insertSyncIndividual(Individual ind, String AsID,String Batch,int SRNO) {
         SQLiteDatabase db = this.getWritableDatabase();

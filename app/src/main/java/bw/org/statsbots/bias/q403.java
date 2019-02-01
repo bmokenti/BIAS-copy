@@ -68,7 +68,7 @@ public class q403 extends AppCompatActivity implements View.OnClickListener, Ser
                     builder.setTitle("Q403 Error");
                     builder.setIcon(R.drawable.ic_warning_orange_24dp);
 
-                    builder.setMessage("Have \"+ p1.getP01() + \"had sex in the past 12 months");
+                    builder.setMessage("Have you had sex in the past 12 months");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 

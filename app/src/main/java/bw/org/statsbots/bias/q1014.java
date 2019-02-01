@@ -64,7 +64,9 @@ public class q1014 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
-
+        int years = 0;
+        int months = 0;
+        int days = 0;
 
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +99,7 @@ public class q1014 extends AppCompatActivity {
                         int selectedIdb = rgb.getCheckedRadioButtonId();
                         selectedRbtnb = (RadioButton) findViewById(selectedIdb);
 
-                        if (selectedRbtnb == null &&  rbtn1.isChecked() && rbtna1.isChecked()) {
+                        if (selectedRbtnb == null && rbtn1.isChecked() && rbtna1.isChecked()) {
                             lib.showError(q1014.this, "Q1014b: ERROR", "Was the child given ARVs?");
                             /**
                              * VIBRATE DEVICE
@@ -105,19 +107,42 @@ public class q1014 extends AppCompatActivity {
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
                         } else {
-                            individual.setQ1014(selectedRbtn.getText().toString().substring(0,1));
-                            individual.setQ1014a(selectedRbtna.getText().toString().substring(0,1));
-                            individual.setQ1014b(selectedRbtnb.getText().toString().substring(0,1));
-
-                            Intent intent = new Intent(q1014.this, q1015.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
 
 
+                            if (rbtn2.isChecked() || rbtn2.isChecked()) {
+                                individual.setQ1014(selectedRbtn.getText().toString().substring(0, 1));
+
+                                Intent intent = new Intent(q1014.this, q1015.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+
+                            } else {
+
+
+                                if (rbtn1.isChecked() && !rbtna1.isChecked()) {
+                                    individual.setQ1014(selectedRbtn.getText().toString().substring(0, 1));
+                                    individual.setQ1014a(selectedRbtna.getText().toString().substring(0, 1));
+
+                                    Intent intent = new Intent(q1014.this, q1015.class);
+                                    intent.putExtra("Individual", individual);
+                                    startActivity(intent);
+
+                                } else {
+                                    individual.setQ1014(selectedRbtn.getText().toString().substring(0, 1));
+                                    individual.setQ1014a(selectedRbtna.getText().toString().substring(0, 1));
+                                    individual.setQ1014b(selectedRbtnb.getText().toString().substring(0, 1));
+
+                                    Intent intent = new Intent(q1014.this, q1015.class);
+                                    intent.putExtra("Individual", individual);
+                                    startActivity(intent);
+
+
+                                }
+                            }
                         }
+
                     }
                 }
-
             }
 
 

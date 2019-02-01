@@ -96,62 +96,63 @@
                         android:id="@+id/q105_1a"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q105_1a" />
 
                     <RadioButton
                         android:id="@+id/q105_1b"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q105_1b" />
 
                     <RadioButton
                         android:id="@+id/q105_1c"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q105_1c" />
 
                     <RadioButton
                         android:id="@+id/q105_1d"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q105_1d" />
 
                     <RadioButton
                         android:id="@+id/q105_1e"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q105_1e" />
 
                     <RadioButton
                         android:id="@+id/q105_1f"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q105_1f" />
 
                     <RadioButton
                         android:id="@+id/q105_1g"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q105_1g" />
 
                     <RadioButton
                         android:id="@+id/q105_1h"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q105_1h" />
 
                     <RadioButton
                         android:id="@+id/q105_other"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q105_other" />
 
                 </RadioGroup>

@@ -112,14 +112,26 @@ public class q1102 extends AppCompatActivity implements  Serializable {
                         vibs.vibrate(100);
                     } else {
 
-                        //startActivity(intent);
-                        individual.setQ1102(selectedRbtn.getText().toString().substring(0,1));
-                        individual.setQ1102a(q1102ay.getText().toString());
 
-                        Intent q1o3 = new Intent(q1102.this, q1103.class);
-                        q1o3.putExtra("Individual", individual);
-                        startActivity(q1o3);
+                        if (rbtn2.isChecked() && rbtn3.isChecked()) {
 
+                            individual.setQ1102(selectedRbtn.getText().toString().substring(0, 1));
+
+                            Intent q1o3 = new Intent(q1102.this, q1103.class);
+                            q1o3.putExtra("Individual", individual);
+                            startActivity(q1o3);
+
+                        } else {
+
+                            //startActivity(intent);
+                            individual.setQ1102(selectedRbtn.getText().toString().substring(0, 1));
+                            individual.setQ1102a(q1102ay.getText().toString());
+
+                            Intent q1o3 = new Intent(q1102.this, q1103.class);
+                            q1o3.putExtra("Individual", individual);
+                            startActivity(q1o3);
+
+                        }
                     }
                 }
             }

@@ -151,7 +151,8 @@ public class q1004 extends AppCompatActivity {
                                     selectedRbtnb = (RadioButton) findViewById(selectedIdb);
 
                                     if (selectedRbtnb == null && rbtna2.isChecked()) {
-                                        lib.showError(q1004.this, "Q1004b: ERROR", "What is the MAIN reason you did not visit a clinic for antenatal care when you were pregnant with this child?");
+                                        lib.showError(q1004.this, "Q1004b: ERROR", "What is the MAIN reason you did not visit a clinic for antenatal " +
+                                                "care when you were pregnant with this child?");
                                         /**
                                          * VIBRATE DEVICE
                                          */
@@ -168,23 +169,36 @@ public class q1004 extends AppCompatActivity {
                                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                             vibs.vibrate(100);
                                         } else {
-                                            individual.setQ1004_Day(edtdays.getText().toString());
-                                            individual.setQ1004_Month(edtmonths.getText().toString());
-                                           individual.setQ1004_Year(edtyears.getText().toString());
-
-                                            individual.setQ1004a(selectedRbtna.getText().toString().substring(0,1));
-                                            individual.setQ1004b(selectedRbtnb.getText().toString().substring(0,1));
-                                            individual.setQ1004b_Other(edtOther.getText().toString());
-
-                                            Intent intent = new Intent(q1004.this, q1005.class);
-                                            intent.putExtra("Individual", individual);
-                                            startActivity(intent);
 
 
+                                            if (rbtna1.isChecked()) {
+                                                individual.setQ1004_Day(edtdays.getText().toString());
+                                                individual.setQ1004_Month(edtmonths.getText().toString());
+                                                individual.setQ1004_Year(edtyears.getText().toString());
+                                                individual.setQ1004a(selectedRbtna.getText().toString().substring(0, 1));
+
+                                                Intent intent = new Intent(q1004.this, q1005.class);
+                                                intent.putExtra("Individual", individual);
+                                                startActivity(intent);
+                                            } else {
+                                                individual.setQ1004_Day(edtdays.getText().toString());
+                                                individual.setQ1004_Month(edtmonths.getText().toString());
+                                                individual.setQ1004_Year(edtyears.getText().toString());
+
+                                                individual.setQ1004a(selectedRbtna.getText().toString().substring(0, 1));
+                                                individual.setQ1004b(selectedRbtnb.getText().toString().substring(0, 1));
+                                                individual.setQ1004b_Other(edtOther.getText().toString());
+
+                                                Intent intent = new Intent(q1004.this, q1005.class);
+                                                intent.putExtra("Individual", individual);
+                                                startActivity(intent);
+
+
+                                            }
                                         }
                                     }
-                                }
 
+                                }
                             }
                         }
                     }

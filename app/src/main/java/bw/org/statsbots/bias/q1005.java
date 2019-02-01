@@ -89,20 +89,34 @@ public class q1005 extends AppCompatActivity implements Serializable {
                     } else {
 
 
-                        if (rbtna2.isChecked() || rbtna3.isChecked() || rbtna4.isChecked() || rbtna5.isChecked()) {
+                        if (rbtn2.isChecked()) {
+                            individual.setQ1005(selectedRbtn.getText().toString().substring(0, 1));
 
                             Intent intent = new Intent(q1005.this, q1007.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);
                         } else {
-                            individual.setQ1005(selectedRbtn.getText().toString().substring(0,1));
-                            individual.setQ1005a(selectedRbtna.getText().toString().substring(0,1));
-
-                            Intent intent = new Intent(q1005.this, q1006.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
 
 
+                            if (rbtna2.isChecked() || rbtna3.isChecked() || rbtna4.isChecked() || rbtna5.isChecked()) {
+
+
+                                individual.setQ1005(selectedRbtn.getText().toString().substring(0, 1));
+                                individual.setQ1005a(selectedRbtna.getText().toString().substring(0, 1));
+
+                                Intent intent = new Intent(q1005.this, q1007.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                            } else {
+                                individual.setQ1005(selectedRbtn.getText().toString().substring(0, 1));
+                                individual.setQ1005a(selectedRbtna.getText().toString().substring(0, 1));
+
+                                Intent intent = new Intent(q1005.this, q1006.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+
+
+                            }
                         }
                     }
                 }

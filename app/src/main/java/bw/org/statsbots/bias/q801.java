@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -26,7 +27,7 @@ public class q801 extends AppCompatActivity {
     protected EditText edtcmnths, edtcyear, edtdother, edteother;
     protected TextView t801a, t801b, t801c, t801d, t801e, t801f;
     protected CheckBox chkc99, chkc9999;
-    protected RadioButton selectedRbtn, selectedRbtna, selectedRbtnb, selectedRbtnd, selectedRbtne, selectedRbtnf;
+    protected RadioButton selectedRbtn, selectedRbtnb, selectedRbtnd, selectedRbtne, selectedRbtnf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,11 +100,12 @@ public class q801 extends AppCompatActivity {
         rge = (RadioGroup) findViewById(R.id.q801eradioGroup);
         rgf = (RadioGroup) findViewById(R.id.q801fradioGroup);
 
+        final int selectedId = rg.getCheckedRadioButtonId();
 
-        // final int selectedId = rg.getCheckedRadioButtonId();
+
 
         Intent i = getIntent();
-        individual = (Individual) i.getSerializableExtra("Individual");
+        individual =(Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
         Button btnnext = findViewById(R.id.button);
@@ -125,7 +127,8 @@ public class q801 extends AppCompatActivity {
                 } else {
 
                     int selectedIda = rga.getCheckedRadioButtonId();
-                    selectedRbtna = (RadioButton) findViewById(selectedIda);
+                    final RadioButton selectedRbtna = (RadioButton) findViewById(selectedIda);
+
 
                     if (selectedRbtna == null && rbtn1.isChecked()) {
                         lib.showError(q801.this, "Q801a: ERROR", "Have you tested for HIV in the past 12 months?");
@@ -235,37 +238,62 @@ public class q801 extends AppCompatActivity {
                                                         vibs.vibrate(100);
 
                                                     } else {
-
+                                                        //individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
 
                                                         if (rbtn2.isChecked()) {
+
+                                                            individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
+
                                                             Intent intent = new Intent(q801.this, q804.class);
                                                             intent.putExtra("Individual", individual);
                                                             startActivity(intent);
 
                                                         } else {
-                                                            //Set q801 for the current individual
-                                                            individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
-                                                             individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
-                                                            individual.setQ801b(selectedRbtnb.getText().toString().substring(0, 1));
-                                                            individual.setQ801cMonth(edtcmnths.getText().toString());
-                                                            individual.setQ801cYear(edtcyear.getText().toString());
-                                                            individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
-                                                           individual.setQ801dOther(edtdother.getText().toString());
-                                                           individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
-                                                           individual.setQ801eOther(edteother.getText().toString());
-                                                           individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
+
+                                                            if (rbtna2.isChecked() ) {
 
 
-                                                            Intent intent = new Intent(q801.this, q802.class);
-                                                            intent.putExtra("Individual", individual);
-                                                            startActivity(intent);
+                                                                individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
+                                                                individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
+                                                                individual.setQ801cMonth(edtcmnths.getText().toString());
+                                                                individual.setQ801cYear(edtcyear.getText().toString());
+                                                                individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
+                                                                individual.setQ801dOther(edtdother.getText().toString());
+                                                                individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
+                                                                individual.setQ801eOther(edteother.getText().toString());
+                                                                individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
+
+                                                                Intent intent = new Intent(q801.this, q802.class);
+                                                                intent.putExtra("Individual", individual);
+                                                                startActivity(intent);
+
+                                                            } else {
+                                                                //Set q801 for the current individual
+
+                                                                individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
+                                                                individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
+
+                                                                individual.setQ801b(selectedRbtnb.getText().toString().substring(0, 1));
+                                                                individual.setQ801cMonth(edtcmnths.getText().toString());
+                                                                individual.setQ801cYear(edtcyear.getText().toString());
+                                                                individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
+                                                                individual.setQ801dOther(edtdother.getText().toString());
+                                                                individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
+                                                                individual.setQ801eOther(edteother.getText().toString());
+                                                                individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
+
+
+                                                                Intent intent = new Intent(q801.this, q802.class);
+                                                                intent.putExtra("Individual", individual);
+                                                                startActivity(intent);
+
+                                                            }
 
                                                         }
-
                                                     }
                                                 }
-                                            }
 
+                                            }
                                         }
                                     }
                                 }

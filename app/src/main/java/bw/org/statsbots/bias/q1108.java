@@ -100,11 +100,20 @@ protected LibraryClass lib;
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
-                    }  else {
+                    } else {
 
-                        individual.setQ1108(selectedRbtn.getText().toString().substring(0,1));
-                        individual.setQ1108aDD(txtq1108dd.getText().toString());
-                        individual.setQ1108aWks(txtq1108wks.getText().toString());
+
+                        if (rbtn.isChecked()) {
+                            individual.setQ1108(selectedRbtn.getText().toString().substring(0, 1));
+
+                            Intent intent = new Intent(q1108.this, q1109.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+                        } else {
+
+                            individual.setQ1108(selectedRbtn.getText().toString().substring(0, 1));
+                            individual.setQ1108aDD(txtq1108dd.getText().toString());
+                            individual.setQ1108aWks(txtq1108wks.getText().toString());
 
                             Intent intent = new Intent(q1108.this, q1109.class);
                             intent.putExtra("Individual", individual);
@@ -114,7 +123,7 @@ protected LibraryClass lib;
                     }
 
                 }
-
+            }
         });
     }
 
@@ -179,8 +188,8 @@ protected LibraryClass lib;
             txtq1108wks.setEnabled(false);
             txtq1108dd.setTextColor(Color.LTGRAY);
             txtq1108wks.setTextColor(Color.LTGRAY);
-            txtq1108dd.setText("");
-            txtq1108wks.setText("");
+            txtq1108dd.setText("99");
+            txtq1108wks.setText("99");
             t1108dd.setTextColor(Color.LTGRAY);
             t1108wks.setTextColor(Color.LTGRAY);
         }
@@ -189,6 +198,8 @@ protected LibraryClass lib;
             // Remove the meat
             txtq1108dd.setEnabled(true);
             txtq1108wks.setEnabled(true);
+            txtq1108dd.setText("");
+            txtq1108wks.setText("");
 
             // TODO: Veggie sandwich
         }

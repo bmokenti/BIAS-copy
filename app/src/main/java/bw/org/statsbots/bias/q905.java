@@ -51,6 +51,7 @@ public class q905 extends AppCompatActivity implements Serializable {
         rbtna5 = (RadioButton) findViewById(R.id.q905a_5);
         rbtna6 = (RadioButton) findViewById(R.id.q905a_6);
         rbtnaother = (RadioButton) findViewById(R.id.q905a_other);
+
         edtaother = (EditText) findViewById(R.id.q905a_other1);
 
 
@@ -59,6 +60,9 @@ public class q905 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+
+
 
 
         Button btnnext = findViewById(R.id.btnNext);
@@ -75,10 +79,7 @@ public class q905 extends AppCompatActivity implements Serializable {
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
-                }
-                else
-
-                if (ck1txt.isChecked() && ck2txt.isChecked() ) {
+                } else if (ck1txt.isChecked() && ck2txt.isChecked()) {
 
                     lib.showError(q905.this, "Q905: ERROR", "Only one check box should be selected");
                     /**
@@ -86,24 +87,19 @@ public class q905 extends AppCompatActivity implements Serializable {
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
-                }
-
-                else{
+                } else {
                     int selectedIda = rg.getCheckedRadioButtonId();
                     selectedRbtna = (RadioButton) findViewById(selectedIda);
 
 
-                    if (selectedRbtna == null) {
+                    if (selectedRbtna == null && !ck2txt.isChecked()) {
                         lib.showError(q905.this, "Q905a: year", "What are the main reasons that you forget or do not take your ARV pills every day?");
                         /**
                          * VIBRATE DEVICE
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
-                    }
-                    else
-
-                    if (edtaother.length() == 0 && rbtnaother.isChecked()) {
+                    } else if (edtaother.length() == 0 && rbtnaother.isChecked()) {
 
                         lib.showError(q905.this, "Q905a: ERROR", "Please specify");
                         /**
@@ -111,21 +107,28 @@ public class q905 extends AppCompatActivity implements Serializable {
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
+                    } else {
+                        if (ck2txt.isChecked()) {
+
+                            individual.setQ905(edtdays.getText().toString());
+
+                            Intent intent = new Intent(q905.this, q1001.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+                        } else {
+
+                            individual.setQ905(edtdays.getText().toString());
+                            individual.setQ905a(selectedRbtna.getText().toString().substring(0, 1));
+                            individual.setQ905aOther(edtaother.getText().toString());
+
+                            Intent intent = new Intent(q905.this, q1001.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+                        }
+
                     }
-                    else {
-
-                       individual.setQ905(edtdays.getText().toString());
-                       individual.setQ905a(selectedRbtna.getText().toString().substring(0,1));
-                        individual.setQ905aOther(edtaother.getText().toString());
-
-                        Intent intent = new Intent(q905.this, q1001.class);
-                        intent.putExtra("Individual", individual);
-                        startActivity(intent);
-                    }
-
                 }
             }
-
 
         });
     }
@@ -142,6 +145,14 @@ public class q905 extends AppCompatActivity implements Serializable {
                     edtdays.setText("99");
                     edtdays.setEnabled(false);
                     ck2txt.setChecked(false);
+
+                    rbtna1.setEnabled(true);
+                    rbtna2.setEnabled(true);
+                    rbtna3.setEnabled(true);
+                    rbtna4.setEnabled(true);
+                    rbtna5.setEnabled(true);
+                    rbtna6.setEnabled(true);
+                    rbtnaother.setEnabled(true);
                 }
                 // Put some meat on the sandwich
                 else {
@@ -157,11 +168,39 @@ public class q905 extends AppCompatActivity implements Serializable {
                     edtdays.setText("00");
                     edtdays.setEnabled(false);
                     ck1txt.setChecked(false);
+                    rbtna1.setChecked(false);
+                    rbtna2.setChecked(false);
+                    rbtna3.setChecked(false);
+                    rbtna4.setChecked(false);
+                    rbtna5.setChecked(false);
+                    rbtna6.setChecked(false);
+                    rbtnaother.setChecked(false);
+
+                    rbtna1.setEnabled(false);
+                    rbtna2.setEnabled(false);
+                    rbtna3.setEnabled(false);
+                    rbtna4.setEnabled(false);
+                    rbtna5.setEnabled(false);
+                    rbtna6.setEnabled(false);
+                    rbtnaother.setEnabled(false);
+
+
+
 
                     // Put some meat on the sandwich
                 } else {
                     edtdays.setText("");
                     edtdays.setEnabled(true);
+
+                    rbtna1.setEnabled(true);
+                    rbtna2.setEnabled(true);
+                    rbtna3.setEnabled(true);
+                    rbtna4.setEnabled(true);
+                    rbtna5.setEnabled(true);
+                    rbtna6.setEnabled(true);
+                    rbtnaother.setEnabled(true);
+
+
                 }
                 // Remove the meat
                 break;

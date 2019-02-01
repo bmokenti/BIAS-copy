@@ -93,9 +93,8 @@ public class q502 extends AppCompatActivity implements View.OnClickListener, Ser
 
                 {
                         //Set q502 for the current individual
+
                      individual.setQ502(selectedRbtn.getText().toString().substring(0,1));
-
-
 
                         Intent intent = new Intent(q502.this, q503.class);
                         intent.putExtra("Individual", individual);

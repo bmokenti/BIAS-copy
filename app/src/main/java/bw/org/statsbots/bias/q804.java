@@ -48,6 +48,30 @@ public class q804 extends AppCompatActivity implements Serializable{
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        if(individual.getQ801().equals("1") && individual.getQ101().equals("2"))
+        {
+
+            Intent intent = new Intent(q804.this, q1001.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
+
+
+        if(individual.getQ801().equals("1") && individual.getQ101().equals("1"))
+        {
+
+            Intent intent = new Intent(q804.this, q1101.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
+
+
         rbtnother.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
