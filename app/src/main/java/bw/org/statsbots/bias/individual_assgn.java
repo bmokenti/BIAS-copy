@@ -66,6 +66,7 @@ public class individual_assgn extends AppCompatActivity implements Serializable 
         //Set title with number of assignments
         if(myAssignments.size()==0){
             Toast.makeText(this,"You have no assignments",Toast.LENGTH_LONG);
+            this.setTitle("BIAS V - You have no Households");
         }
         else
         {

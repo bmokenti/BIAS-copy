@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -257,6 +258,7 @@ public class q104 extends AppCompatActivity implements Serializable {
                                     individual.setQ104b(autoYear.getText().toString().substring(0,1));
                                     individual.setQ104c(edtq104c.getText().toString());
 
+                                    Log.d("Individual",individual.getQ104() + " " + individual.getQ104a() + " " + individual.getQ104c());
 
                                     Intent intent = new Intent(q104.this, q105.class);
                                     intent.putExtra("Individual", individual);

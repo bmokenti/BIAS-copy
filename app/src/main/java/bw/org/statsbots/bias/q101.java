@@ -105,11 +105,13 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
                     myDB = new DatabaseHelper(q101.this);
                     myDB.onOpen(myDB.getReadableDatabase());
 
-                    if(myDB.checkIndividual(individual)){
+                    if(myDB.checkIndividual(individual))
+                    {
                         //Update
                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
-                    }else{
+                    }
+                    else{
                         //Insert
                         myDB.insertIndividual(individual);
 

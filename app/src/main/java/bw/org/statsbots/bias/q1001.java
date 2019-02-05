@@ -36,7 +36,7 @@ public class q1001 extends AppCompatActivity {
         rbtn2 = (RadioButton) findViewById(R.id.q1001_2);
         rbtn3 = (RadioButton) findViewById(R.id.q1001_3);
 
-        //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
+        rg = (RadioGroup) findViewById(R.id.q901radioGroup);
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
@@ -56,39 +56,27 @@ public class q1001 extends AppCompatActivity {
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
-                } else {
-
-
-                    if (rbtn1.isChecked()) {
+                }
+                else
+                {
+                    if (rbtn1.isChecked())
+                    {
                         individual.setQ1001(selectedRbtn.getText().toString().substring(0,1));
-
                         Intent skipto1003 = new Intent(q1001.this, q1003.class);
                         skipto1003.putExtra("Individual", individual);
                         startActivity(skipto1003);
                     }
                     else
-                        {
-
+                    {
                         individual.setQ1001(selectedRbtn.getText().toString().substring(0,1));
-
                         Intent intent = new Intent(q1001.this, q1002.class);
                         intent.putExtra("Individual", individual);
                         startActivity(intent);
                     }
                 }
-
-
             }
-
-
-
-
         });
     }
-
-
-
-
 }
 
 /*

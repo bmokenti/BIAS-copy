@@ -136,11 +136,13 @@ public class q105 extends AppCompatActivity implements Serializable{
 
                                 } else {
 
-                                    individual.setQ105Other(selectedRbtn.getText().toString());
-                                    individual.setQ105(edt.getText().toString());
 
-                                    individual.setQ105a(selectedRbtn.getText().toString());
-                                    individual.setQ105b(selectedRbtn.getText().toString());
+                                    individual.setQ105(selectedRbtn.getText().toString().substring(0,1));
+
+                                    individual.setQ105a(edt1.getText().toString());
+                                    individual.setQ105b(edt2.getText().toString());
+
+                                    individual.setQ105Other(edt.getText().toString());
                                     //Set P02 fir the current individual
                                     //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
                                     //Restart the current activity for next individual
