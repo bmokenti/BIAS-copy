@@ -1475,8 +1475,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
     }
 
-
-
     private void writeToFile(String data,Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("json.txt", Context.MODE_PRIVATE));
@@ -1503,6 +1501,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
             d = new ProgressDialog(Dashboard.this);
             d.setMessage(s);
             d.setIndeterminate(true);
+            d.setCancelable(false);
             d.show();
         }
 
