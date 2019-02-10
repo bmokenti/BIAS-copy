@@ -109,6 +109,17 @@ public class q602 extends AppCompatActivity implements Serializable{
             }
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q602.super.onBackPressed();
+            }
+
+
+        });
+
     }
 
 
@@ -242,6 +253,7 @@ public class q602 extends AppCompatActivity implements Serializable{
                     else {
                         // Remove the meat
                         Q602edt.setVisibility(View.INVISIBLE);
+                        Q602edt.setText("");
                     }
                     break;
 

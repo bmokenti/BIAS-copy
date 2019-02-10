@@ -28,6 +28,7 @@ public class q104 extends AppCompatActivity implements Serializable {
     protected RadioGroup rbtngroup;
     protected EditText edtq104c;
     HouseHold thisHose;
+    protected DatabaseHelper myDB;
     TextView txtq104text, q104atxt, q104btxt;
     protected ArrayAdapter<String> adapter, adapter1, adapter2;
     protected AutoCompleteTextView autoTypeEducation, autoLevel, autoYear;
@@ -257,6 +258,20 @@ public class q104 extends AppCompatActivity implements Serializable {
                                     individual.setQ104b(autoYear.getText().toString().substring(0,1));
                                     individual.setQ104c(edtq104c.getText().toString());
 
+                                    myDB = new DatabaseHelper(q104.this);
+                                    myDB.onOpen(myDB.getReadableDatabase());
+                                    myDB.getWritableDatabase();
+
+                                    if(myDB.checkIndividual(individual)){
+                                        //Update
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                                    }else{
+                                        //Insert
+                                        myDB.insertIndividual(individual);
+
+                                    }
+
 
                                     Intent intent = new Intent(q104.this, q105.class);
                                     intent.putExtra("Individual", individual);
@@ -285,7 +300,19 @@ public class q104 extends AppCompatActivity implements Serializable {
                 }
             }
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q104.super.onBackPressed();
+            }
+
+
+        });
     }
+
+
 
 
 }

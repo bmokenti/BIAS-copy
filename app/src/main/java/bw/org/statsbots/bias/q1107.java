@@ -123,7 +123,18 @@ public class q1107 extends AppCompatActivity implements  Serializable {
                 }
             }
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1107.super.onBackPressed();
+            }
+
+
+        });
     }
+
 
 
     public void onRadioButtonClicked(View v) {

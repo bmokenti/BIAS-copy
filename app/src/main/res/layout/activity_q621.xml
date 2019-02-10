@@ -193,6 +193,7 @@
                         android:id="@+id/Q621a_Other1"
                         android:layout_width="263dp"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_background"
                         android:hint="Other specify"
                         android:visibility="invisible"/>
 
@@ -234,7 +235,7 @@
                             android:text="@string/q621b_1" />
 
                         <RadioButton
-                            android:id="@+id/q621b_9"
+                            android:id="@+id/q621b_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/q621b_2" />
@@ -264,7 +265,6 @@
                             android:ems="3"
                             android:gravity="center"
                             android:inputType="text"
-                            android:maxLength="2"
                             android:padding="3dp"
                             android:visibility="invisible"/>
 

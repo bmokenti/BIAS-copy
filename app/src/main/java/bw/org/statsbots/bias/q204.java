@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -65,9 +66,7 @@ public class q204 extends AppCompatActivity implements Serializable {
             public void onClick(View v) {
 
 
-
-
-                if (edt.getText() == null || edt.length()==0) {
+                if (edt.getText() == null || edt.length() == 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(q204.this);
                     builder.setTitle("Marital Status?");
                     builder.setIcon(R.drawable.ic_warning_orange_24dp);
@@ -94,35 +93,54 @@ public class q204 extends AppCompatActivity implements Serializable {
                     positiveButton.setLayoutParams(positiveButtonLL);
 
 
-
-
-
                 } else {
-                    //Set q101 for the current individual
                     individual.setQ204(edt.getText().toString());
+                    Integer age = Integer.parseInt(individual.getQ102());
+                    Integer years = Integer.parseInt(individual.getQ204());
+                    if ((age - years <= 12) || (years >= age))
+                    {
+                        lib.showError(q204.this, "Q204: Error", "Check age and years difference");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+
+                    }
+
+                    else
+                   {
+                        //Set q101 for the current individual
+                       // individual.setQ204(edt.getText().toString());
 
 
-                    //update individual
-                    DatabaseHelper myDB = new DatabaseHelper(q204.this);
+                        //update individual
+                        DatabaseHelper myDB = new DatabaseHelper(q204.this);
 
-                    myDB.onOpen(myDB.getReadableDatabase());
-                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                    myDB.close();
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                        myDB.close();
 
-                    Intent q1o2 = new Intent(q204.this, q205.class);
-                    q1o2.putExtra("Individual", individual);
-                    startActivity(q1o2);
+                        Intent q1o2 = new Intent(q204.this, q205.class);
+                        q1o2.putExtra("Individual", individual);
+                        startActivity(q1o2);
+
+                    }
 
                 }
-
             }
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q204.super.onBackPressed();
+            }
+
+        });
+
     }
-
-
-
-
-
 
 }

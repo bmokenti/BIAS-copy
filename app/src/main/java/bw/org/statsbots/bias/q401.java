@@ -69,7 +69,7 @@ public class q401 extends AppCompatActivity implements View.OnClickListener {
                     builder.setTitle("Seaxual intercourse");
                     builder.setIcon(R.drawable.ic_warning_orange_24dp);
 
-                    builder.setMessage("Have \"+ p1.getP01() + \"  ever had sexual intercourse?"
+                    builder.setMessage("Have ever had sexual intercourse?"
                             + "i.e. vaginal sex, oral sex, anal sex: consented or non-consented");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -116,6 +116,17 @@ public class q401 extends AppCompatActivity implements View.OnClickListener {
 
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q401.super.onBackPressed();
+            }
+
+
+        });
+
     }
 
 

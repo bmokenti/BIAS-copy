@@ -129,8 +129,17 @@ public class q613 extends AppCompatActivity implements Serializable {
                         }
                                 }
                             });
+        Button btprev = findViewById(R.id.button3);
 
-                        }
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q613.super.onBackPressed();
+            }
+
+
+        });
+    }
 
 
 

@@ -44,8 +44,10 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
             rbtn2 = (RadioButton) findViewById(R.id.q1114_2);
 
             final RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroupq1114);
+
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+
             //rbtn1.setOnClickListener(this);
             //rbtn2.setOnClickListener(this);
 
@@ -101,26 +103,19 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
 
                        individual.setQ1114(selectedRbtn.getText().toString().substring(0,1));
 
-                       // HouseHold house = new HouseHold();
-                       // house.getAssignment_ID();
-                        //house.getBatchNumber();
-                        //house.getPersons();
-                       /* boolean isInserted = myDB.insertIndividual(individual);
-                        Log.d("DB Name: ",myDB.getDatabaseName().toString() );
-
-                        if(isInserted == true)
-                            Toast.makeText(q1114.this,"Data Inserted",Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(q1114.this,"Data not Inserted",Toast.LENGTH_LONG).show();
-*/
-                      // myDB.insertIndividual(individual);
-
                         //update individual
                         DatabaseHelper myDB = new DatabaseHelper(q1114.this);
-
                         myDB.onOpen(myDB.getReadableDatabase());
-                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                        myDB.close();
+
+                        if(myDB.checkIndividual(individual)){
+                            //Update
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                        }else{
+                            //Insert
+                            myDB.insertIndividual(individual);
+
+                        }
 
 
                         Intent intent = new Intent(q1114.this, Dashboard.class);
@@ -131,12 +126,23 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
 
                 }
             });
-        }
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1114.super.onBackPressed();
+            }
+
+
+        });
+    }
 
 
 
 
-        @Override
+
+    @Override
         public void onClick(View view) {
             switch (view.getId()) {
 

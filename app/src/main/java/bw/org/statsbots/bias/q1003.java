@@ -11,7 +11,9 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class q1003 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q1003 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
@@ -83,7 +85,18 @@ public class q1003 extends AppCompatActivity {
 
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1003.super.onBackPressed();
+            }
+
+
+        });
     }
+
 
 
 

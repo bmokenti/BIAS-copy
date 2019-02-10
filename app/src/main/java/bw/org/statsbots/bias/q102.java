@@ -42,7 +42,9 @@ public class q102 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-        edt = (EditText)findViewById(R.id.q102_years);
+        Intent h = getIntent();
+        thisHouse = (HouseHold) h.getSerializableExtra("Household");
+        edt = (EditText) findViewById(R.id.q102_years);
 /*
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(),individual.getAssignmentID());
         sample.getStatusCode();
@@ -70,56 +72,71 @@ public class q102 extends AppCompatActivity implements Serializable {
         /**
          * NEXT Person BUTTON
          */
-            Button btnNext = (Button)findViewById(R.id.button);
+        Button btnNext = (Button) findViewById(R.id.button);
 
 
-            //btnNext.setText(btnLabel);
-            btnNext.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int Years;
-                     edt = (EditText)findViewById(R.id.q102_years);
-                    String years=edt.getText().toString();
+        //btnNext.setText(btnLabel);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int Years;
+                edt = (EditText) findViewById(R.id.q102_years);
+                String years = edt.getText().toString();
 
-                    if(years.length()==0 || years.equals("00") || years.equals("") || Integer.valueOf(edt.getText().toString()) <= 14)
-                    {
-                        lib.showError(q102.this,"q102 Error","Please enter age in completd years, Age must be 15 and above");
-                        /**
-                         * VIBRATE DEVICE
-                         */
-                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        vibs.vibrate(100);
+                if (years.length() == 0 || years.equals("00") || years.equals("") || Integer.valueOf(edt.getText().toString()) <= 14) {
+                    lib.showError(q102.this, "q102 Error", "Please enter age in completd years, Age must be 15 and above");
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
 
-                    }
-                    else{
-                        //Set Q102 for the current individual
-                       individual.setQ102(edt.getText().toString());
+                } else {
+                    //Set Q102 for the current individual
+                    individual.setQ102(edt.getText().toString());
+                    //Check if individual already been saved and update
+                    myDB = new DatabaseHelper(q102.this);
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
 
+                    if (myDB.checkIndividual(individual)) {
+                        //Update
+                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
-
-                            //Next question P17
-                            Intent intent = new Intent(q102.this, q103.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
-
-
-
-
-
-
+                    } else {
+                        //Insert
+                        myDB.insertIndividual(individual);
 
                     }
 
 
-
+                    //Next question P17
+                    Intent intent = new Intent(q102.this, q103.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
 
 
                 }
-            });
 
-        }
 
+            }
+        });
+
+
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q102.super.onBackPressed();
+            }
+
+
+        });
     }
+}
+
+
 /*
     @Override
     public void onClick(View view) {

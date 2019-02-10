@@ -125,7 +125,18 @@ protected LibraryClass lib;
                 }
             }
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1108.super.onBackPressed();
+            }
+
+
+        });
     }
+
 
 
 

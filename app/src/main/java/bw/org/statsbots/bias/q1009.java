@@ -94,7 +94,7 @@ public class q1009 extends AppCompatActivity {
                             individual.setQ1009(selectedRbtn.getText().toString().substring(0, 1));
 
                             Intent intent = new Intent(q1009.this, q1010.class);
-                            intent.putExtra("Individaul", individual);
+                            intent.putExtra("Individual", individual);
                             startActivity(intent);
                         } else {
 
@@ -103,7 +103,7 @@ public class q1009 extends AppCompatActivity {
 
 
                             Intent intent = new Intent(q1009.this, q1010.class);
-                            intent.putExtra("Individaul", individual);
+                            intent.putExtra("Individual", individual);
                             startActivity(intent);
 
 
@@ -115,7 +115,19 @@ public class q1009 extends AppCompatActivity {
 
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1009.super.onBackPressed();
+            }
+
+
+        });
     }
+
+
 
 
     public void onRadioButtonClicked(View view) {

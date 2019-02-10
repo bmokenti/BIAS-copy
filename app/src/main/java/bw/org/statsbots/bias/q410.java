@@ -89,19 +89,10 @@ public class q410 extends AppCompatActivity {
             //do nothing
         }
 
-        if (individual.getQ101().equals("2") && ((individual.getQ201().equals("1")  && individual.getQ202().equals("2")) || individual.getQ201().equals("6")) )
-        {
 
-            Intent intent = new Intent(q410.this, q601.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
 
-        } else {
-            //do nothing
-        }
-
-        if (individual.getQ101().equals("2") && (individual.getQ201().equals("2") || individual.getQ201().equals("3") || individual.getQ201().equals("4") || individual.getQ201().equals("5") )
-                && Integer.valueOf(individual.getQ102()) >= 50)
+        if ((individual.getQ101().equals("2")) && ((individual.getQ201().equals("1")  && individual.getQ202().equals("2")) || individual.getQ201().equals("6"))
+                || Integer.valueOf(individual.getQ102()) >= 50)
         {
 
             Intent intent = new Intent(q410.this, q601.class);
@@ -226,6 +217,17 @@ public class q410 extends AppCompatActivity {
 
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q410.super.onBackPressed();
+            }
+
+
+        });
+
     }
 
 

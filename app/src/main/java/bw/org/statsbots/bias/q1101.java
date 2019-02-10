@@ -28,7 +28,7 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
     protected PersonRoster p1=null;
     protected String currentHH=null;
     protected LibraryClass lib;
-    protected RadioButton rbtn1,rbtn2,rbtn3, rbtn4, rbtna1, rbtna2, rbtna3 ,rbtna4 , rbtna5, selectedRbtn, selectedRbtn1;
+    protected RadioButton rbtn1,rbtn2,rbtn3, rbtn4, rbtna1, rbtna2, rbtna3 ,rbtna4 , rbtna5, rbtnaOther, selectedRbtn, selectedRbtn1;
     //protected RadioGroup rg, rg1;
     TextView q1101atext;
     EditText q1101aOther;
@@ -74,6 +74,8 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
         rbtna3 = (RadioButton) findViewById(R.id.q1101a_3);
         rbtna4 = (RadioButton) findViewById(R.id.q1101a_4);
         rbtna5 = (RadioButton) findViewById(R.id.q1101a_5);
+        rbtnaOther = (RadioButton) findViewById(R.id.q1101aOther);
+        q1101aOther = (EditText) findViewById(R.id.q1101a_Other);
 
         // rbtn1.setOnClickListener(this);
         //rbtn2.setOnClickListener(this);
@@ -85,6 +87,26 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+
+
+        rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.H11_Other)
+                {
+                    // is checked
+                    q1101aOther.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    // not checked
+                    q1101aOther.setVisibility(View.INVISIBLE);
+                    q1101aOther.setText("");
+                }
+            }
+        });
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -153,33 +175,77 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
 
 
                     } else {
+                        // individual.setQ1101(selectedRbtn.getText().toString().substring(0,1));
 
 
-                        if (rbtn3.isChecked() && rbtn4.isChecked()) {
+                        if (rbtnaOther.isChecked() && q1101aOther.length() == 0) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(q1101.this);
+                            builder.setTitle("Q1101: Error: Other");
+                            builder.setIcon(R.drawable.ic_warning_orange_24dp);
 
-                            individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
+                            builder.setMessage("a): Please specify");
+                            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
 
+                                }
+                            });
 
-                            Intent intent = new Intent(q1101.this, q1102.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
+
+                            AlertDialog alertDialog = builder.show();
+                            final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                            LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                            positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            positiveButton.setTextColor(Color.WHITE);
+                            positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                            positiveButton.setLayoutParams(positiveButtonLL);
+
 
                         } else {
-                            //Set q1101 for the current individual
-                            individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
-                            individual.setQ1101a(selectedRbtn1.getText().toString().substring(0, 1));
-                            //individual.setQ1101aOther(ed.getText().toString().substring(0,1));
 
-                            Intent q1o3 = new Intent(q1101.this, q1102.class);
-                            q1o3.putExtra("Individual", individual);
-                            startActivity(q1o3);
-                            //setting q103 value
+
+                            if (rbtn3.isChecked() && rbtn4.isChecked()) {
+
+                                individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
+
+
+                                Intent intent = new Intent(q1101.this, q1102.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+
+                            } else {
+                                //Set q1101 for the current individual
+                                individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
+                                individual.setQ1101a(selectedRbtn1.getText().toString().substring(0, 1));
+                                individual.setQ1101aOther(q1101aOther.getText().toString());
+
+                                Intent q1o3 = new Intent(q1101.this, q1102.class);
+                                q1o3.putExtra("Individual", individual);
+                                startActivity(q1o3);
+                                //setting q103 value
+                            }
                         }
                     }
                 }
             }
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1101.super.onBackPressed();
+            }
+
+
+        });
     }
+
+
 
 
 

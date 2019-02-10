@@ -130,14 +130,12 @@
                     android:id="@+id/P14_7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:text="7. Working at own/family lands/cattle post" />
 
                 <RadioButton
                     android:id="@+id/P14_8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:text="8. Apprentice" />
 
                 <RadioButton

@@ -133,8 +133,8 @@ public class q1106 extends AppCompatActivity implements Serializable {
 
                     } else {
 
-
-
+                        int selectedId3 = rGroup3.getCheckedRadioButtonId();
+                        selectedRbtn3 = (RadioButton) findViewById(selectedId3);
 
                         if (rbtn2.isChecked() && selectedRbtn3 == null) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(q1106.this);
@@ -207,7 +207,18 @@ public class q1106 extends AppCompatActivity implements Serializable {
                 }
             }
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1106.super.onBackPressed();
+            }
+
+
+        });
     }
+
 
 
     public void onRadioButtonClicked(View v){

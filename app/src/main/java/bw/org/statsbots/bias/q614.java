@@ -31,7 +31,7 @@ public class q614 extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q614);
 
-        setTitle("q614  BELIEVE OF ANTI -RETRO-VIRAL DO ");
+        setTitle("q614: KNOWLEDGE ABOUT HIV/AIDS AND TB ");
         lib = new LibraryClass();
         rbtn1 = (RadioButton) findViewById(R.id.q614_1);
         rbtn2 = (RadioButton) findViewById(R.id.q614_2);
@@ -93,6 +93,16 @@ public class q614 extends AppCompatActivity implements Serializable {
             }
         });
 
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q614.super.onBackPressed();
+            }
+
+
+        });
     }
 
     public void onRadioButtonClicked(View v) {
@@ -110,6 +120,7 @@ public class q614 extends AppCompatActivity implements Serializable {
                 else
                 {
                     edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
                 }
 
 

@@ -13,13 +13,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class q1011 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q1011 extends AppCompatActivity implements Serializable {
 
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
-    protected   Individual individual;
+    protected  Individual individual;
     protected CheckBox ck1txt, ck2txt;
     protected Button btn;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtn8, rbtnOther ;
@@ -87,15 +89,17 @@ public class q1011 extends AppCompatActivity {
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
                     } else {
-                        if (rbtn8.isChecked()) {
+                        if (rbtn8.isChecked())
+                        {
                             individual.setQ1011(selectedRbtn.getText().toString().substring(0,1));
 
                             Intent intent1 = new Intent(q1011.this, q1017.class);
                             intent1.putExtra("Individual", individual);
                             startActivity(intent1);
-                        } else {
+                        }
+                        else {
                             individual.setQ1011(selectedRbtn.getText().toString().substring(0,1));
-                            individual.setQ1011_Other(selectedRbtn.getText().toString().substring(0,1));
+                            individual.setQ1011_Other(edtOther.getText().toString());
 
                             Intent intent = new Intent(q1011.this, q1012.class);
                             intent.putExtra("Individual", individual);
@@ -108,7 +112,19 @@ public class q1011 extends AppCompatActivity {
                 }
             }
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1011.super.onBackPressed();
+            }
+
+
+        });
     }
+
+
 
 
     public void onRadioButtonClicked(View view) {
@@ -144,7 +160,8 @@ public class q1011 extends AppCompatActivity {
             case R.id.q1011_3:
                 if(checked)
 
-
+                    edtOther.setVisibility(View.INVISIBLE);
+                edtOther.setText("");
 
                     break;
             case R.id.q1011_4:
@@ -158,7 +175,8 @@ public class q1011 extends AppCompatActivity {
             case R.id.q1011_5:
                 if(checked)
 
-
+                    edtOther.setVisibility(View.INVISIBLE);
+                edtOther.setText("");
 
                     break;
 

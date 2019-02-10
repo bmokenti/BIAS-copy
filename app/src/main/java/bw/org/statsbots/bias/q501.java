@@ -124,6 +124,17 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
                 }
             }
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q501.super.onBackPressed();
+            }
+
+
+        });
+
     }
 
 

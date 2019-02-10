@@ -148,8 +148,8 @@
                             android:background="@drawable/edit_text_background"
                             android:ems="10"
                             android:hint="Years"
-                            android:inputType="number"
                             android:maxLength="2"
+                            android:inputType="number"
                             android:padding="3dp"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
@@ -283,7 +283,6 @@
                                 android:ems="3"
                                 android:gravity="center"
                                 android:inputType="text"
-                                android:maxLength="2"
                                 android:padding="3dp"
                                 android:visibility="invisible" />
 
@@ -389,7 +388,6 @@
                                 android:ems="3"
                                 android:gravity="center"
                                 android:inputType="text"
-                                android:maxLength="2"
                                 android:padding="3dp"
                                 android:visibility="invisible" />
 

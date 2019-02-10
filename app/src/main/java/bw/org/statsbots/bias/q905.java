@@ -131,7 +131,18 @@ public class q905 extends AppCompatActivity implements Serializable {
             }
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q905.super.onBackPressed();
+            }
+
+
+        });
     }
+
 
 
     public void onCheckboxClicked(View view) {

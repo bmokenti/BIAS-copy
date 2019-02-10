@@ -110,7 +110,18 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
 
             }
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1113.super.onBackPressed();
+            }
+
+
+        });
     }
+
 
     public void onRadioButtonClicked(View v) {
 

@@ -199,7 +199,7 @@
                                 android:layout_height="wrap_content"
                                 android:visibility="invisible"
                                 android:hint="other specify"
-                                android:text="Other Specify" />
+                                android:text="" />
 
                         </RadioGroup>
 

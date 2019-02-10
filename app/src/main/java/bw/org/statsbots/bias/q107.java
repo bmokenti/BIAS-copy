@@ -28,6 +28,7 @@ public class q107 extends AppCompatActivity implements Serializable{
     protected CheckBox chk99;
     protected LibraryClass lib;
     protected Individual individual;
+    protected DatabaseHelper myDB;
     PersonRoster p1 = null;
     protected TextView txta, txtb, txtc;
     @Override
@@ -77,6 +78,10 @@ public class q107 extends AppCompatActivity implements Serializable{
         txta = (TextView) findViewById(R.id.q107atxt) ;
         txtb = (TextView) findViewById(R.id.q107btxt) ;
          txtc = (TextView) findViewById(R.id.q107ctxt) ;
+
+        myDB = new DatabaseHelper(q107.this);
+        myDB.onOpen(myDB.getReadableDatabase());
+        myDB.getWritableDatabase();
 
         chk99.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -372,6 +377,16 @@ public class q107 extends AppCompatActivity implements Serializable{
                                                 if (rbtn2.isChecked()) {
                                                     individual.setQ107(selectedRbtn.getText().toString().substring(0, 1));
 
+                                                    if(myDB.checkIndividual(individual)){
+                                                        //Update
+                                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                                                    }else{
+                                                        //Insert
+                                                        myDB.insertIndividual(individual);
+
+                                                    }
+
                                                     Intent q1o3 = new Intent(q107.this, Q201.class);
                                                     q1o3.putExtra("Individual", individual);
                                                     startActivity(q1o3);
@@ -383,6 +398,16 @@ public class q107 extends AppCompatActivity implements Serializable{
                                                     individual.setQ107bOther(edtbOther.getText().toString());
                                                     individual.setQ107c(selectedRbtn2.getText().toString().substring(0, 1));
                                                     individual.setQ107cOther(edtcOther.getText().toString());
+
+                                                    if(myDB.checkIndividual(individual)){
+                                                        //Update
+                                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                                                    }else{
+                                                        //Insert
+                                                        myDB.insertIndividual(individual);
+
+                                                    }
 
 
                                                     Intent q1o3 = new Intent(q107.this, Q201.class);
@@ -399,7 +424,18 @@ public class q107 extends AppCompatActivity implements Serializable{
                 }
             }
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q107.super.onBackPressed();
+            }
+
+
+        });
     }
+
 
 
     public void onRadioButtonClicked(View v){

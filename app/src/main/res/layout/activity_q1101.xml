@@ -204,12 +204,22 @@
                         android:onClick="onRadioButtonClicked"
                         android:text="5. Traditional Healer" />
 
+                        <RadioButton
+                            android:id="@+id/q1101aOther"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onRadioButtonClicked"
+                            android:text="Other Specify" />
+
                     </RadioGroup>
+
 
                     <EditText
                         android:id="@+id/q1101a_Other"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_background"
+                        android:visibility="invisible"
                         android:text="" />
 
 

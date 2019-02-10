@@ -17,7 +17,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-
         android:orientation="horizontal"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
@@ -105,14 +104,12 @@
                                 android:id="@+id/q1010_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:onClick="onRadioButtonClicked"
                                 android:text="@string/q1010_1" />
 
                             <RadioButton
                                 android:id="@+id/q1010_2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:onClick="onRadioButtonClicked"
                                 android:text="@string/q1010_2" />
 
                             <RadioButton
@@ -125,20 +122,19 @@
                                 android:id="@+id/q1010_other"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:onClick="onRadioButtonClicked"
                                 android:text="Other Specify" />
 
 
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="10dp"
-                                android:layout_height="1dp"
-                                android:onClick="onRadioButtonClicked"
-                                android:background="@color/gray" />
 
+                        </RadioGroup>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="1dp"
+                            android:background="@color/gray" />
 
-                            <EditText
+                        <EditText
                                 android:id="@+id/q1010_other1"
                                 android:layout_width="244dp"
                                 android:layout_height="wrap_content"
@@ -152,8 +148,6 @@
                                 android:visibility="invisible"/>
 
 
-
-                        </RadioGroup>
                     </LinearLayout>
 
                 </LinearLayout>

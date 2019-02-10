@@ -135,7 +135,7 @@
                         android:ems="10"
                         android:hint="@string/q1004_year"
                         android:inputType="number"
-                        android:maxLength="2"
+                        android:maxLength="4"
                         android:padding="3dp"
                         android:textColor="@color/black"
                         android:textSize="16sp" />

@@ -340,15 +340,6 @@ public class P10 extends AppCompatActivity implements Serializable {
                                         vibs.vibrate(100);
                                     }
 
-
-
-
-
-
-
-
-
-
                                 }
                                 else
                                     {

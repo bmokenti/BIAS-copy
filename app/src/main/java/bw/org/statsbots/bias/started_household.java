@@ -223,7 +223,8 @@ public class started_household extends AppCompatActivity implements Serializable
                 //btn.setEnabled(false);
                 final  PersonRoster temp = r.get(o);
                 s.setStatusCode("1");
-                if(s.getStatusCode().equals("1")){//************************************HIV
+                if(s.getStatusCode().equals("1")){
+                    //************************************HIV
                     if(Integer.parseInt(r.get(o).getP04YY()) <15 || Integer.parseInt(r.get(o).getP04YY()) > 64)
                     {
 

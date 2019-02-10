@@ -67,8 +67,6 @@ public class q606 extends AppCompatActivity implements Serializable{
          * NEXT question
          */
         Button btnNext = (Button)findViewById(R.id.button);
-
-
         /**
          * NEXT and SAVE BUTTON
          */
@@ -102,16 +100,17 @@ public class q606 extends AppCompatActivity implements Serializable{
         });
 
 
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q606.super.onBackPressed();
+            }
 
 
-
-
-
+        });
     }
-
-
-
-
 
 }
 

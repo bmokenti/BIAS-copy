@@ -108,6 +108,39 @@ public class q801 extends AppCompatActivity {
         individual =(Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        rgd.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.q801d_other)
+                {
+                    // is checked
+                    edtdother.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    // not checked
+                    edtdother.setVisibility(View.INVISIBLE);
+                    edtdother.setText("");
+                }
+            }
+        });
+
+        rge.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.q801e_other)
+                {
+                    // is checked
+                    edteother.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    // not checked
+                    edteother.setVisibility(View.INVISIBLE);
+                    edteother.setText("");
+                }
+            }
+        });
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -302,6 +335,16 @@ public class q801 extends AppCompatActivity {
                     }
                 }
             }
+        });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q801.super.onBackPressed();
+            }
+
+
         });
     }
 
@@ -509,24 +552,24 @@ public class q801 extends AppCompatActivity {
 
             case R.id.q801d_other:
                 if (checked) {
-                    edtdother.setVisibility(View.VISIBLE);
+                    //edtdother.setVisibility(View.VISIBLE);
                 }
                 // Put some meat on the sandwich
                 else {
-                    edtdother.setVisibility(View.INVISIBLE);
-                    edtdother.setText("");
+                    //edtdother.setVisibility(View.INVISIBLE);
+                  //  edtdother.setText("");
 
                 }
                 break;
 
             case R.id.q801e_other:
                 if (checked) {
-                    edteother.setVisibility(View.VISIBLE);
+                  //  edteother.setVisibility(View.VISIBLE);
                 }
                 // Put some meat on the sandwich
                 else {
-                    edteother.setVisibility(View.INVISIBLE);
-                    edteother.setText("");
+                   // edteother.setVisibility(View.INVISIBLE);
+                   // edteother.setText("");
                 }
                 break;
 

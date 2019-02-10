@@ -112,6 +112,17 @@ public class q504 extends AppCompatActivity implements Serializable {
             }
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q504.super.onBackPressed();
+            }
+
+
+        });
+
     }
 
 

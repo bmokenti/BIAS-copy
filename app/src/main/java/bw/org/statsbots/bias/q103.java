@@ -15,7 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class q103 extends AppCompatActivity implements View.OnClickListener{
+import java.io.Serializable;
+
+public class q103 extends AppCompatActivity implements View.OnClickListener, Serializable {
 
 
     protected LibraryClass lib;
@@ -24,6 +26,7 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
     protected HouseHold thisHouse;
     protected Individual individual;
     protected RadioButton selectedRbtn;
+    protected DatabaseHelper myDB;
     PersonRoster p1 = null;
     Individual pp1 = null;
 
@@ -38,7 +41,9 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
         rbtn3 =  (RadioButton)findViewById(R.id.q103_3);
         final RadioGroup rg = (RadioGroup)findViewById(R.id.q103radioGroup);
 
-
+        myDB = new DatabaseHelper(q103.this);
+        myDB.onOpen(myDB.getReadableDatabase());
+        myDB.getWritableDatabase();
 
 //        final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
@@ -85,6 +90,18 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
 
 
                     if (rbtn3.isChecked()) {
+                        individual.setQ103(selectedRbtn.getText().toString().substring(0,1));
+
+                        if(myDB.checkIndividual(individual)){
+                            //Update
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                        }else{
+                            //Insert
+                            myDB.insertIndividual(individual);
+
+                        }
+
                         Intent q1o3 = new Intent(q103.this, q105.class);
                         q1o3.putExtra("Individual", individual);
                         startActivity(q1o3);
@@ -94,12 +111,19 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
                         individual.setQ103(selectedRbtn.getText().toString().substring(0,1));
 
 
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-                        // selectedRbtn.getText().toString().substring(0, 1);
+
+                        if(myDB.checkIndividual(individual)){
+                            //Update
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                        }else{
+                            //Insert
+                            myDB.insertIndividual(individual);
+
+                        }
+
+
+                       ////*********************************************
 
                         Intent q1o3 = new Intent(q103.this, q104.class);
                         q1o3.putExtra("Individual", individual);
@@ -111,7 +135,23 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
 
             }
         });
-        }
+
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q103.super.onBackPressed();
+            }
+
+
+        });
+    }
+
+
+
+
+
 
 
 

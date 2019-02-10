@@ -14,7 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class q1002 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q1002 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
@@ -140,7 +142,7 @@ public class q1002 extends AppCompatActivity {
                             } else {
 
 
-                                if (rbtn2.isChecked()) {
+                                if (rbtn2.isChecked() || rbtn3.isChecked() ) {
 
                                     individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
                                     individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
@@ -149,20 +151,149 @@ public class q1002 extends AppCompatActivity {
                                     Intent intent = new Intent(q1002.this, q1003.class);
                                     intent.putExtra("Individual", individual);
                                     startActivity(intent);
-                                } else {
-
-
-                                    if (rbtn3.isChecked()) {
-
-                                        individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
-
-
-                                        Intent intent = new Intent(q1002.this, q1003.class);
-                                        intent.putExtra("Individual", individual);
-                                        startActivity(intent);
-                                    }
+                                }
                                     else {
                                         individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
+                                        if (chka1.isChecked())
+                                        {
+                                            individual.setQ1002a_1("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_1("2");
+                                        }
+
+                                        if (chka2.isChecked())
+                                        {
+                                            individual.setQ1002a_2("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_2("2");
+                                        }
+                                        if (chka3.isChecked())
+                                        {
+                                            individual.setQ1002a_3("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_3("2");
+                                        }
+                                        if (chka4.isChecked())
+                                        {
+                                            individual.setQ1002a_4("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_4("2");
+                                        }
+                                        if (chka5.isChecked())
+                                        {
+                                            individual.setQ1002a_5("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_5("2");
+                                        }
+                                        if (chka6.isChecked())
+                                        {
+                                            individual.setQ1002a_6("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_6("2");
+                                        }
+                                        if (chka7.isChecked())
+                                        {
+                                            individual.setQ1002a_7("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_7("2");
+                                        }
+                                        if (chka8.isChecked())
+                                        {
+                                            individual.setQ1002a_8("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_8("2");
+                                        }
+                                        if (chka10.isChecked())
+                                        {
+                                            individual.setQ1002a_10("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_10("2");
+                                        }
+                                        if (chka11.isChecked())
+                                        {
+                                            individual.setQ1002a_11("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_11("2");
+                                        }
+                                        if (chka12.isChecked())
+                                        {
+                                            individual.setQ1002a_12("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_12("2");
+                                        }
+                                        if (chka13.isChecked())
+                                        {
+                                            individual.setQ1002a_13("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_13("2");
+                                        }
+                                        if (chka14.isChecked())
+                                        {
+                                            individual.setQ1002a_14("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_14("2");
+                                        }
+                                        if (chka1.isChecked())
+                                        {
+                                            individual.setQ1002a_15("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_15("2");
+                                        }
+                                        if (chka16.isChecked())
+                                        {
+                                            individual.setQ1002a_16("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_16("2");
+                                        }
+                                        if (chka17.isChecked())
+                                        {
+                                            individual.setQ1002a_17("1");
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002a_17("2");
+                                        }
+                                        if (chka18.isChecked())
+                                        {
+                                            individual.setQ1002a_18("1");
+                                            individual.setQ1002a_Other(edtOthertxt.getText().toString());
+                                        }
+                                        else
+
+                                        {
+                                            individual.setQ1002a_18("2");
+                                        }
+                                        /*
                                         individual.setQ1002a_1(chka1.getText().toString().substring(0, 1));
                                         individual.setQ1002a_2(chka2.getText().toString().substring(0, 1));
                                         individual.setQ1002a_3(chka3.getText().toString().substring(0, 1));
@@ -181,7 +312,7 @@ public class q1002 extends AppCompatActivity {
                                         individual.setQ1002a_17(chka17.getText().toString().substring(0, 1));
                                         individual.setQ1002a_18(chka18.getText().toString().substring(0, 1));
                                         individual.setQ1002a_Other(edtOthertxt.getText().toString());
-
+*/
                                         individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
                                         individual.setQ1002bOther(edtbOther.getText().toString());
 
@@ -198,9 +329,21 @@ public class q1002 extends AppCompatActivity {
                     }
 
                 }
+
+        });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1002.super.onBackPressed();
             }
+
+
         });
     }
+
+
 
 
     public void onRadioButtonClicked(View view) {

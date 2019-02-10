@@ -154,6 +154,17 @@ public class q303 extends AppCompatActivity {
             }
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q303.super.onBackPressed();
+            }
+
+
+        });
+
     }
 
     public void onRadioButtonClicked(View v) {

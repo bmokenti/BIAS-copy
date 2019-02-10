@@ -102,6 +102,17 @@ public class q305 extends AppCompatActivity {
 
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q305.super.onBackPressed();
+            }
+
+
+        });
+
     }
 
     public void onCheckboxClicked(View v) {

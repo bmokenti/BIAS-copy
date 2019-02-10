@@ -28,6 +28,7 @@ public class q105 extends AppCompatActivity implements Serializable{
     protected  HouseHold thisHouse;
     protected Individual individual;
     protected RadioButton selectedRbtn;
+    protected DatabaseHelper myDB;
     protected EditText edt, edt1, edt2;
     TextView q105text;
     PersonRoster p1 = null;
@@ -51,12 +52,16 @@ public class q105 extends AppCompatActivity implements Serializable{
         rbtn8 =  (RadioButton)findViewById(R.id.q105_1h);
         rbtn9 = findViewById(R.id.q105_other);
 
+
         edt = (EditText) findViewById(R.id.Q105_txtOther);
         edt1 = (EditText) findViewById(R.id.Q105atxt);
         edt2 = (EditText) findViewById(R.id.Q105btxt);
 
         final RadioGroup rg = (RadioGroup)findViewById(R.id.q105radioGroup);
 
+        myDB = new DatabaseHelper(q105.this);
+        myDB.onOpen(myDB.getReadableDatabase());
+        myDB.getWritableDatabase();
         lib = new LibraryClass();
 
         //edittext = (EditText) findViewById(R.id.q102_years);
@@ -64,9 +69,11 @@ public class q105 extends AppCompatActivity implements Serializable{
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
+
         int p = 0;
 
-
+        edt1.clearFocus();
+        edt2.clearFocus();
 
 
 
@@ -131,6 +138,19 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     individual.setQ105Other(selectedRbtn.getText().toString());
                                     individual.setQ105(edt.getText().toString());
 
+
+
+                                    if(myDB.checkIndividual(individual)){
+                                        //Update
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                                    }else{
+                                        //Insert
+                                        myDB.insertIndividual(individual);
+
+                                    }
+
+
                                     Intent intent = new Intent(q105.this, q106.class);
                                     intent.putExtra("Individual", individual);
                                     startActivity(intent);
@@ -150,9 +170,16 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     //update individual
                                     DatabaseHelper myDB = new DatabaseHelper(q105.this);
 
-                                    myDB.onOpen(myDB.getReadableDatabase());
-                                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                                    myDB.close();
+                                    if(myDB.checkIndividual(individual)){
+                                        //Update
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                                    }else{
+                                        //Insert
+                                        myDB.insertIndividual(individual);
+
+
+                                    }
 
 
                                     //Next question P17
@@ -170,8 +197,18 @@ public class q105 extends AppCompatActivity implements Serializable{
                 }
             }
         });
+        Button btprev = findViewById(R.id.button3);
 
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q105.super.onBackPressed();
+            }
+
+
+        });
     }
+
 
     public void onRadioButtonClicked(View v) {
 
@@ -228,6 +265,7 @@ public class q105 extends AppCompatActivity implements Serializable{
                     edt.setVisibility(View.INVISIBLE);
                 edt.setText("");
                 edt1.setText("");
+
                 edt1.setEnabled(false);
                 edt2.setEnabled(false);
                 edt2.setText("");
@@ -239,6 +277,7 @@ public class q105 extends AppCompatActivity implements Serializable{
                     edt.setVisibility(View.INVISIBLE);
                 edt.setText("");
                 edt1.setText("");
+
                 edt1.setEnabled(false);
                 edt2.setEnabled(false);
                 edt2.setText("");
@@ -250,6 +289,7 @@ public class q105 extends AppCompatActivity implements Serializable{
                 edt.setText("");
                 edt1.setText("");
                 edt1.setEnabled(false);
+
                 edt2.setEnabled(false);
                 edt2.setText("");
 
@@ -261,6 +301,7 @@ public class q105 extends AppCompatActivity implements Serializable{
                 edt.setText("");
                 edt1.setText("");
                 edt1.setEnabled(false);
+
                 edt2.setEnabled(false);
                 edt2.setText("");
 

@@ -1196,6 +1196,17 @@ public class Individual implements Serializable {
     private String Q616_9;
     private String Q616_10;
 
+    public String getQ616_Other() {
+        return Q616_Other;
+    }
+
+    public void setQ616_Other(String q616_Other) {
+        Q616_Other = q616_Other;
+    }
+
+    private String Q616_Other;
+
+
 
     public void setQ616_1(String q616_1) {
         Q616_1 = q616_1;
@@ -1317,6 +1328,16 @@ public class Individual implements Serializable {
     public void setQ617_0ther(String q617_0ther) {
         Q617_0ther = q617_0ther;
     }
+
+    public String getQ617checkOther() {
+        return Q617checkOther;
+    }
+
+    public void setQ617checkOther(String checkOther) {
+        this.Q617checkOther = Q617checkOther;
+    }
+
+    public String Q617checkOther;
 
     public String getQ618() {
         return Q618;
@@ -1625,7 +1646,15 @@ public class Individual implements Serializable {
     }
 
 
+    public String getQ621a_Other1() {
+        return Q621a_Other1;
+    }
 
+    public void setQ621a_Other1(String q621a_Other1) {
+        Q621a_Other1 = q621a_Other1;
+    }
+
+    public String Q621a_Other1;
     public String getQ621() {
         return Q621;
     }

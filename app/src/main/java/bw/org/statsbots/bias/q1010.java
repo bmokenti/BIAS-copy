@@ -14,7 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class q1010 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q1010 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
@@ -22,7 +24,7 @@ public class q1010 extends AppCompatActivity {
     protected Button btn;
     protected Individual individual;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtnOther, selectedRbtn ;
-    protected RadioGroup rg, rga;
+    protected RadioGroup rg;
     protected TextView t1;
     protected EditText edtOther;
 
@@ -36,33 +38,49 @@ public class q1010 extends AppCompatActivity {
         setTitle("Q1010: CHILD BEARING");
         lib = new LibraryClass();
 
+
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
+
 //btn = findViewById(R.id.btn);
-        rg = (RadioGroup)findViewById(R.id.q1010radioGroup) ;
+        rg = (RadioGroup)findViewById(R.id.q1010radioGroup);
         rbtn1 = (RadioButton) findViewById(R.id.q1010_1);
         rbtn2 = (RadioButton) findViewById(R.id.q1010_2);
         rbtn3 = (RadioButton) findViewById(R.id.q1010_3);
         rbtnOther = (RadioButton) findViewById(R.id.q1010_other);
         edtOther = (EditText)  findViewById(R.id.q1010_other1);
 
-        //rga = (RadioGroup)findViewById(R.id.q1010aGroup1) ;
 
 
 
-        //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
-
-        Intent i = getIntent();
-        individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
-
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.q1010_other)
+                {
+                    // is checked
+                    edtOther.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    // not checked
+                    edtOther.setVisibility(View.INVISIBLE);
+                    edtOther.setText("");
+                }
+            }
+        });
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 int selectedId = rg.getCheckedRadioButtonId();
                 selectedRbtn = (RadioButton) findViewById(selectedId);
 
-                if (selectedRbtn == null) {
+                if (selectedRbtn == null)
+                {
                     lib.showError(q1010.this, "Q1010: ERROR", "Where did you give birth to this child?");
                     /**
                      * VIBRATE DEVICE
@@ -72,7 +90,8 @@ public class q1010 extends AppCompatActivity {
                 } else
                     {
 
-                    if (rbtnOther.isChecked() && edtOther.length() == 0) {
+                    if (rbtnOther.isChecked() && edtOther.length() == 0)
+                    {
                         lib.showError(q1010.this, "Q1010: ERROR: Other specify", "Other specify");
                         /**
                          * VIBRATE DEVICE
@@ -81,8 +100,7 @@ public class q1010 extends AppCompatActivity {
                         vibs.vibrate(100);
                     } else
                         {
-
-                        individual.setQ1010(selectedRbtn.getText().toString().substring(0,1));
+                        individual.setQ1010(selectedRbtn.getText().toString().substring(0, 1));
                         individual.setQ1010_Other(edtOther.getText().toString());
 
                         Intent intent = new Intent(q1010.this, q1011.class);
@@ -90,78 +108,25 @@ public class q1010 extends AppCompatActivity {
                         startActivity(intent);
 
                     }
+
                 }
 
             }
 
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1010.super.onBackPressed();
+            }
+
+
+        });
     }
 
-
-    public void onRadioButtonClicked(View view) {
-
-        boolean checked = ((RadioButton) view).isChecked();
-//
-        switch (view.getId()) {
-
-            case R.id.q1010_1:
-                if(checked)
-                {
-                    edtOther.setVisibility(View.INVISIBLE);
-                    edtOther.setText("");
-
-                }
-
-                else
-
-                break;
-
-            case R.id.q1010_2:
-                if(checked)
-
-                {
-                    edtOther.setVisibility(View.INVISIBLE);
-                    edtOther.setText("");
-
-                }
-
-                else
-
-
-                break;
-
-            case R.id.q1010_3:
-                if(checked)
-                {
-                    edtOther.setVisibility(View.INVISIBLE);
-                    edtOther.setText("");
-
-                }
-
-            else
-
-                break;
-
-            case R.id.q1010_other:
-                if(checked) {
-
-                    edtOther.setVisibility(View.VISIBLE);
-                }
-                else
-
-                    break;
-
-
-
-
-            default:
-
-                break;
-
-        }
-
-    }
 
 
 }

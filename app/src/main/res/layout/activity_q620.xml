@@ -22,21 +22,6 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
-        <TextView
-            android:id="@+id/q620"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="textview"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-
     </LinearLayout>
 
 
@@ -110,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:enabled="true"
-                        android:onClick="onRadioButtonClicked"
+
                         android:text="@string/q620_1" />
 
                     <RadioButton
@@ -118,7 +103,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q620_2" />
 
                     <RadioButton
@@ -126,7 +110,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q620_3" />
 
                     <RadioButton
@@ -134,7 +117,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q620_4" />
 
                     <RadioButton
@@ -142,7 +124,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-                        android:onClick="onRadioButtonClicked"
                         android:text="@string/q620_9" />
 
                     <RadioButton
@@ -150,7 +131,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-                        android:onClick="onRadioButtonClicked"
+
                         android:text="@string/q620_other" />
 
                 </RadioGroup>
@@ -173,7 +154,6 @@
                     android:gravity="center"
                     android:hint="Other specify"
                     android:inputType="text"
-                    android:maxLength="2"
                     android:padding="3dp"
                     android:visibility="invisible"/>
 

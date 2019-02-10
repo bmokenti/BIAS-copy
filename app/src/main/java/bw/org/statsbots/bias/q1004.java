@@ -73,18 +73,23 @@ public class q1004 extends AppCompatActivity {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-        rbtnbOther.setOnClickListener(new View.OnClickListener() {
+
+
+
+        rgb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                if (rbtnbOther.isChecked()) {
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.q1004b_other1)
+                {
+                    // is checked
                     edtOther.setVisibility(View.VISIBLE);
-
-
                 }
                 else
+                {
+                    // not checked
                     edtOther.setVisibility(View.INVISIBLE);
-                edtOther.setText("");
-
+                    edtOther.setText("");
+                }
             }
         });
 
@@ -207,7 +212,19 @@ public class q1004 extends AppCompatActivity {
 
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1004.super.onBackPressed();
+            }
+
+
+        });
     }
+
+
 
 
     public void onRadioButtonClicked(View view) {

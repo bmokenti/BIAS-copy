@@ -54,26 +54,30 @@ public class q802 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("2"))
+        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("2"))
 
-{
-    Intent intent = new Intent(q802.this, q803.class);
-    intent.putExtra("Individual", individual);
-    startActivity(intent);
-}
-else {
-
-}
-
-        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("1"))
         {
-            Intent intent = new Intent(q802.this, q1001.class);
+            Intent intent = new Intent(q802.this, q803.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
         }
-        else {
 
-        }
+        else
+
+                if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("1")
+                        && individual.getQ101().equals("2") && ((Integer.valueOf(individual.getQ102()) > 14 && (Integer.valueOf(individual.getQ102()) < 50))))
+                {
+                    Intent intent = new Intent(q802.this, q1001.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                }
+
+    else
+                {
+
+                }
+
+
         /**
          * NEXT question
          */
@@ -119,16 +123,14 @@ else {
                              */
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
-                        } else {
-
-                            //Set Q802 and Q802a for the current individual
+                        }  else {
 
 
-                            //If No is selected, skip to Q901
-                            if (selected == rbtn2) {
+                            if (rbtn2.isChecked()) {
                                 individual.setQ802(selected.getText().toString().substring(0, 1));
-                                //Next question q901
-                                Intent intent = new Intent(q802.this, q901.class);
+
+
+                                Intent intent = new Intent(q802.this, q803.class);
                                 intent.putExtra("Individual", individual);
                                 startActivity(intent);
 
@@ -144,9 +146,20 @@ else {
 
                             }
                         }
+                        }
                     }
-                }
+
             }
+        });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q802.super.onBackPressed();
+            }
+
+
         });
     }
 

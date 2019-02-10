@@ -48,10 +48,10 @@ public class q804 extends AppCompatActivity implements Serializable{
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-        if(individual.getQ801().equals("1") && individual.getQ101().equals("2"))
+        if(individual.getQ801().equals("1") )
         {
 
-            Intent intent = new Intent(q804.this, q1001.class);
+            Intent intent = new Intent(q804.this, q901.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
         }
@@ -60,16 +60,6 @@ public class q804 extends AppCompatActivity implements Serializable{
         }
 
 
-        if(individual.getQ801().equals("1") && individual.getQ101().equals("1"))
-        {
-
-            Intent intent = new Intent(q804.this, q1101.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-        }
-        else {
-
-        }
 
 
         rbtnother.setOnClickListener(new View.OnClickListener() {
@@ -198,18 +188,37 @@ public class q804 extends AppCompatActivity implements Serializable{
                         vibs.vibrate(100);
                     }
                     else {
-                       individual.setQ804(selected.getText().toString().substring(0, 1));
-                        individual.setQ804Other(edt804other.getText().toString());
+                        if (individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) > 14 && (Integer.valueOf(individual.getQ102()) < 50)) && individual.getQ401().equals("1")) {
+                            individual.setQ804(selected.getText().toString().substring(0, 1));
+                            individual.setQ804Other(edt804other.getText().toString());
 
-                        Intent intent = new Intent(q804.this, q901.class);
-                        intent.putExtra("Individual", individual);
-                        startActivity(intent);
+                            Intent intent = new Intent(q804.this, q1001.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+                        } else {
+                            individual.setQ804(selected.getText().toString().substring(0, 1));
+                            individual.setQ804Other(edt804other.getText().toString());
 
+                            Intent intent = new Intent(q804.this, q1101.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+
+                        }
                     }
                 }
             }
         });
 
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q804.super.onBackPressed();
+            }
+
+
+        });
     }
 }
 

@@ -14,7 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class q1014 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q1014 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
@@ -64,6 +66,7 @@ public class q1014 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         int years = 0;
         int months = 0;
         int days = 0;
@@ -147,7 +150,19 @@ public class q1014 extends AppCompatActivity {
 
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1014.super.onBackPressed();
+            }
+
+
+        });
     }
+
+
 
 
     public void onRadioButtonClicked(View view) {

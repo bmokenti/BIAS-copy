@@ -27,7 +27,7 @@ public class q615 extends AppCompatActivity implements Serializable{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q615);
 
-        setTitle("q615 HIV and TB FACTS AND MYTHS");
+        setTitle("q615: KNOWLEDGE ABOUT HIV/AIDS AND TB ");
         lib = new LibraryClass();
         rbtn1 = (RadioButton) findViewById(R.id.q615_1);
         rbtn2 = (RadioButton) findViewById(R.id.q615_2);
@@ -68,7 +68,7 @@ public class q615 extends AppCompatActivity implements Serializable{
 
                    individual.setQ615(selected.getText().toString().substring(0, 1));
 
-                    Intent intent = new Intent(q615.this, q701.class);
+                    Intent intent = new Intent(q615.this, q616.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);
 
@@ -76,5 +76,15 @@ public class q615 extends AppCompatActivity implements Serializable{
             }
         });
 
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q615.super.onBackPressed();
+            }
+
+
+        });
     }
 }

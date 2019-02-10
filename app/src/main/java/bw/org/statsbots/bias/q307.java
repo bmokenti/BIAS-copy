@@ -111,6 +111,17 @@ public class q307 extends AppCompatActivity implements View.OnClickListener{
                 }
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q307.super.onBackPressed();
+            }
+
+
+        });
+
     }
 
 

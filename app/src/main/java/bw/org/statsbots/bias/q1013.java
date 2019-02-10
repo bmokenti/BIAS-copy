@@ -49,9 +49,9 @@ public class q1013 extends AppCompatActivity {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-/*
 
-        if(!individual.getQ1005a().equals("1")|| !individual.getQ1007a().equals("1") || !individual.getQ1009a().equals("1"))
+
+        if(!(individual.getQ1005a().equals("1") || individual.getQ1007a().equals("1") || individual.getQ1009a().equals("1")))
         {
             Intent intent = new Intent(q1013.this, q1016.class);
             intent.putExtra("Individual", individual);
@@ -60,7 +60,7 @@ public class q1013 extends AppCompatActivity {
         else{
 
         }
-*/
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +90,19 @@ public class q1013 extends AppCompatActivity {
 
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1013.super.onBackPressed();
+            }
+
+
+        });
     }
+
+
 
 
     public void onRadioButtonClicked(View view) {

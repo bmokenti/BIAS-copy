@@ -23,6 +23,7 @@ public class q106 extends AppCompatActivity implements Serializable {
     protected Individual individual;
     protected RadioButton selectedRbtn, selectedRbtna, selectedRbtnb;
     protected EditText edt, edt1, edt2;
+    protected DatabaseHelper myDB;
     TextView q106atext, q106dtext, q106btext, q106ctext;
     PersonRoster p1 = null;
     Individual pp1 = null;
@@ -76,7 +77,9 @@ public class q106 extends AppCompatActivity implements Serializable {
         //edittext = (EditText) findViewById(R.id.q102_years);
         //edittext.setVisibility(View.VISIBLE);
 
-
+        myDB = new DatabaseHelper(q106.this);
+        myDB.onOpen(myDB.getReadableDatabase());
+        myDB.getWritableDatabase();
 
 
         Intent i = getIntent();
@@ -225,6 +228,21 @@ public class q106 extends AppCompatActivity implements Serializable {
                                             individual.setQ106c(edt1.getText().toString());
                                             individual.setQ106d(edt2.getText().toString());
 
+                                            DatabaseHelper myDB = new DatabaseHelper(q106.this);
+
+                                            if(myDB.checkIndividual(individual)){
+                                                //Update
+                                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                                            }else{
+                                                //Insert
+                                                myDB.insertIndividual(individual);
+
+
+                                            }
+
+
+
                                             Intent intent = new Intent(q106.this, q107.class);
                                             intent.putExtra("Individual", individual);
                                             startActivity(intent);
@@ -234,6 +252,19 @@ public class q106 extends AppCompatActivity implements Serializable {
                                             individual.setQ106a(selectedRbtna.getText().toString().substring(0, 1));
                                             individual.setQ106aOther(edt.getText().toString());
                                             //set values for q106
+                                            DatabaseHelper myDB = new DatabaseHelper(q106.this);
+
+                                            if(myDB.checkIndividual(individual)){
+                                                //Update
+                                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                                            }else{
+                                                //Insert
+                                                myDB.insertIndividual(individual);
+
+
+                                            }
+
 
 
                                             Intent intent = new Intent(q106.this, q107.class);
@@ -251,8 +282,18 @@ public class q106 extends AppCompatActivity implements Serializable {
             }
 
         });
+        Button btprev = findViewById(R.id.button3);
 
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q106.super.onBackPressed();
+            }
+
+
+        });
     }
+
 
     public void onRadioButtonClicked(View v) {
         //TextView q1101atext = findViewById(R.id.q1101atxt);

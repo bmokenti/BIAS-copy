@@ -172,6 +172,17 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
                 }
             }
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q404.super.onBackPressed();
+            }
+
+
+        });
+
     }
 
 

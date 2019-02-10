@@ -75,5 +75,15 @@ public class q701 extends AppCompatActivity implements Serializable {
             }
         });
 
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q701.super.onBackPressed();
+            }
+
+
+        });
     }
 }

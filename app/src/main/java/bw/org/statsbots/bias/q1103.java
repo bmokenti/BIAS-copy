@@ -64,6 +64,7 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        
 if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
 {
     Intent q1o3 = new Intent(q1103.this, q1114.class);
@@ -155,7 +156,18 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
             }
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1103.super.onBackPressed();
+            }
+
+
+        });
     }
+
 
     public void onRadioButtonClicked(View v) {
         TextView q1101atext = findViewById(R.id.q1101atxt);

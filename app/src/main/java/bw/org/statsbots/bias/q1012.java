@@ -14,7 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class q1012 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q1012 extends AppCompatActivity  implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
@@ -53,6 +55,7 @@ public class q1012 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
 if(individual.getQ1011().equals("1")||individual.getQ1011().equals("4") || individual.getQ1011().equals("7"))
 {
     Intent intent = new Intent(q1012.this, q1014.class);
@@ -144,7 +147,19 @@ else{
 
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q1012.super.onBackPressed();
+            }
+
+
+        });
     }
+
+
 
     public void onCheckboxClicked(View view) {
 

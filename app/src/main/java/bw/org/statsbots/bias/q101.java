@@ -43,25 +43,21 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
         rbtn2 = (RadioButton) findViewById(R.id.q101_2);
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
-       final RadioGroup rg = (RadioGroup) findViewById(R.id.q101radioGroup);
+        final RadioGroup rg = (RadioGroup) findViewById(R.id.q101radioGroup);
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),individual.getAssignmentID());
+        Intent h = getIntent();
+        thisHouse = (HouseHold) h.getSerializableExtra("Household");
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
+
         Button btnext = findViewById(R.id.btnnext);
 //        PersonRoster pr[] = thisHouse.getPersons();
-
-
-
-
-
-
-        btnext.setOnClickListener(new View.OnClickListener()
-
-        {
+        btnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -97,47 +93,44 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
 
 
                 } else {
-                            //Set q101 for the current individual
-                            individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
+                    //Set q101 for the current individual
+                    individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
 
 
                     //Check if individual already been saved and update
                     myDB = new DatabaseHelper(q101.this);
                     myDB.onOpen(myDB.getReadableDatabase());
 
-                    if(myDB.checkIndividual(individual)){
+                    if (myDB.checkIndividual(individual)) {
                         //Update
-                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
-                    }else{
+                    } else {
                         //Insert
                         myDB.insertIndividual(individual);
 
                     }
 
 
+                    /**
+                     * If current person LineNumber is equal to TotalPersons-1
+                     * Proceed to next Question in the roster
+                     */
+                    // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
 
+                    //Next question q102
+                    Intent q1o2 = new Intent(q101.this, q102.class);
+                    q1o2.putExtra("Individual", individual);
+                    startActivity(q1o2);
 
-
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                        //Next question q102
-                        Intent q1o2 = new Intent(q101.this, q102.class);
-                        q1o2.putExtra("Individual", individual);
-                        startActivity(q1o2);
-
-                    }
                 }
+            }
 
 
-    });
-        }
+        });
 
 
+    }
 
 
         @Override

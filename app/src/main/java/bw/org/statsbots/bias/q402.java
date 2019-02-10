@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -68,7 +69,7 @@ public class q402 extends AppCompatActivity implements Serializable {
         //Intent i = getIntent();
         //thisHouse = (HouseHold) i.getSerializableExtra("Household");
         //int p = 0;
-        if (individual.getQ101().equals("1") && individual.getQ401().equals("1") && Integer.valueOf(individual.getQ102()) >= 24) {
+        if ( individual.getQ401().equals("1") && Integer.valueOf(individual.getQ102()) >= 25) {
 
             Intent intent = new Intent(q402.this, q403.class);
             intent.putExtra("Individual", individual);
@@ -82,7 +83,7 @@ public class q402 extends AppCompatActivity implements Serializable {
         }
 
 
-        if (individual.getQ401().equals("2") && individual.getQ101().equals("1") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64))
+        if (individual.getQ401().equals("2") && individual.getQ101().equals("1") )
         {
             Intent intent = new Intent(q402.this, q501.class);
             intent.putExtra("Individual", individual);
@@ -94,7 +95,7 @@ public class q402 extends AppCompatActivity implements Serializable {
             }
 
 
-        if (individual.getQ401().equals("2") && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64))
+        if (individual.getQ401().equals("2") && individual.getQ101().equals("2") )
         {
             Intent intent = new Intent(q402.this, q601.class);
             intent.putExtra("Individual", individual);
@@ -164,6 +165,7 @@ public class q402 extends AppCompatActivity implements Serializable {
                             individual.setQ402(edtq402.getText().toString());
                             individual.setQ402a(selectedRbtn.getText().toString().substring(0, 1));
                             individual.setQ402b(selectedRbtn1.getText().toString().substring(0, 1));
+String i = individual.getQ101();
 
                             //Check if country entered is in the list
                             Intent intent = new Intent(q402.this, q403.class);
@@ -179,6 +181,17 @@ public class q402 extends AppCompatActivity implements Serializable {
             }
 
         });
+        Button btprev = findViewById(R.id.button3);
+
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q402.super.onBackPressed();
+            }
+
+
+        });
+
     }
 
     public void onRadioButtonClicked(View v) {
