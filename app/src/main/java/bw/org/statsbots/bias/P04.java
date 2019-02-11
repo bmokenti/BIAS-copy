@@ -678,9 +678,22 @@ public class P04 extends AppCompatActivity implements Serializable {
                                             /**
                                              * Save age
                                              */
-                                            p1.setP04YY(txtYY.getText().toString());
-                                            p1.setP04MM(txtmm.getText().toString());
-                                            p1.setP04WKS(txtmm.getText().toString());
+                                            String year="00";
+                                            String month="00";
+                                            String weeks="00";
+                                            if(txtYY.getText().toString()!=null){
+                                                year=txtYY.getText().toString();
+                                            }
+                                            if(txtmm.getText().toString()!=null){
+                                                month=txtmm.getText().toString();
+                                            }
+                                            if(txtwks.getText().toString()!=null){
+                                                weeks=txtwks.getText().toString();
+                                            }
+
+                                            p1.setP04YY(year);
+                                            p1.setP04MM(month);
+                                            p1.setP04WKS(weeks);
 
                                             thisHouse.getPersons()[p1.getLineNumber()].setP04YY(txtYY.getText().toString());
                                             thisHouse.getPersons()[p1.getLineNumber()].setP04MM(txtmm.getText().toString());
@@ -699,8 +712,8 @@ public class P04 extends AppCompatActivity implements Serializable {
                                                 List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
                                                 if(ll.size()>0){
                                                     myDB.updateRoster(thisHouse,"P04_YY",p1.getP04YY(), String.valueOf(p1.getSRNO()));
-                                                    //myDB.updateRoster(thisHouse,"P04MM",p1.getP04MM(), String.valueOf(p1.getSRNO()));
-                                                    //myDB.updateRoster(thisHouse,"P04WKS",p1.getP04WKS(), String.valueOf(p1.getSRNO()));
+                                                    myDB.updateRoster(thisHouse,"P04_MM",p1.getP04MM(), String.valueOf(p1.getSRNO()));
+                                                    myDB.updateRoster(thisHouse,"P04_WKS",p1.getP04WKS(), String.valueOf(p1.getSRNO()));
                                                     myDB.close();
                                                 }
 
@@ -720,8 +733,8 @@ public class P04 extends AppCompatActivity implements Serializable {
                                                     List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
                                                     if(ll.size()>0){
                                                         myDB.updateRoster(thisHouse,"P04_YY",p1.getP04YY(), String.valueOf(p1.getSRNO()));
-                                                        //myDB.updateRoster(thisHouse,"P04MM",p1.getP04MM(), String.valueOf(p1.getSRNO()));
-                                                        //myDB.updateRoster(thisHouse,"P04WKS",p1.getP04WKS(), String.valueOf(p1.getSRNO()));
+                                                        myDB.updateRoster(thisHouse,"P04_MM",p1.getP04MM(), String.valueOf(p1.getSRNO()));
+                                                        myDB.updateRoster(thisHouse,"P04_WKS",p1.getP04WKS(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
                                                     }
                                                     thisHouse.next=String.valueOf(p1.getSRNO()+1);
@@ -743,13 +756,26 @@ public class P04 extends AppCompatActivity implements Serializable {
                                         /**
                                          * Save household head
                                          */
-                                        p1.setP04YY(txtYY.getText().toString());
-                                        //p1.setP04MM(txtmm.getText().toString());
-                                        //p1.setP04WKS(txtmm.getText().toString());
+                                        String year="00";
+                                        String month="00";
+                                        String weeks="00";
+                                        if(txtYY.getText().toString()!=null){
+                                            year=txtYY.getText().toString();
+                                        }
+                                        if(txtmm.getText().toString()!=null){
+                                            month=txtmm.getText().toString();
+                                        }
+                                        if(txtwks.getText().toString()!=null){
+                                            weeks=txtwks.getText().toString();
+                                        }
+
+                                        p1.setP04YY(year);
+                                        p1.setP04MM(month);
+                                        p1.setP04WKS(weeks);
 
                                         thisHouse.getPersons()[p1.getLineNumber()].setP04YY(txtYY.getText().toString());
-                                        //thisHouse.getPersons()[p1.getLineNumber()].setP04MM(txtmm.getText().toString());
-                                        //thisHouse.getPersons()[p1.getLineNumber()].setP04WKS(txtwks.getText().toString());
+                                        thisHouse.getPersons()[p1.getLineNumber()].setP04MM(txtmm.getText().toString());
+                                        thisHouse.getPersons()[p1.getLineNumber()].setP04WKS(txtwks.getText().toString());
 
                                         //Restart the current activity for next individual
                                         if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
@@ -763,8 +789,8 @@ public class P04 extends AppCompatActivity implements Serializable {
                                             List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
                                             if(ll.size()>0){
                                                 myDB.updateRoster(thisHouse,"P04_YY",p1.getP04YY(), String.valueOf(p1.getSRNO()));
-                                                //myDB.updateRoster(thisHouse,"P04MM",p1.getP04MM(), String.valueOf(p1.getSRNO()));
-                                               //myDB.updateRoster(thisHouse,"P04WKS",p1.getP04WKS(), String.valueOf(p1.getSRNO()));
+                                                myDB.updateRoster(thisHouse,"P04_MM",p1.getP04MM(), String.valueOf(p1.getSRNO()));
+                                               myDB.updateRoster(thisHouse,"P04_WKS",p1.getP04WKS(), String.valueOf(p1.getSRNO()));
                                                 myDB.close();
                                             }
 
@@ -785,8 +811,8 @@ public class P04 extends AppCompatActivity implements Serializable {
                                                 List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
                                                 if(ll.size()>0){
                                                     myDB.updateRoster(thisHouse,"P04_YY",p1.getP04YY(), String.valueOf(p1.getSRNO()));
-                                                    //myDB.updateRoster(thisHouse,"P04MM",p1.getP04MM(), String.valueOf(p1.getSRNO()));
-                                                    //myDB.updateRoster(thisHouse,"P04WKS",p1.getP04WKS(), String.valueOf(p1.getSRNO()));
+                                                    myDB.updateRoster(thisHouse,"P04_MM",p1.getP04MM(), String.valueOf(p1.getSRNO()));
+                                                    myDB.updateRoster(thisHouse,"P04_WKS",p1.getP04WKS(), String.valueOf(p1.getSRNO()));
                                                     myDB.close();
                                                 }
                                                 thisHouse.next=String.valueOf(p1.getSRNO()+1);
@@ -911,9 +937,22 @@ public class P04 extends AppCompatActivity implements Serializable {
                                     /**
                                      * Save age
                                      */
-                                    p1.setP04YY(txtYY.getText().toString());
-                                    p1.setP04MM(txtmm.getText().toString());
-                                    p1.setP04WKS(txtmm.getText().toString());
+                                    String year="00";
+                                    String month="00";
+                                    String weeks="00";
+                                    if(txtYY.getText().toString()!=null){
+                                        year=txtYY.getText().toString();
+                                    }
+                                    if(txtmm.getText().toString()!=null){
+                                        month=txtmm.getText().toString();
+                                    }
+                                    if(txtwks.getText().toString()!=null){
+                                        weeks=txtwks.getText().toString();
+                                    }
+
+                                    p1.setP04YY(year);
+                                    p1.setP04MM(month);
+                                    p1.setP04WKS(weeks);
 
                                     thisHouse.getPersons()[p1.getLineNumber()].setP04YY(txtYY.getText().toString());
                                     thisHouse.getPersons()[p1.getLineNumber()].setP04MM(txtmm.getText().toString());

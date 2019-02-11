@@ -242,11 +242,12 @@ public class started_household extends AppCompatActivity implements Serializable
 
 
 
-                            //Info="Complete Rapid Test";
-
+                            int mm=0;
                             int yy = Integer.parseInt(r.get(o).getP04YY());
-                            int mm = Integer.parseInt(r.get(o).getP04MM());
-                            int wks = Integer.parseInt(r.get(o).getP04WKS());
+                            if(r.get(o).getP04MM()==null){}
+                            else{ mm= Integer.parseInt(r.get(o).getP04MM());
+                                int wks = Integer.parseInt(r.get(o).getP04WKS());}
+
 
                             if((yy >64)){
                                 //nkuku
