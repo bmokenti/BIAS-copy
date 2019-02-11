@@ -109,7 +109,7 @@ public class P11 extends AppCompatActivity implements Serializable {
 
                         if(p1.getLineNumber() == thisHouse.getTotalPersons()-1) {
                             thisHouse.next =String.valueOf(0);
-                            thisHouse.previous = String.valueOf(thisHouse.getTotalPersons()-1);
+                            //thisHouse.previous = String.valueOf(thisHouse.getTotalPersons()-1);
 
                             myDB = new DatabaseHelper(P11.this);
                             myDB.onOpen(myDB.getWritableDatabase());
@@ -152,13 +152,6 @@ public class P11 extends AppCompatActivity implements Serializable {
                         }
 
 
-
-
-
-
-                            Intent intent = new Intent(P11.this,P09.class);
-                        intent.putExtra("Household",  thisHouse);
-                        startActivity(intent);
 
                     }
 

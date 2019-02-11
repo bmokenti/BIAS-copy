@@ -60,6 +60,7 @@ public class H11 extends AppCompatActivity implements View.OnClickListener, Seri
                 {
                     // not checked
                     edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
                 }
             }
         });

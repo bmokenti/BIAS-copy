@@ -247,17 +247,9 @@ public class H12 extends AppCompatActivity implements Serializable {
                         q1o2.putExtra("Household",  thisHouse);
                         startActivity(q1o2);
                     }
-
-
                 }
 
 
         });
-
-
     }
-
-
-
-
 }
