@@ -186,7 +186,7 @@ public class q904 extends AppCompatActivity implements Serializable {
                                         individual.setQ904cOther(edtc.getText().toString());
 
                                         Intent q1o2 = new Intent(q904.this, q905.class);
-                                        q1o2.putExtra("Household", thisHouse);
+                                        q1o2.putExtra("Individual", individual);
                                         startActivity(q1o2);
 
                                     } else {
@@ -200,7 +200,7 @@ public class q904 extends AppCompatActivity implements Serializable {
                                             individual.setQ904(selectedRbtn.getText().toString().substring(0, 1));
 
                                             Intent q1o2 = new Intent(q904.this, q1001.class);
-                                            q1o2.putExtra("Household", thisHouse);
+                                            q1o2.putExtra("Individual", individual);
                                             startActivity(q1o2);
 
                                         }
@@ -219,7 +219,7 @@ public class q904 extends AppCompatActivity implements Serializable {
                                                 individual.setQ904bYYYY(edtbyear.getText().toString());
 
                                                 Intent q1o2 = new Intent(q904.this, q1001.class);
-                                                q1o2.putExtra("Household", thisHouse);
+                                                q1o2.putExtra("Individual", individual);
                                                 startActivity(q1o2);
 
                                             }

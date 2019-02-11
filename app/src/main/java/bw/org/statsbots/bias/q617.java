@@ -98,11 +98,134 @@ public class q617 extends AppCompatActivity implements Serializable {
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(q617.this, q618.class);
-                intent.putExtra("Individual", individual);
-                startActivity(intent);
+                int selectedId = rg1.getCheckedRadioButtonId();
+                selected1 = (RadioButton) findViewById(selectedId);
+
+                if (selected1 == null) {
+                    lib.showError(q617.this, "Q617: ERROR", "SHARING A MEAL WITH A PERSON WHO HAS TB");
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+                } else {
+                    int selectedId2 = rg2.getCheckedRadioButtonId();
+                    selected2 = (RadioButton) findViewById(selectedId2);
+
+                    if (selected2 == null) {
+                        lib.showError(q617.this, "Q617: ERROR", "SHARING CLOTHES WITH A PERSON WHO HAS TB");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+
+                    } else {
+                        int selectedId3 = rg3.getCheckedRadioButtonId();
+                        selected3 = (RadioButton) findViewById(selectedId3);
+                    }
+                    if (selected3 == null) {
+                        lib.showError(q617.this, "Q617: ERROR", "SEX WITH A WOMAN WHO MISCARRIED");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+                    } else {
+                        int selectedId4 = rg4.getCheckedRadioButtonId();
+                        selected4 = (RadioButton) findViewById(selectedId4);
+
+                        if (selected4 == null) {
+                            lib.showError(q617.this, "Q617: ERROR", "SEX WITH A WIDOW/ER");
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
+
+                        } else {
+                            int selectedId5 = rg5.getCheckedRadioButtonId();
+                            selected5 = (RadioButton) findViewById(selectedId5);
+
+                            if (selected5 == null) {
+                                lib.showError(q617.this, "Q617: ERROR", "BORN IN A FAMILY WITH HIV");
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+
+                            } else {
+                                int selectedId6 = rg6.getCheckedRadioButtonId();
+                                selected6 = (RadioButton) findViewById(selectedId6);
+
+                            if (selected6 == null) {
+                                lib.showError(q617.this, "Q617: ERROR", " SEJESO ");
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+                            } else {
+                                int selectedId7 = rg7.getCheckedRadioButtonId();
+                                selected7 = (RadioButton) findViewById(selectedId7);
+
+                                if (selected7 == null) {
+                                    lib.showError(q617.this, "Q617: ERROR", "TOUCHING ITEMS IN PUBLIC PLACES");
+                                    /**
+                                     * VIBRATE DEVICE
+                                     */
+                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                    vibs.vibrate(100);
+
+                                } else {
+                                    int selectedId8 = rg8.getCheckedRadioButtonId();
+                                    selected8 = (RadioButton) findViewById(selectedId8);
+
+                                    if (selected8 == null) {
+                                        lib.showError(q617.this, "Q617: ERROR", "BEING IN CONTACT WITH SOMEONE WITH TB");
+                                        /**
+                                         * VIBRATE DEVICE
+                                         */
+                                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                        vibs.vibrate(100);
+
+                                    }
+                                    if (rbtnOther.isChecked() && edtOther.length() == 0) {
+                                        lib.showError(q617.this, "Q617: ERROR: Other", "Other specify");
+                                        /**
+                                         * VIBRATE DEVICE
+                                         */
+                                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                        vibs.vibrate(100);
+
+                                    } else {
+                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ617a(selected1.getText().toString().substring(0,1));
+                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ617b(selected2.getText().toString().substring(0,1));
+                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ617c(selected3.getText().toString().substring(0,1));
+                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ617d(selected4.getText().toString().substring(0,1));
+                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ617f(selected6.getText().toString().substring(0,1));
+                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ617g(selected7.getText().toString().substring(0,1));
+                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ617h(selected8.getText().toString().substring(0,1));
+                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ617_0ther(edtOther.getText().toString());
 
 
+
+
+
+
+
+                                        Intent intent = new Intent(q617.this, q618.class);
+                                        intent.putExtra("Household", thisHouse);
+                                        startActivity(intent);
+                                    }
+                                }
+                            }
+
+                            }
+                        }
+                    }
+                }
             }
         });
         Button btprev = findViewById(R.id.button3);
@@ -119,4 +242,4 @@ public class q617 extends AppCompatActivity implements Serializable {
 }
 
 
-//***********************************************************************************************
+}

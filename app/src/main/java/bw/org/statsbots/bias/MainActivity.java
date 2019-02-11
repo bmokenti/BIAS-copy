@@ -76,22 +76,23 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
 
-       // Log.d("DB Name: ",myDB.getDatabaseName().toString() );
+        // Log.d("DB Name: ",myDB.getDatabaseName().toString() );
         myDB = new DatabaseHelper(this);
         //Log.d("DB Name: ",myDB.getDatabaseName().toString() );
         myDB.onOpen(myDB.getWritableDatabase());
 
         //***************************Read Roster from Database and load it into Object thisHouse
         List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
-        PersonRoster[] r = new PersonRoster[30];
+        thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
+
         final int memberExist[]= new int[1];//tracker of exist roster
 
-        for(int t = 0; t<list.size();t++)
+        if(list.size()>0)
         {
-            r[t]=list.get(t);
+
             memberExist[0] = 1;
         }
-        thisHouse.setHouseHoldeMembers(r);
+
 
         final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.memberlist);
         linearLayout.setPadding(40,2,2,2);
@@ -274,14 +275,6 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             }
 
         }
-
-
-        //myDB.dropTables(myDB.getWritableDatabase());
-       //myDB.createTables(myDB.getReadableDatabase());
-       //myDB.insertTables(myDB.getReadableDatabase());
-      // myDB.getAllData(myDB.getWritableDatabase());
-        //layout to contain household members
-
 
 
         /**
@@ -471,6 +464,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         /**
          * Button to complete listing Individuals
          */
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         final FloatingActionButton fbDone = (FloatingActionButton)findViewById(R.id.floatNext);
         fbDone.setOnClickListener(new View.OnClickListener() {
 
@@ -513,7 +507,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
                             list[i]= (i+1) + " - " + hhArray[i].getText().toString();
                             if(memberExist[0]==1){
-                                if(thisHouse.getPersons()[i]!=null){
+                                if(thisHouse.getPersons()!=null){
                                     if(thisHouse.getPersons()[i].getP02() != null ){
                                         if(thisHouse.getPersons()[i].getP02().equals("00")){
                                             Head = i;
@@ -529,7 +523,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                     }
 
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
 
                     builder.setTitle("Select/Confirm head of House");
                     int selected = Head; // or whatever you want
@@ -552,38 +546,81 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
                             //Start New House Class Activity
                             String[] plist = new String[counter];
+
                             for(int i =0;i<counter;i++)
                             {
                                 plist[i]= hhArray[i].getText().toString();
+                                Log.d("Name",plist[i] );
                             }
 
                             //Set the Head of house to index of selected array
-                            Log.d("Head",String.valueOf(which));
+                            Log.d("Size ",plist.length+"");
                             HeadofHouse = which;
+
                             thisHouse.setHead(HeadofHouse);
-                            PersonRoster[] p = new PersonRoster[plist.length];
 
                             /**
-                             * For each household member set their line number and name
+                             * DATA FROM THE LISTING
                              */
-                            for (int i=0;i<plist.length;i++) {
+                            PersonRoster[] p = new PersonRoster[plist.length];
+
+                            for (int i=0;i<plist.length;i++)
+                            {
                                 p[i] = new PersonRoster();
                                 p[i].setLineNumber(i);
                                 p[i].setP01(plist[i]);
+                                if(i==which){
+                                    p[i].setP02("00");
+                                }
+                                Log.d("Person ", p[i].getLineNumber() + " " + p[i].getP01());
                             }
 
-                            thisHouse.setHouseHoldeMembers(p);
 
-                            //SQLiteDatabase db = myDB.getWritableDatabase();
-                            //ContentValues hhValues = new ContentValues();
-
-                            //myDB.insertHhroster(thisHouse);
+                            thisHouse.next =String.valueOf(0);
+                            thisHouse.previous=null;
 
 
 
-                            Intent intent = new Intent(MainActivity.this,P02.class);
-                            intent.putExtra("Household",  thisHouse);
-                            startActivity(intent);
+                            //Save or Update Persons Roster
+                            List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+
+                            if(ll.size()>0)
+                            {
+                                List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+
+                                thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
+
+                                for(int ii =0; ii<list.size();ii++){
+                                    thisHouse.getPersons()[ii].setP01(p[ii].getP01());
+                                }
+
+                                //thisHouse.setHouseHoldeMembers(r.clone());
+
+                                myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
+
+
+                                Intent intent = new Intent(MainActivity.this,P02.class);
+                                intent.putExtra("Household",  thisHouse);
+                                startActivity(intent);
+
+                                //finish();
+
+                            }
+                            else
+                            {
+                                thisHouse.setHouseHoldeMembers(p);
+
+                                myDB.insertHhroster(thisHouse);
+
+
+                                Intent intent = new Intent(MainActivity.this,P02.class);
+                                intent.putExtra("Household",  thisHouse);
+                                startActivity(intent);
+
+                                //finish();
+                            }
+
+
 
 
                         }
@@ -616,6 +653,8 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                     positiveButton.setTextColor(Color.WHITE);
                     positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
                     positiveButton.setLayoutParams(positiveButtonLL);
+
+
 
 
                 }

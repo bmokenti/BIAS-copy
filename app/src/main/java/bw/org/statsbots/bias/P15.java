@@ -7,12 +7,14 @@ import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class P15 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -36,6 +38,10 @@ public class P15 extends AppCompatActivity implements Serializable {
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
 
         final EditText edt = (EditText)findViewById(R.id.P15_txt);
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
         /**
          * Loop through the house hold members to check if hh member 's P02 is answered
          * If P02 is null then ask the individual
@@ -43,8 +49,24 @@ public class P15 extends AppCompatActivity implements Serializable {
 
          p1= thisHouse.getPersons()[Integer.valueOf(thisHouse.getCurrent())];
 
+        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
 
-        if( p1.getP15()==null) {
+        if(thisHouse.next!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
+
+        }else if(thisHouse.previous!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];
+
+        }
+
+        if(thisHouse.next!=null && p1.getP15()!=null){
+            edt.setText(p1.getP15());
+        }else if(thisHouse.previous!=null && p1.getP15()!=null){
+            edt.setText(p1.getP15());
+        }
+
+
 
             TextView textView = (TextView) findViewById(R.id.P15txt);
             String s = getResources().getString(R.string.P15);
@@ -58,6 +80,8 @@ public class P15 extends AppCompatActivity implements Serializable {
              * NEXT Person BUTTON
              */
             Button btnNext = (Button)findViewById(R.id.button);
+            Button btnPrev = (Button)findViewById(R.id.button3);
+
             String btnLabel="";
             if(p1.getLineNumber()+1==thisHouse.getTotalPersons()){
                 btnLabel="Next";
@@ -90,6 +114,19 @@ public class P15 extends AppCompatActivity implements Serializable {
                         thisHouse.getPersons()[p1.getLineNumber()].setP15(edt.getText().toString());
                         //Restart the current activity for next individual
                         thisHouse.setCurrent(String.valueOf(p1.getSRNO()));
+
+
+                        myDB = new DatabaseHelper(P15.this);
+                        myDB.onOpen(myDB.getWritableDatabase());
+
+                        //UPDATE HOUSEHOLD
+                        List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+                        if(ll.size()>0){
+                            myDB.updateRoster(thisHouse,"P15",p1.getP15(), String.valueOf(p1.getSRNO()));
+                            myDB.close();
+                        }
+
+
                         Intent intent = new Intent(P15.this,P16.class);
                         intent.putExtra("Household",  thisHouse);
                         startActivity(intent);
@@ -106,7 +143,19 @@ public class P15 extends AppCompatActivity implements Serializable {
                 }
             });
 
-        }
+            btnPrev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    thisHouse.previous = String.valueOf(p1.getSRNO());
+
+
+                    finish();
+
+                    Intent intent = new Intent(P15.this, P14.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+                }
+            });
 
     }
 

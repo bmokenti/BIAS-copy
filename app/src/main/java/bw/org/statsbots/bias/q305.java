@@ -87,10 +87,33 @@ public class q305 extends AppCompatActivity {
                 else {
                         //Set q305 for the current individual
 
-                 individual.setQ305_1(chk1.getText().toString().substring(0, 1));
-                   individual.setQ305_2(chk2.getText().toString().substring(0, 1));
-                    individual.setQ305_3(chk3.getText().toString().substring(0, 1));
-                   individual.setQ305_4(chk4.getText().toString().substring(0, 1));
+
+
+                    if(chk1.isChecked()){
+                        individual.setQ305_1("1");
+                    }else{
+                        individual.setQ305_1("2");
+                    }
+
+                    if(chk2.isChecked()){
+                        individual.setQ305_2("1");
+                    }else{
+                        individual.setQ305_2("2");
+                    }
+
+
+                    if(chk3.isChecked()){
+                        individual.setQ305_3("1");
+                    }else{
+                        individual.setQ305_3("2");
+                    }
+
+
+                    if(chk4.isChecked()){
+                        individual.setQ305_4("1");
+                    }else{
+                        individual.setQ305_4("2");
+                    }
 
                         Intent q1o2 = new Intent(q305.this, q306.class);
                         q1o2.putExtra("Individual", individual);

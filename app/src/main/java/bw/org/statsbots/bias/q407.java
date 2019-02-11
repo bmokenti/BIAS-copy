@@ -91,9 +91,9 @@ public class q407 extends AppCompatActivity implements View.OnClickListener, Ser
 
 
                     } else {
-                        //Set q407 for the current individual
-                    individual.setQ407(selectedRbtn.getText().toString().substring(0,1));
 
+                        //Set q407 for the current individual
+                        individual.setQ407(selectedRbtn.getText().toString().substring(0,1));
 
                         Intent q1o2 = new Intent(q407.this, q408.class);
                         q1o2.putExtra("Individual", individual);

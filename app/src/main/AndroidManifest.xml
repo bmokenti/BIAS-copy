@@ -26,7 +26,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Settings"></activity>
+        <activity android:name=".appSettings">
+
+        </activity>
         <activity android:name=".H06" />
         <activity android:name=".H07" />
         <activity android:name=".H08" />

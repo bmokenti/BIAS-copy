@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class P10 extends AppCompatActivity implements Serializable {
 
@@ -26,6 +27,7 @@ public class P10 extends AppCompatActivity implements Serializable {
     protected LibraryClass lib;
     HouseHold thisHose;
     TextView txtq104text;
+    protected DatabaseHelper myDB;
     TextView q;
 
     protected ArrayAdapter<String> adapter, adapter1, adapter2;
@@ -37,10 +39,33 @@ public class P10 extends AppCompatActivity implements Serializable {
 
         q= findViewById(R.id.P10text);
 
+        final String[] lst1 = getResources().getStringArray(R.array.level_of_education);
+        final String[] lst = getResources().getStringArray(R.array.type_of_education);
+        final String[] lst2 = getResources().getStringArray(R.array.Year);
 
+
+        myDB = new DatabaseHelper(this);
+        myDB.onOpen(myDB.getReadableDatabase());
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        thisHouse = (HouseHold)i.getSerializableExtra("Household");
+        // p1 = thisHouse.getPersons()[0];
+
+        //***************************Read Roster from Database and load it into Object thisHouse
+        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
+
+
+        if(thisHouse.next!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
+
+        }else if(thisHouse.previous!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];
+
+        }
+
+
+
         int p = 0;
 
 
@@ -76,12 +101,10 @@ public class P10 extends AppCompatActivity implements Serializable {
 
         q.setText(Html.fromHtml(s));
 
-        if (p1.getP10() == null)
-        {
-            setTitle("P10: Educational attainment");
+         setTitle("P10: Educational attainment");
             lib = new LibraryClass();
 
-            final String[] lst = getResources().getStringArray(R.array.type_of_education);
+
 
             adapter = new ArrayAdapter<String>(this, R.layout.hint_completion_layout, R.id.tvHintCompletion, lst);
 
@@ -121,7 +144,7 @@ public class P10 extends AppCompatActivity implements Serializable {
             // setTitle("Q104a LEVEL of Education");
 
             lib = new LibraryClass();
-            final String[] lst1 = getResources().getStringArray(R.array.level_of_education);
+
 
 
             adapter1 = new ArrayAdapter<String>(this, R.layout.hint_completion_layout, R.id.tvHintCompletion, lst1);
@@ -147,7 +170,7 @@ public class P10 extends AppCompatActivity implements Serializable {
             });
 
             Button btnClear1 = (Button) findViewById(R.id.btnClear1);
-            btnClear.setOnClickListener(new View.OnClickListener() {
+            btnClear1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     autoLevel.setText("");
@@ -159,7 +182,6 @@ public class P10 extends AppCompatActivity implements Serializable {
 
             lib = new LibraryClass();
 
-            final String[] lst2 = getResources().getStringArray(R.array.Year);
 
 
             adapter2 = new ArrayAdapter<String>(this, R.layout.hint_completion_layout, R.id.tvHintCompletion, lst2);
@@ -185,7 +207,7 @@ public class P10 extends AppCompatActivity implements Serializable {
             });
 
             Button btnClear2 = (Button) findViewById(R.id.btnClear2);
-            btnClear.setOnClickListener(new View.OnClickListener() {
+            btnClear2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     autoYear.setText("");
@@ -196,7 +218,51 @@ public class P10 extends AppCompatActivity implements Serializable {
             // final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
 
-            Button btnnext = findViewById(R.id.button);
+        if(p1.getP10()!=null){
+
+            String code = p1.getP10();
+            String type = code.substring(0,2);
+            String level = code.substring(2,3);
+            String year = code.substring(3,4);
+
+            int pos = 0;
+            for(int o = 0;o<lst.length;o++){
+
+                if(type.matches(lst[o].substring(0,2))){
+                    pos=o;
+                }
+            }
+            autoTypeEducation.setText(lst[pos]);
+
+            pos = 0;
+            for(int o = 0;o<lst1.length;o++){
+
+                if(level.matches(lst1[o].substring(0,1))){
+                    pos=o;
+                }
+            }
+            autoLevel.setText(lst1[pos]);
+
+            pos = 0;
+            for(int o = 0;o<lst2.length;o++){
+
+                if(year.matches(lst2[o])){
+                    pos=o;
+                }
+            }
+            autoYear.setText(lst2[pos]);
+
+        }
+
+
+
+
+
+
+
+
+        Button btnnext = findViewById(R.id.button);
+            Button btnPrev = findViewById(R.id.button3);
             btnnext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view)
@@ -304,6 +370,19 @@ public class P10 extends AppCompatActivity implements Serializable {
                                         //Next question P07
                                         if(Integer.parseInt(code1)>10){
                                             Log.d("Education ","Over 10");
+
+
+                                            myDB = new DatabaseHelper(P10.this);
+                                            myDB.onOpen(myDB.getWritableDatabase());
+
+                                            //UPDATE HOUSEHOLD
+                                            List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+                                            if(ll.size()>0){
+                                                myDB.updateRoster(thisHouse,"P10",p1.getP10(), String.valueOf(p1.getSRNO()));
+                                                myDB.close();
+                                            }
+
+
                                             thisHouse.setCurrent(String.valueOf(p1.getSRNO()));
                                             Intent intent = new Intent(P10.this, P11.class);
                                             intent.putExtra("Household", thisHouse);
@@ -314,14 +393,42 @@ public class P10 extends AppCompatActivity implements Serializable {
                                             //this is the last person, go to P12
 
                                             if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
-                                                Log.d("Education ","Last person  " + p1.getP10());
+                                                thisHouse.next =String.valueOf(0);
+                                                thisHouse.previous = String.valueOf(thisHouse.getTotalPersons()-1);
+
+                                                myDB = new DatabaseHelper(P10.this);
+                                                myDB.onOpen(myDB.getWritableDatabase());
+
+                                                //UPDATE HOUSEHOLD
+                                                List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+                                                if(ll.size()>0){
+                                                    myDB.updateRoster(thisHouse,"P10",p1.getP10(), String.valueOf(p1.getSRNO()));
+                                                    myDB.updateRoster(thisHouse,"P11",null, String.valueOf(p1.getSRNO()));
+                                                    myDB.close();
+                                                }
+
+
                                                 Intent intent = new Intent(P10.this, P12.class);
                                                 intent.putExtra("Household", thisHouse);
                                                 startActivity(intent);
 
                                             }
                                             //else loop p10
-                                            else{
+                                            else
+                                                {
+                                                thisHouse.next = String.valueOf(p1.getSRNO() + 1);
+
+                                                myDB = new DatabaseHelper(P10.this);
+                                                myDB.onOpen(myDB.getWritableDatabase());
+
+                                                //UPDATE HOUSEHOLD
+                                                List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+                                                if(ll.size()>0){
+                                                    myDB.updateRoster(thisHouse,"P10",p1.getP10(), String.valueOf(p1.getSRNO()));
+                                                    myDB.updateRoster(thisHouse,"P11",null, String.valueOf(p1.getSRNO()));
+                                                    myDB.close();
+                                                }
+
                                                 //Restart the current activity for next individual
                                                 Intent intent = new Intent(P10.this, P09.class);
                                                 intent.putExtra("Household", thisHouse);
@@ -390,6 +497,25 @@ public class P10 extends AppCompatActivity implements Serializable {
                     return valid;
                 }
             });
-        }
+
+
+            btnPrev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    thisHouse.previous = String.valueOf(p1.getSRNO());
+                    thisHouse.next=null;
+
+                    finish();
+
+                    Intent intent = new Intent(P10.this, P09.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+                }
+            });
+
+
+
+
     }
 }

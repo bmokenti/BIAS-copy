@@ -85,6 +85,56 @@ public class q603 extends AppCompatActivity implements Serializable {
                      individual.setQ603_Other(chkOther.getText().toString().substring(0,1));
                      individual.setQ603_Otherspecify(q603edt.getText().toString());
 
+                    if (ck1txt.isChecked()) {
+                        individual.setQ603_1("1");
+                    } else {
+                        individual.setQ603_1("2");
+                    }
+                    if (ck2txt.isChecked()) {
+                        individual.setQ603_2("1");
+                    } else {
+                        individual.setQ603_2("2");
+                    }
+                    if (ck3txt.isChecked()) {
+                        individual.setQ603_3("1");
+                    } else {
+                        individual.setQ603_3("2");
+                    }if (ck4txt.isChecked()) {
+                        individual.setQ603_4("1");
+                    } else {
+                        individual.setQ603_4("2");
+                    }if (ck5txt.isChecked()) {
+                        individual.setQ603_5("1");
+                    } else {
+                        individual.setQ603_5("2");
+                    }if (ck6txt.isChecked()) {
+                        individual.setQ603_6("1");
+                    } else {
+                        individual.setQ603_6("2");
+                    }if (ck7txt.isChecked()) {
+                        individual.setQ603_7("1");
+                    } else {
+                        individual.setQ603_7("2");
+                    }if (ck8txt.isChecked()) {
+                        individual.setQ603_8("1");
+                    } else {
+                        individual.setQ603_8("2");
+                    }if (ck9txt.isChecked()) {
+                        individual.setQ603_9("1");
+                    } else {
+                        individual.setQ603_9("2");
+                    }if (chkOther.isChecked()) {
+                        individual.setQ603_Other("1");
+                        individual.setQ603_Otherspecify(q603edt.getText().toString());
+
+                    } else {
+                        individual.setQ603_Other("2");
+                    }
+
+
+
+
+
                     Intent intent = new Intent(q603.this, q604.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);

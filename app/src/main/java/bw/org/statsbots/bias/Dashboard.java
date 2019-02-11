@@ -1,6 +1,5 @@
 package bw.org.statsbots.bias;
 
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -8,8 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -23,51 +20,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TabHost;
-import android.widget.Toast;
 
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import org.joda.time.DateTime;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -171,19 +146,13 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 viewPager.setCurrentItem(tab.getPosition());
                 switch (tab.getPosition()){
                     case 0:
-
                         break;
                     case 1:
-
-
                         break;
                     case 2:
-
-
                         break;
                     default:
                         break;
-
                 }
             }
 
@@ -197,11 +166,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
             }
         });
-
-
-
-
-
     }
 
 
@@ -275,7 +239,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 return true;
             case R.id.action_settings:
                 // Show the settings activity
-                Intent intent = new Intent(Dashboard.this, Settings.class);
+                Intent intent = new Intent(Dashboard.this, appSettings.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(Dashboard.this).toBundle());
 
 
@@ -335,9 +299,10 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         protected String doInBackground(Void... voids)
         {
             String Response=null;
-            try {
 
-                String url="http://10.30.3.169:8080/WebService/sync?Username=" + preferences.getString("Username",null);
+            try
+            {
+                String url=preferences.getString("server_ip",null)+"sync?Username=" + preferences.getString("Username",null);
                 HttpHandler sh = new HttpHandler();
                 String jsonStr = sh.makeServiceCall(url);
 
@@ -382,7 +347,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         private void readFromServer(String svrmsg)
         {
 
-            Log.d("Data from Webservice", svrmsg);
+            //Log.d("Data from Webservice", svrmsg);
             if (svrmsg != null)
             {
 
@@ -688,7 +653,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                     ind.setQ107(roster.get("Q107").toString());
                                     if (roster.get("Q107a").toString().equals(null) || roster.get("Q107a").toString().equals("")) {
 
-                                    } else {
+                                    }
+                                    else {
                                         ind.setQ107aMnth(roster.get("Q107a").toString().substring(2, 4));
                                         ind.setQ107aYY(roster.get("Q107a").toString().substring(0, 2));
                                     }
@@ -1234,7 +1200,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
             String Response=null;
             try {
 
-                String url="http://10.30.3.169:8080/WebService/syncSample?Username=" + preferences.getString("Username",null);
+                String url=preferences.getString("server_ip",null)+"syncSample?Username=" + preferences.getString("Username",null);
                 HttpHandler sh = new HttpHandler();
                 String jsonStr = sh.makeServiceCall(url);
 
@@ -1365,7 +1331,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
             String Response=null;
             try {
 
-                String url="http://10.30.3.169:8080/WebService/syncAssign?Username=" + preferences.getString("Username",null);
+                String url=preferences.getString("server_ip",null)+"syncAssign?Username=" + preferences.getString("Username",null);
                 HttpHandler sh = new HttpHandler();
                 String jsonStr = sh.makeServiceCall(url);
 
@@ -1509,7 +1475,16 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         protected String doInBackground(Void... voids)
         {
             List<HouseHold> CompleteddHH = myDB.getCompleted();
-           // Gson gson = new Gson();
+
+            /**
+             * SET THE STATUS OF INTERVIEW TO 0 FOR THE SUPERVISOR TO SEE
+             * INTERVIEWS FROM FIELD
+             */
+            for(HouseHold h : CompleteddHH){
+                h.setInterview_Status("0");
+            }
+
+
             Gson gson = new Gson();/*Builder()
                     .setDateFormat(DateFormat.FULL, DateFormat.FULL).create();*/
             String json = gson.toJson(CompleteddHH);
@@ -1527,7 +1502,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                  */
                 try
                 {
-                    URL url = new URL("http://10.30.3.169:8080/Webservice/dataFromField");
+                    URL url = new URL(preferences.getString("server_ip",null)+"dataFromField");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
                     conn.setDoOutput(true);

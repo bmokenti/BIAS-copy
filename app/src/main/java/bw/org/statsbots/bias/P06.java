@@ -6,6 +6,7 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -43,27 +44,27 @@ public class P06 extends AppCompatActivity implements Serializable, View.OnClick
 
         final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
+        myDB = new DatabaseHelper(this);
+        myDB.onOpen(myDB.getReadableDatabase());
+
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        //p1 = thisHouse.getPersons()[0];
 
+        //***************************Read Roster from Database and load it into Object thisHouse
+        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
+        if(thisHouse.next!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
 
-        /**
-         * Loop through the house hold members to check if hh member 's P02 is answered
-         * If P02 is null then ask the individual
-         */
-        for(int r=0; r<thisHouse.getTotalPersons();r++)
-        {
-            p1= thisHouse.getPersons()[r];
-            if(p1.getP06()==null)
-            {
-                break;
-            }else{
-                continue;
-            }
+        }else if(thisHouse.previous!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];
+
         }
 
+
         //Disable for head of House
+
         if(p1.getP02().equals("00")){
 
             rbtn1.setChecked(true);
@@ -73,7 +74,102 @@ public class P06 extends AppCompatActivity implements Serializable, View.OnClick
         }
 
 
-        if(p1.getP06()==null) {
+        if(thisHouse.next!=null)
+        {
+            //Next Members
+            p1=thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
+            thisHouse.setCurrentPerson(p1.getSRNO());
+
+            if(p1.getP06()!=null){
+                if(p1.getP02().equals("00")){
+                    rbtn1.setChecked(true);
+                    rbtn2.setEnabled(false);
+                    rbtn3.setEnabled(false);
+                    selected=rbtn1;
+                }
+                else
+                    {
+                    if(p1.getP06().equals("1"))
+                    {
+                        rbtn1.setChecked(true);
+                        rbtn1.setEnabled(true);
+                        rbtn2.setEnabled(true);
+                        rbtn3.setEnabled(true);
+
+                        selected=rbtn1;
+                    }if(p1.getP06().equals("2"))
+                    {
+                        rbtn2.setChecked(true);
+                        rbtn1.setEnabled(true);
+                        rbtn2.setEnabled(true);
+                        rbtn3.setEnabled(true);
+                        selected=rbtn2;
+                    }if(p1.getP06().equals("3"))
+                    {
+                        rbtn3.setChecked(true);
+                        rbtn1.setEnabled(true);
+                        rbtn2.setEnabled(true);
+                        rbtn3.setEnabled(true);
+                        selected=rbtn3;
+                    }
+                }
+
+
+            }
+
+        }
+
+        else if(thisHouse.previous!=null)
+        {
+            //Prev Members
+            p1=thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];
+            thisHouse.setCurrentPerson(p1.getSRNO());
+
+            if(p1.getP06()!=null)
+            {
+                if(p1.getP02().equals("00"))
+                {
+                    rbtn1.setChecked(true);
+                    rbtn2.setEnabled(false);
+                    rbtn3.setEnabled(false);
+                    selected=rbtn1;
+                }
+                else
+                {
+                    if(p1.getP06().equals("1"))
+                    {
+                       rbtn1.setChecked(true);
+
+                       rbtn1.setEnabled(true);
+                       rbtn2.setEnabled(true);
+                       rbtn3.setEnabled(true);
+                       selected=rbtn1;
+                    }
+                    if(p1.getP06().equals("2"))
+                    {
+                       rbtn2.setChecked(true);
+
+                       rbtn1.setEnabled(true);
+                       rbtn2.setEnabled(true);
+                       rbtn3.setEnabled(true);
+                       selected=rbtn2;
+                    }
+                    if(p1.getP06().equals("3"))
+                    {
+                        rbtn3.setChecked(true);
+
+                        rbtn1.setEnabled(true);
+                        rbtn2.setEnabled(true);
+                        rbtn3.setEnabled(true);
+                        selected=rbtn3;
+                    }
+                }
+
+
+            }
+
+        }
+
 
             TextView textView = (TextView) findViewById(R.id.P06);
             String s = getResources().getString(R.string.P06);
@@ -86,6 +182,7 @@ public class P06 extends AppCompatActivity implements Serializable, View.OnClick
              * NEXT Person BUTTON
              */
             Button btnNext = (Button)findViewById(R.id.button);
+            Button btnPrev = (Button)findViewById(R.id.button3);
             String btnLabel="";
 
             if(p1.getLineNumber()+1==thisHouse.getTotalPersons()){
@@ -115,43 +212,84 @@ public class P06 extends AppCompatActivity implements Serializable, View.OnClick
                         else{
 
                             //Set P02 fir the current individual
+                            p1.setP06(selected.getText().toString().substring(0,1));
                             thisHouse.getPersons()[p1.getLineNumber()].setP06(selected.getText().toString().substring(0,1));
                             //Restart the current activity for next individual
                             if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
+                                thisHouse.next =String.valueOf(0);
+                                thisHouse.previous = String.valueOf(thisHouse.getTotalPersons()-1);
 
-
-                                //First save
                                 myDB = new DatabaseHelper(P06.this);
-                                myDB.onOpen(myDB.getReadableDatabase());
-                                List<PersonRoster> roster = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+                                myDB.onOpen(myDB.getWritableDatabase());
 
-                                if(roster.size()>0){
-                                    //Update
-                                    myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
-
-                                }else{
-                                    //Insert
-                                    myDB.insertHhroster(thisHouse);
-
+                                //UPDATE HOUSEHOLD
+                                List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+                                if(ll.size()>0){
+                                    myDB.updateRoster(thisHouse,"P06",p1.getP06(), String.valueOf(p1.getSRNO()));
+                                    myDB.close();
                                 }
-
-
                                 //Next question P07
                                 Intent intent = new Intent(P06.this,P07.class);
                                 intent.putExtra("Household",  thisHouse);
                                 startActivity(intent);
 
                             }else{
-                                //Restart the current activity for next individual
-                                finish();
-                                startActivity(getIntent());
+                                if(p1.getSRNO()>=0 && p1.getSRNO()<thisHouse.getPersons().length) {
+
+                                    thisHouse.next=String.valueOf(p1.getSRNO()+1);
+                                    myDB = new DatabaseHelper(P06.this);
+                                    myDB.onOpen(myDB.getWritableDatabase());
+
+                                    //UPDATE HOUSEHOLD
+                                    List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+                                    if(ll.size()>0){
+                                        Log.d("P06----",p1.getP06());
+                                        myDB.updateRoster(thisHouse,"P06",p1.getP06(), String.valueOf(p1.getSRNO()));
+                                        myDB.close();
+                                    }
+                                    //Restart the current activity for next individual
+                                    finish();
+
+                                    Intent intent = new Intent(P06.this,P06.class);
+                                    intent.putExtra("Household",  thisHouse);
+                                    startActivity(intent);
+
+
+                                }
+                                }
                             }
 
-                        }
+                        }});
+
+            btnPrev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("P05 PREV",p1.getSRNO()+"");
+                    if(p1.getSRNO() == 0){
+                        //Next question P03
+                        //thisHouse.previous=String.valueOf(p1.getLineNumber());//set previous to last person covered
+                        thisHouse.previous=String.valueOf(thisHouse.getTotalPersons()-1);
+                        thisHouse.next=null;
+                        finish();
+
+                        Intent intent = new Intent(P06.this,P05.class);
+                        intent.putExtra("Household",  thisHouse);
+                        startActivity(intent);
 
 
+                    }else if(p1.getSRNO()>=0 && p1.getSRNO()<thisHouse.getPersons().length){
+                        //Restart the current activity for previous individual
+                        int n = p1.getSRNO()-1;
+                        thisHouse.previous = String.valueOf(n);
+                        thisHouse.next=null;
+                        finish();
+
+                        Intent intent = new Intent(P06.this, P06.class);
+                        intent.putExtra("Household", thisHouse);
+                        startActivity(intent);
 
 
+                    }
                 }
             });
 
@@ -160,8 +298,6 @@ public class P06 extends AppCompatActivity implements Serializable, View.OnClick
 
 
 
-
-            }
 
 
 

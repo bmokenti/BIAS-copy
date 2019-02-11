@@ -173,7 +173,8 @@ public class q104 extends AppCompatActivity implements Serializable {
                 txtq104text = (TextView) findViewById(R.id.txtq104c);
 
                 String txtq104cvalue = txtq104text.getText().toString();
-                if (txtq104cvalue == null || txtq104cvalue.length() == 0) {
+                if (txtq104cvalue == null || txtq104cvalue.length() == 0)
+                {
                     lib.showError(q104.this, " Field of Education ", "Please enter description");
                     /**
                      * VIBRATE DEVICE

@@ -83,7 +83,7 @@ public class q602 extends AppCompatActivity implements Serializable{
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
                     } else {
-                        individual.setQ602_1(ck1txt.getText().toString().substring(0,1));
+                       /* individual.setQ602_1(ck1txt.getText().toString().substring(0,1));
                         individual.setQ602_2(ck2txt.getText().toString().substring(0,1));
                         individual.setQ602_3(ck3txt.getText().toString().substring(0,1));
                         individual.setQ602_4(ck4txt.getText().toString().substring(0,1));
@@ -99,6 +99,77 @@ public class q602 extends AppCompatActivity implements Serializable{
                         individual.setQ602_15(ck15txt.getText().toString().substring(0,1));
                        individual.setQ602_Other(chkOther.getText().toString().substring(0,1));
                         individual.setQ602_Otherspecify(Q602edt.getText().toString());
+*/
+
+                        if (ck1txt.isChecked()) {
+                            individual.setQ602_1("1");
+                        } else {
+                            individual.setQ602_1("2");
+                        }
+
+                        if (ck2txt.isChecked()) {
+                            individual.setQ602_2("1");
+                        } else {
+                            individual.setQ602_2("2");
+                        }
+                        if (ck3txt.isChecked()) {
+                            individual.setQ602_3("1");
+                        } else {
+                            individual.setQ602_3("2");
+                        }
+                        if (ck4txt.isChecked()) {
+                            individual.setQ602_4("1");
+                        } else {
+                            individual.setQ602_4("2");
+                        }
+                        if (ck5txt.isChecked()) {
+                            individual.setQ602_5("1");
+                        } else {
+                            individual.setQ602_5("2");
+                        }
+                        if (ck6txt.isChecked()) {
+                            individual.setQ602_6("1");
+                        } else {
+                            individual.setQ602_6("2");
+                        } if (ck7txt.isChecked()) {
+                            individual.setQ602_7("1");
+                        } else {
+                            individual.setQ602_7("2");
+                        }
+                        if (ck8txt.isChecked()) {
+                            individual.setQ602_8("1");
+                        } else {
+                            individual.setQ602_8("2");
+                        } if (ck10txt.isChecked()) {
+                            individual.setQ602_10("1");
+                        } else {
+                            individual.setQ602_10("2");
+                        } if (ck11txt.isChecked()) {
+                            individual.setQ602_11("1");
+                        } else {
+                            individual.setQ602_11("2");
+                        } if (ck12txt.isChecked()) {
+                            individual.setQ602_12("1");
+                        } else {
+                            individual.setQ602_12("2");
+                        } if (ck13txt.isChecked()) {
+                            individual.setQ602_13("1");
+                        } else {
+                            individual.setQ602_13("2");
+                        } if (ck14txt.isChecked()) {
+                            individual.setQ602_14("1");
+                        } else {
+                            individual.setQ602_14("2");
+                        } if (ck15txt.isChecked()) {
+                            individual.setQ602_15("1");
+                        } else {
+                            individual.setQ602_15("2");
+                        } if (chkOther.isChecked()) {
+                            individual.setQ602_Other("1");
+                            individual.setQ602_Otherspecify(Q602edt.getText().toString());
+                        } else {
+                            individual.setQ602_Other("2");
+                        }
 
                         Intent intent = new Intent(q602.this, q603.class);
                         intent.putExtra("Individual", individual);

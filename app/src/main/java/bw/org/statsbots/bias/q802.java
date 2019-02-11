@@ -125,6 +125,7 @@ public class q802 extends AppCompatActivity implements Serializable {
                             vibs.vibrate(100);
                         }  else {
 
+                            //Set Q802 and Q802a for the current individual
 
                             if (rbtn2.isChecked()) {
                                 individual.setQ802(selected.getText().toString().substring(0, 1));

@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -69,7 +68,7 @@ public class q402 extends AppCompatActivity implements Serializable {
         //Intent i = getIntent();
         //thisHouse = (HouseHold) i.getSerializableExtra("Household");
         //int p = 0;
-        if ( individual.getQ401().equals("1") && Integer.valueOf(individual.getQ102()) >= 25) {
+        if (individual.getQ101().equals("1") && individual.getQ401().equals("1") && Integer.valueOf(individual.getQ102()) >= 24) {
 
             Intent intent = new Intent(q402.this, q403.class);
             intent.putExtra("Individual", individual);
@@ -83,7 +82,7 @@ public class q402 extends AppCompatActivity implements Serializable {
         }
 
 
-        if (individual.getQ401().equals("2") && individual.getQ101().equals("1") )
+        if (individual.getQ401().equals("2") && individual.getQ101().equals("1") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64))
         {
             Intent intent = new Intent(q402.this, q501.class);
             intent.putExtra("Individual", individual);
@@ -95,7 +94,7 @@ public class q402 extends AppCompatActivity implements Serializable {
             }
 
 
-        if (individual.getQ401().equals("2") && individual.getQ101().equals("2") )
+        if (individual.getQ401().equals("2") && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64))
         {
             Intent intent = new Intent(q402.this, q601.class);
             intent.putExtra("Individual", individual);
@@ -161,18 +160,30 @@ public class q402 extends AppCompatActivity implements Serializable {
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
                         } else {
+                            int year = Integer.parseInt(edtq402.getText().toString());
 
-                            individual.setQ402(edtq402.getText().toString());
-                            individual.setQ402a(selectedRbtn.getText().toString().substring(0, 1));
-                            individual.setQ402b(selectedRbtn1.getText().toString().substring(0, 1));
-String i = individual.getQ101();
+                            if(year > Integer.parseInt(individual.getQ102())){
+                                lib.showError(q402.this, "Q402: Error ", "Q402 Age cannot be greater than age of individual which is : " + individual.getQ102());
 
-                            //Check if country entered is in the list
-                            Intent intent = new Intent(q402.this, q403.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+                            }
+                            else {
 
+                                individual.setQ402(edtq402.getText().toString());
+                                individual.setQ402a(selectedRbtn.getText().toString().substring(0, 1));
+                                individual.setQ402b(selectedRbtn1.getText().toString().substring(0, 1));
+                                String i = individual.getQ101();
 
+                                //Check if country entered is in the list
+                                Intent intent = new Intent(q402.this, q403.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+
+                            }
                         }
                     }
 
@@ -245,7 +256,7 @@ String i = individual.getQ101();
             // Remove the meat
             edtq402.setEnabled(true);
 
-
+            // TODO: Veggie sandwich
         }
     }
 

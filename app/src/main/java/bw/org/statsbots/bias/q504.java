@@ -82,25 +82,69 @@ public class q504 extends AppCompatActivity implements Serializable {
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
                 }  else{
-                    individual.setQ504_1(ck1txt.getText().toString().substring(0,1));
-                    individual.setQ504_2(ck2txt.getText().toString().substring(0,1));
-                   individual.setQ504_3(ck3txt.getText().toString().substring(0,1));
-                   individual.setQ504_4(ck4txt.getText().toString().substring(0,1));
-                   individual.setQ504_5(ck5txt.getText().toString().substring(0,1));
-                    individual.setQ504_6(ck6txt.getText().toString().substring(0,1));
-                    individual.setQ504_7(ck7txt.getText().toString().substring(0,1));
-                   individual.setQ504_8(ck8txt.getText().toString().substring(0,1));
-                    individual.setQ504_10(ck10txt.getText().toString().substring(0,1));
-                   individual.setQ504_Other(chkOther.getText().toString().substring(0,1));
-                    individual.setQ504_OtherSpecify(Q504edt.getText().toString());
-/*
-                    HouseHold house = new HouseHold();
-                    house.getAssignment_ID();
-                    house.getBatchNumber();
-                    house.getPersons();
 
-                    myDB.insertIndividual(house);
-*/
+
+                    if(ck1txt.isChecked()){
+                        individual.setQ504_1("1");
+                    }else{
+                        individual.setQ504_1("2");
+                    }
+
+
+                    if(ck2txt.isChecked()){
+                        individual.setQ504_2("1");
+                    }else{
+                        individual.setQ504_2("2");
+                    }
+
+                    if(ck3txt.isChecked()){
+                        individual.setQ504_3("1");
+                    }else{
+                        individual.setQ504_3("2");
+                    }
+
+                    if(ck4txt.isChecked()){
+                        individual.setQ504_4("1");
+                    }else{
+                        individual.setQ504_4("2");
+                    }
+
+                    if(ck5txt.isChecked()){
+                        individual.setQ504_5("1");
+                    }else{
+                        individual.setQ504_5("2");
+                    }
+                    if(ck6txt.isChecked()){
+                        individual.setQ504_6("1");
+                    }else{
+                        individual.setQ504_6("2");
+                    }
+                    if(ck7txt.isChecked()){
+                        individual.setQ504_7("1");
+                    }else{
+                        individual.setQ504_7("2");
+                    }
+
+                    if(ck8txt.isChecked()){
+                        individual.setQ504_8("1");
+                    }else{
+                        individual.setQ504_8("2");
+                    }
+
+                    if(ck10txt.isChecked()){
+                        individual.setQ504_10("1");
+                    }else{
+                        individual.setQ504_10("2");
+                    }
+
+
+                    if(chkOther.isChecked()){
+                        individual.setQ504_Other("1");
+                        individual.setQ504_OtherSpecify(Q504edt.getText().toString());
+                    }else{
+                        individual.setQ504_Other("2");
+                    }
+
 
 
                     Intent intent = new Intent(q504.this, q601.class);

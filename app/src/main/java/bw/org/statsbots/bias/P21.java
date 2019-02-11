@@ -53,10 +53,26 @@ public class P21 extends AppCompatActivity {
                 p21.add(p1.getP01());
                 //Set P02 fir the current individual
                 thisHouse.getPersons()[p1.getLineNumber()].setP21("1");
+                p1.setP21("1");
+
+                myDB = new DatabaseHelper(P21.this);
+                myDB.onOpen(myDB.getWritableDatabase());
+
+                myDB.updateRoster(thisHouse,"P21",p1.getP21(), String.valueOf(p1.getSRNO()));
+                myDB.close();
 
             } else {
                 //Set P02 fir the current individual
                 thisHouse.getPersons()[p1.getLineNumber()].setP21("2");
+
+                p1.setP21("2");
+
+                myDB = new DatabaseHelper(P21.this);
+                myDB.onOpen(myDB.getWritableDatabase());
+
+                myDB.updateRoster(thisHouse,"P21",p1.getP21(), String.valueOf(p1.getSRNO()));
+                myDB.close();
+
                 continue;
             }
 
@@ -85,48 +101,19 @@ public class P21 extends AppCompatActivity {
             }
         });
 
-
-        /*
         Button btnPrev = (Button)findViewById(R.id.p21_btnPrev);
        btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //thisHouse.previous = String.valueOf(p1.getSRNO());
 
-                Cursor res = myDB.getHhroster("HHP_ROSTER");
-                if(res.getCount() == 0) {
-                    // show message
-                    //myDB.showMessage("Error","Nothing found");
-                    Log.d("DB Number of Rows: ", String.valueOf(res.getCount()));
-                    return;
-                }
+                finish();
 
-                StringBuffer buffer = new StringBuffer();
-                while (res.moveToNext()) {
-                    buffer.append("AssgnID:"+ res.getString(0)+"\n");
-                    buffer.append("BatchNO:"+ res.getString(1)+"\n");
-                    buffer.append("SRNO:"+ res.getString(2)+"\n");
-                    buffer.append("P01:"+ res.getString(3)+"\n");
-                    buffer.append("P02:"+ res.getString(4)+"\n");
-                    buffer.append("P03:"+ res.getString(5)+"\n");
-                    buffer.append("P04YY:"+ res.getString(6)+"\n");
-                    buffer.append("P04MM:"+ res.getString(7)+"\n");
-                    buffer.append("P04WKS:"+ res.getString(8)+"\n");
-                    buffer.append("P05:"+ res.getString(9)+"\n");
-                    buffer.append("P06:"+ res.getString(10)+"\n");
-                    buffer.append("P07:"+ res.getString(11)+"\n");
-                    buffer.append("P17:"+ res.getString(12)+"\n");
-                    buffer.append("P18:"+ res.getString(13)+"\n");
-                    buffer.append("P19:"+ res.getString(14)+"\n");
-                    buffer.append("P20:"+ res.getString(15)+"\n");
-                    buffer.append("P21:"+ res.getString(16)+"\n");
+                //Intent intent = new Intent(P18.this, P17.class);
+                //intent.putExtra("Household", thisHouse);
+                //startActivity(intent);
 
-
-
-                }
-                Log.d("DB Output: " , buffer.toString());
-                // Show all data
-                /// myDB.showMessage("Data",buffer.toString());
             }
-        });*/
+        });
     }
 }

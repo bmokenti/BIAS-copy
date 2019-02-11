@@ -30,6 +30,20 @@ public class P20 extends AppCompatActivity {
         thisHouse.getPersons();
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
 
+        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
+
+        if(thisHouse.next!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
+
+        }else if(thisHouse.previous!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];
+
+        }
+
+
+
+
         List<String> p20 = new ArrayList<>();
 
         for (int r = 0; r < thisHouse.getTotalPersons(); r++) {
@@ -40,10 +54,26 @@ public class P20 extends AppCompatActivity {
                 p20.add(p1.getP01());
                 //Set P02 fir the current individual
                 thisHouse.getPersons()[p1.getLineNumber()].setP20("1");
+                p1.setP20("1");
+
+                myDB = new DatabaseHelper(P20.this);
+                myDB.onOpen(myDB.getWritableDatabase());
+
+                myDB.updateRoster(thisHouse,"P20",p1.getP20(), String.valueOf(p1.getSRNO()));
+                myDB.close();
+
+
 
             } else {
                 //Set P02 fir the current individual
                 thisHouse.getPersons()[p1.getLineNumber()].setP20("2");
+                p1.setP20("2");
+
+                myDB = new DatabaseHelper(P20.this);
+                myDB.onOpen(myDB.getWritableDatabase());
+
+                myDB.updateRoster(thisHouse,"P20",p1.getP20(), String.valueOf(p1.getSRNO()));
+                myDB.close();
                 continue;
             }
 
@@ -55,6 +85,7 @@ public class P20 extends AppCompatActivity {
         Allpersonslist = (ListView) findViewById(R.id.personslist);
         Allpersonslist.setAdapter(itemsAdapter);
         Button btnNext = (Button)findViewById(R.id.p20_btnNext);
+        Button btnPrev = (Button)findViewById(R.id.p03_btnPrev);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,5 +108,20 @@ public class P20 extends AppCompatActivity {
 
             }
         });
+
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //thisHouse.previous = String.valueOf(p1.getSRNO());
+
+                finish();
+
+                //Intent intent = new Intent(P18.this, P17.class);
+                //intent.putExtra("Household", thisHouse);
+                //startActivity(intent);
+            }
+        });
+
+
     }
 }
