@@ -52,6 +52,7 @@ public class q105 extends AppCompatActivity implements Serializable{
         rbtn9 = findViewById(R.id.q105_other);
 
         edt = (EditText) findViewById(R.id.Q105_txtOther);
+
         edt1 = (EditText) findViewById(R.id.Q105atxt);
         edt2 = (EditText) findViewById(R.id.Q105btxt);
 
@@ -127,9 +128,14 @@ public class q105 extends AppCompatActivity implements Serializable{
 
 
                             } else {
-                                if (rbtn4.isChecked() || rbtn5.isChecked() || rbtn6.isChecked() || rbtn7.isChecked()) {
-                                    individual.setQ105Other(selectedRbtn.getText().toString());
-                                    individual.setQ105(edt.getText().toString());
+                                if (rbtn9.isChecked())
+                                {
+                                    individual.setQ105(selectedRbtn.getText().toString().substring(0,1));
+                                    individual.setQ105Other(edt.getText().toString());
+                                    //individual.setQ105(edt.getText().toString());
+
+                                    individual.setQ105a(edt1.getText().toString());
+                                    individual.setQ105b(edt2.getText().toString());
 
                                     Intent intent = new Intent(q105.this, q106.class);
                                     intent.putExtra("Individual", individual);
@@ -144,7 +150,7 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     individual.setQ105a(edt1.getText().toString());
                                     individual.setQ105b(edt2.getText().toString());
 
-                                    individual.setQ105Other(edt.getText().toString());
+                                    //individual.setQ105Other(edt.getText().toString());
                                     //Set P02 fir the current individual
                                     //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
                                     //Restart the current activity for next individual

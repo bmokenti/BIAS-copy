@@ -41,7 +41,22 @@ public class P17 extends AppCompatActivity implements Serializable {
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         thisHouse.getPersons();
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
+
+        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
+
+        if(thisHouse.next!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
+
+        }else if(thisHouse.previous!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];
+
+        }
+
+
+
         Button btnNext = (Button) findViewById(R.id.p17_btnNext);
+        Button btnPrev = (Button) findViewById(R.id.button3);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,11 +83,26 @@ public class P17 extends AppCompatActivity implements Serializable {
                         //add to listview
                         p17.add(p1.getP01());
                         //Set P02 fir the current individual
+                        p1.setP17("1");
                         thisHouse.getPersons()[p1.getLineNumber()].setP17("1");
+
+                        myDB = new DatabaseHelper(P17.this);
+                        myDB.onOpen(myDB.getWritableDatabase());
+
+                        myDB.updateRoster(thisHouse,"P17",p1.getP17(), String.valueOf(p1.getSRNO()));
+                        myDB.close();
+
+
 
                     } else {
                         //Set P02 fir the current individual
+                        p1.setP17("2");
                         thisHouse.getPersons()[p1.getLineNumber()].setP17("2");
+                        myDB = new DatabaseHelper(P17.this);
+                        myDB.onOpen(myDB.getWritableDatabase());
+
+                        myDB.updateRoster(thisHouse,"P17",p1.getP17(), String.valueOf(p1.getSRNO()));
+                        myDB.close();
                         continue;
 
                     }
@@ -99,6 +129,24 @@ public class P17 extends AppCompatActivity implements Serializable {
 
             }
         });
+
+
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //thisHouse.previous = String.valueOf(p1.getSRNO());
+
+
+                finish();
+
+                Intent intent = new Intent(P17.this, P16.class);
+                intent.putExtra("Household", thisHouse);
+                startActivity(intent);
+            }
+        });
+
+
+
 
 
             }

@@ -36,7 +36,7 @@ public class q1001 extends AppCompatActivity {
         rbtn2 = (RadioButton) findViewById(R.id.q1001_2);
         rbtn3 = (RadioButton) findViewById(R.id.q1001_3);
 
-        rg = (RadioGroup) findViewById(R.id.q901radioGroup);
+
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;

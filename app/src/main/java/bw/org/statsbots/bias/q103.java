@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -85,6 +86,20 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
 
 
                     if (rbtn3.isChecked()) {
+
+                        individual.setQ103(selectedRbtn.getText().toString().substring(0,1));
+                        Log.d("Q103",individual.getQ103());
+                        DatabaseHelper myDB;
+                        myDB = new DatabaseHelper(q103.this);
+                        myDB.onOpen(myDB.getReadableDatabase());
+
+                        if(myDB.checkIndividual(individual))
+                        {
+                            //Update
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                        }
+                        
                         Intent q1o3 = new Intent(q103.this, q105.class);
                         q1o3.putExtra("Individual", individual);
                         startActivity(q1o3);
@@ -93,14 +108,17 @@ public class q103 extends AppCompatActivity implements View.OnClickListener{
                         //Set q101 for the current individual
                         individual.setQ103(selectedRbtn.getText().toString().substring(0,1));
 
+                        Log.d("Q103",individual.getQ103());
+                        DatabaseHelper myDB;
+                        myDB = new DatabaseHelper(q103.this);
+                        myDB.onOpen(myDB.getReadableDatabase());
 
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-                        // selectedRbtn.getText().toString().substring(0, 1);
+                        if(myDB.checkIndividual(individual))
+                        {
+                            //Update
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
+                        }
                         Intent q1o3 = new Intent(q103.this, q104.class);
                         q1o3.putExtra("Individual", individual);
                         startActivity(q1o3);

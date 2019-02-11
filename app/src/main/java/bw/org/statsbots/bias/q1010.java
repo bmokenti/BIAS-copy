@@ -14,7 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class q1010 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q1010 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
@@ -44,7 +46,7 @@ public class q1010 extends AppCompatActivity {
         rbtnOther = (RadioButton) findViewById(R.id.q1010_other);
         edtOther = (EditText)  findViewById(R.id.q1010_other1);
 
-        //rga = (RadioGroup)findViewById(R.id.q1010aGroup1) ;
+        //rga = (RadioGroup)findViewById(R.id.q1010aGroup) ;
 
 
 
@@ -54,6 +56,16 @@ public class q1010 extends AppCompatActivity {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                RadioButton r  = findViewById(i);
+                if(r==rbtnOther){
+                    edtOther.setVisibility(View.VISIBLE);
+                    edtOther.setHint("Other Specify");
+                }
+            }
+        });
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -108,8 +120,8 @@ public class q1010 extends AppCompatActivity {
             case R.id.q1010_1:
                 if(checked)
                 {
-                    edtOther.setVisibility(View.INVISIBLE);
-                    edtOther.setText("");
+                    //edtOther.setVisibility(View.INVISIBLE);
+                    //edtOther.setText("");
 
                 }
 
@@ -121,8 +133,8 @@ public class q1010 extends AppCompatActivity {
                 if(checked)
 
                 {
-                    edtOther.setVisibility(View.INVISIBLE);
-                    edtOther.setText("");
+                    //edtOther.setVisibility(View.INVISIBLE);
+                    //edtOther.setText("");
 
                 }
 
@@ -134,8 +146,8 @@ public class q1010 extends AppCompatActivity {
             case R.id.q1010_3:
                 if(checked)
                 {
-                    edtOther.setVisibility(View.INVISIBLE);
-                    edtOther.setText("");
+                   // edtOther.setVisibility(View.INVISIBLE);
+                    //edtOther.setText("");
 
                 }
 
@@ -144,11 +156,10 @@ public class q1010 extends AppCompatActivity {
                 break;
 
             case R.id.q1010_other:
-                if(checked) {
 
-                    edtOther.setVisibility(View.VISIBLE);
-                }
-                else
+                    //edtOther.setVisibility(View.VISIBLE);
+                    //edtOther.setHint("Other Specify");
+
 
                     break;
 

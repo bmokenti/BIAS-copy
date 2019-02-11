@@ -160,15 +160,30 @@ public class q402 extends AppCompatActivity implements Serializable {
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
                         } else {
+                            int year = Integer.parseInt(edtq402.getText().toString());
 
-                            individual.setQ402(edtq402.getText().toString());
-                            individual.setQ402a(selectedRbtn.getText().toString().substring(0, 1));
-                            individual.setQ402b(selectedRbtn1.getText().toString().substring(0, 1));
+                            if(year > Integer.parseInt(individual.getQ102())){
+                                lib.showError(q402.this, "Q402: Error ", "Q402 Age cannot be greater than age of individual which is : " + individual.getQ102());
 
-                            //Check if country entered is in the list
-                            Intent intent = new Intent(q402.this, q403.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+                            }
+                            else{
+
+                                individual.setQ402(edtq402.getText().toString());
+                                individual.setQ402a(selectedRbtn.getText().toString().substring(0, 1));
+                                individual.setQ402b(selectedRbtn1.getText().toString().substring(0, 1));
+
+                                //Check if country entered is in the list
+                                Intent intent = new Intent(q402.this, q403.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                            }
+
+
 
 
                         }

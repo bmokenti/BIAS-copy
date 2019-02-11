@@ -138,7 +138,7 @@ public class q617 extends AppCompatActivity {
                             } else {
                                 int selectedId6 = rg6.getCheckedRadioButtonId();
                                 selected6 = (RadioButton) findViewById(selectedId6);
-                            }
+
                             if (selected6 == null) {
                                 lib.showError(q617.this, "Q617: ERROR", " SEJESO ");
                                 /**
@@ -171,7 +171,7 @@ public class q617 extends AppCompatActivity {
                                         vibs.vibrate(100);
 
                                     }
-                                    if (rbtnOther.isChecked() && edtOther.length()==0) {
+                                    if (rbtnOther.isChecked() && edtOther.length() == 0) {
                                         lib.showError(q617.this, "Q617: ERROR: Other", "Other specify");
                                         /**
                                          * VIBRATE DEVICE
@@ -179,15 +179,19 @@ public class q617 extends AppCompatActivity {
                                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                         vibs.vibrate(100);
 
-                                    }else {
+                                    } else {
                                         //thisHouse.getIndividual()[p1.getLineNumber()].setQ617a(selected1.getText().toString().substring(0,1));
                                         // thisHouse.getIndividual()[p1.getLineNumber()].setQ617b(selected2.getText().toString().substring(0,1));
                                         // thisHouse.getIndividual()[p1.getLineNumber()].setQ617c(selected3.getText().toString().substring(0,1));
                                         // thisHouse.getIndividual()[p1.getLineNumber()].setQ617d(selected4.getText().toString().substring(0,1));
                                         // thisHouse.getIndividual()[p1.getLineNumber()].setQ617f(selected6.getText().toString().substring(0,1));
-                                       // thisHouse.getIndividual()[p1.getLineNumber()].setQ617g(selected7.getText().toString().substring(0,1));
+                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ617g(selected7.getText().toString().substring(0,1));
                                         //thisHouse.getIndividual()[p1.getLineNumber()].setQ617h(selected8.getText().toString().substring(0,1));
                                         //thisHouse.getIndividual()[p1.getLineNumber()].setQ617_0ther(edtOther.getText().toString());
+
+
+
+
 
 
 
@@ -196,7 +200,7 @@ public class q617 extends AppCompatActivity {
                                         startActivity(intent);
                                     }
                                 }
-
+                            }
 
                             }
                         }

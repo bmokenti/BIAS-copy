@@ -61,7 +61,7 @@ public class q902 extends AppCompatActivity {
                 } else {
 
 
-                    if (!ck2txt.isChecked() && ((edtyear.length() == 0 || Integer.valueOf(edtyear.getText().toString()) <= 1988 ||Integer.valueOf(edtyear.getText().toString()) >= 2020))) {
+                    if (!ck2txt.isChecked() && ((edtyear.length() < 4 || Integer.valueOf(edtyear.getText().toString()) <= 1988 ||Integer.valueOf(edtyear.getText().toString()) >= 2020))) {
                         lib.showError(q902.this, "Q902: year", "Please input year or select Dont know Year: Year shoud be btween 1988 and 2020");
                         /**
                          * VIBRATE DEVICE
@@ -70,8 +70,16 @@ public class q902 extends AppCompatActivity {
                         vibs.vibrate(100);
                     }
                             else {
-                       individual.setQ902Month(edtmnths.getText().toString().substring(0,1));
-                       individual.setQ902Year(edtyear.getText().toString().substring(0,1));
+                                String m = edtmnths.getText().toString();
+                                String y = edtyear.getText().toString();
+                                if(m.length()==1){
+                                    m="0"+m;
+                                }
+                                if(y.length()==1){
+                                    y="0"+y;
+                                }
+                                   individual.setQ902Month(m);
+                                   individual.setQ902Year(y);
 
 
                                 Intent intent = new Intent(q902.this, q903.class);

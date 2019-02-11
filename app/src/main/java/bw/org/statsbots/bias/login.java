@@ -47,91 +47,128 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         preferences = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         final boolean userlogin_Status = preferences.getBoolean("is_logged", false);
+        final String ipaddress = preferences.getString("server_ip", null);
         setContentView(R.layout.activity_login);
 
+        if (ipaddress == null) {
+            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            vibs.vibrate(100);
+            AlertDialog.Builder adBuilder = new AlertDialog.Builder(login.this)
+                    .setTitle("Application Setting Error !")
+                    .setMessage("No Synchronization End Point detected, Please configure end point first")
+                    .setPositiveButton("appSettings", new DialogInterface.OnClickListener() {
 
-            //Will be executed if there is no active session
+                        public void onClick(DialogInterface dialog, int which) {
 
-            progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-
-            /**
-             * Add LoginValidator Button
-             */
-            final EditText txtusername = (EditText) findViewById(R.id.email);
-            final EditText txtpassword = (EditText) findViewById(R.id.password);
-
-
-            Button btnLogin = findViewById(R.id.btnLogin);
-            btnLogin.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view) {
-                    //preLogin()
-                    String username = txtusername.getText().toString();
-                    String password = txtpassword.getText().toString();
-
-                    LoginValidator loginValidator = new LoginValidator(username, password);
-                    TextView txterror = (TextView) findViewById(R.id.login_error);
-
-                    if (Validator.isNull(loginValidator.preLogin()))
-                    {
-                        txterror.setText(loginValidator.preLogin()); //empty text from preLogin() method
-
-                        //Check preferences
-                        if(userlogin_Status == true)
-                        {
-                            //proceed to Dashboard
-                            Intent intentHome = new Intent(login.this,Dashboard.class);
-                            // Check if we're running on Android 5.0 or higher
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                            {
-                                // Apply activity transition
-                                startActivity(intentHome, ActivityOptions.makeSceneTransitionAnimation(login.this).toBundle());
-
-                            }
-                            else
-                            {
-                                // Swap without transition
-                                startActivity(intentHome);
-                                editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                                editor.putString("last_access", DateHelper.getDateTime().toString());
-                                editor.putBoolean("is_logged",true);
-                                editor.apply();
-                            }
+                            Intent intent = new Intent(login.this,appSettings.class);
+                            startActivity(intent);
+                            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         }
-                        else {
 
-                            /*//Check from Shared Preferences
-                            if((preferences.getString("Username",null).equals(username) && preferences.getString("Password",null).equals(password)))
-                            {
+                    });
 
+            //call show() to build and show the AlertDialog.
+            AlertDialog ad = adBuilder.show();
+        }
+
+                //Will be executed if there is no active session
+
+                progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+
+                /**
+                 * Add LoginValidator Button
+                 */
+                final EditText txtusername = (EditText) findViewById(R.id.email);
+                final EditText txtpassword = (EditText) findViewById(R.id.password);
+
+
+                Button btnLogin = findViewById(R.id.btnLogin);
+                btnLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view)
+                    {
+                        if (ipaddress == null) {
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
+                            AlertDialog.Builder adBuilder = new AlertDialog.Builder(login.this)
+                                    .setTitle("Application Setting Error !")
+                                    .setMessage("Synchronization End Point not detected, Please configure end point first")
+                                    .setPositiveButton("App Settings", new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                            Intent intent = new Intent(login.this,appSettings.class);
+                                            startActivity(intent);
+                                            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        }
+
+                                    });
+
+                            //call show() to build and show the AlertDialog.
+                            AlertDialog ad = adBuilder.show();
+                        }
+
+
+
+
+
+                        //preLogin()
+                        String username = txtusername.getText().toString();
+                        String password = txtpassword.getText().toString();
+
+                        LoginValidator loginValidator = new LoginValidator(username, password);
+                        TextView txterror = (TextView) findViewById(R.id.login_error);
+
+                        if (Validator.isNull(loginValidator.preLogin())) {
+                            txterror.setText(loginValidator.preLogin()); //empty text from preLogin() method
+
+                            //Check preferences
+                            if (userlogin_Status == true) {
                                 //proceed to Dashboard
-                                Intent intentHome = new Intent(login.this,Dashboard.class);
+                                Intent intentHome = new Intent(login.this, Dashboard.class);
                                 // Check if we're running on Android 5.0 or higher
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                                {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                                     // Apply activity transition
                                     startActivity(intentHome, ActivityOptions.makeSceneTransitionAnimation(login.this).toBundle());
 
-                                }
-                                else
-                                {
+                                } else {
                                     // Swap without transition
                                     startActivity(intentHome);
+                                    editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                                    editor.putString("last_access", DateHelper.getDateTime().toString());
+                                    editor.putBoolean("is_logged", true);
+                                    editor.apply();
                                 }
+                            } else {
 
-                            }
-                            else {*/
+                                    /*//Check from Shared Preferences
+                                    if((preferences.getString("Username",null).equals(username) && preferences.getString("Password",null).equals(password)))
+                                    {
+
+                                        //proceed to Dashboard
+                                        Intent intentHome = new Intent(login.this,Dashboard.class);
+                                        // Check if we're running on Android 5.0 or higher
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                                        {
+                                            // Apply activity transition
+                                            startActivity(intentHome, ActivityOptions.makeSceneTransitionAnimation(login.this).toBundle());
+
+                                        }
+                                        else
+                                        {
+                                            // Swap without transition
+                                            startActivity(intentHome);
+                                        }
+
+                                    }
+                                    else {*/
                                 //Check Network State
-                                if (Validator.isNetworkAvailable(login.this))
-                                {
+                                if (Validator.isNetworkAvailable(login.this)) {
                                     //Proceed connect to web service
                                     new UserLoginTask(username, password).execute();
 
-                                }
-                                else
-                                {
+                                } else {
                                     //Request the user to enable network settings. Build the AlertDialog first.
                                     /**
                                      * VIBRATE DEVICE
@@ -141,7 +178,7 @@ public class login extends AppCompatActivity {
                                     AlertDialog.Builder adBuilder = new AlertDialog.Builder(login.this)
                                             .setTitle("Internet Connection !")
                                             .setMessage("No active internet connections detected. Please enable mobile data or connect to WIFI")
-                                            .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+                                            .setPositiveButton("appSettings", new DialogInterface.OnClickListener() {
 
                                                 public void onClick(DialogInterface dialog, int which) {
 
@@ -165,20 +202,19 @@ public class login extends AppCompatActivity {
                             }
 
 
-                        //}
+                            //}
 
-                    }
-                    else
-                        {
-                        txterror.setText(loginValidator.preLogin());
+                        } else {
+                            txterror.setText(loginValidator.preLogin());
                             /**
                              * VIBRATE DEVICE
                              */
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
+                        }
                     }
-                }
-            });
+                });
+
 
     }
 

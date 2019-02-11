@@ -45,35 +45,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:gravity="top"
-        android:paddingTop="20dp"
-        android:paddingBottom="40dp"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingTop="20dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="40dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/P13Linear"
+       >
+
         <ScrollView
 
-            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
+            android:paddingStart="10dp"
             android:paddingLeft="10dp"
+
             android:paddingTop="5dp"
+
             app:layout_constraintBottom_toTopOf="@+id/P02Navigation"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.291"
-            android:paddingStart="10dp">
+            app:layout_constraintHorizontal_bias="0.291">
 
             <RadioGroup
                 android:id="@+id/P13radioGroup"
@@ -83,7 +83,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="8dp"
-
+                android:paddingBottom="50dp"
                 android:layout_marginRight="8dp"
                 android:textSize="16sp">
 
@@ -100,6 +100,7 @@
                     android:layout_height="wrap_content"
 
                     android:text="2. Housework" />
+
                 <RadioButton
                     android:id="@+id/P13_3"
                     android:layout_width="match_parent"
@@ -113,6 +114,7 @@
                     android:layout_height="wrap_content"
 
                     android:text="4. Too old to work" />
+
                 <RadioButton
                     android:id="@+id/P13_5"
                     android:layout_width="match_parent"

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class P16 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -51,10 +52,26 @@ public class P16 extends AppCompatActivity implements Serializable {
 
             p1 = thisHouse.getPersons()[Integer.valueOf(thisHouse.getCurrent())];
 
+        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
+
+        if(thisHouse.next!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
+
+        }else if(thisHouse.previous!=null){
+            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];
+
+        }
+
+        if(thisHouse.next!=null && p1.getP16()!=null){
+            edt.setText(p1.getP16());
+        }else if(thisHouse.previous!=null && p1.getP16()!=null){
+            edt.setText(p1.getP16());
+        }
 
 
 
-        if( p1.getP16()==null) {
+
 
             TextView textView = (TextView) findViewById(R.id.P16txt);
             String s = getResources().getString(R.string.P16);
@@ -68,6 +85,7 @@ public class P16 extends AppCompatActivity implements Serializable {
              * NEXT Person BUTTON
              */
             Button btnNext = (Button)findViewById(R.id.button);
+            Button btnPrev = (Button)findViewById(R.id.button3);
             String btnLabel="";
             if(p1.getLineNumber()+1==thisHouse.getTotalPersons()){
                 btnLabel="Next";
@@ -100,13 +118,27 @@ public class P16 extends AppCompatActivity implements Serializable {
                         thisHouse.getPersons()[p1.getLineNumber()].setP16(edt.getText().toString());
                         //Restart the current activity for next individual
 
+                        myDB = new DatabaseHelper(P16.this);
+                        myDB.onOpen(myDB.getWritableDatabase());
+
+                        //UPDATE HOUSEHOLD
+                        List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+                        if(ll.size()>0){
+                            myDB.updateRoster(thisHouse,"P16",p1.getP16(), String.valueOf(p1.getSRNO()));
+                            myDB.close();
+                        }
+
+
                         int total = thisHouse.getTotalPersons();
-                        Log.d("sdsdsdssd", thisHouse.getPersons()[total-1].getSRNO() + "::: "  + p1.getSRNO());
+
                         if(thisHouse.getPersons()[total-1].getSRNO() == p1.getSRNO())
                         {
-                            Log.d("Status", sample.getStatusCode());
+
                             if(sample.getStatusCode().equals("1") )
                             {
+
+
+
                                 //HIV ONLY
                                 Intent intent = new Intent(P16.this, P17.class);
                                 intent.putExtra("Household", thisHouse);
@@ -142,6 +174,7 @@ public class P16 extends AppCompatActivity implements Serializable {
                         }else{
 
                             //Next question P17
+                            thisHouse.next = String.valueOf(p1.getSRNO() + 1);
 
                             Intent intent = new Intent(P16.this, P12.class);
                             intent.putExtra("Household", thisHouse);
@@ -161,9 +194,21 @@ public class P16 extends AppCompatActivity implements Serializable {
                 }
             });
 
+            btnPrev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    thisHouse.previous = String.valueOf(p1.getSRNO());
+
+
+                    finish();
+
+                    Intent intent = new Intent(P16.this, P15.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+                }
+            });
         }
 
-    }
 
 }
 

@@ -54,16 +54,16 @@ public class q802 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("2"))
+        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("2"))
 
-{
-    Intent intent = new Intent(q802.this, q803.class);
-    intent.putExtra("Individual", individual);
-    startActivity(intent);
-}
-else {
+        {
+            Intent intent = new Intent(q802.this, q803.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
 
-}
+        }
 
         if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("1"))
         {

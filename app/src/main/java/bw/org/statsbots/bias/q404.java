@@ -42,6 +42,7 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
         chk1 =  (CheckBox) findViewById(R.id.Q404_1);
         chk2 =  (CheckBox) findViewById(R.id.Q404_2);
         chk3 = (CheckBox) findViewById(R.id.Q404_3);
+
         rbtn1 =  (RadioButton)findViewById(R.id.q404a_1);
         rbtn2 =  (RadioButton)findViewById(R.id.q404a_2);
         // rbtn3 =  (RadioButton)findViewById(R.id.q403_3);
@@ -147,21 +148,28 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
                     } else {
                         //Set q404 for the current individual
 
-                      individual.setQ404_1(chk1.getText().toString().substring(0,1));
-                       individual.setQ404_2(chk2.getText().toString().substring(0, 1));
-                        individual.setQ404_3(chk3.getText().toString().substring(0,1));
-                       individual.setQ404a(selectedRbtn.getText().toString().substring(0,1));
 
 
+                        if(chk1.isChecked()){
+                            individual.setQ404_1("1");
+                        }else{
+                            individual.setQ404_1("2");
+                        }
 
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
-                        // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
+                        if(chk2.isChecked()){
+                            individual.setQ404_2("1");
+                        }else{
+                            individual.setQ404_2("2");
+                        }
 
-                        //Next question q102
 
+                        if(chk3.isChecked()){
+                            individual.setQ404_3("1");
+                        }else{
+                            individual.setQ404_3("2");
+                        }
+
+                        individual.setQ404a(selectedRbtn.getText().toString().substring(0,1));
 
                         Intent q1o2 = new Intent(q404.this, q405.class);
                         q1o2.putExtra("Individual", individual);

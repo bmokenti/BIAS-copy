@@ -102,10 +102,11 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_background"
                         android:ems="10"
-                        android:hint="@string/q1004_days"
+
+                        android:hint="Day"
                         android:inputType="number"
                         android:maxLength="2"
-                        android:padding="3dp"
+                        android:padding="5dp"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
@@ -120,7 +121,7 @@
                         android:hint="@string/q1004_month"
                         android:inputType="number"
                         android:maxLength="2"
-                        android:padding="3dp"
+                        android:padding="5dp"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
@@ -135,8 +136,8 @@
                         android:ems="10"
                         android:hint="@string/q1004_year"
                         android:inputType="number"
-                        android:maxLength="2"
-                        android:padding="3dp"
+                        android:maxLength="4"
+                        android:padding="5dp"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 

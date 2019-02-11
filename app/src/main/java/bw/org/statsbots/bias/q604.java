@@ -135,14 +135,43 @@ public class q604 extends AppCompatActivity implements Serializable {
                                             individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
                                             individual.setQ604a(selectedRbtna.getText().toString().substring(0, 1));
 
+                                            //Clear previous results
+                                            individual.setQ604b_1(null);
+                                            individual.setQ604b_2(null);
+                                            individual.setQ604b_3(null);
+                                            individual.setQ604b_4(null);
+                                            individual.setQ604b_5(null);
+                                            individual.setQ604b_6(null);
+                                            individual.setQ604b_7(null);
+                                            individual.setQ604b_8(null);
+                                            individual.setQ604b_10(null);
+                                            individual.setQ604b_11(null);
+                                            individual.setQ604b_12(null);
+                                            individual.setQ604b_13(null);
+                                            individual.setQ604b_14(null);
+                                            individual.setQ604b_15(null);
+                                            individual.setQ604b_Other(null);
+                                            individual.setQ604b_Otherspecify(null);
+
+                                            //update individual
+                                            DatabaseHelper myDB = new DatabaseHelper(q604.this);
+
+                                            myDB.onOpen(myDB.getReadableDatabase());
+                                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                            myDB.close();
+
+
+
                                             Intent intent1 = new Intent(q604.this, q605.class);
                                             intent1.putExtra("Individual", individual);
                                             startActivity(intent1);
 
-                                        } else {
+                                        }
+                                        else {
                                             individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
                                             individual.setQ604a(selectedRbtna.getText().toString().substring(0, 1));
-                                            individual.setQ604b_1(ck1txt.getText().toString().substring(0, 1));
+
+                                           /* individual.setQ604b_1(ck1txt.getText().toString().substring(0, 1));
                                             individual.setQ604b_2(ck2txt.getText().toString().substring(0, 1));
                                             individual.setQ604b_3(ck3txt.getText().toString().substring(0, 1));
                                             individual.setQ604b_4(ck4txt.getText().toString().substring(0, 1));
@@ -157,8 +186,87 @@ public class q604 extends AppCompatActivity implements Serializable {
                                             individual.setQ604b_14(ck14txt.getText().toString().substring(0, 1));
                                             individual.setQ604b_15(ck15txt.getText().toString().substring(0, 1));
                                             individual.setQ604b_Other(chkOther.getText().toString().substring(0, 1));
-                                            individual.setQ604b_Otherspecify(q604edt.getText().toString());
+                                            individual.setQ604b_Otherspecify(q604edt.getText().toString());*/
 
+                                            if (ck1txt.isChecked()) {
+                                                individual.setQ604b_1("1");
+                                            } else {
+                                                individual.setQ604b_1("2");
+                                            }
+
+                                            if (ck2txt.isChecked()) {
+                                                individual.setQ604b_2("1");
+                                            } else {
+                                                individual.setQ604b_2("2");
+                                            }
+                                            if (ck3txt.isChecked()) {
+                                                individual.setQ604b_3("1");
+                                            } else {
+                                                individual.setQ604b_3("2");
+                                            }
+                                            if (ck4txt.isChecked()) {
+                                                individual.setQ604b_4("1");
+                                            } else {
+                                                individual.setQ604b_4("2");
+                                            }
+                                            if (ck5txt.isChecked()) {
+                                                individual.setQ604b_5("1");
+                                            } else {
+                                                individual.setQ604b_5("2");
+                                            }
+                                            if (ck6txt.isChecked()) {
+                                                individual.setQ604b_6("1");
+                                            } else {
+                                                individual.setQ604b_6("2");
+                                            } if (ck7txt.isChecked()) {
+                                                individual.setQ604b_7("1");
+                                            } else {
+                                                individual.setQ604b_7("2");
+                                            }
+                                            if (ck8txt.isChecked()) {
+                                                individual.setQ604b_8("1");
+                                            } else {
+                                                individual.setQ604b_8("2");
+                                            } if (ck10txt.isChecked()) {
+                                                individual.setQ604b_10("1");
+                                            } else {
+                                                individual.setQ604b_10("2");
+                                            } if (ck11txt.isChecked()) {
+                                                individual.setQ604b_11("1");
+                                            } else {
+                                                individual.setQ604b_11("2");
+                                            } if (ck12txt.isChecked()) {
+                                                individual.setQ604b_12("1");
+                                            } else {
+                                                individual.setQ604b_12("2");
+                                            } if (ck13txt.isChecked()) {
+                                                individual.setQ604b_13("1");
+                                            } else {
+                                                individual.setQ604b_13("2");
+                                            } if (ck14txt.isChecked()) {
+                                                individual.setQ604b_14("1");
+                                            } else {
+                                                individual.setQ604b_14("2");
+                                            } if (ck15txt.isChecked()) {
+                                                individual.setQ604b_15("1");
+                                            } else {
+                                                individual.setQ604b_15("2");
+                                            }
+
+                                            if (chkOther.isChecked()) {
+                                                individual.setQ604b_Other("1");
+                                                individual.setQ604b_Otherspecify(q604edt.getText().toString());
+
+                                            } else {
+                                                individual.setQ604b_Other("2");
+                                            }
+
+                                            //update individual
+                                            DatabaseHelper myDB = new DatabaseHelper(q604.this);
+
+                                            myDB.onOpen(myDB.getReadableDatabase());
+                                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                            myDB.close();
 
                                             Intent intent = new Intent(q604.this, q605.class);
                                             intent.putExtra("Individual", individual);

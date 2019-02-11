@@ -1213,13 +1213,11 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
       // db.execSQL(Insert_household);
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         dropTables(db);
         onCreate(db);
     }
-
 
     public boolean insertEAAssignment( Assignments assign) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1243,8 +1241,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("EA_Assignments", null, eaassignmentstValues);
         return true;
     }
-
-
 
     public boolean inserthousehold(HouseHold house) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1305,7 +1301,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
 
     }
-
 
     public boolean checkUser(PersonRoster p){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1403,6 +1398,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhrosterValues.put(BatchNumberR,houseHold.getBatchNumber() );
             hhrosterValues.put(SRNO, houseHold.getPersons()[i].getLineNumber());
             hhrosterValues.put(P01, houseHold.getPersons()[i].getP01());
+            Log.d("Person Name",houseHold.getPersons()[i].getP01());
             hhrosterValues.put(P02,  houseHold.getPersons()[i].getP02());
             hhrosterValues.put(P03,   houseHold.getPersons()[i].getP03());
             hhrosterValues.put(P04_YY,  houseHold.getPersons()[i].getP04YY());
@@ -1507,8 +1503,8 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhrosterValues.put(Rapid_Comment, houseHold.getPersons()[i].getRapid_Comment());
             i = db.update(tblhhroster, // table
                     hhrosterValues, // column/value
-                    "Assignment_ID = ?", // selections
-                    new String[] { String.valueOf(houseHold.getAssignment_ID()) });
+                    "EA_Assignment_ID = ? and BatchNumber=?", // selections
+                    new String[] { String.valueOf(houseHold.getAssignment_ID()),String.valueOf(houseHold.getBatchNumber()) });
 
             db.close();
 
@@ -1926,9 +1922,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         return true;
     }
-
-
-
 
     //FROM HOUSE HOLD
     public boolean insertIndividual(Individual houseHold) {
@@ -2699,8 +2692,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-
-        /////date format
+    /////date format
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "dd-MM-yyyy HH:mm:ss", Locale.getDefault());
@@ -2757,7 +2749,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         }
         return res;
     }
-
 
     //Pull from TBL Assignments
     public ArrayList<String> getEA(SQLiteDatabase db) {
@@ -3214,6 +3205,15 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             String P05 = cursor.getString(cursor.getColumnIndexOrThrow("P05"));
             String P06 = cursor.getString(cursor.getColumnIndexOrThrow("P06"));
             String P07 = cursor.getString(cursor.getColumnIndexOrThrow("P07"));
+            String P08 = cursor.getString(cursor.getColumnIndexOrThrow("P08"));
+            String P09 = cursor.getString(cursor.getColumnIndexOrThrow("P09"));
+            String P10 = cursor.getString(cursor.getColumnIndexOrThrow("P10"));
+            String P11 = cursor.getString(cursor.getColumnIndexOrThrow("P11"));
+            String P12 = cursor.getString(cursor.getColumnIndexOrThrow("P12"));
+            String P13 = cursor.getString(cursor.getColumnIndexOrThrow("P13"));
+            String P14 = cursor.getString(cursor.getColumnIndexOrThrow("P14"));
+            String P15 = cursor.getString(cursor.getColumnIndexOrThrow("P15"));
+            String P16 = cursor.getString(cursor.getColumnIndexOrThrow("P16"));
             String P17 = cursor.getString(cursor.getColumnIndexOrThrow("P17"));
             String P18 = cursor.getString(cursor.getColumnIndexOrThrow("P18"));
             String P19 = cursor.getString(cursor.getColumnIndexOrThrow("P19"));
@@ -3240,6 +3240,15 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             dataModel.setP05(P05);
             dataModel.setP06(P06);
             dataModel.setP07(P07);
+            dataModel.setP08(P08);
+            dataModel.setP09(P09);
+            dataModel.setP10(P10);
+            dataModel.setP11(P11);
+            dataModel.setP12(P12);
+            dataModel.setP13(P13);
+            dataModel.setP14(P14);
+            dataModel.setP15(P15);
+            dataModel.setP16(P16);
             dataModel.setP17(P17);
             dataModel.setP18(P18);
             dataModel.setP19(P19);
@@ -3642,6 +3651,25 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             db1.close();
 
     }
+
+
+    //UPDATE HOUSEHOLD COLUMNS EACH
+    public void updateRoster(HouseHold thisHouse, String columnName, String value,String srno){
+        SQLiteDatabase db1 = this.getWritableDatabase();
+        ContentValues hhValues = new ContentValues();
+        hhValues.put(columnName,value);
+
+        int  i = db1.update
+                (   tblhhroster, // table
+                        hhValues, // column/value
+                        "EA_Assignment_ID = ? and BatchNumber = ? and SRNO=?", // selections
+                        new String[] { String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()),srno }
+                );
+
+        db1.close();
+
+    }
+
 
 
     //UPDATE HOUSEHOLD COLUMNS EACH
@@ -4386,7 +4414,8 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
      * GET STARTED HOUSEHOLD FROM DB
      * @return
      */
-    public List<HouseHold> getCompleted(){
+    public List<HouseHold> getCompleted()
+    {
         // DataModel dataModel = new DataModel();
         List<HouseHold> hhDetails =new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -4610,6 +4639,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ101(cursor2.getString(cursor2.getColumnIndexOrThrow("Q101")));
                 ind.setQ102(cursor2.getString(cursor2.getColumnIndexOrThrow("Q102")));
                 ind.setQ103(cursor2.getString(cursor2.getColumnIndexOrThrow("Q103")));
+
                 ind.setQ104(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104")));
                 ind.setQ104a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104a")));
                 ind.setQ104b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104b")));
@@ -4634,13 +4664,9 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                 String s = cursor2.getString(cursor2.getColumnIndexOrThrow("Q107a"));
 
-                if(s!=null){
-                    if(s.length()==3){
-                        s="0"+s;
-                    }
-                    ind.setQ107aMnth(s.substring(0,2));
-                    ind.setQ107aYY(s.substring(3,4));
-                }
+
+                ind.setQ107aMnth(s.substring(0,2));
+                ind.setQ107aYY(s.substring(2,4));
 
 
                 ind.setQ107b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107b")));
@@ -4904,7 +4930,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ901(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901")));
                 ind.setQ901a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901a")));
                 ind.setQ901aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901aOther")));
-
 
                 ind.setQ902Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(0,2));
                 ind.setQ902Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(2,6));
