@@ -256,7 +256,7 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
             q1103dd.setEnabled(true);
             q1103wks.setEnabled(true);
 
-            // TODO: Veggie sandwich
+
         }
     }
 

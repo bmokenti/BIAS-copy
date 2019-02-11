@@ -160,7 +160,7 @@ public class q306 extends AppCompatActivity {
             q306_dd.setText("");
 
 
-            // TODO: Veggie sandwich
+
         }
     }
 

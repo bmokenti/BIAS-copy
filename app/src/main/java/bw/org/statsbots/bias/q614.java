@@ -46,6 +46,23 @@ public class q614 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        rbtngroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.q614_other)
+                {
+                    // is checked
+                    edt.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    // not checked
+                    edt.setVisibility(View.INVISIBLE);
+                    edt.setText("");
+                }
+            }
+        });
+
         /**
          * NEXT question
          */
@@ -115,12 +132,11 @@ public class q614 extends AppCompatActivity implements Serializable {
             case R.id.q614_other:
                 if (checked)
                 {
-                    edt.setVisibility(View.VISIBLE);
+
                 }
                 else
                 {
-                    edt.setVisibility(View.INVISIBLE);
-                    edt.setText("");
+
                 }
 
 

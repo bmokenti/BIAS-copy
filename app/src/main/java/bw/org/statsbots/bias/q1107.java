@@ -217,7 +217,7 @@ public class q1107 extends AppCompatActivity implements  Serializable {
             txt1107dd.setTextColor(Color.BLACK);
             txt1107wks.setTextColor(Color.BLACK);
 
-            // TODO: Veggie sandwich
+
         }
     }
 

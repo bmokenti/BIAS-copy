@@ -103,7 +103,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:enabled="true"
-
                         android:text="@string/q614_1" />
 
                     <RadioButton
@@ -111,7 +110,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-
                         android:text="@string/q614_2" />
 
                     <RadioButton
@@ -119,7 +117,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-
                         android:text="@string/q614_3" />
 
                     <RadioButton
@@ -127,7 +124,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-
                         android:text="@string/q614_4" />
 
 
@@ -136,7 +132,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-
                         android:text="@string/q614_9" />
 
                     <RadioButton

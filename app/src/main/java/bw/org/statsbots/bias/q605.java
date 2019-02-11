@@ -108,29 +108,47 @@ public class q605 extends AppCompatActivity implements Serializable {
             case R.id.q605_1:
                 if (checked)
                     // Remove the meat
-                    break;
+                    q605edt.setVisibility(View.INVISIBLE);
+                q605edt.setText("");
+
+                break;
 
             case R.id.q605_2:
                 if (checked)
                     // Remove the meat
-                    break;
+                    q605edt.setVisibility(View.INVISIBLE);
+                q605edt.setText("");
+
+                break;
             case R.id.q605_3:
                 if (checked)
                     // Remove the meat
-                    break;
+                    q605edt.setVisibility(View.INVISIBLE);
+                q605edt.setText("");
+
+                break;
             case R.id.q605_4:
                 if (checked)
                     // Remove the meat
-                    break;
+                    q605edt.setVisibility(View.INVISIBLE);
+                q605edt.setText("");
+
+                break;
             case R.id.q605_5:
                 if (checked)
                     // Remove the meat
-                    break;
+                    q605edt.setVisibility(View.INVISIBLE);
+                q605edt.setText("");
+
+                break;
 
             case R.id.q605_9:
                 if (checked)
                     // Remove the meat
-                    break;
+                    q605edt.setVisibility(View.INVISIBLE);
+                q605edt.setText("");
+
+                break;
             case R.id.q605_other:
                 if (checked) {
                     if (chkOther.isChecked())
@@ -140,8 +158,6 @@ public class q605 extends AppCompatActivity implements Serializable {
                     // Put some meat on the sandwich
                     else
                         // Remove the meat
-                        q605edt.setVisibility(View.INVISIBLE);
-                    q605edt.setText("");
 
                     break;
 

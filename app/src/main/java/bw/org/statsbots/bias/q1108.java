@@ -212,7 +212,7 @@ protected LibraryClass lib;
             txtq1108dd.setText("");
             txtq1108wks.setText("");
 
-            // TODO: Veggie sandwich
+
         }
     }
 

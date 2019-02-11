@@ -245,7 +245,7 @@ String i = individual.getQ101();
             // Remove the meat
             edtq402.setEnabled(true);
 
-            // TODO: Veggie sandwich
+
         }
     }
 
