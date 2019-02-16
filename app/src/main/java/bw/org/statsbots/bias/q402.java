@@ -162,7 +162,7 @@ public class q402 extends AppCompatActivity implements Serializable {
                         } else {
                             int year = Integer.parseInt(edtq402.getText().toString());
 
-                            if(year > Integer.parseInt(individual.getQ102())){
+                            if(year > Integer.parseInt(individual.getQ102()) && year !=99){
                                 lib.showError(q402.this, "Q402: Error ", "Q402 Age cannot be greater than age of individual which is : " + individual.getQ102());
 
                                 /**

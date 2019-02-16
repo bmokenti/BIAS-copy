@@ -3940,8 +3940,8 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         hhValues.put("Q504_Other",ind.getQ504_Other());
 
-        //ind.setQ601"Q601",ind.get
-        //ind.setQ601a"Q601a",ind.get
+        hhValues.put("Q601",ind.getQ601());
+        hhValues.put("Q601a",ind.getQ601a());
 
         hhValues.put("Q602Youth",ind.getQ602_1());
         hhValues.put("Q602TV",ind.getQ602_2());
@@ -3995,7 +3995,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("Q605Hands",ind.getQ605_3());
         hhValues.put("Q605Nutrition",ind.getQ605_4());
         hhValues.put("Q605Praying",ind.getQ605_5());
-        hhValues.put("Q605DontKnow",ind.getQ609());
+        hhValues.put("Q605DontKnow",ind.getQ605_9());
         hhValues.put("Q605Other",ind.getQ605_Other());
 
 
@@ -4271,7 +4271,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-         hhValues.put("Q1101",ind.getQ1008a());
+         hhValues.put("Q1101",ind.getQ1101());
          hhValues.put("Q1101a",ind.getQ1101a());
          hhValues.put("Q1101aOther",ind.getQ1101aOther());
          hhValues.put("Q1102",ind.getQ1102());
@@ -4902,7 +4902,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c"))!= null){
 
                     ind.setQ801cMonth(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")).substring(0,2));
-                    ind.setQ801cYear(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")).substring(2,4));
+                    ind.setQ801cYear(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")).substring(2,6));
 
                 }
 

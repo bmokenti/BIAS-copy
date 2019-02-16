@@ -112,8 +112,28 @@ protected LibraryClass lib;
                         } else {
 
                             individual.setQ1108(selectedRbtn.getText().toString().substring(0, 1));
-                            individual.setQ1108aDD(txtq1108dd.getText().toString());
-                            individual.setQ1108aWks(txtq1108wks.getText().toString());
+
+
+                            if(txtq1108dd.getText().toString().length()==0){
+                                individual.setQ1108aDD("00");
+                            }
+                            else if(txtq1108dd.getText().toString().length()==1){
+                                individual.setQ1108aDD("0"+txtq1108dd.getText().toString());
+                            }else{
+                                individual.setQ1108aDD(txtq1108dd.getText().toString());
+                            }
+
+
+                            if(txtq1108wks.getText().toString().length()==0){
+                                individual.setQ1108aWks("00");
+                            }else if(txtq1108wks.getText().toString().length()==1){
+                                individual.setQ1108aWks("0"+txtq1108wks.getText().toString());
+                            }else{
+                                individual.setQ1108aWks(txtq1108wks.getText().toString());
+                            }
+
+
+
 
                             Intent intent = new Intent(q1108.this, q1109.class);
                             intent.putExtra("Individual", individual);

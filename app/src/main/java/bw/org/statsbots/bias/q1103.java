@@ -142,8 +142,25 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
                             } else {
 
                                 individual.setQ1103(selectedRbtn.getText().toString().substring(0,1));
-                                individual.setQ1103aDD(q1103dd.getText().toString());
-                                individual.setQ1103aWks(q1103wks.getText().toString());
+
+                                if(q1103dd.getText().toString().length()==0){
+                                    individual.setQ1103aDD("00");
+                                }else if(q1103dd.getText().toString().length()==1){
+                                    individual.setQ1103aDD("0"+q1103dd.getText().toString());
+                                }else{
+                                    individual.setQ1103aDD(q1103dd.getText().toString());
+                                }
+
+
+                                if(q1103wks.getText().toString().length()==0){
+                                    individual.setQ1103aWks("00");
+                                }else if(q1103wks.getText().toString().length()==1){
+                                    individual.setQ1103aWks("0"+q1103wks.getText().toString());
+                                }else{
+                                    individual.setQ1103aWks(q1103wks.getText().toString());
+                                }
+
+
 
                                 Intent q1o3 = new Intent(q1103.this, q1104.class);
                                 q1o3.putExtra("Individual", individual);

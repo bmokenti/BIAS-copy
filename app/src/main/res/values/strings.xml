@@ -599,8 +599,8 @@
     <string name="q1106b_Other">Other specify</string>
     <string name="title_activity_q1107">q1107</string>
     <string name="q1107ques">Do you currently have a fever?</string>
-    <string name="q1107y">Yes</string>
-    <string name="q1107n">No</string>
+    <string name="q1107y">1. Yes</string>
+    <string name="q1107n">2. No</string>
     <string name="title_activity_q1108">q1108</string>
     <string name="q1108ques">Do you currently have drenching night sweats?</string>
     <string name="q1108aques">a) How long have you had the drenching night sweats?</string>
@@ -637,8 +637,8 @@
     <string name="q1113_ot">Other specify</string>
     <string name="title_activity_q1114">q1114</string>
     <string name="q1114ques">Have you been diagnosed with Diabetes?</string>
-    <string name="q1114_1">Yes</string>
-    <string name="q1114_2">No</string>
+    <string name="q1114_1">1. Yes</string>
+    <string name="q1114_2">2. No</string>
     <string name="q104ctxt">
         c) If tertiary, what is/was your field of Education?
         (PROBE AS NECESSARY, USE TWO OR MORE WORDS
