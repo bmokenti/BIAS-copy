@@ -15,7 +15,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class q801 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q801 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected PersonRoster p1 = null;
@@ -288,8 +290,29 @@ public class q801 extends AppCompatActivity {
 
                                                                 individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
                                                                 individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
-                                                                individual.setQ801cMonth(edtcmnths.getText().toString());
-                                                                individual.setQ801cYear(edtcyear.getText().toString());
+
+
+                                                                if(edtcmnths.getText().toString().length()==0){
+                                                                    individual.setQ801cMonth("00");
+                                                                }
+                                                                else if(edtcmnths.getText().toString().length()==1){
+                                                                    individual.setQ801cMonth("0"+edtcmnths.getText().toString());
+                                                                }else{
+                                                                    individual.setQ801cMonth(edtcmnths.getText().toString());
+                                                                }
+
+                                                                /*if(edtcyear.getText().toString().length()==0){
+                                                                    individual.setQ801cYear("00");
+                                                                }
+                                                                else if(edtcyear.getText().toString().length()==1){
+                                                                    individual.setQ801cYear("0"+edtcyear.getText().toString());
+                                                                }else{
+                                                                    individual.setQ801cYear(edtcyear.getText().toString());
+                                                                }
+*/
+
+
+
                                                                 individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
                                                                 individual.setQ801dOther(edtdother.getText().toString());
                                                                 individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));

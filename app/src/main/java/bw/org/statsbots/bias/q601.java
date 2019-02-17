@@ -49,7 +49,7 @@ public class q601 extends AppCompatActivity implements Serializable {
         lib2 = new LibraryClass();
         rbtna1 = (RadioButton) findViewById(R.id.q601a_1);
         rbtna2 = (RadioButton) findViewById(R.id.q601a_2);
-        q601atxt = (TextView) findViewById(R.id.q601atxt) ;
+        q601atxt = (TextView) findViewById(R.id.q601atxt);
 
 
 

@@ -75,6 +75,7 @@ public class q617 extends AppCompatActivity implements Serializable {
         rbtn22 = (RadioButton) findViewById(R.id.rg8_1) ;
         rbtn23 = (RadioButton) findViewById(R.id.rg8_2) ;
         rbtn24 = (RadioButton) findViewById(R.id.rg8_3) ;
+
         chkOther = (CheckBox) findViewById(R.id.checkOther) ;
 
         edtOther = (EditText) findViewById(R.id.Othertxt) ;
@@ -93,6 +94,164 @@ public class q617 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        final String[] s1 = new String[1];
+        final String[] s2 = new String[1];
+        final String[] s3 = new String[1];
+        final String[] s4 = new String[1];
+        final String[] s5 = new String[1];
+        final String[] s6 = new String[1];
+        final String[] s7  = new String[1];
+        final String[] s8  = new String[1];
+
+
+        rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg1_01)
+                {
+                    // is checked
+                    s1[0] = "1";
+                }
+                else if(i == R.id.rg1_02)
+                {
+                    s1[0] = "2";
+                }
+                else if(i == R.id.rg1_03)
+                {
+                    s1[0] = "9";
+                }
+            }
+        });
+        rg2 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg2_1)
+                {
+                    // is checked
+                    s2[0] = "1";
+                }
+                else if(i == R.id.rg2_2)
+                {
+                    s2[0] = "2";
+                }
+                else if(i == R.id.rg2_3)
+                {
+                    s2[0] = "9";
+                }
+            }
+        });
+        rg3 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg3_1)
+                {
+                    // is checked
+                    s3[0] = "1";
+                }
+                else if(i == R.id.rg3_2)
+                {
+                    s3[0] = "2";
+                }
+                else if(i == R.id.rg3_3)
+                {
+                    s3[0] = "9";
+                }
+            }
+        });
+        rg4 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg4_1)
+                {
+                    // is checked
+                    s4[0] = "1";
+                }
+                else if(i == R.id.rg4_2)
+                {
+                    s4[0] = "2";
+                }
+                else if(i == R.id.rg4_3)
+                {
+                    s4[0] = "9";
+                }
+            }
+        });
+        rg5 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg5_1)
+                {
+                    // is checked
+                    s5[0] = "1";
+                }
+                else if(i == R.id.rg5_2)
+                {
+                    s5[0] = "2";
+                }
+                else if(i == R.id.rg5_3)
+                {
+                    s5[0] = "9";
+                }
+            }
+        });
+        rg6 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg6_1)
+                {
+                    // is checked
+                    s6[0] = "1";
+                }
+                else if(i == R.id.rg6_2)
+                {
+                    s6[0] = "2";
+                }
+                else if(i == R.id.rg6_3)
+                {
+                    s6[0] = "9";
+                }
+            }
+        });
+        rg7.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg7_1)
+                {
+                    // is checked
+                    s7[0] = "1";
+                }
+                else if(i == R.id.rg7_2)
+                {
+                    s7[0] = "2";
+                }
+                else if(i == R.id.rg7_3)
+                {
+                    s7[0] = "9";
+                }
+            }
+        });
+        rg8.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg8_1)
+                {
+                    // is checked
+                    s8[0] = "1";
+                }
+                else if(i == R.id.rg8_2)
+                {
+                    s8[0] = "2";
+                }
+                else if(i == R.id.rg8_3)
+                {
+                    s8[0] = "9";
+                }
+            }
+        });
+
+
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -200,18 +359,19 @@ public class q617 extends AppCompatActivity implements Serializable {
                                         vibs.vibrate(100);
 
                                     } else {
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ617a(selected1.getText().toString().substring(0,1));
-                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ617b(selected2.getText().toString().substring(0,1));
-                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ617c(selected3.getText().toString().substring(0,1));
-                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ617d(selected4.getText().toString().substring(0,1));
-                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ617f(selected6.getText().toString().substring(0,1));
-                                        // thisHouse.getIndividual()[p1.getLineNumber()].setQ617g(selected7.getText().toString().substring(0,1));
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ617h(selected8.getText().toString().substring(0,1));
-                                        //thisHouse.getIndividual()[p1.getLineNumber()].setQ617_0ther(edtOther.getText().toString());
+                                        individual.setQ617a(s1[0]);
+                                        individual.setQ617b(s2[0]);
+                                        individual.setQ617c(s3[0]);
+                                        individual.setQ617d(s4[0]);
+                                        individual.setQ617e(s5[0]);
+                                        individual.setQ617f(s6[0]);
+                                        individual.setQ617g(s7[0]);
+                                        individual.setQ617h(s8[0]);
+                                        individual.setQ617_0ther(edtOther.getText().toString());
 
 
                                         Intent intent = new Intent(q617.this, q618.class);
-                                        intent.putExtra("Individual", individual);
+                                        intent.putExtra("Household", thisHouse);
                                         startActivity(intent);
                                     }
                                 }

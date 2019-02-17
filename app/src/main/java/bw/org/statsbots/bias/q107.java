@@ -392,8 +392,30 @@ public class q107 extends AppCompatActivity implements Serializable{
                                                     startActivity(q1o3);
                                                 } else {
                                                     individual.setQ107(selectedRbtn.getText().toString().substring(0, 1));
-                                                    individual.setQ107aYY(txtyy.getText().toString());
-                                                    individual.setQ107aMnth(txtmnth.getText().toString());
+
+                                                    if(txtyy.getText().toString().length()==0){
+                                                        individual.setQ107aYY("00");
+                                                    }
+                                                    else if(txtyy.getText().toString().length()==1){
+                                                        individual.setQ107aYY("0"+txtyy.getText().toString());
+                                                    }else{
+                                                        individual.setQ107aYY(txtyy.getText().toString());
+                                                    }
+
+
+
+                                                    if(txtmnth.getText().toString().length()==0){
+                                                        individual.setQ107aMnth("00");
+                                                    }
+                                                    else if(txtmnth.getText().toString().length()==1){
+                                                        individual.setQ107aMnth("0"+txtmnth.getText().toString());
+                                                    }else{
+                                                        individual.setQ107aMnth(txtmnth.getText().toString());
+                                                    }
+
+
+
+
                                                     individual.setQ107b(selectedRbtn1.getText().toString().substring(0, 1));
                                                     individual.setQ107bOther(edtbOther.getText().toString());
                                                     individual.setQ107c(selectedRbtn2.getText().toString().substring(0, 1));

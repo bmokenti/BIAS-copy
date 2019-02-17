@@ -37,7 +37,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q101);
 
-        setTitle("q101: SEX");
+        setTitle("Q101: SEX");
         lib = new LibraryClass();
         rbtn1 = (RadioButton) findViewById(R.id.q101_1);
         rbtn2 = (RadioButton) findViewById(R.id.q101_2);

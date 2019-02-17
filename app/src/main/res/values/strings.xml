@@ -649,8 +649,8 @@ This consent form has been read out to you and you have been given a copy. Any q
     <string name="q1106b_Other">Other specify</string>
     <string name="title_activity_q1107">q1107</string>
     <string name="q1107ques">Do you currently have a fever?</string>
-    <string name="q1107y">Yes</string>
-    <string name="q1107n">No</string>
+    <string name="q1107y">1. Yes</string>
+    <string name="q1107n">2. No</string>
     <string name="title_activity_q1108">q1108</string>
     <string name="q1108ques">Do you currently have drenching night sweats?</string>
     <string name="q1108aques">a) How long have you had the drenching night sweats?</string>

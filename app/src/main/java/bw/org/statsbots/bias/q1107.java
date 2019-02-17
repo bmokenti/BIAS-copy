@@ -112,8 +112,26 @@ public class q1107 extends AppCompatActivity implements  Serializable {
                             startActivity(intent);
                         } else {
                             individual.setQ1107(selectedRbtn.getText().toString().substring(0, 1));
-                            individual.setQ1107aDD(txtdays.getText().toString());
-                            individual.setQ1107aWks(txtweeks.getText().toString());
+                            if(txtdays.getText().toString().length()==0){
+                                individual.setQ1107aDD("00");
+                            }
+                            else if(txtdays.getText().toString().length()==1){
+                                individual.setQ1107aDD("0"+txtdays.getText().toString());
+                            }else{
+                                individual.setQ1107aDD(txtdays.getText().toString());
+                            }
+
+
+                            if(txtweeks.getText().toString().length()==0){
+                                individual.setQ1107aWks("00");
+                            }
+                            else if(txtweeks.getText().toString().length()==1){
+                                individual.setQ1107aWks("0"+txtweeks.getText().toString());
+                            }else{
+                                individual.setQ1107aWks(txtweeks.getText().toString());
+                            }
+
+
 
                             Intent intent = new Intent(q1107.this, q1108.class);
                             intent.putExtra("Individual", individual);

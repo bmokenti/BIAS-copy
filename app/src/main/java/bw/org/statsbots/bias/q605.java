@@ -131,15 +131,15 @@ public class q605 extends AppCompatActivity implements Serializable {
                     } else {
                         individual.setQ605_5("2");
                     }
-                    if (ck9txt.isChecked()) {
+                    if(ck9txt.isChecked()) {
                         individual.setQ605_9("1");
-                    } else {
+                    }else {
                         individual.setQ605_9("2");
                     }
-                    if (chkOther.isChecked()) {
+                    if(chkOther.isChecked()) {
                         individual.setQ605_Other("1");
                         individual.setQ605_Otherspecify(q605edt.getText().toString());
-                    } else {
+                    }else {
                         individual.setQ605_Other("2");
                     }
 
