@@ -25,6 +25,7 @@ public class q1017 extends AppCompatActivity implements Serializable {
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5 ;
     protected RadioGroup rg, rga;
     protected TextView t1;
+    protected DatabaseHelper myDB;
     protected Individual individual;
     protected EditText edtOther;
     protected RadioButton selectedRbtn, selectedRbtna;
@@ -73,7 +74,14 @@ public class q1017 extends AppCompatActivity implements Serializable {
                 }  else {
 
                     individual.setQ1017(selectedRbtn.getText().toString().substring(0,1));
+                    myDB = new DatabaseHelper(q1017.this);
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    if(myDB.checkIndividual(individual)){
+                        //Update
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
+                    }
                     Intent intent = new Intent(q1017.this, q1101.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);

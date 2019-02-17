@@ -191,7 +191,7 @@ public class q617 extends AppCompatActivity implements Serializable {
                                         vibs.vibrate(100);
 
                                     }
-                                    if (rbtnOther.isChecked() && edtOther.length() == 0) {
+                                    if (chkOther.isChecked() && edtOther.length() == 0) {
                                         lib.showError(q617.this, "Q617: ERROR: Other", "Other specify");
                                         /**
                                          * VIBRATE DEVICE
@@ -210,13 +210,8 @@ public class q617 extends AppCompatActivity implements Serializable {
                                         //thisHouse.getIndividual()[p1.getLineNumber()].setQ617_0ther(edtOther.getText().toString());
 
 
-
-
-
-
-
                                         Intent intent = new Intent(q617.this, q618.class);
-                                        intent.putExtra("Household", thisHouse);
+                                        intent.putExtra("Individual", individual);
                                         startActivity(intent);
                                     }
                                 }

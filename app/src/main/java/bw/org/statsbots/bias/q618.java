@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class q618 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q618 extends AppCompatActivity implements Serializable {
 
     protected HouseHold thisHouse;
     protected Individual individual;

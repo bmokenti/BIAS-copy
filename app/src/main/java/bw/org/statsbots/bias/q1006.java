@@ -11,7 +11,9 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class q1006 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q1006 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
@@ -43,6 +45,12 @@ public class q1006 extends AppCompatActivity {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        if (individual.getQ1005a().equals("2") || individual.getQ1005a().equals("3") ||individual.getQ1005a().equals("4") || individual.getQ1005a().equals("9"))
+        {
+            Intent intent = new Intent(q1006.this, q1007.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

@@ -244,6 +244,7 @@ public class started_household extends AppCompatActivity implements Serializable
 
                             int mm=0;
                             int yy = Integer.parseInt(r.get(o).getP04YY());
+                           final PersonRoster person1 = r.get(o);
                             if(r.get(o).getP04MM()==null){}
                             else{ mm= Integer.parseInt(r.get(o).getP04MM());
                                 int wks = Integer.parseInt(r.get(o).getP04WKS());}
@@ -257,6 +258,19 @@ public class started_household extends AppCompatActivity implements Serializable
                                 Info="Pending Blood Collection & Rapid";
                                 Drawable d1 = ContextCompat.getDrawable(started_household.this, R.drawable.ic_face_blue_24dp);
                                 btn.setCompoundDrawablesWithIntrinsicBounds( d1,null, null, null);
+                                btn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        //**Replace This house with 1 individual
+
+
+                                        Intent q1o2 = new Intent(started_household.this, HIVConsentOver64.class);
+                                        q1o2.putExtra("Personroster", person1);
+                                        startActivity(q1o2);
+
+
+                                    }
+                                });
 
                             }
                             if(yy<15){
@@ -265,6 +279,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                     Info="Pending Blood Collection & Rapid";
                                     Drawable d1 = ContextCompat.getDrawable(started_household.this, R.drawable.ic_face_blue_24dp);
                                     btn.setCompoundDrawablesWithIntrinsicBounds( d1,null, null, null);
+
 
                                 }else
                                 {
@@ -275,11 +290,23 @@ public class started_household extends AppCompatActivity implements Serializable
                                         btn.setCompoundDrawablesWithIntrinsicBounds( d1,null, null, null);
 
 
+
                                     }
                                     else {
                                         Info="Pending Blood Collection";
                                         Drawable d1 = ContextCompat.getDrawable(started_household.this, R.drawable.ic_face_blue_24dp);
                                         btn.setCompoundDrawablesWithIntrinsicBounds( d1,null, null, null);
+                                        btn.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                //**Replace This house with 1 individual
+                                                Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
+                                                q1o2.putExtra("Personroster", person1);
+                                                startActivity(q1o2);
+
+
+                                            }
+                                        });
 
                                     }
                                 }
@@ -346,8 +373,11 @@ public class started_household extends AppCompatActivity implements Serializable
                                 @Override
                                 public void onClick(View view) {
                                     //**Replace This house with 1 individual
-                                    Intent q1o2 = new Intent(started_household.this, q101.class);
+                                    Intent q1o2 = new Intent(started_household.this, IndQuetParentalConsent.class);
+                                    q1o2.putExtra("Personroster", temp);
                                     q1o2.putExtra("Individual", temp1);
+                                    q1o2.putExtra("Household", thisHouse);
+
                                     startActivity(q1o2);
 
 
@@ -360,17 +390,6 @@ public class started_household extends AppCompatActivity implements Serializable
                             btn.setCompoundDrawablesWithIntrinsicBounds( d,null, null, null);
                             Info="Questionnaire, Rapid Test Done";
 
-                            btn.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    //**Replace This house with 1 individual
-                                    Intent q1o2 = new Intent(started_household.this, q101.class);
-                                    q1o2.putExtra("Household", thisHouse);
-                                    startActivity(q1o2);
-
-
-                                }
-                            });
 
                         }
 
@@ -473,7 +492,6 @@ public class started_household extends AppCompatActivity implements Serializable
             tb.setVisibility(View.VISIBLE);
 
         }
-
 
 
         btnUpdate.setOnClickListener(new View.OnClickListener()

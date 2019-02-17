@@ -40,14 +40,14 @@ public class q1001 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
-/*
+
         if((individual.getQ101().equals("1") && Integer.parseInt( individual.getQ102() )>49) || individual.getQ401().equals("2") || individual.getQ101().equals("1"))
         {
             Intent intent = new Intent(q1001.this, q1101.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
         }
-*/
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

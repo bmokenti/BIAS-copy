@@ -74,6 +74,7 @@ public class q604 extends AppCompatActivity implements Serializable {
         t2 = findViewById(R.id.q604b);
 
 
+
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

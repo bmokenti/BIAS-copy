@@ -86,6 +86,14 @@ public class q106 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        if(individual.getQ105().equals("1") || individual.getQ105().equals("2") || individual.getQ105().equals("3") || individual.getQ105().equals("4"))
+        {
+
+            Intent intent = new Intent(q106.this, q107.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
         rbtna1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

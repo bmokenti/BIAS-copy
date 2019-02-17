@@ -45,6 +45,7 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
         myDB.onOpen(myDB.getReadableDatabase());
         myDB.getWritableDatabase();
 
+        //myDB.getIndividualdt();
 //        final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
         Intent i = getIntent();
@@ -96,12 +97,7 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
                             //Update
                             myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
-                        }else{
-                            //Insert
-                            myDB.insertIndividual(individual);
-
                         }
-
                         Intent q1o3 = new Intent(q103.this, q105.class);
                         q1o3.putExtra("Individual", individual);
                         startActivity(q1o3);
@@ -115,10 +111,6 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
                         if(myDB.checkIndividual(individual)){
                             //Update
                             myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-
-                        }else{
-                            //Insert
-                            myDB.insertIndividual(individual);
 
                         }
 

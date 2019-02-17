@@ -49,7 +49,41 @@ public class q603 extends AppCompatActivity implements Serializable {
         chkOther = findViewById(R.id.q603_other);
         q603edt = findViewById(R.id.q603edt_Other);
 
+if(ck9txt.isChecked())
+{
+    ck1txt.setEnabled(false);
+    ck2txt.setEnabled(false);
+    ck3txt.setEnabled(false);
+    ck4txt.setEnabled(false);
+    ck5txt.setEnabled(false);
+    ck6txt.setEnabled(false);
+    ck7txt.setEnabled(false);
+    ck8txt.setEnabled(false);
+    chkOther.setEnabled(false);
+    q603edt.setText("");
 
+    ck2txt.setChecked(false);
+    ck3txt.setChecked(false);
+    ck4txt.setChecked(false);
+    ck5txt.setChecked(false);
+    ck6txt.setChecked(false);
+    ck7txt.setChecked(false);
+    ck8txt.setChecked(false);
+    chkOther.setChecked(false);
+
+
+}
+else
+{  ck1txt.setEnabled(true);
+    ck2txt.setEnabled(true);
+    ck3txt.setEnabled(true);
+    ck4txt.setEnabled(true);
+    ck5txt.setEnabled(true);
+    ck6txt.setEnabled(true);
+    ck7txt.setEnabled(true);
+    ck8txt.setEnabled(true);
+    chkOther.setEnabled(true);
+}
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -198,8 +232,43 @@ public class q603 extends AppCompatActivity implements Serializable {
                     break;
             case R.id.q603_9:
                 if (checked)
-                    // Remove the meat
-                    break;
+
+                    {
+                        ck1txt.setEnabled(false);
+                        ck2txt.setEnabled(false);
+                        ck3txt.setEnabled(false);
+                        ck4txt.setEnabled(false);
+                        ck5txt.setEnabled(false);
+                        ck6txt.setEnabled(false);
+                        ck7txt.setEnabled(false);
+                        ck8txt.setEnabled(false);
+                        chkOther.setEnabled(false);
+                        q603edt.setText("");
+
+                        ck2txt.setChecked(false);
+                        ck3txt.setChecked(false);
+                        ck4txt.setChecked(false);
+                        ck5txt.setChecked(false);
+                        ck6txt.setChecked(false);
+                        ck7txt.setChecked(false);
+                        ck8txt.setChecked(false);
+                        chkOther.setChecked(false);
+
+
+                    }
+                    else
+                    {  ck1txt.setEnabled(true);
+                        ck2txt.setEnabled(true);
+                        ck3txt.setEnabled(true);
+                        ck4txt.setEnabled(true);
+                        ck5txt.setEnabled(true);
+                        ck6txt.setEnabled(true);
+                        ck7txt.setEnabled(true);
+                        ck8txt.setEnabled(true);
+                        chkOther.setEnabled(true);
+                    }
+
+                break;
             case R.id.q603_other:
                 if (checked)
                      {

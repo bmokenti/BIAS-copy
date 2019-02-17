@@ -134,9 +134,9 @@
 
 
                     <TextView
+                        android:id="@+id/Q621atxt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:text="@string/q621a" />
 
@@ -216,7 +216,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/q621b"
                         android:textColor="@color/black"
-                        android:textStyle="bold" />
+                         />
                     <RadioGroup
                         android:id="@+id/q621bGroup"
                         android:layout_width="match_parent"

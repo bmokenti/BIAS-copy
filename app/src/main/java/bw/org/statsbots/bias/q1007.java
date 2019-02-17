@@ -91,23 +91,10 @@ public class q1007 extends AppCompatActivity implements Serializable {
                         if (rbtn2.isChecked()) {
                             individual.setQ1007(selectedRbtn.getText().toString().substring(0, 1));
 
-
                             Intent skipto1009 = new Intent(q1007.this, q1009.class);
                             skipto1009.putExtra("Individual", individual);
                             startActivity(skipto1009);
                         } else {
-
-
-                            if (selectedRbtna != rbtna1) {
-
-
-                                individual.setQ1007(selectedRbtn.getText().toString().substring(0, 1));
-                                individual.setQ1007a(selectedRbtna.getText().toString().substring(0, 1));
-
-                                Intent skipto1009 = new Intent(q1007.this, q1009.class);
-                                skipto1009.putExtra("Individual", individual);
-                                startActivity(skipto1009);
-                            } else {
 
                                 individual.setQ1007(selectedRbtn.getText().toString().substring(0, 1));
                                 individual.setQ1007a(selectedRbtna.getText().toString().substring(0, 1));
@@ -120,7 +107,7 @@ public class q1007 extends AppCompatActivity implements Serializable {
                     }
 
                     }
-                }
+
         });
         Button btprev = findViewById(R.id.button3);
 

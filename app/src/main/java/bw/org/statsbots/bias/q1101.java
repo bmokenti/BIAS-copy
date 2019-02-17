@@ -52,22 +52,11 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
         rg2 = (RadioGroup) findViewById(R.id.q1101radioGroupa);
 
 
-        //rbtn1.setOnClickListener(this);
-        //rbtn2.setOnClickListener(this);
-        // rbtn3.setOnClickListener(this);
-        // rbtn4.setOnClickListener(this);
-
-        // final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
 
-        // setTitle("Q1101a Where are you getting your TB treatment");
-
-        //lib = new LibraryClass();
-
-        //q1101atext.setVisibility(View.INVISIBLE);
+        lib = new LibraryClass();
 
 
-        //rg1.setVisibility(View.INVISIBLE);
 
         rbtna1 = (RadioButton) findViewById(R.id.q1101a_1);
         rbtna2 = (RadioButton) findViewById(R.id.q1101a_2);
@@ -77,12 +66,6 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
         rbtnaOther = (RadioButton) findViewById(R.id.q1101aOther);
         q1101aOther = (EditText) findViewById(R.id.q1101a_Other);
 
-        // rbtn1.setOnClickListener(this);
-        //rbtn2.setOnClickListener(this);
-        // rbtn3.setOnClickListener(this);
-        // rbtn4.setOnClickListener(this);
-
-        // final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");

@@ -111,12 +111,7 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
                             //Update
                             myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
-                        }else{
-                            //Insert
-                            myDB.insertIndividual(individual);
-
                         }
-
 
                         Intent intent = new Intent(q1114.this, Dashboard.class);
                         intent.putExtra("Individual",  individual);

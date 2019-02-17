@@ -63,6 +63,12 @@ public class q1008 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        if (individual.getQ1007a().equals("2") || individual.getQ1007a().equals("3") ||individual.getQ1007a().equals("4") || individual.getQ1007a().equals("9"))
+        {
+            Intent intent = new Intent(q1008.this, q1009.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +113,6 @@ public class q1008 extends AppCompatActivity implements Serializable {
 
 
                                 individual.setQ1008(selectedRbtn.getText().toString().substring(0, 1));
-
 
                                 Intent skipto1009 = new Intent(q1008.this, q1010.class);
                                 skipto1009.putExtra("Individual", individual);

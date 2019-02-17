@@ -141,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:text="Q622a. If yes, why?"
                         android:textColor="@color/black"
-                        android:textStyle="bold" />
+                        />
 
 
                     <RadioGroup
@@ -217,7 +217,7 @@
                         android:layout_height="wrap_content"
                         android:text="Q622b. If no, why not?"
                         android:textColor="@color/black"
-                        android:textStyle="bold" />
+                         />
                     <RadioGroup
                         android:id="@+id/q622bGroup2"
                         android:layout_width="match_parent"

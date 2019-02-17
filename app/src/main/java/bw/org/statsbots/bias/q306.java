@@ -85,7 +85,7 @@ public class q306 extends AppCompatActivity {
 
 
                     if (Integer.valueOf(q306_dd.getText().toString()) >= 8  && !chkb9.isChecked()) {
-                        lib.showError(q306.this, "Q306", "Number of days should not be greater than 7: enter number of days  1-7 or select dont know");
+                        lib.showError(q306.this, "Q306", "Number of days should not be greater than 7: enter number of days  0-7 or select don't know");
                         /**
                          * VIBRATE DEVICE
                          */

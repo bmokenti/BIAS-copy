@@ -166,16 +166,50 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     private static final String P19 = "P19";
     private static final String P20 = "P20";
     private static final String P21 = "P21";
-    private static final String BloodSampleCollected = "BloodSampleCollected";
+    //private static final String BloodSampleCollected = "BloodSampleCollected";
     private static final String Barcode = "Barcode";
-    private static final String RapidResults = "RapidResults";
-    private static final String RapidDate = "RapidDate";
-    private static final String Rapid_Comment = "Rapid_Comment";
-    private static final String B3_RapidConsent_Yes_No = "B3_RapidConsent_Yes_No";
+   // private static final String RapidResults = "RapidResults";
+   // private static final String RapidDate = "RapidDate";
+
+
+
+    private static final String ChildBloodDraw = "ChildBloodDraw";
+    private static final String ChildBloodVol_1 = "ChildBloodVol_1";
+    private static final String ChildBloodVol_4 = "ChildBloodVol_4";
+    private static final String ChildBloodVol_6 = "ChildBloodVol_6";
+    private static final String ChildBloodVol_10 = "ChildBloodVol_10";
+    private static final String ChildBloodVolComment = "ChildBloodVolComment";
+    private static final String Child_Rapid = "Child_Rapid";
+    private static final String ChildRapidResults = "ChildRapidResults";
+    private static final String ChildBloodLabTest = "ChildBloodLabTest";
+    private static final String ChildBloodStore = "ChildBloodStore";
+    private static final String ChildRapidDate = "ChildRapidDate";
+    private static final String ChildBloodSampleCollected = "ChildBloodSampleCollected";
+    private static final String ChPrntlConsentBloodDraw = "ChPrntlConsentBloodDraw";
+    private static final String ChPrntlConsentRHT = "ChPrntlConsentRHT";
+    private static final String ChPrntlConsentLabTest = "ChPrntlConsentLabTest";
+    private static final String ChPrntlConsentBloodStore = "ChPrntlConsentBloodStore";
     private static final String B3_Guardian = "B3_Guardian";
-    private static final String B3_Date = "B3_Date";
-    private static final String U15Rapid_Result = "U15Rapid_Result";
-    private static final String BloodConsent = "BloodConsent";
+    private static final String ChPrntlConsentDate = "ChPrntlConsentDate";
+    private static final String Ov64BloodDraw = "Ov64BloodDraw";
+    private static final String Ov64BloodVol_1 = "Ov64BloodVol_1";
+    private static final String Ov64BloodVol_4 = "Ov64BloodVol_4";
+    private static final String Ov64BloodVol_6 = "Ov64BloodVol_6";
+    private static final String Ov64BloodVol_10 = "Ov64BloodVol_10";
+    private static final String Ov64BloodVolComment = "Ov64BloodVolComment";
+    private static final String Ov64_Rapid = "Ov64_Rapid";
+    private static final String Ov64RapidResults = "Ov64RapidResults";
+    private static final String Ov64BloodLabTest = "Ov64BloodLabTest";
+    private static final String Ov64BloodStore = "Ov64BloodStore";
+    private static final String Ov64RapidDate = "Ov64RapidDate";
+    private static final String Ov64BloodSampleCollected = "Ov64BloodSampleCollected";
+
+    //private static final String Rapid_Comment = "Rapid_Comment";
+   // private static final String B3_RapidConsent_Yes_No = "B3_RapidConsent_Yes_No";
+
+   // private static final String B3_Date = "B3_Date";
+   // private static final String U15Rapid_Result = "U15Rapid_Result";
+   // private static final String BloodConsent = "BloodConsent";
 
 
     private static final String tblindividual = "Individual";
@@ -513,16 +547,42 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Q1113 = "Q1113";
     private static final String Q1113Other = "Q1113Other";
     private static final String Q1114 = "Q1114";
-    private static final String IndBloodSampleCollected = "IndBloodSampleCollected";
     private static final String IndBarcode = "IndBarcode";
-    private static final String IndRapidResults = "IndRapidResults";
-    private static final String IndRapidDate = "IndRapidDate";
-    private static final String RapidResultsOther = "RapidResultsOther";
-    private static final String B8_Yes_No = "B8_Yes_No";
-    private static final String B8_Date = "B8_Date";
+
+    private static final String IndvQuestionnairePConsent15_17 = "IndvQuestionnairePConsent15_17";
+    private static final String IndvQuestionnaireConsent = "IndvQuestionnaireConsent";
+    private static final String IndvBloodDraw = "IndvBloodDraw";
+    private static final String BloodVol_1 = "BloodVol_1";
+    private static final String BloodVol_4 = "BloodVol_4";
+    private static final String BloodVol_6 = "BloodVol_6";
+    private static final String BloodVol_10 = "BloodVol_10";
+    private static final String BloodVolComment = "BloodVolComment";
     private static final String B8_O15_Rapid = "B8_O15_Rapid";
+    private static final String IndRapidResults = "IndRapidResults";
+    private static final String IndBloodLabTest = "IndBloodLabTest";
+    private static final String IndBloodStore = "IndBloodStore";
+    private static final String IndRapidDate = "IndRapidDate";
+    private static final String IndBloodSampleCollected = "IndBloodSampleCollected";
+    private static final String PrntlConsentBloodDraw = "PrntlConsentBloodDraw";
+    private static final String PrntlConsentRHT = "PrntlConsentRHT";
+    private static final String PrntlConsentLabTest = "PrntlConsentLabTest";
+    private static final String PrntlConsentBloodStore = "PrntlConsentBloodStore";
+    private static final String PrntlParentID = "PrntlParentID";
+    private static final String PrntlConsentDate = "PrntlConsentDate";
+
+
+
+
+
+
+   // private static final String B8_Yes_No = "B8_Yes_No";
+   // private static final String B8_Date = "B8_Date";
+   // private static final String RapidResultsOther = "RapidResultsOther";
+   // private static final String B8_Yes_No = "B8_Yes_No";
+    //private static final String B8_Date = "B8_Date";
+   // private static final String B8_O15_Rapid = "B8_O15_Rapid";
     //private static final String Q801f = "Q801f";
-    private static final String IndRapid_Comment = "IndRapid_Comment";
+   // private static final String IndRapid_Comment = "IndRapid_Comment";
 
 
     private static final String sample = "Sample";
@@ -751,12 +811,44 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Barcode + " nvarchar(10),"
             //+ RapidResults + " nvarchar (1) ,"
             //+ RapidDate + " date,"
-            + B3_RapidConsent_Yes_No + " nvarchar(1),"
-            + Rapid_Comment + " nvarchar(100),"
+           // + B3_RapidConsent_Yes_No + " nvarchar(1),"
+           // + Rapid_Comment + " nvarchar(100),"
+
+            + ChildBloodDraw + " nvarchar(1),"
+            + ChildBloodVol_1 + " nvarchar(1),"
+            + ChildBloodVol_4 + " nvarchar(1),"
+            + ChildBloodVol_6 + " nvarchar(1),"
+            + ChildBloodVol_10 + " nvarchar(1),"
+            + ChildBloodVolComment + " nvarchar(1),"
+            + Child_Rapid + " nvarchar(1),"
+            + ChildRapidResults + " nvarchar(1),"
+            + ChildBloodLabTest + " nvarchar(1),"
+            + ChildBloodStore + " nvarchar(1),"
+            + ChildRapidDate + " date,"
+            + ChildBloodSampleCollected + " nvarchar(1),"
+
+            + ChPrntlConsentBloodDraw + " nvarchar(1),"
+            + ChPrntlConsentRHT + " nvarchar(1),"
+            + ChPrntlConsentLabTest + " nvarchar(1),"
+            + ChPrntlConsentBloodStore + " nvarchar(1),"
             + B3_Guardian + " nvarchar(50),"
-            + B3_Date + " date,"
-            + U15Rapid_Result + " nvarchar(1),"
-            + BloodConsent + " nvarchar(1))";
+            + ChPrntlConsentDate + " nvarchar(1),"
+
+            + Ov64BloodDraw + " nvarchar(1),"
+            + Ov64BloodVol_1 + " nvarchar(1),"
+            + Ov64BloodVol_4 + " nvarchar(1),"
+            + Ov64BloodVol_6 + " nvarchar(1),"
+            + Ov64BloodVol_10 + " nvarchar(1),"
+            + Ov64BloodVolComment + " nvarchar(1),"
+            + Ov64_Rapid + " nvarchar(1),"
+            + Ov64RapidResults + " nvarchar(1),"
+            + Ov64BloodLabTest + " nvarchar(1),"
+            + Ov64BloodStore + " nvarchar(1),"
+            + Ov64RapidDate + " date,"
+            + Ov64BloodSampleCollected + " nvarchar(1))";
+            //+ B3_Date + " date,"
+           // + U15Rapid_Result + " nvarchar(1),"
+           // + BloodConsent + " nvarchar(1))";
 
 
 
@@ -1137,18 +1229,36 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q1113 + " nvarchar(1),"
             + Q1113Other + " nvarchar(50),"
             + Q1114 + " nvarchar(1),"
-            // + IndBloodSampleCollected + " nvarchar (1) ,"
-            //+ IndBarcode + " nvarchar(20),"
-            // + IndRapidResults + " nvarchar (1) ,"
-            // + IndRapidDate + " date,"
-            + IndRapidResults + " nvarchar(50),"
-            + RapidResultsOther + " nvarchar(1),"
-            + IndRapid_Comment + " nvarchar(50),"
-            + B8_Yes_No + " nvarchar(1),"
-            + B8_Date + " datetime,"
+
+            + IndvQuestionnairePConsent15_17 + " nvarchar(1),"
+            + IndvQuestionnaireConsent + " nvarchar(1),"
+            + IndvBloodDraw + " nvarchar(1),"
+            + BloodVol_1 + " nvarchar(1),"
+            + BloodVol_4 + " nvarchar(1),"
+            + BloodVol_6 + " nvarchar(1),"
+            + BloodVol_10 + " nvarchar(1),"
+            + BloodVolComment + " nvarchar(50),"
             + B8_O15_Rapid + " nvarchar(1),"
-            + BloodConsent + " nvarchar(1),"
-            + Rapid_Comment + " nvarchar(100))";
+            + IndRapidResults + " nvarchar(50),"
+            + IndBloodLabTest + " nvarchar(1),"
+            + IndBloodStore + " nvarchar(1),"
+            + IndRapidDate + " nvarchar(8),"
+            + IndBloodSampleCollected + " nvarchar(1),"
+            + PrntlConsentBloodDraw + " nvarchar(1),"
+            + PrntlConsentRHT + " nvarchar(1),"
+            + PrntlConsentLabTest + " nvarchar(1),"
+            + PrntlConsentBloodStore + " nvarchar(1),"
+            + PrntlParentID + " nvarchar(1),"
+            + PrntlConsentDate + " nvarchar(8))";
+
+
+           // + RapidResultsOther + " nvarchar(1),"
+           // + IndRapid_Comment + " nvarchar(50),"
+            //+ B8_Yes_No + " nvarchar(1),"
+            //+ B8_Date + " datetime,"
+            //+ B8_O15_Rapid + " nvarchar(1),"
+           // + BloodConsent + " nvarchar(1),"
+            //+ Rapid_Comment + " nvarchar(100)
 
 
 
@@ -1371,11 +1481,44 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         //hhrosterValues.put(RapidResults, pr.getRapidResults());
         //hhrosterValues.put(RapidDate, pr.getRapidDate());
         //hhrosterValues.put(Rapid_Comment, pr.getRapid_Comment());
+        hhrosterValues.put(ChildBloodDraw, pr.getChildBloodDraw());
+        hhrosterValues.put(ChildBloodVol_1, pr.getChildBloodVol_1());
+        hhrosterValues.put(ChildBloodVol_4, pr.getChildBloodVol_4());
+        hhrosterValues.put(ChildBloodVol_6, pr.getChildBloodVol_6());
+        hhrosterValues.put(ChildBloodVol_10, pr.getChildBloodVol_10());
+        hhrosterValues.put(ChildBloodVolComment, pr.getChildBloodVolComment());
+        hhrosterValues.put(Child_Rapid, pr.getChild_Rapid());
+        hhrosterValues.put(ChildRapidResults, pr.getChildRapidResults());
+        hhrosterValues.put(ChildBloodLabTest, pr.getChildBloodLabTest());
+        hhrosterValues.put(ChildBloodStore, pr.getChildBloodStore());
+        hhrosterValues.put(ChildRapidDate, pr.getChildRapidDate());
+        hhrosterValues.put(ChildBloodSampleCollected, pr.getChildBloodSampleCollected());
+        hhrosterValues.put(ChPrntlConsentBloodDraw,pr.getChPrntlConsentBloodDraw());
+        hhrosterValues.put(ChPrntlConsentRHT, pr.getChPrntlConsentRHT());
+        hhrosterValues.put(ChPrntlConsentLabTest, pr.getChPrntlConsentLabTest());
 
-        hhrosterValues.put(B3_RapidConsent_Yes_No, pr.getB3_RapidConsent_Yes_No());
+        hhrosterValues.put(ChPrntlConsentBloodStore, pr.getChPrntlConsentBloodStore());
         hhrosterValues.put(B3_Guardian, pr.getB3_Guardian());
-        hhrosterValues.put(B3_Date, pr.getB3_Date());
-        hhrosterValues.put(U15Rapid_Result, pr.getU15Rapid_Results());
+        hhrosterValues.put(ChPrntlConsentDate, pr.getChPrntlConsentDate());
+        hhrosterValues.put(Ov64BloodDraw, pr.getOv64BloodDraw());
+        hhrosterValues.put(Ov64BloodVol_1, pr.getOv64BloodVol_1());
+        hhrosterValues.put(Ov64BloodVol_4, pr.getOv64BloodVol_4());
+        hhrosterValues.put(Ov64BloodVol_6, pr.getOv64BloodVol_6());
+        hhrosterValues.put(Ov64BloodVol_10,pr.getOv64BloodVol_10());
+        hhrosterValues.put(Ov64BloodVolComment, pr.getOv64BloodVolComment());
+        hhrosterValues.put(Ov64_Rapid, pr.getOv64_Rapid());
+
+        hhrosterValues.put(Ov64RapidResults, pr.getOv64RapidResults());
+        hhrosterValues.put(Ov64BloodLabTest, pr.getOv64BloodLabTest());
+        hhrosterValues.put(Ov64BloodVol_10,pr.getOv64BloodVol_10());
+        hhrosterValues.put(Ov64BloodStore, pr.getOv64BloodStore());
+        hhrosterValues.put(Ov64RapidDate, pr.getOv64RapidDate());
+        hhrosterValues.put(Ov64BloodSampleCollected, pr.getOv64BloodSampleCollected());
+
+        //hhrosterValues.put(B3_RapidConsent_Yes_No, pr.getB3_RapidConsent_Yes_No());
+
+       // hhrosterValues.put(B3_Date, pr.getB3_Date());
+       // hhrosterValues.put(U15Rapid_Result, pr.getU15Rapid_Results());
         // hhrosterValues.put(RapidDate, pr.getRapidDate());
 
 
@@ -1441,14 +1584,47 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhrosterValues.put(H10, houseHold.getH10());
             hhrosterValues.put(H11, houseHold.getH11());*/
 
+            hhrosterValues.put(ChildBloodDraw, houseHold.getPersons()[i].getChildBloodDraw());
+            hhrosterValues.put(ChildBloodVol_1, houseHold.getPersons()[i].getChildBloodVol_1());
+            hhrosterValues.put(ChildBloodVol_4, houseHold.getPersons()[i].getChildBloodVol_4());
+            hhrosterValues.put(ChildBloodVol_6, houseHold.getPersons()[i].getChildBloodVol_6());
+            hhrosterValues.put(ChildBloodVol_10, houseHold.getPersons()[i].getChildBloodVol_10());
+            hhrosterValues.put(ChildBloodVolComment, houseHold.getPersons()[i].getChildBloodVolComment());
+            hhrosterValues.put(Child_Rapid, houseHold.getPersons()[i].getChild_Rapid());
+            hhrosterValues.put(ChildRapidResults, houseHold.getPersons()[i].getChildRapidResults());
+            hhrosterValues.put(ChildBloodLabTest, houseHold.getPersons()[i].getChildBloodLabTest());
+            hhrosterValues.put(ChildBloodStore, houseHold.getPersons()[i].getChildBloodStore());
+            hhrosterValues.put(ChildRapidDate, houseHold.getPersons()[i].getChildRapidDate());
+            hhrosterValues.put(ChildBloodSampleCollected, houseHold.getPersons()[i].getChildBloodSampleCollected());
+            hhrosterValues.put(ChPrntlConsentBloodDraw,houseHold.getPersons()[i].getChPrntlConsentBloodDraw());
+            hhrosterValues.put(ChPrntlConsentRHT, houseHold.getPersons()[i].getChPrntlConsentRHT());
+            hhrosterValues.put(ChPrntlConsentLabTest, houseHold.getPersons()[i].getChPrntlConsentLabTest());
 
-
-            hhrosterValues.put(B3_RapidConsent_Yes_No, houseHold.getPersons()[i].getB3_RapidConsent_Yes_No());
+            hhrosterValues.put(ChPrntlConsentBloodStore, houseHold.getPersons()[i].getChPrntlConsentBloodStore());
             hhrosterValues.put(B3_Guardian, houseHold.getPersons()[i].getB3_Guardian());
-            hhrosterValues.put(B3_Date, houseHold.getPersons()[i].getB3_Date());
-            hhrosterValues.put(U15Rapid_Result, houseHold.getPersons()[i].getU15Rapid_Results());
+            hhrosterValues.put(ChPrntlConsentDate, houseHold.getPersons()[i].getChPrntlConsentDate());
+            hhrosterValues.put(Ov64BloodDraw, houseHold.getPersons()[i].getOv64BloodDraw());
+            hhrosterValues.put(Ov64BloodVol_1, houseHold.getPersons()[i].getOv64BloodVol_1());
+            hhrosterValues.put(Ov64BloodVol_4, houseHold.getPersons()[i].getOv64BloodVol_4());
+            hhrosterValues.put(Ov64BloodVol_6, houseHold.getPersons()[i].getOv64BloodVol_6());
+            hhrosterValues.put(Ov64BloodVol_10,houseHold.getPersons()[i].getOv64BloodVol_10());
+            hhrosterValues.put(Ov64BloodVolComment, houseHold.getPersons()[i].getOv64BloodVolComment());
+            hhrosterValues.put(Ov64_Rapid, houseHold.getPersons()[i].getOv64_Rapid());
+
+            hhrosterValues.put(Ov64RapidResults, houseHold.getPersons()[i].getOv64RapidResults());
+            hhrosterValues.put(Ov64BloodLabTest, houseHold.getPersons()[i].getOv64BloodLabTest());
+            hhrosterValues.put(Ov64BloodVol_10,houseHold.getPersons()[i].getOv64BloodVol_10());
+            hhrosterValues.put(Ov64BloodStore, houseHold.getPersons()[i].getOv64BloodStore());
+            hhrosterValues.put(Ov64RapidDate, houseHold.getPersons()[i].getOv64RapidDate());
+            hhrosterValues.put(Ov64BloodSampleCollected, houseHold.getPersons()[i].getOv64BloodSampleCollected());
+
+
+           // hhrosterValues.put(B3_RapidConsent_Yes_No, houseHold.getPersons()[i].getB3_RapidConsent_Yes_No());
+           // hhrosterValues.put(B3_Guardian, houseHold.getPersons()[i].getB3_Guardian());
+           // hhrosterValues.put(B3_Date, houseHold.getPersons()[i].getB3_Date());
+           // hhrosterValues.put(U15Rapid_Result, houseHold.getPersons()[i].getU15Rapid_Results());
             // hhrosterValues.put(RapidDate, houseHold.getPersons()[i].getRapidDate());
-            hhrosterValues.put(Rapid_Comment, houseHold.getPersons()[i].getRapid_Comment());
+           // hhrosterValues.put(Rapid_Comment, houseHold.getPersons()[i].getRapid_Comment());
 
             db.insert(tblhhroster, null, hhrosterValues);
 
@@ -1493,14 +1669,47 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhrosterValues.put(Barcode, houseHold.getPersons()[i].getBarcode());
             // hhrosterValues.put(RapidResults, houseHold.getPersons()[i].getRapidResults());
             //hhrosterValues.put(RapidDate, houseHold.getPersons()[i].getRapidDate());
+            hhrosterValues.put(ChildBloodDraw, houseHold.getPersons()[i].getChildBloodDraw());
+            hhrosterValues.put(ChildBloodVol_1, houseHold.getPersons()[i].getChildBloodVol_1());
+            hhrosterValues.put(ChildBloodVol_4, houseHold.getPersons()[i].getChildBloodVol_4());
+            hhrosterValues.put(ChildBloodVol_6, houseHold.getPersons()[i].getChildBloodVol_6());
+            hhrosterValues.put(ChildBloodVol_10, houseHold.getPersons()[i].getChildBloodVol_10());
+            hhrosterValues.put(ChildBloodVolComment, houseHold.getPersons()[i].getChildBloodVolComment());
+            hhrosterValues.put(Child_Rapid, houseHold.getPersons()[i].getChild_Rapid());
+            hhrosterValues.put(ChildRapidResults, houseHold.getPersons()[i].getChildRapidResults());
+            hhrosterValues.put(ChildBloodLabTest, houseHold.getPersons()[i].getChildBloodLabTest());
+            hhrosterValues.put(ChildBloodStore, houseHold.getPersons()[i].getChildBloodStore());
+            hhrosterValues.put(ChildRapidDate, houseHold.getPersons()[i].getChildRapidDate());
+            hhrosterValues.put(ChildBloodSampleCollected, houseHold.getPersons()[i].getChildBloodSampleCollected());
+            hhrosterValues.put(ChPrntlConsentBloodDraw,houseHold.getPersons()[i].getChPrntlConsentBloodDraw());
+            hhrosterValues.put(ChPrntlConsentRHT, houseHold.getPersons()[i].getChPrntlConsentRHT());
+            hhrosterValues.put(ChPrntlConsentLabTest, houseHold.getPersons()[i].getChPrntlConsentLabTest());
 
-
-            hhrosterValues.put(B3_RapidConsent_Yes_No, houseHold.getPersons()[i].getB3_RapidConsent_Yes_No());
+            hhrosterValues.put(ChPrntlConsentBloodStore, houseHold.getPersons()[i].getChPrntlConsentBloodStore());
             hhrosterValues.put(B3_Guardian, houseHold.getPersons()[i].getB3_Guardian());
-            hhrosterValues.put(B3_Date, houseHold.getPersons()[i].getB3_Date());
-            hhrosterValues.put(U15Rapid_Result, houseHold.getPersons()[i].getU15Rapid_Results());
+            hhrosterValues.put(ChPrntlConsentDate, houseHold.getPersons()[i].getChPrntlConsentDate());
+            hhrosterValues.put(Ov64BloodDraw, houseHold.getPersons()[i].getOv64BloodDraw());
+            hhrosterValues.put(Ov64BloodVol_1, houseHold.getPersons()[i].getOv64BloodVol_1());
+            hhrosterValues.put(Ov64BloodVol_4, houseHold.getPersons()[i].getOv64BloodVol_4());
+            hhrosterValues.put(Ov64BloodVol_6, houseHold.getPersons()[i].getOv64BloodVol_6());
+            hhrosterValues.put(Ov64BloodVol_10,houseHold.getPersons()[i].getOv64BloodVol_10());
+            hhrosterValues.put(Ov64BloodVolComment, houseHold.getPersons()[i].getOv64BloodVolComment());
+            hhrosterValues.put(Ov64_Rapid, houseHold.getPersons()[i].getOv64_Rapid());
+
+            hhrosterValues.put(Ov64RapidResults, houseHold.getPersons()[i].getOv64RapidResults());
+            hhrosterValues.put(Ov64BloodLabTest, houseHold.getPersons()[i].getOv64BloodLabTest());
+            hhrosterValues.put(Ov64BloodVol_10,houseHold.getPersons()[i].getOv64BloodVol_10());
+            hhrosterValues.put(Ov64BloodStore, houseHold.getPersons()[i].getOv64BloodStore());
+            hhrosterValues.put(Ov64RapidDate, houseHold.getPersons()[i].getOv64RapidDate());
+            hhrosterValues.put(Ov64BloodSampleCollected, houseHold.getPersons()[i].getOv64BloodSampleCollected());
+
+           // hhrosterValues.put(B3_RapidConsent_Yes_No, houseHold.getPersons()[i].getB3_RapidConsent_Yes_No());
+           // hhrosterValues.put(B3_Guardian, houseHold.getPersons()[i].getB3_Guardian());
+           // hhrosterValues.put(B3_Date, houseHold.getPersons()[i].getB3_Date());
+           // hhrosterValues.put(U15Rapid_Result, houseHold.getPersons()[i].getU15Rapid_Results());
             // hhrosterValues.put(RapidDate, houseHold.getPersons()[i].getRapidDate());
-            hhrosterValues.put(Rapid_Comment, houseHold.getPersons()[i].getRapid_Comment());
+            //hhrosterValues.put(Rapid_Comment, houseHold.getPersons()[i].getRapid_Comment());
+
             i = db.update(tblhhroster, // table
                     hhrosterValues, // column/value
                     "EA_Assignment_ID = ? and BatchNumber=?", // selections
@@ -1870,9 +2079,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q1015b,  houseHold.getIndividual()[i].getQ1015b() );
             individualValues.put(Q1016,  houseHold.getIndividual()[i].getQ1016() );
             individualValues.put(Q1017,  houseHold.getIndividual()[i].getQ1017() );
-
-
-
             individualValues.put(Q1101, houseHold.getIndividual()[i].getQ1101() );
             individualValues.put(Q1101a, houseHold.getIndividual()[i].getQ1101a() );
             individualValues.put(Q1101aOther,  houseHold.getIndividual()[i].getQ1101aOther() );
@@ -1906,14 +2112,14 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q1113Other, houseHold.getIndividual()[i].getQ1113Other() );
             individualValues.put(Q1114, houseHold.getIndividual()[i].getQ1114() );
             // individualValues.put(IndBloodSampleCollected, houseHold.getIndividual()[i].getIndBloodSampleCollected() );
-            individualValues.put(B8_Yes_No, houseHold.getIndividual()[i].getB8_Yes_No() );
-            individualValues.put(B8_Date, houseHold.getIndividual()[i].getB8_Date() );
+            //individualValues.put(B8_Yes_No, houseHold.getIndividual()[i].getB8_Yes_No() );
+            //individualValues.put(B8_Date, houseHold.getIndividual()[i].getB8_Date() );
             individualValues.put(B8_O15_Rapid, houseHold.getIndividual()[i].getB8_O15_Rapid() );
             individualValues.put(Q801f, houseHold.getIndividual()[i].getQ801f() );
             //individualValues.put(IndRapidResults, houseHold.getIndividual()[i].getIndRapidResults() );
             // individualValues.put(IndRapidDate, houseHold.getIndividual()[i].getIndRapidDate() );
 
-            individualValues.put(IndRapid_Comment, houseHold.getIndividual()[i].getIndRapid_Comment() );
+           // individualValues.put(IndRapid_Comment, houseHold.getIndividual()[i].getIndRapid_Comment() );
 
 
             db.insert("tblindividual", null, individualValues);
@@ -2301,15 +2507,39 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q1113Other, houseHold.getQ1113Other() );
             individualValues.put(Q1114, houseHold.getQ1114() );
             // individualValues.put(IndBloodSampleCollected, houseHold.getIndBloodSampleCollected() );
-            individualValues.put(B8_Yes_No, houseHold.getB8_Yes_No() );
-            individualValues.put(B8_Date, houseHold.getB8_Date() );
-            individualValues.put(B8_O15_Rapid, houseHold.getB8_O15_Rapid() );
-            individualValues.put(Q801f, houseHold.getQ801f() );
+            //individualValues.put(B8_Yes_No, houseHold.getB8_Yes_No() );
+            //individualValues.put(B8_Date, houseHold.getB8_Date() );
+
+            //individualValues.put(Q801f, houseHold.getQ801f() );
             //individualValues.put(IndRapidResults, houseHold.getIndRapidResults() );
             // individualValues.put(IndRapidDate, houseHold.getIndRapidDate() );
 
-            individualValues.put(IndRapid_Comment, houseHold.getIndRapid_Comment() );
+           // individualValues.put(IndRapid_Comment, houseHold.getIndRapid_Comment() );
 
+            individualValues.put(IndvQuestionnairePConsent15_17, houseHold.getIndvQuestionnairePConsent15_17() );
+            individualValues.put(IndvQuestionnaireConsent, houseHold.getIndvQuestionnaireConsent() );
+            individualValues.put(IndvBloodDraw, houseHold.getIndvBloodDraw() );
+            individualValues.put(BloodVol_1, houseHold.getBloodVol_1() );
+            individualValues.put(BloodVol_4, houseHold.getBloodVol_4() );
+            individualValues.put(BloodVol_6, houseHold.getBloodVol_6() );
+            individualValues.put(BloodVol_10, houseHold.getBloodVol_10() );
+            individualValues.put(BloodVolComment, houseHold.getBloodVolComment());
+
+            individualValues.put(B8_O15_Rapid, houseHold.getB8_O15_Rapid() );
+            individualValues.put(IndRapidResults, houseHold.getIndRapidResults());
+            individualValues.put(IndBloodLabTest, houseHold.getIndBloodLabTest());
+            individualValues.put(IndBloodStore, houseHold.getIndBloodStore() );
+            individualValues.put(IndRapidDate, houseHold.getIndRapidDate() );
+
+
+            individualValues.put(IndBloodSampleCollected, houseHold.getIndBloodSampleCollected() );
+            individualValues.put(PrntlConsentBloodDraw, houseHold.getPrntlConsentBloodDraw());
+            individualValues.put(PrntlConsentRHT, houseHold.getPrntlConsentRHT());
+            individualValues.put(PrntlConsentLabTest, houseHold.getPrntlConsentLabTest() );
+            individualValues.put(PrntlConsentBloodStore, houseHold.getPrntlConsentBloodStore() );
+
+            individualValues.put(PrntlParentID, houseHold.getPrntlParentID() );
+            individualValues.put(PrntlConsentDate, houseHold.getPrntlConsentDate() );
 
             db.insert("Individual", null, individualValues);
 
@@ -2651,13 +2881,35 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         individualValues.put(Q1113Other, ind.getQ1113Other() );
         individualValues.put(Q1114, ind.getQ1114() );
         // individualValues.put(IndBloodSampleCollected, ind.getIndBloodSampleCollected() );
-        individualValues.put(B8_Yes_No, ind.getB8_Yes_No() );
-        individualValues.put(B8_Date, ind.getB8_Date() );
+       // individualValues.put(B8_Yes_No, ind.getB8_Yes_No() );
+       // individualValues.put(B8_Date, ind.getB8_Date() );
+
+        individualValues.put(IndvQuestionnairePConsent15_17, ind.getIndvQuestionnairePConsent15_17() );
+        individualValues.put(IndvQuestionnaireConsent, ind.getIndvQuestionnaireConsent() );
+        individualValues.put(IndvBloodDraw, ind.getIndvBloodDraw() );
+        individualValues.put(BloodVol_1, ind.getBloodVol_1() );
+        individualValues.put(BloodVol_4, ind.getBloodVol_4() );
+        individualValues.put(BloodVol_6, ind.getBloodVol_6() );
+        individualValues.put(BloodVol_10, ind.getBloodVol_10() );
+        individualValues.put(BloodVolComment, ind.getBloodVolComment());
         individualValues.put(B8_O15_Rapid, ind.getB8_O15_Rapid() );
-        individualValues.put(Q801f, ind.getQ801f() );
+        individualValues.put(IndRapidResults, ind.getIndRapidResults());
+        individualValues.put(IndBloodLabTest, ind.getIndBloodLabTest());
+        individualValues.put(IndBloodStore, ind.getIndBloodStore() );
+        individualValues.put(IndRapidDate, ind.getIndRapidDate() );
+        individualValues.put(IndBloodSampleCollected, ind.getIndBloodSampleCollected() );
+
+        individualValues.put(PrntlConsentBloodDraw, ind.getPrntlConsentBloodDraw());
+        individualValues.put(PrntlConsentRHT, ind.getPrntlConsentRHT());
+        individualValues.put(PrntlConsentLabTest, ind.getPrntlConsentLabTest() );
+        individualValues.put(PrntlConsentBloodStore, ind.getPrntlConsentBloodStore() );
+        individualValues.put(PrntlParentID, ind.getPrntlParentID() );
+        individualValues.put(PrntlConsentDate, ind.getPrntlConsentDate() );
+
+        // individualValues.put(Q801f, ind.getQ801f() );
         //individualValues.put(IndRapidResults, ind.getIndRapidResults() );
         // individualValues.put(IndRapidDate, ind.getIndRapidDate() );
-        individualValues.put(IndRapid_Comment, ind.getIndRapid_Comment() );
+        //individualValues.put(IndRapid_Comment, ind.getIndRapid_Comment() );
         db.insert("Individual", null, individualValues);
 
         return true;
@@ -3219,12 +3471,45 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             String P19 = cursor.getString(cursor.getColumnIndexOrThrow("P19"));
             String P20 = cursor.getString(cursor.getColumnIndexOrThrow("P20"));
             String P21 = cursor.getString(cursor.getColumnIndexOrThrow("P21"));
-            String B3_RapidConsent_Yes_No = cursor.getString(cursor.getColumnIndexOrThrow("B3_RapidConsent_Yes_No"));
+           //String B3_RapidConsent_Yes_No = cursor.getString(cursor.getColumnIndexOrThrow("B3_RapidConsent_Yes_No"));
             String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian"));
-            String B3_Date = cursor.getString(cursor.getColumnIndexOrThrow("B3_Date"));
+           // String B3_Date = cursor.getString(cursor.getColumnIndexOrThrow("B3_Date"));
             String Barcode = cursor.getString(cursor.getColumnIndexOrThrow("Barcode"));
-            String U15Rapid_Results = cursor.getString(cursor.getColumnIndexOrThrow("U15Rapid_Result"));
-            String Rapid_Comment = cursor.getString(cursor.getColumnIndexOrThrow("Rapid_Comment"));
+            //String U15Rapid_Results = cursor.getString(cursor.getColumnIndexOrThrow("U15Rapid_Result"));
+           // String Rapid_Comment = cursor.getString(cursor.getColumnIndexOrThrow("Rapid_Comment"));
+
+
+            String ChildBloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodDraw"));
+            String ChildBloodVol_1 = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodVol_1"));
+            String ChildBloodVol_4 = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodVol_4"));
+            String ChildBloodVol_6 = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodVol_6"));
+            String ChildBloodVol_10 = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodVol_10"));
+            String ChildBloodVolComment = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodVolComment"));
+            String Child_Rapid = cursor.getString(cursor.getColumnIndexOrThrow("Child_Rapid"));
+            String ChildRapidResults = cursor.getString(cursor.getColumnIndexOrThrow("ChildRapidResults"));
+            String ChildBloodLabTest = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodLabTest"));
+            String ChildBloodStore = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodStore"));
+            String ChildRapidDate = cursor.getString(cursor.getColumnIndexOrThrow("ChildRapidDate"));
+
+            String ChildBloodSampleCollected = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodSampleCollected"));
+            String ChPrntlConsentBloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentBloodDraw"));
+            String ChPrntlConsentRHT = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentRHT"));
+            String ChPrntlConsentLabTest = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentLabTest"));
+            String ChPrntlConsentBloodStore = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentBloodStore"));
+           // String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian""));
+            String ChPrntlConsentDate = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentDate"));
+            String Ov64BloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodDraw"));
+            String Ov64BloodVol_1= cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodVol_1"));
+            String Ov64BloodVol_4= cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodVol_4"));
+            String Ov64BloodVol_6  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodVol_6"));
+            String Ov64BloodVol_10  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodVol_10"));
+            String Ov64BloodVolComment  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodVolComment"));
+            String Ov64_Rapid  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64_Rapid"));
+            String Ov64RapidResults  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64RapidResults"));
+            String Ov64BloodLabTest  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodLabTest"));
+            String Ov64BloodStore  = cursor.getString(cursor.getColumnIndexOrThrow ("Ov64BloodStore"));
+            String Ov64RapidDate  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64RapidDate"));
+            String Ov64BloodSampleCollected = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodSampleCollected"));
 
 
 
@@ -3254,12 +3539,54 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             dataModel.setP19(P19);
             dataModel.setP20(P20);
             dataModel.setP21(P21);
-            dataModel.setB3_RapidConsent_Yes_No(B3_RapidConsent_Yes_No);
+           // dataModel.setB3_RapidConsent_Yes_No(B3_RapidConsent_Yes_No);
+
+           // dataModel.setB3_Date(B3_Date);
+
+
+
+            dataModel.setChildBloodDraw(ChildBloodDraw);
+            dataModel.setChildBloodVol_1(ChildBloodVol_1);
+            dataModel.setChildBloodVol_4(ChildBloodVol_4);
+            dataModel.setChildBloodVol_6(ChildBloodVol_6);
+            dataModel.setChildBloodVol_10(ChildBloodVol_10);
+            dataModel.setChildBloodVolComment(ChildBloodVolComment);
+            dataModel.setChild_Rapid(Child_Rapid);
+            dataModel.setChildRapidResults(ChildRapidResults);
+            dataModel.setChildBloodLabTest(ChildBloodLabTest);
+            dataModel.setChildBloodStore(ChildBloodStore);
+            dataModel.setChildRapidDate(ChildRapidDate);
+            dataModel.setChildBloodSampleCollected(ChildBloodSampleCollected);
+            dataModel.setChPrntlConsentBloodDraw(ChPrntlConsentBloodDraw);
+            dataModel.setChPrntlConsentRHT(ChPrntlConsentRHT);
+            dataModel.setChPrntlConsentLabTest(ChPrntlConsentLabTest);
+            dataModel.setChPrntlConsentBloodStore(ChPrntlConsentBloodStore);
             dataModel.setB3_Guardian(B3_Guardian);
-            dataModel.setB3_Date(B3_Date);
-            dataModel.setBarcode(Barcode);
-            dataModel.setU15Rapid_Results(U15Rapid_Results);
-            dataModel.setRapid_Comment(Rapid_Comment);
+            dataModel.setChPrntlConsentDate(ChPrntlConsentDate);
+            dataModel.setOv64BloodDraw(Ov64BloodDraw);
+            dataModel.setOv64BloodVol_1(Ov64BloodVol_1);
+            dataModel.setOv64BloodVol_4(Ov64BloodVol_4);
+            dataModel.setOv64BloodVol_6(Ov64BloodVol_6);
+            dataModel.setOv64BloodVol_10(Ov64BloodVol_10);
+            dataModel.setOv64BloodVolComment(Ov64BloodVolComment);
+            dataModel.setOv64_Rapid(Ov64_Rapid);
+            dataModel.setOv64RapidResults(Ov64RapidResults);
+            dataModel.setOv64BloodLabTest(Ov64BloodLabTest);
+            dataModel.setOv64BloodStore(Ov64BloodStore);
+            dataModel.setOv64RapidDate(Ov64RapidDate);
+            dataModel.setOv64BloodSampleCollected(Ov64BloodSampleCollected);
+
+
+
+
+
+
+
+
+
+
+           // dataModel.setOv64BloodDraw(Ov64BloodDraw);
+            //dataModel.setRapid_Comment(Rapid_Comment);
 
 
 
@@ -3308,12 +3635,12 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             String P19 = cursor.getString(cursor.getColumnIndexOrThrow("P19"));
             String P20 = cursor.getString(cursor.getColumnIndexOrThrow("P20"));
             String P21 = cursor.getString(cursor.getColumnIndexOrThrow("P21"));
-            String B3_RapidConsent_Yes_No = cursor.getString(cursor.getColumnIndexOrThrow("B3_RapidConsent_Yes_No"));
+            //String B3_RapidConsent_Yes_No = cursor.getString(cursor.getColumnIndexOrThrow("B3_RapidConsent_Yes_No"));
             String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian"));
-            String B3_Date = cursor.getString(cursor.getColumnIndexOrThrow("B3_Date"));
+           // String B3_Date = cursor.getString(cursor.getColumnIndexOrThrow("B3_Date"));
             String Barcode = cursor.getString(cursor.getColumnIndexOrThrow("Barcode"));
-            String U15Rapid_Results = cursor.getString(cursor.getColumnIndexOrThrow("U15Rapid_Result"));
-            String Rapid_Comment = cursor.getString(cursor.getColumnIndexOrThrow("Rapid_Comment"));
+            //String U15Rapid_Results = cursor.getString(cursor.getColumnIndexOrThrow("U15Rapid_Result"));
+            //String Rapid_Comment = cursor.getString(cursor.getColumnIndexOrThrow("Rapid_Comment"));
 
 
 
@@ -3334,12 +3661,12 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             dataModel.setP19(P19);
             dataModel.setP20(P20);
             dataModel.setP21(P21);
-            dataModel.setB3_RapidConsent_Yes_No(B3_RapidConsent_Yes_No);
+            //dataModel.setB3_RapidConsent_Yes_No(B3_RapidConsent_Yes_No);
             dataModel.setB3_Guardian(B3_Guardian);
-            dataModel.setB3_Date(B3_Date);
+            //dataModel.setB3_Date(B3_Date);
             dataModel.setBarcode(Barcode);
-            dataModel.setU15Rapid_Results(U15Rapid_Results);
-            dataModel.setRapid_Comment(Rapid_Comment);
+            //dataModel.setU15Rapid_Results(U15Rapid_Results);
+            //dataModel.setRapid_Comment(Rapid_Comment);
 
 
             stringBuffer.append(dataModel);
@@ -3500,7 +3827,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             dataModel.setIndBarcode(IndBarcode);
             dataModel.setIndRapidResults(IndRapidResults);
             dataModel.setIndRapidDate(IndRapidDate);
-            dataModel.setIndRapid_Comment(IndRapid_Comment);
+           // dataModel.setIndRapid_Comment(IndRapid_Comment);
 
 
 
@@ -3774,11 +4101,11 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhValues.put("P20", houseHold.getPersons()[k].getP20());
             hhValues.put("P21", houseHold.getPersons()[k].getP21());
 
-            hhValues.put("B3_RapidConsent_Yes_No", houseHold.getPersons()[k].getB3_RapidConsent_Yes_No());
-            hhValues.put("B3_Guardian", houseHold.getPersons()[k].getB3_Guardian());
-            hhValues.put("B3_Date", houseHold.getPersons()[k].getB3_Date());
-            hhValues.put("U15Rapid_Result", houseHold.getPersons()[k].getU15Rapid_Results());
-            hhValues.put("Rapid_Comment", houseHold.getPersons()[k].getRapid_Comment());
+            //hhValues.put("B3_RapidConsent_Yes_No", houseHold.getPersons()[k].getB3_RapidConsent_Yes_No());
+           // hhValues.put("B3_Guardian", houseHold.getPersons()[k].getB3_Guardian());
+            //hhValues.put("B3_Date", houseHold.getPersons()[k].getB3_Date());
+            //hhValues.put("U15Rapid_Result", houseHold.getPersons()[k].getU15Rapid_Results());
+           // hhValues.put("Rapid_Comment", houseHold.getPersons()[k].getRapid_Comment());
             hhValues.put("BarCodeHHR", houseHold.getPersons()[k].getBarcode());
             hhValues.put("P08", houseHold.getPersons()[k].getP08());
             hhValues.put("P10", houseHold.getPersons()[k].getP10());
@@ -3789,6 +4116,41 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhValues.put("P14", houseHold.getPersons()[k].getP14());
             hhValues.put("P15", houseHold.getPersons()[k].getP15());
             hhValues.put("P16", houseHold.getPersons()[k].getP16());
+
+
+            hhValues.put("ChildBloodDraw", houseHold.getPersons()[k].getChildBloodDraw());
+            hhValues.put("ChildBloodVol_1", houseHold.getPersons()[k].getChildBloodVol_1());
+            hhValues.put("ChildBloodVol_4", houseHold.getPersons()[k].getChildBloodVol_4());
+            hhValues.put("ChildBloodVol_6", houseHold.getPersons()[k].getChildBloodVol_6());
+            hhValues.put("ChildBloodVol_10", houseHold.getPersons()[k].getChildBloodVol_10());
+            hhValues.put("ChildBloodVolComment", houseHold.getPersons()[k].getChildBloodVolComment());
+            hhValues.put("Child_Rapid", houseHold.getPersons()[k].getChild_Rapid());
+            hhValues.put("ChildRapidResults", houseHold.getPersons()[k].getChildRapidResults());
+            hhValues.put("ChildBloodLabTest", houseHold.getPersons()[k].getChildBloodLabTest());
+            hhValues.put("ChildBloodStore", houseHold.getPersons()[k].getChildBloodStore());
+            hhValues.put("ChildRapidDate", houseHold.getPersons()[k].getChildRapidDate());
+            hhValues.put("ChildBloodSampleCollected", houseHold.getPersons()[k].getChildBloodSampleCollected());
+            hhValues.put("ChPrntlConsentBloodDraw",houseHold.getPersons()[k].getChPrntlConsentBloodDraw());
+            hhValues.put("ChPrntlConsentRHT", houseHold.getPersons()[k].getChPrntlConsentRHT());
+            hhValues.put("ChPrntlConsentLabTest", houseHold.getPersons()[k].getChPrntlConsentLabTest());
+
+            hhValues.put("ChPrntlConsentBloodStore", houseHold.getPersons()[k].getChPrntlConsentBloodStore());
+            hhValues.put("B3_Guardian", houseHold.getPersons()[k].getB3_Guardian());
+            hhValues.put("ChPrntlConsentDate", houseHold.getPersons()[k].getChPrntlConsentDate());
+            hhValues.put("Ov64BloodDraw", houseHold.getPersons()[k].getOv64BloodDraw());
+            hhValues.put("Ov64BloodVol_1", houseHold.getPersons()[k].getOv64BloodVol_1());
+            hhValues.put("Ov64BloodVol_4", houseHold.getPersons()[k].getOv64BloodVol_4());
+            hhValues.put("Ov64BloodVol_6", houseHold.getPersons()[k].getOv64BloodVol_6());
+            hhValues.put("Ov64BloodVol_10",houseHold.getPersons()[k].getOv64BloodVol_10());
+            hhValues.put("Ov64BloodVolComment", houseHold.getPersons()[k].getOv64BloodVolComment());
+            hhValues.put("Ov64_Rapid", houseHold.getPersons()[k].getOv64_Rapid());
+
+            hhValues.put("Ov64RapidResults", houseHold.getPersons()[k].getOv64RapidResults());
+            hhValues.put("Ov64BloodLabTest", houseHold.getPersons()[k].getOv64BloodLabTest());
+            hhValues.put("Ov64BloodVol_10",houseHold.getPersons()[k].getOv64BloodVol_10());
+            hhValues.put("Ov64BloodStore", houseHold.getPersons()[k].getOv64BloodStore());
+            hhValues.put("Ov64RapidDate", houseHold.getPersons()[k].getOv64RapidDate());
+            hhValues.put("Ov64BloodSampleCollected", houseHold.getPersons()[k].getOv64BloodSampleCollected());
 
 
 
@@ -3807,7 +4169,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    //UPDATE INDIVIDUAL
+    //UPDATE INDIVIDUAL********************************************************************************************************************
     public void updateIndividual(SQLiteDatabase db, Individual ind)
     {
         SQLiteDatabase db1 = this.getWritableDatabase();
@@ -4345,17 +4707,36 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         hhValues.put("Q1114",ind.getQ1114());
 
-        hhValues.put("B8_Yes_No",ind.getB8_Yes_No());
+       // hhValues.put("B8_Yes_No",ind.getB8_Yes_No());
 
-        hhValues.put("B8_Date",ind.getB8_Date());
+       // hhValues.put("B8_Date",ind.getB8_Date());
 
+
+        hhValues.put("IndvQuestionnairePConsent15_17", ind.getIndvQuestionnairePConsent15_17() );
+        hhValues.put("IndvQuestionnaireConsent", ind.getIndvQuestionnaireConsent() );
+        hhValues.put("IndvBloodDraw", ind.getIndvBloodDraw() );
+        hhValues.put("BloodVol_1", ind.getBloodVol_1() );
+        hhValues.put("BloodVol_4", ind.getBloodVol_4() );
+        hhValues.put("BloodVol_6", ind.getBloodVol_6() );
+        hhValues.put("BloodVol_10", ind.getBloodVol_10() );
+        hhValues.put("BloodVolComment", ind.getBloodVolComment());
         hhValues.put("B8_O15_Rapid",ind.getB8_O15_Rapid());
+        hhValues.put("IndRapidResults", ind.getIndRapidResults());
+        hhValues.put("IndBloodLabTest", ind.getIndBloodLabTest());
+        hhValues.put("IndBloodStore", ind.getIndBloodStore() );
+        hhValues.put("IndRapidDate", ind.getIndRapidDate() );
+        hhValues.put("IndBloodSampleCollected", ind.getIndBloodSampleCollected() );
+        hhValues.put("PrntlConsentBloodDraw", ind.getPrntlConsentBloodDraw());
+        hhValues.put("PrntlConsentRHT", ind.getPrntlConsentRHT());
+        hhValues.put("PrntlConsentLabTest", ind.getPrntlConsentLabTest() );
+        hhValues.put("PrntlConsentBloodStore", ind.getPrntlConsentBloodStore() );
+        hhValues.put("PrntlParentID", ind.getPrntlParentID() );
+        hhValues.put("PrntlConsentDate", ind.getPrntlConsentDate() );
 
 
+        //hhValues.put("Q801f",ind.getQ801f());
 
-        hhValues.put("Q801f",ind.getQ801f());
-
-        hhValues.put("Rapid_Comment",ind.getIndRapid_Comment());
+      //  hhValues.put("Rapid_Comment",ind.getIndRapid_Comment());
 
 
         //INSERT INDIVIDUALS FROM THIS HOUSE
@@ -5033,10 +5414,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                     ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4,8));
                 }
 
-
-
-
-
                 ind.setQ1013(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1013")));
                 ind.setQ1014(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1014")));
                 ind.setQ1014a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1014a")));
@@ -5099,11 +5476,33 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                 ind.setQ1114(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1114")));
 
-                ind.setB8_Yes_No(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Yes_No")));
-                ind.setB8_Date(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Date")));
-                ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_O15_Rapid")));
-                ind.setQ801f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801f")));
-                ind.setIndRapid_Comment(cursor2.getString(cursor2.getColumnIndexOrThrow("Rapid_Comment")));
+                ind.setIndvQuestionnairePConsent15_17(cursor2.getString(cursor2.getColumnIndexOrThrow("IndvQuestionnairePConsent15_17")));
+                ind.setIndvQuestionnaireConsent(cursor2.getString(cursor2.getColumnIndexOrThrow("IndvQuestionnaireConsent")) );
+                ind.setIndvBloodDraw(cursor2.getString(cursor2.getColumnIndexOrThrow("IndvBloodDraw")) );
+                ind.setBloodVol_1(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_1")) );
+                ind.setBloodVol_4(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_4")) );
+                ind.setBloodVol_6(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_6")) );
+                ind.setBloodVol_10(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_10")) );
+                ind.setBloodVolComment(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVolComment")) );
+                ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_O15_Rapid")) );
+                ind.setIndRapidResults(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")) );
+                ind.setIndBloodLabTest(cursor2.getString(cursor2.getColumnIndexOrThrow("IndBloodLabTest")) );
+                ind.setIndBloodStore(cursor2.getString(cursor2.getColumnIndexOrThrow("IndBloodStore")) );
+                ind.setIndRapidDate(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidDate" )) );
+                ind.setIndBloodSampleCollected(cursor2.getString(cursor2.getColumnIndexOrThrow("IndBloodSampleCollected" )) );
+                ind.setPrntlConsentBloodDraw(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentBloodDraw" )) );
+                ind.setPrntlConsentRHT(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentRHT" )) );
+                ind.setPrntlConsentLabTest(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentLabTest" )) );
+                ind.setPrntlConsentBloodStore(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentBloodStore" )) );
+                ind.setPrntlParentID(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlParentID" )) );
+                ind.setPrntlConsentDate(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentDate" )) );
+
+
+                //ind.setB8_Yes_No(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Yes_No")));
+                //ind.setB8_Date(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Date")));
+               // ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_O15_Rapid")));
+               //ind.setQ801f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801f")));
+               // ind.setIndRapid_Comment(cursor2.getString(cursor2.getColumnIndexOrThrow("Rapid_Comment")));
 
 
                 individuals[cursor2.getPosition()]=(ind);
@@ -5119,16 +5518,457 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
+    public List<Individual> getIndividualdt()
+    {
+        // DataModel dataModel = new DataModel();
+        List<Individual> indDetails =new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getReadableDatabase();
+
+
+        Cursor cursor2 = db.rawQuery("select * from " + tblindividual + " where Assignment_ID = " +Assignment_ID+ " and BatchNumber = "+BatchNumber+ " and SRNO = " +SRNO ,null);
+        StringBuffer stringBuffer = new StringBuffer();
+       // HouseHold dataModel = null;
+        while (cursor2.moveToNext())
+        {
+
+            Individual[] individuals = new Individual[cursor2.getCount()];
+
+            while (cursor2.moveToNext())
+            {
+
+                //Invdividual
+                Individual ind = new Individual();
+                ind.setAssignmentID(cursor2.getString(cursor2.getColumnIndexOrThrow("Assignment_ID")));
+                ind.setBatch(cursor2.getString(cursor2.getColumnIndexOrThrow("BatchNumber")));
+
+                ind.setSRNO(Integer.parseInt(cursor2.getString(cursor2.getColumnIndexOrThrow("SRNO"))));
+                ind.setIndBarcode(cursor2.getString(cursor2.getColumnIndexOrThrow("IndBarcode")));
+                ind.setQ101(cursor2.getString(cursor2.getColumnIndexOrThrow("Q101")));
+                ind.setQ102(cursor2.getString(cursor2.getColumnIndexOrThrow("Q102")));
+                ind.setQ103(cursor2.getString(cursor2.getColumnIndexOrThrow("Q103")));
+                ind.setQ104(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104")));
+                ind.setQ104a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104a")));
+                ind.setQ104b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104b")));
+                ind.setQ104c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104c")));
+                //ind.setQ104cBISCED(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104cBISCED")));
+                ind.setQ105(cursor2.getString(cursor2.getColumnIndexOrThrow("Q105")));
+                ind.setQ105Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q105Other")));
+                ind.setQ105a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q105a")));
+                ind.setQ105b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q105b")));
+                ind.setQ106(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106")));
+                ind.setQ106a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106a")));
+                ind.setQ106aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106aOther")));
+                ind.setQ106b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106b")));
+                ind.setQ106c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106c")));
+                ind.setQ106d(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106d")));
+                ind.setQ107(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107")));
+                String s = cursor2.getString(cursor2.getColumnIndexOrThrow("Q107a"));
+                ind.setQ107aMnth(s.substring(0,2));
+                ind.setQ107aYY(s.substring(2,4));
+                ind.setQ107b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107b")));
+                ind.setQ107bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107bOther")));
+                ind.setQ107c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107c")));
+                ind.setQ107cOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107cOther")));
+                ind.setQ201(cursor2.getString(cursor2.getColumnIndexOrThrow("Q201")));
+                ind.setQ202(cursor2.getString(cursor2.getColumnIndexOrThrow("Q202")));
+                ind.setQ203(cursor2.getString(cursor2.getColumnIndexOrThrow("Q203")));
+                ind.setQ204(cursor2.getString(cursor2.getColumnIndexOrThrow("Q204")));
+                ind.setQ205(cursor2.getString(cursor2.getColumnIndexOrThrow("Q205")));
+                ind.setQ205a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q205a")));
+                ind.setQ301(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+                ind.setQ301a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+                ind.setQ302(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+                ind.setQ303(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+                ind.setQ303a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+                ind.setQ304(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+                ind.setQ304a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+                ind.setQ305_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q305Smoking")));
+                ind.setQ305_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q305Sniffing")));
+                ind.setQ305_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q305Chewing")));
+                ind.setQ305_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q305None")));
+                ind.setQ306(cursor2.getString(cursor2.getColumnIndexOrThrow("Q306")));
+                ind.setQ307(cursor2.getString(cursor2.getColumnIndexOrThrow("Q307")));
+                ind.setQ401(cursor2.getString(cursor2.getColumnIndexOrThrow("Q401")));
+                ind.setQ101(cursor2.getString(cursor2.getColumnIndexOrThrow("Q101")));
+                ind.setQ402(cursor2.getString(cursor2.getColumnIndexOrThrow("Q402")));
+                ind.setQ402a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q402a")));
+                ind.setQ402b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q402b")));
+                ind.setQ403(cursor2.getString(cursor2.getColumnIndexOrThrow("Q403")));
+                ind.setQ404_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q404Vaginal")));
+                ind.setQ404_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q404Anal")));
+                ind.setQ404_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q404Oral")));
+                ind.setQ404a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q404a")));
+                ind.setQ405(cursor2.getString(cursor2.getColumnIndexOrThrow("Q405")));
+                ind.setQ406(cursor2.getString(cursor2.getColumnIndexOrThrow("Q406")));
+                ind.setQ407(cursor2.getString(cursor2.getColumnIndexOrThrow("Q407")));
+                ind.setQ408(cursor2.getString(cursor2.getColumnIndexOrThrow("Q408")));
+                ind.setQ408a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q408a")));
+                ind.setQ410Slapped(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Slapped")));
+                ind.setQ410Pushed(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Pushed")));
+                ind.setQ410Choked(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Chocked")));
+                ind.setQ410Threatened(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Threatened")));
+                ind.setQ410Physical(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Physical")));
+                ind.setQ410Forced(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Forced")));
+                ind.setQ410MadeAfraid(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410MadeAfraid")));
+                ind.setQ501(cursor2.getString(cursor2.getColumnIndexOrThrow("Q501")));
+                ind.setQ502(cursor2.getString(cursor2.getColumnIndexOrThrow("Q502")));
+                ind.setQ503(cursor2.getString(cursor2.getColumnIndexOrThrow("Q503")));
+                ind.setQ504_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Pain")));
+                ind.setQ504_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Reduced")));
+                ind.setQ504_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Fear")));
+                ind.setQ504_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Culture")));
+                ind.setQ504_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Religion")));
+                ind.setQ504_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Spouse")));
+                ind.setQ504_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Parental")));
+                ind.setQ504_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Long")));
+                ind.setQ504_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_FearHIV")));
+                ind.setQ504_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Other")));
+                ind.setQ601(cursor2.getString(cursor2.getColumnIndexOrThrow("Q601")));
+                ind.setQ601a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q601a")));
+                ind.setQ602_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Youth")));
+                ind.setQ602_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602TV")));
+                ind.setQ602_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Radio")));
+                ind.setQ602_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Newspaper")));
+                ind.setQ602_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Hospital")));
+                ind.setQ602_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Posters")));
+                ind.setQ602_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Traditional")));
+                ind.setQ602_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Workshop")));
+                ind.setQ602_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Individual")));
+                ind.setQ602_11(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Church")));
+                ind.setQ602_12(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Kgotla")));
+                ind.setQ602_13(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Workplace")));
+                ind.setQ602_14(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Peer")));
+                ind.setQ602_15(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602School")));
+                ind.setQ602_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602_Other")));
+                ind.setQ603_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Condom")));
+                ind.setQ603_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603FewerP")));
+                ind.setQ603_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Both")));
+                ind.setQ603_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603NoCasual")));
+                ind.setQ603_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Abstain")));
+                ind.setQ603_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603NoCommercial")));
+                ind.setQ603_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Injection")));
+                ind.setQ603_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Blood")));
+                ind.setQ603_9(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603DontKnow")));
+                ind.setQ603_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Other")));
+                ind.setQ604(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604")));
+                ind.setQ604a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604a")));
+                ind.setQ604b_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bYouth")));
+                ind.setQ604b_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bTV")));
+                ind.setQ604b_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bRadio")));
+                ind.setQ604b_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bNewspaper")));
+                ind.setQ604b_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bHospital")));
+                ind.setQ604b_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bPoster")));
+                ind.setQ604b_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bTraditional")));
+                ind.setQ604b_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Workshop")));
+                ind.setQ604b_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bIndividual")));
+                ind.setQ604b_11(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bChurch")));
+                ind.setQ604b_12(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bKgotla")));
+                ind.setQ604b_13(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bWorkplace")));
+                ind.setQ604b_14(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bPeer")));
+                ind.setQ604b_15(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bSchool")));
+                ind.setQ604b_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bOther")));
+                ind.setQ605_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Windows")));
+                ind.setQ605_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Mouth")));
+                ind.setQ605_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Hands")));
+                ind.setQ605_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Nutrition")));
+                ind.setQ605_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Praying")));
+                ind.setQ605_9(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605DontKnow")));
+                ind.setQ605_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Other")));
+                ind.setQ606(cursor2.getString(cursor2.getColumnIndexOrThrow("Q606")));
+                ind.setQ607(cursor2.getString(cursor2.getColumnIndexOrThrow("Q607")));
+                ind.setQ608(cursor2.getString(cursor2.getColumnIndexOrThrow("Q608")));
+                ind.setQ609(cursor2.getString(cursor2.getColumnIndexOrThrow("Q609")));
+                ind.setQ610(cursor2.getString(cursor2.getColumnIndexOrThrow("Q610")));
+                ind.setQ611a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q611a")));
+                ind.setQ611b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q611b")));
+                ind.setQ611c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q611c")));
+                ind.setQ612(cursor2.getString(cursor2.getColumnIndexOrThrow("Q612")));
+                ind.setQ612a (cursor2.getString(cursor2.getColumnIndexOrThrow("Q612a")));
+                ind.setQ612aOther (cursor2.getString(cursor2.getColumnIndexOrThrow("Q612Other")));
+                ind.setQ613 (cursor2.getString(cursor2.getColumnIndexOrThrow("Q613")));
+                ind.setQ613a (cursor2.getString(cursor2.getColumnIndexOrThrow("Q613a")));
+                ind.setQ613aOther (cursor2.getString(cursor2.getColumnIndexOrThrow("Q613aOther")));
+                ind.setQ614 (cursor2.getString(cursor2.getColumnIndexOrThrow("Q614")));
+                ind.setQ614Other (cursor2.getString(cursor2.getColumnIndexOrThrow("Q614Other")));
+                ind.setQ615 (cursor2.getString(cursor2.getColumnIndexOrThrow("Q615")));
+                ind.setQ616_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Anybody")));
+                ind.setQ616_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Poor")));
+                ind.setQ616_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Homeless")));
+                ind.setQ616_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Alcoholics")));
+                ind.setQ616_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Drugs")));
+                ind.setQ616_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616PeopHIV")));
+                ind.setQ616_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616PeopPrison")));
+                ind.setQ616_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Smokers")));
+                ind.setQ616_9(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616DntKnow")));
+                ind.setQ616_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Other")));
+                ind.setQ617a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Meal")));
+                ind.setQ617b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Clothes")));
+                ind.setQ617c (cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Miscarried")));
+                ind.setQ617d (cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Widow")));
+                ind.setQ617e (cursor2.getString(cursor2.getColumnIndexOrThrow("Q617FamilyHIV")));
+                ind.setQ617f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Sejeso")));
+                ind.setQ617g (cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Touching")));
+                ind.setQ617h (cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Someone")));
+                ind.setQ617_0ther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Other")));
+                ind.setQ618(cursor2.getString(cursor2.getColumnIndexOrThrow("Q618")));
+                ind.setQ619_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Rash")));
+                ind.setQ619_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Cough")));
+                ind.setQ619_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619LongCough")));
+                ind.setQ619_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Blood")));
+                ind.setQ619_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Headache")));
+                ind.setQ619_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Nausea")));
+                ind.setQ619_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Weight")));
+                ind.setQ619_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Fever")));
+                ind.setQ619_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Fever7Days")));
+                ind.setQ619_11(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619ChestPain")));
+                ind.setQ619_12(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Breath")));
+                ind.setQ619_13(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Fatigue")));
+                ind.setQ619_14(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Sweats")));
+                ind.setQ619_9(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619DontKnow")));
+                ind.setQ619_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Other")));
+                ind.setQ620(cursor2.getString(cursor2.getColumnIndexOrThrow("Q620")));
+                ind.setQ620_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q620Other")));
+                ind.setQ621(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621")));
+                ind.setQ621a_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aSpouse")));
+                ind.setQ621a_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aPartner")));
+                ind.setQ621a_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aFriend")));
+                ind.setQ621a_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aFamily")));
+                ind.setQ621a_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aRelative")));
+                ind.setQ621a_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aHCWorker")));
+                ind.setQ621a_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aCoWorker")));
+                ind.setQ621a_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aOther")));
+                ind.setQ621b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621b")));
+                ind.setQ621bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621bOther")));
+                ind.setQ622(cursor2.getString(cursor2.getColumnIndexOrThrow("Q622")));
+                ind.setQ622a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q622a")));
+                ind.setQ622aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q622aOther")));
+                ind.setQ622b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q622b")));
+                ind.setQ622bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q622bOther")));
+                ind.setQ623(cursor2.getString(cursor2.getColumnIndexOrThrow("Q623")));
+                ind.setQ624(cursor2.getString(cursor2.getColumnIndexOrThrow("Q624")));
+                ind.setQ625(cursor2.getString(cursor2.getColumnIndexOrThrow("Q625")));
+                ind.setQ701(cursor2.getString(cursor2.getColumnIndexOrThrow("Q701")));
+                ind.setQ702(cursor2.getString(cursor2.getColumnIndexOrThrow("Q702")));
+                ind.setQ703(cursor2.getString(cursor2.getColumnIndexOrThrow("Q703")));
+                ind.setQ704(cursor2.getString(cursor2.getColumnIndexOrThrow("Q704")));
+                ind.setQ705(cursor2.getString(cursor2.getColumnIndexOrThrow("Q705")));
+                ind.setQ801(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801")));
+                ind.setQ801a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801a")));
+                ind.setQ801b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801b")));
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c"))!= null){
+                    ind.setQ801cMonth(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")).substring(0,2));
+                    ind.setQ801cYear(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")).substring(2,4));
+                }
+
+                ind.setQ801d(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801d")));
+                ind.setQ801dOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801dOther")));
+
+                ind.setQ801e(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801e")));
+                ind.setQ801eOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801eOther")));
+
+
+                ind.setQ801f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801f")));
+
+                ind.setQ802(cursor2.getString(cursor2.getColumnIndexOrThrow("Q802")));
+                ind.setQ802a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q802a")));
+                ind.setQ802aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q802aOther")));
+
+
+                ind.setQ803(cursor2.getString(cursor2.getColumnIndexOrThrow("Q803")));
+                ind.setQ803Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q803Other")));
+
+                ind.setQ804(cursor2.getString(cursor2.getColumnIndexOrThrow("Q804")));
+                ind.setQ804Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q804Other")));
+
+                ind.setQ901(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901")));
+                ind.setQ901a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901a")));
+                ind.setQ901aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901aOther")));
+
+                ind.setQ902Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(0,2));
+                ind.setQ902Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(2,6));
+
+                ind.setQ903a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903DenyCare")));
+                ind.setQ903b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903Gossip")));
+                ind.setQ903c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903NoSex")));
+                ind.setQ903d(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903VerbalAbuse")));
+                ind.setQ903e(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903PhysicalAbuse")));
+                ind.setQ903f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903NoContact")));
+                ind.setQ903g(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903SharingStatus")));
+
+
+                ind.setQ904(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904")));
+                ind.setQ904a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904a")));
+                ind.setQ904aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904aOther")));
+
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b"))!=null)
+                {
+                    ind.setQ904bMM(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")).substring(0,2) + cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")).substring(2,6));
+                }
 
 
 
 
+                ind.setQ904c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904c")));
+                ind.setQ904cOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904cOther")));
+
+
+                ind.setQ905(cursor2.getString(cursor2.getColumnIndexOrThrow("Q905")));
+                ind.setQ905a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q905a")));
+                ind.setQ905aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q905aOther")));
+
+                ind.setQ1001(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1001")));
+                ind.setQ1002(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002")));
+
+                ind.setQ1002a_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aMCondom")));
+                ind.setQ1002a_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aFCondom")));
+                ind.setQ1002a_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aInjectContra")));
+                ind.setQ1002a_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aOralContra")));
+                ind.setQ1002a_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aUID")));
+                ind.setQ1002a_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aBTL")));
+                ind.setQ1002a_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aFSterilization")));
+                ind.setQ1002a_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aMSterilization")));
+                ind.setQ1002a_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aImplants")));
+                ind.setQ1002a_11(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aEContra")));
+                ind.setQ1002a_12(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aSafePeriod")));
+                ind.setQ1002a_13(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aLAM")));
+                ind.setQ1002a_14(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aDiagraphm")));
+                ind.setQ1002a_15(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aSpermicides")));
+                ind.setQ1002a_16(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aNatural")));
+                ind.setQ1002a_17(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aTraditional")));
+                ind.setQ1002a_18(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aSpiritual")));
+                ind.setQ1002a_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aOther")));
+
+                ind.setQ1002b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002b")));
+                ind.setQ1002bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002bOther")));
+
+                ind.setQ1003(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1003")));
+
+                ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0,2));
+                ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(3,4));
+                ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(5,8));
 
 
 
+                ind.setQ1004a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004a")));
+                ind.setQ1004b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004b")));
+                ind.setQ1004bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004bOther")));
+
+
+                ind.setQ1005(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1005")));
+                ind.setQ1005a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1005a")));
+                ind.setQ1006(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1006")));
+
+                ind.setQ1007(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1007")));
+                ind.setQ1007a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1007a")));
+
+                ind.setQ1008(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1008")));
+                ind.setQ1008a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1008a")));
+                ind.setQ1008aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1008aOther")));
+
+
+                ind.setQ1009(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1009")));
+                ind.setQ1009a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1009a")));
+
+                ind.setQ1010(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1010")));
+                ind.setQ1010Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1010Other")));
+
+                ind.setQ1011(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1011")));
+                ind.setQ1011_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1011Other")));
+
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012"))!=null){
+                    ind.setQ1012_Week(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(0,2));
+                    ind.setQ1012_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(2,4));
+                    ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4,8));
+                }
+
+
+                ind.setQ1013(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1013")));
+                ind.setQ1014(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1014")));
+                ind.setQ1014a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1014a")));
+                ind.setQ1014b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1014b")));
+
+                ind.setQ1015(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1015")));
+                ind.setQ1015a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1015a")));
+                ind.setQ1015b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1015b")));
+                ind.setQ1016(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1016")));
+                ind.setQ1017(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1017")));
 
 
 
+                ind.setQ1101(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1101")));
+                ind.setQ1101a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1101a")));
+                ind.setQ1101aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1101aOther")));
+                ind.setQ1102(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1102")));
+                ind.setQ1102a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1102a")));
+                ind.setQ1103(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1103")));
+
+                ind.setQ1103aDD(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1103aDD")));
+                ind.setQ1103aWks(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1103aWks")));
+
+
+                ind.setQ1103aDontKnow(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1103aDontKnow")));
+
+                ind.setQ1104(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1104")));
+                ind.setQ1105(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1105")));
+                ind.setQ1106(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1106")));
+                ind.setQ1106a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1106a")));
+                ind.setQ1106b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1106b")));
+                ind.setQ1106bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1106bOther")));
+                ind.setQ1107(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1107")));
+                ind.setQ1107aDD(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1107aDD")));
+                ind.setQ1107aWks(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1107aWks")));
+                ind.setQ1107aDontKnow(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1107aDontKnow")));
+                ind.setQ1108(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1108")));
+                ind.setQ1108aDD(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1108aDD")));
+                ind.setQ1108aWks(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1108aWks")));
+                ind.setQ1108aDontKnow(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1108aDontKnow")));
+                ind.setQ1109(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1109")));
+                ind.setQ1110(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1110")));
+                ind.setQ1111(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1111")));
+                ind.setQ1111Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1111Other")));
+                ind.setQ1112(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1112")));
+                ind.setQ1112_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1112Other")));
+                ind.setQ1113(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1113")));
+                ind.setQ1113Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1113Other")));
+                ind.setQ1114(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1114")));
+
+                ind.setIndvQuestionnairePConsent15_17(cursor2.getString(cursor2.getColumnIndexOrThrow("IndvQuestionnairePConsent15_17")));
+                ind.setIndvQuestionnaireConsent(cursor2.getString(cursor2.getColumnIndexOrThrow("IndvQuestionnaireConsent")) );
+                ind.setIndvBloodDraw(cursor2.getString(cursor2.getColumnIndexOrThrow("IndvBloodDraw")) );
+                ind.setBloodVol_1(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_1")) );
+                ind.setBloodVol_4(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_4")) );
+                ind.setBloodVol_6(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_6")) );
+                ind.setBloodVol_10(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_10")) );
+                ind.setBloodVolComment(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVolComment")) );
+                ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_O15_Rapid")) );
+                ind.setIndRapidResults(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")) );
+                ind.setIndBloodLabTest(cursor2.getString(cursor2.getColumnIndexOrThrow("IndBloodLabTest")) );
+                ind.setIndBloodStore(cursor2.getString(cursor2.getColumnIndexOrThrow("IndBloodStore")) );
+                ind.setIndRapidDate(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidDate" )) );
+                ind.setIndBloodSampleCollected(cursor2.getString(cursor2.getColumnIndexOrThrow("IndBloodSampleCollected" )) );
+                ind.setPrntlConsentBloodDraw(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentBloodDraw" )) );
+                ind.setPrntlConsentRHT(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentRHT" )) );
+                ind.setPrntlConsentLabTest(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentLabTest" )) );
+                ind.setPrntlConsentBloodStore(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentBloodStore" )) );
+                ind.setPrntlParentID(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlParentID" )) );
+                ind.setPrntlConsentDate(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentDate" )) );
+
+               // ind.setB8_Yes_No(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Yes_No")));
+               // ind.setB8_Date(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Date")));
+               // ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_O15_Rapid")));
+                //ind.setQ801f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801f")));
+               // ind.setIndRapid_Comment(cursor2.getString(cursor2.getColumnIndexOrThrow("Rapid_Comment")));
+
+
+                individuals[cursor2.getPosition()]=(ind);
+            }
+           //indDetails();
+           // Log.d("Individual: ",String.valueOf(indDetails.get(i).getIndividual().length));
+        }
+
+        return indDetails;
+    }
 
 
 }

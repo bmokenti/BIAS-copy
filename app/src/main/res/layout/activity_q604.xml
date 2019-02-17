@@ -136,7 +136,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/q604a"
                         android:textColor="@color/black"
-                        android:textStyle="bold" />
+                        />
 
 
                     <RadioGroup
@@ -188,7 +188,6 @@
                         android:id="@+id/q604b"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:text="@string/q604b" />
 

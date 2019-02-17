@@ -68,6 +68,270 @@ public class PersonRoster implements Serializable{
     private String BloodSampleCollected ;
     private  String Rapid_Comment;
 
+
+
+
+    private  String ChildBloodDraw ;
+    private  String ChildBloodVol_1 ;
+    private  String ChildBloodVol_4 ;
+    private  String ChildBloodVol_6 ;
+    private  String ChildBloodVol_10 ;
+    private  String ChildBloodVolComment ;
+    private  String Child_Rapid ;
+    private  String ChildRapidResults ;
+    private  String ChildBloodLabTest ;
+    private  String ChildBloodStore ;
+    private  String ChildRapidDate ;
+    private  String ChildBloodSampleCollected ;
+    private  String ChPrntlConsentBloodDraw ;
+    private  String ChPrntlConsentRHT ;
+    private  String ChPrntlConsentLabTest ;
+    private  String ChPrntlConsentBloodStore ;
+    private  String ChPrntlConsentDate ;
+    private  String Ov64BloodDraw ;
+    private  String Ov64BloodVol_1 ;
+    private  String Ov64BloodVol_4 ;
+    private  String Ov64BloodVol_6 ;
+    private  String Ov64BloodVol_10 ;
+    private  String Ov64BloodVolComment ;
+    private  String Ov64_Rapid ;
+    private  String Ov64RapidResults ;
+    private  String Ov64BloodLabTest ;
+    private  String Ov64BloodStore ;
+    private  String Ov64RapidDate ;
+    private  String Ov64BloodSampleCollected ;
+
+    public String getChildBloodDraw() {
+        return ChildBloodDraw;
+    }
+
+    public void setChildBloodDraw(String childBloodDraw) {
+        ChildBloodDraw = childBloodDraw;
+    }
+
+    public String getChildBloodVol_1() {
+        return ChildBloodVol_1;
+    }
+
+    public void setChildBloodVol_1(String childBloodVol_1) {
+        ChildBloodVol_1 = childBloodVol_1;
+    }
+
+    public String getChildBloodVol_4() {
+        return ChildBloodVol_4;
+    }
+
+    public void setChildBloodVol_4(String childBloodVol_4) {
+        ChildBloodVol_4 = childBloodVol_4;
+    }
+
+    public String getChildBloodVol_6() {
+        return ChildBloodVol_6;
+    }
+
+    public void setChildBloodVol_6(String childBloodVol_6) {
+        ChildBloodVol_6 = childBloodVol_6;
+    }
+
+    public String getChildBloodVol_10() {
+        return ChildBloodVol_10;
+    }
+
+    public void setChildBloodVol_10(String childBloodVol_10) {
+        ChildBloodVol_10 = childBloodVol_10;
+    }
+
+    public String getChildBloodVolComment() {
+        return ChildBloodVolComment;
+    }
+
+    public void setChildBloodVolComment(String childBloodVolComment) {
+        ChildBloodVolComment = childBloodVolComment;
+    }
+
+    public String getChild_Rapid() {
+        return Child_Rapid;
+    }
+
+    public void setChild_Rapid(String child_Rapid) {
+        Child_Rapid = child_Rapid;
+    }
+
+    public String getChildRapidResults() {
+        return ChildRapidResults;
+    }
+
+    public void setChildRapidResults(String childRapidResults) {
+        ChildRapidResults = childRapidResults;
+    }
+
+    public String getChildBloodLabTest() {
+        return ChildBloodLabTest;
+    }
+
+    public void setChildBloodLabTest(String childBloodLabTest) {
+        ChildBloodLabTest = childBloodLabTest;
+    }
+
+    public String getChildBloodStore() {
+        return ChildBloodStore;
+    }
+
+    public void setChildBloodStore(String childBloodStore) {
+        ChildBloodStore = childBloodStore;
+    }
+
+    public String getChildRapidDate() {
+        return ChildRapidDate;
+    }
+
+    public void setChildRapidDate(String childRapidDate) {
+        ChildRapidDate = childRapidDate;
+    }
+
+    public String getChildBloodSampleCollected() {
+        return ChildBloodSampleCollected;
+    }
+
+    public void setChildBloodSampleCollected(String childBloodSampleCollected) {
+        ChildBloodSampleCollected = childBloodSampleCollected;
+    }
+
+    public String getChPrntlConsentBloodDraw() {
+        return ChPrntlConsentBloodDraw;
+    }
+
+    public void setChPrntlConsentBloodDraw(String chPrntlConsentBloodDraw) {
+        ChPrntlConsentBloodDraw = chPrntlConsentBloodDraw;
+    }
+
+    public String getChPrntlConsentRHT() {
+        return ChPrntlConsentRHT;
+    }
+
+    public void setChPrntlConsentRHT(String chPrntlConsentRHT) {
+        ChPrntlConsentRHT = chPrntlConsentRHT;
+    }
+
+    public String getChPrntlConsentLabTest() {
+        return ChPrntlConsentLabTest;
+    }
+
+    public void setChPrntlConsentLabTest(String chPrntlConsentLabTest) {
+        ChPrntlConsentLabTest = chPrntlConsentLabTest;
+    }
+
+    public String getChPrntlConsentBloodStore() {
+        return ChPrntlConsentBloodStore;
+    }
+
+    public void setChPrntlConsentBloodStore(String chPrntlConsentBloodStore) {
+        ChPrntlConsentBloodStore = chPrntlConsentBloodStore;
+    }
+
+    public String getChPrntlConsentDate() {
+        return ChPrntlConsentDate;
+    }
+
+    public void setChPrntlConsentDate(String chPrntlConsentDate) {
+        ChPrntlConsentDate = chPrntlConsentDate;
+    }
+
+    public String getOv64BloodDraw() {
+        return Ov64BloodDraw;
+    }
+
+    public void setOv64BloodDraw(String ov64BloodDraw) {
+        Ov64BloodDraw = ov64BloodDraw;
+    }
+
+    public String getOv64BloodVol_1() {
+        return Ov64BloodVol_1;
+    }
+
+    public void setOv64BloodVol_1(String ov64BloodVol_1) {
+        Ov64BloodVol_1 = ov64BloodVol_1;
+    }
+
+    public String getOv64BloodVol_4() {
+        return Ov64BloodVol_4;
+    }
+
+    public void setOv64BloodVol_4(String ov64BloodVol_4) {
+        Ov64BloodVol_4 = ov64BloodVol_4;
+    }
+
+    public String getOv64BloodVol_6() {
+        return Ov64BloodVol_6;
+    }
+
+    public void setOv64BloodVol_6(String ov64BloodVol_6) {
+        Ov64BloodVol_6 = ov64BloodVol_6;
+    }
+
+    public String getOv64BloodVol_10() {
+        return Ov64BloodVol_10;
+    }
+
+    public void setOv64BloodVol_10(String ov64BloodVol_10) {
+        Ov64BloodVol_10 = ov64BloodVol_10;
+    }
+
+    public String getOv64BloodVolComment() {
+        return Ov64BloodVolComment;
+    }
+
+    public void setOv64BloodVolComment(String ov64BloodVolComment) {
+        Ov64BloodVolComment = ov64BloodVolComment;
+    }
+
+    public String getOv64_Rapid() {
+        return Ov64_Rapid;
+    }
+
+    public void setOv64_Rapid(String ov64_Rapid) {
+        Ov64_Rapid = ov64_Rapid;
+    }
+
+    public String getOv64RapidResults() {
+        return Ov64RapidResults;
+    }
+
+    public void setOv64RapidResults(String ov64RapidResults) {
+        Ov64RapidResults = ov64RapidResults;
+    }
+
+    public String getOv64BloodLabTest() {
+        return Ov64BloodLabTest;
+    }
+
+    public void setOv64BloodLabTest(String ov64BloodLabTest) {
+        Ov64BloodLabTest = ov64BloodLabTest;
+    }
+
+    public String getOv64BloodStore() {
+        return Ov64BloodStore;
+    }
+
+    public void setOv64BloodStore(String ov64BloodStore) {
+        Ov64BloodStore = ov64BloodStore;
+    }
+
+    public String getOv64RapidDate() {
+        return Ov64RapidDate;
+    }
+
+    public void setOv64RapidDate(String ov64RapidDate) {
+        Ov64RapidDate = ov64RapidDate;
+    }
+
+    public String getOv64BloodSampleCollected() {
+        return Ov64BloodSampleCollected;
+    }
+
+    public void setOv64BloodSampleCollected(String ov64BloodSampleCollected) {
+        Ov64BloodSampleCollected = ov64BloodSampleCollected;
+    }
     public String getP13Other() {
         return P13Other;
     }

@@ -46,6 +46,35 @@ public class q605 extends AppCompatActivity implements Serializable {
         q605edt = findViewById(R.id.q605edt_Other);
 
 
+        if(ck9txt.isChecked())
+        {
+            ck1txt.setEnabled(false);
+            ck2txt.setEnabled(false);
+            ck3txt.setEnabled(false);
+            ck4txt.setEnabled(false);
+            ck5txt.setEnabled(false);
+
+            chkOther.setEnabled(false);
+            q605edt.setText("");
+
+            ck2txt.setChecked(false);
+            ck3txt.setChecked(false);
+            ck4txt.setChecked(false);
+            ck5txt.setChecked(false);
+            chkOther.setChecked(false);
+
+
+        }
+        else
+        {
+            ck2txt.setEnabled(true);
+            ck3txt.setEnabled(true);
+            ck4txt.setEnabled(true);
+            ck5txt.setEnabled(true);
+            chkOther.setEnabled(true);
+        }
+
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +152,7 @@ public class q605 extends AppCompatActivity implements Serializable {
                     {
                         //Update
                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                        myDB.close();
+                        //myDB.close();
                     }
 
 
@@ -158,55 +187,85 @@ public class q605 extends AppCompatActivity implements Serializable {
             case R.id.q605_1:
                 if (checked)
                     // Remove the meat
-                    q605edt.setVisibility(View.INVISIBLE);
-                q605edt.setText("");
+
 
                 break;
 
             case R.id.q605_2:
                 if (checked)
                     // Remove the meat
-                    q605edt.setVisibility(View.INVISIBLE);
-                q605edt.setText("");
+
 
                 break;
             case R.id.q605_3:
                 if (checked)
                     // Remove the meat
-                    q605edt.setVisibility(View.INVISIBLE);
-                q605edt.setText("");
+
 
                 break;
             case R.id.q605_4:
                 if (checked)
                     // Remove the meat
-                    q605edt.setVisibility(View.INVISIBLE);
-                q605edt.setText("");
+
 
                 break;
             case R.id.q605_5:
                 if (checked)
                     // Remove the meat
-                    q605edt.setVisibility(View.INVISIBLE);
-                q605edt.setText("");
+
 
                 break;
 
             case R.id.q605_9:
                 if (checked)
-                    // Remove the meat
-                    q605edt.setVisibility(View.INVISIBLE);
-                q605edt.setText("");
+
+                    {
+                        ck1txt.setEnabled(false);
+                        ck2txt.setEnabled(false);
+                        ck3txt.setEnabled(false);
+                        ck4txt.setEnabled(false);
+                        ck5txt.setEnabled(false);
+
+                        chkOther.setEnabled(false);
+                        q605edt.setText("");
+                        ck1txt.setChecked(false);
+                        ck2txt.setChecked(false);
+                        ck3txt.setChecked(false);
+                        ck4txt.setChecked(false);
+                        ck5txt.setChecked(false);
+                        chkOther.setChecked(false);
+                        q605edt.setVisibility(View.INVISIBLE);
+                        q605edt.setText("");
+
+
+
+                    }
+                    else
+                    { ck1txt.setEnabled(true);
+                        ck2txt.setEnabled(true);
+                        ck3txt.setEnabled(true);
+                        ck4txt.setEnabled(true);
+                        ck5txt.setEnabled(true);
+                        chkOther.setEnabled(true);
+
+                    }
+
+
+
+
 
                 break;
             case R.id.q605_other:
                 if (checked) {
-                    if (chkOther.isChecked())
-                        q605edt.setVisibility(View.VISIBLE);
 
+                    q605edt.setVisibility(View.VISIBLE);
+                }
 
                     // Put some meat on the sandwich
-                    else
+                    else {
+                    q605edt.setVisibility(View.INVISIBLE);
+                    q605edt.setText("");
+                }
                         // Remove the meat
 
                     break;
@@ -215,4 +274,4 @@ public class q605 extends AppCompatActivity implements Serializable {
                 }
         }
     }
-}
+

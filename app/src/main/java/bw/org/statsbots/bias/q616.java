@@ -20,6 +20,7 @@ public class q616 extends AppCompatActivity {
     protected String currentHH = null;
     protected Individual individual;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected CheckBox chk1, chk2, chk3, chk4, chk5, chk6, chk7, chk8, chk9, chkOther;
     protected EditText edt616Other;
     protected RadioGroup rbtngroup;
@@ -48,6 +49,18 @@ public class q616 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        if (individual.getQ604().equals("2") ){
+
+            Intent intent = new Intent(q616.this, q623.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+
+        }
+            //do nothing
+
 
         chk9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -214,18 +227,14 @@ public class q616 extends AppCompatActivity {
 
                     }
 
-                    /*individual.setQ616_1(chk1.getText().toString().substring(0, 1));
-                    individual.setQ616_2(chk2.getText().toString().substring(0, 1));
-                    individual.setQ616_3(chk3.getText().toString().substring(0, 1));
-                    individual.setQ616_4(chk4.getText().toString().substring(0, 1));
-                    individual.setQ616_5(chk5.getText().toString().substring(0, 1));
-                    individual.setQ616_6(chk6.getText().toString().substring(0, 1));
-                    individual.setQ616_7(chk7.getText().toString().substring(0, 1));
-                    individual.setQ616_8(chk8.getText().toString().substring(0, 1));
-                    individual.setQ616_9(chk9.getText().toString().substring(0, 1));
-                    individual.setQ616_10(chkOther.getText().toString().substring(0, 1));
-                    */
+                    myDB = new DatabaseHelper(q616.this);
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    if(myDB.checkIndividual(individual)){
+                        //Update
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
+                    }
 
 
                     Intent intent = new Intent(q616.this, q617.class);

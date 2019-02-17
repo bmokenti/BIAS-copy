@@ -37,6 +37,13 @@ public class q602 extends AppCompatActivity implements Serializable{
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        if (individual.getQ601a().equals("2"))
+        {
+            Intent intent = new Intent(q602.this, q603.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
 
 //btn = findViewById(R.id.btn);
 

@@ -99,7 +99,7 @@ public class q1105 extends AppCompatActivity implements  Serializable {
         });
 
 
-        Button btprev = findViewById(R.id.button3);
+        Button btprev = findViewById(R.id.p03_btnPrev);
 
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override

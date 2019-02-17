@@ -96,19 +96,7 @@ public class q601 extends AppCompatActivity implements Serializable {
                             intent.putExtra("Individual", individual);
                             startActivity(intent);
                         }
-                        else {
-
-                            if (rbtna2.isChecked() && rbtn1.isChecked())
-                            {
-
-                                individual.setQ601(selectedRbtn.getText().toString().substring(0, 1));
-                                individual.setQ601a(selectedRbtn1.getText().toString().substring(0, 1));
-
-                                Intent intent = new Intent(q601.this, q603.class);
-                                intent.putExtra("Individual", individual);
-                                startActivity(intent);
-
-                            } else
+                       else
                                 {
                                 individual.setQ601(selectedRbtn.getText().toString().substring(0, 1));
                                 individual.setQ601a(selectedRbtn1.getText().toString().substring(0, 1));
@@ -119,7 +107,7 @@ public class q601 extends AppCompatActivity implements Serializable {
                             }
 
                         }
-                    }
+
                 }
             }
         });

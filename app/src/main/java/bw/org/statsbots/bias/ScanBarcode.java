@@ -32,6 +32,7 @@ public class ScanBarcode extends AppCompatActivity implements Serializable {
 
     private Button scanBtn; protected LibraryClass lib;
     private TextView formatTxt, contentTxt;
+    protected Individual individual;
 
 
     PersonRoster cont ;
@@ -50,11 +51,15 @@ public class ScanBarcode extends AppCompatActivity implements Serializable {
 
         myDB = new DatabaseHelper(this);
         myDB.onOpen(myDB.getReadableDatabase());
+
         lib = new LibraryClass();
         Intent i = getIntent();
         cont =  (PersonRoster) i.getSerializableExtra("Roster");
 
-        Log.d("Check ", cont.getP01());
+       // Log.d("Check ", cont.getP01());
+        Intent intent = getIntent();
+        individual = (Individual) intent.getSerializableExtra("Individual");
+        int p = 0;
 
         scanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +159,7 @@ public class ScanBarcode extends AppCompatActivity implements Serializable {
                                             break;
                                         }
                                     }
+                                    individual.setIndBarcode(contentTxt.getText().toString());
 
                                     Intent intent1 = new Intent(ScanBarcode.this,q101.class);
                                     intent.putExtra("Household",  intentHouse);

@@ -144,6 +144,11 @@ public class q504 extends AppCompatActivity implements Serializable {
                     }else{
                         individual.setQ504_Other("2");
                     }
+                    if(myDB.checkIndividual(individual)){
+                        //Update
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                    }
 
 
 

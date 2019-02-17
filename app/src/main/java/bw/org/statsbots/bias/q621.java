@@ -2,6 +2,7 @@ package bw.org.statsbots.bias;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 
 public class q621 extends AppCompatActivity {
@@ -26,6 +28,7 @@ public class q621 extends AppCompatActivity {
     protected RadioGroup rg1,rg2;
     protected EditText edtbOther, edtaOther;
     protected RadioButton selectedRbtn,selectedRbtn2;
+    protected TextView txta, txtb;
     protected CheckBox chka1,chka2,chka3,chka4,chka5,chka6,chka7,chkaOther;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,10 @@ public class q621 extends AppCompatActivity {
         rbtb2 =  (RadioButton) findViewById(R.id.q621b_2);
         rbtbOther = (RadioButton) findViewById(R.id.q621b_other);
         edtbOther = (EditText) findViewById(R.id.q621b_other1) ;
+
+        txta = (TextView) findViewById(R.id.Q621atxt) ;
+        txtb = (TextView) findViewById(R.id.q621b) ;
+
 
 
         Intent i = getIntent();
@@ -120,9 +127,11 @@ public class q621 extends AppCompatActivity {
                     chka6.setChecked(false);
                     chka7.setChecked(false);
                     chkaOther.setChecked(false);
+                    txta.setTextColor(Color.LTGRAY);
 
                     rbtb1.setEnabled(true);
                     rbtb2.setEnabled(true);
+                    txtb.setTextColor(Color.BLACK);
                     rbtbOther.setEnabled(true);
                 }
                 else
@@ -140,6 +149,8 @@ public class q621 extends AppCompatActivity {
                     rbtb1.setEnabled(false);
                     rbtb2.setEnabled(false);
                     rbtbOther.setEnabled(false);
+                    txta.setTextColor(Color.BLACK);
+                    txtb.setTextColor(Color.LTGRAY);
 
                     rbtb1.setChecked(false);
                     rbtb2.setChecked(false);

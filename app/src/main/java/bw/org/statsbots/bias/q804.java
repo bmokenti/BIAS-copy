@@ -20,6 +20,7 @@ public class q804 extends AppCompatActivity implements Serializable{
     protected String currentHH = null;
     protected Individual individual;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtnother, selected;
     protected RadioGroup rbtngroup;
     protected EditText edt804other;
@@ -191,14 +192,28 @@ public class q804 extends AppCompatActivity implements Serializable{
                         if (individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) > 14 && (Integer.valueOf(individual.getQ102()) < 50)) && individual.getQ401().equals("1")) {
                             individual.setQ804(selected.getText().toString().substring(0, 1));
                             individual.setQ804Other(edt804other.getText().toString());
+                            myDB = new DatabaseHelper(q804.this);
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            if(myDB.checkIndividual(individual)){
+                                //Update
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
+                            }
                             Intent intent = new Intent(q804.this, q1001.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);
                         } else {
                             individual.setQ804(selected.getText().toString().substring(0, 1));
                             individual.setQ804Other(edt804other.getText().toString());
+                            myDB = new DatabaseHelper(q804.this);
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            if(myDB.checkIndividual(individual)){
+                                //Update
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
+                            }
                             Intent intent = new Intent(q804.this, q1101.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);

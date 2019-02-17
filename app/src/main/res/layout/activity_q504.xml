@@ -122,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Please specify"
                     android:visibility="invisible"
-                    android:onClick="onCheckboxClicked" />
+                     />
 
 
 

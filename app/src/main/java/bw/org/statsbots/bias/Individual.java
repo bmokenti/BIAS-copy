@@ -2768,6 +2768,16 @@ public class Individual implements Serializable {
     private String IndHIVChildParentalConsentParticipantsID ;
     private String IndHIVChildParentalConsentDate ;
     private String IndHIVAssentQ1 ;
+
+    public String getIndConsentQuestionnaire() {
+        return IndConsentQuestionnaire;
+    }
+
+    public void setIndConsentQuestionnaire(String indConsentQuestionnaire) {
+        IndConsentQuestionnaire = indConsentQuestionnaire;
+    }
+
+    private String IndConsentQuestionnaire ;
     private String B8_Yes_No;
     private String B8_Date;
     private String B8_O15_Rapid;
@@ -2793,6 +2803,157 @@ public class Individual implements Serializable {
     private String IndRapidResults ;
     private String IndRapidDate ;
     private String IndRapid_Comment ;
+
+
+    public String getIndvQuestionnairePConsent15_17() {
+        return IndvQuestionnairePConsent15_17;
+    }
+
+    public void setIndvQuestionnairePConsent15_17(String indvQuestionnairePConsent15_17) {
+        IndvQuestionnairePConsent15_17 = indvQuestionnairePConsent15_17;
+    }
+
+    public String getIndvQuestionnaireConsent() {
+        return IndvQuestionnaireConsent;
+    }
+
+    public void setIndvQuestionnaireConsent(String indvQuestionnaireConsent) {
+        IndvQuestionnaireConsent = indvQuestionnaireConsent;
+    }
+
+    public String getIndvBloodDraw() {
+        return IndvBloodDraw;
+    }
+
+    public void setIndvBloodDraw(String indvBloodDraw) {
+        IndvBloodDraw = indvBloodDraw;
+    }
+
+    public String getBloodVol_1() {
+        return BloodVol_1;
+    }
+
+    public void setBloodVol_1(String bloodVol_1) {
+        BloodVol_1 = bloodVol_1;
+    }
+
+    public String getBloodVol_4() {
+        return BloodVol_4;
+    }
+
+    public void setBloodVol_4(String bloodVol_4) {
+        BloodVol_4 = bloodVol_4;
+    }
+
+    public String getBloodVol_6() {
+        return BloodVol_6;
+    }
+
+    public void setBloodVol_6(String bloodVol_6) {
+        BloodVol_6 = bloodVol_6;
+    }
+
+    public String getBloodVol_10() {
+        return BloodVol_10;
+    }
+
+    public void setBloodVol_10(String bloodVol_10) {
+        BloodVol_10 = bloodVol_10;
+    }
+
+    public String getBloodVolComment() {
+        return BloodVolComment;
+    }
+
+    public void setBloodVolComment(String bloodVolComment) {
+        BloodVolComment = bloodVolComment;
+    }
+
+    public String getIndBloodLabTest() {
+        return IndBloodLabTest;
+    }
+
+    public void setIndBloodLabTest(String indBloodLabTest) {
+        IndBloodLabTest = indBloodLabTest;
+    }
+
+    public String getIndBloodStore() {
+        return IndBloodStore;
+    }
+
+    public void setIndBloodStore(String indBloodStore) {
+        IndBloodStore = indBloodStore;
+    }
+
+    public String getPrntlConsentBloodDraw() {
+        return PrntlConsentBloodDraw;
+    }
+
+    public void setPrntlConsentBloodDraw(String prntlConsentBloodDraw) {
+        PrntlConsentBloodDraw = prntlConsentBloodDraw;
+    }
+
+    public String getPrntlConsentRHT() {
+        return PrntlConsentRHT;
+    }
+
+    public void setPrntlConsentRHT(String prntlConsentRHT) {
+        PrntlConsentRHT = prntlConsentRHT;
+    }
+
+    public String getPrntlConsentLabTest() {
+        return PrntlConsentLabTest;
+    }
+
+    public void setPrntlConsentLabTest(String prntlConsentLabTest) {
+        PrntlConsentLabTest = prntlConsentLabTest;
+    }
+
+    public String getPrntlConsentBloodStore() {
+        return PrntlConsentBloodStore;
+    }
+
+    public void setPrntlConsentBloodStore(String prntlConsentBloodStore) {
+        PrntlConsentBloodStore = prntlConsentBloodStore;
+    }
+
+    public String getPrntlParentID() {
+        return PrntlParentID;
+    }
+
+    public void setPrntlParentID(String prntlParentID) {
+        PrntlParentID = prntlParentID;
+    }
+
+    public String getPrntlConsentDate() {
+        return PrntlConsentDate;
+    }
+
+    public void setPrntlConsentDate(String prntlConsentDate) {
+        PrntlConsentDate = prntlConsentDate;
+    }
+
+    private  String IndvQuestionnairePConsent15_17 ;
+    private  String IndvQuestionnaireConsent ;
+    private  String IndvBloodDraw ;
+    private  String BloodVol_1 ;
+    private  String BloodVol_4 ;
+    private  String BloodVol_6 ;
+    private  String BloodVol_10 ;
+    private  String BloodVolComment ;
+    //private  String B8_O15_Rapid ;
+   // private  String IndRapidResults ;
+    private  String IndBloodLabTest ;
+    private  String IndBloodStore ;
+    //private  String IndRapidDate ;
+    //private  String IndBloodSampleCollected ;
+    private  String PrntlConsentBloodDraw ;
+    private  String PrntlConsentRHT ;
+    private  String PrntlConsentLabTest ;
+    private  String PrntlConsentBloodStore ;
+    private  String PrntlParentID ;
+    private  String PrntlConsentDate ;
+
 
     public String getQ802aOther() {
         return Q802aOther;

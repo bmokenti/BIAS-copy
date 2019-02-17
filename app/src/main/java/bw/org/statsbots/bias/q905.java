@@ -22,6 +22,7 @@ public class q905 extends AppCompatActivity implements Serializable {
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt;
     protected Button btn;
+    protected DatabaseHelper myDB;
     protected  Individual individual;
     protected EditText edtdays, edtaother;
     protected RadioButton rbtna1, rbtna2, rbtna3, rbtna4, rbtna5, rbtna6, rbtnaother, selectedRbtna;
@@ -112,6 +113,14 @@ public class q905 extends AppCompatActivity implements Serializable {
 
                             individual.setQ905(edtdays.getText().toString());
 
+                            myDB = new DatabaseHelper(q905.this);
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            if(myDB.checkIndividual(individual)){
+                                //Update
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                            }
                             Intent intent = new Intent(q905.this, q1001.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);
@@ -121,6 +130,14 @@ public class q905 extends AppCompatActivity implements Serializable {
                             individual.setQ905a(selectedRbtna.getText().toString().substring(0, 1));
                             individual.setQ905aOther(edtaother.getText().toString());
 
+                            myDB = new DatabaseHelper(q905.this);
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            if(myDB.checkIndividual(individual)){
+                                //Update
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                            }
                             Intent intent = new Intent(q905.this, q1001.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);

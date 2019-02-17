@@ -2,6 +2,7 @@ package bw.org.statsbots.bias;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +12,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
-public class q622 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q622 extends AppCompatActivity implements Serializable {
 
 
     protected HouseHold thisHouse;
@@ -23,6 +27,7 @@ public class q622 extends AppCompatActivity {
     protected RadioButton rbtn1, rbtn2, rbtn3,rbta1, rbta2, rbtaOther,rbtb1,rbtb2,rbtbOther;
     protected RadioGroup rg1,rg2,rg3;
     protected EditText edtaOther, edtbOther;
+    protected TextView txta, txtb;
     protected RadioButton selectedRbtn,selectedRbtna, selectedRbtnb;
 
     @Override
@@ -52,6 +57,9 @@ public class q622 extends AppCompatActivity {
         rbtbOther = (RadioButton) findViewById(R.id.q622b_other);
         edtbOther = (EditText) findViewById(R.id.q622b_other1);
 
+        txta = (TextView) findViewById(R.id.q622a);
+        txtb = (TextView) findViewById(R.id.q622b);
+
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
@@ -64,16 +72,19 @@ public class q622 extends AppCompatActivity {
                     rbta1.setEnabled(true);
                     rbta2.setEnabled(true);
                     rbtaOther.setEnabled(true);
+                    txta.setTextColor(Color.BLACK);
 
                     rbtb1.setEnabled(false);
                     rbtb2.setEnabled(false);
                     rbtbOther.setEnabled(false);
+                    txtb.setTextColor(Color.LTGRAY);
                     edtbOther.setVisibility(View.INVISIBLE);
 
                     rbtb1.setChecked(false);
                     rbtb2.setChecked(false);
                     rbtbOther.setChecked(false);
                     edtbOther.setText("");
+
                     /*******************/
 
                 }
@@ -82,6 +93,7 @@ public class q622 extends AppCompatActivity {
                         rbta1.setEnabled(false);
                         rbta2.setEnabled(false);
                         rbtaOther.setEnabled(false);
+                        txta.setTextColor(Color.LTGRAY);
                         edtaOther.setVisibility(View.INVISIBLE);
 
                         rbta1.setChecked(false);
@@ -91,6 +103,7 @@ public class q622 extends AppCompatActivity {
 
                         rbtb1.setEnabled(true);
                         rbtb2.setEnabled(true);
+                        txtb.setTextColor(Color.BLACK);
                         rbtbOther.setEnabled(true);
                     } else {
                         if (i == R.id.q622_9) {
@@ -101,11 +114,13 @@ public class q622 extends AppCompatActivity {
                             rbta1.setChecked(false);
                             rbta2.setChecked(false);
                             rbtaOther.setChecked(false);
+                            txta.setTextColor(Color.LTGRAY);
                             edtaOther.setText("");
 
                             rbtb1.setEnabled(false);
                             rbtb2.setEnabled(false);
                             rbtbOther.setEnabled(false);
+                            txtb.setTextColor(Color.LTGRAY);
                             edtbOther.setVisibility(View.INVISIBLE);
 
                             rbtb1.setChecked(false);

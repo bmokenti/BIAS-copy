@@ -15,6 +15,56 @@
       P02.  What is # \'s relationship to head of household?
 
     </string>
+
+    <string name="IndQuesInfo">
+      PURPOSE OF THE SURVEY
+This survey will help us to know how many people in Botswana have HIV, how many people have TB and need health services. It will also tell us about people’s risk for getting HIV and TB. We plan to ask about 16 000 individuals to join this survey. If you participate, your taking part will help MoHW make health services better in the country.
+SURVEY PROCEDURES
+INTERVIEWS
+If you do participate in this survey, we will ask you questions about your demographics, past experience with HIV services, and your behavior. The interview will take about 45 minutes.
+
+BLOOD DRAW, TESTING, AND RETURNING OF RESULTS:
+We will ask you for consent to draw blood from you in order to conduct HIV testing and other laboratory based HIV-related tests. We will use a needle to take less than a teaspoon of your blood from your arm. If it’s not possible to take blood from your arm, then we will try to take a few drops of blood from your finger. If you need to know your results the testing and counseling session will be done here in your home and will take about 40 minutes.
+If you test positive for HIV, we will send your blood to a laboratory to measure the amount of HIV in your blood. This result will be available at the health facility of your choice within 8 to 10 weeks. You may or may not be selected for other additional tests related to HIV. If you are selected, some of your blood sample will be sent to other laboratories. If we have test results that might help guide your care or treatment, we will attempt to contact you to notify you when your results are ready for collection from a health facility of your choice.
+Your participation in the survey is voluntary and if you decide to participate, you may change your mind at any time and stop taking part. If you decide not to take part, it will not affect access to healthcare in any way.
+STORAGE OF SPECIMENS
+We would also ask for your permission to store your remaining blood in a specimen bank at the National Health Laboratory (NHL) for future research tests. These tests may be used for future research on HIV/AIDS and TB. This sample will be stored for five years. Your remaining blood will not be sold or used for commercial reasons. If you do not agree to long-term storage of your blood samples, we will destroy the samples after survey-related tests have been completed.
+Your participation in the survey is voluntary and if you decide to participate, you may change your mind at any time and stop taking part. If you decide not to take part, it will not affect your healthcare in any way.
+RISKS
+The risks of participation are minimal. We will do everything we can to keep your information confidential. You may feel uncomfortable about some of the questions we will ask and you may refuse to answer any question. If you take part, you will be offered free testing for HIV.
+BENEFITS
+Your participation in the survey will inform you of your HIV status. HIV positive patients will receive counseling and linkage to free care and treatment. The information you provide will also be used to improve the health of Batswana. Your responses will help us develop more effective programs to fight HIV and other diseases in Botswana.
+COSTS
+There is no cost to you for being part of the survey and you will not be paid for your participation.
+CONFIDENTIALITY
+What we talk about during the survey will be kept private, even from your family, and will not be shown to anyone outside of the survey team.  Your answers to the questions will be identified only by a number and not by your name. Your name will not appear on any survey results that we share with MoHW, publishing or presented at scientific meetings. The information we collect during the survey will not be released outside of the survey groups listed unless there is an issue of safety.
+The following individuals and/or agencies will be able to look at your interview records to help oversee the conduct of this survey:
+1.	Staff members from Institutional Review Boards or Ethics Committees overseeing the conduct of this survey to ensure that we are protecting your rights as a person taking part in the survey. These include the Botswana Human Research Development Committee (HRDC), the Institutional Review Boards at the Centers for Disease Control and Prevention (CDC) and the WHO Task Force for TB.
+2.	Survey staff and monitors.
+Your permission to allow us to use and share your information with the groups above will expire five years after the end of the survey. If during or post the survey you want your information to be removed from the survey data, or have any questions about the survey, or feel that you have been harmed by taking part, you should contact the Botswana Human Research Development Committee (HRDC) and NACA, MoHW:
+Principal Investigator:
+Oaitse I Motsamai, MPH, DrPH, (NACA-Research Monitoring and Evaluation)
+Phone Number: +267-3710314.  Fax Number: +267-3170960.
+Physical Address: Unit 9, Westgate Mall Western By-Pass Phase 2.
+Private Bag 00463 Gaborone
+Phone: +267 3654811
+Email: oimotsamai@gmail.com
+
+If you have any questions about your rights as a participant in this survey, you can contact HRDC using the following addresses:
+
+Chairperson of Botswana Human Research Development Committee
+Plot 54609, Government Enclave
+Private Bag 0038, Gaborone
+www.moh.gov.bw
+
+At this time, do you want to ask me anything about: Your blood being taken in your home? Testing your blood in the laboratory?
+
+PERMISSION STATEMENT
+This consent form has been read out to you and you have been given a copy. Any questions that you had have been answered satisfactorily. You know that after choosing to participate in the survey, you may withdraw at any time if you so wish. You know that your participation is voluntary. You have been given sufficient time to consent.
+
+
+
+    </string>
     <string name="Head">00 Head</string>
     <string name="Spouse">01 Spouse/Partner</string>
     <string name="Son">02 Son/Daughter</string>
@@ -440,7 +490,7 @@
 
     <string name="q401">
         READ OUT::::::::::::    I am going to ask you some very personal question about sex, I mean vaginal, oral and anal sex.
-        Please bear with me as collecting information on HIV/AIDS issues requires us to ask such sensetive questions.
+        Please bear with me as collecting information on HIV/AIDS issues requires us to ask such sensitive questions.
         I know it may be difficult to remember exactly , but I would like you to answer the questions to the best of your knowledge, as this
         information is very important for the survey. Again, this information is all completely private and anonymous and cannot be linked to you or any partner in any way.
         ...........................................................
@@ -637,8 +687,8 @@
     <string name="q1113_ot">Other specify</string>
     <string name="title_activity_q1114">q1114</string>
     <string name="q1114ques">Have you been diagnosed with Diabetes?</string>
-    <string name="q1114_1">Yes</string>
-    <string name="q1114_2">No</string>
+    <string name="q1114_1">1. Yes</string>
+    <string name="q1114_2">2. No</string>
     <string name="q104ctxt">
         c) If tertiary, what is/was your field of Education?
         (PROBE AS NECESSARY, USE TWO OR MORE WORDS
@@ -906,7 +956,7 @@
 
     <string name="q301"> READ OUT..........Now i am going to ask you questions about alcohol and substance use. By alcohol we mean beer, spirits, wine,
         home brews (khadi etc), chibuku, whisky, etc. By substances we mean cocaine, heroin, glue, mandrax, ecstasy, marijuana (motokwane) etc. I would like you
-        to answer the question to the best of your knowledge, as this information is very important for the survey. Again, this information is all completely is all
+        to answer the question to the best of your knowledge, as this information is very important for the survey. Again, this information is all
         completely private and anonymous and cannot be linked to you or any way.................
     </string>
 
@@ -1559,7 +1609,7 @@
 
 
     <string name="q702">
-      Q702. If your knew that a shopkeeper or food seller had HIV AND AIDS, would you buy vegetables from them?
+      Q702. If you knew that a shopkeeper or food seller had HIV AND AIDS, would you buy vegetables from them?
 
     </string>
     <string name="q702_1">1. Yes</string>
@@ -2200,6 +2250,12 @@
     <string name="H11OtherSpecify">Other specify</string>
     <string name="title_activity_h06">H06</string>
     <string name="H08Other">Other Specify</string>
+    <string name="title_activity_individual_questionaire_consent">IndividualQuestionaireConsent
+    </string>
+    <string name="title_activity_hivparental_consent6wks_9y">HIVParentalConsent6wks_9y</string>
+    <string name="title_activity_hivparental_consent10_14yrs">HIVParentalConsent10_14yrs</string>
+    <string name="title_activity_hivassents10_14years">HIVAssents10_14years</string>
+    <string name="title_activity_ind_quet_parental_consent">IndQuetParentalConsent</string>
 
 
 </resources>

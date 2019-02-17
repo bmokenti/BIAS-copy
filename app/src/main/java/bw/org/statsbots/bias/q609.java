@@ -19,6 +19,7 @@ public class q609 extends AppCompatActivity implements Serializable {
     protected String currentHH = null;
     protected Individual individual;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, rbtn9, selected;
     protected RadioGroup rbtngroup;
 
@@ -66,6 +67,14 @@ public class q609 extends AppCompatActivity implements Serializable {
                     vibs.vibrate(100);
                 } else {
                     individual.setQ609(selected.getText().toString().substring(0,1));
+                    myDB = new DatabaseHelper(q609.this);
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    if(myDB.checkIndividual(individual)){
+                        //Update
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                    }
 
                     Intent intent = new Intent(q609.this, q610.class);
                     intent.putExtra("Individual", individual);

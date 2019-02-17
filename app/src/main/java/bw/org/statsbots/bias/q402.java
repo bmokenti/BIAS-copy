@@ -68,7 +68,7 @@ public class q402 extends AppCompatActivity implements Serializable {
         //Intent i = getIntent();
         //thisHouse = (HouseHold) i.getSerializableExtra("Household");
         //int p = 0;
-        if (individual.getQ101().equals("1") && individual.getQ401().equals("1") && Integer.valueOf(individual.getQ102()) >= 24) {
+        if (individual.getQ401().equals("1") && Integer.valueOf(individual.getQ102()) >= 24) {
 
             Intent intent = new Intent(q402.this, q403.class);
             intent.putExtra("Individual", individual);
@@ -162,7 +162,7 @@ public class q402 extends AppCompatActivity implements Serializable {
                         } else {
                             int year = Integer.parseInt(edtq402.getText().toString());
 
-                            if(year > Integer.parseInt(individual.getQ102())){
+                            if(year > Integer.parseInt(individual.getQ102()) && !chk99.isChecked()){
                                 lib.showError(q402.this, "Q402: Error ", "Q402 Age cannot be greater than age of individual which is : " + individual.getQ102());
 
                                 /**
@@ -255,8 +255,9 @@ public class q402 extends AppCompatActivity implements Serializable {
         else {
             // Remove the meat
             edtq402.setEnabled(true);
+            edtq402.setText("");
 
-            // TODO: Veggie sandwich
+
         }
     }
 

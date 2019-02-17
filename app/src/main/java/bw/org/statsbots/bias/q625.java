@@ -17,6 +17,7 @@ public class q625 extends AppCompatActivity {
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2,rbtn9;
     protected RadioGroup rg1,rg2,rg3;
     protected EditText edtOther;
@@ -55,6 +56,14 @@ public class q625 extends AppCompatActivity {
                 else
                 {
                     individual.setQ625(selectedRbtn.getText().toString().substring(0, 1));
+                    myDB = new DatabaseHelper(q625.this);
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    if(myDB.checkIndividual(individual)){
+                        //Update
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+
+                    }
                     Intent intent = new Intent(q625.this, q701.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);

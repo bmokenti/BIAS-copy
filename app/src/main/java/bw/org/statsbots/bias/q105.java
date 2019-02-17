@@ -77,6 +77,7 @@ public class q105 extends AppCompatActivity implements Serializable{
         edt2.clearFocus();
 
 
+        //myDB.getIndividualdt();
 
         /**
          * NEXT Person BUTTON

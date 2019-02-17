@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q102 extends AppCompatActivity implements Serializable {
 
@@ -45,6 +46,12 @@ public class q102 extends AppCompatActivity implements Serializable {
         Intent h = getIntent();
         thisHouse = (HouseHold) h.getSerializableExtra("Household");
         edt = (EditText) findViewById(R.id.q102_years);
+
+
+        //myDB.getIndividualdt();
+
+
+
 /*
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(),individual.getAssignmentID());
         sample.getStatusCode();
@@ -103,15 +110,11 @@ public class q102 extends AppCompatActivity implements Serializable {
                         //Update
                         myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
-                    } else {
-                        //Insert
-                        myDB.insertIndividual(individual);
-
                     }
 
 
                     //Next question P17
-                    Intent intent = new Intent(q102.this, q103.class);
+                    Intent intent = new Intent(q102.this, HIVChildParentalConsent15_17.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);
 

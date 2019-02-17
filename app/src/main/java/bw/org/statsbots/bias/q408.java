@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import java.io.Serializable;
 
@@ -25,6 +26,7 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
     protected LibraryClass lib;
     protected RadioButton rbtn1,rbtn2, rbtna1,rbtna2;
     protected RadioGroup rg, rga;
+    protected  TextView   q408alabel;
     protected RadioButton selectedRbtn, selectedRbtna;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +44,33 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
 
         rg = (RadioGroup)findViewById(R.id.q408radioGroup) ;
         rga = (RadioGroup)findViewById(R.id.q408radioGroupa) ;
+        q408alabel = (TextView)findViewById(R.id.q408atxt);
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.q408_2)
+                {
+                    // is checked
+                    rbtna1.setEnabled(false);
+                    rbtna2.setEnabled(false);
+                    q408alabel.setTextColor(Color.LTGRAY);
+                    rbtna1.setChecked(false);
+                    rbtna2.setChecked(false);
+                }
+                else
+                {
+                    // not checked
+                    rbtna1.setEnabled(true);
+                    rbtna2.setEnabled(true);
+                    q408alabel.setTextColor(Color.BLACK);
+                }
+            }
+        });
 
         if ((individual.getQ101().equals("2") &&  individual.getQ401().equals("1")) && (individual.getQ201().equals("1") || individual.getQ201().equals("4") ||
                 individual.getQ201().equals("5") || individual.getQ201().equals("6")) || (Integer.parseInt(individual.getQ102()) > 49 )) {
@@ -85,7 +110,8 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
 
                         builder.setMessage("In the past 12 months have you had sex with someone you are not married to or living together?");
                         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
 
                             }
                         });
@@ -105,10 +131,11 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
                         positiveButton.setLayoutParams(positiveButtonLL);
 
 
+
                     } else {
                         int selectedIda = rga.getCheckedRadioButtonId();
                         selectedRbtna = (RadioButton) findViewById(selectedIda);
-                        if (selectedRbtna == null) {
+                        if (selectedRbtna == null && rbtn1.isChecked()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(q408.this);
                             builder.setTitle("Q408a: Error");
                             builder.setIcon(R.drawable.ic_warning_orange_24dp);
@@ -137,7 +164,11 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
 
                         }
                     else
+                        {if(rbtn2.isChecked())
                         {
+                            individual.setQ408(selectedRbtn.getText().toString().substring(0,1));
+                        }
+                        else{
                             //Set q408 for the current individual
 
                            individual.setQ408(selectedRbtn.getText().toString().substring(0,1));
@@ -148,6 +179,7 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
                             q1o2.putExtra("Individual", individual);
                             startActivity(q1o2);
 
+                        }
                         }
 
                     }

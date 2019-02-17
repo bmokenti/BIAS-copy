@@ -1,6 +1,5 @@
 package bw.org.statsbots.bias;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,47 +17,32 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
-        public class HIVAdultsConsent18Plus extends AppCompatActivity implements Serializable {
+public class HIVAssents10_14years extends AppCompatActivity implements Serializable {
+    protected HouseHold thisHouse;
+    protected PersonRoster p1 = null;
+    protected Individual individual;
+    protected String currentHH = null;
+    protected LibraryClass lib;
+    protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7,rbtn9, rbtn10,rbtn11,rbtn12, rbtn13,  selected1, selected2, selected3,  selected4, selected5 , selected6 ;
+    protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
+    protected EditText Edttubevolume, EdtDate;
+    protected CheckBox vol1, vol2, vol3, vol4;
+    protected Button btnNext, btnDate, btnPrev;
+    protected TextView t1, t2, t3, t4, t5, t6, t7, t8;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hivassents10_14years);
 
-            protected HouseHold thisHouse;
-            protected PersonRoster p1 = null;
-            protected Individual individual;
-            protected String currentHH = null;
-            protected LibraryClass lib;
-            protected DatabaseHelper myDB;
-            protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7,rbtn9, rbtn10,rbtn11,rbtn12, rbtn13,  selected1, selected2, selected3,  selected4, selected5 , selected6 ;
-            protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
-            protected EditText Edttubevolume, EdtDate;
-            protected CheckBox vol1, vol2, vol3, vol4;
-            protected Button btnNext, btnDate, btnPrev;
-            protected TextView t1, t2, t3, t4, t5, t6, t7, t8;
-
-            @Override
-            protected void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_hivadults_consent18_plus);
-
+                setTitle("HIV Assent 10-14 Years");
 
 
                 lib = new LibraryClass();
+        Intent h = getIntent();
+        thisHouse = (HouseHold) h.getSerializableExtra("Household");
 
 
 
-                Intent i = getIntent();
-                individual = (Individual) i.getSerializableExtra("Individual");
-                int p = 0;
-
-                Intent ii = getIntent();
-                p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
-                //int p = 0;
-
-                if ( Integer.valueOf(p1.getP04YY()) >= 18) {
-                    setTitle("Individual Consent [18-64]");
-                }
-                else
-                {
-                    setTitle("Individual Assent 15-17");
-                }
                 rg1 = (RadioGroup) findViewById(R.id.rg1);
                 rg2 = (RadioGroup) findViewById(R.id.rg2);
                 rg3 = (RadioGroup) findViewById(R.id.rg3);
@@ -90,19 +74,17 @@ import java.io.Serializable;
                 vol3 = (CheckBox) findViewById(R.id.vol3);
                 vol4 = (CheckBox) findViewById(R.id.vol4);
 
-                t1  = (TextView) findViewById(R.id.volrectext);
-                t2  = (TextView) findViewById(R.id.rhttxt);
-                t3  = (TextView) findViewById(R.id.rhtresulttext);
-                t4  = (TextView) findViewById(R.id.txtslab);
-                t6  = (TextView) findViewById(R.id.bloodColectionStatus);
-                t5  = (TextView) findViewById(R.id.txtstore);
-
+                t1 = (TextView) findViewById(R.id.volrectext);
+                t2 = (TextView) findViewById(R.id.rhttxt);
+                t3 = (TextView) findViewById(R.id.rhtresulttext);
+                t4 = (TextView) findViewById(R.id.txtslab);
+                t6 = (TextView) findViewById(R.id.bloodColectionStatus);
+                t5 = (TextView) findViewById(R.id.txtstore);
 
                 rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                        if(i == R.id.rbtn1)
-                        {
+                        if (i == R.id.rbtn1) {
                             // is checked
                             vol1.setEnabled(true);
                             vol2.setEnabled(true);
@@ -120,16 +102,13 @@ import java.io.Serializable;
                             t5.setTextColor(Color.BLACK);
 
 
-
                             rbtn11.setEnabled(true);
                             rbtn12.setEnabled(true);
                             rbtn13.setEnabled(true);
                             t6.setTextColor(Color.BLACK);
 
 
-                        }
-                        else
-                        {
+                        } else {
                             vol1.setEnabled(false);
                             vol2.setEnabled(false);
                             vol3.setEnabled(false);
@@ -174,17 +153,18 @@ import java.io.Serializable;
                 rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                        if(i == R.id.rbtn3)
-                        {
+                        if (i == R.id.rbtn3) {
                             // is checked
+
 
                             rbtn5.setEnabled(true);
                             rbtn6.setEnabled(true);
                             t3.setTextColor(Color.BLACK);
 
-                        }
-                        else
-                        {
+
+                        } else {
+
+
                             rbtn5.setEnabled(false);
                             rbtn6.setEnabled(false);
 
@@ -194,12 +174,9 @@ import java.io.Serializable;
                             rbtn6.setChecked(false);
 
 
-
-
                         }
                     }
                 });
-
 
 
                 btnNext.setOnClickListener(new View.OnClickListener() {
@@ -210,18 +187,17 @@ import java.io.Serializable;
                         selected1 = (RadioButton) findViewById(selectedId1);
 
                         if (selected1 == null) {
-                            lib.showError(HIVAdultsConsent18Plus.this, "Draw Blood: Error", "Do you agree for the survey team to draw your blood for HIV testing and other related testing?");
+                            lib.showError(bw.org.statsbots.bias.HIVAssents10_14years.this, "Draw Blood: Error", "Do you agree for the survey team to draw your blood for HIV testing and other related testing?");
                             /**
                              * VIBRATE DEVICE
                              */
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
 
-                        }
-                        else {
+                        } else {
 
                             if (!(vol1.isChecked() || vol2.isChecked() || vol3.isChecked() || vol4.isChecked()) && rbtn1.isChecked()) {
-                                lib.showError(HIVAdultsConsent18Plus.this, "IndividualConsent: Error: 1a", "Please record container used");
+                                lib.showError(bw.org.statsbots.bias.HIVAssents10_14years.this, "IndividualConsent: Error: 1a", "Please record container used");
                                 /**
                                  * VIBRATE DEVICE
                                  */
@@ -232,8 +208,8 @@ import java.io.Serializable;
                                 int selectedId2 = rg2.getCheckedRadioButtonId();
                                 selected2 = (RadioButton) findViewById(selectedId2);
 
-                                if (selected2 == null ) {
-                                    lib.showError(HIVAdultsConsent18Plus.this, "RHT: Error: 2", "Do you agree for the survey team to do RHT?");
+                                if (selected2 == null) {
+                                    lib.showError(bw.org.statsbots.bias.HIVAssents10_14years.this, "RHT: Error: 2", "Do you agree for the survey team to do RHT?");
                                     /**
                                      * VIBRATE DEVICE
                                      */
@@ -245,7 +221,7 @@ import java.io.Serializable;
                                     selected3 = (RadioButton) findViewById(selectedId3);
 
                                     if (selected3 == null && rbtn3.isChecked()) {
-                                        lib.showError(HIVAdultsConsent18Plus.this, "RHT Results: Error: 2a", "Please record RHT results?");
+                                        lib.showError(bw.org.statsbots.bias.HIVAssents10_14years.this, "RHT Results: Error: 2a", "Please record RHT results?");
                                         /**
                                          * VIBRATE DEVICE
                                          */
@@ -257,7 +233,7 @@ import java.io.Serializable;
                                         selected4 = (RadioButton) findViewById(selectedId4);
 
                                         if (selected4 == null && rbtn1.isChecked()) {
-                                            lib.showError(HIVAdultsConsent18Plus.this, "Laboratory: Error: 3", "3. Do you agree for your blood sample to be sent to the laboratory for additional HIV related testing?");
+                                            lib.showError(bw.org.statsbots.bias.HIVAssents10_14years.this, "Laboratory: Error: 3", "3. Do you agree for your blood sample to be sent to the laboratory for additional HIV related testing?");
                                             /**
                                              * VIBRATE DEVICE
                                              */
@@ -269,7 +245,7 @@ import java.io.Serializable;
                                             selected5 = (RadioButton) findViewById(selectedId5);
 
                                             if (selected5 == null && rbtn1.isChecked()) {
-                                                lib.showError(HIVAdultsConsent18Plus.this, "Storage: Error: 4", "4. Do you agree for your blood sample to be stored for up to 5 years for future HIV/TB - related research?");
+                                                lib.showError(bw.org.statsbots.bias.HIVAssents10_14years.this, "Storage: Error: 4", "4. Do you agree for your blood sample to be stored for up to 5 years for future HIV/TB - related research?");
                                                 /**
                                                  * VIBRATE DEVICE
                                                  */
@@ -280,7 +256,7 @@ import java.io.Serializable;
 
 
                                                 if (EdtDate == null) {
-                                                    lib.showError(HIVAdultsConsent18Plus.this, "DATE: Error: ", "Please record date");
+                                                    lib.showError(bw.org.statsbots.bias.HIVAssents10_14years.this, "DATE: Error: ", "Please record date");
                                                     /**
                                                      * VIBRATE DEVICE
                                                      */
@@ -292,7 +268,7 @@ import java.io.Serializable;
                                                     selected6 = (RadioButton) findViewById(selectedId6);
 
                                                     if (selected6 == null && rbtn1.isChecked()) {
-                                                        lib.showError(HIVAdultsConsent18Plus.this, "Blood collection: Error: 2a", "Please record blood status");
+                                                        lib.showError(bw.org.statsbots.bias.HIVAssents10_14years.this, "Blood collection: Error: 2a", "Please record blood status");
                                                         /**
                                                          * VIBRATE DEVICE
                                                          */
@@ -300,112 +276,29 @@ import java.io.Serializable;
                                                         vibs.vibrate(100);
 
                                                     } else {
+                                                      //  individual.setIndConsentQuestionnaire(selected1.getText().toString().substring(0, 1));
+                                                        //Check if individual already been saved and update
 
-                                                        if (rbtn2.isChecked()) {
-                                                            individual.setIndvBloodDraw(selected1.getText().toString().substring(0, 1));
-                                                            individual.setB8_O15_Rapid(selected2.getText().toString().substring(0, 1));
-                                                            if (rbtn3.isChecked()) {
-                                                                individual.setIndRapidResults(selected3.getText().toString().substring(0, 1));
-                                                            }
-                                                            individual.setIndRapidDate(EdtDate.getText().toString());
 
-                                                            myDB = new DatabaseHelper(HIVAdultsConsent18Plus.this);
-                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                        //Next question P17
 
-                                                            if (myDB.checkIndividual(individual)) {
-                                                                //Update
-                                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
-                                                            } else {
-                                                                //Insert
-                                                                myDB.insertIndividual(individual);
-
-                                                            }
+                                                        Intent intent = new Intent(bw.org.statsbots.bias.HIVAssents10_14years.this, Dashboard.class);
+                                                        //intent.putExtra("Household", thisHouse);
+                                                        startActivity(intent);
 
 
 
-                                                            Intent intent = new Intent(HIVAdultsConsent18Plus.this, q101.class);
-                                                            intent.putExtra("Individual", individual);
-                                                            startActivity(intent);
-
-                                                        } else {
-                                                            individual.setIndConsentQuestionnaire(selected1.getText().toString().substring(0, 1));
-
-                                                            individual.setIndvBloodDraw(selected1.getText().toString().substring(0, 1));
-                                                            if (vol1.isChecked()) {
-                                                                individual.setBloodVol_1("1");
-                                                            } else {
-                                                                individual.setBloodVol_1("2");
-                                                            }
-                                                            if (vol2.isChecked()) {
-                                                                individual.setBloodVol_4("1");
-                                                            } else {
-                                                                individual.setBloodVol_4("2");
-                                                            }
-                                                            if (vol3.isChecked()) {
-                                                                individual.setBloodVol_6("1");
-                                                            } else {
-                                                                individual.setBloodVol_6("2");
-                                                            }
-                                                            if (vol4.isChecked()) {
-                                                                individual.setBloodVol_10("1");
-                                                            } else {
-                                                                individual.setBloodVol_10("2");
-                                                            }
-                                                            individual.setBloodVolComment(Edttubevolume.getText().toString());
-
-                                                            individual.setB8_O15_Rapid(selected2.getText().toString().substring(0, 1));
-                                                            if (rbtn3.isChecked()) {
-                                                                individual.setIndRapidResults(selected3.getText().toString().substring(0, 1));
-
-                                                            }
-                                                            individual.setIndBloodLabTest(selected4.getText().toString().substring(0, 1));
-                                                            individual.setIndBloodStore(selected5.getText().toString().substring(0, 1));
-
-                                                            individual.setIndRapidDate(EdtDate.getText().toString());
-                                                            individual.setIndBloodSampleCollected(selected6.getText().toString().substring(0, 1));
-
-                                                            //Check if individual already been saved and update
-
-
-                                                            //Next question P17
-                                                            myDB = new DatabaseHelper(HIVAdultsConsent18Plus.this);
-                                                            myDB.onOpen(myDB.getReadableDatabase());
-
-                                                            if (myDB.checkIndividual(individual)) {
-                                                                //Update
-                                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
-                                                            } else {
-                                                                //Insert
-                                                                myDB.insertIndividual(individual);
-
-                                                            }
-
-                                                            Intent intent = new Intent(HIVAdultsConsent18Plus.this, q103.class);
-                                                            intent.putExtra("Individual", individual);
-                                                            startActivity(intent);
-
-
-                                                        }
                                                     }
                                                 }
                                             }
                                         }
                                     }
                                 }
-
                             }
                         }
                     }
                 });
 
 
-
-            }
-
-        }
-
-
-
-
+    }
+}

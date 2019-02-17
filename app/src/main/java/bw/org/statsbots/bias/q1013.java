@@ -84,8 +84,6 @@ public class q1013 extends AppCompatActivity implements Serializable {
                         intent.putExtra("Individual", individual);
                         startActivity(intent);
 
-
-
                     }
                 }
 
