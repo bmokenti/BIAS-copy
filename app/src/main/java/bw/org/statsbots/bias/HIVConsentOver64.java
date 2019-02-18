@@ -24,6 +24,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
     protected Individual individual;
     protected String currentHH = null;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7,rbtn9, rbtn10,rbtn11,rbtn12, rbtn13,  selected1, selected2, selected3,  selected4, selected5 , selected6 ;
     protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
     protected EditText Edttubevolume, EdtDate;
@@ -278,18 +279,18 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                 vibs.vibrate(100);
 
                                             } else {
-                                                individual.setIndConsentQuestionnaire(selected1.getText().toString().substring(0, 1));
+
+                                                    thisHouse.getPersons()[p1.getLineNumber()].setU15Rapid_Results(selected3.getText().toString().substring(0,1));
+
+                                                    Intent intent = new Intent(HIVConsentOver64.this, Dashboard.class);
+                                                    intent.putExtra("Individual", individual);
+                                                    startActivity(intent);
+
+
+                                                }
+
                                                 //Check if individual already been saved and update
 
-
-                                                //Next question P17
-
-                                                Intent intent = new Intent(HIVConsentOver64.this, started_household.class);
-                                                intent.putExtra("Individual", individual);
-                                                startActivity(intent);
-
-
-                                            }
                                         }
                                     }
                                 }

@@ -142,7 +142,7 @@ public class q1002 extends AppCompatActivity implements Serializable {
                             } else {
 
 
-                                if (rbtn2.isChecked() || rbtn3.isChecked() ) {
+                                if (rbtn2.isChecked()) {
 
                                     individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
                                     individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
@@ -151,146 +151,103 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                     Intent intent = new Intent(q1002.this, q1003.class);
                                     intent.putExtra("Individual", individual);
                                     startActivity(intent);
-                                }
-                                    else {
+                                } else {
+                                    if (rbtn3.isChecked()) {
+
                                         individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
-                                        if (chka1.isChecked())
-                                        {
+                                        // individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
+                                        //individual.setQ1002b_Other(edtbOther.getText().toString());
+
+                                        Intent intent = new Intent(q1002.this, q1003.class);
+                                        intent.putExtra("Individual", individual);
+                                        startActivity(intent);
+                                    } else {
+                                        individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
+                                        if (chka1.isChecked()) {
                                             individual.setQ1002a_1("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_1("2");
                                         }
 
-                                        if (chka2.isChecked())
-                                        {
+                                        if (chka2.isChecked()) {
                                             individual.setQ1002a_2("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_2("2");
                                         }
-                                        if (chka3.isChecked())
-                                        {
+                                        if (chka3.isChecked()) {
                                             individual.setQ1002a_3("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_3("2");
                                         }
-                                        if (chka4.isChecked())
-                                        {
+                                        if (chka4.isChecked()) {
                                             individual.setQ1002a_4("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_4("2");
                                         }
-                                        if (chka5.isChecked())
-                                        {
+                                        if (chka5.isChecked()) {
                                             individual.setQ1002a_5("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_5("2");
                                         }
-                                        if (chka6.isChecked())
-                                        {
+                                        if (chka6.isChecked()) {
                                             individual.setQ1002a_6("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_6("2");
                                         }
-                                        if (chka7.isChecked())
-                                        {
+                                        if (chka7.isChecked()) {
                                             individual.setQ1002a_7("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_7("2");
                                         }
-                                        if (chka8.isChecked())
-                                        {
+                                        if (chka8.isChecked()) {
                                             individual.setQ1002a_8("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_8("2");
                                         }
-                                        if (chka10.isChecked())
-                                        {
+                                        if (chka10.isChecked()) {
                                             individual.setQ1002a_10("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_10("2");
                                         }
-                                        if (chka11.isChecked())
-                                        {
+                                        if (chka11.isChecked()) {
                                             individual.setQ1002a_11("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_11("2");
                                         }
-                                        if (chka12.isChecked())
-                                        {
+                                        if (chka12.isChecked()) {
                                             individual.setQ1002a_12("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_12("2");
                                         }
-                                        if (chka13.isChecked())
-                                        {
+                                        if (chka13.isChecked()) {
                                             individual.setQ1002a_13("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_13("2");
                                         }
-                                        if (chka14.isChecked())
-                                        {
+                                        if (chka14.isChecked()) {
                                             individual.setQ1002a_14("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_14("2");
                                         }
-                                        if (chka1.isChecked())
-                                        {
+                                        if (chka1.isChecked()) {
                                             individual.setQ1002a_15("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_15("2");
                                         }
-                                        if (chka16.isChecked())
-                                        {
+                                        if (chka16.isChecked()) {
                                             individual.setQ1002a_16("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_16("2");
                                         }
-                                        if (chka17.isChecked())
-                                        {
+                                        if (chka17.isChecked()) {
                                             individual.setQ1002a_17("1");
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             individual.setQ1002a_17("2");
                                         }
-                                        if (chka18.isChecked())
-                                        {
+                                        if (chka18.isChecked()) {
                                             individual.setQ1002a_18("1");
                                             individual.setQ1002a_Other(edtOthertxt.getText().toString());
-                                        }
-                                        else
-
-                                        {
+                                        } else {
                                             individual.setQ1002a_18("2");
                                         }
                                         /*
@@ -324,7 +281,7 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                     }
                                 }
                             }
-
+                        }
                         }
                     }
 

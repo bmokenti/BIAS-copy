@@ -11,7 +11,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
-public class q619 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q619 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected  Individual individual;
     protected PersonRoster p1 = null;

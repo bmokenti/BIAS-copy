@@ -4957,12 +4957,12 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 String P19 = cursor1.getString(cursor1.getColumnIndexOrThrow("P19"));
                 String P20 = cursor1.getString(cursor1.getColumnIndexOrThrow("P20"));
                 String P21 = cursor1.getString(cursor1.getColumnIndexOrThrow("P21"));
-                String B3_RapidConsent_Yes_No = cursor1.getString(cursor1.getColumnIndexOrThrow("B3_RapidConsent_Yes_No"));
+               // String B3_RapidConsent_Yes_No = cursor1.getString(cursor1.getColumnIndexOrThrow("B3_RapidConsent_Yes_No"));
                 String B3_Guardian = cursor1.getString(cursor1.getColumnIndexOrThrow("B3_Guardian"));
-                String B3_Date = cursor1.getString(cursor1.getColumnIndexOrThrow("B3_Date"));
+                //String B3_Date = cursor1.getString(cursor1.getColumnIndexOrThrow("B3_Date"));
                 String Barcode = cursor1.getString(cursor1.getColumnIndexOrThrow("Barcode"));
-                String U15Rapid_Results = cursor1.getString(cursor1.getColumnIndexOrThrow("U15Rapid_Result"));
-                String Rapid_Comment = cursor1.getString(cursor1.getColumnIndexOrThrow("Rapid_Comment"));
+                String U15Rapid_Results = cursor1.getString(cursor1.getColumnIndexOrThrow("ChildRapidResults"));
+                //String Rapid_Comment = cursor1.getString(cursor1.getColumnIndexOrThrow("Rapid_Comment"));
 
                 dataModel1.setAssignmentID(cursor1.getString(cursor1.getColumnIndexOrThrow("EA_Assignment_ID")));
                 dataModel1.setBatch(cursor1.getString(cursor1.getColumnIndexOrThrow("BatchNumber")));
@@ -4991,12 +4991,12 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 dataModel1.setP19(P19);
                 dataModel1.setP20(P20);
                 dataModel1.setP21(P21);
-                dataModel1.setB3_RapidConsent_Yes_No(B3_RapidConsent_Yes_No);
+                //dataModel1.setB3_RapidConsent_Yes_No(B3_RapidConsent_Yes_No);
                 dataModel1.setB3_Guardian(B3_Guardian);
-                dataModel1.setB3_Date(B3_Date);
+                //dataModel1.setB3_Date(B3_Date);
                 dataModel1.setBarcode(Barcode);
                 dataModel1.setU15Rapid_Results(U15Rapid_Results);
-                dataModel1.setRapid_Comment(Rapid_Comment);
+               // dataModel1.setRapid_Comment(Rapid_Comment);
                 HouseHoldeMembers[cursor1.getPosition()]=(dataModel1);
             }
 
@@ -5045,9 +5045,11 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                 String s = cursor2.getString(cursor2.getColumnIndexOrThrow("Q107a"));
 
+                if(s!=null){
+                    ind.setQ107aMnth(s.substring(0,2));
+                    ind.setQ107aYY(s.substring(2,4));
+                }
 
-                ind.setQ107aMnth(s.substring(0,2));
-                ind.setQ107aYY(s.substring(2,4));
 
 
                 ind.setQ107b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107b")));
@@ -5312,8 +5314,16 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ901a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901a")));
                 ind.setQ901aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901aOther")));
 
-                ind.setQ902Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(0,2));
-                ind.setQ902Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(2,6));
+                String sg = cursor2.getString(cursor2.getColumnIndexOrThrow("Q902"));
+                String ss = cursor2.getString(cursor2.getColumnIndexOrThrow("Q902"));
+
+                if(sg!=null){
+                    ind.setQ902Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(0,2));
+                }
+               if(ss !=null){
+                   ind.setQ902Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(2,6));
+               }
+
 
 
 
@@ -5376,9 +5386,12 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                 ind.setQ1003(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1003")));
 
-                ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0,2));
-                ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(3,4));
-                ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(5,8));
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004"))!=null){
+                    ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0,2));
+                    ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(3,4));
+                    ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(5,8));
+                }
+
 
 
 
@@ -5500,7 +5513,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                 //ind.setB8_Yes_No(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Yes_No")));
                 //ind.setB8_Date(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Date")));
-               // ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_O15_Rapid")));
+                ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
                //ind.setQ801f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801f")));
                // ind.setIndRapid_Comment(cursor2.getString(cursor2.getColumnIndexOrThrow("Rapid_Comment")));
 
@@ -5956,7 +5969,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                // ind.setB8_Yes_No(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Yes_No")));
                // ind.setB8_Date(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Date")));
-               // ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_O15_Rapid")));
+               ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
                 //ind.setQ801f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801f")));
                // ind.setIndRapid_Comment(cursor2.getString(cursor2.getColumnIndexOrThrow("Rapid_Comment")));
 

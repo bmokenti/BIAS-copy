@@ -27,6 +27,7 @@ public class HIVAssents10_14years extends AppCompatActivity implements Serializa
     protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
     protected EditText Edttubevolume, EdtDate;
     protected CheckBox vol1, vol2, vol3, vol4;
+    protected DatabaseHelper myDB;
     protected Button btnNext, btnDate, btnPrev;
     protected TextView t1, t2, t3, t4, t5, t6, t7, t8;
     @Override
@@ -40,6 +41,12 @@ public class HIVAssents10_14years extends AppCompatActivity implements Serializa
                 lib = new LibraryClass();
         Intent h = getIntent();
         thisHouse = (HouseHold) h.getSerializableExtra("Household");
+
+
+        myDB = new DatabaseHelper(this);
+        myDB.onOpen(myDB.getReadableDatabase());
+
+        myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 
 
@@ -283,7 +290,8 @@ public class HIVAssents10_14years extends AppCompatActivity implements Serializa
                                                         //Next question P17
 
                                                         Intent intent = new Intent(bw.org.statsbots.bias.HIVAssents10_14years.this, Dashboard.class);
-                                                        //intent.putExtra("Household", thisHouse);
+                                                        intent.putExtra("Personroster", p1);
+                                                        intent.putExtra("Household", thisHouse);
                                                         startActivity(intent);
 
 

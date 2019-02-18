@@ -264,9 +264,9 @@ public class started_household extends AppCompatActivity implements Serializable
                                         //**Replace This house with 1 individual
 
 
-                                        Intent q1o2 = new Intent(started_household.this, HIVConsentOver64.class);
-                                        q1o2.putExtra("Personroster", person1);
-                                        startActivity(q1o2);
+                                        //Intent q1o2 = new Intent(started_household.this, HIVConsentOver64.class);
+                                       // q1o2.putExtra("Personroster", person1);
+                                       // startActivity(q1o2);
 
 
                                     }
@@ -300,9 +300,9 @@ public class started_household extends AppCompatActivity implements Serializable
                                             @Override
                                             public void onClick(View view) {
                                                 //**Replace This house with 1 individual
-                                                Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
-                                                q1o2.putExtra("Personroster", person1);
-                                                startActivity(q1o2);
+                                                //Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
+                                               // q1o2.putExtra("Personroster", person1);
+                                                //startActivity(q1o2);
 
 
                                             }
@@ -342,7 +342,8 @@ public class started_household extends AppCompatActivity implements Serializable
                             }
                         }
                         if(individual==null || individual.getIndRapidResults() == null)
-                        {individual = new Individual();
+                        {
+                            individual = new Individual();
                             Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_person_black_24dp);
                             btn.setCompoundDrawablesWithIntrinsicBounds( d,null, null, null);
 
@@ -376,6 +377,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                     Intent q1o2 = new Intent(started_household.this, IndQuetParentalConsent.class);
                                     q1o2.putExtra("Personroster", temp);
                                     q1o2.putExtra("Individual", temp1);
+                                    //Log.d("HHHHH",temp1.getQ101());
                                     q1o2.putExtra("Household", thisHouse);
 
                                     startActivity(q1o2);

@@ -47,6 +47,9 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
             Intent h = getIntent();
             thisHouse = (HouseHold) h.getSerializableExtra("Household");
 
+            Intent r = getIntent();
+            p1 = (PersonRoster) r.getSerializableExtra("Personroster");
+
 
 
 btnNext = (Button)findViewById(R.id.bar_btnNext);
@@ -64,8 +67,10 @@ btnNext = (Button)findViewById(R.id.bar_btnNext);
                     else {
 
                         individual.setIndBarcode(contentTxt.getText().toString());
+
                         Intent intent = new Intent(Barcode.this, q101.class);
                         intent.putExtra("Individual", individual);
+                        intent.putExtra("Personroster", p1);
                         startActivity(intent);
 
                     }
@@ -99,7 +104,7 @@ btnNext = (Button)findViewById(R.id.bar_btnNext);
                 String scanContent = scanningResult.getContents();
                 String scanFormat = scanningResult.getFormatName();
                 formatTxt.setText("FORMAT: " + scanFormat);
-                contentTxt.setText("CONTENT: " + scanContent);
+                contentTxt.setText(scanContent);
             }
             else{
                 Toast toast = Toast.makeText(getApplicationContext(),

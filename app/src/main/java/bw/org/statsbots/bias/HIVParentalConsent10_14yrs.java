@@ -26,6 +26,7 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7,rbtn9, rbtn10,rbtn11,rbtn12, rbtn13,  selected1, selected2, selected3,  selected4, selected5 , selected6 ;
     protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
     protected EditText EDTParentID, EdtDate;
+    protected DatabaseHelper myDB;
     protected CheckBox vol1, vol2, vol3, vol4;
     protected Button btnNext, btnDate, btnPrev;
     protected TextView t1, t2, t3, t4, t5, t6, t7, t8;
@@ -39,6 +40,12 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
 
         Intent h = getIntent();
         p1 = (PersonRoster) h.getSerializableExtra("Personroster");
+
+
+        myDB = new DatabaseHelper(this);
+        myDB.onOpen(myDB.getReadableDatabase());
+
+        myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 
                 lib = new LibraryClass();
@@ -195,13 +202,12 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
                                                     vibs.vibrate(100);
 
                                                 } else {
-                                                        //individual.setIndConsentQuestionnaire(selected1.getText().toString().substring(0, 1));
-                                                        //Check if individual already been saved and update
+
+                                                    thisHouse.getPersons()[p1.getLineNumber()].setU15Rapid_Results(selected3.getText().toString().substring(0,1));
 
 
-                                                        //Next question P17
 
-                                                        Intent intent = new Intent(bw.org.statsbots.bias.HIVParentalConsent10_14yrs.this, HIVAssents10_14years.class);
+                                                    Intent intent = new Intent(bw.org.statsbots.bias.HIVParentalConsent10_14yrs.this, HIVAssents10_14years.class);
                                                         intent.putExtra("Household", thisHouse);
                                                         startActivity(intent);
 

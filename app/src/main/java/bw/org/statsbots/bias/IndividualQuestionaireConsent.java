@@ -122,42 +122,50 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
 
-                } else {
-                    if (Integer.valueOf(p1.getP04YY()) <= 17) {
+                }
+                    else {
+                    if (rbtn2.isChecked()) {
                         individual.setIndvQuestionnaireConsent(selectedRbtn.getText().toString().substring(0, 1));
-                        Intent intent = new Intent(IndividualQuestionaireConsent.this, HIVChildParentalConsent15_17.class);
+
+                        Intent intent = new Intent(IndividualQuestionaireConsent.this, q101.class);
+
                         intent.putExtra("Individual", individual);
                         intent.putExtra("Personroster", p1);
                         startActivity(intent);
-                    }
-                    else
-                    {
+
+                    } else {
 
                         individual.setIndvQuestionnaireConsent(selectedRbtn.getText().toString().substring(0, 1));
                         //Check if individual already been saved and update
-                    /*
-                    myDB = new DatabaseHelper(IndividualQuestionaireConsent.this);
-                    myDB.onOpen(myDB.getReadableDatabase());
-                    myDB.getWritableDatabase();
 
-                    if (myDB.checkIndividual(individual)) {
-                        //Update
-                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                        myDB = new DatabaseHelper(IndividualQuestionaireConsent.this);
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
 
-                    }*/
 
+                        if (myDB.checkIndividual(individual)) {
+                            //Update
+                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+
+                        } else {
+                            //Insert
+                            myDB.insertIndividual(individual);
+
+                        }
 
                         //Next question P17
 
-                        Intent intent = new Intent(IndividualQuestionaireConsent.this, HIVAdultsConsent18Plus.class);
+                        Intent intent = new Intent(IndividualQuestionaireConsent.this, q101.class);
+
                         intent.putExtra("Individual", individual);
                         intent.putExtra("Personroster", p1);
                         startActivity(intent);
 
 
                     }
-
                 }
+
+
             }
         });
 

@@ -56,7 +56,7 @@ public class q618 extends AppCompatActivity implements Serializable {
                     vibs.vibrate(100);
                 }
                 else {
-                                         individual.setQ618(selectedRbtn.getText().toString().substring(0,1));
+                             individual.setQ618(selectedRbtn.getText().toString().substring(0,1));
 
                                         Intent intent = new Intent(q618.this, q619.class);
                                         intent.putExtra("Individual", individual);

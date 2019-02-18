@@ -19,7 +19,7 @@ import android.widget.RadioGroup;
 import java.io.Serializable;
 import java.util.List;
 
-public class q101 extends AppCompatActivity implements View.OnClickListener {
+public class q101 extends AppCompatActivity implements View.OnClickListener, Serializable {
 
     protected HouseHold thisHouse;
     protected Individual individual;
@@ -28,7 +28,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
     protected RadioGroup rbtngroup;
     protected DatabaseHelper myDB;
     protected RadioButton selectedRbtn;
-    Individual p1 = null;
+    protected PersonRoster p1;
     Individual pp1 = null;
 
 
@@ -43,6 +43,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
         rbtn2 = (RadioButton) findViewById(R.id.q101_2);
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+
         final RadioGroup rg = (RadioGroup) findViewById(R.id.q101radioGroup);
 
         Intent i = getIntent();
@@ -51,6 +52,30 @@ public class q101 extends AppCompatActivity implements View.OnClickListener {
 
         Intent h = getIntent();
         thisHouse = (HouseHold) h.getSerializableExtra("Household");
+
+
+        Intent intent = getIntent();
+        p1 = (PersonRoster) intent.getSerializableExtra("Personroster");
+
+        myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+        //if (individual.getIndvQuestionnaireConsent().equals("2") && Integer.valueOf(p1.getP04YY()) >= 18)
+      //  {
+        //    Intent q1o2 = new Intent(q101.this, HIVAdultsConsent18Plus.class);
+
+       //
+        ///    q1o2.putExtra("Individual", individual);
+        //    q1o2.putExtra("Personroster", p1);
+       //     startActivity(q1o2);
+       // }
+
+
+       // if ((individual.getIndvQuestionnaireConsent().equals("2") || individual.getIndvQuestionnairePConsent15_17().equals("2")) && Integer.valueOf(p1.getP04YY()) <= 17)
+      //  {
+//            q1o2.putExtra("Individual", individual);
+        //    q1o2.putExtra("Personroster", p1);
+        //    startActivity(q1o2);
+      //  }
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();

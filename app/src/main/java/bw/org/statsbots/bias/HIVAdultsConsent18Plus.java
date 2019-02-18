@@ -52,12 +52,21 @@ import java.io.Serializable;
                 p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
                 //int p = 0;
 
-                if ( Integer.valueOf(p1.getP04YY()) >= 18) {
+                if ( Integer.valueOf(individual.getQ102()) >= 18 ) {
                     setTitle("Individual Consent [18-64]");
                 }
                 else
                 {
                     setTitle("Individual Assent 15-17");
+                }
+
+
+                if((Integer.valueOf(individual.getQ102()) <= 17  && individual.getPrntlConsentBloodDraw().equals(2) && individual.getPrntlConsentRHT().equals(2)))
+                {
+                    Intent intent = new Intent(HIVAdultsConsent18Plus.this, Dashboard.class);
+                    intent.putExtra("Individual", individual);
+                    intent.putExtra("Personroster", p1);
+                    startActivity(intent);
                 }
                 rg1 = (RadioGroup) findViewById(R.id.rg1);
                 rg2 = (RadioGroup) findViewById(R.id.rg2);
@@ -324,7 +333,7 @@ import java.io.Serializable;
 
 
 
-                                                            Intent intent = new Intent(HIVAdultsConsent18Plus.this, q101.class);
+                                                            Intent intent = new Intent(HIVAdultsConsent18Plus.this, Dashboard.class);
                                                             intent.putExtra("Individual", individual);
                                                             startActivity(intent);
 
@@ -382,7 +391,7 @@ import java.io.Serializable;
 
                                                             }
 
-                                                            Intent intent = new Intent(HIVAdultsConsent18Plus.this, q103.class);
+                                                            Intent intent = new Intent(HIVAdultsConsent18Plus.this, Dashboard.class);
                                                             intent.putExtra("Individual", individual);
                                                             startActivity(intent);
 

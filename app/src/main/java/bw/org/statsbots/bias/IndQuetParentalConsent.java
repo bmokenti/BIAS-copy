@@ -40,29 +40,25 @@ public class IndQuetParentalConsent extends Activity implements Serializable {
 
         setTitle("Indv Ques Parental Consent 10-14 years");
 
-            Intent i = getIntent();
-            individual = (Individual) i.getSerializableExtra("Individual");
-            int p = 0;
-
-        Intent ho = getIntent();
-        thisHouse = (HouseHold) ho.getSerializableExtra("Household");
-        //int p = 0;
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
 
         Intent h = getIntent();
-        p1 = (PersonRoster) h.getSerializableExtra("Personroster");
-//            Intent h = getIntent();
-//            p1 = (PersonRoster) h.getSerializableExtra("Personroster");
-//
-//
-//        Intent in = getIntent();
-//        pp1 = (Individual) in.getSerializableExtra("Individual");
+        thisHouse = (HouseHold) h.getSerializableExtra("Household");
 
-            lib = new LibraryClass();
-            rbtn1 = (RadioButton) findViewById(R.id.indqc_1);
-            rbtn2 = (RadioButton) findViewById(R.id.indqc_2);
+        Intent r = getIntent();
+        p1 = (PersonRoster) r.getSerializableExtra("Personroster");
 
         myDB = new DatabaseHelper(this);
         myDB.onOpen(myDB.getReadableDatabase());
+
+
+        lib = new LibraryClass();
+            rbtn1 = (RadioButton) findViewById(R.id.indqc_1);
+            rbtn2 = (RadioButton) findViewById(R.id.indqc_2);
+
+
 
 
          rg = (RadioGroup) findViewById(R.id.indvradioGroup);
@@ -137,30 +133,54 @@ public class IndQuetParentalConsent extends Activity implements Serializable {
                         vibs.vibrate(100);
 
                     } else {
+                        if (rbtn2.isChecked()) {
 
-                         individual.setIndvQuestionnairePConsent15_17(selectedRbtn.getText().toString().substring(0, 1));
-                        //Check if individual already been saved and update
-                        //myDB = new DatabaseHelper(IndQuetParentalConsent.this);
-                       // myDB.onOpen(myDB.getReadableDatabase());
-                        //myDB.getWritableDatabase();
+                            individual.setIndvQuestionnairePConsent15_17(selectedRbtn.getText().toString().substring(0, 1));
+                            //Check if individual already been saved and update
 
-                       // if (myDB.checkIndividual(individual)) {
+                            myDB = new DatabaseHelper(IndQuetParentalConsent.this);
+                             myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+
+                             if (myDB.checkIndividual(individual)) {
                             //Update
-                         //   myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                               myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
-                       // }
-
-
-                        //Next question P17
-
-                        Intent intent = new Intent(IndQuetParentalConsent.this, IndividualQuestionaireConsent.class);
-                        intent.putExtra("Individual", individual);
-                       intent.putExtra("Personroster", p1);
-                        startActivity(intent);
+                            }
 
 
+                            //Next question P17
+
+                            Intent intent = new Intent(IndQuetParentalConsent.this, HIVChildParentalConsent15_17.class);
+                            intent.putExtra("Individual", individual);
+                            intent.putExtra("Personroster", p1);
+                            startActivity(intent);
+
+
+                        } else {
+                            individual.setIndvQuestionnairePConsent15_17(selectedRbtn.getText().toString().substring(0, 1));
+                            //Check if individual already been saved and update
+                            //myDB = new DatabaseHelper(IndQuetParentalConsent.this);
+                            // myDB.onOpen(myDB.getReadableDatabase());
+                            //myDB.getWritableDatabase();
+
+                            // if (myDB.checkIndividual(individual)) {
+                            //Update
+                            //   myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+
+                            // }
+
+
+                            //Next question P17
+
+                            Intent intent = new Intent(IndQuetParentalConsent.this, IndividualQuestionaireConsent.class);
+                            intent.putExtra("Individual", individual);
+                            intent.putExtra("Personroster", p1);
+                            startActivity(intent);
+
+
+                        }
                     }
-
 
                 }
             });

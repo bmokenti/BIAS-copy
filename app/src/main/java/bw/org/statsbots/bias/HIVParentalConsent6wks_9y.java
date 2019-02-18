@@ -364,83 +364,16 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
                                                     startActivity(intent);
 
                                                 } else {
-                                                    individual.setIndConsentQuestionnaire(selected1.getText().toString().substring(0, 1));
-
-                                                    individual.setIndvBloodDraw(selected1.getText().toString().substring(0, 1));
-                                                    if (vol1.isChecked()) {
-                                                        individual.setBloodVol_1("1");
-                                                    } else {
-                                                        individual.setBloodVol_1("2");
-                                                    }
-                                                    if (vol2.isChecked()) {
-                                                        individual.setBloodVol_4("1");
-                                                    } else {
-                                                        individual.setBloodVol_4("2");
-                                                    }
-                                                    if (vol3.isChecked()) {
-                                                        individual.setBloodVol_6("1");
-                                                    } else {
-                                                        individual.setBloodVol_6("2");
-                                                    }
-                                                    if (vol4.isChecked()) {
-                                                        individual.setBloodVol_10("1");
-                                                    } else {
-                                                        individual.setBloodVol_10("2");
-                                                    }
-                                                    individual.setBloodVolComment(Edttubevolume.getText().toString());
-
-                                                    individual.setB8_O15_Rapid(selected2.getText().toString().substring(0, 1));
-                                                    if (rbtn3.isChecked()) {
-                                                        individual.setIndRapidResults(selected3.getText().toString().substring(0, 1));
-
-                                                    }
-                                                    individual.setIndBloodLabTest(selected4.getText().toString().substring(0, 1));
-                                                    individual.setIndBloodStore(selected5.getText().toString().substring(0, 1));
-
-                                                    individual.setIndRapidDate(EdtDate.getText().toString());
-                                                    individual.setIndBloodSampleCollected(selected6.getText().toString().substring(0, 1));
-
-                                                    //Check if individual already been saved and update
+                                                    thisHouse.getPersons()[p1.getLineNumber()].setU15Rapid_Results(selected3.getText().toString().substring(0,1));
 
 
-                                                    //Next question P17
-                                                    myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
-                                                    myDB.onOpen(myDB.getReadableDatabase());
 
-                                                    if (myDB.checkIndividual(individual)) {
-                                                        //Update
-                                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
-                                                    } else {
-                                                        //Insert
-                                                        myDB.insertIndividual(individual);
-
-                                                    }
-
-                                                    Intent intent = new Intent(HIVParentalConsent6wks_9y.this, q103.class);
-                                                    intent.putExtra("Individual", individual);
-                                                    startActivity(intent);
-
-
-                                                    if ((Integer.valueOf(p1.getP04YY()) <= 1 && (Integer.valueOf(p1.getP04MM()) <= 2 || Integer.valueOf(p1.getP04WKS()) <= 2)) || (Integer.valueOf(p1.getP04MM()) <= 2 || Integer.valueOf(p1.getP04WKS()) <= 2) || Integer.valueOf(p1.getP04YY()) <= 9) {
-
-                                                        Intent intent2 = new Intent(HIVParentalConsent6wks_9y.this, Dashboard.class);
-                                                        // intent.putExtra("Household", thisHouse);
-                                                        startActivity(intent2);
-
-                                                    } else {
-                                                        individual.setIndConsentQuestionnaire(selected1.getText().toString().substring(0, 1));
-                                                        //Check if individual already been saved and update
-
-
-                                                        //Next question P17
-
-                                                        Intent intent1 = new Intent(HIVParentalConsent6wks_9y.this, HIVParentalConsent10_14yrs.class);
+                                                    Intent intent1 = new Intent(HIVParentalConsent6wks_9y.this, HIVParentalConsent10_14yrs.class);
                                                         intent1.putExtra("Household", thisHouse);
                                                         startActivity(intent1);
 
 
-                                                    }
+
                                                 }
                                             }
                                         }

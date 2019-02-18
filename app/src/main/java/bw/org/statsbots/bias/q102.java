@@ -114,7 +114,7 @@ public class q102 extends AppCompatActivity implements Serializable {
 
 
                     //Next question P17
-                    Intent intent = new Intent(q102.this, HIVChildParentalConsent15_17.class);
+                    Intent intent = new Intent(q102.this, q103.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);
 

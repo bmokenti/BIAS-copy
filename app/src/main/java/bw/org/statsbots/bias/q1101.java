@@ -191,7 +191,7 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
                         } else {
 
 
-                            if (rbtn3.isChecked() && rbtn4.isChecked()) {
+                            if (rbtn3.isChecked() || rbtn4.isChecked()) {
 
                                 individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
 

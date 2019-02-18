@@ -45,6 +45,10 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
 
             final RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroupq1114);
 
+        Intent ii = getIntent();
+        p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
+
+
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
 
@@ -113,8 +117,9 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
 
                         }
 
-                        Intent intent = new Intent(q1114.this, Dashboard.class);
+                        Intent intent = new Intent(q1114.this, HIVChildParentalConsent15_17.class);
                         intent.putExtra("Individual",  individual);
+                        intent.putExtra("Personroster", p1);
                         startActivity(intent);
 
                     }

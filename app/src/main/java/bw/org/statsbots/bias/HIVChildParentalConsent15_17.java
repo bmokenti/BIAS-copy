@@ -24,6 +24,7 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
     protected Individual individual;
     protected String currentHH = null;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7,rbtn9, rbtn10,rbtn11,rbtn12, rbtn13,  selected1, selected2, selected3,  selected4, selected5 , selected6 ;
     protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
     protected EditText Edttubevolume, EdtDate;
@@ -44,8 +45,24 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
 
         Intent ii = getIntent();
         p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
-       // int p = 0;
 
+       // int p = 0;
+if(Integer.valueOf(individual.getQ102()) >= 18 && (individual.getQ1114().equals("1") || individual.getQ1114().equals("2")))
+{
+    Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
+    intent.putExtra("Individual", individual);
+    intent.putExtra("Personroster", p1);
+    startActivity(intent);
+}
+/*
+        if( Integer.valueOf(p1.getP04YY()) >= 18)
+        {
+            Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
+            intent.putExtra("Individual", individual);
+            intent.putExtra("Personroster", p1);
+            startActivity(intent);
+        }
+*/
 
         lib = new LibraryClass();
 
@@ -178,7 +195,7 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
                             selected4 = (RadioButton) findViewById(selectedId4);
 
                             if (selected4 == null && rbtn1.isChecked()) {
-                                lib.showError(HIVChildParentalConsent15_17.this, "Laboratory: Error: 3", "3. Do you agree for your blood sample to be sent to the laboratory for additional HIV related testing?");
+                                lib.showError(HIVChildParentalConsent15_17.this, "Laboratory: Error: 3", "3. Do you agree for your childs blood sample to be sent to the laboratory for additional HIV related testing?");
                                 /**
                                  * VIBRATE DEVICE
                                  */
@@ -190,7 +207,7 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
                                 selected5 = (RadioButton) findViewById(selectedId5);
 
                                 if (selected5 == null && rbtn1.isChecked()) {
-                                    lib.showError(HIVChildParentalConsent15_17.this, "Storage: Error: 4", "4. Do you agree for your blood sample to be stored for up to 5 years for future HIV/TB - related research?");
+                                    lib.showError(HIVChildParentalConsent15_17.this, "Storage: Error: 4", "4. Do you agree for your Childs blood sample to be stored for up to 5 years for future HIV/TB - related research?");
                                     /**
                                      * VIBRATE DEVICE
                                      */
@@ -212,8 +229,23 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
                                         if (rbtn2.isChecked()) {
                                             individual.setPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
                                             individual.setPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
-                                            individual.setPrntlParentID(selected5.getText().toString().substring(0, 1));
+                                           // individual.setPrntlParentID(selected5.getText().toString().substring(0, 1));
                                             individual.setPrntlConsentDate(EdtDate.getText().toString());
+
+
+                                            myDB = new DatabaseHelper(HIVChildParentalConsent15_17.this);
+                                            myDB.onOpen(myDB.getReadableDatabase());
+
+                                            if (myDB.checkIndividual(individual)) {
+                                                //Update
+                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+
+                                            } else {
+                                                //Insert
+                                                myDB.insertIndividual(individual);
+
+                                            }
+
                                             Intent intent = new Intent(HIVChildParentalConsent15_17.this, Dashboard.class);
                                             intent.putExtra("Individual", individual);
 
@@ -231,6 +263,18 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
 
 
                                             //Next question P17
+                                            myDB = new DatabaseHelper(HIVChildParentalConsent15_17.this);
+                                            myDB.onOpen(myDB.getReadableDatabase());
+
+                                            if (myDB.checkIndividual(individual)) {
+                                                //Update
+                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+
+                                            } else {
+                                                //Insert
+                                                myDB.insertIndividual(individual);
+
+                                            }
 
                                             Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
                                             intent.putExtra("Individual", individual);
