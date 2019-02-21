@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final Drawable deleteIcon=this.getResources(). getDrawable( R.drawable.ic_delete_forever_black_24dp);
@@ -81,21 +82,30 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         //Log.d("DB Name: ",myDB.getDatabaseName().toString() );
         myDB.onOpen(myDB.getWritableDatabase());
 
+
+        Log.d("House", thisHouse.getAssignment_ID());
+
         //***************************Read Roster from Database and load it into Object thisHouse
         List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
-        thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
+
 
         final int memberExist[]= new int[1];//tracker of exist roster
 
         if(list.size()>0)
         {
 
+            PersonRoster[] pp = new PersonRoster[list.size()];
+            pp = list.toArray(pp);
+            thisHouse.setHouseHoldeMembers(pp);
             memberExist[0] = 1;
         }
 
 
         final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.memberlist);
         linearLayout.setPadding(40,2,2,2);
+
+        if(thisHouse.getPersons() !=null){
+
 
         for(int ii = 0;ii<thisHouse.getPersons().length;ii++)
         {
@@ -227,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                     }
                 });
 
+                btnPremove.setEnabled(false);
                 /**
                  * Set onKeyListener to text box to update remove person button tex
                  */
@@ -275,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             }
 
         }
-
+        }
 
         /**
          * Button to add household member
@@ -501,20 +512,54 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                     positiveButton.setLayoutParams(positiveButtonLL);
 
                 }else{
-                    //Complete the list entry
+                    //Complete the list entry\
+                    int c=0;
+                    for (EditText ed:hhArray) {
+                        if(ed!=null){
+                            if(!ed.getText().toString().isEmpty()){
+                                c++;
+                            }
+                        }
+                    }
+
+
+                    counter = c;
                     final CharSequence[] list = new String[counter];
                     for(int i =0;i<counter;i++){
 
                             list[i]= (i+1) + " - " + hhArray[i].getText().toString();
+                            Log.d("Roster ",hhArray.length + " ---- " + counter);
+
                             if(memberExist[0]==1){
-                                if(thisHouse.getPersons()!=null){
-                                    if(thisHouse.getPersons()[i].getP02() != null ){
-                                        if(thisHouse.getPersons()[i].getP02().equals("00")){
-                                            Head = i;
+
+                                if(counter == thisHouse.getPersons().length){
+
+                                    if(thisHouse.getPersons()!=null){
+                                        if(thisHouse.getPersons()[i].getP02() != null ){
+                                            if(thisHouse.getPersons()[i].getP02().equals("00")){
+                                                Head = i;
+                                            }
+
+                                        }
+                                    }
+                                }else{
+
+                                    if(thisHouse.getPersons()!=null){
+                                        if(i==thisHouse.getPersons().length && thisHouse.getPersons().length!=0 ){
+                                            break;
+                                        }else{
+                                            if(thisHouse.getPersons()[i].getP02() != null ){
+                                                if(thisHouse.getPersons()[i].getP02().equals("00")){
+                                                    Head = i;
+                                                }
+
+                                            }
                                         }
 
                                     }
+
                                 }
+
 
                             }
 
@@ -528,18 +573,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                     builder.setTitle("Select/Confirm head of House");
                     int selected = Head; // or whatever you want
 
-
                     builder.setIcon(R.drawable.ic_person_black_24dp);
-                    //builder.setMessage("The person you are about to remove is considered Head of Household. Are you sure you want to remove head?" + list[2].toString());
-                   /* builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //Do nothing only when the Head of House is selected we proceed.
-
-                        }
-                    });*/
-
-
-
                     builder.setSingleChoiceItems(list, selected, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
@@ -586,15 +620,42 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
                             if(ll.size()>0)
                             {
+
+
                                 List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
 
                                 thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
 
-                                for(int ii =0; ii<list.size();ii++){
-                                    thisHouse.getPersons()[ii].setP01(p[ii].getP01());
+                                Log.d("Memmbers", thisHouse.getPersons().length+"");
+                                List<PersonRoster> kTemp = new ArrayList<>();
+
+                                for(int ii =0; ii<plist.length;ii++){
+                                    if(ii > thisHouse.getPersons().length-1 )
+                                    {
+                                        kTemp.add(p[ii]);
+                                    }else {
+                                        thisHouse.getPersons()[ii].setP01(p[ii].getP01());
+                                    }
+
+                                    Log.d("Check Persons", ii+"======================");
                                 }
 
-                                //thisHouse.setHouseHoldeMembers(r.clone());
+                                List<PersonRoster> finalList = new ArrayList<>();
+                                for (PersonRoster pp:thisHouse.getPersons()) {
+                                    finalList.add(pp);
+
+                                }
+                                for (PersonRoster pp:kTemp) {
+                                    finalList.add(pp);
+                                    //Insert this member to DB
+                                    myDB.insertPerson(pp,thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+                                }
+
+
+
+                                PersonRoster[] pp = new PersonRoster[finalList.size()];
+                                pp = finalList.toArray(pp);
+                                thisHouse.setHouseHoldeMembers(pp);
 
                                 myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
 
@@ -625,18 +686,6 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
                         }
                     });
-
-                    /*builder.setItems(list, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-
-
-                        }
-                    });*/
-
-
-
 
                     AlertDialog ad = builder.show();
 

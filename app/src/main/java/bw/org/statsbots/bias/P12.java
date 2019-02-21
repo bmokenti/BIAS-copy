@@ -335,6 +335,7 @@ public class P12 extends AppCompatActivity implements Serializable {
                         //Restart the current activity for previous individual
                         int n = p1.getSRNO() - 1;
                         thisHouse.previous = String.valueOf(n);
+                        thisHouse.next = null;
 
                         finish();
 

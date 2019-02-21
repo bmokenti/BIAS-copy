@@ -127,7 +127,7 @@
                     android:id="@+id/H05_other"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="8. Mud Poles and reeds" />
+                    android:text="7. Other Specify" />
 
                 <EditText
                     android:id="@+id/H05_txtOther"

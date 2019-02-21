@@ -186,9 +186,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         tabLayout.setupWithViewPager(viewPager);
     }
 
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -204,7 +201,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
     {
         return false;
     }
-
 
     /***
      * ACTIONS FROM LOGOUT AND SETTINGS OPTION MENU
@@ -251,7 +247,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 new SyncAssignments().execute();
                 new SyncSample().execute();
                 new SyncEAssgn().execute();
-
+                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vibs.vibrate(100);
 
 
 
@@ -265,8 +262,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                     /**
                      * VIBRATE DEVICE
                      */
-                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                    vibs.vibrate(100);
+                    Vibrator vibs1 = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs1.vibrate(100);
 
                 }
                 else{

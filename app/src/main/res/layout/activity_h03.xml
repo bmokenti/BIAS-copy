@@ -144,7 +144,7 @@
                     android:id="@+id/H03_other"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Other specify" />
+                    android:text="09. Other specify" />
 
                 <EditText
                     android:id="@+id/H03_txtOther"

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class H03 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
@@ -28,7 +30,7 @@ public class H03 extends AppCompatActivity implements View.OnClickListener, Seri
     protected EditText edt;
     protected RadioButton selectedRbtn;
     PersonRoster p1 = null;
-    Individual pp1 = null;
+    Individual pp1 = null;protected DatabaseHelper myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,18 +69,75 @@ public class H03 extends AppCompatActivity implements View.OnClickListener, Seri
                 }
             }
         });
-        //rbtn1.setOnClickListener(this);
-        //rbtn2.setOnClickListener(this);
 
-        // final int selectedId = rbtngroup.getCheckedRadioButtonId();
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
 
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
+
+        List<HouseHold> houseList = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        myDB.close();
+
+        if(houseList.size()>0){
+            thisHouse=houseList.get(0);
+        }
+
+
+        RadioButton[] bt = new RadioButton[9];
+
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(thisHouse.getH03()!= null)
+                {
+
+                    if(Integer.parseInt(thisHouse.getH03())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+
+                    if(thisHouse.getH03Other()!=null){
+                        rbtn9.setChecked(true);
+                        edt.setText(thisHouse.getH03Other());
+                    }
+                }
+            }
+            else
+            {
+                Log.d("Lost Here","**********");
+            }
+        }
+
+
+
+
+
+
         int p = 0;
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
+        Button btnPrev = findViewById(R.id.button3);
+//        PersonRoster pr[] = thisHouse.getPersons();
 
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+
+
+
+            }
+        });
 
         btnext.setOnClickListener(new View.OnClickListener()
 
@@ -146,6 +205,16 @@ public class H03 extends AppCompatActivity implements View.OnClickListener, Seri
                             positiveButton.setLayoutParams(positiveButtonLL);
                         }else{
                             thisHouse.setH03Other(edt.getText().toString());
+                            thisHouse.setH03(selectedRbtn.getText().toString().substring(0,2));
+
+                            DatabaseHelper myDB = new DatabaseHelper(H03.this);
+                            myDB.onOpen(myDB.getWritableDatabase());
+
+                            //UPDATE HOUSEHOLD
+                            myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H03", thisHouse.getH03());
+                            myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H03Other", thisHouse.getH03Other());
+                            myDB.close();
+
 
                             Intent q1o2 = new Intent(H03.this, H04.class);
                             q1o2.putExtra("Household",  thisHouse);
@@ -153,6 +222,14 @@ public class H03 extends AppCompatActivity implements View.OnClickListener, Seri
                         }
                     }else{
                         thisHouse.setH03(selectedRbtn.getText().toString().substring(0,2));
+
+                        DatabaseHelper myDB = new DatabaseHelper(H03.this);
+                        myDB.onOpen(myDB.getWritableDatabase());
+
+                        //UPDATE HOUSEHOLD
+                        myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H03", thisHouse.getH03());
+                        myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H03Other", null);
+                        myDB.close();
 
                         Intent q1o2 = new Intent(H03.this, H04.class);
                         q1o2.putExtra("Household",  thisHouse);
