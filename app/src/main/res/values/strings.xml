@@ -61,10 +61,49 @@ At this time, do you want to ask me anything about: Your blood being taken in yo
 
 PERMISSION STATEMENT
 This consent form has been read out to you and you have been given a copy. Any questions that you had have been answered satisfactorily. You know that after choosing to participate in the survey, you may withdraw at any time if you so wish. You know that your participation is voluntary. You have been given sufficient time to consent.
+ </string>
 
 
+    <string name="TbIndQuesInfo">
+       PURPOSE OF THE SURVEY
+This survey will help us to know how many people in Botswana have HIV, how many people have TB and need health services. It will also tell us about people’s risk for getting HIV and TB. We plan to ask about 38 000 individuals to join this survey. If you participate, your taking part will help MoHW make health services better in the country. 
+SURVEY PROCEDURES
+If you join this survey, we will administer an individual questionnaire. We will, thereafter, invite you to the TB station, which is located in your area, to carry out Chest x-ray screening and sputum collection if you are illegible. If you have a symptom of TB and/or your CXR is abnormal, we will request that you submit 2 specimens of what comes out when you cough (sputum), one on the spot and another after 1 hour. These specimens will be sent to the National TB Reference Lab to test for TB.  You will be offered HIV testing and counseling which will take about 45 minutes.  You may agree to the interview without agreeing to give your blood or to test for TB and vice versa.
+INTERVIEWS 
+If you do participate in this survey, we will ask you questions about your demographics, and your behavior. The interview will take about 45 minutes. 
+CXR, SPUTUM COLLECTION, TESTING, AND RESULTS RETURN:
+We will ask you for consent for the TB screening which will involve a Chest x-ray (CXR) and 2 sputum sample collections if your symptoms and/or CXR indicate it is necessary. If you screen positive for TB symptoms, have an abnormal CXR, refuse CXR or symptom screening, or are unable to undergo a CXR then you are eligible for sputum collection. All participants with abnormal CXR will undergo HIV testing at the TB station if they had not tested at the household level. We will prick your finger to obtain a blood sample to use in an HIV rapid test. You will be referred to care if HIV positive. A medical officer will discuss your screening results, why you may have been chosen for sputum collection, next steps, and answer any questions you may have. 
+If you test positive for TB in at least one of your sputum samples, we will send your CXR results and treatment history to a medical panel for review. Inconclusive cases may have sputum samples sent for culture. All case identified as TB during the survey will be linked to patient care. 
+STORAGE OF XRAYS
+We would like to ask for your permission to store CXR data in duplicate for 2 years to allow for re-analysis in cases there are any queries to the survey results during this period, after which they will be destroyed. 
+Your participation in the survey is voluntary and if you decide to participate, you may change your mind at any time and stop taking part. If you decide not to take part, it will not affect access to healthcare in any way. 
+RISKS
+The risks of participation are minimal. We will do everything we can to keep your information confidential. You may feel uncomfortable about some of the questions we will ask and you may refuse to answer any question. If you take part, you will be offered free testing for TB and HIV.  
+BENEFITS
+Your participation in the survey will inform you of your TB status. TB positive participants will be promptly started on treatment. The information you provide will also be used to improve the health of Batswana. Your responses will help us develop more effective programs to fight TB and other diseases in Botswana. 
+COSTS
+There is no cost to you for being part of the survey and you will not be paid for your participation.
+CONFIDENTIALITY
+What we talk about during the survey will be kept private, even from your family, and will not be shown to anyone outside of the survey team.  Your answers to the questions will be identified only by a number and not by your name. Your name will not appear on any survey results that we share with MoHW, publish or present at scientific meetings. The information we collect during the survey will not be released outside of the survey groups listed unless there is an issue of safety.
+The following individuals and/or agencies will be able to look at your interview records to help oversee the conduct of this survey:
+1.	Staff members from Institutional Review Boards or Ethics Committees overseeing the conduct of this survey to ensure that we are protecting your rights as a person taking part in the survey. These include the Botswana Human Research Development Committee (HRDC), the Institutional Review Boards at the Centers for Disease Control and Prevention (CDC) and the WHO Task Force for TB.
+2.	Survey staff and monitors.
+Your permission to allow us to use and share your information with the groups above will expire five years after the end of the survey. If during or post the survey you want your information to be removed from the survey data, or have any questions about the survey, or feel that you have been harmed by taking part, you should contact the Botswana Human Research Development Committee (HRDC) and NACA, MoHW:
+Principal Investigator: 
+Oaitse I Motsamai, MPH, DrPH, (NACA-Research Monitoring and Evaluation)
+Phone Number: +267-3710314.  Fax Number: +267-3170960. 
+Physical Address: Unit 9, Westgate Mall Western By-Pass Phase 2. 
+Private Bag 00463 Gaborone 
+Phone: +267 3654811
+Email: oimotsamai@gmail.com
 
-    </string>
+If you have any questions about your rights as a participant in this survey, you can contact HRDC using the following addresses:
+
+Chairperson of Botswana Human Research Development Committee
+Plot 54609, Government Enclave
+Private Bag 0038, Gaborone
+www.moh.gov.bw
+     </string>
     <string name="Head">00 Head</string>
     <string name="Spouse">01 Spouse/Partner</string>
     <string name="Son">02 Son/Daughter</string>
@@ -2256,6 +2295,10 @@ This consent form has been read out to you and you have been given a copy. Any q
     <string name="title_activity_hivparental_consent10_14yrs">HIVParentalConsent10_14yrs</string>
     <string name="title_activity_hivassents10_14years">HIVAssents10_14years</string>
     <string name="title_activity_ind_quet_parental_consent">IndQuetParentalConsent</string>
+    <string name="title_activity_tb__xray_consent">tb_XRay_consent</string>
+    <string name="title_activity_tb__ind__consent">TB_Ind_Consent</string>
+    <string name="title_activity_tb__xray__consent">Tb_XRay_Consent</string>
+    <string name="title_activity_tb__parental__consents">TB_Parental_Consents</string>
 
 
 </resources>

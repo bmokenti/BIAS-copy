@@ -31,7 +31,7 @@ public class q105 extends AppCompatActivity implements Serializable{
     protected DatabaseHelper myDB;
     protected EditText edt, edt1, edt2;
     TextView q105text;
-    PersonRoster p1 = null;
+    protected  PersonRoster p1 ;
     Individual pp1 = null;
 
     @Override
@@ -60,17 +60,23 @@ public class q105 extends AppCompatActivity implements Serializable{
 
         final RadioGroup rg = (RadioGroup)findViewById(R.id.q105radioGroup);
 
-        myDB = new DatabaseHelper(q105.this);
-        myDB.onOpen(myDB.getReadableDatabase());
-        myDB.getWritableDatabase();
+
         lib = new LibraryClass();
 
         //edittext = (EditText) findViewById(R.id.q102_years);
         //edittext.setVisibility(View.VISIBLE);
+        Intent ii = getIntent();
+        p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
 
+
+        myDB = new DatabaseHelper(q105.this);
+        myDB.onOpen(myDB.getReadableDatabase());
+
+        myDB.getWritableDatabase();
+//        myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
         int p = 0;
 
         edt1.clearFocus();
@@ -95,17 +101,15 @@ public class q105 extends AppCompatActivity implements Serializable{
                 int selectedId = rg.getCheckedRadioButtonId();
                 selectedRbtn = (RadioButton) findViewById(selectedId);
 
-                if(selectedRbtn == null)
-                {
-                    lib.showError(q105.this,"q105 Error","Please select employment status");
+                if (selectedRbtn == null) {
+                    lib.showError(q105.this, "q105 Error", "Please select employment status");
                     /**
                      * VIBRATE DEVICE
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
 
-                }
-                else {
+                } else {
                     if (rbtn9.isChecked() && (edt.getText() == null || edt.length() == 0)) {
                         lib.showError(q105.this, "q105 Other specify", "If the Other specify button is selected, other specify box should have a value");
                         /**
@@ -126,7 +130,7 @@ public class q105 extends AppCompatActivity implements Serializable{
 
 
                         } else {
-                            if ((rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn9.isChecked()) && edt2.length() == 0 || edt2.getText() == null  ) {
+                            if ((rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn9.isChecked()) && edt2.length() == 0 || edt2.getText() == null) {
                                 lib.showError(q105.this, "q105b Error", "What is the main product, service or activity at your place of work?");
                                 /**
                                  * VIBRATE DEVICE
@@ -136,73 +140,197 @@ public class q105 extends AppCompatActivity implements Serializable{
 
 
                             } else {
-                                if (rbtn9.isChecked())
-                                {
-                                    individual.setQ105(selectedRbtn.getText().toString().substring(0,1));
-                                    individual.setQ105Other(edt.getText().toString());
-                                    //individual.setQ105(edt.getText().toString());
-
-                                    individual.setQ105a(edt1.getText().toString());
-                                    individual.setQ105b(edt2.getText().toString());
 
 
+                                if (((p1.getP15() == null || p1.getP15() != null) && (!edt1.getText().equals("") || edt1.length() > 0) && (rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() )) ||
+                                        ((p1.getP16() == null || p1.getP16() != null) && (!edt2.getText().equals("") || edt1.length() >0) && (rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() ))) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(q105.this);
+                                    builder.setTitle("Work in the past seven days.");
+                                    builder.setIcon(R.drawable.ic_warning_orange_24dp);
+                                    builder.setMessage("Do you want to update P15 and P16");
+                                    builder.setPositiveButton("No changes", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
 
-                                    if(myDB.checkIndividual(individual)){
-                                        //Update
-                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                            individual.setQ105(selectedRbtn.getText().toString().substring(0, 1));
+                                            if(rbtn9.isChecked()){
+                                                individual.setQ105Other(edt.getText().toString());
+                                            }
 
-                                    }else{
-                                        //Insert
-                                        myDB.insertIndividual(individual);
+                                            if(rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn9.isChecked())
+                                            {
+                                                individual.setQ105a(edt1.getText().toString());
+                                                individual.setQ105a(edt2.getText().toString());
+                                            }
+                                            //Restart the current activity for next individual
 
-                                    }
+                                            //individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
 
 
-                                    Intent intent = new Intent(q105.this, q106.class);
-                                    intent.putExtra("Individual", individual);
-                                    startActivity(intent);
+                                            //Check if individual already been saved and update
+                                            myDB = new DatabaseHelper(q105.this);
+                                            myDB.onOpen(myDB.getReadableDatabase());
 
+                                            if (myDB.checkIndividual(individual)) {
+
+                                                //Update
+                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+
+                                            } else {
+                                                //Insert
+                                                myDB.insertIndividual(individual);
+
+                                            }
+                                            Intent intent = new Intent(q105.this, q106.class);
+                                            intent.putExtra("Individual", individual);
+                                            intent.putExtra("Personroster", p1);
+                                            startActivity(intent);
+
+                                        }
+
+                                    });
+
+                                    builder.setNegativeButton("Ammend", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+
+                                            myDB = new DatabaseHelper(q105.this);
+                                            myDB.onOpen(myDB.getReadableDatabase());
+
+
+                                            p1.setP15(edt1.getText().toString());
+
+                                            myDB.updateConsents("P15", p1.getAssignmentID(), p1.getBatch(), p1.getP15(), String.valueOf(p1.getSRNO()));
+
+                                            p1.setP16(edt2.getText().toString());
+
+                                            myDB.updateConsents("P16", p1.getAssignmentID(), p1.getBatch(), p1.getP16(), String.valueOf(p1.getSRNO()));
+
+
+                                            //Restart the current activity for next individual
+
+                                            //Check if individual already been saved and update
+
+                                            individual.setQ105(selectedRbtn.getText().toString().substring(0, 1));
+                                            if(rbtn9.isChecked()){
+                                                individual.setQ105Other(edt.getText().toString());
+                                            }
+
+                                            if(rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn9.isChecked())
+                                            {
+                                                individual.setQ105a(edt1.getText().toString());
+                                                individual.setQ105a(edt2.getText().toString());
+                                            }
+
+
+                                            if (myDB.checkIndividual(individual)) {
+                                                //Update
+                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+
+                                            } else {
+                                                //Insert
+                                                myDB.insertIndividual(individual);
+
+                                            }
+                                            Intent intent = new Intent(q105.this, q106.class);
+                                            intent.putExtra("Individual", individual);
+                                            intent.putExtra("Personroster", p1);
+                                            startActivity(intent);
+
+                                        }
+                                    });
+
+                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                    vibs.vibrate(100);
+
+                                    AlertDialog alertDialog = builder.show();
+                                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                                    final Button negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+                                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                                    LinearLayout.LayoutParams negativeButtonLL = (LinearLayout.LayoutParams) negativeButton.getLayoutParams();
+
+                                    positiveButton.setTextColor(Color.WHITE);
+                                    negativeButton.setTextColor(Color.WHITE);
+
+                                    positiveButton.setBackgroundColor(Color.parseColor("#3180e9"));
+                                    negativeButton.setBackgroundColor(Color.parseColor("#3180e9"));
+
+                                    positiveButtonLL.leftMargin = 10;
+
+                                    negativeButtonLL.weight = 10;
+                                    positiveButtonLL.weight = 10;
+
+                                    positiveButton.setLayoutParams(positiveButtonLL);
+                                    negativeButton.setLayoutParams(negativeButtonLL);
 
                                 } else {
+                                    if (rbtn9.isChecked()) {
+                                        individual.setQ105(selectedRbtn.getText().toString().substring(0, 1));
+                                        individual.setQ105Other(edt.getText().toString());
+                                        //individual.setQ105(edt.getText().toString());
+
+                                        individual.setQ105a(edt1.getText().toString());
+                                        individual.setQ105b(edt2.getText().toString());
 
 
-                                    individual.setQ105(selectedRbtn.getText().toString().substring(0,1));
+                                        if (myDB.checkIndividual(individual)) {
+                                            //Update
+                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
-                                    individual.setQ105a(edt1.getText().toString());
-                                    individual.setQ105b(edt2.getText().toString());
+                                        } else {
+                                            //Insert
+                                            myDB.insertIndividual(individual);
 
-                                    //individual.setQ105Other(edt.getText().toString());
-                                    //Set P02 fir the current individual
-                                    //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
-                                    //Restart the current activity for next individual
+                                        }
 
-                                    //update individual
-                                    DatabaseHelper myDB = new DatabaseHelper(q105.this);
 
-                                    if(myDB.checkIndividual(individual)){
-                                        //Update
-                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        Intent intent = new Intent(q105.this, q106.class);
+                                        intent.putExtra("Individual", individual);
+                                        intent.putExtra("Personroster", p1);
+                                        startActivity(intent);
 
-                                    }else{
-                                        //Insert
-                                        myDB.insertIndividual(individual);
+
+                                    } else {
+
+
+                                        individual.setQ105(selectedRbtn.getText().toString().substring(0, 1));
+
+                                        individual.setQ105a(edt1.getText().toString());
+                                        individual.setQ105b(edt2.getText().toString());
+
+                                        //individual.setQ105Other(edt.getText().toString());
+                                        //Set P02 fir the current individual
+                                        //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
+                                        //Restart the current activity for next individual
+
+                                        //update individual
+                                        DatabaseHelper myDB = new DatabaseHelper(q105.this);
+
+                                        if (myDB.checkIndividual(individual)) {
+                                            //Update
+                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+
+                                        } else {
+                                            //Insert
+                                            myDB.insertIndividual(individual);
+
+
+                                        }
+
+
+                                        //Next question P17
+                                        Intent intent = new Intent(q105.this, q106.class);
+                                        intent.putExtra("Individual", individual);
+                                        intent.putExtra("Personroster", p1);
+                                        startActivity(intent);
 
 
                                     }
-
-
-                                    //Next question P17
-                                    Intent intent = new Intent(q105.this, q106.class);
-                                    intent.putExtra("Individual", individual);
-                                    startActivity(intent);
-
-
                                 }
-
-
                             }
                         }
                     }
+
                 }
             }
         });
@@ -322,14 +450,7 @@ public class q105 extends AppCompatActivity implements Serializable{
 
                 edt1.setEnabled(true);
                 edt2.setEnabled(true);
-
-
                 break;
-
-
-
-
-
 
         }
     }

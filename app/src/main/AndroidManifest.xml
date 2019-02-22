@@ -27,8 +27,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".TB_Parental_Consents"
+            android:label="@string/title_activity_tb__parental__consents"></activity>
+        <activity
+            android:name=".Tb_XRay_Consent"
+            android:label="@string/title_activity_tb__xray__consent" />
+        <activity
+            android:name=".TB_Ind_Consent"
+            android:label="@string/title_activity_tb__ind__consent" />
+        <activity
             android:name=".IndQuetParentalConsent"
-            android:label="@string/title_activity_ind_quet_parental_consent"></activity>
+            android:label="@string/title_activity_ind_quet_parental_consent" />
         <activity
             android:name=".HIVAssents10_14years"
             android:label="@string/title_activity_hivassents10_14years" />

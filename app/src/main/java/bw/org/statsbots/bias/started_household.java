@@ -263,10 +263,10 @@ public class started_household extends AppCompatActivity implements Serializable
                                     public void onClick(View view) {
                                         //**Replace This house with 1 individual
 
-
-                                        //Intent q1o2 = new Intent(started_household.this, HIVConsentOver64.class);
-                                       // q1o2.putExtra("Personroster", person1);
-                                       // startActivity(q1o2);
+                                ////replaced HIVConsentOver64
+                                       Intent q1o2 = new Intent(started_household.this, Barcode.class);
+                                        q1o2.putExtra("Personroster", person1);
+                                        startActivity(q1o2);
 
 
                                     }
@@ -279,9 +279,17 @@ public class started_household extends AppCompatActivity implements Serializable
                                     Info="Pending Blood Collection & Rapid";
                                     Drawable d1 = ContextCompat.getDrawable(started_household.this, R.drawable.ic_face_blue_24dp);
                                     btn.setCompoundDrawablesWithIntrinsicBounds( d1,null, null, null);
+                                    btn.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent q1o2 = new Intent(started_household.this, Barcode.class);
+                                            q1o2.putExtra("Personroster", person1);
+                                            startActivity(q1o2);
+                                        }
+                                    });
 
-
-                                }else
+                                }
+                                else
                                 {
                                     if(yy==0 && mm <=2  ){
                                         btn.setEnabled(false);
@@ -290,6 +298,9 @@ public class started_household extends AppCompatActivity implements Serializable
                                         btn.setCompoundDrawablesWithIntrinsicBounds( d1,null, null, null);
 
 
+                                        Intent q1o2 = new Intent(started_household.this, Barcode.class);
+                                        q1o2.putExtra("Personroster", person1);
+                                        startActivity(q1o2);
 
                                     }
                                     else {
@@ -300,9 +311,10 @@ public class started_household extends AppCompatActivity implements Serializable
                                             @Override
                                             public void onClick(View view) {
                                                 //**Replace This house with 1 individual
-                                                //Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
-                                               // q1o2.putExtra("Personroster", person1);
-                                                //startActivity(q1o2);
+                                                Intent q1o2 = new Intent(started_household.this, Barcode.class);
+
+                                                q1o2.putExtra("Personroster", person1);
+                                                startActivity(q1o2);
 
 
                                             }
@@ -374,7 +386,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                 @Override
                                 public void onClick(View view) {
                                     //**Replace This house with 1 individual
-                                    Intent q1o2 = new Intent(started_household.this, IndQuetParentalConsent.class);
+                                    Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                     q1o2.putExtra("Personroster", temp);
                                     q1o2.putExtra("Individual", temp1);
                                     //Log.d("HHHHH",temp1.getQ101());

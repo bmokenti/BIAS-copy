@@ -371,7 +371,7 @@ public class q617 extends AppCompatActivity implements Serializable {
 
 
                                         Intent intent = new Intent(q617.this, q618.class);
-                                        intent.putExtra("Household", thisHouse);
+                                        intent.putExtra("Individual", individual);
                                         startActivity(intent);
                                     }
                                 }

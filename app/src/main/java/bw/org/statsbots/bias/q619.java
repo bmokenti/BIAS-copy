@@ -165,7 +165,6 @@ public class q619 extends AppCompatActivity implements Serializable {
                                 individual.setQ619_1("2");
                             }
 
-
                             if (ck2txt.isChecked()) {
                                 individual.setQ619_2("1");
                             } else {

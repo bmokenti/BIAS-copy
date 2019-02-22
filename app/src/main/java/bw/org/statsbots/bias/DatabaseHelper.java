@@ -173,43 +173,42 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    private static final String ChildBloodDraw = "ChildBloodDraw";
-    private static final String ChildBloodVol_1 = "ChildBloodVol_1";
-    private static final String ChildBloodVol_4 = "ChildBloodVol_4";
-    private static final String ChildBloodVol_6 = "ChildBloodVol_6";
-    private static final String ChildBloodVol_10 = "ChildBloodVol_10";
-    private static final String ChildBloodVolComment = "ChildBloodVolComment";
-    private static final String Child_Rapid = "Child_Rapid";
-    private static final String ChildRapidResults = "ChildRapidResults";
-    private static final String ChildBloodLabTest = "ChildBloodLabTest";
-    private static final String ChildBloodStore = "ChildBloodStore";
-    private static final String ChildRapidDate = "ChildRapidDate";
-    private static final String ChildBloodSampleCollected = "ChildBloodSampleCollected";
+    private static final String BloodDraw = "BloodDraw";
+    private static final String BloodVolume_1 = "BloodVolume_1";
+    private static final String BloodVolume_4 = "BloodVolume_4";
+    private static final String BloodVolume_6 = "BloodVolume_6";
+    private static final String BloodVolume_10 = "BloodVolume_10";
+    private static final String BloodVolumeComment = "BloodVolumeComment";
+    private static final String Rapid = "Rapid";
+    private static final String RapidResults = "RapidResults"; //B8_UnderRapid
+    private static final String BloodLabTest = "BloodLabTest";
+    private static final String BloodStore = "BloodStore";
+    private static final String RapidDate = "RapidDate";
+    private static final String BloodSampleCollected = "BloodSampleCollected";
     private static final String ChPrntlConsentBloodDraw = "ChPrntlConsentBloodDraw";
     private static final String ChPrntlConsentRHT = "ChPrntlConsentRHT";
     private static final String ChPrntlConsentLabTest = "ChPrntlConsentLabTest";
     private static final String ChPrntlConsentBloodStore = "ChPrntlConsentBloodStore";
     private static final String B3_Guardian = "B3_Guardian";
     private static final String ChPrntlConsentDate = "ChPrntlConsentDate";
-    private static final String Ov64BloodDraw = "Ov64BloodDraw";
-    private static final String Ov64BloodVol_1 = "Ov64BloodVol_1";
-    private static final String Ov64BloodVol_4 = "Ov64BloodVol_4";
-    private static final String Ov64BloodVol_6 = "Ov64BloodVol_6";
-    private static final String Ov64BloodVol_10 = "Ov64BloodVol_10";
-    private static final String Ov64BloodVolComment = "Ov64BloodVolComment";
-    private static final String Ov64_Rapid = "Ov64_Rapid";
-    private static final String Ov64RapidResults = "Ov64RapidResults";
-    private static final String Ov64BloodLabTest = "Ov64BloodLabTest";
-    private static final String Ov64BloodStore = "Ov64BloodStore";
-    private static final String Ov64RapidDate = "Ov64RapidDate";
-    private static final String Ov64BloodSampleCollected = "Ov64BloodSampleCollected";
 
-    //private static final String Rapid_Comment = "Rapid_Comment";
-   // private static final String B3_RapidConsent_Yes_No = "B3_RapidConsent_Yes_No";
+    private static final String PrntlConsentX_Ray = "PrntlConsentX_Ray";
+    private static final String PrntlConsentX_RayReview = "PrntlConsentX_RayReview";
+    private static final String PrntlConsentX_RayStore = "PrntlConsentX_RayStore";
+    private static final String PrntlConsentSP_Collect = "PrntlConsentSP_Collect";
+    private static final String PrntlParentSP_AddTests= "PrntlParentSP_AddTests";
+    private static final String PrntlConsentSP_LabTest = "PrntlConsentSP_LabTest";
+    private static final String PrntlConsentTBDate = "PrntlConsentTBDate";
+    private static final String IndTB_X_Ray = "IndTB_X_Ray";
+    private static final String IndTB_X_RayReview = "IndTB_X_RayReview";
+    private static final String IndTB_X_RayStore = "IndTB_X_RayStore";
+    private static final String IndSP_Collect = "IndSP_Collect";
+    private static final String IndSP_AddTests= "IndSP_AddTests";
+    private static final String IndSP_LabTests = "IndSP_LabTests";
+    private static final String IndTB_ConsentDate = "IndTB_ConsentDate";
 
-   // private static final String B3_Date = "B3_Date";
-   // private static final String U15Rapid_Result = "U15Rapid_Result";
-   // private static final String BloodConsent = "BloodConsent";
+
+
 
 
     private static final String tblindividual = "Individual";
@@ -575,15 +574,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-   // private static final String B8_Yes_No = "B8_Yes_No";
-   // private static final String B8_Date = "B8_Date";
-   // private static final String RapidResultsOther = "RapidResultsOther";
-   // private static final String B8_Yes_No = "B8_Yes_No";
-    //private static final String B8_Date = "B8_Date";
-   // private static final String B8_O15_Rapid = "B8_O15_Rapid";
-    //private static final String Q801f = "Q801f";
-   // private static final String IndRapid_Comment = "IndRapid_Comment";
-
 
     private static final String sample = "Sample";
     private static final String PK = "PK";
@@ -807,46 +797,47 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + P19 + " nvarchar(1),"
             + P20 + " nvarchar(1),"
             + P21 + " nvarchar(1),"
-            //+ BloodSampleCollected + " nvarchar (1)  ,"
             + Barcode + " nvarchar(10),"
-            //+ RapidResults + " nvarchar (1) ,"
-            //+ RapidDate + " date,"
-           // + B3_RapidConsent_Yes_No + " nvarchar(1),"
-           // + Rapid_Comment + " nvarchar(100),"
-
-            + ChildBloodDraw + " nvarchar(1),"
-            + ChildBloodVol_1 + " nvarchar(1),"
-            + ChildBloodVol_4 + " nvarchar(1),"
-            + ChildBloodVol_6 + " nvarchar(1),"
-            + ChildBloodVol_10 + " nvarchar(1),"
-            + ChildBloodVolComment + " nvarchar(1),"
-            + Child_Rapid + " nvarchar(1),"
-            + ChildRapidResults + " nvarchar(1),"
-            + ChildBloodLabTest + " nvarchar(1),"
-            + ChildBloodStore + " nvarchar(1),"
-            + ChildRapidDate + " date,"
-            + ChildBloodSampleCollected + " nvarchar(1),"
-
+            + BloodDraw + " nvarchar(1),"
+            + BloodVolume_1 + " nvarchar(1),"
+            + BloodVolume_4 + " nvarchar(1),"
+            + BloodVolume_6 + " nvarchar(1),"
+            + BloodVolume_10 + " nvarchar(1),"
+            + BloodVolumeComment + " nvarchar(1),"
+            + Rapid + " nvarchar(1),"
+            + RapidResults + " nvarchar(1),"
+            + BloodLabTest + " nvarchar(1),"
+            + BloodStore + " nvarchar(1),"
+            + RapidDate + " date,"
+            + BloodSampleCollected + " nvarchar(1),"
             + ChPrntlConsentBloodDraw + " nvarchar(1),"
             + ChPrntlConsentRHT + " nvarchar(1),"
             + ChPrntlConsentLabTest + " nvarchar(1),"
             + ChPrntlConsentBloodStore + " nvarchar(1),"
             + B3_Guardian + " nvarchar(50),"
-            + ChPrntlConsentDate + " nvarchar(1),"
+            + ChPrntlConsentDate + " nvarchar(8),"
+            + PrntlConsentX_Ray + " nvarchar(1),"
+            + PrntlConsentX_RayReview + " nvarchar(1),"
+            + PrntlConsentX_RayStore + " nvarchar(1),"
+            + PrntlConsentSP_Collect + " nvarchar(1),"
+            + PrntlParentSP_AddTests + " nvarchar(1),"
+            + PrntlConsentSP_LabTest + " nvarchar(1),"
+            + PrntlConsentTBDate + " nvarchar(1),"
+            + IndTB_X_Ray + " nvarchar(1),"
+            + IndTB_X_RayReview + " nvarchar(1),"
+            + IndTB_X_RayStore + " nvarchar(1),"
+            + IndSP_Collect + " nvarchar(1),"
+            + IndSP_AddTests + " nvarchar(50),"
+            + IndSP_LabTests + " nvarchar(1),"
+            + IndTB_ConsentDate + " nvarchar(8))";
 
-            + Ov64BloodDraw + " nvarchar(1),"
-            + Ov64BloodVol_1 + " nvarchar(1),"
-            + Ov64BloodVol_4 + " nvarchar(1),"
-            + Ov64BloodVol_6 + " nvarchar(1),"
-            + Ov64BloodVol_10 + " nvarchar(1),"
-            + Ov64BloodVolComment + " nvarchar(1),"
-            + Ov64_Rapid + " nvarchar(1),"
-            + Ov64RapidResults + " nvarchar(1),"
-            + Ov64BloodLabTest + " nvarchar(1),"
-            + Ov64BloodStore + " nvarchar(1),"
-            + Ov64RapidDate + " date,"
-            + Ov64BloodSampleCollected + " nvarchar(1))";
-            //+ B3_Date + " date,"
+
+
+
+
+
+
+    //+ B3_Date + " date,"
            // + U15Rapid_Result + " nvarchar(1),"
            // + BloodConsent + " nvarchar(1))";
 
@@ -1252,6 +1243,11 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + PrntlConsentDate + " nvarchar(8))";
 
 
+
+
+
+
+
            // + RapidResultsOther + " nvarchar(1),"
            // + IndRapid_Comment + " nvarchar(50),"
             //+ B8_Yes_No + " nvarchar(1),"
@@ -1481,46 +1477,38 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         //hhrosterValues.put(RapidResults, pr.getRapidResults());
         //hhrosterValues.put(RapidDate, pr.getRapidDate());
         //hhrosterValues.put(Rapid_Comment, pr.getRapid_Comment());
-        hhrosterValues.put(ChildBloodDraw, pr.getChildBloodDraw());
-        hhrosterValues.put(ChildBloodVol_1, pr.getChildBloodVol_1());
-        hhrosterValues.put(ChildBloodVol_4, pr.getChildBloodVol_4());
-        hhrosterValues.put(ChildBloodVol_6, pr.getChildBloodVol_6());
-        hhrosterValues.put(ChildBloodVol_10, pr.getChildBloodVol_10());
-        hhrosterValues.put(ChildBloodVolComment, pr.getChildBloodVolComment());
-        hhrosterValues.put(Child_Rapid, pr.getChild_Rapid());
-        hhrosterValues.put(ChildRapidResults, pr.getChildRapidResults());
-        hhrosterValues.put(ChildBloodLabTest, pr.getChildBloodLabTest());
-        hhrosterValues.put(ChildBloodStore, pr.getChildBloodStore());
-        hhrosterValues.put(ChildRapidDate, pr.getChildRapidDate());
-        hhrosterValues.put(ChildBloodSampleCollected, pr.getChildBloodSampleCollected());
+        hhrosterValues.put(BloodDraw, pr.getBloodDraw());
+        hhrosterValues.put(BloodVolume_1, pr.getBloodVolume_1());
+        hhrosterValues.put(BloodVolume_4, pr.getBloodVolume_4());
+        hhrosterValues.put(BloodVolume_6, pr.getBloodVolume_6());
+        hhrosterValues.put(BloodVolume_10, pr.getBloodVolume_10());
+        hhrosterValues.put(BloodVolumeComment, pr.getBloodVolumeComment());
+        hhrosterValues.put(Rapid, pr.getRapid());
+        hhrosterValues.put(RapidResults, pr.getRapidResults());
+        hhrosterValues.put(BloodLabTest, pr.getBloodLabTest());
+        hhrosterValues.put(BloodStore, pr.getBloodStore());
+        hhrosterValues.put(RapidDate, pr.getRapidDate());
+        hhrosterValues.put(BloodSampleCollected, pr.getBloodSampleCollected());
         hhrosterValues.put(ChPrntlConsentBloodDraw,pr.getChPrntlConsentBloodDraw());
         hhrosterValues.put(ChPrntlConsentRHT, pr.getChPrntlConsentRHT());
         hhrosterValues.put(ChPrntlConsentLabTest, pr.getChPrntlConsentLabTest());
-
         hhrosterValues.put(ChPrntlConsentBloodStore, pr.getChPrntlConsentBloodStore());
         hhrosterValues.put(B3_Guardian, pr.getB3_Guardian());
         hhrosterValues.put(ChPrntlConsentDate, pr.getChPrntlConsentDate());
-        hhrosterValues.put(Ov64BloodDraw, pr.getOv64BloodDraw());
-        hhrosterValues.put(Ov64BloodVol_1, pr.getOv64BloodVol_1());
-        hhrosterValues.put(Ov64BloodVol_4, pr.getOv64BloodVol_4());
-        hhrosterValues.put(Ov64BloodVol_6, pr.getOv64BloodVol_6());
-        hhrosterValues.put(Ov64BloodVol_10,pr.getOv64BloodVol_10());
-        hhrosterValues.put(Ov64BloodVolComment, pr.getOv64BloodVolComment());
-        hhrosterValues.put(Ov64_Rapid, pr.getOv64_Rapid());
-
-        hhrosterValues.put(Ov64RapidResults, pr.getOv64RapidResults());
-        hhrosterValues.put(Ov64BloodLabTest, pr.getOv64BloodLabTest());
-        hhrosterValues.put(Ov64BloodVol_10,pr.getOv64BloodVol_10());
-        hhrosterValues.put(Ov64BloodStore, pr.getOv64BloodStore());
-        hhrosterValues.put(Ov64RapidDate, pr.getOv64RapidDate());
-        hhrosterValues.put(Ov64BloodSampleCollected, pr.getOv64BloodSampleCollected());
-
-        //hhrosterValues.put(B3_RapidConsent_Yes_No, pr.getB3_RapidConsent_Yes_No());
-
-       // hhrosterValues.put(B3_Date, pr.getB3_Date());
-       // hhrosterValues.put(U15Rapid_Result, pr.getU15Rapid_Results());
-        // hhrosterValues.put(RapidDate, pr.getRapidDate());
-
+        hhrosterValues.put(PrntlConsentX_Ray, pr.getPrntlConsentX_Ray());
+        hhrosterValues.put(PrntlConsentX_RayReview, pr.getPrntlConsentX_RayReview());
+        hhrosterValues.put(PrntlConsentX_RayStore,pr.getPrntlConsentX_RayStore());
+        hhrosterValues.put(PrntlConsentSP_Collect, pr.getPrntlConsentSP_Collect());
+        hhrosterValues.put(PrntlParentSP_AddTests, pr.getPrntlParentSP_AddTests());
+        hhrosterValues.put(PrntlConsentSP_LabTest, pr.getPrntlConsentSP_LabTest());
+        hhrosterValues.put(PrntlConsentTBDate, pr.getPrntlConsentTBDate());
+        hhrosterValues.put(IndTB_X_Ray, pr.getIndTB_X_Ray());
+        hhrosterValues.put(IndTB_X_RayReview,pr.getIndTB_X_RayReview());
+        hhrosterValues.put(IndTB_X_RayStore, pr.getIndTB_X_RayStore());
+        hhrosterValues.put(IndSP_Collect, pr.getIndSP_Collect());
+        hhrosterValues.put(IndSP_AddTests, pr.getIndSP_AddTests());
+        hhrosterValues.put(IndSP_LabTests, pr.getIndSP_LabTests());
+        hhrosterValues.put(IndTB_ConsentDate, pr.getIndTB_ConsentDate());
 
         db.insert(tblhhroster, null, hhrosterValues);
 
@@ -1584,47 +1572,42 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhrosterValues.put(H10, houseHold.getH10());
             hhrosterValues.put(H11, houseHold.getH11());*/
 
-            hhrosterValues.put(ChildBloodDraw, houseHold.getPersons()[i].getChildBloodDraw());
-            hhrosterValues.put(ChildBloodVol_1, houseHold.getPersons()[i].getChildBloodVol_1());
-            hhrosterValues.put(ChildBloodVol_4, houseHold.getPersons()[i].getChildBloodVol_4());
-            hhrosterValues.put(ChildBloodVol_6, houseHold.getPersons()[i].getChildBloodVol_6());
-            hhrosterValues.put(ChildBloodVol_10, houseHold.getPersons()[i].getChildBloodVol_10());
-            hhrosterValues.put(ChildBloodVolComment, houseHold.getPersons()[i].getChildBloodVolComment());
-            hhrosterValues.put(Child_Rapid, houseHold.getPersons()[i].getChild_Rapid());
-            hhrosterValues.put(ChildRapidResults, houseHold.getPersons()[i].getChildRapidResults());
-            hhrosterValues.put(ChildBloodLabTest, houseHold.getPersons()[i].getChildBloodLabTest());
-            hhrosterValues.put(ChildBloodStore, houseHold.getPersons()[i].getChildBloodStore());
-            hhrosterValues.put(ChildRapidDate, houseHold.getPersons()[i].getChildRapidDate());
-            hhrosterValues.put(ChildBloodSampleCollected, houseHold.getPersons()[i].getChildBloodSampleCollected());
+            hhrosterValues.put(BloodDraw, houseHold.getPersons()[i].getBloodDraw());
+            hhrosterValues.put(BloodVolume_1, houseHold.getPersons()[i].getBloodVolume_1());
+            hhrosterValues.put(BloodVolume_4, houseHold.getPersons()[i].getBloodVolume_4());
+            hhrosterValues.put(BloodVolume_6, houseHold.getPersons()[i].getBloodVolume_6());
+            hhrosterValues.put(BloodVolume_10, houseHold.getPersons()[i].getBloodVolume_10());
+            hhrosterValues.put(BloodVolumeComment, houseHold.getPersons()[i].getBloodVolumeComment());
+            hhrosterValues.put(Rapid, houseHold.getPersons()[i].getRapid());
+            hhrosterValues.put(RapidResults, houseHold.getPersons()[i].getRapidResults());
+            hhrosterValues.put(BloodLabTest, houseHold.getPersons()[i].getBloodLabTest());
+            hhrosterValues.put(BloodStore, houseHold.getPersons()[i].getBloodStore());
+            hhrosterValues.put(RapidDate, houseHold.getPersons()[i].getRapidDate());
+            hhrosterValues.put(BloodSampleCollected, houseHold.getPersons()[i].getBloodSampleCollected());
             hhrosterValues.put(ChPrntlConsentBloodDraw,houseHold.getPersons()[i].getChPrntlConsentBloodDraw());
             hhrosterValues.put(ChPrntlConsentRHT, houseHold.getPersons()[i].getChPrntlConsentRHT());
             hhrosterValues.put(ChPrntlConsentLabTest, houseHold.getPersons()[i].getChPrntlConsentLabTest());
-
             hhrosterValues.put(ChPrntlConsentBloodStore, houseHold.getPersons()[i].getChPrntlConsentBloodStore());
             hhrosterValues.put(B3_Guardian, houseHold.getPersons()[i].getB3_Guardian());
             hhrosterValues.put(ChPrntlConsentDate, houseHold.getPersons()[i].getChPrntlConsentDate());
-            hhrosterValues.put(Ov64BloodDraw, houseHold.getPersons()[i].getOv64BloodDraw());
-            hhrosterValues.put(Ov64BloodVol_1, houseHold.getPersons()[i].getOv64BloodVol_1());
-            hhrosterValues.put(Ov64BloodVol_4, houseHold.getPersons()[i].getOv64BloodVol_4());
-            hhrosterValues.put(Ov64BloodVol_6, houseHold.getPersons()[i].getOv64BloodVol_6());
-            hhrosterValues.put(Ov64BloodVol_10,houseHold.getPersons()[i].getOv64BloodVol_10());
-            hhrosterValues.put(Ov64BloodVolComment, houseHold.getPersons()[i].getOv64BloodVolComment());
-            hhrosterValues.put(Ov64_Rapid, houseHold.getPersons()[i].getOv64_Rapid());
 
-            hhrosterValues.put(Ov64RapidResults, houseHold.getPersons()[i].getOv64RapidResults());
-            hhrosterValues.put(Ov64BloodLabTest, houseHold.getPersons()[i].getOv64BloodLabTest());
-            hhrosterValues.put(Ov64BloodVol_10,houseHold.getPersons()[i].getOv64BloodVol_10());
-            hhrosterValues.put(Ov64BloodStore, houseHold.getPersons()[i].getOv64BloodStore());
-            hhrosterValues.put(Ov64RapidDate, houseHold.getPersons()[i].getOv64RapidDate());
-            hhrosterValues.put(Ov64BloodSampleCollected, houseHold.getPersons()[i].getOv64BloodSampleCollected());
+            hhrosterValues.put(PrntlConsentX_Ray, houseHold.getPersons()[i].getPrntlConsentX_Ray());
+            hhrosterValues.put(PrntlConsentX_RayReview, houseHold.getPersons()[i].getPrntlConsentX_RayReview());
+            hhrosterValues.put(PrntlConsentX_RayStore, houseHold.getPersons()[i].getPrntlConsentX_RayStore());
+            hhrosterValues.put(PrntlConsentSP_Collect, houseHold.getPersons()[i].getPrntlConsentSP_Collect());
+            hhrosterValues.put(PrntlParentSP_AddTests,houseHold.getPersons()[i].getPrntlParentSP_AddTests());
+            hhrosterValues.put(PrntlConsentSP_LabTest, houseHold.getPersons()[i].getPrntlConsentSP_LabTest());
+            hhrosterValues.put(PrntlConsentTBDate, houseHold.getPersons()[i].getPrntlConsentTBDate());
+
+            hhrosterValues.put(IndTB_X_Ray, houseHold.getPersons()[i].getIndTB_X_Ray());
+            hhrosterValues.put(IndTB_X_RayReview, houseHold.getPersons()[i].getIndTB_X_RayReview());
+            hhrosterValues.put(IndTB_X_RayStore,houseHold.getPersons()[i].getIndTB_X_RayStore());
+            hhrosterValues.put(IndSP_Collect, houseHold.getPersons()[i].getIndSP_Collect());
+            hhrosterValues.put(IndSP_AddTests, houseHold.getPersons()[i].getIndSP_AddTests());
+            hhrosterValues.put(IndSP_LabTests, houseHold.getPersons()[i].getIndSP_LabTests());
+            hhrosterValues.put(IndTB_ConsentDate, houseHold.getPersons()[i].getIndTB_ConsentDate());
 
 
-           // hhrosterValues.put(B3_RapidConsent_Yes_No, houseHold.getPersons()[i].getB3_RapidConsent_Yes_No());
-           // hhrosterValues.put(B3_Guardian, houseHold.getPersons()[i].getB3_Guardian());
-           // hhrosterValues.put(B3_Date, houseHold.getPersons()[i].getB3_Date());
-           // hhrosterValues.put(U15Rapid_Result, houseHold.getPersons()[i].getU15Rapid_Results());
-            // hhrosterValues.put(RapidDate, houseHold.getPersons()[i].getRapidDate());
-           // hhrosterValues.put(Rapid_Comment, houseHold.getPersons()[i].getRapid_Comment());
 
             db.insert(tblhhroster, null, hhrosterValues);
 
@@ -1665,50 +1648,45 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhrosterValues.put(P19,houseHold.getPersons()[i].getP19());
             hhrosterValues.put(P20, houseHold.getPersons()[i].getP20());
             hhrosterValues.put(P21, houseHold.getPersons()[i].getP21());
-            // hhrosterValues.put(BloodSampleCollected, houseHold.getPersons()[i].getBloodSampleCollected());
             hhrosterValues.put(Barcode, houseHold.getPersons()[i].getBarcode());
-            // hhrosterValues.put(RapidResults, houseHold.getPersons()[i].getRapidResults());
-            //hhrosterValues.put(RapidDate, houseHold.getPersons()[i].getRapidDate());
-            hhrosterValues.put(ChildBloodDraw, houseHold.getPersons()[i].getChildBloodDraw());
-            hhrosterValues.put(ChildBloodVol_1, houseHold.getPersons()[i].getChildBloodVol_1());
-            hhrosterValues.put(ChildBloodVol_4, houseHold.getPersons()[i].getChildBloodVol_4());
-            hhrosterValues.put(ChildBloodVol_6, houseHold.getPersons()[i].getChildBloodVol_6());
-            hhrosterValues.put(ChildBloodVol_10, houseHold.getPersons()[i].getChildBloodVol_10());
-            hhrosterValues.put(ChildBloodVolComment, houseHold.getPersons()[i].getChildBloodVolComment());
-            hhrosterValues.put(Child_Rapid, houseHold.getPersons()[i].getChild_Rapid());
-            hhrosterValues.put(ChildRapidResults, houseHold.getPersons()[i].getChildRapidResults());
-            hhrosterValues.put(ChildBloodLabTest, houseHold.getPersons()[i].getChildBloodLabTest());
-            hhrosterValues.put(ChildBloodStore, houseHold.getPersons()[i].getChildBloodStore());
-            hhrosterValues.put(ChildRapidDate, houseHold.getPersons()[i].getChildRapidDate());
-            hhrosterValues.put(ChildBloodSampleCollected, houseHold.getPersons()[i].getChildBloodSampleCollected());
+
+            hhrosterValues.put(BloodDraw, houseHold.getPersons()[i].getBloodDraw());
+            hhrosterValues.put(BloodVolume_1, houseHold.getPersons()[i].getBloodVolume_1());
+            hhrosterValues.put(BloodVolume_4, houseHold.getPersons()[i].getBloodVolume_4());
+            hhrosterValues.put(BloodVolume_6, houseHold.getPersons()[i].getBloodVolume_6());
+            hhrosterValues.put(BloodVolume_10, houseHold.getPersons()[i].getBloodVolume_10());
+            hhrosterValues.put(BloodVolumeComment, houseHold.getPersons()[i].getBloodVolumeComment());
+            hhrosterValues.put(Rapid, houseHold.getPersons()[i].getRapid());
+            hhrosterValues.put(RapidResults, houseHold.getPersons()[i].getRapidResults());
+            hhrosterValues.put(BloodLabTest, houseHold.getPersons()[i].getBloodLabTest());
+            hhrosterValues.put(BloodStore, houseHold.getPersons()[i].getBloodStore());
+            hhrosterValues.put(RapidDate, houseHold.getPersons()[i].getRapidDate());
+            hhrosterValues.put(BloodSampleCollected, houseHold.getPersons()[i].getBloodSampleCollected());
             hhrosterValues.put(ChPrntlConsentBloodDraw,houseHold.getPersons()[i].getChPrntlConsentBloodDraw());
             hhrosterValues.put(ChPrntlConsentRHT, houseHold.getPersons()[i].getChPrntlConsentRHT());
             hhrosterValues.put(ChPrntlConsentLabTest, houseHold.getPersons()[i].getChPrntlConsentLabTest());
-
             hhrosterValues.put(ChPrntlConsentBloodStore, houseHold.getPersons()[i].getChPrntlConsentBloodStore());
             hhrosterValues.put(B3_Guardian, houseHold.getPersons()[i].getB3_Guardian());
             hhrosterValues.put(ChPrntlConsentDate, houseHold.getPersons()[i].getChPrntlConsentDate());
-            hhrosterValues.put(Ov64BloodDraw, houseHold.getPersons()[i].getOv64BloodDraw());
-            hhrosterValues.put(Ov64BloodVol_1, houseHold.getPersons()[i].getOv64BloodVol_1());
-            hhrosterValues.put(Ov64BloodVol_4, houseHold.getPersons()[i].getOv64BloodVol_4());
-            hhrosterValues.put(Ov64BloodVol_6, houseHold.getPersons()[i].getOv64BloodVol_6());
-            hhrosterValues.put(Ov64BloodVol_10,houseHold.getPersons()[i].getOv64BloodVol_10());
-            hhrosterValues.put(Ov64BloodVolComment, houseHold.getPersons()[i].getOv64BloodVolComment());
-            hhrosterValues.put(Ov64_Rapid, houseHold.getPersons()[i].getOv64_Rapid());
 
-            hhrosterValues.put(Ov64RapidResults, houseHold.getPersons()[i].getOv64RapidResults());
-            hhrosterValues.put(Ov64BloodLabTest, houseHold.getPersons()[i].getOv64BloodLabTest());
-            hhrosterValues.put(Ov64BloodVol_10,houseHold.getPersons()[i].getOv64BloodVol_10());
-            hhrosterValues.put(Ov64BloodStore, houseHold.getPersons()[i].getOv64BloodStore());
-            hhrosterValues.put(Ov64RapidDate, houseHold.getPersons()[i].getOv64RapidDate());
-            hhrosterValues.put(Ov64BloodSampleCollected, houseHold.getPersons()[i].getOv64BloodSampleCollected());
+            hhrosterValues.put(PrntlConsentX_Ray, houseHold.getPersons()[i].getPrntlConsentX_Ray());
+            hhrosterValues.put(PrntlConsentX_RayReview, houseHold.getPersons()[i].getPrntlConsentX_RayReview());
+            hhrosterValues.put(PrntlConsentX_RayStore, houseHold.getPersons()[i].getPrntlConsentX_RayStore());
+            hhrosterValues.put(PrntlConsentSP_Collect, houseHold.getPersons()[i].getPrntlConsentSP_Collect());
+            hhrosterValues.put(PrntlParentSP_AddTests,houseHold.getPersons()[i].getPrntlParentSP_AddTests());
+            hhrosterValues.put(PrntlConsentSP_LabTest, houseHold.getPersons()[i].getPrntlConsentSP_LabTest());
+            hhrosterValues.put(PrntlConsentTBDate, houseHold.getPersons()[i].getPrntlConsentTBDate());
 
-           // hhrosterValues.put(B3_RapidConsent_Yes_No, houseHold.getPersons()[i].getB3_RapidConsent_Yes_No());
-           // hhrosterValues.put(B3_Guardian, houseHold.getPersons()[i].getB3_Guardian());
-           // hhrosterValues.put(B3_Date, houseHold.getPersons()[i].getB3_Date());
-           // hhrosterValues.put(U15Rapid_Result, houseHold.getPersons()[i].getU15Rapid_Results());
-            // hhrosterValues.put(RapidDate, houseHold.getPersons()[i].getRapidDate());
-            //hhrosterValues.put(Rapid_Comment, houseHold.getPersons()[i].getRapid_Comment());
+            hhrosterValues.put(IndTB_X_Ray, houseHold.getPersons()[i].getIndTB_X_Ray());
+            hhrosterValues.put(IndTB_X_RayReview, houseHold.getPersons()[i].getIndTB_X_RayReview());
+            hhrosterValues.put(IndTB_X_RayStore,houseHold.getPersons()[i].getIndTB_X_RayStore());
+            hhrosterValues.put(IndSP_Collect, houseHold.getPersons()[i].getIndSP_Collect());
+            hhrosterValues.put(IndSP_AddTests, houseHold.getPersons()[i].getIndSP_AddTests());
+            hhrosterValues.put(IndSP_LabTests, houseHold.getPersons()[i].getIndSP_LabTests());
+            hhrosterValues.put(IndTB_ConsentDate, houseHold.getPersons()[i].getIndTB_ConsentDate());
+
+
+
 
             i = db.update(tblhhroster, // table
                     hhrosterValues, // column/value
@@ -2015,11 +1993,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q905a,  houseHold.getIndividual()[i].getQ905a() );
             individualValues.put(Q905aOther,  houseHold.getIndividual()[i].getQ905aOther() );
 
-
-
-
-
-
             individualValues.put(Q1001,  houseHold.getIndividual()[i].getQ1001() );
             individualValues.put(Q1002,  houseHold.getIndividual()[i].getQ1002() );
             individualValues.put(Q1002aMCondom,  houseHold.getIndividual()[i].getQ1002a_1() );
@@ -2111,15 +2084,33 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q1113, houseHold.getIndividual()[i].getQ1113() );
             individualValues.put(Q1113Other, houseHold.getIndividual()[i].getQ1113Other() );
             individualValues.put(Q1114, houseHold.getIndividual()[i].getQ1114() );
-            // individualValues.put(IndBloodSampleCollected, houseHold.getIndividual()[i].getIndBloodSampleCollected() );
-            //individualValues.put(B8_Yes_No, houseHold.getIndividual()[i].getB8_Yes_No() );
-            //individualValues.put(B8_Date, houseHold.getIndividual()[i].getB8_Date() );
+
             individualValues.put(B8_O15_Rapid, houseHold.getIndividual()[i].getB8_O15_Rapid() );
             individualValues.put(Q801f, houseHold.getIndividual()[i].getQ801f() );
-            //individualValues.put(IndRapidResults, houseHold.getIndividual()[i].getIndRapidResults() );
-            // individualValues.put(IndRapidDate, houseHold.getIndividual()[i].getIndRapidDate() );
+            individualValues.put(IndvQuestionnairePConsent15_17, houseHold.getIndividual()[i].getIndvQuestionnairePConsent15_17() );
+            individualValues.put(IndvQuestionnaireConsent, houseHold.getIndividual()[i].getIndvQuestionnaireConsent() );
+            individualValues.put(IndvBloodDraw, houseHold.getIndividual()[i].getIndvBloodDraw() );
+            individualValues.put(BloodVol_1, houseHold.getIndividual()[i].getBloodVol_1() );
+            individualValues.put(BloodVol_4, houseHold.getIndividual()[i].getBloodVol_4() );
+            individualValues.put(BloodVol_6, houseHold.getIndividual()[i].getBloodVol_6() );
+            individualValues.put(BloodVol_10, houseHold.getIndividual()[i].getBloodVol_10() );
+            individualValues.put(BloodVolComment, houseHold.getIndividual()[i].getBloodVolComment());
 
-           // individualValues.put(IndRapid_Comment, houseHold.getIndividual()[i].getIndRapid_Comment() );
+            individualValues.put(B8_O15_Rapid, houseHold.getIndividual()[i].getB8_O15_Rapid() );
+            individualValues.put(IndRapidResults, houseHold.getIndividual()[i].getIndRapidResults());
+            individualValues.put(IndBloodLabTest, houseHold.getIndividual()[i].getIndBloodLabTest());
+            individualValues.put(IndBloodStore, houseHold.getIndividual()[i].getIndBloodStore() );
+            individualValues.put(IndRapidDate, houseHold.getIndividual()[i].getIndRapidDate() );
+
+
+            individualValues.put(IndBloodSampleCollected, houseHold.getIndividual()[i].getIndBloodSampleCollected() );
+            individualValues.put(PrntlConsentBloodDraw, houseHold.getIndividual()[i].getPrntlConsentBloodDraw());
+            individualValues.put(PrntlConsentRHT, houseHold.getIndividual()[i].getPrntlConsentRHT());
+            individualValues.put(PrntlConsentLabTest, houseHold.getIndividual()[i].getPrntlConsentLabTest() );
+            individualValues.put(PrntlConsentBloodStore, houseHold.getIndividual()[i].getPrntlConsentBloodStore() );
+
+            individualValues.put(PrntlParentID, houseHold.getIndividual()[i].getPrntlParentID() );
+            individualValues.put(PrntlConsentDate, houseHold.getIndividual()[i].getPrntlConsentDate() );
 
 
             db.insert("tblindividual", null, individualValues);
@@ -2313,11 +2304,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q617Touching,  houseHold.getQ617g() );
             individualValues.put(Q617Someone,  houseHold.getQ617h() );
             individualValues.put(Q617Other,  houseHold.getQ617_0ther() );
-
-
             individualValues.put(Q618,  houseHold.getQ618() );
-
-
             individualValues.put(Q619Rash,  houseHold.getQ619_1() );
             individualValues.put(Q619Cough,  houseHold.getQ619_2() );
             individualValues.put(Q619LongCough,  houseHold.getQ619_3() );
@@ -3472,46 +3459,48 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             String P20 = cursor.getString(cursor.getColumnIndexOrThrow("P20"));
             String P21 = cursor.getString(cursor.getColumnIndexOrThrow("P21"));
            //String B3_RapidConsent_Yes_No = cursor.getString(cursor.getColumnIndexOrThrow("B3_RapidConsent_Yes_No"));
-            String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian"));
+
            // String B3_Date = cursor.getString(cursor.getColumnIndexOrThrow("B3_Date"));
             String Barcode = cursor.getString(cursor.getColumnIndexOrThrow("Barcode"));
             //String U15Rapid_Results = cursor.getString(cursor.getColumnIndexOrThrow("U15Rapid_Result"));
            // String Rapid_Comment = cursor.getString(cursor.getColumnIndexOrThrow("Rapid_Comment"));
 
 
-            String ChildBloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodDraw"));
-            String ChildBloodVol_1 = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodVol_1"));
-            String ChildBloodVol_4 = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodVol_4"));
-            String ChildBloodVol_6 = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodVol_6"));
-            String ChildBloodVol_10 = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodVol_10"));
-            String ChildBloodVolComment = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodVolComment"));
-            String Child_Rapid = cursor.getString(cursor.getColumnIndexOrThrow("Child_Rapid"));
-            String ChildRapidResults = cursor.getString(cursor.getColumnIndexOrThrow("ChildRapidResults"));
-            String ChildBloodLabTest = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodLabTest"));
-            String ChildBloodStore = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodStore"));
-            String ChildRapidDate = cursor.getString(cursor.getColumnIndexOrThrow("ChildRapidDate"));
-
-            String ChildBloodSampleCollected = cursor.getString(cursor.getColumnIndexOrThrow("ChildBloodSampleCollected"));
+            String BloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("BloodDraw"));
+            String BloodVolume_1 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_1"));
+            String BloodVolume_4 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_4"));
+            String BloodVolume_6 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_6"));
+            String BloodVolume_10 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_10"));
+            String BloodVolumeComment = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolumeComment"));
+            String Rapid = cursor.getString(cursor.getColumnIndexOrThrow("Rapid"));
+            String RapidResults = cursor.getString(cursor.getColumnIndexOrThrow("RapidResults"));
+            String BloodLabTest = cursor.getString(cursor.getColumnIndexOrThrow("BloodLabTest"));
+            String BloodStore = cursor.getString(cursor.getColumnIndexOrThrow("BloodStore"));
+            String RapidDate = cursor.getString(cursor.getColumnIndexOrThrow("RapidDate"));
+            String BloodSampleCollected = cursor.getString(cursor.getColumnIndexOrThrow("BloodSampleCollected"));
             String ChPrntlConsentBloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentBloodDraw"));
             String ChPrntlConsentRHT = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentRHT"));
             String ChPrntlConsentLabTest = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentLabTest"));
             String ChPrntlConsentBloodStore = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentBloodStore"));
-           // String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian""));
+            String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian"));
             String ChPrntlConsentDate = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentDate"));
-            String Ov64BloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodDraw"));
-            String Ov64BloodVol_1= cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodVol_1"));
-            String Ov64BloodVol_4= cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodVol_4"));
-            String Ov64BloodVol_6  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodVol_6"));
-            String Ov64BloodVol_10  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodVol_10"));
-            String Ov64BloodVolComment  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodVolComment"));
-            String Ov64_Rapid  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64_Rapid"));
-            String Ov64RapidResults  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64RapidResults"));
-            String Ov64BloodLabTest  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodLabTest"));
-            String Ov64BloodStore  = cursor.getString(cursor.getColumnIndexOrThrow ("Ov64BloodStore"));
-            String Ov64RapidDate  = cursor.getString(cursor.getColumnIndexOrThrow("Ov64RapidDate"));
-            String Ov64BloodSampleCollected = cursor.getString(cursor.getColumnIndexOrThrow("Ov64BloodSampleCollected"));
 
+            String PrntlConsentX_Ray = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_Ray"));
+            String PrntlConsentX_RayReview= cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_RayReview"));
+            String PrntlConsentX_RayStore= cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_RayStore"));
+            String PrntlConsentSP_Collect  = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentSP_Collect"));
+            String PrntlParentSP_AddTests  = cursor.getString(cursor.getColumnIndexOrThrow("PrntlParentSP_AddTests"));
+            String PrntlConsentSP_LabTest  = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentSP_LabTest"));
+            String PrntlConsentTBDate  = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentTBDate"));
 
+            String IndTB_X_Ray  = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_X_Ray"));
+            String IndTB_X_RayReview  = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_X_RayReview"));
+            String IndTB_X_RayStore  = cursor.getString(cursor.getColumnIndexOrThrow ("IndTB_X_RayStore"));
+            String IndSP_Collect  = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_Collect"));
+            String IndSP_AddTests = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_AddTests"));
+
+            String IndSP_LabTests  = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_LabTests"));
+            String IndTB_ConsentDate = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_ConsentDate"));
 
             dataModel.setAssignmentID(cursor.getString(cursor.getColumnIndexOrThrow("EA_Assignment_ID")));
             dataModel.setBatch(cursor.getString(cursor.getColumnIndexOrThrow("BatchNumber")));
@@ -3545,54 +3534,44 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-            dataModel.setChildBloodDraw(ChildBloodDraw);
-            dataModel.setChildBloodVol_1(ChildBloodVol_1);
-            dataModel.setChildBloodVol_4(ChildBloodVol_4);
-            dataModel.setChildBloodVol_6(ChildBloodVol_6);
-            dataModel.setChildBloodVol_10(ChildBloodVol_10);
-            dataModel.setChildBloodVolComment(ChildBloodVolComment);
-            dataModel.setChild_Rapid(Child_Rapid);
-            dataModel.setChildRapidResults(ChildRapidResults);
-            dataModel.setChildBloodLabTest(ChildBloodLabTest);
-            dataModel.setChildBloodStore(ChildBloodStore);
-            dataModel.setChildRapidDate(ChildRapidDate);
-            dataModel.setChildBloodSampleCollected(ChildBloodSampleCollected);
+            dataModel.setBloodDraw(BloodDraw);
+            dataModel.setBloodVolume_1(BloodVolume_1);
+            dataModel.setBloodVolume_4(BloodVolume_4);
+            dataModel.setBloodVolume_6(BloodVolume_6);
+            dataModel.setBloodVolume_10(BloodVolume_10);
+            dataModel.setBloodVolumeComment(BloodVolumeComment);
+            dataModel.setRapid(Rapid);
+            dataModel.setRapidResults(RapidResults);
+            dataModel.setBloodLabTest(BloodLabTest);
+            dataModel.setBloodStore(BloodStore);
+            dataModel.setRapidDate(RapidDate);
+            dataModel.setBloodSampleCollected(BloodSampleCollected);
             dataModel.setChPrntlConsentBloodDraw(ChPrntlConsentBloodDraw);
             dataModel.setChPrntlConsentRHT(ChPrntlConsentRHT);
             dataModel.setChPrntlConsentLabTest(ChPrntlConsentLabTest);
             dataModel.setChPrntlConsentBloodStore(ChPrntlConsentBloodStore);
             dataModel.setB3_Guardian(B3_Guardian);
             dataModel.setChPrntlConsentDate(ChPrntlConsentDate);
-            dataModel.setOv64BloodDraw(Ov64BloodDraw);
-            dataModel.setOv64BloodVol_1(Ov64BloodVol_1);
-            dataModel.setOv64BloodVol_4(Ov64BloodVol_4);
-            dataModel.setOv64BloodVol_6(Ov64BloodVol_6);
-            dataModel.setOv64BloodVol_10(Ov64BloodVol_10);
-            dataModel.setOv64BloodVolComment(Ov64BloodVolComment);
-            dataModel.setOv64_Rapid(Ov64_Rapid);
-            dataModel.setOv64RapidResults(Ov64RapidResults);
-            dataModel.setOv64BloodLabTest(Ov64BloodLabTest);
-            dataModel.setOv64BloodStore(Ov64BloodStore);
-            dataModel.setOv64RapidDate(Ov64RapidDate);
-            dataModel.setOv64BloodSampleCollected(Ov64BloodSampleCollected);
 
+            dataModel.setPrntlConsentX_Ray(PrntlConsentX_Ray);
+            dataModel.setPrntlConsentX_RayReview(PrntlConsentX_RayReview);
+            dataModel.setPrntlConsentX_RayStore(PrntlConsentX_RayStore);
+            dataModel.setPrntlConsentSP_Collect(PrntlConsentSP_Collect);
+            dataModel.setPrntlParentSP_AddTests(PrntlParentSP_AddTests);
+            dataModel.setPrntlConsentSP_LabTest(PrntlConsentSP_LabTest);
+            dataModel.setPrntlConsentTBDate(PrntlConsentTBDate);
 
+            dataModel.setIndTB_X_Ray(IndTB_X_Ray);
+            dataModel.setIndTB_X_RayReview(IndTB_X_RayReview);
+            dataModel.setIndTB_X_RayStore(IndTB_X_RayStore);
+            dataModel.setIndSP_Collect(IndSP_Collect);
+            dataModel.setIndSP_AddTests(IndSP_AddTests);
 
-
-
-
-
-
-
+            dataModel.setIndSP_LabTests(IndSP_LabTests);
+            dataModel.setIndTB_ConsentDate(IndTB_ConsentDate);
 
            // dataModel.setOv64BloodDraw(Ov64BloodDraw);
             //dataModel.setRapid_Comment(Rapid_Comment);
-
-
-
-
-
-
 
             stringBuffer.append(dataModel);
             // stringBuffer.append(dataModel);
@@ -3636,11 +3615,46 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             String P20 = cursor.getString(cursor.getColumnIndexOrThrow("P20"));
             String P21 = cursor.getString(cursor.getColumnIndexOrThrow("P21"));
             //String B3_RapidConsent_Yes_No = cursor.getString(cursor.getColumnIndexOrThrow("B3_RapidConsent_Yes_No"));
-            String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian"));
+           // String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian"));
            // String B3_Date = cursor.getString(cursor.getColumnIndexOrThrow("B3_Date"));
             String Barcode = cursor.getString(cursor.getColumnIndexOrThrow("Barcode"));
             //String U15Rapid_Results = cursor.getString(cursor.getColumnIndexOrThrow("U15Rapid_Result"));
             //String Rapid_Comment = cursor.getString(cursor.getColumnIndexOrThrow("Rapid_Comment"));
+            String BloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("BloodDraw"));
+            String BloodVolume_1 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_1"));
+            String BloodVolume_4 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_4"));
+            String BloodVolume_6 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_6"));
+            String BloodVolume_10 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_10"));
+            String BloodVolumeComment = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolumeComment"));
+            String Rapid = cursor.getString(cursor.getColumnIndexOrThrow("Rapid"));
+            String RapidResults = cursor.getString(cursor.getColumnIndexOrThrow("RapidResults"));
+            String BloodLabTest = cursor.getString(cursor.getColumnIndexOrThrow("BloodLabTest"));
+            String BloodStore = cursor.getString(cursor.getColumnIndexOrThrow("BloodStore"));
+            String RapidDate = cursor.getString(cursor.getColumnIndexOrThrow("RapidDate"));
+            String BloodSampleCollected = cursor.getString(cursor.getColumnIndexOrThrow("BloodSampleCollected"));
+            String ChPrntlConsentBloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentBloodDraw"));
+            String ChPrntlConsentRHT = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentRHT"));
+            String ChPrntlConsentLabTest = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentLabTest"));
+            String ChPrntlConsentBloodStore = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentBloodStore"));
+            String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian"));
+            String ChPrntlConsentDate = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentDate"));
+
+            String PrntlConsentX_Ray = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_Ray"));
+            String PrntlConsentX_RayReview= cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_RayReview"));
+            String PrntlConsentX_RayStore= cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_RayStore"));
+            String PrntlConsentSP_Collect  = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentSP_Collect"));
+            String PrntlParentSP_AddTests  = cursor.getString(cursor.getColumnIndexOrThrow("PrntlParentSP_AddTests"));
+            String PrntlConsentSP_LabTest  = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentSP_LabTest"));
+            String PrntlConsentTBDate  = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentTBDate"));
+
+            String IndTB_X_Ray  = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_X_Ray"));
+            String IndTB_X_RayReview  = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_X_RayReview"));
+            String IndTB_X_RayStore  = cursor.getString(cursor.getColumnIndexOrThrow ("IndTB_X_RayStore"));
+            String IndSP_Collect  = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_Collect"));
+            String IndSP_AddTests = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_AddTests"));
+
+            String IndSP_LabTests  = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_LabTests"));
+            String IndTB_ConsentDate = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_ConsentDate"));
 
 
 
@@ -3662,12 +3676,47 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             dataModel.setP20(P20);
             dataModel.setP21(P21);
             //dataModel.setB3_RapidConsent_Yes_No(B3_RapidConsent_Yes_No);
-            dataModel.setB3_Guardian(B3_Guardian);
+           // dataModel.setB3_Guardian(B3_Guardian);
             //dataModel.setB3_Date(B3_Date);
             dataModel.setBarcode(Barcode);
             //dataModel.setU15Rapid_Results(U15Rapid_Results);
             //dataModel.setRapid_Comment(Rapid_Comment);
+            dataModel.setBloodDraw(BloodDraw);
+            dataModel.setBloodVolume_1(BloodVolume_1);
+            dataModel.setBloodVolume_4(BloodVolume_4);
+            dataModel.setBloodVolume_6(BloodVolume_6);
+            dataModel.setBloodVolume_10(BloodVolume_10);
+            dataModel.setBloodVolumeComment(BloodVolumeComment);
+            dataModel.setRapid(Rapid);
+            dataModel.setRapidResults(RapidResults);
+            dataModel.setBloodLabTest(BloodLabTest);
+            dataModel.setBloodStore(BloodStore);
+            dataModel.setRapidDate(RapidDate);
+            dataModel.setBloodSampleCollected(BloodSampleCollected);
 
+            dataModel.setChPrntlConsentBloodDraw(ChPrntlConsentBloodDraw);
+            dataModel.setChPrntlConsentRHT(ChPrntlConsentRHT);
+            dataModel.setChPrntlConsentLabTest(ChPrntlConsentLabTest);
+            dataModel.setChPrntlConsentBloodStore(ChPrntlConsentBloodStore);
+            dataModel.setB3_Guardian(B3_Guardian);
+            dataModel.setChPrntlConsentDate(ChPrntlConsentDate);
+
+            dataModel.setPrntlConsentX_Ray(PrntlConsentX_Ray);
+            dataModel.setPrntlConsentX_RayReview(PrntlConsentX_RayReview);
+            dataModel.setPrntlConsentX_RayStore(PrntlConsentX_RayStore);
+            dataModel.setPrntlConsentSP_Collect(PrntlConsentSP_Collect);
+            dataModel.setPrntlParentSP_AddTests(PrntlParentSP_AddTests);
+            dataModel.setPrntlConsentSP_LabTest(PrntlConsentSP_LabTest);
+            dataModel.setPrntlConsentTBDate(PrntlConsentTBDate);
+
+            dataModel.setIndTB_X_Ray(IndTB_X_Ray);
+            dataModel.setIndTB_X_RayReview(IndTB_X_RayReview);
+            dataModel.setIndTB_X_RayStore(IndTB_X_RayStore);
+            dataModel.setIndSP_Collect(IndSP_Collect);
+            dataModel.setIndSP_AddTests(IndSP_AddTests);
+
+            dataModel.setIndSP_LabTests(IndSP_LabTests);
+            dataModel.setIndTB_ConsentDate(IndTB_ConsentDate);
 
             stringBuffer.append(dataModel);
             // stringBuffer.append(dataModel);
@@ -4117,40 +4166,40 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhValues.put("P15", houseHold.getPersons()[k].getP15());
             hhValues.put("P16", houseHold.getPersons()[k].getP16());
 
-
-            hhValues.put("ChildBloodDraw", houseHold.getPersons()[k].getChildBloodDraw());
-            hhValues.put("ChildBloodVol_1", houseHold.getPersons()[k].getChildBloodVol_1());
-            hhValues.put("ChildBloodVol_4", houseHold.getPersons()[k].getChildBloodVol_4());
-            hhValues.put("ChildBloodVol_6", houseHold.getPersons()[k].getChildBloodVol_6());
-            hhValues.put("ChildBloodVol_10", houseHold.getPersons()[k].getChildBloodVol_10());
-            hhValues.put("ChildBloodVolComment", houseHold.getPersons()[k].getChildBloodVolComment());
-            hhValues.put("Child_Rapid", houseHold.getPersons()[k].getChild_Rapid());
-            hhValues.put("ChildRapidResults", houseHold.getPersons()[k].getChildRapidResults());
-            hhValues.put("ChildBloodLabTest", houseHold.getPersons()[k].getChildBloodLabTest());
-            hhValues.put("ChildBloodStore", houseHold.getPersons()[k].getChildBloodStore());
-            hhValues.put("ChildRapidDate", houseHold.getPersons()[k].getChildRapidDate());
-            hhValues.put("ChildBloodSampleCollected", houseHold.getPersons()[k].getChildBloodSampleCollected());
+            hhValues.put("BloodDraw", houseHold.getPersons()[k].getBloodDraw());
+            hhValues.put("BloodVolume_1", houseHold.getPersons()[k].getBloodVolume_1());
+            hhValues.put("BloodVolume_4", houseHold.getPersons()[k].getBloodVolume_4());
+            hhValues.put("BloodVolume_6", houseHold.getPersons()[k].getBloodVolume_6());
+            hhValues.put("BloodVolume_10", houseHold.getPersons()[k].getBloodVolume_10());
+            hhValues.put("BloodVolumeComment", houseHold.getPersons()[k].getBloodVolumeComment());
+            hhValues.put("Rapid", houseHold.getPersons()[k].getRapid());
+            hhValues.put("RapidResults", houseHold.getPersons()[k].getRapidResults());
+            hhValues.put("BloodLabTest", houseHold.getPersons()[k].getBloodLabTest());
+            hhValues.put("BloodStore", houseHold.getPersons()[k].getBloodStore());
+            hhValues.put("RapidDate", houseHold.getPersons()[k].getRapidDate());
+            hhValues.put("BloodSampleCollected", houseHold.getPersons()[k].getBloodSampleCollected());
             hhValues.put("ChPrntlConsentBloodDraw",houseHold.getPersons()[k].getChPrntlConsentBloodDraw());
             hhValues.put("ChPrntlConsentRHT", houseHold.getPersons()[k].getChPrntlConsentRHT());
             hhValues.put("ChPrntlConsentLabTest", houseHold.getPersons()[k].getChPrntlConsentLabTest());
-
             hhValues.put("ChPrntlConsentBloodStore", houseHold.getPersons()[k].getChPrntlConsentBloodStore());
             hhValues.put("B3_Guardian", houseHold.getPersons()[k].getB3_Guardian());
             hhValues.put("ChPrntlConsentDate", houseHold.getPersons()[k].getChPrntlConsentDate());
-            hhValues.put("Ov64BloodDraw", houseHold.getPersons()[k].getOv64BloodDraw());
-            hhValues.put("Ov64BloodVol_1", houseHold.getPersons()[k].getOv64BloodVol_1());
-            hhValues.put("Ov64BloodVol_4", houseHold.getPersons()[k].getOv64BloodVol_4());
-            hhValues.put("Ov64BloodVol_6", houseHold.getPersons()[k].getOv64BloodVol_6());
-            hhValues.put("Ov64BloodVol_10",houseHold.getPersons()[k].getOv64BloodVol_10());
-            hhValues.put("Ov64BloodVolComment", houseHold.getPersons()[k].getOv64BloodVolComment());
-            hhValues.put("Ov64_Rapid", houseHold.getPersons()[k].getOv64_Rapid());
 
-            hhValues.put("Ov64RapidResults", houseHold.getPersons()[k].getOv64RapidResults());
-            hhValues.put("Ov64BloodLabTest", houseHold.getPersons()[k].getOv64BloodLabTest());
-            hhValues.put("Ov64BloodVol_10",houseHold.getPersons()[k].getOv64BloodVol_10());
-            hhValues.put("Ov64BloodStore", houseHold.getPersons()[k].getOv64BloodStore());
-            hhValues.put("Ov64RapidDate", houseHold.getPersons()[k].getOv64RapidDate());
-            hhValues.put("Ov64BloodSampleCollected", houseHold.getPersons()[k].getOv64BloodSampleCollected());
+            hhValues.put("PrntlConsentX_Ray", houseHold.getPersons()[k].getPrntlConsentX_Ray());
+            hhValues.put("PrntlConsentX_RayReview", houseHold.getPersons()[k].getPrntlConsentX_RayReview());
+            hhValues.put("PrntlConsentX_RayStore", houseHold.getPersons()[k].getPrntlConsentX_RayStore());
+            hhValues.put("PrntlConsentSP_Collect", houseHold.getPersons()[k].getPrntlConsentSP_Collect());
+            hhValues.put("PrntlParentSP_AddTests",houseHold.getPersons()[k].getPrntlParentSP_AddTests());
+            hhValues.put("PrntlConsentSP_LabTest", houseHold.getPersons()[k].getPrntlConsentSP_LabTest());
+            hhValues.put("PrntlConsentTBDate", houseHold.getPersons()[k].getPrntlConsentTBDate());
+
+            hhValues.put("IndTB_X_Ray", houseHold.getPersons()[k].getIndTB_X_Ray());
+            hhValues.put("IndTB_X_RayReview", houseHold.getPersons()[k].getIndTB_X_RayReview());
+            hhValues.put("IndTB_X_RayStore",houseHold.getPersons()[k].getIndTB_X_RayStore());
+            hhValues.put("IndSP_Collect", houseHold.getPersons()[k].getIndSP_Collect());
+            hhValues.put("IndSP_AddTests", houseHold.getPersons()[k].getIndSP_AddTests());
+            hhValues.put("IndSP_LabTests", houseHold.getPersons()[k].getIndSP_LabTests());
+            hhValues.put("IndTB_ConsentDate", houseHold.getPersons()[k].getIndTB_ConsentDate());
 
 
 
@@ -5510,13 +5559,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setPrntlParentID(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlParentID" )) );
                 ind.setPrntlConsentDate(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentDate" )) );
 
-
-                //ind.setB8_Yes_No(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Yes_No")));
-                //ind.setB8_Date(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Date")));
                 ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
-               //ind.setQ801f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801f")));
-               // ind.setIndRapid_Comment(cursor2.getString(cursor2.getColumnIndexOrThrow("Rapid_Comment")));
-
 
                 individuals[cursor2.getPosition()]=(ind);
             }
@@ -5983,7 +6026,22 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         return indDetails;
     }
 
+    //UPDATE HOUSEHOLD COLUMNS EACH
+    public void updateConsents(String columnName, String Assignment_ID, String Batch_no, String value,String srno){
+        SQLiteDatabase db1 = this.getWritableDatabase();
+        ContentValues hhValues = new ContentValues();
+        hhValues.put(columnName,value);
 
+        int  i = db1.update
+                (   tblhhroster, // table
+                        hhValues, // column/value
+                        "EA_Assignment_ID = ? and BatchNumber = ? and SRNO=?", // selections
+                        new String[] { Assignment_ID,Batch_no,srno }
+                );
+
+        db1.close();
+
+    }
 }
 
 

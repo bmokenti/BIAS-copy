@@ -35,166 +35,132 @@ public class PersonRoster implements Serializable{
     private String B3_RapidConsent_Yes_No;
     private String Results;
     private String B3_Date;
-    private  String B3_Guardian;
-    private  String RapidDate;
+
+
     private String EAStatus;
     private String Batch;
     private String  AssignmentID;
     private String U15Rapid_Results;
     private String Barcode;
-    private String HIVChildParentalConsentQ2 ;
-    private String HIVChildParentalConsentQ3;
-    private String HIVChildParentalConsentQ4 ;
-    private String HIVChildParentalConsentNameOfInterviewer ;
-    private String HIVChildParentalConsentInterviewerID ;
-    private String HIVChildParentalConsentParticipantsID ;
-    private String HIVChildParentalConsentDate ;
-    private String HIVAssentQ1 ;
-    private String HIVAssentQ2 ;
-    private String HIVAssentQ3 ;
-    private String HIVAssentQ4 ;
-    private String HIVAssentNameOfInterviewer ;
-    private String HIVAssentInterviewerID ;
-    private String HIVAssentParticipantsID ;
-    private String HIVAssentDate ;
-    private String HIVConsentAdultsQ1 ;
-    private String HIVConsentAdultsQ2;
-    private String HIVConsentAdultsQ3;
-    private String HIVConsentAdultsQ4 ;
-    private String HIVConsentAdultsNameOfInterviewer;
-    private String HIVConsentAdultsInterviewerID ;
-    private String HIVConsentAdultsParticipantsID ;
-    private String HIVConsentAdultsDate ;
+    private String BloodDraw;
+    private String BloodVolume_1 ;
+    private String BloodVolume_4 ;
+    private String BloodVolume_6 ;
+    private String BloodVolume_10 ;
+    private String BloodVolumeComment ;
+    private String Rapid ;
+    private String RapidResults ; //B8_UnderRapid
+    private String BloodLabTest;
+    private String BloodStore ;
+    private String RapidDate ;
     private String BloodSampleCollected ;
-    private  String Rapid_Comment;
+    private String ChPrntlConsentBloodDraw ;
+    private String ChPrntlConsentRHT ;
+    private String ChPrntlConsentLabTest ;
+    private String ChPrntlConsentBloodStore ;
+    private String B3_Guardian ;
+    private String ChPrntlConsentDate ;
+    private String PrntlConsentX_Ray ;
+    private String PrntlConsentX_RayReview ;
+    private String PrntlConsentX_RayStore ;
+    private String PrntlConsentSP_Collect ;
+    private String PrntlParentSP_AddTests ;
+    private String PrntlConsentSP_LabTest ;
+    private String PrntlConsentTBDate ;
+    private String IndTB_X_Ray ;
+    private String IndTB_X_RayReview ;
+    private String IndTB_X_RayStore ;
+    private String IndSP_Collect ;
+    private String IndSP_AddTests ;
+    private String IndSP_LabTests ;
+    private String IndTB_ConsentDate ;
 
-
-
-
-    private  String ChildBloodDraw ;
-    private  String ChildBloodVol_1 ;
-    private  String ChildBloodVol_4 ;
-    private  String ChildBloodVol_6 ;
-    private  String ChildBloodVol_10 ;
-    private  String ChildBloodVolComment ;
-    private  String Child_Rapid ;
-    private  String ChildRapidResults ;
-    private  String ChildBloodLabTest ;
-    private  String ChildBloodStore ;
-    private  String ChildRapidDate ;
-    private  String ChildBloodSampleCollected ;
-    private  String ChPrntlConsentBloodDraw ;
-    private  String ChPrntlConsentRHT ;
-    private  String ChPrntlConsentLabTest ;
-    private  String ChPrntlConsentBloodStore ;
-    private  String ChPrntlConsentDate ;
-    private  String Ov64BloodDraw ;
-    private  String Ov64BloodVol_1 ;
-    private  String Ov64BloodVol_4 ;
-    private  String Ov64BloodVol_6 ;
-    private  String Ov64BloodVol_10 ;
-    private  String Ov64BloodVolComment ;
-    private  String Ov64_Rapid ;
-    private  String Ov64RapidResults ;
-    private  String Ov64BloodLabTest ;
-    private  String Ov64BloodStore ;
-    private  String Ov64RapidDate ;
-    private  String Ov64BloodSampleCollected ;
-
-    public String getChildBloodDraw() {
-        return ChildBloodDraw;
+    public String getBloodDraw() {
+        return BloodDraw;
     }
 
-    public void setChildBloodDraw(String childBloodDraw) {
-        ChildBloodDraw = childBloodDraw;
+    public void setBloodDraw(String bloodDraw) {
+        BloodDraw = bloodDraw;
     }
 
-    public String getChildBloodVol_1() {
-        return ChildBloodVol_1;
+    public String getBloodVolume_1() {
+        return BloodVolume_1;
     }
 
-    public void setChildBloodVol_1(String childBloodVol_1) {
-        ChildBloodVol_1 = childBloodVol_1;
+    public void setBloodVolume_1(String bloodVolume_1) {
+        BloodVolume_1 = bloodVolume_1;
     }
 
-    public String getChildBloodVol_4() {
-        return ChildBloodVol_4;
+    public String getBloodVolume_4() {
+        return BloodVolume_4;
     }
 
-    public void setChildBloodVol_4(String childBloodVol_4) {
-        ChildBloodVol_4 = childBloodVol_4;
+    public void setBloodVolume_4(String bloodVolume_4) {
+        BloodVolume_4 = bloodVolume_4;
     }
 
-    public String getChildBloodVol_6() {
-        return ChildBloodVol_6;
+    public String getBloodVolume_6() {
+        return BloodVolume_6;
     }
 
-    public void setChildBloodVol_6(String childBloodVol_6) {
-        ChildBloodVol_6 = childBloodVol_6;
+    public void setBloodVolume_6(String bloodVolume_6) {
+        BloodVolume_6 = bloodVolume_6;
     }
 
-    public String getChildBloodVol_10() {
-        return ChildBloodVol_10;
+    public String getBloodVolume_10() {
+        return BloodVolume_10;
     }
 
-    public void setChildBloodVol_10(String childBloodVol_10) {
-        ChildBloodVol_10 = childBloodVol_10;
+    public void setBloodVolume_10(String bloodVolume_10) {
+        BloodVolume_10 = bloodVolume_10;
     }
 
-    public String getChildBloodVolComment() {
-        return ChildBloodVolComment;
+    public String getBloodVolumeComment() {
+        return BloodVolumeComment;
     }
 
-    public void setChildBloodVolComment(String childBloodVolComment) {
-        ChildBloodVolComment = childBloodVolComment;
+    public void setBloodVolumeComment(String bloodVolumeComment) {
+        BloodVolumeComment = bloodVolumeComment;
     }
 
-    public String getChild_Rapid() {
-        return Child_Rapid;
+    public String getRapid() {
+        return Rapid;
     }
 
-    public void setChild_Rapid(String child_Rapid) {
-        Child_Rapid = child_Rapid;
+    public void setRapid(String rapid) {
+        Rapid = rapid;
     }
 
-    public String getChildRapidResults() {
-        return ChildRapidResults;
+    public String getRapidResults() {
+        return RapidResults;
     }
 
-    public void setChildRapidResults(String childRapidResults) {
-        ChildRapidResults = childRapidResults;
+    public void setRapidResults(String rapidResults) {
+        RapidResults = rapidResults;
     }
 
-    public String getChildBloodLabTest() {
-        return ChildBloodLabTest;
+    public String getBloodLabTest() {
+        return BloodLabTest;
     }
 
-    public void setChildBloodLabTest(String childBloodLabTest) {
-        ChildBloodLabTest = childBloodLabTest;
+    public void setBloodLabTest(String bloodLabTest) {
+        BloodLabTest = bloodLabTest;
     }
 
-    public String getChildBloodStore() {
-        return ChildBloodStore;
+    public String getBloodStore() {
+        return BloodStore;
     }
 
-    public void setChildBloodStore(String childBloodStore) {
-        ChildBloodStore = childBloodStore;
+    public void setBloodStore(String bloodStore) {
+        BloodStore = bloodStore;
     }
 
-    public String getChildRapidDate() {
-        return ChildRapidDate;
+    public String getBloodSampleCollected() {
+        return BloodSampleCollected;
     }
 
-    public void setChildRapidDate(String childRapidDate) {
-        ChildRapidDate = childRapidDate;
-    }
-
-    public String getChildBloodSampleCollected() {
-        return ChildBloodSampleCollected;
-    }
-
-    public void setChildBloodSampleCollected(String childBloodSampleCollected) {
-        ChildBloodSampleCollected = childBloodSampleCollected;
+    public void setBloodSampleCollected(String bloodSampleCollected) {
+        BloodSampleCollected = bloodSampleCollected;
     }
 
     public String getChPrntlConsentBloodDraw() {
@@ -229,6 +195,14 @@ public class PersonRoster implements Serializable{
         ChPrntlConsentBloodStore = chPrntlConsentBloodStore;
     }
 
+    public String getB3_Guardian() {
+        return B3_Guardian;
+    }
+
+    public void setB3_Guardian(String b3_Guardian) {
+        B3_Guardian = b3_Guardian;
+    }
+
     public String getChPrntlConsentDate() {
         return ChPrntlConsentDate;
     }
@@ -237,101 +211,124 @@ public class PersonRoster implements Serializable{
         ChPrntlConsentDate = chPrntlConsentDate;
     }
 
-    public String getOv64BloodDraw() {
-        return Ov64BloodDraw;
+    public String getPrntlConsentX_Ray() {
+        return PrntlConsentX_Ray;
     }
 
-    public void setOv64BloodDraw(String ov64BloodDraw) {
-        Ov64BloodDraw = ov64BloodDraw;
+    public void setPrntlConsentX_Ray(String prntlConsentX_Ray) {
+        PrntlConsentX_Ray = prntlConsentX_Ray;
     }
 
-    public String getOv64BloodVol_1() {
-        return Ov64BloodVol_1;
+    public String getPrntlConsentX_RayReview() {
+        return PrntlConsentX_RayReview;
     }
 
-    public void setOv64BloodVol_1(String ov64BloodVol_1) {
-        Ov64BloodVol_1 = ov64BloodVol_1;
+    public void setPrntlConsentX_RayReview(String prntlConsentX_RayReview) {
+        PrntlConsentX_RayReview = prntlConsentX_RayReview;
     }
 
-    public String getOv64BloodVol_4() {
-        return Ov64BloodVol_4;
+    public String getPrntlConsentX_RayStore() {
+        return PrntlConsentX_RayStore;
     }
 
-    public void setOv64BloodVol_4(String ov64BloodVol_4) {
-        Ov64BloodVol_4 = ov64BloodVol_4;
+    public void setPrntlConsentX_RayStore(String prntlConsentX_RayStore) {
+        PrntlConsentX_RayStore = prntlConsentX_RayStore;
     }
 
-    public String getOv64BloodVol_6() {
-        return Ov64BloodVol_6;
+    public String getPrntlConsentSP_Collect() {
+        return PrntlConsentSP_Collect;
     }
 
-    public void setOv64BloodVol_6(String ov64BloodVol_6) {
-        Ov64BloodVol_6 = ov64BloodVol_6;
+    public void setPrntlConsentSP_Collect(String prntlConsentSP_Collect) {
+        PrntlConsentSP_Collect = prntlConsentSP_Collect;
     }
 
-    public String getOv64BloodVol_10() {
-        return Ov64BloodVol_10;
+    public String getPrntlParentSP_AddTests() {
+        return PrntlParentSP_AddTests;
     }
 
-    public void setOv64BloodVol_10(String ov64BloodVol_10) {
-        Ov64BloodVol_10 = ov64BloodVol_10;
+    public void setPrntlParentSP_AddTests(String prntlParentSP_AddTests) {
+        PrntlParentSP_AddTests = prntlParentSP_AddTests;
     }
 
-    public String getOv64BloodVolComment() {
-        return Ov64BloodVolComment;
+    public String getPrntlConsentSP_LabTest() {
+        return PrntlConsentSP_LabTest;
     }
 
-    public void setOv64BloodVolComment(String ov64BloodVolComment) {
-        Ov64BloodVolComment = ov64BloodVolComment;
+    public void setPrntlConsentSP_LabTest(String prntlConsentSP_LabTest) {
+        PrntlConsentSP_LabTest = prntlConsentSP_LabTest;
     }
 
-    public String getOv64_Rapid() {
-        return Ov64_Rapid;
+    public String getPrntlConsentTBDate() {
+        return PrntlConsentTBDate;
     }
 
-    public void setOv64_Rapid(String ov64_Rapid) {
-        Ov64_Rapid = ov64_Rapid;
+    public void setPrntlConsentTBDate(String prntlConsentTBDate) {
+        PrntlConsentTBDate = prntlConsentTBDate;
     }
 
-    public String getOv64RapidResults() {
-        return Ov64RapidResults;
+    public String getIndTB_X_Ray() {
+        return IndTB_X_Ray;
     }
 
-    public void setOv64RapidResults(String ov64RapidResults) {
-        Ov64RapidResults = ov64RapidResults;
+    public void setIndTB_X_Ray(String indTB_X_Ray) {
+        IndTB_X_Ray = indTB_X_Ray;
     }
 
-    public String getOv64BloodLabTest() {
-        return Ov64BloodLabTest;
+    public String getIndTB_X_RayReview() {
+        return IndTB_X_RayReview;
     }
 
-    public void setOv64BloodLabTest(String ov64BloodLabTest) {
-        Ov64BloodLabTest = ov64BloodLabTest;
+    public void setIndTB_X_RayReview(String indTB_X_RayReview) {
+        IndTB_X_RayReview = indTB_X_RayReview;
     }
 
-    public String getOv64BloodStore() {
-        return Ov64BloodStore;
+    public String getIndTB_X_RayStore() {
+        return IndTB_X_RayStore;
     }
 
-    public void setOv64BloodStore(String ov64BloodStore) {
-        Ov64BloodStore = ov64BloodStore;
+    public void setIndTB_X_RayStore(String indTB_X_RayStore) {
+        IndTB_X_RayStore = indTB_X_RayStore;
     }
 
-    public String getOv64RapidDate() {
-        return Ov64RapidDate;
+    public String getIndSP_Collect() {
+        return IndSP_Collect;
     }
 
-    public void setOv64RapidDate(String ov64RapidDate) {
-        Ov64RapidDate = ov64RapidDate;
+    public void setIndSP_Collect(String indSP_Collect) {
+        IndSP_Collect = indSP_Collect;
     }
 
-    public String getOv64BloodSampleCollected() {
-        return Ov64BloodSampleCollected;
+    public String getIndSP_AddTests() {
+        return IndSP_AddTests;
     }
 
-    public void setOv64BloodSampleCollected(String ov64BloodSampleCollected) {
-        Ov64BloodSampleCollected = ov64BloodSampleCollected;
+    public void setIndSP_AddTests(String indSP_AddTests) {
+        IndSP_AddTests = indSP_AddTests;
     }
+
+    public String getIndSP_LabTests() {
+        return IndSP_LabTests;
+    }
+
+    public void setIndSP_LabTests(String indSP_LabTests) {
+        IndSP_LabTests = indSP_LabTests;
+    }
+
+    public String getIndTB_ConsentDate() {
+        return IndTB_ConsentDate;
+    }
+
+    public void setIndTB_ConsentDate(String indTB_ConsentDate) {
+        IndTB_ConsentDate = indTB_ConsentDate;
+    }
+
+
+
+
+
+
+
     public String getP13Other() {
         return P13Other;
     }
@@ -436,214 +433,10 @@ public class PersonRoster implements Serializable{
         this.SRNO = SRNO;
     }
 
-    public String getRapid_Comment() {
-        return Rapid_Comment;
-    }
-
-    public void setRapid_Comment(String rapid_Comment) {
-        Rapid_Comment = rapid_Comment;
-    }
-
-    public String getB3_Guardian() {
-        return B3_Guardian;
-    }
-
-    public void setB3_Guardian(String b3_Guardian) {
-        B3_Guardian = b3_Guardian;
-    }
 
 
-    public String getHIVChildParentalConsentQ2() {
-        return HIVChildParentalConsentQ2;
-    }
 
-    public void setHIVChildParentalConsentQ2(String HIVChildParentalConsentQ2) {
-        this.HIVChildParentalConsentQ2 = HIVChildParentalConsentQ2;
-    }
 
-    public String getHIVChildParentalConsentQ3() {
-        return HIVChildParentalConsentQ3;
-    }
-
-    public void setHIVChildParentalConsentQ3(String HIVChildParentalConsentQ3) {
-        this.HIVChildParentalConsentQ3 = HIVChildParentalConsentQ3;
-    }
-
-    public String getHIVChildParentalConsentQ4() {
-        return HIVChildParentalConsentQ4;
-    }
-
-    public void setHIVChildParentalConsentQ4(String HIVChildParentalConsentQ4) {
-        this.HIVChildParentalConsentQ4 = HIVChildParentalConsentQ4;
-    }
-
-    public String getHIVChildParentalConsentNameOfInterviewer() {
-        return HIVChildParentalConsentNameOfInterviewer;
-    }
-
-    public void setHIVChildParentalConsentNameOfInterviewer(String HIVChildParentalConsentNameOfInterviewer) {
-        this.HIVChildParentalConsentNameOfInterviewer = HIVChildParentalConsentNameOfInterviewer;
-    }
-
-    public String getHIVChildParentalConsentInterviewerID() {
-        return HIVChildParentalConsentInterviewerID;
-    }
-
-    public void setHIVChildParentalConsentInterviewerID(String HIVChildParentalConsentInterviewerID) {
-        this.HIVChildParentalConsentInterviewerID = HIVChildParentalConsentInterviewerID;
-    }
-
-    public String getHIVChildParentalConsentParticipantsID() {
-        return HIVChildParentalConsentParticipantsID;
-    }
-
-    public void setHIVChildParentalConsentParticipantsID(String HIVChildParentalConsentParticipantsID) {
-        this.HIVChildParentalConsentParticipantsID = HIVChildParentalConsentParticipantsID;
-    }
-
-    public String getHIVChildParentalConsentDate() {
-        return HIVChildParentalConsentDate;
-    }
-
-    public void setHIVChildParentalConsentDate(String HIVChildParentalConsentDate) {
-        this.HIVChildParentalConsentDate = HIVChildParentalConsentDate;
-    }
-
-    public String getHIVAssentQ1() {
-        return HIVAssentQ1;
-    }
-
-    public void setHIVAssentQ1(String HIVAssentQ1) {
-        this.HIVAssentQ1 = HIVAssentQ1;
-    }
-
-    public String getHIVAssentQ2() {
-        return HIVAssentQ2;
-    }
-
-    public void setHIVAssentQ2(String HIVAssentQ2) {
-        this.HIVAssentQ2 = HIVAssentQ2;
-    }
-
-    public String getHIVAssentQ3() {
-        return HIVAssentQ3;
-    }
-
-    public void setHIVAssentQ3(String HIVAssentQ3) {
-        this.HIVAssentQ3 = HIVAssentQ3;
-    }
-
-    public String getHIVAssentQ4() {
-        return HIVAssentQ4;
-    }
-
-    public void setHIVAssentQ4(String HIVAssentQ4) {
-        this.HIVAssentQ4 = HIVAssentQ4;
-    }
-
-    public String getHIVAssentNameOfInterviewer() {
-        return HIVAssentNameOfInterviewer;
-    }
-
-    public void setHIVAssentNameOfInterviewer(String HIVAssentNameOfInterviewer) {
-        this.HIVAssentNameOfInterviewer = HIVAssentNameOfInterviewer;
-    }
-
-    public String getHIVAssentInterviewerID() {
-        return HIVAssentInterviewerID;
-    }
-
-    public void setHIVAssentInterviewerID(String HIVAssentInterviewerID) {
-        this.HIVAssentInterviewerID = HIVAssentInterviewerID;
-    }
-
-    public String getHIVAssentParticipantsID() {
-        return HIVAssentParticipantsID;
-    }
-
-    public void setHIVAssentParticipantsID(String HIVAssentParticipantsID) {
-        this.HIVAssentParticipantsID = HIVAssentParticipantsID;
-    }
-
-    public String getHIVAssentDate() {
-        return HIVAssentDate;
-    }
-
-    public void setHIVAssentDate(String HIVAssentDate) {
-        this.HIVAssentDate = HIVAssentDate;
-    }
-
-    public String getHIVConsentAdultsQ1() {
-        return HIVConsentAdultsQ1;
-    }
-
-    public void setHIVConsentAdultsQ1(String HIVConsentAdultsQ1) {
-        this.HIVConsentAdultsQ1 = HIVConsentAdultsQ1;
-    }
-
-    public String getHIVConsentAdultsQ2() {
-        return HIVConsentAdultsQ2;
-    }
-
-    public void setHIVConsentAdultsQ2(String HIVConsentAdultsQ2) {
-        this.HIVConsentAdultsQ2 = HIVConsentAdultsQ2;
-    }
-
-    public String getHIVConsentAdultsQ3() {
-        return HIVConsentAdultsQ3;
-    }
-
-    public void setHIVConsentAdultsQ3(String HIVConsentAdultsQ3) {
-        this.HIVConsentAdultsQ3 = HIVConsentAdultsQ3;
-    }
-
-    public String getHIVConsentAdultsQ4() {
-        return HIVConsentAdultsQ4;
-    }
-
-    public void setHIVConsentAdultsQ4(String HIVConsentAdultsQ4) {
-        this.HIVConsentAdultsQ4 = HIVConsentAdultsQ4;
-    }
-
-    public String getHIVConsentAdultsNameOfInterviewer() {
-        return HIVConsentAdultsNameOfInterviewer;
-    }
-
-    public void setHIVConsentAdultsNameOfInterviewer(String HIVConsentAdultsNameOfInterviewer) {
-        this.HIVConsentAdultsNameOfInterviewer = HIVConsentAdultsNameOfInterviewer;
-    }
-
-    public String getHIVConsentAdultsInterviewerID() {
-        return HIVConsentAdultsInterviewerID;
-    }
-
-    public void setHIVConsentAdultsInterviewerID(String HIVConsentAdultsInterviewerID) {
-        this.HIVConsentAdultsInterviewerID = HIVConsentAdultsInterviewerID;
-    }
-
-    public String getHIVConsentAdultsParticipantsID() {
-        return HIVConsentAdultsParticipantsID;
-    }
-
-    public void setHIVConsentAdultsParticipantsID(String HIVConsentAdultsParticipantsID) {
-        this.HIVConsentAdultsParticipantsID = HIVConsentAdultsParticipantsID;
-    }
-
-    public String getHIVConsentAdultsDate() {
-        return HIVConsentAdultsDate;
-    }
-
-    public void setHIVConsentAdultsDate(String HIVConsentAdultsDate) {
-        this.HIVConsentAdultsDate = HIVConsentAdultsDate;
-    }
-
-    public String getBloodSampleCollected() {
-        return BloodSampleCollected;
-    }
-
-    public void setBloodSampleCollected(String bloodSampleCollected) {
-        BloodSampleCollected = bloodSampleCollected;
-    }
 
     public String getP07() {
         return P07;

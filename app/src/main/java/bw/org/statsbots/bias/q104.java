@@ -1,6 +1,8 @@
 package bw.org.statsbots.bias;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Vibrator;
@@ -11,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -43,8 +46,25 @@ public class q104 extends AppCompatActivity implements Serializable {
         setTitle("Q104 Type of Education");
         lib = new LibraryClass();
         q104atxt = (TextView) findViewById(R.id.q104a) ;
-                q104btxt = (TextView) findViewById(R.id.q104b) ;
+        q104btxt = (TextView) findViewById(R.id.q104b) ;
         edtq104c = (EditText) findViewById(R.id.txtq104c) ;
+
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+        int p = 0;
+
+        myDB = new DatabaseHelper(q104.this);
+        myDB.onOpen(myDB.getReadableDatabase());
+
+        Intent ii = getIntent();
+        p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
+
+        myDB.getWritableDatabase();
+        myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+        //int p = 0;
+
         final String[] lst = getResources().getStringArray(R.array.type_of_education);
 
 
@@ -156,10 +176,7 @@ public class q104 extends AppCompatActivity implements Serializable {
         });
 
 
-        // final int selectedId = rbtngroup.getCheckedRadioButtonId();
-        Intent i = getIntent();
-        individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+
 
 
         Button btnnext = findViewById(R.id.button);
@@ -242,7 +259,8 @@ public class q104 extends AppCompatActivity implements Serializable {
                                  */
                                 Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                 vibs.vibrate(100);
-                            } else {
+                            }
+                               else {
                                 //Check if country entered is in the list
                                 boolean existsY = false;
                                 for (String y : lst2) {
@@ -276,6 +294,7 @@ public class q104 extends AppCompatActivity implements Serializable {
 
                                     Intent intent = new Intent(q104.this, q105.class);
                                     intent.putExtra("Individual", individual);
+                                    intent.putExtra("Personroster", p1);
                                     startActivity(intent);
 
 
@@ -299,6 +318,7 @@ public class q104 extends AppCompatActivity implements Serializable {
 
 
                 }
+
             }
         });
         Button btprev = findViewById(R.id.button3);

@@ -23,6 +23,7 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
     private TextView formatTxt, contentTxt;
     private PersonRoster p1 = null;
     LibraryClass lib;
+    protected  DatabaseHelper myDB;
     protected HouseHold thisHouse;
     protected Individual individual;
 
@@ -36,7 +37,7 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
             formatTxt = (TextView)findViewById(R.id.scan_format);
             contentTxt = (TextView)findViewById(R.id.scan_content);
           lib= new LibraryClass();
-            setTitle("Barcode scan for Individual");
+            //setTitle("Barcode scan for Individual");
             scanBtn.setOnClickListener(this);
             btnPrev = (Button)findViewById(R.id.barcd_btnPrev);
 
@@ -51,8 +52,32 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
             p1 = (PersonRoster) r.getSerializableExtra("Personroster");
 
 
+            myDB = new DatabaseHelper(this);
+            myDB.onOpen(myDB.getReadableDatabase());
 
-btnNext = (Button)findViewById(R.id.bar_btnNext);
+            if(Integer.valueOf(p1.getP04YY()) > 15)
+            {
+                setTitle("Barcode scan for Children less than 15 years");
+            }
+
+
+            if(Integer.valueOf(p1.getP04YY()) > 15  && Integer.valueOf(p1.getP04YY()) < 64)
+            {
+                setTitle("Barcode scan for Adults 15 -64");
+            }
+
+            if(Integer.valueOf(p1.getP04YY()) > 64 )
+            {
+                setTitle("Barcode scan for Adults 64 plus");
+            }
+            if(Integer.valueOf(p1.getP04YY()) >= 10 && Integer.valueOf(p1.getP04YY()) <= 14 )
+            {
+                setTitle("Barcode scan for 10 - 14 years");
+            }
+
+
+
+            btnNext = (Button)findViewById(R.id.bar_btnNext);
             btnNext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -68,7 +93,14 @@ btnNext = (Button)findViewById(R.id.bar_btnNext);
 
                         individual.setIndBarcode(contentTxt.getText().toString());
 
-                        Intent intent = new Intent(Barcode.this, q101.class);
+                        p1.setBarcode(contentTxt.getText().toString());
+                        myDB = new DatabaseHelper(Barcode.this);
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        //  myDB.updateRoster(thisHouse,"tRapidDate",p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+                        myDB.updateConsents("Barcode", p1.getAssignmentID(), p1.getBatch(), p1.getBarcode(), String.valueOf(p1.getSRNO()));
+                        myDB.close();
+
+                        Intent intent = new Intent(Barcode.this, HIVParentalConsent6wks_9y.class);
                         intent.putExtra("Individual", individual);
                         intent.putExtra("Personroster", p1);
                         startActivity(intent);

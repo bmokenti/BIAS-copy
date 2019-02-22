@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class HIVConsentOver64 extends AppCompatActivity implements Serializable {
 
@@ -41,7 +42,25 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
         lib = new LibraryClass();
 
 
-        lib = new LibraryClass();
+        Intent h = getIntent();
+        p1 = (PersonRoster) h.getSerializableExtra("Personroster");
+
+
+        myDB = new DatabaseHelper(this);
+        myDB.onOpen(myDB.getReadableDatabase());
+
+       // myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+/*
+        if (p1.getChPrntlConsentBloodDraw().equals("2") && p1.getChPrntlConsentRHT().equals("2"))
+        {
+            Intent intent = new Intent(HIVConsentOver64.this, Dashboard.class);
+            intent.putExtra("Personroster", p1);
+            startActivity(intent);
+        }
+*/
+
+
 
         rg1 = (RadioGroup) findViewById(R.id.rg1);
         rg2 = (RadioGroup) findViewById(R.id.rg2);
@@ -278,29 +297,180 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                 Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                                 vibs.vibrate(100);
 
-                                            } else {
+                                            }  else {
 
-                                                    thisHouse.getPersons()[p1.getLineNumber()].setU15Rapid_Results(selected3.getText().toString().substring(0,1));
+                                                    if (rbtn2.isChecked()) {
 
-                                                    Intent intent = new Intent(HIVConsentOver64.this, Dashboard.class);
-                                                    intent.putExtra("Individual", individual);
-                                                    startActivity(intent);
+                                                        p1.setBloodDraw(selected1.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getBloodDraw(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
 
+
+                                                        p1.setRapid(selected2.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("Rapid", p1.getAssignmentID(), p1.getBatch(), p1.getRapid(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        if (rbtn3.isChecked()) {
+
+                                                            p1.setRapidResults(selected3.getText().toString().substring(0, 1));
+                                                            myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.close();
+                                                        }
+
+                                                        p1.setRapidDate(EdtDate.getText().toString());
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        //  myDB.updateRoster(thisHouse,"tRapidDate",p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+
+                                                        Intent intent = new Intent(HIVConsentOver64.this, Dashboard.class);
+                                                        intent.putExtra("Individual", individual);
+                                                        startActivity(intent);
+
+                                                    } else {
+                                                        p1.setBloodDraw(selected1.getText().toString().substring(0, 1));
+
+
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getBloodDraw(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+
+                                                        if (vol1.isChecked()) {
+                                                            p1.setBloodVolume_1("1");
+
+                                                        } else {
+                                                            p1.setBloodVolume_1("2");
+                                                        }
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodVolume_1", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_1(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        // myDB.updateRoster(thisHouse,"BloodVolume_1",p1.getBloodVolume_1(), String.valueOf(p1.getSRNO()));
+                                                        if (vol2.isChecked()) {
+                                                            p1.setBloodVolume_4("1");
+                                                        } else {
+                                                            p1.setBloodVolume_4("2");
+                                                        }
+
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodVolume_4", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_4(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+                                                        //myDB.updateRoster(thisHouse,"BloodVolume_4",p1.getBloodVolume_4(), String.valueOf(p1.getSRNO()));
+                                                        if (vol3.isChecked()) {
+                                                            p1.setBloodVolume_6("1");
+                                                        } else {
+                                                            p1.setBloodVolume_6("2");
+                                                        }
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodVolume_6", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_6(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+                                                        //myDB.updateRoster(thisHouse,"BloodVolume_6",p1.getBloodVolume_6(), String.valueOf(p1.getSRNO()));
+                                                        if (vol4.isChecked()) {
+                                                            p1.setBloodVolume_10("1");
+                                                        } else {
+                                                            p1.setBloodVolume_10("2");
+                                                        }
+
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodVolume_10", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_10(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+
+                                                        p1.setBloodVolumeComment(Edttubevolume.getText().toString());
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodVolumeComment", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolumeComment(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+
+                                                        p1.setRapid(selected2.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("Rapid", p1.getAssignmentID(), p1.getBatch(), p1.getRapid(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        if (rbtn3.isChecked()) {
+
+                                                            p1.setRapidResults(selected3.getText().toString().substring(0, 1));
+                                                            myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.close();
+                                                        }
+
+
+                                                        p1.setBloodLabTest(selected4.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodLabTest", p1.getAssignmentID(), p1.getBatch(), p1.getBloodLabTest(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        p1.setBloodStore(selected5.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodStore", p1.getAssignmentID(), p1.getBatch(), p1.getBloodStore(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+
+                                                        p1.setRapidDate(EdtDate.getText().toString());
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        p1.setBloodSampleCollected(selected6.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodSampleCollected", p1.getAssignmentID(), p1.getBatch(), p1.getBloodSampleCollected(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        //Check if individual already been saved and update
+
+
+                                                        //Next question P17
+                                                        // myDB = new DatabaseHelper(HIVConsentOver64.this);
+                                                        // myDB.onOpen(myDB.getReadableDatabase());
+
+
+                                                        //Update
+
+
+                                                        Intent intent = new Intent(HIVConsentOver64.this, Dashboard.class);
+                                                        intent.putExtra("Personroster", p1);
+                                                        startActivity(intent);
+
+
+                                                    }
+
+                                                    //Check if individual already been saved and update
 
                                                 }
-
-                                                //Check if individual already been saved and update
-
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
+
                     }
                 }
             }
         });
-
 
     }
 }

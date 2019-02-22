@@ -128,16 +128,16 @@ public class RapidHIVTest extends Activity {
                         thisHouse.getPersons()[p1.getLineNumber()].setBloodSampleCollected(selectedRbtn.getText().toString().substring(0, 1));
                         thisHouse.getPersons()[p1.getLineNumber()].setU15Rapid_Results(selectedRbtn1.getText().toString().substring(0, 1));
                         thisHouse.getPersons()[p1.getLineNumber()].setRapidDate(edtDate.getText().toString());
-                        thisHouse.getPersons()[p1.getLineNumber()].setRapid_Comment(edtComments.getText().toString());
+                       // thisHouse.getPersons()[p1.getLineNumber()].setRapid_Comment(edtComments.getText().toString());
 
                         //Restart the current activity for next individual
                         if (p1.getLineNumber() == thisHouse.getTotalPersons() - 1) {
                             for (PersonRoster p : thisHouse.getPersons()) {
                                 thisHouse.writeData(
                                        (p1.getP01() + p1.getP02() + p1.getP03() + p1.getP04YY() + p1.getP04MM() + p1.getP04WKS() +
-                                                p1.getP05() + p1.getP06() + p1.getP07()  + p1.getBloodSampleCollected()+ p1.getRapid_Comment()), RapidHIVTest.this);
+                                                p1.getP05() + p1.getP06() + p1.getP07()  + p1.getBloodSampleCollected()), RapidHIVTest.this);
                             }
-
+                           // + p1.getRapid_Comment()
                             //Next question P17
                             Intent intent = new Intent(RapidHIVTest.this, P17.class);
                             intent.putExtra("Household", thisHouse);

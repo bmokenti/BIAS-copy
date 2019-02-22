@@ -93,25 +93,19 @@ public class q204 extends AppCompatActivity implements Serializable {
                     positiveButton.setLayoutParams(positiveButtonLL);
 
 
-                } else {
+                }else {
                     individual.setQ204(edt.getText().toString());
                     Integer age = Integer.parseInt(individual.getQ102());
                     Integer years = Integer.parseInt(individual.getQ204());
-                    if ((age - years <= 12) || (years >= age))
-                    {
+                    if ((age - years <= 12) || (years >= age)) {
                         lib.showError(q204.this, "Q204: Error", "Check age and years difference");
-                        /**
-                         * VIBRATE DEVICE
-                         */
+
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
 
-                    }
-
-                    else
-                   {
+                    } else {
                         //Set q101 for the current individual
-                       // individual.setQ204(edt.getText().toString());
+                        // individual.setQ204(edt.getText().toString());
 
 
                         //update individual

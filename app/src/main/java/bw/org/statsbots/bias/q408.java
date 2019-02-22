@@ -167,6 +167,11 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
                         {if(rbtn2.isChecked())
                         {
                             individual.setQ408(selectedRbtn.getText().toString().substring(0,1));
+
+                            Intent q1o2 = new Intent(q408.this, q410.class);
+                            q1o2.putExtra("Individual", individual);
+                            startActivity(q1o2);
+
                         }
                         else{
                             //Set q408 for the current individual

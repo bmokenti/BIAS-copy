@@ -597,7 +597,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                     }
 
                                     pp.setU15Rapid_Results( roster.get("U15Rapid_Result").toString());
-                                    pp.setRapid_Comment( roster.get("Rapid_Comment").toString());
+                                //    pp.setRapid_Comment( roster.get("Rapid_Comment").toString());
                                     pp.setBarcode( roster.get("BarCode").toString());
 
                                     pp.setP08( roster.get("P08").toString());

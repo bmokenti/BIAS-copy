@@ -27,7 +27,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
     protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7,rbtn9, rbtn10,rbtn11,rbtn12, rbtn13,  selected1, selected2, selected3,  selected4, selected5 , selected6 ;
     protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
-    protected EditText Edttubevolume, EdtDate;
+    protected EditText Edttubevolume, EdtDate, EdtGuardian;
     protected CheckBox vol1, vol2, vol3, vol4;
     protected Button btnNext, btnDate, btnPrev;
     protected TextView t1, t2, t3, t4, t5, t6, t7, t8;
@@ -37,6 +37,9 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         setContentView(R.layout.activity_hivparental_consent6wks_9y);
 
         lib = new LibraryClass();
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+
 
         Intent h = getIntent();
         p1 = (PersonRoster) h.getSerializableExtra("Personroster");
@@ -48,7 +51,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 
-        if((Integer.valueOf(p1.getP04YY()) <= 1 && (Integer.valueOf(p1.getP04MM()) <= 2 || Integer.valueOf(p1.getP04WKS()) <= 2 )) || (Integer.valueOf(p1.getP04MM()) <= 2 || Integer.valueOf(p1.getP04WKS()) <= 2))
+        if((Integer.valueOf(p1.getP04YY()) <= 1 && Integer.valueOf(p1.getP04MM()) <= 5 ))
         {
             setTitle("Parental Consent less than 18 months");
         }
@@ -59,11 +62,37 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         if(Integer.valueOf(p1.getP04YY()) >=10 && Integer.valueOf(p1.getP04YY()) <=14)
         {
             Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, HIVParentalConsent10_14yrs.class);
+            q1o2.putExtra("Individual", individual);
             q1o2.putExtra("Personroster", p1);
             startActivity(q1o2);
         }
         else {
             setTitle("Parental Consent 18 months to 9 years");
+        }
+
+        if(Integer.valueOf(p1.getP04YY()) > 15 )
+        {
+            Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, IndQuetParentalConsent.class);
+            q1o2.putExtra("Individual", individual);
+            q1o2.putExtra("Personroster", p1);
+            startActivity(q1o2);
+        }
+
+
+        if(Integer.valueOf(p1.getP04YY()) > 15  && Integer.valueOf(p1.getP04YY()) < 64)
+        {
+            Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, IndQuetParentalConsent.class);
+            q1o2.putExtra("Individual", individual);
+            q1o2.putExtra("Personroster", p1);
+            startActivity(q1o2);
+        }
+
+        if(Integer.valueOf(p1.getP04YY()) > 64 )
+        {
+            Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, HIVConsentOver64.class);
+            q1o2.putExtra("Individual", individual);
+            q1o2.putExtra("Personroster", p1);
+            startActivity(q1o2);
         }
 
 
@@ -92,6 +121,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         rbtn13 = (RadioButton) findViewById(R.id.rbtn13);
         Edttubevolume = (EditText) findViewById(R.id.TubeVolComment);
         EdtDate = (EditText) findViewById(R.id.DateTxt);
+        EdtGuardian = (EditText) findViewById(R.id.ParentID);
         btnDate = (Button) findViewById(R.id.datebtn);
         btnNext = (Button) findViewById(R.id.btnnext);
         btnPrev = (Button) findViewById(R.id.btnprev);
@@ -108,7 +138,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         t6  = (TextView) findViewById(R.id.bloodColectionStatus);
         t5  = (TextView) findViewById(R.id.txtstore);
 
-        if(Integer.valueOf(p1.getP04YY()) <=2)
+        if(Integer.valueOf(p1.getP04YY()) >= 1 && Integer.valueOf(p1.getP04MM()) <=6)
         {
             rbtn3.setEnabled(false);
             rbtn4.setEnabled(false);
@@ -119,6 +149,10 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
 
         }
         else {
+           // rbtn3.setEnabled(true);
+            //rbtn4.setEnabled(true);
+            //rbtn5.setEnabled(true);
+            //rbtn6.setEnabled(true);
 
         }
 
@@ -254,8 +288,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
 
-                }
-                else {
+                } else {
 
                     if (!(vol1.isChecked() || vol2.isChecked() || vol3.isChecked() || vol4.isChecked()) && rbtn1.isChecked()) {
                         lib.showError(HIVParentalConsent6wks_9y.this, "IndividualConsent: Error: 1a", "Please record container used");
@@ -269,7 +302,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
                         int selectedId2 = rg2.getCheckedRadioButtonId();
                         selected2 = (RadioButton) findViewById(selectedId2);
 
-                        if (selected2 == null ) {
+                        if (selected2 == null) {
                             lib.showError(HIVParentalConsent6wks_9y.this, "RHT: Error: 2", "Do you agree for the survey team to do RHT?");
                             /**
                              * VIBRATE DEVICE
@@ -316,8 +349,8 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
                                     } else {
 
 
-                                        if (EdtDate == null) {
-                                            lib.showError(HIVParentalConsent6wks_9y.this, "DATE: Error: ", "Please record date");
+                                        if (EdtGuardian == null) {
+                                            lib.showError(HIVParentalConsent6wks_9y.this, "Guardian: Error: ", "Please please select Guardian ID");
                                             /**
                                              * VIBRATE DEVICE
                                              */
@@ -325,11 +358,10 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
                                             vibs.vibrate(100);
 
                                         } else {
-                                            int selectedId6 = rg6.getCheckedRadioButtonId();
-                                            selected6 = (RadioButton) findViewById(selectedId6);
 
-                                            if (selected6 == null && rbtn1.isChecked()) {
-                                                lib.showError(HIVParentalConsent6wks_9y.this, "Blood collection: Error: 2a", "Please record blood status");
+
+                                            if (EdtDate == null) {
+                                                lib.showError(HIVParentalConsent6wks_9y.this, "DATE: Error: ", "Please record date");
                                                 /**
                                                  * VIBRATE DEVICE
                                                  */
@@ -337,42 +369,194 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
                                                 vibs.vibrate(100);
 
                                             } else {
+                                                int selectedId6 = rg6.getCheckedRadioButtonId();
+                                                selected6 = (RadioButton) findViewById(selectedId6);
 
-
-                                                if (rbtn2.isChecked()) {
-
-
-                                                    p1.setChildBloodDraw(selected1.getText().toString().substring(0, 1));
-                                                    p1.setChild_Rapid(selected2.getText().toString().substring(0, 1));
-
-                                                    if (rbtn3.isChecked()) {
-                                                        p1.setChildRapidResults(selected3.getText().toString().substring(0, 1));
-                                                    }
-                                                    // p1.setB3_Guardian(EditText.getText().toString());
-                                                    p1.setChildRapidDate(EdtDate.getText().toString());
-
-                                                    myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
-                                                    myDB.onOpen(myDB.getReadableDatabase());
-
-
-                                                    //Update
-                                                    //  myDB.updateHhroster(myDB.getWritableDatabase(), HouseHold);
-
-
-                                                    Intent intent = new Intent(HIVParentalConsent6wks_9y.this, Dashboard.class);
-                                                    intent.putExtra("Individual", individual);
-                                                    startActivity(intent);
+                                                if (selected6 == null && rbtn1.isChecked()) {
+                                                    lib.showError(HIVParentalConsent6wks_9y.this, "Blood collection: Error: 2a", "Please record blood status");
+                                                    /**
+                                                     * VIBRATE DEVICE
+                                                     */
+                                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                                    vibs.vibrate(100);
 
                                                 } else {
-                                                    thisHouse.getPersons()[p1.getLineNumber()].setU15Rapid_Results(selected3.getText().toString().substring(0,1));
 
 
+                                                    if (rbtn2.isChecked()) {
 
-                                                    Intent intent1 = new Intent(HIVParentalConsent6wks_9y.this, HIVParentalConsent10_14yrs.class);
-                                                        intent1.putExtra("Household", thisHouse);
-                                                        startActivity(intent1);
+                                                        p1.setChPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("ChPrntlConsentBloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentBloodDraw(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
 
 
+                                                        p1.setChPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentRHT(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        if (rbtn3.isChecked()) {
+
+                                                            p1.setRapidResults(selected3.getText().toString().substring(0, 1));
+                                                            myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.close();
+                                                        }
+
+                                                        p1.setB3_Guardian(EdtGuardian.getText().toString());
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("B3_Guardian", p1.getAssignmentID(), p1.getBatch(), p1.getB3_Guardian(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        p1.setRapidDate(EdtDate.getText().toString());
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        //  myDB.updateRoster(thisHouse,"tRapidDate",p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+
+                                                        Intent intent = new Intent(HIVParentalConsent6wks_9y.this, Dashboard.class);
+                                                        intent.putExtra("Individual", individual);
+                                                        intent.putExtra("Personroster", p1);
+                                                        startActivity(intent);
+
+                                                    } else {
+                                                        p1.setChPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
+
+
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("ChPrntlConsentBloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentBloodDraw(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+
+                                                        if (vol1.isChecked()) {
+                                                            p1.setBloodVolume_1("1");
+
+                                                        } else {
+                                                            p1.setBloodVolume_1("2");
+                                                        }
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodVolume_1", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_1(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        // myDB.updateRoster(thisHouse,"BloodVolume_1",p1.getBloodVolume_1(), String.valueOf(p1.getSRNO()));
+                                                        if (vol2.isChecked()) {
+                                                            p1.setBloodVolume_4("1");
+                                                        } else {
+                                                            p1.setBloodVolume_4("2");
+                                                        }
+
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodVolume_4", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_4(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+                                                        //myDB.updateRoster(thisHouse,"BloodVolume_4",p1.getBloodVolume_4(), String.valueOf(p1.getSRNO()));
+                                                        if (vol3.isChecked()) {
+                                                            p1.setBloodVolume_6("1");
+                                                        } else {
+                                                            p1.setBloodVolume_6("2");
+                                                        }
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodVolume_6", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_6(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+                                                        //myDB.updateRoster(thisHouse,"BloodVolume_6",p1.getBloodVolume_6(), String.valueOf(p1.getSRNO()));
+                                                        if (vol4.isChecked()) {
+                                                            p1.setBloodVolume_10("1");
+                                                        } else {
+                                                            p1.setBloodVolume_10("2");
+                                                        }
+
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodVolume_10", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_10(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+
+                                                        p1.setBloodVolumeComment(Edttubevolume.getText().toString());
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodVolumeComment", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolumeComment(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+
+                                                        p1.setChPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentRHT(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        if (rbtn3.isChecked()) {
+
+                                                            p1.setRapidResults(selected3.getText().toString().substring(0, 1));
+                                                            myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.close();
+                                                        }
+
+
+                                                        p1.setChPrntlConsentLabTest(selected4.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("ChPrntlConsentLabTest", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentLabTest(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        p1.setChPrntlConsentBloodStore(selected5.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("ChPrntlConsentBloodStore", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentBloodStore(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        //************************set guardian id or name***************************************/
+                                                        p1.setB3_Guardian(EdtGuardian.getText().toString());
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("B3_Guardian", p1.getAssignmentID(), p1.getBatch(), p1.getB3_Guardian(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        p1.setRapidDate(EdtDate.getText().toString());
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        p1.setBloodSampleCollected(selected6.getText().toString().substring(0, 1));
+                                                        myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        myDB.onOpen(myDB.getReadableDatabase());
+                                                        myDB.updateConsents("BloodSampleCollected", p1.getAssignmentID(), p1.getBatch(), p1.getBloodSampleCollected(), String.valueOf(p1.getSRNO()));
+                                                        myDB.close();
+
+                                                        //Check if individual already been saved and update
+
+
+                                                        //Next question P17
+                                                        // myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
+                                                        // myDB.onOpen(myDB.getReadableDatabase());
+
+
+                                                        //Update
+
+
+                                                        Intent intent = new Intent(HIVParentalConsent6wks_9y.this, Dashboard.class);
+                                                        intent.putExtra("Individual", individual);
+                                                        intent.putExtra("Personroster", p1);
+                                                        startActivity(intent);
+
+
+                                                    }
+
+                                                    //Check if individual already been saved and update
 
                                                 }
                                             }
@@ -380,10 +564,10 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
                                     }
                                 }
                             }
-
                         }
                     }
                 }
+
             }
         });
 

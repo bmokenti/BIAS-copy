@@ -151,7 +151,7 @@ public class IndQuetParentalConsent extends Activity implements Serializable {
 
                             //Next question P17
 
-                            Intent intent = new Intent(IndQuetParentalConsent.this, HIVChildParentalConsent15_17.class);
+                            Intent intent = new Intent(IndQuetParentalConsent.this, HIVParentalConsent6wks_9y.class);
                             intent.putExtra("Individual", individual);
                             intent.putExtra("Personroster", p1);
                             startActivity(intent);
