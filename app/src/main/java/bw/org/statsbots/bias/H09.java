@@ -19,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class H09 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
@@ -27,7 +28,7 @@ public class H09 extends AppCompatActivity implements View.OnClickListener, Seri
     protected RadioButton rbtn1, rbtn2,rbtn3, rbtn4,rbtn5, rbtn6,rbtn7, selected = null;
     protected RadioGroup rbtngroup;
     protected EditText edt;
-    protected RadioButton selectedRbtn;
+    protected RadioButton selectedRbtn;protected DatabaseHelper myDB;
     PersonRoster p1 = null;
     Individual pp1 = null;
     @Override
@@ -68,8 +69,70 @@ public class H09 extends AppCompatActivity implements View.OnClickListener, Seri
             Intent i = getIntent();
             thisHouse = (HouseHold) i.getSerializableExtra("Household");
             int p = 0;
-            Button btnext = findViewById(R.id.button);
+        myDB = new DatabaseHelper(this);
+        myDB.onOpen(myDB.getReadableDatabase());
+        List<HouseHold> houseList = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        myDB.close();
 
+        if(houseList.size()>0){
+            thisHouse=houseList.get(0);
+        }
+
+
+
+
+        RadioButton[] bt = new RadioButton[7];
+
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(thisHouse.getH09()!= null)
+                {
+
+                    if(Integer.parseInt(thisHouse.getH09())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+
+                    if(thisHouse.getH09Other()!=null){
+                        edt.setText(thisHouse.getH09Other());
+                    }
+                }else {
+                    if(thisHouse.getH09Other() !=null){
+                        rbtn7.setChecked(true);
+                        edt.setVisibility(View.VISIBLE);
+                        edt.setText(thisHouse.getH09Other());
+                    }
+                }
+            }
+            else
+            {
+                Log.d("Lost Here","**********");
+            }
+        }
+
+
+
+        Button btnext = findViewById(R.id.button);
+        Button btnPrev = findViewById(R.id.button3);
+//        PersonRoster pr[] = thisHouse.getPersons();
+
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+
+
+
+            }
+        });
 
             btnext.setOnClickListener(new View.OnClickListener()
 
@@ -141,6 +204,18 @@ public class H09 extends AppCompatActivity implements View.OnClickListener, Seri
 
                             }else{
                                 thisHouse.setH09Other(edt.getText().toString());
+
+                                DatabaseHelper myDB = new DatabaseHelper(H09.this);
+                                myDB.onOpen(myDB.getWritableDatabase());
+
+                                //UPDATE HOUSEHOLD
+                                myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H09Other", thisHouse.getH09Other());
+                                myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H09", null);
+
+                                myDB.close();
+
+
+
                                 Intent q1o2 = new Intent(bw.org.statsbots.bias.H09.this, H10.class);
                                 q1o2.putExtra("Household",  thisHouse);
                                 startActivity(q1o2);
@@ -149,6 +224,16 @@ public class H09 extends AppCompatActivity implements View.OnClickListener, Seri
                         }else{
 
                             thisHouse.setH09(selectedRbtn.getText().toString().substring(0,1));
+
+                            DatabaseHelper myDB = new DatabaseHelper(H09.this);
+                            myDB.onOpen(myDB.getWritableDatabase());
+
+                            //UPDATE HOUSEHOLD
+                            myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H09Other", null);
+                            myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H09", thisHouse.getH09());
+
+                            myDB.close();
+
                             Intent q1o2 = new Intent(bw.org.statsbots.bias.H09.this, H10.class);
                             q1o2.putExtra("Household",  thisHouse);
                             startActivity(q1o2);

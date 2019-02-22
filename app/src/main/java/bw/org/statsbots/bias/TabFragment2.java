@@ -76,7 +76,7 @@ public class TabFragment2 extends Fragment implements Serializable {
 
 
 
-            if(RejectedHH.size() !=0)
+            if(RejectedHH.size() != 0 )
             {
                 /***REJECTED COLOR ORANGE**/
                 for(int h = 0; h< RejectedHH.size(); h++)
@@ -124,7 +124,7 @@ public class TabFragment2 extends Fragment implements Serializable {
                     j.add(StartedHH.get(h));
                 }
 
-
+                t.setText("There are "+ RejectedHH.size()+"  rejected and " +StartedHH.size() + " started Interviews" );
             }
 
 
@@ -143,22 +143,156 @@ public class TabFragment2 extends Fragment implements Serializable {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                    HouseHold thisHouse = j.get(i);
+
                     //Show started Household to edit
-                    Intent intent = new Intent(getActivity(),started_household.class);
-                    String selectedFromList = (listView.getItemAtPosition(i).toString());
-                    Log.d("Text: ",selectedFromList);
+                    int interview1 = 0;
+                    int interview2 = 0;
+                    int interview3 = 0;
 
-                    HouseHold h=j.get(i);
-
-
-                    if(h==null){
-                        Log.d("From started ","house hold null");
-                    }
-                    else{
-                        intent.putExtra("Household",  h);
-                        startActivity(intent);
+                    if(thisHouse.getVISIT1_RESULT() != null){
+                        interview1 = Integer.parseInt(thisHouse.getVISIT1_RESULT());
+                    }if(thisHouse.getVISIT2_RESULT() != null){
+                        interview2 = Integer.parseInt(thisHouse.getVISIT2_RESULT());
+                    }if(thisHouse.getVISIT3_RESULT() != null){
+                        interview3 = Integer.parseInt(thisHouse.getVISIT3_RESULT());
                     }
 
+                    if(thisHouse.getVISIT1_RESULT() != null
+                            && thisHouse.getVISIT2_RESULT() == null
+                            && thisHouse.getVISIT3_RESULT() == null)
+                    {
+
+                        if(interview1 > 2){
+                            Intent intent = new Intent(getActivity(),activity_general_information.class);
+                            String selectedFromList = (listView.getItemAtPosition(i).toString());
+                            Log.d("Text: ",selectedFromList);
+
+                            HouseHold h=j.get(i);
+
+
+                            if(h==null){
+                                Log.d("From started ","house hold null");
+                            }
+                            else{
+                                Log.d("Inside","house hold not null");
+                                intent.putExtra("Household",  h);
+                                startActivity(intent);
+                            }
+
+                        }else{
+
+                            Intent intent = new Intent(getActivity(),started_household.class);
+                            String selectedFromList = (listView.getItemAtPosition(i).toString());
+                            Log.d("Text: ",selectedFromList);
+
+                            HouseHold h=j.get(i);
+
+
+                            if(h==null){
+                                Log.d("From started ","house hold null");
+                            }
+                            else{
+                                intent.putExtra("Household",  h);
+                                startActivity(intent);
+                            }
+
+
+
+                        }
+
+
+
+
+
+
+                    }
+                    if(thisHouse.getVISIT1_RESULT() != null && thisHouse.getVISIT2_RESULT() != null && thisHouse.getVISIT3_RESULT() == null)
+                    {
+                        if(interview2 > 2){
+                            Intent intent = new Intent(getActivity(),activity_general_information.class);
+                            String selectedFromList = (listView.getItemAtPosition(i).toString());
+                            Log.d("Text: ",selectedFromList);
+
+                            HouseHold h=j.get(i);
+
+
+                            if(h==null){
+                                Log.d("From started ","house hold null");
+                            }
+                            else{
+                                intent.putExtra("Household",  h);
+                                startActivity(intent);
+                            }
+
+
+
+                        }else{
+
+                            Intent intent = new Intent(getActivity(),started_household.class);
+                            String selectedFromList = (listView.getItemAtPosition(i).toString());
+                            Log.d("Text: ",selectedFromList);
+
+                            HouseHold h=j.get(i);
+
+
+                            if(h==null){
+                                Log.d("From started ","house hold null");
+                            }
+                            else{
+                                intent.putExtra("Household",  h);
+                                startActivity(intent);
+                            }
+
+
+                        }
+
+
+                    }
+                    else if(thisHouse.getVISIT1_RESULT() != null && thisHouse.getVISIT2_RESULT() != null && thisHouse.getVISIT3_RESULT() != null)
+                    {
+                         if(interview3 > 2){
+
+                             Intent intent = new Intent(getActivity(),activity_general_information.class);
+                             String selectedFromList = (listView.getItemAtPosition(i).toString());
+                             Log.d("Text: ",selectedFromList);
+
+                             HouseHold h=j.get(i);
+
+
+                             if(h==null){
+                                 Log.d("From started ","house hold null");
+                             }
+                             else{
+                                 intent.putExtra("Household",  h);
+                                 startActivity(intent);
+                             }
+
+
+                         }else{
+
+                             Intent intent = new Intent(getActivity(),started_household.class);
+                             String selectedFromList = (listView.getItemAtPosition(i).toString());
+                             Log.d("Text: ",selectedFromList);
+
+                             HouseHold h=j.get(i);
+
+
+                             if(h==null){
+                                 Log.d("From started ","house hold null");
+                             }
+                             else{
+                                 intent.putExtra("Household",  h);
+                                 startActivity(intent);
+                             }
+
+
+
+                         }
+
+
+
+                    }
                 }
             });
 

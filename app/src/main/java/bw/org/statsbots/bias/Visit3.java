@@ -13,11 +13,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Visit3 extends AppCompatActivity {
+public class Visit3 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected LibraryClass lib;
     Button btndate;
@@ -185,7 +186,12 @@ public class Visit3 extends AppCompatActivity {
             }
         });
 
-
+        btnPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
     }

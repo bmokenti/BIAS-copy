@@ -20,13 +20,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class H12 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
     protected RadioButton r01, r02,t01, t02,tel01, tel02,cell01, cell02,Media01,Media02,Electronic01, Electronic02,Arts01, Arts02 = null;
-    protected RadioGroup rbtngroup;
+    protected RadioGroup rbtngroup;protected DatabaseHelper myDB;
     protected EditText edt;
     protected RadioButton selectedRbtn,selectedRbtn2,selectedRbtn3,selectedRbtn4,selectedRbtn5,selectedRbtn6,selectedRbtn7;
 
@@ -184,6 +185,250 @@ public class H12 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
+
+        myDB = new DatabaseHelper(this);
+        myDB.onOpen(myDB.getReadableDatabase());
+        List<HouseHold> houseList = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        myDB.close();
+
+        if(houseList.size()>0){
+            thisHouse=houseList.get(0);
+        }
+
+
+
+
+        RadioButton[] bt = new RadioButton[3];
+
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(thisHouse.getH12()!= null)
+                {
+                    //Log.d("H12", thisHouse.getH12() + " >> " + rg.getChildCount());
+                    if(Integer.parseInt(thisHouse.getH12())==1){
+                        r01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH12())==2){
+                        r02.setChecked(true);
+                        break;
+                    }
+                    /*
+
+                    if(Integer.parseInt(thisHouse.getH12())==f)
+                    {
+
+
+
+
+                        Log.d("++",thisHouse.getH12() + "   ----  " + f + "   " + bt[f].getClass());
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }   */
+                }
+            }
+            else
+            {
+                Log.d("Lost Here","**********");
+            }
+        }
+
+
+        RadioButton[] bt2 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg2.getChildCount();f++)
+        {   View o = rg2.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f]=((RadioButton)o);
+                if(thisHouse.getH12TV()!= null)
+                {
+
+                    if(Integer.parseInt(thisHouse.getH12TV())==1){
+                        t01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH12TV())==2){
+                        t02.setChecked(true);
+                        break;
+                    }
+                    /*if(Integer.parseInt(thisHouse.getH12TV())==f+1)
+                    {   RadioButton radioButton = bt2[f];
+                        radioButton.setChecked(true);
+
+
+                        break;
+
+                    }*/
+
+                }}
+
+
+        }
+
+
+        RadioButton[] bt3 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg3.getChildCount();f++)
+        {   View o = rg3.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f]=((RadioButton)o);
+                if(thisHouse.getH12Telephone()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH12Telephone())==1){
+                        tel01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH12Telephone())==2){
+                        tel02.setChecked(true);
+                        break;
+                    }
+
+
+                    /*if(Integer.parseInt(thisHouse.getH12Telephone())==f+1)
+                {
+                    RadioButton radioButton = bt3[f];
+                    radioButton.setChecked(true);
+                    break;
+                }*/
+                }
+            }}
+
+
+        RadioButton[] bt4 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg4.getChildCount();f++)
+        {   View o = rg4.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f]=((RadioButton)o);
+                if(thisHouse.getH12CellPhone()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH12CellPhone())==1){
+                        cell01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH12CellPhone())==2){
+                        cell02.setChecked(true);
+                        break;
+                    }
+
+
+
+                    /*if(Integer.parseInt(thisHouse.getH12CellPhone())==f+1)
+                {   RadioButton radioButton = bt4[f];
+                    radioButton.setChecked(true);
+                    break;}*/
+                }
+            }}
+
+
+        RadioButton[] bt5 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg5.getChildCount();f++)
+        {   View o = rg5.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f]=((RadioButton)o);
+                if(thisHouse.getH12PrintMedia()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH12PrintMedia())==1){
+                        Media01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH12PrintMedia())==2){
+                        Media02.setChecked(true);
+                        break;
+                    }
+                    /*if(Integer.parseInt(thisHouse.getH12PrintMedia())==f+1)
+                {   RadioButton radioButton = bt5[f];
+                    radioButton.setChecked(true);
+                    break;}*/
+
+                }}}
+
+
+
+        RadioButton[] bt6 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg6.getChildCount();f++)
+        {   View o = rg6.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f]=((RadioButton)o);
+                if(thisHouse.getH12ElecMedia()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH12ElecMedia())==1){
+                        Electronic01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH12ElecMedia())==2){
+                        Electronic01.setChecked(true);
+                        break;
+                    }
+                 /*   if(Integer.parseInt(thisHouse.getH12ElecMedia())==f+1)
+                {
+                    RadioButton radioButton = bt6[f];
+                    radioButton.setChecked(true);
+                    break;
+                }*/
+
+                }}}
+
+
+        RadioButton[] bt7 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg7.getChildCount();f++)
+        {   View o = rg7.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f]=((RadioButton)o);
+                if(thisHouse.getH12PerfomArts()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH12PerfomArts())==1){
+                        Arts01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH12PerfomArts())==2){
+                        Arts01.setChecked(true);
+                        break;
+                    }
+
+                    /*if(Integer.parseInt(thisHouse.getH12PerfomArts())==f+1)
+                {   RadioButton radioButton = bt7[f];
+                    radioButton.setChecked(true);
+                    break;}*/
+
+
+                }}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Button btnPrev = findViewById(R.id.button3);
+//        PersonRoster pr[] = thisHouse.getPersons();
+
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+
+
+
+            }
+        });
+
         Button btnext = findViewById(R.id.button);
 
         btnext.setOnClickListener(new View.OnClickListener()
@@ -242,6 +487,29 @@ public class H12 extends AppCompatActivity implements Serializable {
                         thisHouse.setH12PrintMedia(s5[0]);
                         thisHouse.setH12ElecMedia(s6[0]);
                         thisHouse.setH12PerfomArts(s7[0]);
+
+                    DatabaseHelper myDB = new DatabaseHelper(H12.this);
+                    myDB.onOpen(myDB.getWritableDatabase());
+
+                    //UPDATE HOUSEHOLD
+                    myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H12Radio", thisHouse.getH12());
+
+                    myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H12TV", thisHouse.getH12TV());
+
+                    myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H12Telephone", thisHouse.getH12Telephone());
+
+                    myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H12CellPhone", thisHouse.getH12CellPhone());
+
+                    myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H12PrintMedia", thisHouse.getH12PrintMedia());
+
+                    myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H12ElecMedia", thisHouse.getH12ElecMedia());
+
+                    myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H12PerformArts", thisHouse.getH12PerfomArts());
+
+
+
+                    myDB.close();
+
 
                         Intent q1o2 = new Intent(bw.org.statsbots.bias.H12.this, H13.class);
                         q1o2.putExtra("Household",  thisHouse);

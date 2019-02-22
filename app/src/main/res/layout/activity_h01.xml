@@ -88,7 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:text=" 01. Traditional" />
+                    android:text="01. Traditional" />
 
                 <RadioButton
                     android:id="@+id/H01_2"

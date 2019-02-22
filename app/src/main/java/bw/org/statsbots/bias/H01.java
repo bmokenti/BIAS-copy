@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class H01 extends AppCompatActivity implements Serializable, View.OnClickListener {
     protected HouseHold thisHouse;
@@ -27,6 +29,7 @@ public class H01 extends AppCompatActivity implements Serializable, View.OnClick
     protected RadioButton selectedRbtn;
     PersonRoster p1 = null;
     Individual pp1 = null;
+    protected DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +52,106 @@ public class H01 extends AppCompatActivity implements Serializable, View.OnClick
 
         final RadioGroup rg = (RadioGroup) findViewById(R.id.H01radioGroup);
 
-        //rbtn1.setOnClickListener(this);
-        //rbtn2.setOnClickListener(this);
 
-        // final int selectedId = rbtngroup.getCheckedRadioButtonId();
+        myDB = new DatabaseHelper(this);
+        myDB.onOpen(myDB.getReadableDatabase());
 
         Intent i = getIntent();
-        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        thisHouse = (HouseHold)i.getSerializableExtra("Household");
+
+       List<HouseHold>  houseList = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+       myDB.close();
+
+       if(houseList.size()>0){
+
+
+           thisHouse=houseList.get(0);
+
+           if(thisHouse.getH13() !=null){
+
+               AlertDialog.Builder builder = new AlertDialog.Builder(H01.this);
+               builder.setTitle("Confirm");
+               builder.setMessage("You have already finished this section, Do you want to editing it?");
+               builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       dialog.cancel();
+                   }
+               });
+               builder.setNegativeButton("No - Got to Started", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       Intent q1o2 = new Intent(H01.this, started_household.class);
+                       q1o2.putExtra("Household",  thisHouse);
+                       startActivity(q1o2);
+                   }
+               });
+               AlertDialog dialog = builder.create();
+               dialog.show();
+
+
+
+           }
+
+
+       }
+
+
+
+
+            RadioButton[] bt = new RadioButton[10];
+
+            //CHECK WHICH BUTTON WAS SELECTED
+            for(int f=0;f<rg.getChildCount();f++)
+            {
+                View o = rg.getChildAt(f);
+                if (o instanceof RadioButton)
+                {
+                    bt[f]=((RadioButton)o);
+                    if(thisHouse.getH01()!= null)
+                    {
+
+                        if(Integer.parseInt(thisHouse.getH01())==f+1)
+                        {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    Log.d("Lost Here","**********");
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
         int p = 0;
         Button btnext = findViewById(R.id.button);
+        Button btnPrev = findViewById(R.id.button3);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                finish();
+
+
+
+            }
+        });
 
         btnext.setOnClickListener(new View.OnClickListener()
 
@@ -110,6 +201,14 @@ public class H01 extends AppCompatActivity implements Serializable, View.OnClick
 
                     //Next question q102
 
+                    myDB = new DatabaseHelper(H01.this);
+                    myDB.onOpen(myDB.getWritableDatabase());
+
+                    //UPDATE HOUSEHOLD
+
+                    myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H01", thisHouse.getH01());
+                    myDB.close();
+
 
                     Intent q1o2 = new Intent(H01.this, H02.class);
                     q1o2.putExtra("Household",  thisHouse);
@@ -120,6 +219,7 @@ public class H01 extends AppCompatActivity implements Serializable, View.OnClick
             }
         });
     }
+
 
 
 

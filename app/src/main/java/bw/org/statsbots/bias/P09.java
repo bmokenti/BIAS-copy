@@ -200,7 +200,7 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
             if(p1.getLineNumber()+1==thisHouse.getTotalPersons()){
                 btnLabel="Next";
             }else{
-                btnLabel="Next > "+ thisHouse.getPersons()[p1.getLineNumber()+1].getP01();
+                btnLabel="Next > ";
             }
 
             /**

@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class H06 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -27,6 +28,9 @@ public class H06 extends AppCompatActivity implements Serializable {
     protected RadioButton selectedRbtn;
     PersonRoster p1 = null;
     Individual pp1 = null;
+    protected DatabaseHelper myDB;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +42,46 @@ public class H06 extends AppCompatActivity implements Serializable {
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
 
+        edt = (EditText) findViewById(R.id.H02_ROOMS);
+
+        myDB = new DatabaseHelper(this);
+        myDB.onOpen(myDB.getReadableDatabase());
+
+        List<HouseHold> houseList = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        myDB.close();
+
+        if(houseList.size()>0){
+            thisHouse=houseList.get(0);
+        }
+
+
+        if(thisHouse.getH06() !=null){
+            edt.setText(thisHouse.getH06());
+        }
+
+
+        Button btnPrev = findViewById(R.id.button3);
+//        PersonRoster pr[] = thisHouse.getPersons();
+
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+
+
+
+            }
+        });
+
+
         Button btnext = findViewById(R.id.button);
         btnext.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
 
-                edt = (EditText) findViewById(R.id.H02_ROOMS);
+
                 int numRooms =0;
 
                 if (edt.length() == 0 || edt.getText() == null) {
@@ -78,6 +115,14 @@ public class H06 extends AppCompatActivity implements Serializable {
                     if(numRooms >=0 && numRooms <= 15 && numRooms <= Integer.parseInt(thisHouse.getH02())){
                         //True SAve
                         thisHouse.setH06(String.valueOf(numRooms));
+
+                        DatabaseHelper myDB = new DatabaseHelper(H06.this);
+                        myDB.onOpen(myDB.getWritableDatabase());
+
+                        //UPDATE HOUSEHOLD
+                        myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H06", thisHouse.getH06());
+                        myDB.close();
+
 
                         Intent q1o2 = new Intent(H06.this, H07.class);
                         q1o2.putExtra("Household",  thisHouse);

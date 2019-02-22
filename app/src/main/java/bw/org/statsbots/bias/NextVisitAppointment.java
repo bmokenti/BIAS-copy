@@ -33,7 +33,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
-public class NextVisitAppointment extends AppCompatActivity implements View.OnClickListener {
+public class NextVisitAppointment extends AppCompatActivity implements View.OnClickListener, Serializable {
     DatePicker nextDate;
     Button btnGet;
     TextView nxtVisit;
@@ -214,14 +214,24 @@ public class NextVisitAppointment extends AppCompatActivity implements View.OnCl
 
 
                                 }else{
-                                    Log.d("From Calender",String.valueOf(calendar.getTime().compareTo(curDate.getTime())));
-                                    Log.d("Comparison ",String.valueOf(calendar.getTime())+"   ===  "+String.valueOf(curDate.getTime()));
+
 
                                     /**
                                      * SAVE OR UPDATE THE HOUSE HOLD BASED
                                      */
 
-                                        myDB.updateHHStatus(thisHouse);
+
+                                    myDB.onOpen(myDB.getReadableDatabase());
+
+                                    //Save this house
+
+                                    thisHouse.setInterview_Status("9");
+
+                                    myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
+
+                                    myDB.updateHHStatus(thisHouse);
+
+                                    myDB.close();
 
 
                                    /* *
@@ -361,8 +371,16 @@ public class NextVisitAppointment extends AppCompatActivity implements View.OnCl
                 nxtVisit.setText("Next Visit: "+ nextDate.getDayOfMonth()+"/"+ (nextDate.getMonth() + 1)+"/"+nextDate.getYear() +" "+AMPM);
 
                 //SAVE NEXT VISIT DATE AND TIME
-                thisHouse.setNEXT_VISIT_2_DATE(nextDate.getDayOfMonth()+"/"+ (nextDate.getMonth() + 1)+"/"+nextDate.getYear());
-                thisHouse.setNEXT_VISIT_2_TIME(AMPM);
+                if(thisHouse.getVISIT2_RESULT() == null){
+                    thisHouse.setNEXT_VISIT_2_DATE(nextDate.getDayOfMonth()+"/"+ (nextDate.getMonth() + 1)+"/"+nextDate.getYear());
+                    thisHouse.setNEXT_VISIT_2_TIME(AMPM);
+                }
+                else
+                {
+                    thisHouse.setNEXT_VISIT_3_DATE(nextDate.getDayOfMonth()+"/"+ (nextDate.getMonth() + 1)+"/"+nextDate.getYear());
+                    thisHouse.setNEXT_VISIT_3_TIME(AMPM);
+                }
+
 
                 finish.setVisibility(View.VISIBLE);
                 btnGet.setVisibility(View.INVISIBLE);

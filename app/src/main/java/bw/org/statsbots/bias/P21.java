@@ -11,10 +11,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class P21 extends AppCompatActivity {
+public class P21 extends AppCompatActivity implements Serializable {
     HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;

@@ -301,15 +301,7 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                     individual.setQ801cMonth(edtcmnths.getText().toString());
                                                                 }
 
-                                                                /*if(edtcyear.getText().toString().length()==0){
-                                                                    individual.setQ801cYear("00");
-                                                                }
-                                                                else if(edtcyear.getText().toString().length()==1){
-                                                                    individual.setQ801cYear("0"+edtcyear.getText().toString());
-                                                                }else{
-                                                                    individual.setQ801cYear(edtcyear.getText().toString());
-                                                                }
-*/
+
 
 
 

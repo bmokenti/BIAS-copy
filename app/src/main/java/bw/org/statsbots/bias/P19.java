@@ -9,10 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class P19 extends AppCompatActivity {
+public class P19 extends AppCompatActivity implements Serializable {
     HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
@@ -39,10 +40,8 @@ public class P19 extends AppCompatActivity {
 
         if(thisHouse.next!=null){
             p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
-
         }else if(thisHouse.previous!=null){
             p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];
-
         }
 
 

@@ -173,7 +173,13 @@ public class q402 extends AppCompatActivity implements Serializable {
                             }
                             else {
 
-                                individual.setQ402(edtq402.getText().toString());
+                                if(edtq402.getText().toString().length()==1){
+                                    individual.setQ402("0"+edtq402.getText().toString());
+                                }else {
+                                    individual.setQ402(edtq402.getText().toString());
+                                }
+
+
                                 individual.setQ402a(selectedRbtn.getText().toString().substring(0, 1));
                                 individual.setQ402b(selectedRbtn1.getText().toString().substring(0, 1));
                                 String i = individual.getQ101();

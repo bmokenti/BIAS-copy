@@ -1343,8 +1343,22 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
+        try{
 
-        db.insert("EA_Assignments", null, eaassignmentstValues);
+            int nombr = 0;
+            Cursor cursor = db.rawQuery("SELECT * FROM EA_Assignments WHERE EA_Assignment_ID = "+assign.getAssignment_ID(), null);
+            nombr = cursor.getCount();
+            if(nombr==1){
+                return  true;
+            }else{
+                db.insert("EA_Assignments", null, eaassignmentstValues);
+            }
+
+
+        }catch ( Exception e){
+
+        }
+
         return true;
     }
 
@@ -1615,6 +1629,28 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         return true;
     }
+
+
+    //INSERT ROSTER FROM HOUSEHOLD
+    public boolean insertPerson(PersonRoster p, String assID, String Batch) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues hhrosterValues = new ContentValues();
+            hhrosterValues.put(EA_Assignment_ID, assID);
+            hhrosterValues.put(BatchNumberR,Batch);
+            hhrosterValues.put(SRNO, p.getLineNumber());
+            hhrosterValues.put(P01, p.getP01());
+
+            db.insert(tblhhroster, null, hhrosterValues);
+
+
+        return true;
+    }
+
+
+
+
+
 
     public boolean updateHhroster(HouseHold houseHold) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -2925,7 +2961,24 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhrosterValues.put(AssignmentGenerated, sample.getAssignmentGenerated());
 
 
-        db.insert("Sample", null, hhrosterValues);
+
+
+        try{
+
+            int nombr = 0;
+            Cursor cursor = db.rawQuery("SELECT * FROM Sample WHERE PK = "+sample.getPK(), null);
+            nombr = cursor.getCount();
+            if(nombr==1){
+                return  true;
+            }else{
+                db.insert("Sample", null, hhrosterValues);
+            }
+
+
+        }catch ( Exception e){
+
+        }
+
 
 
         return true;
@@ -4128,6 +4181,9 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         //db1.close();
 
+        if(houseHold.getPersons()!=null){
+
+
         for(int k=0;k<houseHold.getPersons().length;k++)
         {
 
@@ -4213,6 +4269,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             if(ii>0){
                 Log.d("HH Roster", "Person roster updated");
             }
+        }
         }
         db1.close();
 
@@ -4844,7 +4901,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
      * GET STARTED HOUSEHOLD FROM DB
      * @return
      */
-    public List<HouseHold> getCompleted()
+    public  List<HouseHold>  getCompleted()
     {
         // DataModel dataModel = new DataModel();
         List<HouseHold> hhDetails =new ArrayList<>();
@@ -5332,10 +5389,8 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ801b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801b")));
 
                 if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c"))!= null){
-
                     ind.setQ801cMonth(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")).substring(0,2));
                     ind.setQ801cYear(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")).substring(2,6));
-
                 }
 
 
@@ -5571,7 +5626,774 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public  List<HouseHold>  getHouseForUpdate(String AssignId, String BatchNO)
+    {
+        // DataModel dataModel = new DataModel();
+        List<HouseHold> hhDetails =new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getReadableDatabase();
 
+        Cursor cursor = db.rawQuery("select * from " + tblhousehold +" where EA_Assignment_ID="+AssignId+" and BatchNumber="+BatchNO,null);
+
+        StringBuffer stringBuffer = new StringBuffer();
+        HouseHold dataModel = null;
+        while (cursor.moveToNext())
+        {
+
+                dataModel= new HouseHold();
+                String HH_Assignment_ID = cursor.getString(cursor.getColumnIndexOrThrow("EA_Assignment_ID"));
+            Log.d("HH ", HH_Assignment_ID);
+                String BatchNumber = cursor.getString(cursor.getColumnIndexOrThrow("BatchNumber"));
+                String DWELLING_NO = cursor.getString(cursor.getColumnIndexOrThrow("DWELLING_NO"));
+                String HH_NO = cursor.getString(cursor.getColumnIndexOrThrow("HH_NO"));
+                String ENUMERATOR = cursor.getString(cursor.getColumnIndexOrThrow("ENUMERATOR"));
+                String SUPERVISOR = cursor.getString(cursor.getColumnIndexOrThrow("SUPERVISOR"));
+                String QUALITY_CONTROLLER = cursor.getString(cursor.getColumnIndexOrThrow("QUALITY_CONTROLLER"));
+                String INTERVIEWER_VISITS1 = cursor.getString(cursor.getColumnIndexOrThrow("INTERVIEWER_VISITS1"));
+                String InterviewDATE1 = cursor.getString(cursor.getColumnIndexOrThrow("DATE1"));
+                String VISIT1_RESULT = cursor.getString(cursor.getColumnIndexOrThrow("VISIT1_RESULT"));
+                String COMMENT1 = cursor.getString(cursor.getColumnIndexOrThrow("COMMENT1"));
+                String NEXT_VISIT_2_DATE = cursor.getString(cursor.getColumnIndexOrThrow("NEXT_VISIT_2_DATE"));
+                String NEXT_VISIT_2_Time = cursor.getString(cursor.getColumnIndexOrThrow("NEXT_VISIT_2_Time"));
+                String INTERVIEWER_VISITS2 = cursor.getString(cursor.getColumnIndexOrThrow("INTERVIEWER_VISITS2"));
+                String InterviewDATE2 = cursor.getString(cursor.getColumnIndexOrThrow("DATE2"));
+                String VISIT2_RESULT = cursor.getString(cursor.getColumnIndexOrThrow("VISIT2_RESULT"));
+                String COMMENT2 = cursor.getString(cursor.getColumnIndexOrThrow("COMMENT2"));
+                String NEXT_VISIT_3_DATE = cursor.getString(cursor.getColumnIndexOrThrow("NEXT_VISIT_3_DATE"));
+                String NEXT_VISIT_3_Time = cursor.getString(cursor.getColumnIndexOrThrow("NEXT_VISIT_3_Time"));
+                String INTERVIEWER_VISITS3 = cursor.getString(cursor.getColumnIndexOrThrow("INTERVIEWER_VISITS3"));
+                String InterviewDATE3 = cursor.getString(cursor.getColumnIndexOrThrow("DATE3"));
+                String VISIT3_RESULT = cursor.getString(cursor.getColumnIndexOrThrow("VISIT3_RESULT"));
+                String COMMENT_3 = cursor.getString(cursor.getColumnIndexOrThrow("COMMENT_3"));
+                String TOTAL_VISITS = cursor.getString(cursor.getColumnIndexOrThrow("TOTAL_VISITS"));
+                String Sample_FK = cursor.getString(cursor.getColumnIndexOrThrow("Sample_FK"));
+                String CONSENT = cursor.getString(cursor.getColumnIndexOrThrow("CONSENT"));
+                String CHECKED_BY = cursor.getString(cursor.getColumnIndexOrThrow("CHECKED_BY"));
+                String CODED = cursor.getString(cursor.getColumnIndexOrThrow("CODED"));
+                String FINAL_RESULT = cursor.getString(cursor.getColumnIndexOrThrow("FINAL_RESULT"));
+                String FINAL_OTHER = cursor.getString(cursor.getColumnIndexOrThrow("FINAL_OTHER"));
+                String H01 = cursor.getString(cursor.getColumnIndexOrThrow("H01"));
+            String H02=cursor.getString(cursor.getColumnIndexOrThrow("H02"));
+            String H03=cursor.getString(cursor.getColumnIndexOrThrow("H03"));
+            String H03Other =cursor.getString(cursor.getColumnIndexOrThrow("H03Other"));
+            String H04=cursor.getString(cursor.getColumnIndexOrThrow("H04"));
+            String H04Other=cursor.getString(cursor.getColumnIndexOrThrow("H04Other"));
+            String H05=cursor.getString(cursor.getColumnIndexOrThrow("H05"));
+            String H05Other=cursor.getString(cursor.getColumnIndexOrThrow("H05Other"));
+            String H06=cursor.getString(cursor.getColumnIndexOrThrow("H06"));
+            String H07=cursor.getString(cursor.getColumnIndexOrThrow("H07"));
+            String H08=cursor.getString(cursor.getColumnIndexOrThrow("H08"));
+            String H08Other=cursor.getString(cursor.getColumnIndexOrThrow("H08Other"));
+            String H09Other=cursor.getString(cursor.getColumnIndexOrThrow("H09Other"));
+            String H09=cursor.getString(cursor.getColumnIndexOrThrow("H09"));
+            String H10=cursor.getString(cursor.getColumnIndexOrThrow("H10"));
+            String H11=cursor.getString(cursor.getColumnIndexOrThrow("H11"));
+            String H11Other=cursor.getString(cursor.getColumnIndexOrThrow("H11Other"));
+            String H12Radio=cursor.getString(cursor.getColumnIndexOrThrow("H12Radio"));
+            String H12TV=cursor.getString(cursor.getColumnIndexOrThrow("H12TV"));
+            String H12Telephone=cursor.getString(cursor.getColumnIndexOrThrow("H12Telephone"));
+            String H12CellPhone=cursor.getString(cursor.getColumnIndexOrThrow("H12CellPhone"));
+            String H12PrintMedia=cursor.getString(cursor.getColumnIndexOrThrow("H12PrintMedia"));
+            String H12ElecMedia=cursor.getString(cursor.getColumnIndexOrThrow("H12ElecMedia"));
+            String H12PerformArts=cursor.getString(cursor.getColumnIndexOrThrow("H12PerformArts"));
+            String H13Vehicle=cursor.getString(cursor.getColumnIndexOrThrow("H13Vehicle"));
+            String H13Tractor=cursor.getString(cursor.getColumnIndexOrThrow("H13Tractor"));
+            String H13Motorcycle=cursor.getString(cursor.getColumnIndexOrThrow("H13Motorcycle"));
+            String H13Bicycle=cursor.getString(cursor.getColumnIndexOrThrow("H13Bicycle"));
+            String H13DonkeyCart=cursor.getString(cursor.getColumnIndexOrThrow("H13DonkeyCart"));
+            String H13DonkeyHorse=cursor.getString(cursor.getColumnIndexOrThrow("H13DonkeyHorse"));
+            String H13Camels=cursor.getString(cursor.getColumnIndexOrThrow("H13Camels"));
+
+
+
+
+
+                dataModel.setAssignment_ID(HH_Assignment_ID);
+                dataModel.setBatchNumber(BatchNumber);
+                dataModel.setDWELLING_NO(DWELLING_NO);
+                dataModel.setHH_NO(HH_NO);
+                dataModel.setENUMERATOR(ENUMERATOR);
+                dataModel.setSUPERVISOR(SUPERVISOR);
+                dataModel.setQUALITY_CONTROLLER(QUALITY_CONTROLLER);
+                dataModel.setINTERVIEWER_VISIT1(INTERVIEWER_VISITS1);
+                dataModel.setDATE1(InterviewDATE1);
+                dataModel.setVISIT1_RESULT(VISIT1_RESULT);
+                dataModel.setCOMMENT1(COMMENT1);
+                dataModel.setNEXT_VISIT_2_DATE(NEXT_VISIT_2_DATE);
+                dataModel.setNEXT_VISIT_2(NEXT_VISIT_2_Time);
+                dataModel.setINTERVIEWER_VISIT2(INTERVIEWER_VISITS2);
+                dataModel.setDATE2(InterviewDATE2);
+                dataModel.setVISIT2_RESULT(VISIT2_RESULT);
+                dataModel.setCOMMENT2(COMMENT2);
+                dataModel.setNEXT_VISIT_3_DATE(NEXT_VISIT_3_DATE);
+                dataModel.setNEXT_VISIT_3(NEXT_VISIT_3_Time);
+                dataModel.setINTERVIEWER_VISIT3(INTERVIEWER_VISITS3);
+                dataModel.setDATE3(InterviewDATE3);
+                dataModel.setVISIT3_RESULT(VISIT3_RESULT);
+                dataModel.setCOMMENT3(COMMENT_3);
+                dataModel.setTOTAL_VISITS(TOTAL_VISITS);
+                dataModel.setCONSENT(CONSENT);
+                dataModel.setCHECKED_BY(CHECKED_BY);
+                dataModel.setCODED(CODED);
+                dataModel.setFINAL_RESULT(FINAL_RESULT);
+                dataModel.setFINAL_OTHER(FINAL_OTHER);
+                dataModel.setInterview_Status(cursor.getString(cursor.getColumnIndexOrThrow("Interview_Status")));
+
+
+                //Log.d("HH ", H01);
+                dataModel.setH01(H01);
+
+                dataModel.setH02(H02);
+
+                dataModel.setH03(H03);
+
+                dataModel.setH03Other(H03Other);
+                dataModel.setH04(H04);
+                dataModel.setH04Other(H04Other);
+                dataModel.setH05(H05);
+                dataModel.setH05Other(H05Other);
+                dataModel.setH06(H06);
+                dataModel.setH07(H07);
+                dataModel.setH08(H08);
+                dataModel.setH08Other(H08Other);
+                dataModel.setH09(H09);
+                dataModel.setH09Other(H09Other);
+                dataModel.setH10(H10);
+                dataModel.setH11(H11);
+                dataModel.setH11Other(H11Other);
+
+                dataModel.setH12(H12Radio);
+                dataModel.setH12TV(H12TV);
+                dataModel.setH12Telephone(H12Telephone);
+                dataModel.setH12CellPhone(H12CellPhone);
+                dataModel.setH12PrintMedia(H12PrintMedia);
+                dataModel.setH12ElecMedia(H12ElecMedia);
+                dataModel.setH12PerfomArts(H12PerformArts);
+
+                dataModel.setH13(H13Vehicle);
+                dataModel.setH13Tractor(H13Tractor);
+                dataModel.setH13Motorcycle(H13Motorcycle);
+                dataModel.setH13Bicycle(H13Bicycle);
+                dataModel.setH13DonkeyCart(H13DonkeyCart);
+                dataModel.setH13DonkeyHorse(H13DonkeyHorse);
+                dataModel.setH13Camels(H13Camels);
+
+
+                stringBuffer.append(dataModel);
+                // stringBuffer.append(dataModel);
+                hhDetails.add(dataModel);
+
+
+
+
+
+
+        }
+
+
+
+        for(int i=0;i<hhDetails.size();i++)
+        {
+
+            Cursor cursor1 = db.rawQuery("select * from "+tblhhroster +" where EA_Assignment_ID = " +hhDetails.get(i).getAssignment_ID()+ " and BatchNumber = "+hhDetails.get(i).getBatchNumber(),null);
+            PersonRoster dataModel1 = null;
+            PersonRoster[] HouseHoldeMembers = new PersonRoster[cursor1.getCount()];
+            while (cursor1.moveToNext())
+            {
+                dataModel1 = new PersonRoster();
+                String SRNO = cursor1.getString(cursor1.getColumnIndexOrThrow("SRNO"));
+                String P01 = cursor1.getString(cursor1.getColumnIndexOrThrow("P01"));
+                String P02 = cursor1.getString(cursor1.getColumnIndexOrThrow("P02"));
+                String P03 = cursor1.getString(cursor1.getColumnIndexOrThrow("P03"));
+                String P04_YY = cursor1.getString(cursor1.getColumnIndexOrThrow("P04_YY"));
+                String P04_MM = cursor1.getString(cursor1.getColumnIndexOrThrow("P04_MM"));
+                String P04_WKS = cursor1.getString(cursor1.getColumnIndexOrThrow("P04_WKS"));
+                String P05 = cursor1.getString(cursor1.getColumnIndexOrThrow("P05"));
+                String P06 = cursor1.getString(cursor1.getColumnIndexOrThrow("P06"));
+                String P07 = cursor1.getString(cursor1.getColumnIndexOrThrow("P07"));
+                String P08 = cursor1.getString(cursor1.getColumnIndexOrThrow("P08"));
+                String P09 = cursor1.getString(cursor1.getColumnIndexOrThrow("P09"));
+                String P10 = cursor1.getString(cursor1.getColumnIndexOrThrow("P10"));
+                String P11 = cursor1.getString(cursor1.getColumnIndexOrThrow("P11"));
+                String P12 = cursor1.getString(cursor1.getColumnIndexOrThrow("P12"));
+                String P13 = cursor1.getString(cursor1.getColumnIndexOrThrow("P13"));
+                String P14 = cursor1.getString(cursor1.getColumnIndexOrThrow("P14"));
+                String P15 = cursor1.getString(cursor1.getColumnIndexOrThrow("P15"));
+                String P16 = cursor1.getString(cursor1.getColumnIndexOrThrow("P16"));
+
+                String P17 = cursor1.getString(cursor1.getColumnIndexOrThrow("P17"));
+                String P18 = cursor1.getString(cursor1.getColumnIndexOrThrow("P18"));
+                String P19 = cursor1.getString(cursor1.getColumnIndexOrThrow("P19"));
+                String P20 = cursor1.getString(cursor1.getColumnIndexOrThrow("P20"));
+                String P21 = cursor1.getString(cursor1.getColumnIndexOrThrow("P21"));
+                // String B3_RapidConsent_Yes_No = cursor1.getString(cursor1.getColumnIndexOrThrow("B3_RapidConsent_Yes_No"));
+                String B3_Guardian = cursor1.getString(cursor1.getColumnIndexOrThrow("B3_Guardian"));
+                //String B3_Date = cursor1.getString(cursor1.getColumnIndexOrThrow("B3_Date"));
+                String Barcode = cursor1.getString(cursor1.getColumnIndexOrThrow("Barcode"));
+                String U15Rapid_Results = cursor1.getString(cursor1.getColumnIndexOrThrow("ChildRapidResults"));
+                //String Rapid_Comment = cursor1.getString(cursor1.getColumnIndexOrThrow("Rapid_Comment"));
+
+                dataModel1.setAssignmentID(cursor1.getString(cursor1.getColumnIndexOrThrow("EA_Assignment_ID")));
+                dataModel1.setBatch(cursor1.getString(cursor1.getColumnIndexOrThrow("BatchNumber")));
+
+                dataModel1.setSRNO(Integer.valueOf(SRNO));
+                dataModel1.setP01(P01);
+                dataModel1.setP02(P02);
+                dataModel1.setP03(P03);
+                dataModel1.setP04YY(P04_YY);
+                dataModel1.setP04MM(P04_MM);
+                dataModel1.setP04WKS(P04_WKS);
+                dataModel1.setP05(P05);
+                dataModel1.setP06(P06);
+                dataModel1.setP07(P07);
+                dataModel1.setP08(P08);
+                dataModel1.setP09(P09);
+                dataModel1.setP10(P10);
+                dataModel1.setP11(P11);
+                dataModel1.setP12(P12);
+                dataModel1.setP13(P13);
+                dataModel1.setP14(P14);
+                dataModel1.setP15(P15);
+                dataModel1.setP16(P16);
+                dataModel1.setP17(P17);
+                dataModel1.setP18(P18);
+                dataModel1.setP19(P19);
+                dataModel1.setP20(P20);
+                dataModel1.setP21(P21);
+                //dataModel1.setB3_RapidConsent_Yes_No(B3_RapidConsent_Yes_No);
+                dataModel1.setB3_Guardian(B3_Guardian);
+                //dataModel1.setB3_Date(B3_Date);
+                dataModel1.setBarcode(Barcode);
+                dataModel1.setU15Rapid_Results(U15Rapid_Results);
+                // dataModel1.setRapid_Comment(Rapid_Comment);
+                HouseHoldeMembers[cursor1.getPosition()]=(dataModel1);
+            }
+
+            hhDetails.get(i).setHouseHoldeMembers(HouseHoldeMembers);
+            Log.d("Members: ",String.valueOf(hhDetails.get(i).getPersons().length));
+
+            Cursor cursor2 = db.rawQuery("select * from " + tblindividual + " where Assignment_ID = " +hhDetails.get(i).getAssignment_ID()+ " and BatchNumber = "+hhDetails.get(i).getBatchNumber(),null);
+            PersonRoster dataModel2 = null;
+            Individual[] individuals = new Individual[cursor2.getCount()];
+
+            while (cursor2.moveToNext())
+            {
+
+                //Invdividual
+                Individual ind = new Individual();
+                ind.setAssignmentID(cursor2.getString(cursor2.getColumnIndexOrThrow("Assignment_ID")));
+                ind.setBatch(cursor2.getString(cursor2.getColumnIndexOrThrow("BatchNumber")));
+
+                ind.setSRNO(Integer.parseInt(cursor2.getString(cursor2.getColumnIndexOrThrow("SRNO"))));
+                ind.setIndBarcode(cursor2.getString(cursor2.getColumnIndexOrThrow("IndBarcode")));
+                ind.setQ101(cursor2.getString(cursor2.getColumnIndexOrThrow("Q101")));
+                ind.setQ102(cursor2.getString(cursor2.getColumnIndexOrThrow("Q102")));
+                ind.setQ103(cursor2.getString(cursor2.getColumnIndexOrThrow("Q103")));
+
+                ind.setQ104(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104")));
+                ind.setQ104a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104a")));
+                ind.setQ104b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104b")));
+                ind.setQ104c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104c")));
+                //ind.setQ104cBISCED(cursor2.getString(cursor2.getColumnIndexOrThrow("Q104cBISCED")));
+                ind.setQ105(cursor2.getString(cursor2.getColumnIndexOrThrow("Q105")));
+                ind.setQ105Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q105Other")));
+                ind.setQ105a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q105a")));
+
+                ind.setQ105b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q105b")));
+
+                ind.setQ106(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106")));
+                ind.setQ106a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106a")));
+                ind.setQ106aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106aOther")));
+
+                ind.setQ106b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106b")));
+                ind.setQ106c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106c")));
+
+                ind.setQ106d(cursor2.getString(cursor2.getColumnIndexOrThrow("Q106d")));
+
+                ind.setQ107(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107")));
+
+                String s = cursor2.getString(cursor2.getColumnIndexOrThrow("Q107a"));
+
+                if(s!=null){
+                    ind.setQ107aMnth(s.substring(0,2));
+                    ind.setQ107aYY(s.substring(2,4));
+                }
+
+
+
+                ind.setQ107b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107b")));
+                ind.setQ107bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107bOther")));
+                ind.setQ107c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107c")));
+                ind.setQ107cOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q107cOther")));
+
+                ind.setQ201(cursor2.getString(cursor2.getColumnIndexOrThrow("Q201")));
+                ind.setQ202(cursor2.getString(cursor2.getColumnIndexOrThrow("Q202")));
+                ind.setQ203(cursor2.getString(cursor2.getColumnIndexOrThrow("Q203")));
+                ind.setQ204(cursor2.getString(cursor2.getColumnIndexOrThrow("Q204")));
+                ind.setQ205(cursor2.getString(cursor2.getColumnIndexOrThrow("Q205")));
+                ind.setQ205a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q205a")));
+
+                ind.setQ301(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+                ind.setQ301a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+
+                ind.setQ302(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+
+                ind.setQ303(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+                ind.setQ303a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+
+                ind.setQ304(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+                ind.setQ304a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+
+                ind.setQ305_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q305Smoking")));
+                ind.setQ305_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q305Sniffing")));
+                ind.setQ305_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q305Chewing")));
+                ind.setQ305_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q305None")));
+
+                ind.setQ306(cursor2.getString(cursor2.getColumnIndexOrThrow("Q306")));
+                ind.setQ307(cursor2.getString(cursor2.getColumnIndexOrThrow("Q307")));
+
+                ind.setQ401(cursor2.getString(cursor2.getColumnIndexOrThrow("Q401")));
+                ind.setQ101(cursor2.getString(cursor2.getColumnIndexOrThrow("Q101")));
+                ind.setQ402(cursor2.getString(cursor2.getColumnIndexOrThrow("Q402")));
+                ind.setQ402a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q402a")));
+                ind.setQ402b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q402b")));
+                ind.setQ403(cursor2.getString(cursor2.getColumnIndexOrThrow("Q403")));
+
+                ind.setQ404_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q404Vaginal")));
+                ind.setQ404_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q404Anal")));
+                ind.setQ404_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q404Oral")));
+
+                ind.setQ404a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q404a")));
+
+                ind.setQ405(cursor2.getString(cursor2.getColumnIndexOrThrow("Q405")));
+                ind.setQ406(cursor2.getString(cursor2.getColumnIndexOrThrow("Q406")));
+                ind.setQ407(cursor2.getString(cursor2.getColumnIndexOrThrow("Q407")));
+
+                ind.setQ408(cursor2.getString(cursor2.getColumnIndexOrThrow("Q408")));
+                ind.setQ408a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q408a")));
+
+                ind.setQ410Slapped(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Slapped")));
+                ind.setQ410Pushed(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Pushed")));
+                ind.setQ410Choked(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Chocked")));
+                ind.setQ410Threatened(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Threatened")));
+                ind.setQ410Physical(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Physical")));
+                ind.setQ410Forced(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410Forced")));
+                ind.setQ410MadeAfraid(cursor2.getString(cursor2.getColumnIndexOrThrow("Q410MadeAfraid")));
+
+                ind.setQ501(cursor2.getString(cursor2.getColumnIndexOrThrow("Q501")));
+                ind.setQ502(cursor2.getString(cursor2.getColumnIndexOrThrow("Q502")));
+                ind.setQ503(cursor2.getString(cursor2.getColumnIndexOrThrow("Q503")));
+
+                ind.setQ504_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Pain")));
+                ind.setQ504_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Reduced")));
+                ind.setQ504_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Fear")));
+                ind.setQ504_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Culture")));
+                ind.setQ504_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Religion")));
+                ind.setQ504_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Spouse")));
+                ind.setQ504_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Parental")));
+                ind.setQ504_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Long")));
+                ind.setQ504_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_FearHIV")));
+
+                ind.setQ504_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Other")));
+
+                ind.setQ601(cursor2.getString(cursor2.getColumnIndexOrThrow("Q601")));
+                ind.setQ601a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q601a")));
+
+                ind.setQ602_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Youth")));
+                ind.setQ602_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602TV")));
+                ind.setQ602_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Radio")));
+                ind.setQ602_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Newspaper")));
+                ind.setQ602_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Hospital")));
+                ind.setQ602_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Posters")));
+                ind.setQ602_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Traditional")));
+                ind.setQ602_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Workshop")));
+                ind.setQ602_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Individual")));
+                ind.setQ602_11(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Church")));
+                ind.setQ602_12(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Kgotla")));
+                ind.setQ602_13(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Workplace")));
+                ind.setQ602_14(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Peer")));
+                ind.setQ602_15(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602School")));
+                ind.setQ602_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602_Other")));
+
+                ind.setQ603_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Condom")));
+                ind.setQ603_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603FewerP")));
+                ind.setQ603_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Both")));
+                ind.setQ603_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603NoCasual")));
+                ind.setQ603_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Abstain")));
+                ind.setQ603_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603NoCommercial")));
+                ind.setQ603_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Injection")));
+                ind.setQ603_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Blood")));
+                ind.setQ603_9(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603DontKnow")));
+                ind.setQ603_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q603Other")));
+
+
+                ind.setQ604(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604")));
+                ind.setQ604a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604a")));
+                ind.setQ604b_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bYouth")));
+                ind.setQ604b_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bTV")));
+                ind.setQ604b_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bRadio")));
+                ind.setQ604b_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bNewspaper")));
+                ind.setQ604b_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bHospital")));
+                ind.setQ604b_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bPoster")));
+                ind.setQ604b_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bTraditional")));
+                ind.setQ604b_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q602Workshop")));
+                ind.setQ604b_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bIndividual")));
+                ind.setQ604b_11(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bChurch")));
+                ind.setQ604b_12(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bKgotla")));
+                ind.setQ604b_13(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bWorkplace")));
+                ind.setQ604b_14(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bPeer")));
+                ind.setQ604b_15(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bSchool")));
+                ind.setQ604b_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q604bOther")));
+
+                ind.setQ605_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Windows")));
+                ind.setQ605_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Mouth")));
+                ind.setQ605_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Hands")));
+                ind.setQ605_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Nutrition")));
+                ind.setQ605_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Praying")));
+                ind.setQ605_9(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605DontKnow")));
+                ind.setQ605_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q605Other")));
+
+                ind.setQ606(cursor2.getString(cursor2.getColumnIndexOrThrow("Q606")));
+                ind.setQ607(cursor2.getString(cursor2.getColumnIndexOrThrow("Q607")));
+                ind.setQ608(cursor2.getString(cursor2.getColumnIndexOrThrow("Q608")));
+                ind.setQ609(cursor2.getString(cursor2.getColumnIndexOrThrow("Q609")));
+                ind.setQ610(cursor2.getString(cursor2.getColumnIndexOrThrow("Q610")));
+
+                ind.setQ611a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q611a")));
+                ind.setQ611b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q611b")));
+                ind.setQ611c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q611c")));
+
+                ind.setQ612(cursor2.getString(cursor2.getColumnIndexOrThrow("Q612")));
+                ind.setQ612a (cursor2.getString(cursor2.getColumnIndexOrThrow("Q612a")));
+                ind.setQ612aOther (cursor2.getString(cursor2.getColumnIndexOrThrow("Q612Other")));
+
+                ind.setQ613 (cursor2.getString(cursor2.getColumnIndexOrThrow("Q613")));
+                ind.setQ613a (cursor2.getString(cursor2.getColumnIndexOrThrow("Q613a")));
+                ind.setQ613aOther (cursor2.getString(cursor2.getColumnIndexOrThrow("Q613aOther")));
+                ind.setQ614 (cursor2.getString(cursor2.getColumnIndexOrThrow("Q614")));
+                ind.setQ614Other (cursor2.getString(cursor2.getColumnIndexOrThrow("Q614Other")));
+                ind.setQ615 (cursor2.getString(cursor2.getColumnIndexOrThrow("Q615")));
+
+                ind.setQ616_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Anybody")));
+                ind.setQ616_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Poor")));
+                ind.setQ616_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Homeless")));
+                ind.setQ616_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Alcoholics")));
+                ind.setQ616_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Drugs")));
+                ind.setQ616_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616PeopHIV")));
+                ind.setQ616_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616PeopPrison")));
+                ind.setQ616_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Smokers")));
+                ind.setQ616_9(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616DntKnow")));
+                ind.setQ616_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q616Other")));
+
+
+                ind.setQ617a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Meal")));
+                ind.setQ617b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Clothes")));
+                ind.setQ617c (cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Miscarried")));
+                ind.setQ617d (cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Widow")));
+                ind.setQ617e (cursor2.getString(cursor2.getColumnIndexOrThrow("Q617FamilyHIV")));
+                ind.setQ617f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Sejeso")));
+                ind.setQ617g (cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Touching")));
+                ind.setQ617h (cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Someone")));
+                ind.setQ617_0ther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q617Other")));
+                ind.setQ618(cursor2.getString(cursor2.getColumnIndexOrThrow("Q618")));
+
+                ind.setQ619_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Rash")));
+                ind.setQ619_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Cough")));
+                ind.setQ619_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619LongCough")));
+                ind.setQ619_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Blood")));
+                ind.setQ619_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Headache")));
+                ind.setQ619_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Nausea")));
+                ind.setQ619_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Weight")));
+                ind.setQ619_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Fever")));
+                ind.setQ619_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Fever7Days")));
+                ind.setQ619_11(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619ChestPain")));
+                ind.setQ619_12(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Breath")));
+                ind.setQ619_13(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Fatigue")));
+                ind.setQ619_14(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Sweats")));
+                ind.setQ619_9(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619DontKnow")));
+                ind.setQ619_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q619Other")));
+                ind.setQ620(cursor2.getString(cursor2.getColumnIndexOrThrow("Q620")));
+                ind.setQ620_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q620Other")));
+
+                ind.setQ621(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621")));
+                ind.setQ621a_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aSpouse")));
+                ind.setQ621a_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aPartner")));
+                ind.setQ621a_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aFriend")));
+                ind.setQ621a_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aFamily")));
+                ind.setQ621a_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aRelative")));
+                ind.setQ621a_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aHCWorker")));
+                ind.setQ621a_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aCoWorker")));
+                ind.setQ621a_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621aOther")));
+                ind.setQ621b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621b")));
+
+                ind.setQ621bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q621bOther")));
+
+                ind.setQ622(cursor2.getString(cursor2.getColumnIndexOrThrow("Q622")));
+
+                ind.setQ622a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q622a")));
+                ind.setQ622aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q622aOther")));
+
+                ind.setQ622b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q622b")));
+                ind.setQ622bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q622bOther")));
+
+
+                ind.setQ623(cursor2.getString(cursor2.getColumnIndexOrThrow("Q623")));
+                ind.setQ624(cursor2.getString(cursor2.getColumnIndexOrThrow("Q624")));
+                ind.setQ625(cursor2.getString(cursor2.getColumnIndexOrThrow("Q625")));
+                ind.setQ701(cursor2.getString(cursor2.getColumnIndexOrThrow("Q701")));
+                ind.setQ702(cursor2.getString(cursor2.getColumnIndexOrThrow("Q702")));
+                ind.setQ703(cursor2.getString(cursor2.getColumnIndexOrThrow("Q703")));
+                ind.setQ704(cursor2.getString(cursor2.getColumnIndexOrThrow("Q704")));
+                ind.setQ705(cursor2.getString(cursor2.getColumnIndexOrThrow("Q705")));
+                ind.setQ801(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801")));
+
+
+                ind.setQ801a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801a")));
+                ind.setQ801b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801b")));
+
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c"))!= null){
+                    ind.setQ801cMonth(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")).substring(0,2));
+                    ind.setQ801cYear(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801c")).substring(2,6));
+                }
+
+
+                ind.setQ801d(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801d")));
+                ind.setQ801dOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801dOther")));
+
+                ind.setQ801e(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801e")));
+                ind.setQ801eOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801eOther")));
+
+
+                ind.setQ801f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801f")));
+
+                ind.setQ802(cursor2.getString(cursor2.getColumnIndexOrThrow("Q802")));
+                ind.setQ802a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q802a")));
+                ind.setQ802aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q802aOther")));
+
+
+                ind.setQ803(cursor2.getString(cursor2.getColumnIndexOrThrow("Q803")));
+                ind.setQ803Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q803Other")));
+
+                ind.setQ804(cursor2.getString(cursor2.getColumnIndexOrThrow("Q804")));
+                ind.setQ804Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q804Other")));
+
+                ind.setQ901(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901")));
+                ind.setQ901a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901a")));
+                ind.setQ901aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q901aOther")));
+
+                String sg = cursor2.getString(cursor2.getColumnIndexOrThrow("Q902"));
+                String ss = cursor2.getString(cursor2.getColumnIndexOrThrow("Q902"));
+
+                if(sg!=null){
+                    ind.setQ902Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(0,2));
+                }
+                if(ss !=null){
+                    ind.setQ902Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q902")).substring(2,6));
+                }
+
+
+
+
+
+
+
+                ind.setQ903a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903DenyCare")));
+                ind.setQ903b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903Gossip")));
+                ind.setQ903c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903NoSex")));
+                ind.setQ903d(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903VerbalAbuse")));
+                ind.setQ903e(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903PhysicalAbuse")));
+                ind.setQ903f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903NoContact")));
+                ind.setQ903g(cursor2.getString(cursor2.getColumnIndexOrThrow("Q903SharingStatus")));
+
+
+                ind.setQ904(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904")));
+                ind.setQ904a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904a")));
+                ind.setQ904aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904aOther")));
+
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b"))!=null)
+                {
+                    ind.setQ904bMM(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")).substring(0,2) + cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")).substring(2,6));
+                }
+
+
+
+
+                ind.setQ904c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904c")));
+                ind.setQ904cOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904cOther")));
+
+
+                ind.setQ905(cursor2.getString(cursor2.getColumnIndexOrThrow("Q905")));
+                ind.setQ905a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q905a")));
+                ind.setQ905aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q905aOther")));
+
+                ind.setQ1001(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1001")));
+                ind.setQ1002(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002")));
+
+                ind.setQ1002a_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aMCondom")));
+                ind.setQ1002a_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aFCondom")));
+                ind.setQ1002a_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aInjectContra")));
+                ind.setQ1002a_4(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aOralContra")));
+                ind.setQ1002a_5(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aUID")));
+                ind.setQ1002a_6(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aBTL")));
+                ind.setQ1002a_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aFSterilization")));
+                ind.setQ1002a_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aMSterilization")));
+                ind.setQ1002a_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aImplants")));
+                ind.setQ1002a_11(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aEContra")));
+                ind.setQ1002a_12(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aSafePeriod")));
+                ind.setQ1002a_13(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aLAM")));
+                ind.setQ1002a_14(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aDiagraphm")));
+                ind.setQ1002a_15(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aSpermicides")));
+                ind.setQ1002a_16(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aNatural")));
+                ind.setQ1002a_17(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aTraditional")));
+                ind.setQ1002a_18(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aSpiritual")));
+                ind.setQ1002a_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002aOther")));
+
+                ind.setQ1002b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002b")));
+                ind.setQ1002bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002bOther")));
+
+                ind.setQ1003(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1003")));
+
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004"))!=null){
+                    ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0,2));
+                    ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(3,4));
+                    ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(5,8));
+                }
+
+
+
+
+                ind.setQ1004a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004a")));
+                ind.setQ1004b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004b")));
+                ind.setQ1004bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004bOther")));
+
+
+                ind.setQ1005(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1005")));
+                ind.setQ1005a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1005a")));
+                ind.setQ1006(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1006")));
+
+                ind.setQ1007(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1007")));
+                ind.setQ1007a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1007a")));
+
+                ind.setQ1008(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1008")));
+                ind.setQ1008a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1008a")));
+                ind.setQ1008aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1008aOther")));
+
+
+                ind.setQ1009(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1009")));
+                ind.setQ1009a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1009a")));
+
+                ind.setQ1010(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1010")));
+                ind.setQ1010Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1010Other")));
+
+                ind.setQ1011(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1011")));
+                ind.setQ1011_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1011Other")));
+
+                if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012"))!=null){
+                    ind.setQ1012_Week(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(0,2));
+                    ind.setQ1012_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(2,4));
+                    ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4,8));
+                }
+
+                ind.setQ1013(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1013")));
+                ind.setQ1014(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1014")));
+                ind.setQ1014a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1014a")));
+                ind.setQ1014b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1014b")));
+
+                ind.setQ1015(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1015")));
+                ind.setQ1015a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1015a")));
+                ind.setQ1015b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1015b")));
+                ind.setQ1016(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1016")));
+                ind.setQ1017(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1017")));
+
+
+
+                ind.setQ1101(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1101")));
+                ind.setQ1101a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1101a")));
+                ind.setQ1101aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1101aOther")));
+                ind.setQ1102(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1102")));
+                ind.setQ1102a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1102a")));
+                ind.setQ1103(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1103")));
+
+                ind.setQ1103aDD(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1103aDD")));
+                ind.setQ1103aWks(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1103aWks")));
+
+
+                ind.setQ1103aDontKnow(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1103aDontKnow")));
+
+                ind.setQ1104(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1104")));
+                ind.setQ1105(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1105")));
+                ind.setQ1106(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1106")));
+                ind.setQ1106a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1106a")));
+                ind.setQ1106b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1106b")));
+                ind.setQ1106bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1106bOther")));
+                ind.setQ1107(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1107")));
+
+
+                ind.setQ1107aDD(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1107aDD")));
+                ind.setQ1107aWks(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1107aWks")));
+
+
+                ind.setQ1107aDontKnow(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1107aDontKnow")));
+
+                ind.setQ1108(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1108")));
+
+                ind.setQ1108aDD(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1108aDD")));
+                ind.setQ1108aWks(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1108aWks")));
+
+                ind.setQ1108aDontKnow(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1108aDontKnow")));
+
+
+                ind.setQ1109(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1109")));
+                ind.setQ1110(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1110")));
+                ind.setQ1111(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1111")));
+                ind.setQ1111Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1111Other")));
+
+                ind.setQ1112(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1112")));
+                ind.setQ1112_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1112Other")));
+
+                ind.setQ1113(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1113")));
+                ind.setQ1113Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1113Other")));
+
+                ind.setQ1114(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1114")));
+
+                ind.setIndvQuestionnairePConsent15_17(cursor2.getString(cursor2.getColumnIndexOrThrow("IndvQuestionnairePConsent15_17")));
+                ind.setIndvQuestionnaireConsent(cursor2.getString(cursor2.getColumnIndexOrThrow("IndvQuestionnaireConsent")) );
+                ind.setIndvBloodDraw(cursor2.getString(cursor2.getColumnIndexOrThrow("IndvBloodDraw")) );
+                ind.setBloodVol_1(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_1")) );
+                ind.setBloodVol_4(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_4")) );
+                ind.setBloodVol_6(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_6")) );
+                ind.setBloodVol_10(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVol_10")) );
+                ind.setBloodVolComment(cursor2.getString(cursor2.getColumnIndexOrThrow("BloodVolComment")) );
+                ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_O15_Rapid")) );
+                ind.setIndRapidResults(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")) );
+                ind.setIndBloodLabTest(cursor2.getString(cursor2.getColumnIndexOrThrow("IndBloodLabTest")) );
+                ind.setIndBloodStore(cursor2.getString(cursor2.getColumnIndexOrThrow("IndBloodStore")) );
+                ind.setIndRapidDate(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidDate" )) );
+                ind.setIndBloodSampleCollected(cursor2.getString(cursor2.getColumnIndexOrThrow("IndBloodSampleCollected" )) );
+                ind.setPrntlConsentBloodDraw(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentBloodDraw" )) );
+                ind.setPrntlConsentRHT(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentRHT" )) );
+                ind.setPrntlConsentLabTest(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentLabTest" )) );
+                ind.setPrntlConsentBloodStore(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentBloodStore" )) );
+                ind.setPrntlParentID(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlParentID" )) );
+                ind.setPrntlConsentDate(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentDate" )) );
+
+
+                //ind.setB8_Yes_No(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Yes_No")));
+                //ind.setB8_Date(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Date")));
+                ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
+                //ind.setQ801f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801f")));
+                // ind.setIndRapid_Comment(cursor2.getString(cursor2.getColumnIndexOrThrow("Rapid_Comment")));
+
+
+                individuals[cursor2.getPosition()]=(ind);
+            }
+            hhDetails.get(i).setIndividualQuestionaire(individuals);
+            Log.d("Individual: ",String.valueOf(hhDetails.get(i).getIndividual().length));
+        }
+
+
+        return hhDetails;
+    }
 
 
     public List<Individual> getIndividualdt()

@@ -20,12 +20,13 @@ import android.widget.TextView;
 
 import org.joda.time.DateTime;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Visit1 extends Activity  {
+public class Visit1 extends Activity  implements Serializable {
 
     protected HouseHold thisHouse;
     protected LibraryClass lib;
@@ -78,6 +79,20 @@ public class Visit1 extends Activity  {
 
             @Override
             public void onClick(View view) {
+                DatabaseHelper myDB = new DatabaseHelper(Visit1.this);
+                myDB.onOpen(myDB.getReadableDatabase());
+
+                //Save this house
+                thisHouse.setVISIT1_RESULT("2");
+                thisHouse.setInterview_Status("9");
+
+                myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
+
+                myDB.updateHHStatus(thisHouse);
+
+                myDB.close();
+
+
                 Intent intent = new Intent(Visit1.this, MainActivity.class);
                 intent.putExtra("Household", thisHouse);
                 startActivity(intent);
@@ -147,6 +162,21 @@ public class Visit1 extends Activity  {
 
             }
         });
+
+        Button btnPrev = findViewById(R.id.button3);
+//        PersonRoster pr[] = thisHouse.getPersons();
+
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+
+
+
+            }
+        });
+
 
     }
 
@@ -254,6 +284,11 @@ public class Visit1 extends Activity  {
 
         //Record Result as the options are boeing clicked
         thisHouse.setVISIT1_RESULT(radiovalue);
+
+
+
+
+
     }
 }
 

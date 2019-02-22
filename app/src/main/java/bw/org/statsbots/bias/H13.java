@@ -19,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class H13 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -185,6 +186,196 @@ public class H13 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         int p = 0;
+
+
+        List<HouseHold> houseList = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        myDB.close();
+
+        if(houseList.size()>0){
+            thisHouse=houseList.get(0);
+        }
+
+
+
+
+        RadioButton[] bt = new RadioButton[2];
+
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg.getChildCount();f++)
+        {  View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f-1]=((RadioButton)o);
+                if(thisHouse.getH13()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH13())==1){
+                        r01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH13())==2){
+                        r02.setChecked(true);
+                        break;
+                    }
+
+                    /*if(Integer.parseInt(thisHouse.getH13())==f+1)
+                    {   RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;}*/}}}
+
+
+        RadioButton[] bt2 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg2.getChildCount();f++)
+        {   View o = rg2.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f-1]=((RadioButton)o);
+                if(thisHouse.getH13Tractor()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH13Tractor())==1){
+                        t01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH13Tractor())==2){
+                        t02.setChecked(true);
+                        break;
+                    }
+
+                    /* if(Integer.parseInt(thisHouse.getH13Tractor())==f+1)
+                {   RadioButton radioButton = bt2[f];
+                    radioButton.setChecked(true);
+                    break;}*/}}}
+
+        RadioButton[] bt3 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg3.getChildCount();f++)
+        {   View o = rg3.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f-1]=((RadioButton)o);
+                if(thisHouse.getH13Motorcycle()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH13Motorcycle())==1){
+                        tel01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH13Motorcycle())==2){
+                        tel02.setChecked(true);
+                        break;
+                    }
+                    /*if(Integer.parseInt(thisHouse.getH13Motorcycle())==f+1)
+                {   RadioButton radioButton = bt3[f];
+                    radioButton.setChecked(true);
+                    break;}*/}}}
+
+
+        RadioButton[] bt4 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg4.getChildCount();f++)
+        {   View o = rg4.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f-1]=((RadioButton)o);
+                if(thisHouse.getH13Bicycle()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH13Bicycle())==1){
+                        cell01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH13Bicycle())==2){
+                        cell02.setChecked(true);
+                        break;
+                    }
+
+                    /*if(Integer.parseInt(thisHouse.getH13Bicycle())==f+1)
+                {   RadioButton radioButton = bt4[f];
+                    radioButton.setChecked(true);
+                    break;}*/}}}
+
+
+        RadioButton[] bt5 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg5.getChildCount();f++)
+        {   View o = rg5.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f-1]=((RadioButton)o);
+                if(thisHouse.getH13DonkeyCart()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH13DonkeyCart())==1){
+                        Media01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH13DonkeyCart())==2){
+                        Media02.setChecked(true);
+                        break;
+                    }
+
+                    /*if(Integer.parseInt(thisHouse.getH13DonkeyCart())==f+1)
+                {   RadioButton radioButton = bt5[f];
+                    radioButton.setChecked(true);
+                    break;}*/}}}
+
+
+
+        RadioButton[] bt6 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg6.getChildCount();f++)
+        {   View o = rg6.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f-1]=((RadioButton)o);
+                if(thisHouse.getH13DonkeyHorse()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH13DonkeyHorse())==1){
+                        Electronic01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH13DonkeyHorse())==2){
+                        Electronic02.setChecked(true);
+                        break;
+                    }
+
+                    /*if(Integer.parseInt(thisHouse.getH13DonkeyHorse())==f+1)
+                {   RadioButton radioButton = bt6[f];
+                    radioButton.setChecked(true);
+                    break;}*/}}}
+
+
+        RadioButton[] bt7 = new RadioButton[2];
+        //CHECK WHICH BUTTON WAS SELECTED
+        for(int f=0;f<rg7.getChildCount();f++)
+        {   View o = rg7.getChildAt(f);
+            if (o instanceof RadioButton)
+            {   bt[f-1]=((RadioButton)o);
+                if(thisHouse.getH13Camels()!= null)
+                {
+                    if(Integer.parseInt(thisHouse.getH13Camels())==1){
+                        Arts01.setChecked(true);
+                        break;
+
+                    }else if(Integer.parseInt(thisHouse.getH13Camels())==2){
+                        Arts02.setChecked(true);
+                        break;
+                    }
+
+                    /*if(Integer.parseInt(thisHouse.getH13Camels())==f+1)
+                {   RadioButton radioButton = bt7[f];
+                    radioButton.setChecked(true);
+                    break;}*/}}}
+
+
+
+        Button btnPrev = findViewById(R.id.button3);
+//        PersonRoster pr[] = thisHouse.getPersons();
+
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+
+
+
+            }
+        });
+
+
+
         Button btnext = findViewById(R.id.button);
 
         btnext.setOnClickListener(new View.OnClickListener()
@@ -246,7 +437,7 @@ public class H13 extends AppCompatActivity implements Serializable {
 
 
                     //Save all responses
-                    thisHouse.setVISIT1_RESULT("9");
+                    //thisHouse.setVISIT1_RESULT("9");
                     thisHouse.setInterview_Status("9");
                     myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
                     myDB.updateHHStatus(thisHouse);

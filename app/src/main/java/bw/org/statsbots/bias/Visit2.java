@@ -13,11 +13,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Visit2 extends AppCompatActivity {
+public class Visit2 extends AppCompatActivity implements Serializable {
 
     protected HouseHold thisHouse;
     protected LibraryClass lib;
@@ -96,6 +97,15 @@ public class Visit2 extends AppCompatActivity {
                     }
                 }
 
+                thisHouse.setVISIT2_RESULT("2");
+                DatabaseHelper myDB = new DatabaseHelper(Visit2.this);
+                myDB.onOpen(myDB.getReadableDatabase());
+
+                //Save this house
+                myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
+                myDB.updateHHStatus(thisHouse);
+
+                myDB.close();
 
 
 
@@ -156,6 +166,23 @@ public class Visit2 extends AppCompatActivity {
                             thisHouse.setDATE2(d);
                             thisHouse.setCOMMENT2(editxtComment.getText().toString());
 
+
+
+
+                            DatabaseHelper myDB = new DatabaseHelper(Visit2.this);
+                            myDB.onOpen(myDB.getReadableDatabase());
+
+                            //Save this house
+
+                            thisHouse.setInterview_Status("9");
+
+                            myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
+
+                            myDB.updateHHStatus(thisHouse);
+
+                            myDB.close();
+
+
                             //go to next activity
                             Intent intent = new Intent(Visit2.this,NextVisitAppointment.class);
                             intent.putExtra("Household",  thisHouse);
@@ -168,6 +195,19 @@ public class Visit2 extends AppCompatActivity {
                         thisHouse.setDATE2(d);
                         thisHouse.setCOMMENT2(editxtComment.getText().toString());
 
+
+                        DatabaseHelper myDB = new DatabaseHelper(Visit2.this);
+                        myDB.onOpen(myDB.getReadableDatabase());
+
+                        //Save this house
+
+                        thisHouse.setInterview_Status("9");
+
+                        myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
+
+                        myDB.updateHHStatus(thisHouse);
+
+                        myDB.close();
 
                         //go to next activity
                         Intent intent = new Intent(Visit2.this,NextVisitAppointment.class);
@@ -282,6 +322,6 @@ public class Visit2 extends AppCompatActivity {
         }
 
         //Record Result as the options are boeing clicked
-        thisHouse.setVISIT1_RESULT(radiovalue);
+        thisHouse.setVISIT2_RESULT(radiovalue);
     }
 }

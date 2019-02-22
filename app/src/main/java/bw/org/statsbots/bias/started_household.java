@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Vibrator;
 import android.support.v4.content.ContextCompat;
@@ -15,14 +16,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class started_household extends AppCompatActivity implements Serializable {
@@ -56,50 +61,371 @@ public class started_household extends AppCompatActivity implements Serializable
 
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
+        thisHouse = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber()).get(0);
+
+
 
         btnComplete=findViewById(R.id.btnComplete);
         btnComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SQLiteDatabase db = myDB.getWritableDatabase();
-                ContentValues hhValues = new ContentValues();
 
-                hhValues.put("Interview_Status","10");
+                final CharSequence[] list = new String[4];
+                list[0] = "1. Completed";
+                list[1] = "2. Partially Completed";
+                list[2] = "4. Refused";
+                list[3] = "6. Other (Specify)";
 
-                int  i = db.update
-                        (   "House_Hold_Assignments", // table
-                                hhValues, // column/value
-                                "EA_Assignment_ID = ? and BatchNumber = ?", // selections
-                                new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
-                        );
-                if(i==1)
-                {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
-                    builder.setTitle("Done");
-                    builder.setIcon(R.drawable.ic_done_all_black_24dp);
+                final  int FinalResult[] = new int[1];
 
-                    builder.setMessage("House hold Status has been changed to Completed");
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //Do nothing only when the Head of House is selected we proceed.
-                            Intent intent = new Intent(started_household.this, Dashboard.class);
-                            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(started_household.this).toBundle());
+                final AlertDialog.Builder builder1 = new AlertDialog.Builder(started_household.this);
+                builder1.setTitle("Select Final Result ~ Questionnaire");
 
-                        }
-                    });
+                int  i=0;
 
 
-                    AlertDialog alertDialog =  builder.show();
-                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
-                    positiveButtonLL.width= ViewGroup.LayoutParams.MATCH_PARENT;
-                    positiveButton.setTextColor(Color.WHITE);
-                    positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
-                    positiveButton.setLayoutParams(positiveButtonLL);
+                builder1.setSingleChoiceItems(
+                        list, // Items list
+                        -1, // Index of checked item (-1 = no selection)
+                        new DialogInterface.OnClickListener() // Item click listener
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // Get the alert dialog selected item's text
+                                if(i==0){
+                                    //1. Completed
 
-                }
+                                    //Intent intent = new Intent(started_household.this,MainActivity.class);
+                                    //intent.putExtra("Household",thisHouse);
+                                    //startActivity(intent);
+                                    FinalResult[0] = 1;
+                                    SQLiteDatabase db = myDB.getWritableDatabase();
+                                    ContentValues hhValues = new ContentValues();
+                                    hhValues.put("Interview_Status","10");
+                                    hhValues.put("FINAL_RESULT",String.valueOf(FinalResult[0]));
 
-                db.close();
+                                    i = db.update
+                                            (   "House_Hold_Assignments", // table
+                                                    hhValues, // column/value
+                                                    "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                    new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
+                                            );
+
+                                    db.close();
+
+                                    if(i==1){
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
+                                        builder.setTitle("Done");
+                                        builder.setIcon(R.drawable.ic_done_all_black_24dp);
+
+                                        builder.setMessage("House hold Status has been changed to Completed");
+                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                //Do nothing only when the Head of House is selected we proceed.
+                                                Intent intent = new Intent(started_household.this, Dashboard.class);
+                                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(started_household.this).toBundle());
+
+                                            }
+                                        });
+
+
+                                        AlertDialog alertDialog =  builder.show();
+
+
+                                    }else{
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
+                                        builder.setTitle("Failed");
+                                        builder.setIcon(R.drawable.ic_error_red_24dp);
+
+                                        builder.setMessage("House hold Status change has failed");
+                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                //Do nothing only when the Head of House is selected we proceed.
+
+                                            }
+                                        });
+
+
+                                        AlertDialog alertDialog =  builder.show();
+
+
+                                    }
+
+                                }else if(i==1){
+                                    //2. Partially Completed
+
+                                    //Intent intent = new Intent(started_household.this,H01.class);
+                                    //intent.putExtra("Household",thisHouse);
+                                    //startActivity(intent);
+                                    FinalResult[0] = 2;
+                                    SQLiteDatabase db = myDB.getWritableDatabase();
+                                    ContentValues hhValues = new ContentValues();
+                                    hhValues.put("Interview_Status","10");
+                                    hhValues.put("FINAL_RESULT",String.valueOf(FinalResult[0]));
+
+                                    i = db.update
+                                            (   "House_Hold_Assignments", // table
+                                                    hhValues, // column/value
+                                                    "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                    new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
+                                            );
+
+                                    db.close();
+                                    if(i==1){
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
+                                        builder.setTitle("Done");
+                                        builder.setIcon(R.drawable.ic_done_all_black_24dp);
+
+                                        builder.setMessage("House hold Status has been changed to Partially Completed");
+                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                //Do nothing only when the Head of House is selected we proceed.
+                                                Intent intent = new Intent(started_household.this, Dashboard.class);
+                                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(started_household.this).toBundle());
+
+                                            }
+                                        });
+
+
+                                        AlertDialog alertDialog =  builder.show();
+
+
+                                    }else{
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
+                                        builder.setTitle("Failed");
+                                        builder.setIcon(R.drawable.ic_error_red_24dp);
+
+                                        builder.setMessage("House hold Status change has failed");
+                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                //Do nothing only when the Head of House is selected we proceed.
+
+                                            }
+                                        });
+
+
+                                        AlertDialog alertDialog =  builder.show();
+
+
+                                    }
+
+                                }else if(i==2){
+                                    //2. Partially Completed
+
+                                    //Intent intent = new Intent(started_household.this,H01.class);
+                                    //intent.putExtra("Household",thisHouse);
+                                    //startActivity(intent);
+                                    FinalResult[0] = 4;
+                                    SQLiteDatabase db = myDB.getWritableDatabase();
+                                    ContentValues hhValues = new ContentValues();
+                                    hhValues.put("Interview_Status","10");
+                                    hhValues.put("FINAL_RESULT",String.valueOf(FinalResult[0]));
+
+                                    i = db.update
+                                            (   "House_Hold_Assignments", // table
+                                                    hhValues, // column/value
+                                                    "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                    new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
+                                            );
+
+                                    db.close();
+                                    if(i==1){
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
+                                        builder.setTitle("Done");
+                                        builder.setIcon(R.drawable.ic_done_all_black_24dp);
+
+                                        builder.setMessage("House hold Status has been changed to Refused");
+                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                //Do nothing only when the Head of House is selected we proceed.
+                                                Intent intent = new Intent(started_household.this, Dashboard.class);
+                                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(started_household.this).toBundle());
+
+                                            }
+                                        });
+
+
+                                        AlertDialog alertDialog =  builder.show();
+
+
+                                    }else{
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
+                                        builder.setTitle("Failed");
+                                        builder.setIcon(R.drawable.ic_error_red_24dp);
+
+                                        builder.setMessage("House hold Status change has failed");
+                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                //Do nothing only when the Head of House is selected we proceed.
+
+                                            }
+                                        });
+
+
+                                        AlertDialog alertDialog =  builder.show();
+
+
+                                    }
+
+
+                                }
+                                else if(i==3){
+                                    //2. Partially Completed
+
+                                    //Intent intent = new Intent(started_household.this,H01.class);
+                                    //intent.putExtra("Household",thisHouse);
+                                    //startActivity(intent);
+                                    FinalResult[0] = 6;
+
+                                    final String OtherSpecify[]= new String[1];
+
+                                    if(OtherSpecify[0]== null){
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
+
+                                        LayoutInflater inflater = getLayoutInflater();
+                                        View dialogView = inflater.inflate(R.layout.alertdialog_custom_view,null);
+
+                                        // Specify alert dialog is not cancelable/not ignorable
+                                        builder.setCancelable(false);
+
+                                        // Set the custom layout as alert dialog view
+                                        builder.setView(dialogView);
+
+                                        // Get the custom alert dialog view widgets reference
+                                        Button btn_positive = (Button) dialogView.findViewById(R.id.dialog_positive_btn);
+                                        Button btn_negative = (Button) dialogView.findViewById(R.id.dialog_negative_btn);
+                                        final EditText et_name = (EditText) dialogView.findViewById(R.id.et_name);
+
+                                        // Create the alert dialog
+                                        final AlertDialog dialog = builder.create();
+
+                                        // Set positive/yes button click listener
+                                        btn_positive.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                // Dismiss the alert dialog
+                                                dialog.cancel();
+                                                String specify = et_name.getText().toString();
+                                                if(specify.isEmpty()){
+                                                    //stay here
+                                                }else{
+                                                    //save
+
+                                                    SQLiteDatabase db = myDB.getWritableDatabase();
+                                                    ContentValues hhValues = new ContentValues();
+                                                    hhValues.put("Interview_Status","10");
+
+                                                    hhValues.put("FINAL_RESULT",String.valueOf(FinalResult[0]));
+                                                    hhValues.put("FINAL_OTHER",specify);
+
+                                                    final int i = db.update
+                                                            (   "House_Hold_Assignments", // table
+                                                                    hhValues, // column/value
+                                                                    "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                                    new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
+                                                            );
+
+                                                    db.close();
+                                                    if(i==1){
+
+                                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
+                                                        builder.setTitle("Done");
+                                                        builder.setIcon(R.drawable.ic_done_all_black_24dp);
+
+                                                        builder.setMessage("House hold Status has been changed to Other");
+                                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface dialog, int id) {
+                                                                //Do nothing only when the Head of House is selected we proceed.
+                                                                Intent intent = new Intent(started_household.this, Dashboard.class);
+                                                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(started_household.this).toBundle());
+
+                                                            }
+                                                        });
+
+
+                                                        AlertDialog alertDialog =  builder.show();
+
+
+                                                    }else{
+
+                                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
+                                                        builder.setTitle("Failed");
+                                                        builder.setIcon(R.drawable.ic_error_red_24dp);
+
+                                                        builder.setMessage("House hold Status change has failed");
+                                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface dialog, int id) {
+                                                                //Do nothing only when the Head of House is selected we proceed.
+
+                                                            }
+                                                        });
+
+
+                                                        AlertDialog alertDialog =  builder.show();
+
+
+                                                    }
+
+
+
+
+
+
+
+
+                                                }
+                                            }
+                                        });
+
+                                        // Set negative/no button click listener
+                                        btn_negative.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                // Dismiss/cancel the alert dialog
+                                                //dialog.cancel();
+                                                dialog.dismiss();
+
+                                            }
+                                        });
+
+                                        // Display the custom alert dialog on interface
+                                        dialog.show();
+                                    }
+                                }
+
+                            }
+                        });
+
+                //builder.setIcon(R.drawable.ic_person_black_24dp);
+                AlertDialog ad = builder1.show();
+
+                //SET DIVIDER
+                ListView listView = ad.getListView();
+                //listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+                listView.setDividerHeight(3);
+
+
+                //OK Button layout
+                final Button positiveButton = ad.getButton(AlertDialog.BUTTON_POSITIVE);
+                LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                positiveButtonLL.width=ViewGroup.LayoutParams.MATCH_PARENT;
+                positiveButton.setTextColor(Color.WHITE);
+                positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
+                positiveButton.setLayoutParams(positiveButtonLL);
+
+
+
+
+
+
+
             }
         });
 
@@ -507,14 +833,75 @@ public class started_household extends AppCompatActivity implements Serializable
 
         }
 
+        final AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
 
         btnUpdate.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(started_household.this,activity_general_information.class);
-                intent.putExtra("Household",thisHouse);
-                startActivity(intent);
+
+                final CharSequence[] list = new String[2];
+                list[0] = "Person Roster";
+                list[1] = "House Hold";
+
+
+                builder.setTitle("Select the Section to Update");
+                builder.setIcon(R.drawable.ic_edit_blue_16dp);
+
+                //builder.setIcon(R.drawable.ic_person_black_24dp);
+                builder.setSingleChoiceItems(
+                        list, // Items list
+                        -1, // Index of checked item (-1 = no selection)
+                        new DialogInterface.OnClickListener() // Item click listener
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // Get the alert dialog selected item's text
+                                if(i==0){
+                                    //Launch Person Roster
+
+                                    Intent intent = new Intent(started_household.this,MainActivity.class);
+                                    intent.putExtra("Household",thisHouse);
+                                    startActivity(intent);
+
+
+
+
+                                }else if(i==1){
+                                    //Launch Household
+
+                                    Intent intent = new Intent(started_household.this,H01.class);
+                                    intent.putExtra("Household",thisHouse);
+                                    startActivity(intent);
+
+
+
+
+                                }
+
+
+                            }
+                        });
+
+
+                AlertDialog ad = builder.show();
+
+                //SET DIVIDER
+                ListView listView = ad.getListView();
+                listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+                listView.setDividerHeight(3);
+
+
+                //OK Button layout
+                final Button positiveButton = ad.getButton(AlertDialog.BUTTON_POSITIVE);
+                LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                positiveButtonLL.width=ViewGroup.LayoutParams.MATCH_PARENT;
+                positiveButton.setTextColor(Color.WHITE);
+                positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
+                positiveButton.setLayoutParams(positiveButtonLL);
+
+
+
             }
         });
     }

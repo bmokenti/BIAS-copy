@@ -62,6 +62,16 @@ public class P04 extends AppCompatActivity implements Serializable {
         List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
         thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
 
+        tvYY.setVisibility(View.INVISIBLE);
+        txtYY.setVisibility(View.INVISIBLE);
+
+        tvYY.setGravity(Gravity.CENTER);
+        txtYY.setGravity(Gravity.CENTER);
+        tvmm.setVisibility(View.INVISIBLE);
+        txtmm.setVisibility(View.INVISIBLE);
+        tvwks.setVisibility(View.INVISIBLE);
+        txtwks.setVisibility(View.INVISIBLE);
+
 
         if(thisHouse.next!=null)
         {
@@ -77,8 +87,8 @@ public class P04 extends AppCompatActivity implements Serializable {
                 less.setVisibility(View.INVISIBLE);
                 txtYY.setVisibility(View.INVISIBLE);
             }else{
-                less.setVisibility(View.VISIBLE);
-                txtYY.setVisibility(View.VISIBLE);
+               // less.setVisibility(View.VISIBLE);
+                //txtYY.setVisibility(View.VISIBLE);
             }
 
 
@@ -682,22 +692,41 @@ public class P04 extends AppCompatActivity implements Serializable {
                                             String month="00";
                                             String weeks="00";
                                             if(txtYY.getText().toString()!=null){
-                                                year=txtYY.getText().toString();
+
+                                                if(txtYY.getText().toString().length()==1){
+                                                    year="0"+txtYY.getText().toString();
+                                                }else{
+                                                    year=txtYY.getText().toString();
+                                                }
+
                                             }
                                             if(txtmm.getText().toString()!=null){
-                                                month=txtmm.getText().toString();
+                                                if(txtmm.getText().toString().length()==1){
+                                                    month="0"+txtmm.getText().toString();
+                                                }else{
+                                                    month=txtmm.getText().toString();
+                                                }
+
                                             }
                                             if(txtwks.getText().toString()!=null){
-                                                weeks=txtwks.getText().toString();
+                                                if(txtwks.getText().toString().length()==1){
+                                                    weeks="0"+txtwks.getText().toString();
+                                                }else{
+                                                    weeks=txtwks.getText().toString();
+                                                }
+
                                             }
+
+
+
 
                                             p1.setP04YY(year);
                                             p1.setP04MM(month);
                                             p1.setP04WKS(weeks);
 
-                                            thisHouse.getPersons()[p1.getLineNumber()].setP04YY(txtYY.getText().toString());
-                                            thisHouse.getPersons()[p1.getLineNumber()].setP04MM(txtmm.getText().toString());
-                                            thisHouse.getPersons()[p1.getLineNumber()].setP04WKS(txtwks.getText().toString());
+                                            thisHouse.getPersons()[p1.getLineNumber()].setP04YY(year);
+                                            thisHouse.getPersons()[p1.getLineNumber()].setP04MM(month);
+                                            thisHouse.getPersons()[p1.getLineNumber()].setP04WKS(weeks);
 
                                             //Restart the current activity for next individual
                                             if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
@@ -760,22 +789,41 @@ public class P04 extends AppCompatActivity implements Serializable {
                                         String month="00";
                                         String weeks="00";
                                         if(txtYY.getText().toString()!=null){
-                                            year=txtYY.getText().toString();
+
+                                            if(txtYY.getText().toString().length()==1){
+                                                year="0"+txtYY.getText().toString();
+                                            }else{
+                                                year=txtYY.getText().toString();
+                                            }
+
                                         }
                                         if(txtmm.getText().toString()!=null){
-                                            month=txtmm.getText().toString();
+                                            if(txtmm.getText().toString().length()==1){
+                                                month="0"+txtmm.getText().toString();
+                                            }else{
+                                                month=txtmm.getText().toString();
+                                            }
+
                                         }
                                         if(txtwks.getText().toString()!=null){
-                                            weeks=txtwks.getText().toString();
+                                            if(txtwks.getText().toString().length()==1){
+                                                weeks="0"+txtwks.getText().toString();
+                                            }else{
+                                                weeks=txtwks.getText().toString();
+                                            }
+
                                         }
+
+
+
 
                                         p1.setP04YY(year);
                                         p1.setP04MM(month);
                                         p1.setP04WKS(weeks);
 
-                                        thisHouse.getPersons()[p1.getLineNumber()].setP04YY(txtYY.getText().toString());
-                                        thisHouse.getPersons()[p1.getLineNumber()].setP04MM(txtmm.getText().toString());
-                                        thisHouse.getPersons()[p1.getLineNumber()].setP04WKS(txtwks.getText().toString());
+                                        thisHouse.getPersons()[p1.getLineNumber()].setP04YY(year);
+                                        thisHouse.getPersons()[p1.getLineNumber()].setP04MM(month);
+                                        thisHouse.getPersons()[p1.getLineNumber()].setP04WKS(weeks);
 
                                         //Restart the current activity for next individual
                                         if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
@@ -941,22 +989,41 @@ public class P04 extends AppCompatActivity implements Serializable {
                                     String month="00";
                                     String weeks="00";
                                     if(txtYY.getText().toString()!=null){
-                                        year=txtYY.getText().toString();
+
+                                        if(txtYY.getText().toString().length()==1){
+                                            year="0"+txtYY.getText().toString();
+                                        }else{
+                                            year=txtYY.getText().toString();
+                                        }
+
                                     }
                                     if(txtmm.getText().toString()!=null){
-                                        month=txtmm.getText().toString();
+                                        if(txtmm.getText().toString().length()==1){
+                                            month="0"+txtmm.getText().toString();
+                                        }else{
+                                            month=txtmm.getText().toString();
+                                        }
+
                                     }
                                     if(txtwks.getText().toString()!=null){
-                                        weeks=txtwks.getText().toString();
+                                        if(txtwks.getText().toString().length()==1){
+                                            weeks="0"+txtwks.getText().toString();
+                                        }else{
+                                            weeks=txtwks.getText().toString();
+                                        }
+
                                     }
+
+
+
 
                                     p1.setP04YY(year);
                                     p1.setP04MM(month);
                                     p1.setP04WKS(weeks);
 
-                                    thisHouse.getPersons()[p1.getLineNumber()].setP04YY(txtYY.getText().toString());
-                                    thisHouse.getPersons()[p1.getLineNumber()].setP04MM(txtmm.getText().toString());
-                                    thisHouse.getPersons()[p1.getLineNumber()].setP04WKS(txtwks.getText().toString());
+                                    thisHouse.getPersons()[p1.getLineNumber()].setP04YY(year);
+                                    thisHouse.getPersons()[p1.getLineNumber()].setP04MM(month);
+                                    thisHouse.getPersons()[p1.getLineNumber()].setP04WKS(weeks);
 
                                     //Restart the current activity for next individual
                                     if(p1.getLineNumber() == thisHouse.getTotalPersons()-1){
@@ -1013,9 +1080,49 @@ public class P04 extends AppCompatActivity implements Serializable {
 
                                 }else{
                                     //months greater than 0
-                                    thisHouse.getPersons()[p1.getLineNumber()].setP04YY(txtYY.getText().toString());
-                                    thisHouse.getPersons()[p1.getLineNumber()].setP04MM(txtmm.getText().toString());
-                                    thisHouse.getPersons()[p1.getLineNumber()].setP04WKS(txtwks.getText().toString());
+
+                                    String year="00";
+                                    String month="00";
+                                    String weeks="00";
+
+                                    if(txtYY.getText().toString()!=null){
+
+                                        if(txtYY.getText().toString().length()==1){
+                                            year="0"+txtYY.getText().toString();
+                                        }else{
+                                            year=txtYY.getText().toString();
+                                        }
+
+                                    }
+                                    if(txtmm.getText().toString()!=null){
+                                        if(txtmm.getText().toString().length()==1){
+                                            month="0"+txtmm.getText().toString();
+                                        }else{
+                                            month=txtmm.getText().toString();
+                                        }
+
+                                    }
+                                    if(txtwks.getText().toString()!=null){
+                                        if(txtwks.getText().toString().length()==1){
+                                            weeks="0"+txtwks.getText().toString();
+                                        }else{
+                                            weeks=txtwks.getText().toString();
+                                        }
+
+                                    }
+
+
+
+
+                                    p1.setP04YY(year);
+                                    p1.setP04MM(month);
+                                    p1.setP04WKS(weeks);
+
+                                    thisHouse.getPersons()[p1.getLineNumber()].setP04YY(year);
+                                    thisHouse.getPersons()[p1.getLineNumber()].setP04MM(month);
+                                    thisHouse.getPersons()[p1.getLineNumber()].setP04WKS(weeks);
+
+
 
                                     if((txtmm.getText().length()>0))
                                     {

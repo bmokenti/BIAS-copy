@@ -133,7 +133,7 @@
                     android:id="@+id/H04_other"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="08. Mud Poles and reeds" />
+                    android:text="8. Other Specify" />
 
                 <EditText
                     android:id="@+id/H04_txtOther"

@@ -8,10 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class P20 extends AppCompatActivity {
+public class P20 extends AppCompatActivity implements Serializable {
     HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
@@ -86,6 +87,7 @@ public class P20 extends AppCompatActivity {
         Allpersonslist.setAdapter(itemsAdapter);
         Button btnNext = (Button)findViewById(R.id.p20_btnNext);
         Button btnPrev = (Button)findViewById(R.id.p03_btnPrev);
+
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
