@@ -127,7 +127,7 @@ public class P12 extends AppCompatActivity implements Serializable {
                         }
                         else if(sample.getStatusCode().equals("2") )
                         {
-                            if (thisHouse.getIsHIVTB40().equals("2")) {
+                            if (thisHouse.getHIVTB40().equals("2")) {
                                 //TB ONLY
                                 Intent intent = new Intent(P12.this, P18.class);
                                 intent.putExtra("Household", thisHouse);
