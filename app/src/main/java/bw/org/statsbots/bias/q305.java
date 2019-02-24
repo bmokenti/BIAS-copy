@@ -23,6 +23,7 @@ public class q305 extends AppCompatActivity {
     protected LibraryClass lib;
     protected CheckBox chk1, chk2, chk3, chk4;
     PersonRoster p1 = null;
+    protected DatabaseHelper myDB;
     Individual pp1 = null;
 
 
@@ -44,6 +45,26 @@ public class q305 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+        if( sample.getStatusCode().equals("1") || Integer.valueOf(individual.getQ102()) >=15 )
+        {
+
+            Intent q1o2 = new Intent(q305.this, q307.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
+
 
 
         Button btnext = findViewById(R.id.button);

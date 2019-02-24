@@ -63,6 +63,24 @@ public class q616 extends AppCompatActivity implements Serializable {
         }
             //do nothing
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+        if( sample.getStatusCode().equals("1") )
+        {
+
+            Intent q1o2 = new Intent(q616.this, q622.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
+
 
         chk9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 

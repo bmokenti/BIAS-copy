@@ -24,6 +24,7 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, selectedRbtn, selected = null;
     protected RadioGroup rg;
 
@@ -50,6 +51,25 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+        if( sample.getStatusCode().equals("1"))
+        {
+            Intent intent = new Intent(q1104.this, q1107.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        }
+
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +84,8 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
 
                     builder.setMessage("Do you cough up sputum? (FIELD WORKER EXPLAIN)");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
+                        public void onClick(DialogInterface dialog, int id)
+                        {
 
                         }
                     });

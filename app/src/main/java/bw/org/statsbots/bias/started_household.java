@@ -549,6 +549,9 @@ public class started_household extends AppCompatActivity implements Serializable
                 //btn.setEnabled(false);
                 final  PersonRoster temp = r.get(o);
                 s.getStatusCode();
+
+
+
                 if(s.getStatusCode().equals("1")){
                     //************************************HIV
                     if(Integer.parseInt(r.get(o).getP04YY()) <15 || Integer.parseInt(r.get(o).getP04YY()) > 64)
@@ -590,7 +593,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                         //**Replace This house with 1 individual
 
                                 ////replaced HIVConsentOver64
-                                       Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
+                                       Intent q1o2 = new Intent(started_household.this, HIVConsentOver64.class);
                                         q1o2.putExtra("Personroster", person1);
                                         startActivity(q1o2);
 
@@ -637,7 +640,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                             @Override
                                             public void onClick(View view) {
                                                 //**Replace This house with 1 individual
-                                                Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
+                                                Intent q1o2 = new Intent(started_household.this, HIVParentalConsent10_14yrs.class);
 
                                                 q1o2.putExtra("Personroster", person1);
                                                 startActivity(q1o2);
@@ -712,12 +715,11 @@ public class started_household extends AppCompatActivity implements Serializable
                                 @Override
                                 public void onClick(View view) {
                                     //**Replace This house with 1 individual
-                                    Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
+                                    Intent q1o2 = new Intent(started_household.this, IndQuetParentalConsent.class);
                                     q1o2.putExtra("Personroster", temp);
                                     q1o2.putExtra("Individual", temp1);
                                     //Log.d("HHHHH",temp1.getQ101());
                                     q1o2.putExtra("Household", thisHouse);
-
                                     startActivity(q1o2);
 
 
@@ -806,7 +808,7 @@ public class started_household extends AppCompatActivity implements Serializable
 //                                            b.putExtra("Personroster", person1);
 //                                            startActivity(b);
 
-                                            Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
+                                            Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                             q1o2.putExtra("Personroster", person1);
                                             startActivity(q1o2);
                                         }
@@ -826,7 +828,7 @@ public class started_household extends AppCompatActivity implements Serializable
 //                                        startActivity(b);
 
 
-                                        Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
+                                        Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                         q1o2.putExtra("Personroster", person1);
                                         startActivity(q1o2);
 
@@ -844,7 +846,7 @@ public class started_household extends AppCompatActivity implements Serializable
 //                                                b.putExtra("Personroster", person1);
 //                                                startActivity(b);
 
-                                                Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
+                                                Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                                 q1o2.putExtra("Personroster", person1);
                                                 startActivity(q1o2);
 
@@ -934,7 +936,7 @@ public class started_household extends AppCompatActivity implements Serializable
 //                                    b.putExtra("Personroster", temp);
 //                                    startActivity(b);
 
-                                    Intent q1o2 = new Intent(started_household.this, IndQuetParentalConsent.class);
+                                    Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                     q1o2.putExtra("Personroster", temp);
                                     q1o2.putExtra("Individual", temp1);
                                     //Log.d("HHHHH",temp1.getQ101());
@@ -986,13 +988,13 @@ public class started_household extends AppCompatActivity implements Serializable
 //
 //
 //                            int mm=0;
-//                            int yy = Integer.parseInt(r.get(o).getP04YY());
-//                            final PersonRoster person1 = r.get(o);
-//                            if(r.get(o).getP04MM()==null){}
-//                            else{ mm= Integer.parseInt(r.get(o).getP04MM());
-//                                int wks = Integer.parseInt(r.get(o).getP04WKS());}
-//
-//
+//                           int yy = Integer.parseInt(r.get(o).getP04YY());
+////                            final PersonRoster person1 = r.get(o);
+////                            if(r.get(o).getP04MM()==null){}
+////                            else{ mm= Integer.parseInt(r.get(o).getP04MM());
+////                                int wks = Integer.parseInt(r.get(o).getP04WKS());}
+////
+////
 //                            if((yy >64)){
 //                                //nkuku
 //                                //Log.d("18 MONTHS TO 14 YEARS", r.get(o).getP01() + "  " + r.get(o).getP04YY() +"/"+ r.get(o).getP04MM()+"/"+r.get(o).getP04WKS());
@@ -1120,7 +1122,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                 if(hhh.getAssignment_ID().equals(individual.getAssignmentID()) &&hhh.getBatchNumber().equals(individual.getBatch())  && hhh.getIsHIVTB40().equals("True")){
                                     if(thisHouse.getIsHIVTB40().equals("True"))
                                     {
-                                        Info=Info+", Blood Collection";
+                                        Info=Info+", TB QUESTIONNIRE";
                                     }
                                 }
                             }
@@ -1132,7 +1134,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                 @Override
                                 public void onClick(View view) {
                                     //**Replace This house with 1 individual
-                                    Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
+                                    Intent q1o2 = new Intent(started_household.this, IndQuetParentalConsent.class);
                                     q1o2.putExtra("Personroster", temp);
                                     q1o2.putExtra("Individual", temp1);
                                     //Log.d("HHHHH",temp1.getQ101());
@@ -1148,7 +1150,7 @@ public class started_household extends AppCompatActivity implements Serializable
 
                             Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
                             btn.setCompoundDrawablesWithIntrinsicBounds( d,null, null, null);
-                            Info="Questionnaire, Rapid Test Done";
+                            Info="QESTIONNAIRE, TB OLNY";
 
 
                         }

@@ -102,10 +102,10 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
                         myDB.close();
 finish();
 
-//                        Intent intent = new Intent(Barcode.this, HIVParentalConsent6wks_9y.class);
-//                        intent.putExtra("Individual", individual);
-//                        intent.putExtra("Personroster", p1);
-//                        startActivity(intent);
+                      Intent intent = new Intent(Barcode.this, HIVParentalConsent6wks_9y.class);
+                        intent.putExtra("Individual", individual);
+                        intent.putExtra("Personroster", p1);
+                        startActivity(intent);
 
                     }
 

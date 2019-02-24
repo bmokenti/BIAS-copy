@@ -25,6 +25,7 @@ public class q1110 extends AppCompatActivity implements Serializable {
     protected RadioGroup rbtngroup;
     protected RadioButton selectedRbtn;
     PersonRoster p1 = null;
+    protected DatabaseHelper myDB;
     Individual pp1 = null;
     protected Individual individual;
 
@@ -49,6 +50,26 @@ public class q1110 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+        if( sample.getStatusCode().equals("1"))
+        {
+            Intent intent = new Intent(q1110.this, HIVChildParentalConsent15_17.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        }
+
+
 
         if (individual.getQ1103().equals("2") && individual.getQ1107().equals("2") && individual.getQ1108().equals("2") && individual.getQ1109().equals("2") )
         {

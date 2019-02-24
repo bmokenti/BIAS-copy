@@ -31,6 +31,7 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
     protected RadioButton rbtn1,rbtn2,rbtn3, rbtn4, rbtna1, rbtna2, rbtna3 ,rbtna4 , rbtna5, rbtnaOther, selectedRbtn, selectedRbtn1;
     //protected RadioGroup rg, rg1;
     TextView q1101atext;
+    protected DatabaseHelper myDB;
     EditText q1101aOther;
     protected RadioGroup rg1, rg2;
 
@@ -70,6 +71,28 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+        if( sample.getStatusCode().equals("1"))
+        {
+
+            rbtna1.setEnabled(false);
+            rbtna2.setEnabled(false);
+            rbtna3.setEnabled(false);
+            rbtna4.setEnabled(false);
+            rbtna5.setEnabled(false);
+            rbtnaOther.setEnabled(false);
+            q1101aOther.setEnabled(false);
+        }
 
 
 
@@ -191,7 +214,7 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
                         } else {
 
 
-                            if (rbtn3.isChecked() || rbtn4.isChecked()) {
+                            if (rbtn3.isChecked() || rbtn4.isChecked() ) {
 
                                 individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
 
@@ -201,15 +224,33 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
                                 startActivity(intent);
 
                             } else {
-                                //Set q1101 for the current individual
-                                individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
-                                individual.setQ1101a(selectedRbtn1.getText().toString().substring(0, 1));
-                                individual.setQ1101aOther(q1101aOther.getText().toString());
+                                if ((rbtn3.isChecked() || rbtn4.isChecked()) && sample.getStatusCode().equals("1")) {
 
-                                Intent q1o3 = new Intent(q1101.this, q1102.class);
-                                q1o3.putExtra("Individual", individual);
-                                startActivity(q1o3);
-                                //setting q103 value
+                                    individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
+                                    Intent intent = new Intent(q1101.this, q1103.class);
+                                    intent.putExtra("Individual", individual);
+                                    startActivity(intent);
+
+                                } else {
+                                    if ((rbtn1.isChecked() || rbtn2.isChecked()) && sample.getStatusCode().equals("1")) {
+
+                                        individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
+                                        Intent intent = new Intent(q1101.this, HIVChildParentalConsent15_17.class);
+                                        intent.putExtra("Individual", individual);
+                                        startActivity(intent);
+
+                                    } else {
+                                        //Set q1101 for the current individual
+                                        individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
+                                        individual.setQ1101a(selectedRbtn1.getText().toString().substring(0, 1));
+                                        individual.setQ1101aOther(q1101aOther.getText().toString());
+
+                                        Intent q1o3 = new Intent(q1101.this, q1102.class);
+                                        q1o3.putExtra("Individual", individual);
+                                        startActivity(q1o3);
+                                        //setting q103 value
+                                    }
+                                }
                             }
                         }
                     }

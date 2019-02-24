@@ -38,7 +38,7 @@ public class q801 extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_q801);
 
 
-        setTitle("Q801: HIV SUPPORT, CARE ANF TREATMENT");
+        setTitle("Q801: HIV TESTING(15-64 Years");
         lib = new LibraryClass();
         rbtn1 = (RadioButton) findViewById(R.id.q801_1);
         rbtn2 = (RadioButton) findViewById(R.id.q801_2);
@@ -122,7 +122,7 @@ public class q801 extends AppCompatActivity implements Serializable {
         sample.getSTATUS();
 
         if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2")) ) ||
-                ((Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))) ))
+                ((Integer.valueOf(individual.getQ102()) >=15 && Integer.valueOf(individual.getQ102()) <65) && (sample.getStatusCode().equals("3"))) )
         {
 
 
@@ -319,7 +319,7 @@ public class q801 extends AppCompatActivity implements Serializable {
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.q801_1 &&  ((Integer.valueOf(individual.getQ102()) < 64 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2")))))
+                if(i == R.id.q801_1 &&  ((Integer.valueOf(individual.getQ102()) <= 64 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2")))))
                 {
 
                     rbtna1.setEnabled(true);
@@ -481,6 +481,7 @@ public class q801 extends AppCompatActivity implements Serializable {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.q801_1 &&  ((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("3") || sample.getStatusCode().equals("2")))))
                 {
+
 
                     rbtna1.setEnabled(true);
                     rbtna2.setEnabled(true);
@@ -808,7 +809,7 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                 startActivity(intent);
 
                                                             } else {
-//888888888888888*********************************************normal 15-64**************answered sec:A NO
+                                                //888888888888888*********************************************normal 15-64**************answered sec:A NO
                                                                 if (rbtn1.isChecked()&& rbtna2.isChecked() && sample.getStatusCode().equals("2")
                                                                         && Integer.valueOf(individual.getQ102()) <= 64) {
 

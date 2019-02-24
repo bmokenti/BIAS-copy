@@ -19,6 +19,7 @@ public class q704 extends AppCompatActivity implements Serializable {
     protected String currentHH = null;
     protected Individual individual;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, selected;
     protected RadioGroup rbtngroup;
 
@@ -38,6 +39,25 @@ public class q704 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+        if( sample.getStatusCode().equals("1") )
+        {
+
+            Intent q1o2 = new Intent(q704.this, q801.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
+
 
 
         /**

@@ -65,7 +65,23 @@ public class q622 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+        if( sample.getStatusCode().equals("1") && individual.getQ604().equals("2"))
+        {
+
+            Intent q1o2 = new Intent(q622.this, q623.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
 
 
 

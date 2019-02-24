@@ -23,6 +23,7 @@ public class q1109 extends AppCompatActivity implements  Serializable {
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, selected = null;
     protected RadioGroup rbtngroup;
+    protected DatabaseHelper myDB;
     protected RadioButton selectedRbtn;
     protected Individual individual;
     PersonRoster p1 = null;
@@ -49,6 +50,7 @@ public class q1109 extends AppCompatActivity implements  Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
 
         Button btnext = findViewById(R.id.btnNext);
 
