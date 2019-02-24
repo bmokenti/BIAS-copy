@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -56,8 +57,35 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
 
         Intent intent = getIntent();
         p1 = (PersonRoster) intent.getSerializableExtra("Personroster");
+        Log.d("Person Roster",p1.getSRNO()+"");
 
-        myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+        Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+        individual = ind;
+
+                    RadioButton[] bt = new RadioButton[2];
+                    for(int f=0;f<rg.getChildCount();f++)
+                    {
+                        View o = rg.getChildAt(f);
+                        if (o instanceof RadioButton)
+                        {
+                            bt[f]=((RadioButton)o);
+                            if(ind.getQ101()!= null &&  !ind.getQ101().equals(""))
+                            {
+                                if(Integer.parseInt(ind.getQ101())==f+1)
+                                {
+                                    RadioButton radioButton = bt[f];
+                                    radioButton.setChecked(true);
+                                    break;
+                                }
+                            }else{
+                                Log.d("h1333333 Lost Here","**********    " + ind.getQ101());
+                            }
+                        }
+                        else
+                        {
+                            Log.d("h13 Lost Here","**********");
+                        }
+                    }
 
 
 
@@ -65,27 +93,20 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
         sample.getSTATUS();
 
 
-//
-//        if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getSTATUS().equals("2") )
-//        {
-//            setTitle("Questionnaire Assent age 15-17 years");
-//        }
-//        else {
-//            setTitle("Individual  18 plus: Combined");
-//        }
-//
-//
-//        if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getSTATUS().equals("3") )
-//        {
-//            setTitle("Questionnaire Assent age 15-17 years");
-//        }
-//        else
-//        {
-//            setTitle("Individual Questionnaire Ov18: TB Only");
-//        }
-
         Button btnext = findViewById(R.id.btnnext);
+        Button btprev= findViewById(R.id.button3);
 //        PersonRoster pr[] = thisHouse.getPersons();
+        btprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HouseHold thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+                Intent q1o2 = new Intent(q101.this, started_household.class);
+                q1o2.putExtra("Household", thisHouse);
+
+                startActivity(q1o2);
+            }
+        });
         btnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,18 +149,12 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
                         AlertDialog.Builder builder = new AlertDialog.Builder(q101.this);
                         builder.setTitle("Confirm Sex");
                         builder.setIcon(R.drawable.ic_warning_orange_24dp);
-                        builder.setMessage("Sex does not match?");
-                        builder.setPositiveButton("No changes", new DialogInterface.OnClickListener() {
+                        builder.setMessage("Sex does not match with Sex at Household");
+                        /*builder.setPositiveButton("Ignore", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
                                 individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
 
-                                //Restart the current activity for next individual
-
-                                //    individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
-
-
-                                    //Check if individual already been saved and update
                                     myDB = new DatabaseHelper(q101.this);
                                     myDB.onOpen(myDB.getReadableDatabase());
 
@@ -158,8 +173,8 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
                                 startActivity(q1o2);
                             }
 
-                                });
-                        builder.setNegativeButton("Ammend", new DialogInterface.OnClickListener() {
+                                });*/
+                        builder.setNegativeButton("Override Sex at Household", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
 
@@ -168,22 +183,16 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
 
                                 p1.setP03(selectedRbtn.getText().toString().substring(0, 1));
                                 myDB.updateConsents("P03", p1.getAssignmentID(), p1.getBatch(), p1.getP03(), String.valueOf(p1.getSRNO()));
-                                //Restart the current activity for next individual
-
-                                    //Check if individual already been saved and update
-
                                 individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
-
                                     if (myDB.checkIndividual(individual)) {
                                         //Update
 
-                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
-                                    } else {
+                                        myDB.updateInd("Q101",individual.getAssignmentID(),individual.getBatch(),individual.getQ101(),String.valueOf(individual.getSRNO()));
+                                    } /*else {
                                         //Insert
                                         myDB.insertIndividual(individual);
 
-                                    }
+                                    }*/
 
                             }
                         });
@@ -225,13 +234,13 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
 
                             if (myDB.checkIndividual(individual)) {
                                 //Update
-                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                myDB.updateInd("Q101",individual.getAssignmentID(),individual.getBatch(),individual.getQ101(),String.valueOf(individual.getSRNO()));
 
-                            } else {
+                            } /*else {
                                 //Insert
                                 myDB.insertIndividual(individual);
 
-                            }
+                            }*/
 
 
                             /**

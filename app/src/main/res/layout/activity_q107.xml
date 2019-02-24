@@ -146,11 +146,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:background="@drawable/edit_text_background"
-                            android:ems="10"
+                            android:ems="12"
                             android:hint="Years"
                             android:maxLength="2"
                             android:inputType="number"
-                            android:padding="3dp"
+                            android:padding="10dp"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
@@ -162,11 +162,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:background="@drawable/edit_text_background"
-                            android:ems="10"
+                            android:ems="12"
                             android:hint="Months"
                             android:inputType="number"
                             android:maxLength="2"
-                            android:padding="3dp"
+                            android:padding="10dp"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
@@ -280,10 +280,10 @@
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/edit_text_background"
                                 android:ellipsize="start"
-                                android:ems="3"
+                                android:ems="12"
                                 android:gravity="center"
                                 android:inputType="text"
-                                android:padding="3dp"
+                                android:padding="10dp"
                                 android:visibility="invisible" />
 
 
@@ -385,10 +385,10 @@
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/edit_text_background"
                                 android:ellipsize="start"
-                                android:ems="3"
+                                android:ems="12"
                                 android:gravity="center"
                                 android:inputType="text"
-                                android:padding="3dp"
+                                android:padding="10dp"
                                 android:visibility="invisible" />
 
 

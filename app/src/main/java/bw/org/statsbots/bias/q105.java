@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -82,6 +83,167 @@ public class q105 extends AppCompatActivity implements Serializable{
         edt1.clearFocus();
         edt2.clearFocus();
 
+        myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+        //int p = 0;
+        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+        individual = ind;
+
+        RadioButton[] bt = new RadioButton[9];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ105()!= null &&  !ind.getQ105().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ105())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+
+                        TextView q802atext = findViewById(R.id.q802a_other);
+                        RadioGroup rg1 = (RadioGroup) findViewById(R.id.q802radioGroupa);
+                        // Is the current Radio Button checked?
+                        boolean checked = radioButton.isChecked();
+                        View v = radioButton;
+                        switch (v.getId()) {
+                            case R.id.rbtn1:
+                                if (checked)
+                                    edt.setVisibility(View.INVISIBLE);
+                                edt.setText("");
+                                edt2.setEnabled(true);
+                                edt1.setEnabled(true);
+
+
+
+                                break;
+
+
+                            case R.id.q105_1b:
+                                if (checked)
+
+                                    edt.setVisibility(View.INVISIBLE);
+                                edt.setText("");
+                                edt2.setEnabled(true);
+                                edt1.setEnabled(true);
+
+
+
+
+                                break;
+                            case R.id.q105_1c:
+                                if (checked)
+                                    edt.setVisibility(View.INVISIBLE);
+                                edt.setText("");
+                                edt2.setEnabled(true);
+                                edt1.setEnabled(true);
+
+
+                                break;
+                            case R.id.q105_1d:
+                                if (checked)
+                                    edt.setVisibility(View.INVISIBLE);
+                                edt.setText("");
+                                edt2.setEnabled(true);
+                                edt1.setEnabled(true);
+
+
+                                break;
+                            case R.id.q105_1e:
+                                if (checked)
+                                    edt.setVisibility(View.INVISIBLE);
+                                edt.setText("");
+                                edt1.setText("");
+
+                                edt1.setEnabled(false);
+                                edt2.setEnabled(false);
+                                edt2.setText("");
+
+
+                                break;
+                            case R.id.q105_1f:
+                                if (checked)
+                                    edt.setVisibility(View.INVISIBLE);
+                                edt.setText("");
+                                edt1.setText("");
+
+                                edt1.setEnabled(false);
+                                edt2.setEnabled(false);
+                                edt2.setText("");
+
+                                break;
+                            case R.id.q105_1g:
+                                if (checked)
+                                    edt.setVisibility(View.INVISIBLE);
+                                edt.setText("");
+                                edt1.setText("");
+                                edt1.setEnabled(false);
+
+                                edt2.setEnabled(false);
+                                edt2.setText("");
+
+                                break;
+
+                            case R.id.q105_1h:
+                                if (checked)
+                                    edt.setVisibility(View.INVISIBLE);
+                                edt.setText("");
+                                edt1.setText("");
+                                edt1.setEnabled(false);
+
+                                edt2.setEnabled(false);
+                                edt2.setText("");
+
+                                break;
+                            case R.id.q105_other:
+                                if (checked)
+                                    edt.setVisibility(View.VISIBLE);
+
+
+                                edt1.setEnabled(true);
+                                edt2.setEnabled(true);
+                                break;
+
+                        }
+
+
+
+
+
+
+                        break;
+                    }
+                }else{
+
+                    if(ind.getQ105Other()!=null){
+                        rbtn9.setChecked(true);
+                        edt.setText(ind.getQ105Other());
+                    }
+
+                    Log.d("h1333333 Lost Here","**********    " + ind.getQ101());
+                }
+            }
+            else
+            {
+                Log.d("h13 Lost Here","**********");
+            }
+        }
+
+        if(ind.getQ105Other()!=null){
+            rbtn9.setChecked(true);
+            edt.setText(ind.getQ105Other());
+        }
+        if(ind.getQ105a()!=null){
+
+            edt1.setText(ind.getQ105a());
+        }
+        if(ind.getQ105b()!=null){
+
+            edt2.setText(ind.getQ105b());
+        }
+
+
 
         //myDB.getIndividualdt();
 
@@ -148,7 +310,7 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     builder.setTitle("Work in the past seven days.");
                                     builder.setIcon(R.drawable.ic_warning_orange_24dp);
                                     builder.setMessage("Do you want to update P15 and P16");
-                                    builder.setPositiveButton("No changes", new DialogInterface.OnClickListener() {
+                                   /* builder.setPositiveButton("No changes", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
 
                                             individual.setQ105(selectedRbtn.getText().toString().substring(0, 1));
@@ -161,25 +323,19 @@ public class q105 extends AppCompatActivity implements Serializable{
                                                 individual.setQ105a(edt1.getText().toString());
                                                 individual.setQ105a(edt2.getText().toString());
                                             }
-                                            //Restart the current activity for next individual
-
-                                            //individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
-
-
-                                            //Check if individual already been saved and update
                                             myDB = new DatabaseHelper(q105.this);
                                             myDB.onOpen(myDB.getReadableDatabase());
 
-                                            if (myDB.checkIndividual(individual)) {
+                                            myDB.updateInd("Q105",individual.getAssignmentID(),individual.getBatch(),ind.getQ105(),String.valueOf(individual.getQ105()));
 
-                                                //Update
-                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                            myDB.updateInd("Q105Other",individual.getAssignmentID(),individual.getBatch(),ind.getQ105(),String.valueOf(individual.getQ105Other()));
 
-                                            } else {
-                                                //Insert
-                                                myDB.insertIndividual(individual);
+                                            myDB.updateInd("Q105a",individual.getAssignmentID(),individual.getBatch(),ind.getQ105(),String.valueOf(individual.getQ105a()));
 
-                                            }
+                                            myDB.updateInd("Q105b",individual.getAssignmentID(),individual.getBatch(),ind.getQ105b(),String.valueOf(individual.getQ105b()));
+
+
+                                            myDB.close();
                                             Intent intent = new Intent(q105.this, q106.class);
                                             intent.putExtra("Individual", individual);
                                             intent.putExtra("Personroster", p1);
@@ -187,7 +343,7 @@ public class q105 extends AppCompatActivity implements Serializable{
 
                                         }
 
-                                    });
+                                    });*/
 
                                     builder.setNegativeButton("Ammend", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
@@ -218,19 +374,28 @@ public class q105 extends AppCompatActivity implements Serializable{
                                             if(rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn9.isChecked())
                                             {
                                                 individual.setQ105a(edt1.getText().toString());
-                                                individual.setQ105a(edt2.getText().toString());
+                                                individual.setQ105b(edt2.getText().toString());
+                                            }
+                                            if(rbtn5.isChecked() || rbtn6.isChecked() || rbtn7.isChecked() || rbtn8.isChecked())
+                                            {
+                                                individual.setQ105a(null);
+                                                individual.setQ105b(null);
                                             }
 
 
-                                            if (myDB.checkIndividual(individual)) {
-                                                //Update
-                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                            myDB = new DatabaseHelper(q105.this);
+                                            myDB.onOpen(myDB.getReadableDatabase());
 
-                                            } else {
-                                                //Insert
-                                                myDB.insertIndividual(individual);
+                                            myDB.updateInd("Q105",individual.getAssignmentID(),individual.getBatch(),individual.getQ105(),String.valueOf(individual.getSRNO()));
 
-                                            }
+                                            myDB.updateInd("Q105Other",individual.getAssignmentID(),individual.getBatch(),individual.getQ105Other(),String.valueOf(individual.getSRNO()));
+
+                                            myDB.updateInd("Q105a",individual.getAssignmentID(),individual.getBatch(),individual.getQ105a(),String.valueOf(individual.getSRNO()));
+
+                                            myDB.updateInd("Q105b",individual.getAssignmentID(),individual.getBatch(),individual.getQ105b(),String.valueOf(individual.getSRNO()));
+
+
+                                            myDB.close();
                                             Intent intent = new Intent(q105.this, q106.class);
                                             intent.putExtra("Individual", individual);
                                             intent.putExtra("Personroster", p1);
@@ -273,16 +438,19 @@ public class q105 extends AppCompatActivity implements Serializable{
                                         individual.setQ105b(edt2.getText().toString());
 
 
-                                        if (myDB.checkIndividual(individual)) {
-                                            //Update
-                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                        myDB = new DatabaseHelper(q105.this);
+                                        myDB.onOpen(myDB.getReadableDatabase());
 
-                                        } else {
-                                            //Insert
-                                            myDB.insertIndividual(individual);
+                                        myDB.updateInd("Q105",individual.getAssignmentID(),individual.getBatch(),individual.getQ105(),String.valueOf(individual.getSRNO()));
 
-                                        }
+                                        myDB.updateInd("Q105Other",individual.getAssignmentID(),individual.getBatch(),individual.getQ105Other(),String.valueOf(individual.getSRNO()));
 
+                                        myDB.updateInd("Q105a",individual.getAssignmentID(),individual.getBatch(),individual.getQ105a(),String.valueOf(individual.getSRNO()));
+
+                                        myDB.updateInd("Q105b",individual.getAssignmentID(),individual.getBatch(),individual.getQ105b(),String.valueOf(individual.getSRNO()));
+
+
+                                        myDB.close();
 
                                         Intent intent = new Intent(q105.this, q106.class);
                                         intent.putExtra("Individual", individual);
@@ -298,25 +466,19 @@ public class q105 extends AppCompatActivity implements Serializable{
                                         individual.setQ105a(edt1.getText().toString());
                                         individual.setQ105b(edt2.getText().toString());
 
-                                        //individual.setQ105Other(edt.getText().toString());
-                                        //Set P02 fir the current individual
-                                        //thisHouse.getPersons()[p1.getLineNumber()].setP07(years);
-                                        //Restart the current activity for next individual
+                                        myDB = new DatabaseHelper(q105.this);
+                                        myDB.onOpen(myDB.getReadableDatabase());
 
-                                        //update individual
-                                        DatabaseHelper myDB = new DatabaseHelper(q105.this);
+                                        myDB.updateInd("Q105",individual.getAssignmentID(),individual.getBatch(),individual.getQ105(),String.valueOf(individual.getSRNO()));
 
-                                        if (myDB.checkIndividual(individual)) {
-                                            //Update
-                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                        myDB.updateInd("Q105Other",individual.getAssignmentID(),individual.getBatch(),individual.getQ105Other(),String.valueOf(individual.getSRNO()));
 
-                                        } else {
-                                            //Insert
-                                            myDB.insertIndividual(individual);
+                                        myDB.updateInd("Q105a",individual.getAssignmentID(),individual.getBatch(),individual.getQ105a(),String.valueOf(individual.getSRNO()));
+
+                                        myDB.updateInd("Q105b",individual.getAssignmentID(),individual.getBatch(),individual.getQ105b(),String.valueOf(individual.getSRNO()));
 
 
-                                        }
-
+                                        myDB.close();
 
                                         //Next question P17
                                         Intent intent = new Intent(q105.this, q106.class);
@@ -339,7 +501,19 @@ public class q105 extends AppCompatActivity implements Serializable{
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q105.super.onBackPressed();
+
+                if(ind.getQ103().equals("3")){
+                    Intent q1o2 = new Intent(q105.this, q103.class);
+                    q1o2.putExtra("Personroster", p1);
+
+                    startActivity(q1o2);
+
+                }else{
+                    finish();
+                }
+
+
+
             }
 
 

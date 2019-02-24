@@ -23,12 +23,15 @@ public class q202 extends AppCompatActivity implements View.OnClickListener  {
     protected RadioGroup rbtngroup;
     PersonRoster p1 = null;
     protected RadioButton selectedRbtn;
+    protected  DatabaseHelper myDB;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q202);
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
 
            setTitle("Q202: MARITAL STATUS AND RELATIONSHIP");
@@ -50,6 +53,30 @@ public class q202 extends AppCompatActivity implements View.OnClickListener  {
         Button btnext = findViewById(R.id.btnnext);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
+
+        RadioButton[] bt1 = new RadioButton[2];
+
+
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ202()!= null &&  !ind.getQ202().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ202())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
 
         btnext.setOnClickListener(new View.OnClickListener()
@@ -91,6 +118,19 @@ public class q202 extends AppCompatActivity implements View.OnClickListener  {
 
                 } else {
                     if (rbtn2.isChecked()) {
+                        individual.setQ202(selectedRbtn.getText().toString().substring(0, 1));
+                        myDB = new DatabaseHelper(q202.this);
+                        myDB.onOpen(myDB.getReadableDatabase());
+
+                        myDB.updateInd("Q202",individual.getAssignmentID(),individual.getBatch(),ind.getQ202(),String.valueOf(individual.getSRNO()));
+                        myDB.updateInd("Q203",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+                        myDB.updateInd("Q204",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+                        myDB.updateInd("Q205",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+                        myDB.updateInd("Q205a",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+
+                        myDB.close();
+
+
                         Intent skipto203 = new Intent(q202.this, q301.class);
                         skipto203.putExtra("Individual", individual);
                         startActivity(skipto203);
@@ -108,6 +148,12 @@ public class q202 extends AppCompatActivity implements View.OnClickListener  {
 
                         //Next question q102
 
+                        myDB = new DatabaseHelper(q202.this);
+                        myDB.onOpen(myDB.getReadableDatabase());
+
+                        myDB.updateInd("Q202",individual.getAssignmentID(),individual.getBatch(),ind.getQ202(),String.valueOf(individual.getSRNO()));
+
+                        myDB.close();
 
                         Intent q1o2 = new Intent(q202.this, q203.class);
                         q1o2.putExtra("Individual", individual);

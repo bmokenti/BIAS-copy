@@ -81,19 +81,19 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
             btnNext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if ( contentTxt.getText()==null ||  contentTxt.getText().length() == 0) {
+                    /*if ( contentTxt.getText()==null ||  contentTxt.getText().length() == 0) {
                         lib.showError(Barcode.this,"BarCode Error","Please scan the barcode for this individual to continue");
-                        /**
+                        *//**
                          * VIBRATE DEVICE
-                         */
+                         *//*
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
                     }
-                    else {
+                    else {*/
 
-                        individual.setIndBarcode(contentTxt.getText().toString());
+                        individual.setIndBarcode("");
 
-                        p1.setBarcode(contentTxt.getText().toString());
+                        p1.setBarcode("");
                         myDB = new DatabaseHelper(Barcode.this);
                         myDB.onOpen(myDB.getReadableDatabase());
                         //  myDB.updateRoster(thisHouse,"tRapidDate",p1.getRapidDate(), String.valueOf(p1.getSRNO()));
@@ -109,7 +109,7 @@ finish();
 
                     }
 
-                }
+                //}
             });
             btnPrev.setOnClickListener(new View.OnClickListener() {
                 @Override

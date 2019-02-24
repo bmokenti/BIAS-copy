@@ -428,7 +428,12 @@ import java.io.Serializable;
                     }
                 });
 
-
+                btnPrev.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish();
+                    }
+                });
 
             }
 

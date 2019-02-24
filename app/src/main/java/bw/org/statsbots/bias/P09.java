@@ -349,7 +349,7 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
                         int n = p1.getSRNO() - 1;
                         thisHouse.previous = String.valueOf(n);
                         thisHouse.next = null;
-                        Log.d("Prev=====>",thisHouse.previous);
+                        //Log.d("Prev=====>",thisHouse.previous);
 
                         finish();
 

@@ -23,7 +23,7 @@ public class q203 extends AppCompatActivity implements Serializable {
     protected Individual individual;
     protected LibraryClass lib;
     PersonRoster p1 = null;
-    Individual pp1 = null;
+    Individual pp1 = null; protected  DatabaseHelper myDB;
     protected EditText edt;
     protected RadioButton selectedRbtn;
     @Override
@@ -31,7 +31,8 @@ public class q203 extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q203);
 
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
         setTitle("Q203: MARITAL STATUS AND RELATIONSHIP");
         lib = new LibraryClass();
         edt = (EditText) findViewById(R.id.q203_Partners);
@@ -44,6 +45,12 @@ public class q203 extends AppCompatActivity implements Serializable {
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
+        if(individual.getQ203()!=null){
+            edt.setText(individual.getQ203());
+        }
 
 
         btnext.setOnClickListener(new View.OnClickListener()
@@ -96,7 +103,12 @@ public class q203 extends AppCompatActivity implements Serializable {
                         // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
 
                         //Next question q102
+                    myDB = new DatabaseHelper(q203.this);
+                    myDB.onOpen(myDB.getReadableDatabase());
 
+                    myDB.updateInd("Q203",individual.getAssignmentID(),individual.getBatch(),ind.getQ203(),String.valueOf(individual.getSRNO()));
+
+                    myDB.close();
 
                         Intent q1o2 = new Intent(q203.this, q204.class);
                         q1o2.putExtra("Individual", individual);

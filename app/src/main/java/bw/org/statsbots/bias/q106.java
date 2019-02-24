@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -153,6 +154,201 @@ public class q106 extends AppCompatActivity implements Serializable {
                 }
             }
         });
+
+        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+        individual = ind;
+
+        RadioButton[] bt = new RadioButton[2];
+        RadioGroup rg1 = findViewById(R.id.q106radioGroup);
+
+        for(int f=0;f<rg1.getChildCount();f++)
+        {
+            View o = rg1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ106()!= null &&  !ind.getQ106().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ106())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+
+
+                        boolean checked = radioButton.isChecked();
+
+                        switch (radioButton.getId()) {
+                            case R.id.q106_1:
+                                if (checked) {
+                                    rbtna1.setEnabled(false);
+                                    rbtna2.setEnabled(false);
+                                    rbtna3.setEnabled(false);
+                                    rbtna4.setEnabled(false);
+                                    rbtna5.setEnabled(false);
+                                    rbtna6.setEnabled(false);
+
+                                    rbtna1.setChecked(false);
+                                    rbtna2.setChecked(false);
+                                    rbtna3.setChecked(false);
+                                    rbtna4.setChecked(false);
+                                    rbtna5.setChecked(false);
+                                    rbtna6.setChecked(false);
+                                    q106atext.setTextColor(Color.LTGRAY);
+
+
+                                    q106btext.setTextColor(Color.BLACK);
+                                    rbtnb1.setEnabled(true);
+                                    rbtnb2.setEnabled(true);
+                                    rbtnb3.setEnabled(true);
+                                    rbtnb4.setEnabled(true);
+                                    rbtnb5.setEnabled(true);
+                                    rbtnb6.setEnabled(true);
+                                    rbtnb7.setEnabled(true);
+                                    rbtnb8.setEnabled(true);
+                                    rbtnb10.setEnabled(true);
+
+                                    q106dtext.setTextColor(Color.BLACK);
+                                    q106ctext.setTextColor(Color.BLACK);
+                                    //edt,
+                                    edt1.setEnabled(true);
+                                    edt2.setEnabled(true);
+
+                                }
+
+
+                                break;
+
+
+                            case R.id.q106_2: {
+                                //if (checked)
+                                // for (int i = 0; i < rga.getChildCount(); i++) {
+                                //  ((RadioButton) rga.getChildAt(i)).setEnabled(true);
+                                rbtna1.setEnabled(true);
+                                rbtna2.setEnabled(true);
+                                rbtna3.setEnabled(true);
+                                rbtna4.setEnabled(true);
+                                rbtna5.setEnabled(true);
+                                rbtna6.setEnabled(true);
+                                q106atext.setTextColor(Color.BLACK);
+
+
+                                q106btext.setTextColor(Color.LTGRAY);
+                                rbtnb1.setEnabled(false);
+                                rbtnb2.setEnabled(false);
+                                rbtnb3.setEnabled(false);
+                                rbtnb4.setEnabled(false);
+                                rbtnb5.setEnabled(false);
+                                rbtnb6.setEnabled(false);
+                                rbtnb7.setEnabled(false);
+                                rbtnb8.setEnabled(false);
+                                rbtnb10.setEnabled(false);
+
+                                rbtnb1.setChecked(false);
+                                rbtnb2.setChecked(false);
+                                rbtnb3.setChecked(false);
+                                rbtnb4.setChecked(false);
+                                rbtnb5.setChecked(false);
+                                rbtnb6.setChecked(false);
+                                rbtnb7.setChecked(false);
+                                rbtnb8.setChecked(false);
+                                rbtnb10.setChecked(false);
+
+
+                                q106dtext.setTextColor(Color.LTGRAY);
+                                q106ctext.setTextColor(Color.LTGRAY);
+                                //edt,
+                                edt1.setEnabled(false);
+                                edt2.setEnabled(false);
+                                edt1.setText("");
+                                edt2.setText("'");
+
+
+                            }
+                            // }
+
+                        }
+
+
+
+
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Log.d("h13 Lost Here","**********");
+            }
+        }
+
+
+        RadioButton[] bt1 = new RadioButton[6];
+        RadioGroup rg2 = findViewById(R.id.q106aradioGroup);
+
+        for(int f=0;f<rg2.getChildCount();f++)
+        {
+            View o = rg2.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ106a()!= null &&  !ind.getQ106a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ106a())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+
+
+
+
+
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                Log.d("h13 Lost Here","**********");
+            }
+        }
+
+        if(ind.getQ106aOther() !=null){
+            rbtna6.setChecked(true);
+            edt.setText(ind.getQ106aOther());
+        }
+
+        RadioButton[] bt2 = new RadioButton[9];
+        RadioGroup rg3 = findViewById(R.id.q106bradioGroup);
+
+        for(int f=0;f<rg3.getChildCount();f++)
+        {
+            View o = rg3.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt2[f]=((RadioButton)o);
+                if(ind.getQ106b()!= null &&  !ind.getQ106b().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ106b())==f+1)
+                    {
+                        RadioButton radioButton = bt2[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Log.d("h13 Lost Here","**********");
+            }
+        }
+
+        if(ind.getQ106c()!=null){
+            edt1.setText(ind.getQ106c());
+        }
+
+        if(ind.getQ106d()!=null){
+            edt2.setText(ind.getQ106d());
+        }
 
         /**
          * NEXT Person BUTTON
@@ -446,18 +642,21 @@ public class q106 extends AppCompatActivity implements Serializable {
                                                     individual.setQ106c(edt1.getText().toString());
                                                     individual.setQ106d(edt2.getText().toString());
 
-                                                    DatabaseHelper myDB = new DatabaseHelper(q106.this);
+                                                    myDB = new DatabaseHelper(q106.this);
+                                                    myDB.onOpen(myDB.getReadableDatabase());
 
-                                                    if (myDB.checkIndividual(individual)) {
-                                                        //Update
-                                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                                    myDB.updateInd("Q106",individual.getAssignmentID(),individual.getBatch(),ind.getQ106(),String.valueOf(individual.getSRNO()));
 
-                                                    } else {
-                                                        //Insert
-                                                        myDB.insertIndividual(individual);
+                                                    myDB.updateInd("Q106d",individual.getAssignmentID(),individual.getBatch(),ind.getQ106d(),String.valueOf(individual.getSRNO()));
+
+                                                    myDB.updateInd("Q106a",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+
+                                                    myDB.updateInd("Q106c",individual.getAssignmentID(),individual.getBatch(),ind.getQ106c(),String.valueOf(individual.getSRNO()));
+
+                                                    myDB.updateInd("Q106b",individual.getAssignmentID(),individual.getBatch(),ind.getQ106b(),String.valueOf(individual.getSRNO()));
 
 
-                                                    }
+                                                    myDB.close();
 
 
                                                     Intent intent = new Intent(q106.this, q107.class);
@@ -471,20 +670,22 @@ public class q106 extends AppCompatActivity implements Serializable {
                                                     if (rbtna6.isChecked())
                                                     {
                                                         individual.setQ106aOther(edt.getText().toString());
+                                                    }else{
+                                                        individual.setQ106aOther(null);
                                                     }
-                                                    //set values for q106
-                                                    DatabaseHelper myDB = new DatabaseHelper(q106.this);
 
-                                                    if (myDB.checkIndividual(individual)) {
-                                                        //Update
-                                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                                    myDB = new DatabaseHelper(q106.this);
+                                                    myDB.onOpen(myDB.getReadableDatabase());
 
-                                                    } else {
-                                                        //Insert
-                                                        myDB.insertIndividual(individual);
+                                                    myDB.updateInd("Q106",individual.getAssignmentID(),individual.getBatch(),ind.getQ106(),String.valueOf(individual.getSRNO()));
+
+                                                    myDB.updateInd("Q106a",individual.getAssignmentID(),individual.getBatch(),ind.getQ106a(),String.valueOf(individual.getSRNO()));
+
+                                                    myDB.updateInd("Q106aOther",individual.getAssignmentID(),individual.getBatch(),ind.getQ106aOther(),String.valueOf(individual.getSRNO()));
 
 
-                                                    }
+
+                                                    myDB.close();
 
                                                     Intent intent = new Intent(q106.this, q107.class);
                                                     intent.putExtra("Individual", individual);

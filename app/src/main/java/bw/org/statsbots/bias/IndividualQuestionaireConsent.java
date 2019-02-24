@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +39,17 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
 
 
 
+        lib = new LibraryClass();
+        rbtn1 = (RadioButton) findViewById(R.id.indqc_1);
+        rbtn2 = (RadioButton) findViewById(R.id.indqc_2);
+        final RadioGroup rg = (RadioGroup) findViewById(R.id.indvradioGroup);
+        btnnext = (Button) findViewById(R.id.btnnext);
+        btnprev = (Button) findViewById(R.id.button3);
 
-      Intent i = getIntent();
+
+
+
+        Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
@@ -53,6 +63,35 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
         myDB.onOpen(myDB.getReadableDatabase());
 
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+        Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+
+        Log.d("adasdasd",ind.getQ101()+"");
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getIndvQuestionnaireConsent()!= null &&  !ind.getIndvQuestionnaireConsent().equals(""))
+                {
+                    if(Integer.parseInt(ind.getIndvQuestionnaireConsent())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }else{
+                    Log.d("h1333333 Lost Here","**********    " + ind.getQ101());
+                }
+            }
+            else
+            {
+                Log.d("h13 Lost Here","**********");
+            }
+        }
+
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSample();
@@ -87,15 +126,6 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
             setTitle("Questionnaire Assent age 15-17 years");
         }
 
-
-
-
-        lib = new LibraryClass();
-        rbtn1 = (RadioButton) findViewById(R.id.indqc_1);
-        rbtn2 = (RadioButton) findViewById(R.id.indqc_2);
-        final RadioGroup rg = (RadioGroup) findViewById(R.id.indvradioGroup);
-        btnnext = (Button) findViewById(R.id.btnnext);
-        btnprev = (Button) findViewById(R.id.button3);
 
 
 
@@ -150,6 +180,17 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
                     if (rbtn2.isChecked()) {
                         individual.setIndvQuestionnaireConsent(selectedRbtn.getText().toString().substring(0, 1));
 
+
+                        myDB = new DatabaseHelper(IndividualQuestionaireConsent.this);
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+
+                        if (myDB.checkIndividual(individual)) {
+                            //Update
+                            myDB.updateInd("IndvQuestionnaireConsent",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),String.valueOf(individual.getSRNO()));
+                            myDB.close();
+                        }
+
                         Intent intent = new Intent(IndividualQuestionaireConsent.this, q101.class);
 
                         intent.putExtra("Individual", individual);
@@ -168,8 +209,7 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
 
                         if (myDB.checkIndividual(individual)) {
                             //Update
-                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
+                            myDB.updateInd("IndvQuestionnaireConsent",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),String.valueOf(individual.getSRNO()));
                         } else {
                             //Insert
                             myDB.insertIndividual(individual);
@@ -198,7 +238,12 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
         btnprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IndividualQuestionaireConsent.super.onBackPressed();
+                HouseHold thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+                Intent q1o2 = new Intent(IndividualQuestionaireConsent.this, started_household.class);
+                q1o2.putExtra("Household", thisHouse);
+
+                startActivity(q1o2);
             }
         });
     }

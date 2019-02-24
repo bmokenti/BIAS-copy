@@ -26,13 +26,14 @@ public class q205 extends AppCompatActivity implements Serializable {
     protected RadioGroup rg, rga;
     protected TextView txt1, txt2;
     PersonRoster p1 = null;
-    Individual pp1 = null;
+    Individual pp1 = null;protected  DatabaseHelper myDB;
     protected RadioButton selectedRbtn1, selectedRbtn2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q205);
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
         setTitle("Q205: MARITAL STATUS AND RELATIONSHIP");
         lib = new LibraryClass();
         rbtn1 = (RadioButton) findViewById(R.id.q205_1);
@@ -64,7 +65,142 @@ public class q205 extends AppCompatActivity implements Serializable {
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
+
+        RadioButton[] bt1 = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ205()!= null &&  !ind.getQ205().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ205())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+
+                        boolean checked = radioButton.isChecked();
+
+                        switch (radioButton.getId()) {
+                            case R.id.q205_1:
+                                if (checked) {
+                                    txt2.setTextColor(Color.LTGRAY);
+                                    rbtna1.setEnabled(false);
+                                    rbtna2.setEnabled(false);
+                                    rbtna3.setEnabled(false);
+                                    rbtna4.setEnabled(false);
+                                    rbtna5.setEnabled(false);
+                                    rbtna6.setEnabled(false);
+                                    rbtna7.setEnabled(false);
+
+                                    rbtna1.setChecked(false);
+                                    rbtna2.setChecked(false);
+                                    rbtna3.setChecked(false);
+                                    rbtna4.setChecked(false);
+                                    rbtna5.setChecked(false);
+                                    rbtna6.setChecked(false);
+                                    rbtna7.setChecked(false);
+
+                                }
+
+
+                                break;
+
+                            case R.id.q205_2:
+                                if (checked) {
+
+                                    txt2.setTextColor(Color.BLACK);
+                                    rbtna1.setEnabled(true);
+                                    rbtna2.setEnabled(true);
+                                    rbtna3.setEnabled(true);
+                                    rbtna4.setEnabled(true);
+                                    rbtna5.setEnabled(true);
+                                    rbtna6.setEnabled(true);
+                                    rbtna7.setEnabled(true);
+                                }
+                                break;
+
+                            case R.id.q205a_1:
+                                if (checked) {
+
+
+                                }
+                                break;
+                            case R.id.q205a_2:
+                                if (checked) {
+
+
+                                }
+                                break;
+
+                            case R.id.q205a_3:
+                                if (checked) {
+
+
+                                }
+                                break;
+
+                            case R.id.q205a_4:
+                                if (checked) {
+
+
+                                }
+                                break;
+
+                            case R.id.q205a_5:
+                                if (checked) {
+
+
+                                }
+                                break;
+
+                            case R.id.q205a_6:
+                                if (checked) {
+
+
+                                }
+                                break;
+
+                            case R.id.q205a_7:
+                                if (checked) {
+
+
+                                }
+                                break;
+
+
+                        }
+
+
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        RadioButton[] bt2 = new RadioButton[7];
+        for(int f=0;f<rga.getChildCount();f++)
+        {
+            View o = rga.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt2[f]=((RadioButton)o);
+                if(ind.getQ205a()!= null &&  !ind.getQ205a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ205a())==f+1)
+                    {
+                        RadioButton radioButton = bt2[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
         btnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +274,18 @@ public class q205 extends AppCompatActivity implements Serializable {
                             //Set q205 for the current individual
                             individual.setQ205(selectedRbtn1.getText().toString().substring(0, 1));
 
+
+                            myDB = new DatabaseHelper(q205.this);
+                            myDB.onOpen(myDB.getReadableDatabase());
+
+                            myDB.updateInd("Q205",individual.getAssignmentID(),individual.getBatch(),ind.getQ205(),String.valueOf(individual.getSRNO()));
+                            myDB.updateInd("Q205a",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+
+                            myDB.close();
+
+
+
+
                             Intent q1o2 = new Intent(q205.this, q301.class);
                             q1o2.putExtra("Individual", individual);
                             startActivity(q1o2);
@@ -148,6 +296,14 @@ public class q205 extends AppCompatActivity implements Serializable {
                             individual.setQ205(selectedRbtn1.getText().toString().substring(0, 1));
                             individual.setQ205a(selectedRbtn2.getText().toString().substring(0, 1));
 
+
+                            myDB = new DatabaseHelper(q205.this);
+                            myDB.onOpen(myDB.getReadableDatabase());
+
+                            myDB.updateInd("Q205",individual.getAssignmentID(),individual.getBatch(),ind.getQ205(),String.valueOf(individual.getSRNO()));
+                            myDB.updateInd("Q205a",individual.getAssignmentID(),individual.getBatch(),ind.getQ205a(),String.valueOf(individual.getSRNO()));
+
+                            myDB.close();
 
                             Intent q1o2 = new Intent(q205.this, q301.class);
                             q1o2.putExtra("Individual", individual);

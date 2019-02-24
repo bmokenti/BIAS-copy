@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -60,6 +61,33 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
 
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
         //int p = 0;
+        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+        individual = ind;
+
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ103()!= null &&  !ind.getQ103().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ103())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }else{
+                    Log.d("h1333333 Lost Here","**********    " + ind.getQ101());
+                }
+            }
+            else
+            {
+                Log.d("h13 Lost Here","**********");
+            }
+        }
 
 
 
@@ -111,26 +139,23 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
 
                                 individual.setQ103(selectedRbtn.getText().toString().substring(0, 1));
 
-                                //Restart the current activity for next individual
 
-                                //individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
-
-
-                                //Check if individual already been saved and update
-
-                                myDB.onOpen(myDB.getReadableDatabase());
-
-                                if (myDB.checkIndividual(individual)) {
-
-                                    //Update
-                                    myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
-                                } else {
-                                    //Insert
-                                    myDB.insertIndividual(individual);
-
-                                }
                                 if(rbtn3.isChecked()) {
+                                    myDB = new DatabaseHelper(q103.this);
+                                    myDB.onOpen(myDB.getReadableDatabase());
+
+                                    myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(),ind.getQ103(),String.valueOf(individual.getQ103()));
+
+                                    //SET SKIPPED TO NULL
+                                    myDB.updateInd("Q104",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(ind.getSRNO()));
+                                    myDB.updateInd("Q104a",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(ind.getSRNO()));
+                                    myDB.updateInd("Q104b",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(ind.getSRNO()));
+                                    myDB.updateInd("Q104c",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(ind.getSRNO()));
+
+                                    myDB.close();
+
+
+
                                     Intent q1o2 = new Intent(q103.this, q105.class);
                                     q1o2.putExtra("Individual", individual);
                                     q1o2.putExtra("Personroster", p1);
@@ -138,6 +163,11 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
                                 }
                                 else
                                 {
+                                    myDB = new DatabaseHelper(q103.this);
+                                    myDB.onOpen(myDB.getReadableDatabase());
+                                    myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(), individual.getQ103(),String.valueOf(individual.getSRNO()));
+                                    myDB.close();
+
                                     Intent q1o2 = new Intent(q103.this, q104.class);
                                     q1o2.putExtra("Individual", individual);
                                     q1o2.putExtra("Personroster", p1);
@@ -209,7 +239,15 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
 
                             if (myDB.checkIndividual(individual)) {
                                 //Update
-                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),String.valueOf(individual.getQ103()));
+
+                                //SET SKIPPED TO NULL
+                                myDB.updateInd("Q104",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),null);
+                                myDB.updateInd("Q104a",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),null);
+                                myDB.updateInd("Q104b",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),null);
+                                myDB.updateInd("Q104c",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),null);
+
+                                myDB.close();
 
                             }
                             Intent q1o3 = new Intent(q103.this, q105.class);
@@ -224,7 +262,7 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
 
                             if (myDB.checkIndividual(individual)) {
                                 //Update
-                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),String.valueOf(individual.getQ103()));
 
                             }
 
@@ -250,7 +288,6 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
             public void onClick(View v) {
                 q103.super.onBackPressed();
             }
-
 
         });
     }

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,7 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class Q201 extends AppCompatActivity implements View.OnClickListener  {
+import java.io.Serializable;
+
+public class Q201 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -77,6 +80,31 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener  {
 //        PersonRoster pr[] = thisHouse.getPersons();
 
 
+        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+        individual = ind;
+
+
+        RadioButton[] bt1 = new RadioButton[6];
+
+
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ201()!= null &&  !ind.getQ201().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ201())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
 
         btnext.setOnClickListener(new View.OnClickListener()
 
@@ -119,6 +147,15 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener  {
                         if (rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn5.isChecked() || rbtn5.isChecked() || rbtn6.isChecked()) {
 
                             individual.setQ201(selectedRbtn.getText().toString().substring(0, 1));
+
+                            myDB = new DatabaseHelper(Q201.this);
+                            myDB.onOpen(myDB.getReadableDatabase());
+
+                            myDB.updateInd("Q201",individual.getAssignmentID(),individual.getBatch(),ind.getQ201(),String.valueOf(individual.getSRNO()));
+                            myDB.updateInd("Q202",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+
+                            myDB.close();
+
                             Intent skipto203 = new Intent(Q201.this, q203.class);
                             skipto203.putExtra("Individual", individual);
                             startActivity(skipto203);
@@ -128,6 +165,12 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener  {
                             //Set q101 for the current individual
                             individual.setQ201(selectedRbtn.getText().toString().substring(0, 1));
 
+                            myDB = new DatabaseHelper(Q201.this);
+                            myDB.onOpen(myDB.getReadableDatabase());
+
+                            myDB.updateInd("Q201",individual.getAssignmentID(),individual.getBatch(),ind.getQ201(),String.valueOf(individual.getSRNO()));
+
+                            myDB.close();
 
                             Intent q1o2 = new Intent(Q201.this, q202.class);
                             q1o2.putExtra("Individual", individual);
@@ -144,7 +187,10 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener  {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Q201.super.onBackPressed();
+                Intent intent = new Intent(Q201.this, q107.class);
+                intent.putExtra("Individual", individual);
+                intent.putExtra("Personroster", p1);
+                startActivity(intent);
             }
 
 

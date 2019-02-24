@@ -80,11 +80,12 @@
 
                         <ImageButton
                             android:id="@+id/plus"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_below="@+id/description_text"
                             android:background="@drawable/plus"
                             android:clickable="true"
+                            android:layout_marginLeft="10dp"
                             android:text="view more"/>
 
 

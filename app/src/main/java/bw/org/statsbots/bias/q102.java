@@ -9,6 +9,7 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +43,7 @@ public class q102 extends AppCompatActivity implements Serializable {
         myDB.getWritableDatabase();
         //edittext = (EditText) findViewById(R.id.q102_years);
         //edittext.setVisibility(View.VISIBLE);
+        edt = (EditText) findViewById(R.id.q102_years);
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
@@ -56,11 +58,16 @@ public class q102 extends AppCompatActivity implements Serializable {
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 
-       // Intent h = getIntent();
-       // thisHouse = (HouseHold) h.getSerializableExtra("Household");
-        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
 
-        edt = (EditText) findViewById(R.id.q102_years);
+        Log.d("adasdasd",ind.getQ101()+"");
+         if(ind.getQ102()!= null)
+         {
+                edt.setText(ind.getQ102());
+         }
+
+
+
 
 
         //myDB.getIndividualdt();
@@ -211,13 +218,8 @@ public class q102 extends AppCompatActivity implements Serializable {
 
                         if (myDB.checkIndividual(individual)) {
                             //Update
-
-                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
-                        } else {
-                            //Insert
-                            myDB.insertIndividual(individual);
-
+                                myDB.updateInd("Q102",individual.getAssignmentID(),individual.getBatch(),individual.getQ102(),String.valueOf(individual.getSRNO()));
+                                myDB.close();
                         }
                         //Next question P17
                         Intent intent = new Intent(q102.this, q103.class);
@@ -239,7 +241,11 @@ public class q102 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q102.super.onBackPressed();
+
+                Intent q1o2 = new Intent(q102.this, q101.class);
+                q1o2.putExtra("Personroster", p1);
+
+                startActivity(q1o2);
             }
 
 

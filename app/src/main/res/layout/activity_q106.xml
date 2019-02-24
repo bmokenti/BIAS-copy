@@ -38,9 +38,9 @@
         android:paddingTop="20dp"
         android:paddingRight="16dp"
         android:paddingBottom="40dp"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="147dp"
-        tools:ignore="MissingConstraints">
+        tools:layout_editor_absoluteY="89dp">
 
         <ScrollView
 
@@ -197,9 +197,9 @@
                                 android:id="@+id/q106a_txtother"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:visibility="invisible"
                                 android:hint="other specify"
-                                android:text="" />
+                                android:text=""
+                                android:visibility="invisible" />
 
                         </RadioGroup>
 
@@ -332,8 +332,11 @@
                             android:id="@+id/q106c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/edit_text_background"
                             android:hint="Probe and write occupation in full"
-                            android:text="" />
+                            android:padding="10dp"
+                            android:text=""
+                            android:textSize="12dp" />
 
                     </LinearLayout>
 
@@ -365,7 +368,10 @@
                             android:id="@+id/q106d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/edit_text_background"
                             android:hint="Fully Describe the industry"
+                            android:textSize="12dp"
+                            android:padding="10dp"
                             android:text="" />
 
                     </LinearLayout>

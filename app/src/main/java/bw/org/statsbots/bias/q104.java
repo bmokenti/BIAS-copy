@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -63,6 +64,12 @@ public class q104 extends AppCompatActivity implements Serializable {
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 
+        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+        Log.d("Individual--- ",ind.getQ103());
+
+
+
+
         //int p = 0;
 
         final String[] lst = getResources().getStringArray(R.array.type_of_education);
@@ -98,10 +105,6 @@ public class q104 extends AppCompatActivity implements Serializable {
             }
         });
 
-
-        // final int selectedId = rbtngroup.getCheckedRadioButtonId();
-
-        // setTitle("Q104a LEVEL of Education");
 
         lib = new LibraryClass();
         final String[] lst1 = getResources().getStringArray(R.array.level_of_education);
@@ -167,6 +170,57 @@ public class q104 extends AppCompatActivity implements Serializable {
             }
         });
 
+
+        if(ind.getQ104()!=null){
+            String type = ind.getQ104();
+            int pos = 0;
+            for(int o = 0;o<lst.length;o++){
+
+                if(type.matches(lst[o].substring(0,2))){
+                    pos=o;
+                }
+            }
+
+
+            autoTypeEducation.setText(lst[pos]);
+
+
+
+        }
+
+
+        if(ind.getQ104a()!=null){
+            String type = ind.getQ104a();
+            int pos = 0;
+            for(int o = 0;o<lst1.length;o++){
+
+                if(type.matches(lst1[o].substring(0,1))){
+                    pos=o;
+                }
+            }
+            autoLevel.setText(lst1[pos]);
+
+        }
+
+        if(ind.getQ104b()!=null){
+            String type = ind.getQ104b();
+            int pos = 0;
+            for(int o = 0;o<lst2.length;o++){
+
+                if(type.matches(lst2[o].substring(0,1))){
+                    pos=o;
+                }
+            }
+            autoYear.setText(lst2[pos]);
+
+        }
+
+        if(ind.getQ104c() !=null){
+            edtq104c.setText(ind.getQ104c());
+        }
+
+
+
         Button btnClear2 = (Button) findViewById(R.id.btnClear2);
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +244,11 @@ public class q104 extends AppCompatActivity implements Serializable {
                 txtq104text = (TextView) findViewById(R.id.txtq104c);
 
                 String txtq104cvalue = txtq104text.getText().toString();
+
+
+
+
+
                 if (txtq104cvalue == null || txtq104cvalue.length() == 0)
                 {
                     lib.showError(q104.this, " Field of Education ", "Please enter description");
@@ -238,7 +297,6 @@ public class q104 extends AppCompatActivity implements Serializable {
                             boolean exist = false;
                             for (String l : lst1) {
                                 if (l.matches(Selectedlevel)) {
-
                                     exist = true;
                                     break;
                                 }
@@ -271,31 +329,37 @@ public class q104 extends AppCompatActivity implements Serializable {
                                 }
                                 //Log.d("P05", String.valueOf(exists));
                                 if (exists && exist && existsY) {
-                                    //Set q104 fir the current individual
-                                    individual.setQ104(autoTypeEducation.getText().toString().substring(0,1));
-                                    individual.setQ104a(autoLevel.getText().toString().substring(0,1));
-                                    individual.setQ104b(autoYear.getText().toString().substring(0,1));
-                                    individual.setQ104c(edtq104c.getText().toString());
-
-                                    myDB = new DatabaseHelper(q104.this);
-                                    myDB.onOpen(myDB.getReadableDatabase());
-                                    myDB.getWritableDatabase();
-
-                                    if(myDB.checkIndividual(individual)){
-                                        //Update
-                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-
-                                    }else{
-                                        //Insert
-                                        myDB.insertIndividual(individual);
-
-                                    }
+                                    int typ= Integer.parseInt(autoTypeEducation.getText().toString().substring(0,2));
+                                    int lvl = Integer.parseInt(autoLevel.getText().toString().substring(0,1));
+                                    int yr = Integer.parseInt(autoYear.getText().toString().substring(0,1));
 
 
-                                    Intent intent = new Intent(q104.this, q105.class);
-                                    intent.putExtra("Individual", individual);
-                                    intent.putExtra("Personroster", p1);
-                                    startActivity(intent);
+
+
+
+
+                                        //Set q104 fir the current individual
+                                        individual.setQ104(autoTypeEducation.getText().toString().substring(0, 2));
+                                        individual.setQ104a(autoLevel.getText().toString().substring(0, 1));
+                                        individual.setQ104b(autoYear.getText().toString().substring(0, 1));
+                                        individual.setQ104c(edtq104c.getText().toString());
+
+                                        myDB = new DatabaseHelper(q104.this);
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+
+
+                                        myDB.updateInd("Q104", individual.getAssignmentID(), individual.getBatch(), individual.getQ104(), String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q104a", individual.getAssignmentID(), individual.getBatch(), individual.getQ104a(), String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q104b", individual.getAssignmentID(), individual.getBatch(), individual.getQ104b(), String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q104c", individual.getAssignmentID(), individual.getBatch(), individual.getQ104c(), String.valueOf(individual.getSRNO()));
+
+
+                                        Intent intent = new Intent(q104.this, q105.class);
+                                        intent.putExtra("Individual", individual);
+                                        intent.putExtra("Personroster", p1);
+                                        startActivity(intent);
+
 
 
                                 } else {
@@ -310,6 +374,11 @@ public class q104 extends AppCompatActivity implements Serializable {
 
                                 }
 
+
+
+
+
+
                             }
 
 
@@ -319,8 +388,23 @@ public class q104 extends AppCompatActivity implements Serializable {
 
                 }
 
+
+
+
+
             }
+
+
+
+
+
+
+
+
         });
+
+
+
         Button btprev = findViewById(R.id.button3);
 
         btprev.setOnClickListener(new View.OnClickListener() {

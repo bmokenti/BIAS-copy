@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -254,6 +255,241 @@ public class q107 extends AppCompatActivity implements Serializable{
                 }
             }
         });
+
+        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+        individual = ind;
+        RadioButton[] bt = new RadioButton[2];
+        RadioGroup rg22 = findViewById(R.id.q107radioGroup);
+
+        for(int f=0;f<rg22.getChildCount();f++)
+        {
+            View o = rg22.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ107()!= null &&  !ind.getQ107().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ107())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+
+                        boolean checked = radioButton.isChecked();
+
+                        switch(radioButton.getId()){
+                            case R.id.q107_1:
+
+                                if(checked)
+
+                                    chk99.setEnabled(true);
+                                rbtnb1.setEnabled(true);
+                                rbtnb2.setEnabled(true);
+                                rbtnb3.setEnabled(true);
+                                rbtnb4.setEnabled(true);
+                                rbtnb5.setEnabled(true);
+                                rbtnbOther.setEnabled(true);
+                                rbtnc1.setEnabled(true);
+                                rbtnc2.setEnabled(true);
+                                rbtnc3.setEnabled(true);
+                                rbtnc4.setEnabled(true);
+                                rbtnc5.setEnabled(true);
+                                rbtncOther.setEnabled(true);
+                                txtyy.setEnabled(true);
+                                txtmnth.setEnabled(true);
+                                txta.setTextColor(Color.BLACK);
+                                txtb.setTextColor(Color.BLACK);
+                                txtc.setTextColor(Color.BLACK);
+                                //rbtn99.setChecked(true);
+
+
+
+
+
+                                //  rGroup2.setVisibility(View.VISIBLE);
+
+                                break;
+
+                            case R.id.q107_2:
+                                if(checked)
+
+                                    chk99.setChecked(false);
+                                chk99.setEnabled(false);
+                                rbtnb1.setEnabled(false);
+                                rbtnb2.setEnabled(false);
+                                rbtnb3.setEnabled(false);
+                                rbtnb4.setEnabled(false);
+                                rbtnb5.setEnabled(false);
+                                rbtnbOther.setEnabled(false);
+                                rbtnc1.setEnabled(false);
+                                rbtnc2.setEnabled(false);
+                                rbtnc3.setEnabled(false);
+                                rbtnc4.setEnabled(false);
+                                rbtnc5.setEnabled(false);
+                                rbtncOther.setEnabled(false);
+                                txtyy.setEnabled(false);
+                                txtmnth.setEnabled(false);
+
+                                chk99.setChecked(false);
+                                rbtnb1.setChecked(false);
+                                rbtnb2.setChecked(false);
+                                rbtnb3.setChecked(false);
+                                rbtnb4.setChecked(false);
+                                rbtnb5.setChecked(false);
+                                rbtnbOther.setChecked(false);
+                                rbtnc1.setChecked(false);
+                                rbtnc2.setChecked(false);
+                                rbtnc3.setChecked(false);
+                                rbtnc4.setChecked(false);
+                                rbtnc5.setChecked(false);
+                                rbtncOther.setChecked(false);
+                                txtyy.setText("");
+                                txtmnth.setText("");
+
+                                txta.setTextColor(Color.LTGRAY);
+                                txtb.setTextColor(Color.LTGRAY);
+                                txtc.setTextColor(Color.LTGRAY);
+
+
+
+                                break;
+
+                            case R.id.q107b_other:
+                                if(checked)
+
+
+
+
+                                    txtyy.setEnabled(false);
+                                txtmnth.setEnabled(false);
+
+
+                                break;
+
+                            case R.id.q107c_other:
+                                if(checked)
+
+
+
+                                    txtyy.setEnabled(false);
+                                txtmnth.setEnabled(false);
+
+
+
+
+                                break;
+                            case R.id.q107_99:
+                                if(checked)
+
+
+
+                                    txtyy.setEnabled(false);
+                                txtmnth.setEnabled(false);
+                                txtyy.setText("");
+                                txtmnth.setText("");
+
+
+
+
+                                break;
+                        }
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Log.d("h13 Lost Here","**********");
+            }
+        }
+
+        if(ind.getQ107aYY()!=null){
+            if(ind.getQ107aYY().equals("99")){
+                chk99.setChecked(true);
+            }
+            txtyy.setText(ind.getQ107aYY());
+        }
+        if(ind.getQ107aMnth()!=null){
+            if(ind.getQ107aMnth().equals("99")){
+                chk99.setChecked(true);
+            }
+            txtmnth.setText(ind.getQ107aMnth());
+        }
+
+        if(individual.getQ107cOther()!=null ){
+            if(individual.getQ107cOther().isEmpty()){
+
+            }else{
+                rbtncOther.setChecked(true);
+                edtcOther.setText(individual.getQ107cOther());
+                edtcOther.setVisibility(View.VISIBLE);
+                edtcOther.setEnabled(true);
+            }
+        }
+
+        if(individual.getQ107bOther()!=null ){
+            if(individual.getQ107bOther().isEmpty()){
+
+            }else{
+                rbtnbOther.setChecked(true);
+                edtbOther.setText(individual.getQ107bOther());
+                edtbOther.setVisibility(View.VISIBLE);
+                edtbOther.setEnabled(true);
+            }
+        }
+
+        RadioGroup rgg = findViewById(R.id.q107bradioGroup);
+        RadioButton[] bt5 = new RadioButton[6];
+        for(int f=0;f<rgg.getChildCount();f++)
+        {
+            View o = rgg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt5[f]=((RadioButton)o);
+                if(ind.getQ107b()!= null &&  !ind.getQ107b().equals(""))
+                {
+                    try{
+                        if(Integer.parseInt(ind.getQ107b())==f+1)
+                        {
+                            RadioButton radioButton = bt5[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
+                    }catch(Exception ff){
+
+
+                    }
+
+                }
+            }
+        }
+
+
+        RadioGroup rg3 = findViewById(R.id.q107cradioGroup);
+        RadioButton[] bt6 = new RadioButton[6];
+        for(int f=0;f<rg3.getChildCount();f++)
+        {
+            View o = rg3.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt6[f]=((RadioButton)o);
+                if(ind.getQ107c()!= null &&  !ind.getQ107c().equals(""))
+                {
+                    try{
+                        if(Integer.parseInt(ind.getQ107c())==f+1)
+                        {
+                            RadioButton radioButton = bt6[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
+                    }catch (Exception r){
+
+                    }
+
+                }
+            }
+        }
+
+
         Button btnnext = findViewById(R.id.button);
 
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -377,8 +613,17 @@ public class q107 extends AppCompatActivity implements Serializable{
 
 
                                             } else {
-                                                if (rbtn2.isChecked()) {
+                                                if (rbtn2.isChecked())
+                                                {
                                                     individual.setQ107(selectedRbtn.getText().toString().substring(0, 1));
+                                                    individual.setQ107b(null);
+                                                    individual.setQ107c(null);
+                                                    individual.setQ107cOther(null);
+                                                    individual.setQ107aYY(null);
+                                                    individual.setQ107aMnth(null);
+                                                    individual.setQ107bOther(null);
+
+
 
                                                     if(myDB.checkIndividual(individual)){
                                                         //Update
@@ -392,7 +637,10 @@ public class q107 extends AppCompatActivity implements Serializable{
 
                                                     Intent q1o3 = new Intent(q107.this, Q201.class);
                                                     q1o3.putExtra("Individual", individual);
+                                                    q1o3.putExtra("Personroster", p1);
                                                     startActivity(q1o3);
+
+
                                                 } else {
                                                     individual.setQ107(selectedRbtn.getText().toString().substring(0, 1));
 
@@ -456,7 +704,19 @@ public class q107 extends AppCompatActivity implements Serializable{
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q107.super.onBackPressed();
+                if(individual.getQ105().equals("1") ||individual.getQ105().equals("2") ||individual.getQ105().equals("3") ||individual.getQ105().equals("4")){
+
+                    Intent intent = new Intent(q107.this, q105.class);
+                    intent.putExtra("Individual", individual);
+                    intent.putExtra("Personroster", p1);
+                    startActivity(intent);
+
+
+
+                }else{
+                    q107.super.onBackPressed();
+                }
+
             }
 
 

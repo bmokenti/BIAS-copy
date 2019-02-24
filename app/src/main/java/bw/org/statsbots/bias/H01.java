@@ -58,46 +58,19 @@ public class H01 extends AppCompatActivity implements Serializable, View.OnClick
 
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
-
+        Log.d("Ass ID",thisHouse.getAssignment_ID() + "   " + thisHouse.getBatchNumber());
        List<HouseHold>  houseList = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
        myDB.close();
 
        if(houseList.size()>0){
-
-
            thisHouse=houseList.get(0);
-
-           if(thisHouse.getH13() !=null){
-
-               AlertDialog.Builder builder = new AlertDialog.Builder(H01.this);
-               builder.setTitle("Confirm");
-               builder.setMessage("You have already finished this section, Do you want to editing it?");
-               builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-                       dialog.cancel();
-                   }
-               });
-               builder.setNegativeButton("No - Got to Started", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-                       Intent q1o2 = new Intent(H01.this, started_household.class);
-                       q1o2.putExtra("Household",  thisHouse);
-                       startActivity(q1o2);
-                   }
-               });
-               AlertDialog dialog = builder.create();
-               dialog.show();
-
-
-
-           }
-
 
        }
 
 
 
+
+            Log.d("H13", thisHouse.getH13());
 
             RadioButton[] bt = new RadioButton[10];
 
@@ -117,11 +90,13 @@ public class H01 extends AppCompatActivity implements Serializable, View.OnClick
                             radioButton.setChecked(true);
                             break;
                         }
+                    }else{
+                        Log.d("h1333333 Lost Here","**********    " + thisHouse.getH01());
                     }
                 }
                 else
                 {
-                    Log.d("Lost Here","**********");
+                    Log.d("h13 Lost Here","**********");
                 }
             }
 

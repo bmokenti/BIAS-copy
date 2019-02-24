@@ -144,7 +144,7 @@ public class IndQuetParentalConsent extends Activity implements Serializable {
 
                              if (myDB.checkIndividual(individual)) {
                             //Update
-                               myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                 myDB.updateInd("IndvQuestionnairePConsent15_17",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnairePConsent15_17(),String.valueOf(individual.getSRNO()));
 
                             }
 
@@ -159,16 +159,16 @@ public class IndQuetParentalConsent extends Activity implements Serializable {
 
                         } else {
                             individual.setIndvQuestionnairePConsent15_17(selectedRbtn.getText().toString().substring(0, 1));
-                            //Check if individual already been saved and update
-                            //myDB = new DatabaseHelper(IndQuetParentalConsent.this);
-                            // myDB.onOpen(myDB.getReadableDatabase());
-                            //myDB.getWritableDatabase();
+                            //Check if individual already been  saved and update
+                            myDB = new DatabaseHelper(IndQuetParentalConsent.this);
+                             myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
 
-                            // if (myDB.checkIndividual(individual)) {
+                            if (myDB.checkIndividual(individual)) {
                             //Update
-                            //   myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                myDB.updateInd("IndvQuestionnairePConsent15_17",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnairePConsent15_17(),String.valueOf(individual.getSRNO()));
 
-                            // }
+                            }
 
 
                             //Next question P17

@@ -540,14 +540,15 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setH13Camels(jObject.get("H13Camels").toString());
 
                                 String tb40=jObject.get("HIVTB40").toString();
-                                Log.d("HIOV40", tb40);
+
                                 if(tb40.equals("true")){
                                     hh.setHIVTB40("1");
-                                    Log.d("333", tb40);
                                 }else{
                                     hh.setHIVTB40("0");
-                                    Log.d("4444", tb40);
                                 }
+
+
+
 
 
 
@@ -574,6 +575,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                     pp.setP04YY( roster.get("P04_YY").toString());
                                     pp.setP04MM( roster.get("P04_MM").toString());
                                     pp.setP04WKS( roster.get("P04_WKS").toString());
+                                    pp.setP05(roster.get("P05").toString());
                                     pp.setP06( roster.get("P06").toString());
                                     pp.setP07( roster.get("P07").toString());
                                     pp.setP17( roster.get("P17").toString());
@@ -615,6 +617,40 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                     pp.setP14( roster.get("P14").toString());
                                     pp.setP15( roster.get("P15").toString());
                                     pp.setP16 ( roster.get("P16").toString());
+
+                                    pp.setBloodDraw(roster.get("BloodDraw").toString());
+                                    pp.setBloodVolume_1(roster.get("BloodVolume_1").toString());
+                                    pp.setBloodVolume_4(roster.get("BloodVolume_4").toString());
+                                    pp.setBloodVolume_6(roster.get("BloodVolume_6").toString());
+                                    pp.setBloodVolume_10(roster.get("BloodVolume_10").toString());
+                                    pp.setBloodVolumeComment(roster.get("BloodVolumeComment").toString());
+                                    pp.setRapid(roster.get("Rapid").toString());
+                                    pp.setRapidResults(roster.get("RapidResults").toString());
+                                    pp.setBloodLabTest(roster.get("BloodLabTest").toString());
+                                    pp.setBloodStore(roster.get("BloodStore").toString());
+
+                                    pp.setRapidDate(roster.get("RapidDate").toString());
+
+                                    pp.setBloodSampleCollected(roster.get("BloodSampleCollected").toString());
+                                    pp.setChPrntlConsentBloodDraw(roster.get("ChPrntlConsentBloodDraw").toString());
+                                    pp.setChPrntlConsentRHT(roster.get("ChPrntlConsentRHT").toString());
+                                    pp.setChPrntlConsentLabTest(roster.get("ChPrntlConsentLabTest").toString());
+                                    pp.setChPrntlConsentBloodStore(roster.get("ChPrntlConsentBloodStore").toString());
+                                    pp.setChPrntlConsentDate(roster.get("ChPrntlConsentDate").toString());
+                                    pp.setPrntlConsentX_Ray(roster.get("PrntlConsentX_Ray").toString());
+                                    pp.setPrntlConsentX_RayReview(roster.get("PrntlConsentX_RayReview").toString());
+                                    pp.setPrntlConsentX_RayStore(roster.get("PrntlConsentX_RayStore").toString());
+                                    pp.setPrntlConsentSP_Collect(roster.get("PrntlConsentSP_Collect").toString());
+                                    pp.setPrntlParentSP_AddTests(roster.get("PrntlParentSP_AddTests").toString());
+                                    pp.setPrntlConsentSP_LabTest(roster.get("PrntlConsentSP_LabTest").toString());
+                                    pp.setPrntlConsentTBDate(roster.get("PrntlConsentTBDate").toString());
+                                    pp.setIndTB_X_Ray(roster.get("IndTB_X_Ray").toString());
+                                    pp.setIndTB_X_RayReview(roster.get("IndTB_X_RayReview").toString());
+                                    pp.setIndTB_X_RayStore(roster.get("IndTB_X_RayStore").toString());
+                                    pp.setIndSP_Collect(roster.get("IndSP_Collect").toString());
+                                    pp.setIndSP_AddTests(roster.get("IndSP_AddTests").toString());
+                                    pp.setIndSP_LabTests(roster.get("IndSP_LabTests").toString());
+                                    pp.setIndTB_ConsentDate(roster.get("IndTB_ConsentDate").toString());
 
                                     //INSERT ROSTER FOR THIS HOUSE  HOLD
                                     myDB.insertSyncRoster(pp,hh.getAssignment_ID(),hh.getBatchNumber());
@@ -1148,6 +1184,35 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                     ind.setB8_O15_Rapid(roster.get("B8_O15Rapid").toString());
                                     ind.setQ801f(roster.get("Q801f").toString());
                                     ind.setIndRapid_Comment(roster.get("RapidComment").toString());
+
+                                    //ind.setBlooConsent(roster.get("B8_O15Rapid").toString());
+
+
+                                    //ind.setResult(roster.get("B8_O15Rapid").toString());
+                                    //ind.setResultOther(roster.get("B8_O15Rapid").toString());
+                                    //ind.setResultComment(roster.get("B8_O15Rapid").toString());
+                                    //ind.setBlooConsent(roster.get("B8_O15Rapid").toString());
+                                    //ind.setLayCounselor(roster.get("B8_O15Rapid").toString());
+
+
+                                    ind.setIndvQuestionnairePConsent15_17(roster.get("IndvQuestionnairePConsent15_17").toString());
+                                    ind.setIndvQuestionnaireConsent(roster.get("IndvQuestionnaireConsent").toString());
+                                    ind.setIndvBloodDraw(roster.get("IndvBloodDraw").toString());
+                                    ind.setBloodVol_1(roster.get("BloodVol_1").toString());
+                                    ind.setBloodVol_4(roster.get("BloodVol_4").toString());
+                                    ind.setBloodVol_6(roster.get("BloodVol_6").toString());
+                                    ind.setBloodVol_10(roster.get("BloodVol_10").toString());
+                                    ind.setBloodVolComment(roster.get("BloodVolComment").toString());
+                                    ind.setIndBloodLabTest(roster.get("IndBloodLabTest").toString());
+                                    ind.setIndBloodStore(roster.get("IndBloodStore").toString());
+                                    ind.setPrntlConsentBloodDraw(roster.get("PrntlConsentBloodDraw").toString());
+                                    ind.setPrntlConsentRHT(roster.get("PrntlConsentRHT").toString());
+                                    ind.setPrntlConsentLabTest(roster.get("PrntlConsentLabTest").toString());
+                                    ind.setPrntlConsentBloodStore(roster.get("PrntlConsentBloodStore").toString());
+                                    ind.setPrntlParentID(roster.get("PrntlParentID").toString());
+                                    ind.setPrntlConsentDate(roster.get("PrntlConsentDate").toString());
+
+
 
                                     //check if the entry exists in the database first
 

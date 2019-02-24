@@ -18,13 +18,13 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
-public class q301 extends AppCompatActivity {
+public class q301 extends AppCompatActivity implements Serializable{
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2;
     protected RadioGroup rg, rga;
-    protected TextView txt1;
+    protected TextView txt1;protected  DatabaseHelper myDB;
     PersonRoster p1 = null;
     Individual pp1 = null;
     protected RadioButton selectedRbtn1, selectedRbtn2;
@@ -32,7 +32,8 @@ public class q301 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q301);
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
         setTitle("Q301: ALCOHOL CONSUMPTION AND SUBSTANCE USE");
         lib = new LibraryClass();
@@ -61,6 +62,52 @@ public class q301 extends AppCompatActivity {
 
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
+
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
+        RadioButton[] bt1 = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ301()!= null &&  !ind.getQ301().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ301())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                         onRadioButtonClicked(radioButton);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rga.getChildCount();f++)
+        {
+            View o = rga.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ301a()!= null &&  !ind.getQ301a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ301a())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+
 
 
 

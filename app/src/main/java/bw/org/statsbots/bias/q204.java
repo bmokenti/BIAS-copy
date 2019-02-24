@@ -25,12 +25,14 @@ public class q204 extends AppCompatActivity implements Serializable {
     PersonRoster p1 = null;
     Individual pp1 = null;
     protected EditText edt;
+    protected  DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q204);
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
         setTitle("Q204: MARITAL STATUS AND RELATIONSHIP");
         lib = new LibraryClass();
@@ -47,6 +49,7 @@ public class q204 extends AppCompatActivity implements Serializable {
 // skip condition
 
 
+
         if ( individual.getQ201().equals("1") || individual.getQ201().equals("4")|| individual.getQ201().equals("5")|| individual.getQ201().equals("6"))
         {
             Intent skipto301 = new Intent(q204.this, q301.class);
@@ -56,6 +59,14 @@ public class q204 extends AppCompatActivity implements Serializable {
         } else {
 
 //break and do nothing
+        }
+
+
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
+        if(individual.getQ204()!=null){
+            edt.setText(individual.getQ204());
         }
 
 
@@ -108,11 +119,11 @@ public class q204 extends AppCompatActivity implements Serializable {
                         // individual.setQ204(edt.getText().toString());
 
 
-                        //update individual
-                        DatabaseHelper myDB = new DatabaseHelper(q204.this);
-
+                        myDB = new DatabaseHelper(q204.this);
                         myDB.onOpen(myDB.getReadableDatabase());
-                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+
+                        myDB.updateInd("Q204",individual.getAssignmentID(),individual.getBatch(),ind.getQ204(),String.valueOf(individual.getSRNO()));
+
                         myDB.close();
 
                         Intent q1o2 = new Intent(q204.this, q205.class);
