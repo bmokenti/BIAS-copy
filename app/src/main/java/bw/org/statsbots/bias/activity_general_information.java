@@ -39,6 +39,7 @@ public class activity_general_information extends AppCompatActivity implements S
 
         myDb = new DatabaseHelper(this);
         Sample s = myDb.getSample(myDb.getReadableDatabase(),thisHouse.getAssignment_ID());
+        thisHouse = myDb.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber()).get(0);
 
         Log.d("Batch Number",thisHouse.getBatchNumber());
 
@@ -51,7 +52,7 @@ public class activity_general_information extends AppCompatActivity implements S
         txtlocality_code = (TextView)findViewById(R.id.locality_code);
         txtea_code = (TextView)findViewById(R.id.ea_code1);
         txtblock_number = (TextView)findViewById(R.id.block_number);
-        txt_status_code = (TextView)findViewById(R.id.ea_status_code);
+        //txt_status_code = (TextView)findViewById(R.id.ea_status_code);
         txtEAStatus = (TextView) findViewById(R.id.ea_status_code);
         txtenumerators_code = (TextView)findViewById(R.id.enumerator_code);
         txtsupervisors_code = (TextView)findViewById(R.id.supervisor_code);
@@ -78,8 +79,14 @@ public class activity_general_information extends AppCompatActivity implements S
 
         txtea_code.setText(s.getEACode());
         txtblock_number.setText(s.getBlockNo());
-        txt_status_code.setText(s.getStatusCode());
-        txtEAStatus.setText(s.getSTATUS());
+
+         String st = thisHouse.getHIVTB40();
+        String status = s.getStatusCode();
+        if(st.equals("1")){
+            status= status+ " (Part of HIV 40)";
+        }
+        //txt_status_code.setText(status);
+        txtEAStatus.setText(status);
 
 
 

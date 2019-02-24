@@ -20,6 +20,7 @@ public class q606 extends AppCompatActivity implements Serializable{
     protected String currentHH=null;
     protected Individual indv;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected Individual individual;
     protected RadioButton rbtn1,rbtn2,rbtn9,  selected;
     protected RadioGroup rbtngroup;
@@ -43,6 +44,38 @@ public class q606 extends AppCompatActivity implements Serializable{
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2"))) ||
+                (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))))
+        {
+
+            Intent q1o2 = new Intent(q606.this, q616.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
+
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+        if((Integer.valueOf(individual.getQ102()) > 64 && sample.getStatusCode().equals("2")  && individual.getQ604().equals("2")) ||
+                (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3")) && individual.getQ604().equals("2")))
+        {
+
+            Intent q1o2 = new Intent(q606.this, q704.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
+
         if (individual.getQ601().equals("2") ){
 
             Intent intent = new Intent(q606.this, q616.class);
@@ -54,7 +87,7 @@ public class q606 extends AppCompatActivity implements Serializable{
         }
 
 
-        if ( (Integer.valueOf(individual.getQ102()) > 24) && individual.getQ601().equals("1")) {
+        if ( (Integer.valueOf(individual.getQ102()) > 24 && Integer.valueOf(individual.getQ102()) <64) && individual.getQ601().equals("1") && (sample.getStatusCode().equals("2") || (sample.getStatusCode().equals("1")))  ) {
 
             Intent intent = new Intent(q606.this, q611.class);
             intent.putExtra("Individual", individual);

@@ -150,17 +150,17 @@ public class TabFragment2 extends Fragment implements Serializable {
                     int interview2 = 0;
                     int interview3 = 0;
 
-                    if(thisHouse.getVISIT1_RESULT() != null){
+                    if(thisHouse.getVISIT1_RESULT() != null && !thisHouse.getVISIT1_RESULT().equals("")){
                         interview1 = Integer.parseInt(thisHouse.getVISIT1_RESULT());
-                    }if(thisHouse.getVISIT2_RESULT() != null){
+                    }if(thisHouse.getVISIT2_RESULT() != null && !thisHouse.getVISIT2_RESULT().equals("")){
                         interview2 = Integer.parseInt(thisHouse.getVISIT2_RESULT());
-                    }if(thisHouse.getVISIT3_RESULT() != null){
+                    }if(thisHouse.getVISIT3_RESULT() != null && !thisHouse.getVISIT3_RESULT().equals("")){
                         interview3 = Integer.parseInt(thisHouse.getVISIT3_RESULT());
                     }
 
-                    if(thisHouse.getVISIT1_RESULT() != null
-                            && thisHouse.getVISIT2_RESULT() == null
-                            && thisHouse.getVISIT3_RESULT() == null)
+                    if(thisHouse.getVISIT1_RESULT() != null && !thisHouse.getVISIT1_RESULT().equals("")
+                            && thisHouse.getVISIT2_RESULT() == null && !thisHouse.getVISIT2_RESULT().equals("")
+                            && thisHouse.getVISIT3_RESULT() == null && !thisHouse.getVISIT3_RESULT().equals(""))
                     {
 
                         if(interview1 > 2){

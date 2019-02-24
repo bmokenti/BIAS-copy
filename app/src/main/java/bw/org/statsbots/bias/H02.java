@@ -69,7 +69,7 @@ public class H02 extends AppCompatActivity implements Serializable  {
 
         edt = (EditText)findViewById(R.id.H02_ROOMS);
 
-        if(thisHouse.getH02() !=null){
+        if(thisHouse.getH02() !=null && !thisHouse.getH02().equals("")){
             edt.setText(thisHouse.getH02());
         }
 

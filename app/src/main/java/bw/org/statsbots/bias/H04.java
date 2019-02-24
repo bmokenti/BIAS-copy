@@ -93,7 +93,7 @@ public class H04 extends AppCompatActivity implements View.OnClickListener, Seri
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(thisHouse.getH04()!= null)
+                if(thisHouse.getH04()!= null && !thisHouse.getH04().equals(""))
                 {
 
                     if(Integer.parseInt(thisHouse.getH04())==f+1)
@@ -103,7 +103,7 @@ public class H04 extends AppCompatActivity implements View.OnClickListener, Seri
                         break;
                     }
 
-                    if(thisHouse.getH04Other()!=null){
+                    if(thisHouse.getH04Other()!=null && !thisHouse.getH04Other().equals("")){
                         rbtn8.setChecked(true);
                         edt.setText(thisHouse.getH04Other());
                     }

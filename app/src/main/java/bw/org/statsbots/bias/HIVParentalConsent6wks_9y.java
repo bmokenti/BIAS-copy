@@ -70,7 +70,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
             setTitle("Parental Consent 18 months to 9 years");
         }
 
-        if(Integer.valueOf(p1.getP04YY()) > 15 )
+        if(Integer.valueOf(p1.getP04YY()) > 15  )
         {
             Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, IndQuetParentalConsent.class);
             q1o2.putExtra("Individual", individual);
@@ -79,15 +79,25 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         }
 
 
-        if(Integer.valueOf(p1.getP04YY()) > 15  && Integer.valueOf(p1.getP04YY()) < 64)
+        if(Integer.valueOf(p1.getP04YY()) >= 15  && Integer.valueOf(p1.getP04YY()) <= 64)
         {
             Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, IndQuetParentalConsent.class);
             q1o2.putExtra("Individual", individual);
             q1o2.putExtra("Personroster", p1);
             startActivity(q1o2);
         }
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
 
-        if(Integer.valueOf(p1.getP04YY()) > 64 )
+        if(Integer.valueOf(p1.getP04YY()) > 64  && sample.getStatusCode().equals("2"))
+        {
+            Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, IndividualQuestionaireConsent.class);
+            q1o2.putExtra("Individual", individual);
+            q1o2.putExtra("Personroster", p1);
+            startActivity(q1o2);
+        }
+
+        if(Integer.valueOf(p1.getP04YY()) > 64 && sample.getSTATUS().equals("1"))
         {
             Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, HIVConsentOver64.class);
             q1o2.putExtra("Individual", individual);

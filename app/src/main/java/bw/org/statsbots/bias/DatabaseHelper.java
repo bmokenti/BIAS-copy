@@ -763,7 +763,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + H13Bicycle + " nvarchar(1),"
             + H13DonkeyCart + " nvarchar(1),"
             + H13DonkeyHorse +" nvarchar(1),"
-            + H13Camels + " nvarchar(1), HIVTB40 nvarchar(10))";
+            + H13Camels + " nvarchar(1), HIVTB40 nvarchar(1))";
 
 
 
@@ -1414,6 +1414,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(H11, house.getH11());
         contentValues.put(H12Radio, house.getH12());
         contentValues.put(H13Vehicle, house.getH13());
+        contentValues.put("HIVTB40", house.getHIVTB40());
 
 
         db.insert(tblhousehold, null, contentValues);
@@ -5703,6 +5704,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             String H13DonkeyCart=cursor.getString(cursor.getColumnIndexOrThrow("H13DonkeyCart"));
             String H13DonkeyHorse=cursor.getString(cursor.getColumnIndexOrThrow("H13DonkeyHorse"));
             String H13Camels=cursor.getString(cursor.getColumnIndexOrThrow("H13Camels"));
+            String HIVTB40 = cursor.getString(cursor.getColumnIndexOrThrow("HIVTB40"));
 
 
 
@@ -5737,6 +5739,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 dataModel.setCODED(CODED);
                 dataModel.setFINAL_RESULT(FINAL_RESULT);
                 dataModel.setFINAL_OTHER(FINAL_OTHER);
+                dataModel.setHIVTB40(HIVTB40);
                 dataModel.setInterview_Status(cursor.getString(cursor.getColumnIndexOrThrow("Interview_Status")));
 
 
@@ -5830,7 +5833,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 String B3_Guardian = cursor1.getString(cursor1.getColumnIndexOrThrow("B3_Guardian"));
                 //String B3_Date = cursor1.getString(cursor1.getColumnIndexOrThrow("B3_Date"));
                 String Barcode = cursor1.getString(cursor1.getColumnIndexOrThrow("Barcode"));
-                String U15Rapid_Results = cursor1.getString(cursor1.getColumnIndexOrThrow("ChildRapidResults"));
+                String U15Rapid_Results = cursor1.getString(cursor1.getColumnIndexOrThrow("RapidResults"));
                 //String Rapid_Comment = cursor1.getString(cursor1.getColumnIndexOrThrow("Rapid_Comment"));
 
                 dataModel1.setAssignmentID(cursor1.getString(cursor1.getColumnIndexOrThrow("EA_Assignment_ID")));

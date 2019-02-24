@@ -21,6 +21,7 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener  {
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2,  rbtn3, rbtn4,  rbtn5, rbtn6,selected = null;
     protected RadioGroup rbtngroup;
+    protected  DatabaseHelper myDB;
     protected RadioButton selectedRbtn;
     PersonRoster p1 = null;
     Individual pp1 = null;
@@ -46,7 +47,31 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener  {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+
+        Intent h = getIntent();
+        thisHouse = (HouseHold) h.getSerializableExtra("Household");
+
+
+        Intent intent = getIntent();
+        p1 = (PersonRoster) intent.getSerializableExtra("Personroster");
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2"))) || (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))))
+        {
+
+            Intent q1o2 = new Intent(Q201.this, q305.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
 
         Button btnext = findViewById(R.id.btnnext);
 //        PersonRoster pr[] = thisHouse.getPersons();

@@ -237,97 +237,97 @@ public class q106 extends AppCompatActivity implements Serializable {
                                         vibs.vibrate(100);
 
 
-                                    } else {
-
-
-                                        if ((p1.getP12().equals("1") && !rbtn1.isChecked()) || (p1.getP12().equals("2") && !rbtn2.isChecked())) {
-                                            AlertDialog.Builder builder = new AlertDialog.Builder(q106.this);
-                                            builder.setTitle("Work in the past seven days.");
-                                            builder.setIcon(R.drawable.ic_warning_orange_24dp);
-                                            builder.setMessage("Answer does not match P12, value: " + p1.getP12());
-                                            builder.setPositiveButton("No changes", new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int id) {
-
-                                                    individual.setQ106(selectedRbtn.getText().toString().substring(0, 1));
-
-                                                    //Restart the current activity for next individual
-
-                                                    //individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
-
-
-                                                    //Check if individual already been saved and update
-                                                    myDB = new DatabaseHelper(q106.this);
-                                                    myDB.onOpen(myDB.getReadableDatabase());
-
-                                                    if (myDB.checkIndividual(individual)) {
-
-                                                        //Update
-                                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
-                                                    } else {
-                                                        //Insert
-                                                        myDB.insertIndividual(individual);
-
-                                                    }
-
-                                                }
-
-                                            });
-                                            builder.setNegativeButton("Ammend", new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int id) {
-
-
-                                                    myDB = new DatabaseHelper(q106.this);
-                                                    myDB.onOpen(myDB.getReadableDatabase());
-
-                                                    p1.setP12(selectedRbtn.getText().toString().substring(0, 1));
-
-                                                    myDB.updateConsents("P12", p1.getAssignmentID(), p1.getBatch(), p1.getP12(), String.valueOf(p1.getSRNO()));
-                                                    //Restart the current activity for next individual
-
-                                                    //Check if individual already been saved and update
-
-                                                    individual.setQ106(selectedRbtn.getText().toString().substring(0, 1));
-
-                                                    if (myDB.checkIndividual(individual)) {
-                                                        //Update
-
-                                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
-                                                    } else {
-                                                        //Insert
-                                                        myDB.insertIndividual(individual);
-
-                                                    }
-
-                                                }
-                                            });
-
-                                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                                            vibs.vibrate(100);
-
-                                            AlertDialog alertDialog = builder.show();
-                                            final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                                            final Button negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-
-                                            LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
-                                            LinearLayout.LayoutParams negativeButtonLL = (LinearLayout.LayoutParams) negativeButton.getLayoutParams();
-
-                                            positiveButton.setTextColor(Color.WHITE);
-                                            negativeButton.setTextColor(Color.WHITE);
-
-                                            positiveButton.setBackgroundColor(Color.parseColor("#3180e9"));
-                                            negativeButton.setBackgroundColor(Color.parseColor("#3180e9"));
-
-                                            positiveButtonLL.leftMargin = 10;
-
-                                            negativeButtonLL.weight = 10;
-                                            positiveButtonLL.weight = 10;
-
-                                            positiveButton.setLayoutParams(positiveButtonLL);
-                                            negativeButton.setLayoutParams(negativeButtonLL);
-
-                                        }
+                                  } else {
+//
+//
+//                                        if ((p1.getP12().equals("1") && !rbtn1.isChecked()) || (p1.getP12().equals("2") && !rbtn2.isChecked())) {
+//                                            AlertDialog.Builder builder = new AlertDialog.Builder(q106.this);
+//                                            builder.setTitle("Work in the past seven days.");
+//                                            builder.setIcon(R.drawable.ic_warning_orange_24dp);
+//                                            builder.setMessage("Answer does not match P12, value: " + p1.getP12());
+//                                            builder.setPositiveButton("No changes", new DialogInterface.OnClickListener() {
+//                                                public void onClick(DialogInterface dialog, int id) {
+//
+//                                                    individual.setQ106(selectedRbtn.getText().toString().substring(0, 1));
+//
+//                                                    //Restart the current activity for next individual
+//
+//                                                    //individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
+//
+//
+//                                                    //Check if individual already been saved and update
+//                                                    myDB = new DatabaseHelper(q106.this);
+//                                                    myDB.onOpen(myDB.getReadableDatabase());
+//
+//                                                    if (myDB.checkIndividual(individual)) {
+//
+//                                                        //Update
+//                                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+//
+//                                                    } else {
+//                                                        //Insert
+//                                                        myDB.insertIndividual(individual);
+//
+//                                                    }
+//
+//                                                }
+//
+//                                            });
+//                                            builder.setNegativeButton("Ammend", new DialogInterface.OnClickListener() {
+//                                                public void onClick(DialogInterface dialog, int id) {
+//
+//
+//                                                    myDB = new DatabaseHelper(q106.this);
+//                                                    myDB.onOpen(myDB.getReadableDatabase());
+//
+//                                                    p1.setP12(selectedRbtn.getText().toString().substring(0, 1));
+//
+//                                                    myDB.updateConsents("P12", p1.getAssignmentID(), p1.getBatch(), p1.getP12(), String.valueOf(p1.getSRNO()));
+//                                                    //Restart the current activity for next individual
+//
+//                                                    //Check if individual already been saved and update
+//
+//                                                    individual.setQ106(selectedRbtn.getText().toString().substring(0, 1));
+//
+//                                                    if (myDB.checkIndividual(individual)) {
+//                                                        //Update
+//
+//                                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+//
+//                                                    } else {
+//                                                        //Insert
+//                                                        myDB.insertIndividual(individual);
+//
+//                                                    }
+//
+//                                                }
+//                                            });
+//
+//                                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+//                                            vibs.vibrate(100);
+//
+//                                            AlertDialog alertDialog = builder.show();
+//                                            final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+//                                            final Button negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+//
+//                                            LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+//                                            LinearLayout.LayoutParams negativeButtonLL = (LinearLayout.LayoutParams) negativeButton.getLayoutParams();
+//
+//                                            positiveButton.setTextColor(Color.WHITE);
+//                                            negativeButton.setTextColor(Color.WHITE);
+//
+//                                            positiveButton.setBackgroundColor(Color.parseColor("#3180e9"));
+//                                            negativeButton.setBackgroundColor(Color.parseColor("#3180e9"));
+//
+//                                            positiveButtonLL.leftMargin = 10;
+//
+//                                            negativeButtonLL.weight = 10;
+//                                            positiveButtonLL.weight = 10;
+//
+//                                            positiveButton.setLayoutParams(positiveButtonLL);
+//                                            negativeButton.setLayoutParams(negativeButtonLL);
+//
+//                                        }
                                         /*
                                         else {
 
@@ -438,7 +438,7 @@ public class q106 extends AppCompatActivity implements Serializable {
                                                 negativeButton.setLayoutParams(negativeButtonLL);
 
                                             } */
-                                        else {
+
                                                 if (rbtn1.isChecked()) {
 
                                                     individual.setQ106(selectedRbtn.getText().toString().substring(0, 1));
@@ -498,7 +498,7 @@ public class q106 extends AppCompatActivity implements Serializable {
                                     }
 
                             }
-                        }
+
                     }
                 }
             }

@@ -75,7 +75,7 @@ public class H10 extends AppCompatActivity implements View.OnClickListener, Seri
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(thisHouse.getH10()!= null)
+                if(thisHouse.getH10()!= null && !thisHouse.getH10().equals(""))
                 {
 
                     if(Integer.parseInt(thisHouse.getH10())==f+1)

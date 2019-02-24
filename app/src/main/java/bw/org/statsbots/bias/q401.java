@@ -15,13 +15,16 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class q401 extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class q401 extends AppCompatActivity implements View.OnClickListener, Serializable {
 
     protected HouseHold thisHouse;
     protected PersonRoster p1=null;
     protected Individual individual;
     protected String currentHH=null;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected  RadioButton rbtn1,rbtn2,rbtn3, selected=null;
     protected RadioGroup rbtngroup;
     protected RadioButton selectedRbtn;
@@ -54,6 +57,24 @@ public class q401 extends AppCompatActivity implements View.OnClickListener {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2"))) || (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))))
+        {
+
+            Intent q1o2 = new Intent(q401.this, q601.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
 
 
         Button btnnext = findViewById(R.id.button);

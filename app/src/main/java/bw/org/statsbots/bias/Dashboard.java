@@ -496,7 +496,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setSample_FK(jObject.get("Sample_FK").toString());
 
                             hh.setCONSENT(jObject.get("CONSENT").toString());
-                            hh.setCHECKED_BY(jObject.get("BatchNumber").toString());
+                            hh.setCHECKED_BY(jObject.get("CHECKED_BY").toString());
                             hh.setCODED(jObject.get("CODED").toString());
                             hh.setFINAL_RESULT(jObject.get("FINAL_RESULT").toString());
                             hh.setFINAL_OTHER(jObject.get("FINAL_OTHER").toString());
@@ -504,8 +504,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setInterview_Status(jObject.get("Interview_Status").toString());
                             hh.setH01(jObject.get("H01").toString());
 
-                            hh.setH02(jObject.get("Interview_Status").toString());
-                            hh.setH03(jObject.get("H02").toString());
+                            hh.setH02(jObject.get("H02").toString());
+                            hh.setH03(jObject.get("H03").toString());
                             hh.setH03Other(jObject.get("H03Other").toString());
                             hh.setH04(jObject.get("H04").toString());
                             hh.setH04Other(jObject.get("H04Other").toString());
@@ -538,9 +538,18 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setH13DonkeyCart(jObject.get("H13DonkeyCart").toString());
                             hh.setH13DonkeyHorse(jObject.get("H13DonkeyHorse").toString());
                             hh.setH13Camels(jObject.get("H13Camels").toString());
-                            if(jObject.has("HIVTB40")){
-                                hh.setIsHIVTB40(jObject.get("HIVTB40").toString());
-                            }
+
+                                String tb40=jObject.get("HIVTB40").toString();
+                                Log.d("HIOV40", tb40);
+                                if(tb40.equals("true")){
+                                    hh.setHIVTB40("1");
+                                    Log.d("333", tb40);
+                                }else{
+                                    hh.setHIVTB40("0");
+                                    Log.d("4444", tb40);
+                                }
+
+
 
 
                             //Check if the entry exisits in the database firs

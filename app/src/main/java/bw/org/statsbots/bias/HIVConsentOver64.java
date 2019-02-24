@@ -37,7 +37,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hivconsent_over64);
 
-        setTitle("HIV Consent Adults Over 64 years");
+
 
         lib = new LibraryClass();
 
@@ -49,6 +49,14 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
         myDB = new DatabaseHelper(this);
         myDB.onOpen(myDB.getReadableDatabase());
 
+        if(Integer.valueOf(p1.getP04YY()) < 15)
+        {
+            setTitle("HIV Assent 10-14 years");
+        }
+        else
+        {
+            setTitle("HIV Consent Adults Over 64 years");
+        }
        // myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 /*

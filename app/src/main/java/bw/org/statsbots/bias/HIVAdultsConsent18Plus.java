@@ -42,6 +42,9 @@ import java.io.Serializable;
 
                 lib = new LibraryClass();
 
+                Intent h = getIntent();
+                thisHouse = (HouseHold) h.getSerializableExtra("Household");
+
 
 
                 Intent i = getIntent();
@@ -52,14 +55,30 @@ import java.io.Serializable;
                 p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
                 //int p = 0;
 
-                if ( Integer.valueOf(individual.getQ102()) >= 18 ) {
+                if ( Integer.valueOf(individual.getQ102()) >= 18  ) {
                     setTitle("Individual Consent [18-64]");
                 }
                 else
                 {
                     setTitle("Individual Assent 15-17");
                 }
+                myDB = new DatabaseHelper(this);
+                myDB.getWritableDatabase();
 
+                //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+                final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+                sample.getSTATUS();
+
+                if(Integer.valueOf(individual.getQ102()) >= 65 && sample.getStatusCode().equals("2"))
+                {
+                    Intent intent = new Intent(HIVAdultsConsent18Plus.this, HIVConsentOver64.class);
+                    intent.putExtra("Individual", individual);
+                    intent.putExtra("Personroster", p1);
+                    startActivity(intent);
+                }
 
                 if((Integer.valueOf(individual.getQ102()) <= 17  && individual.getPrntlConsentBloodDraw().equals(2) && individual.getPrntlConsentRHT().equals(2)))
                 {

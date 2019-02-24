@@ -207,7 +207,7 @@ public class H12 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(thisHouse.getH12()!= null)
+                if(thisHouse.getH12()!= null && !thisHouse.getH12().equals(""))
                 {
                     //Log.d("H12", thisHouse.getH12() + " >> " + rg.getChildCount());
                     if(Integer.parseInt(thisHouse.getH12())==1){
@@ -246,7 +246,7 @@ public class H12 extends AppCompatActivity implements Serializable {
         {   View o = rg2.getChildAt(f);
             if (o instanceof RadioButton)
             {   bt[f]=((RadioButton)o);
-                if(thisHouse.getH12TV()!= null)
+                if(thisHouse.getH12TV()!= null && !thisHouse.getH12TV().equals(""))
                 {
 
                     if(Integer.parseInt(thisHouse.getH12TV())==1){
@@ -278,7 +278,7 @@ public class H12 extends AppCompatActivity implements Serializable {
         {   View o = rg3.getChildAt(f);
             if (o instanceof RadioButton)
             {   bt[f]=((RadioButton)o);
-                if(thisHouse.getH12Telephone()!= null)
+                if(thisHouse.getH12Telephone()!= null && !thisHouse.getH12Telephone().equals(""))
                 {
                     if(Integer.parseInt(thisHouse.getH12Telephone())==1){
                         tel01.setChecked(true);
@@ -306,7 +306,7 @@ public class H12 extends AppCompatActivity implements Serializable {
         {   View o = rg4.getChildAt(f);
             if (o instanceof RadioButton)
             {   bt[f]=((RadioButton)o);
-                if(thisHouse.getH12CellPhone()!= null)
+                if(thisHouse.getH12CellPhone()!= null && !thisHouse.getH12CellPhone().equals(""))
                 {
                     if(Integer.parseInt(thisHouse.getH12CellPhone())==1){
                         cell01.setChecked(true);
@@ -333,7 +333,7 @@ public class H12 extends AppCompatActivity implements Serializable {
         {   View o = rg5.getChildAt(f);
             if (o instanceof RadioButton)
             {   bt[f]=((RadioButton)o);
-                if(thisHouse.getH12PrintMedia()!= null)
+                if(thisHouse.getH12PrintMedia()!= null && !thisHouse.getH12PrintMedia().equals(""))
                 {
                     if(Integer.parseInt(thisHouse.getH12PrintMedia())==1){
                         Media01.setChecked(true);
@@ -358,7 +358,7 @@ public class H12 extends AppCompatActivity implements Serializable {
         {   View o = rg6.getChildAt(f);
             if (o instanceof RadioButton)
             {   bt[f]=((RadioButton)o);
-                if(thisHouse.getH12ElecMedia()!= null)
+                if(thisHouse.getH12ElecMedia()!= null && !thisHouse.getH12ElecMedia().equals(""))
                 {
                     if(Integer.parseInt(thisHouse.getH12ElecMedia())==1){
                         Electronic01.setChecked(true);
@@ -384,7 +384,7 @@ public class H12 extends AppCompatActivity implements Serializable {
         {   View o = rg7.getChildAt(f);
             if (o instanceof RadioButton)
             {   bt[f]=((RadioButton)o);
-                if(thisHouse.getH12PerfomArts()!= null)
+                if(thisHouse.getH12PerfomArts()!= null && !thisHouse.getH12PerfomArts().equals(""))
                 {
                     if(Integer.parseInt(thisHouse.getH12PerfomArts())==1){
                         Arts01.setChecked(true);

@@ -29,6 +29,7 @@ public class q801 extends AppCompatActivity implements Serializable {
     protected EditText edtcmnths, edtcyear, edtdother, edteother;
     protected TextView t801a, t801b, t801c, t801d, t801e, t801f;
     protected CheckBox chkc99, chkc9999;
+    protected DatabaseHelper myDB;
     protected RadioButton selectedRbtn, selectedRbtnb, selectedRbtnd, selectedRbtne, selectedRbtnf;
 
     @Override
@@ -110,6 +111,194 @@ public class q801 extends AppCompatActivity implements Serializable {
         individual =(Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2")) ) ||
+                ((Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))) ))
+        {
+
+
+            rbtnb1.setEnabled(false);
+            rbtnb2.setEnabled(false);
+            rbtnb3.setEnabled(false);
+            rbtnd1.setEnabled(false);
+            rbtnd2.setEnabled(false);
+            rbtnd3.setEnabled(false);
+            rbtnd4.setEnabled(false);
+            rbtnd5.setEnabled(false);
+            rbtnd6.setEnabled(false);
+            rbtnd7.setEnabled(false);
+            rbtnd8.setEnabled(false);
+            rbtnd10.setEnabled(false);
+            rbtnd11.setEnabled(false);
+            rbtnd12.setEnabled(false);
+            rbtndOther.setEnabled(false);
+
+            rbtne1.setEnabled(false);
+            rbtne2.setEnabled(false);
+            rbtne3.setEnabled(false);
+            rbtne4.setEnabled(false);
+            rbtne5.setEnabled(false);
+            rbtne6.setEnabled(false);
+            rbtne7.setEnabled(false);
+            rbtne8.setEnabled(false);
+            rbtne9.setEnabled(false);
+            rbtneOther.setEnabled(false);
+
+        }
+//        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//                if(i == R.id.q801_2 &&  ((  Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2")) ) ||
+//                        ((Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))) )))
+//                {
+//                    rbtna1.setEnabled(false);
+//                    rbtna2.setEnabled(false);
+//                    rbtna1.setChecked(false);
+//                    rbtna2.setChecked(false);
+//
+//// set b controls.
+//                    rbtnb1.setEnabled(false);
+//                    rbtnb2.setEnabled(false);
+//                    rbtnb3.setEnabled(false);
+//
+//                    rbtnb1.setChecked(false);
+//                    rbtnb2.setChecked(false);
+//                    rbtnb3.setChecked(false);
+//                    //set c controls
+//                    edtcmnths.setEnabled(false);
+//                    edtcyear.setEnabled(false);
+//                    chkc99.setEnabled(false);
+//                    chkc9999.setEnabled(false);
+//
+//                    edtcmnths.setText("");
+//                    edtcyear.setText("");
+//                    chkc99.setChecked(false);
+//                    chkc9999.setChecked(false);
+//
+//// set d controls
+//                    rbtnd1.setEnabled(false);
+//                    rbtnd2.setEnabled(false);
+//                    rbtnd3.setEnabled(false);
+//                    rbtnd4.setEnabled(false);
+//                    rbtnd5.setEnabled(false);
+//                    rbtnd6.setEnabled(false);
+//                    rbtnd7.setEnabled(false);
+//                    rbtnd8.setEnabled(false);
+//                    rbtnd10.setEnabled(false);
+//                    rbtnd11.setEnabled(false);
+//                    rbtnd12.setEnabled(false);
+//                    rbtndOther.setEnabled(false);
+//
+//                    rbtnd1.setChecked(false);
+//                    rbtnd2.setChecked(false);
+//                    rbtnd3.setChecked(false);
+//                    rbtnd4.setChecked(false);
+//                    rbtnd5.setChecked(false);
+//                    rbtnd6.setChecked(false);
+//                    rbtnd7.setChecked(false);
+//                    rbtnd8.setChecked(false);
+//                    rbtnd10.setChecked(false);
+//                    rbtnd11.setChecked(false);
+//                    rbtnd12.setChecked(false);
+//                    rbtndOther.setChecked(false);
+//
+//// set e controls
+//                    rbtne1.setEnabled(false);
+//                    rbtne2.setEnabled(false);
+//                    rbtne3.setEnabled(false);
+//                    rbtne4.setEnabled(false);
+//                    rbtne5.setEnabled(false);
+//                    rbtne6.setEnabled(false);
+//                    rbtne7.setEnabled(false);
+//                    rbtne8.setEnabled(false);
+//                    rbtne9.setEnabled(false);
+//                    rbtneOther.setEnabled(false);
+//
+//                    rbtne1.setChecked(false);
+//                    rbtne2.setChecked(false);
+//                    rbtne3.setChecked(false);
+//                    rbtne4.setChecked(false);
+//                    rbtne5.setChecked(false);
+//                    rbtne6.setChecked(false);
+//                    rbtne7.setChecked(false);
+//                    rbtne8.setChecked(false);
+//                    rbtne9.setChecked(false);
+//                    rbtneOther.setChecked(false);
+//
+////set f controls
+//                    rbtnf1.setEnabled(false);
+//                    rbtnf2.setEnabled(false);
+//                    rbtnf3.setEnabled(false);
+//                    rbtnf4.setEnabled(false);
+//                    rbtnf5.setEnabled(false);
+//
+//                    rbtnf1.setChecked(false);
+//                    rbtnf2.setChecked(false);
+//                    rbtnf3.setChecked(false);
+//                    rbtnf4.setChecked(false);
+//                    rbtnf5.setChecked(false);
+//
+//                    t801a.setTextColor(Color.LTGRAY);
+//                    t801b.setTextColor(Color.LTGRAY);
+//                    t801c.setTextColor(Color.LTGRAY);
+//                    t801d.setTextColor(Color.LTGRAY);
+//                    t801e.setTextColor(Color.LTGRAY);
+//                    t801f.setTextColor(Color.LTGRAY);
+//                }
+//                else
+//                {
+//                    rbtna1.setEnabled(true);
+//                    rbtna2.setEnabled(true);
+//
+//
+//// set b controls.
+//
+//                    //set c controls
+//                    edtcmnths.setEnabled(true);
+//                    edtcyear.setEnabled(true);
+//                    chkc99.setEnabled(true);
+//                    chkc9999.setEnabled(true);
+//
+//                   // edtcmnths.setText("");
+//                    //edtcyear.setText("");
+//                   // chkc99.setChecked(false);
+//                    //chkc9999.setChecked(false);
+//
+//// set d controls
+//
+//
+//
+//// set e controls
+//
+//
+////set f controls
+//                    rbtnf1.setEnabled(true);
+//                    rbtnf2.setEnabled(true);
+//                    rbtnf3.setEnabled(true);
+//                    rbtnf4.setEnabled(true);
+//                    rbtnf5.setEnabled(true);
+//
+//
+//
+//                    t801a.setTextColor(Color.LTGRAY);
+//
+//                    t801c.setTextColor(Color.LTGRAY);
+//
+//                    t801f.setTextColor(Color.LTGRAY);
+//                }
+//            }
+//        });
+
+
         rgd.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -126,6 +315,190 @@ public class q801 extends AppCompatActivity implements Serializable {
                 }
             }
         });
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.q801_1 &&  ((Integer.valueOf(individual.getQ102()) < 64 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2")))))
+                {
+
+                    rbtna1.setEnabled(true);
+                    rbtna2.setEnabled(true);
+
+                    rbtnb1.setEnabled(true);
+                    rbtnb2.setEnabled(true);
+                    rbtnb3.setEnabled(true);
+
+                    edtcmnths.setEnabled(true);
+                    edtcyear.setEnabled(true);
+                    chkc99.setEnabled(true);
+                    chkc9999.setEnabled(true);
+
+                    rbtnd1.setEnabled(true);
+                    rbtnd2.setEnabled(true);
+                    rbtnd3.setEnabled(true);
+                    rbtnd4.setEnabled(true);
+                    rbtnd5.setEnabled(true);
+                    rbtnd6.setEnabled(true);
+                    rbtnd7.setEnabled(true);
+                    rbtnd8.setEnabled(true);
+                    rbtnd10.setEnabled(true);
+                    rbtnd11.setEnabled(true);
+                    rbtnd12.setEnabled(true);
+                    rbtndOther.setEnabled(true);
+
+
+                    rbtne1.setEnabled(true);
+                    rbtne2.setEnabled(true);
+                    rbtne3.setEnabled(true);
+                    rbtne4.setEnabled(true);
+                    rbtne5.setEnabled(true);
+                    rbtne6.setEnabled(true);
+                    rbtne7.setEnabled(true);
+                    rbtne8.setEnabled(true);
+                    rbtne9.setEnabled(true);
+                    rbtneOther.setEnabled(true);
+
+
+                    rbtnf1.setEnabled(true);
+                    rbtnf2.setEnabled(true);
+                    rbtnf3.setEnabled(true);
+                    rbtnf4.setEnabled(true);
+                    rbtnf5.setEnabled(true);
+
+
+                    t801a.setTextColor(Color.BLACK);
+                    t801b.setTextColor(Color.BLACK);
+                    t801c.setTextColor(Color.BLACK);
+                    t801d.setTextColor(Color.BLACK);
+                    t801e.setTextColor(Color.BLACK);
+                    t801f.setTextColor(Color.BLACK);
+                }
+                else
+                {
+//                    rbtna1.setEnabled(false);
+//                    rbtna2.setEnabled(false);
+//                    rbtna1.setChecked(false);
+//                    rbtna2.setChecked(false);
+//
+//// set b controls.
+//                    rbtnb1.setEnabled(false);
+//                    rbtnb2.setEnabled(false);
+//                    rbtnb3.setEnabled(false);
+//
+//                    rbtnb1.setChecked(false);
+//                    rbtnb2.setChecked(false);
+//                    rbtnb3.setChecked(false);
+//                    //set c controls
+//                    edtcmnths.setEnabled(false);
+//                    edtcyear.setEnabled(false);
+//                    chkc99.setEnabled(false);
+//                    chkc9999.setEnabled(false);
+//
+//                    edtcmnths.setText("");
+//                    edtcyear.setText("");
+//                    chkc99.setChecked(false);
+//                    chkc9999.setChecked(false);
+//
+//// set d controls
+//                    rbtnd1.setEnabled(false);
+//                    rbtnd2.setEnabled(false);
+//                    rbtnd3.setEnabled(false);
+//                    rbtnd4.setEnabled(false);
+//                    rbtnd5.setEnabled(false);
+//                    rbtnd6.setEnabled(false);
+//                    rbtnd7.setEnabled(false);
+//                    rbtnd8.setEnabled(false);
+//                    rbtnd10.setEnabled(false);
+//                    rbtnd11.setEnabled(false);
+//                    rbtnd12.setEnabled(false);
+//                    rbtndOther.setEnabled(false);
+//
+//                    rbtnd1.setChecked(false);
+//                    rbtnd2.setChecked(false);
+//                    rbtnd3.setChecked(false);
+//                    rbtnd4.setChecked(false);
+//                    rbtnd5.setChecked(false);
+//                    rbtnd6.setChecked(false);
+//                    rbtnd7.setChecked(false);
+//                    rbtnd8.setChecked(false);
+//                    rbtnd10.setChecked(false);
+//                    rbtnd11.setChecked(false);
+//                    rbtnd12.setChecked(false);
+//                    rbtndOther.setChecked(false);
+//
+//// set e controls
+//                    rbtne1.setEnabled(false);
+//                    rbtne2.setEnabled(false);
+//                    rbtne3.setEnabled(false);
+//                    rbtne4.setEnabled(false);
+//                    rbtne5.setEnabled(false);
+//                    rbtne6.setEnabled(false);
+//                    rbtne7.setEnabled(false);
+//                    rbtne8.setEnabled(false);
+//                    rbtne9.setEnabled(false);
+//                    rbtneOther.setEnabled(false);
+//
+//                    rbtne1.setChecked(false);
+//                    rbtne2.setChecked(false);
+//                    rbtne3.setChecked(false);
+//                    rbtne4.setChecked(false);
+//                    rbtne5.setChecked(false);
+//                    rbtne6.setChecked(false);
+//                    rbtne7.setChecked(false);
+//                    rbtne8.setChecked(false);
+//                    rbtne9.setChecked(false);
+//                    rbtneOther.setChecked(false);
+//
+////set f controls
+//                    rbtnf1.setEnabled(false);
+//                    rbtnf2.setEnabled(false);
+//                    rbtnf3.setEnabled(false);
+//                    rbtnf4.setEnabled(false);
+//                    rbtnf5.setEnabled(false);
+//
+//                    rbtnf1.setChecked(false);
+//                    rbtnf2.setChecked(false);
+//                    rbtnf3.setChecked(false);
+//                    rbtnf4.setChecked(false);
+//                    rbtnf5.setChecked(false);
+//
+//                    t801a.setTextColor(Color.LTGRAY);
+//                    t801b.setTextColor(Color.LTGRAY);
+//                    t801c.setTextColor(Color.LTGRAY);
+//                    t801d.setTextColor(Color.LTGRAY);
+//                    t801e.setTextColor(Color.LTGRAY);
+//                    t801f.setTextColor(Color.LTGRAY);
+                }
+            }
+        });
+
+
+        rga.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.q801a_1 && ((Integer.valueOf(individual.getQ102()) < 64 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2")))))
+                {
+                    rbtnb1.setEnabled(true);
+                    rbtnb2.setEnabled(true);
+                    rbtnb3.setEnabled(true);
+                    t801b.setTextColor(Color.BLACK);
+                }
+                else
+                {
+                    rbtnb1.setEnabled(false);
+                    rbtnb2.setEnabled(false);
+                    rbtnb3.setEnabled(false);
+                    t801b.setTextColor(Color.LTGRAY);
+
+
+                    rbtnb1.setChecked(false);
+                    rbtnb2.setChecked(false);
+                    rbtnb3.setChecked(false);
+                }
+            }
+        });
+
 
         rge.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -178,7 +551,8 @@ public class q801 extends AppCompatActivity implements Serializable {
                         int selectedIdb = rgb.getCheckedRadioButtonId();
                         selectedRbtnb = (RadioButton) findViewById(selectedIdb);
 
-                        if (selectedRbtnb == null && (rbtn1.isChecked() && rbtna1.isChecked())) {
+                        if (selectedRbtnb == null && (rbtn1.isChecked() && rbtna1.isChecked()) && (sample.getStatusCode().equals("2")  ||
+                                sample.getStatusCode().equals("2")) && Integer.valueOf(individual.getQ102()) <= 64) {
 
                             lib.showError(q801.this, "Q801b: ERROR", "Did you test together with your partner in the past 12 months?");
                             /**
@@ -214,7 +588,9 @@ public class q801 extends AppCompatActivity implements Serializable {
                                     int selectedIdd = rgd.getCheckedRadioButtonId();
                                     selectedRbtnd = (RadioButton) findViewById(selectedIdd);
 
-                                    if (selectedRbtnd == null && (rbtn1.isChecked())) {
+                                    if (selectedRbtnd == null && (rbtn1.isChecked()) && (sample.getStatusCode().equals("2")  ||
+                                            sample.getStatusCode().equals("2")) && Integer.valueOf(individual.getQ102()) <= 64 )
+                                    {
                                         lib.showError(q801.this, "Q801d: ERROR", "What was the MAIN reason for your last HIV test?");
                                         /**
                                          * VIBRATE DEVICE
@@ -239,7 +615,8 @@ public class q801 extends AppCompatActivity implements Serializable {
                                             int selectedIde = rge.getCheckedRadioButtonId();
                                             selectedRbtne = (RadioButton) findViewById(selectedIde);
 
-                                            if (selectedRbtne == null && (rbtn1.isChecked())) {
+                                            if (selectedRbtne == null && (rbtn1.isChecked()) && (sample.getStatusCode().equals("2")  ||
+                                                    sample.getStatusCode().equals("2")) && Integer.valueOf(individual.getQ102()) <= 64) {
                                                 lib.showError(q801.this, "Q801e: ERROR", "Where was the LAST test done?");
                                                 /**
                                                  * VIBRATE DEVICE
@@ -275,7 +652,8 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                     } else {
                                                         //individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
 
-                                                        if (rbtn2.isChecked()) {
+                                                        if (rbtn2.isChecked() && rbtna2.isChecked() && sample.getStatusCode().equals("2")
+                                                                && Integer.valueOf(individual.getQ102()) <= 64) {
 
                                                             individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
 
@@ -284,63 +662,100 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                             startActivity(intent);
 
                                                         } else {
+                                                            //individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
 
-                                                            if (rbtna2.isChecked() ) {
-
+                                                            if (rbtn2.isChecked() && (sample.getStatusCode().equals("2") ||
+                                                                    sample.getStatusCode().equals("3")) && Integer.valueOf(individual.getQ102()) > 64) {
 
                                                                 individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
-                                                                individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
-
-
-                                                                if(edtcmnths.getText().toString().length()==0){
-                                                                    individual.setQ801cMonth("00");
-                                                                }
-                                                                else if(edtcmnths.getText().toString().length()==1){
-                                                                    individual.setQ801cMonth("0"+edtcmnths.getText().toString());
-                                                                }else{
-                                                                    individual.setQ801cMonth(edtcmnths.getText().toString());
-                                                                }
-
-
-
-
-
-                                                                individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
-                                                                individual.setQ801dOther(edtdother.getText().toString());
-                                                                individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
-                                                                individual.setQ801eOther(edteother.getText().toString());
-                                                                individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
-
-                                                                Intent intent = new Intent(q801.this, q802.class);
+                                                                individual.setQ801f("0");
+                                                                Intent intent = new Intent(q801.this, q901.class);
                                                                 intent.putExtra("Individual", individual);
                                                                 startActivity(intent);
 
                                                             } else {
-                                                                //Set q801 for the current individual
 
-                                                                individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
-                                                                individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
-
-                                                                individual.setQ801b(selectedRbtnb.getText().toString().substring(0, 1));
-                                                                individual.setQ801cMonth(edtcmnths.getText().toString());
-                                                                individual.setQ801cYear(edtcyear.getText().toString());
-                                                                individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
-                                                                individual.setQ801dOther(edtdother.getText().toString());
-                                                                individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
-                                                                individual.setQ801eOther(edteother.getText().toString());
-                                                                individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
+                                                                if (rbtna2.isChecked()&& rbtna2.isChecked() && sample.getStatusCode().equals("2")
+                                                                        && Integer.valueOf(individual.getQ102()) <= 64) {
 
 
-                                                                Intent intent = new Intent(q801.this, q802.class);
-                                                                intent.putExtra("Individual", individual);
-                                                                startActivity(intent);
+                                                                    individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
+                                                                    individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
 
+
+                                                                    if (edtcmnths.getText().toString().length() == 0) {
+                                                                        individual.setQ801cMonth("00");
+                                                                    } else if (edtcmnths.getText().toString().length() == 1) {
+                                                                        individual.setQ801cMonth("0" + edtcmnths.getText().toString());
+                                                                    } else {
+                                                                        individual.setQ801cMonth(edtcmnths.getText().toString());
+                                                                    }
+
+
+                                                                    individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
+                                                                    individual.setQ801dOther(edtdother.getText().toString());
+                                                                    individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
+                                                                    individual.setQ801eOther(edteother.getText().toString());
+                                                                    individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
+
+                                                                    Intent intent = new Intent(q801.this, q802.class);
+                                                                    intent.putExtra("Individual", individual);
+                                                                    startActivity(intent);
+
+                                                                } else {
+                                                                    //individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
+
+                                                                    if (rbtn2.isChecked() && (sample.getStatusCode().equals("2") ||
+                                                                            sample.getStatusCode().equals("3")) && Integer.valueOf(individual.getQ102()) > 64) {
+
+                                                                        individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
+                                                                        individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
+
+
+                                                                        if (edtcmnths.getText().toString().length() == 0) {
+                                                                            individual.setQ801cMonth("00");
+                                                                        } else if (edtcmnths.getText().toString().length() == 1) {
+                                                                            individual.setQ801cMonth("0" + edtcmnths.getText().toString());
+                                                                        } else {
+                                                                            individual.setQ801cMonth(edtcmnths.getText().toString());
+                                                                        }
+                                                                        individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
+
+                                                                        Intent intent = new Intent(q801.this, q901.class);
+                                                                        intent.putExtra("Individual", individual);
+                                                                        startActivity(intent);
+
+                                                                    } else {
+                                                                        if (rbtn1.isChecked() && rbtna2.isChecked() && sample.getStatusCode().equals("2")
+                                                                                && Integer.valueOf(individual.getQ102()) <= 64) {
+                                                                            //Set q801 for the current individual
+
+                                                                            individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
+                                                                            individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
+
+                                                                            individual.setQ801b(selectedRbtnb.getText().toString().substring(0, 1));
+                                                                            individual.setQ801cMonth(edtcmnths.getText().toString());
+                                                                            individual.setQ801cYear(edtcyear.getText().toString());
+                                                                            individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
+                                                                            individual.setQ801dOther(edtdother.getText().toString());
+                                                                            individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
+                                                                            individual.setQ801eOther(edteother.getText().toString());
+                                                                            individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
+
+
+                                                                            Intent intent = new Intent(q801.this, q802.class);
+                                                                            intent.putExtra("Individual", individual);
+                                                                            startActivity(intent);
+                                                                        }
+
+                                                                    }
+
+                                                                }
                                                             }
-
                                                         }
+
                                                     }
                                                 }
-
                                             }
                                         }
                                     }
@@ -371,58 +786,8 @@ public class q801 extends AppCompatActivity implements Serializable {
         switch (view.getId()) {
 
             case R.id.q801_1:
-                if (checked) {
-                    rbtna1.setEnabled(true);
-                    rbtna2.setEnabled(true);
+                if (checked ) {
 
-                    rbtnb1.setEnabled(true);
-                    rbtnb2.setEnabled(true);
-                    rbtnb3.setEnabled(true);
-
-                    edtcmnths.setEnabled(true);
-                    edtcyear.setEnabled(true);
-                    chkc99.setEnabled(true);
-                    chkc9999.setEnabled(true);
-
-                    rbtnd1.setEnabled(true);
-                    rbtnd2.setEnabled(true);
-                    rbtnd3.setEnabled(true);
-                    rbtnd4.setEnabled(true);
-                    rbtnd5.setEnabled(true);
-                    rbtnd6.setEnabled(true);
-                    rbtnd7.setEnabled(true);
-                    rbtnd8.setEnabled(true);
-                    rbtnd10.setEnabled(true);
-                    rbtnd11.setEnabled(true);
-                    rbtnd12.setEnabled(true);
-                    rbtndOther.setEnabled(true);
-
-
-                    rbtne1.setEnabled(true);
-                    rbtne2.setEnabled(true);
-                    rbtne3.setEnabled(true);
-                    rbtne4.setEnabled(true);
-                    rbtne5.setEnabled(true);
-                    rbtne6.setEnabled(true);
-                    rbtne7.setEnabled(true);
-                    rbtne8.setEnabled(true);
-                    rbtne9.setEnabled(true);
-                    rbtneOther.setEnabled(true);
-
-
-                    rbtnf1.setEnabled(true);
-                    rbtnf2.setEnabled(true);
-                    rbtnf3.setEnabled(true);
-                    rbtnf4.setEnabled(true);
-                    rbtnf5.setEnabled(true);
-
-
-                    t801a.setTextColor(Color.BLACK);
-                    t801b.setTextColor(Color.BLACK);
-                    t801c.setTextColor(Color.BLACK);
-                    t801d.setTextColor(Color.BLACK);
-                    t801e.setTextColor(Color.BLACK);
-                    t801f.setTextColor(Color.BLACK);
 
                 } else {
 
@@ -432,99 +797,7 @@ public class q801 extends AppCompatActivity implements Serializable {
             case R.id.q801_2:
                 if (checked) {
                     // set a controls
-                    rbtna1.setEnabled(false);
-                    rbtna2.setEnabled(false);
-                    rbtna1.setChecked(false);
-                    rbtna2.setChecked(false);
 
-// set b controls.
-                    rbtnb1.setEnabled(false);
-                    rbtnb2.setEnabled(false);
-                    rbtnb3.setEnabled(false);
-
-                    rbtnb1.setChecked(false);
-                    rbtnb2.setChecked(false);
-                    rbtnb3.setChecked(false);
-                    //set c controls
-                    edtcmnths.setEnabled(false);
-                    edtcyear.setEnabled(false);
-                    chkc99.setEnabled(false);
-                    chkc9999.setEnabled(false);
-
-                    edtcmnths.setText("");
-                    edtcyear.setText("");
-                    chkc99.setChecked(false);
-                    chkc9999.setChecked(false);
-
-// set d controls
-                    rbtnd1.setEnabled(false);
-                    rbtnd2.setEnabled(false);
-                    rbtnd3.setEnabled(false);
-                    rbtnd4.setEnabled(false);
-                    rbtnd5.setEnabled(false);
-                    rbtnd6.setEnabled(false);
-                    rbtnd7.setEnabled(false);
-                    rbtnd8.setEnabled(false);
-                    rbtnd10.setEnabled(false);
-                    rbtnd11.setEnabled(false);
-                    rbtnd12.setEnabled(false);
-                    rbtndOther.setEnabled(false);
-
-                    rbtnd1.setChecked(false);
-                    rbtnd2.setChecked(false);
-                    rbtnd3.setChecked(false);
-                    rbtnd4.setChecked(false);
-                    rbtnd5.setChecked(false);
-                    rbtnd6.setChecked(false);
-                    rbtnd7.setChecked(false);
-                    rbtnd8.setChecked(false);
-                    rbtnd10.setChecked(false);
-                    rbtnd11.setChecked(false);
-                    rbtnd12.setChecked(false);
-                    rbtndOther.setChecked(false);
-
-// set e controls
-                    rbtne1.setEnabled(false);
-                    rbtne2.setEnabled(false);
-                    rbtne3.setEnabled(false);
-                    rbtne4.setEnabled(false);
-                    rbtne5.setEnabled(false);
-                    rbtne6.setEnabled(false);
-                    rbtne7.setEnabled(false);
-                    rbtne8.setEnabled(false);
-                    rbtne9.setEnabled(false);
-                    rbtneOther.setEnabled(false);
-
-                    rbtne1.setChecked(false);
-                    rbtne2.setChecked(false);
-                    rbtne3.setChecked(false);
-                    rbtne4.setChecked(false);
-                    rbtne5.setChecked(false);
-                    rbtne6.setChecked(false);
-                    rbtne7.setChecked(false);
-                    rbtne8.setChecked(false);
-                    rbtne9.setChecked(false);
-                    rbtneOther.setChecked(false);
-
-//set f controls
-                    rbtnf1.setEnabled(false);
-                    rbtnf2.setEnabled(false);
-                    rbtnf3.setEnabled(false);
-                    rbtnf4.setEnabled(false);
-                    rbtnf5.setEnabled(false);
-
-                    rbtnf1.setChecked(false);
-                    rbtnf2.setChecked(false);
-                    rbtnf3.setChecked(false);
-                    rbtnf4.setChecked(false);
-                    rbtnf5.setChecked(false);
-
-                    t801a.setTextColor(Color.LTGRAY);
-                    t801b.setTextColor(Color.LTGRAY);
-                    t801c.setTextColor(Color.LTGRAY);
-                    t801d.setTextColor(Color.LTGRAY);
-                    t801e.setTextColor(Color.LTGRAY);
-                    t801f.setTextColor(Color.LTGRAY);
                 }
                 else
                 {
@@ -535,10 +808,7 @@ public class q801 extends AppCompatActivity implements Serializable {
 
             case R.id.q801a_1:
                 if (checked) {
-                    rbtnb1.setEnabled(true);
-                    rbtnb2.setEnabled(true);
-                    rbtnb3.setEnabled(true);
-                    t801b.setTextColor(Color.BLACK);
+
                 }
                 // Put some meat on the sandwich
                 else {
@@ -549,15 +819,7 @@ public class q801 extends AppCompatActivity implements Serializable {
 
             case R.id.q801a_2:
                 if (checked) {
-                    rbtnb1.setEnabled(false);
-                    rbtnb2.setEnabled(false);
-                    rbtnb3.setEnabled(false);
-                    t801b.setTextColor(Color.LTGRAY);
 
-
-                    rbtnb1.setChecked(false);
-                    rbtnb2.setChecked(false);
-                    rbtnb3.setChecked(false);
                 }
                 // Put some meat on the sandwich
                 else {

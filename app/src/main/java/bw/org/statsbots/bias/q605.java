@@ -17,6 +17,7 @@ public class q605 extends AppCompatActivity implements Serializable {
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected Individual individual;
     protected CheckBox ck1txt, ck2txt, ck3txt, ck4txt, ck5txt, ck9txt, chkOther, selected = null;
     protected Button btn;
@@ -35,6 +36,26 @@ public class q605 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+
+//        myDB = new DatabaseHelper(this);
+//        myDB.getWritableDatabase();
+//
+//        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+//
+//        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+//        sample.getSTATUS();
+//
+//        if((Integer.valueOf(individual.getQ102()) > 64 && sample.getStatusCode().equals("2")  && individual.getQ604().equals("2")) ||
+//                (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3")) && individual.getQ604().equals("2")))
+//        {
+//
+//            Intent q1o2 = new Intent(q605.this, q704.class);
+//            q1o2.putExtra("Individual", individual);
+//            startActivity(q1o2);
+//        }
+
+
 
         ck1txt = findViewById(R.id.q605_1);
         ck2txt = findViewById(R.id.q605_2);

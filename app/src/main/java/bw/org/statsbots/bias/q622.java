@@ -28,6 +28,7 @@ public class q622 extends AppCompatActivity implements Serializable {
     protected RadioGroup rg1,rg2,rg3;
     protected EditText edtaOther, edtbOther;
     protected TextView txta, txtb;
+    protected DatabaseHelper myDB;
     protected RadioButton selectedRbtn,selectedRbtna, selectedRbtnb;
 
     @Override
@@ -63,6 +64,10 @@ public class q622 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+
+
+
 
         rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

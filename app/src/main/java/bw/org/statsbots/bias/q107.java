@@ -41,7 +41,10 @@ public class q107 extends AppCompatActivity implements Serializable{
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+
+        Intent ii = getIntent();
+        p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
+
 
 
         rg = findViewById(R.id.q107radioGroup);
@@ -434,6 +437,8 @@ public class q107 extends AppCompatActivity implements Serializable{
 
                                                     Intent q1o3 = new Intent(q107.this, Q201.class);
                                                     q1o3.putExtra("Individual", individual);
+                                                    q1o3.putExtra("Personroster", p1);
+
                                                     startActivity(q1o3);
                                                 }
                                             }

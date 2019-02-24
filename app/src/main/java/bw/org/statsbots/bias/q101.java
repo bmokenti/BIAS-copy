@@ -64,6 +64,26 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
+
+//
+//        if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getSTATUS().equals("2") )
+//        {
+//            setTitle("Questionnaire Assent age 15-17 years");
+//        }
+//        else {
+//            setTitle("Individual  18 plus: Combined");
+//        }
+//
+//
+//        if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getSTATUS().equals("3") )
+//        {
+//            setTitle("Questionnaire Assent age 15-17 years");
+//        }
+//        else
+//        {
+//            setTitle("Individual Questionnaire Ov18: TB Only");
+//        }
+
         Button btnext = findViewById(R.id.btnnext);
 //        PersonRoster pr[] = thisHouse.getPersons();
         btnext.setOnClickListener(new View.OnClickListener() {

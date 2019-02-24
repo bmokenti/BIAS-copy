@@ -54,15 +54,38 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
 
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSample();
 
-        if(Integer.valueOf(p1.getP04YY()) <=17)
+        if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getStatusCode().equals("2") )
         {
             setTitle("Questionnaire Assent age 15-17 years");
         }
-        else {
-            setTitle("Individual Questionnaire Consent 18 plus");
+
+
+        if((Integer.valueOf(p1.getP04YY()) >=18 && Integer.valueOf(p1.getP04YY()) <=64) && sample.getStatusCode().equals("2") )
+        {
+            setTitle("Individual  18 plus: HIV&TB");
         }
 
+        if(Integer.valueOf(p1.getP04YY()) >64 && sample.getStatusCode().equals("2") )
+        {
+            setTitle("Questionnaire 65 plus (TB)");
+        }
+
+
+        if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getStatusCode().equals("3") )
+        {
+            setTitle("Questionnaire Assent age 15-17 years");
+        }
+
+
+        if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getStatusCode().equals("1") )
+
+
+        {
+            setTitle("Questionnaire Assent age 15-17 years");
+        }
 
 
 

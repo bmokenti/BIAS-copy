@@ -26,6 +26,7 @@ public class q901 extends AppCompatActivity implements Serializable {
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5, rbtna6, rbtna7, rbtna8, rbtna10, rbtna11, rbtnaOther, selected = null;
     protected RadioGroup rg, rga;
     protected EditText edt;
@@ -66,10 +67,20 @@ public class q901 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 
 
-        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ101().equals("2"))
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+
+
+        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ101().equals("2")
+        && (Integer.valueOf(individual.getQ102()) < 64 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2"))))
         {
             Intent intent = new Intent(q901.this, q1001.class);
             intent.putExtra("Individual", individual);
@@ -79,7 +90,8 @@ public class q901 extends AppCompatActivity implements Serializable {
 
         }
 
-        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9"))&& individual.getQ101().equals("1"))
+        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9"))&& individual.getQ101().equals("1")
+        && (Integer.valueOf(individual.getQ102()) < 64 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2"))))
         {
             Intent intent = new Intent(q901.this, q1101.class);
             intent.putExtra("Individual", individual);
@@ -88,6 +100,18 @@ public class q901 extends AppCompatActivity implements Serializable {
         else {
 
         }
+
+        if(!individual.getQ801f().equals("2") && Integer.valueOf(individual.getQ102()) >= 65 && (sample.getStatusCode().equals("2") || sample.getStatusCode().equals("3")))
+        {
+            Intent intent = new Intent(q901.this, q1101.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
+
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

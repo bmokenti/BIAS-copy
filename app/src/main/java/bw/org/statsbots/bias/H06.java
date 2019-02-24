@@ -55,7 +55,7 @@ public class H06 extends AppCompatActivity implements Serializable {
         }
 
 
-        if(thisHouse.getH06() !=null){
+        if(thisHouse.getH06() !=null  && !thisHouse.getH06().equals("")){
             edt.setText(thisHouse.getH06());
         }
 

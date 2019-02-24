@@ -108,7 +108,7 @@ public class H01 extends AppCompatActivity implements Serializable, View.OnClick
                 if (o instanceof RadioButton)
                 {
                     bt[f]=((RadioButton)o);
-                    if(thisHouse.getH01()!= null)
+                    if(thisHouse.getH01()!= null &&  !thisHouse.getH01().equals(""))
                     {
 
                         if(Integer.parseInt(thisHouse.getH01())==f+1)
