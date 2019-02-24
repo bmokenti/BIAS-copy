@@ -48,16 +48,19 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
 
         myDB = new DatabaseHelper(this);
         myDB.onOpen(myDB.getReadableDatabase());
+      //  myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
-        if(Integer.valueOf(p1.getP04YY()) < 15)
-        {
-            setTitle("HIV Assent 10-14 years");
-        }
-        else
-        {
-            setTitle("HIV Consent Adults Over 64 years");
-        }
-       // myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+        setTitle("HIV Consent Adults Over 64 years");
+
+//        if(Integer.valueOf(p1.getP04YY()) < 15)
+//        {
+//            setTitle("HIV Assent 10-14 years");
+//        }
+//        else
+//        {
+//            setTitle("HIV Consent Adults Over 64 years");
+//        }
+
 
 /*
         if (p1.getChPrntlConsentBloodDraw().equals("2") && p1.getChPrntlConsentRHT().equals("2"))

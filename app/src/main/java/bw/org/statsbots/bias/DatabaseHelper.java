@@ -6867,6 +6867,25 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         db1.close();
 
     }
+
+
+
+    //UPDATE HOUSEHOLD COLUMNS EACH
+    public void updateInd(String columnName, String Assignment_ID, String Batch_no, String value,String srno){
+        SQLiteDatabase db1 = this.getWritableDatabase();
+        ContentValues hhValues = new ContentValues();
+        hhValues.put(columnName,value);
+
+        int  i = db1.update
+                (   tblindividual, // table
+                        hhValues, // column/value
+                        "Assignment_ID = ? and BatchNumber = ? and SRNO=?", // selections
+                        new String[] { Assignment_ID,Batch_no,srno }
+                );
+
+        db1.close();
+
+    }
 }
 
 
