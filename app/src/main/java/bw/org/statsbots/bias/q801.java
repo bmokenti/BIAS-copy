@@ -126,6 +126,12 @@ public class q801 extends AppCompatActivity implements Serializable {
         {
 
 
+            rbtn1.setEnabled(true);
+            rbtn2.setEnabled(true);
+            rbtna1.setEnabled(true);
+            rbtna2.setEnabled(true);
+
+
             rbtnb1.setEnabled(false);
             rbtnb2.setEnabled(false);
             rbtnb3.setEnabled(false);
@@ -261,6 +267,13 @@ public class q801 extends AppCompatActivity implements Serializable {
 //
 //
 //// set b controls.
+//                    rbtnb1.setEnabled(true);
+//                    rbtnb2.setEnabled(true);
+//                    rbtnb3.setEnabled(true);
+//
+//                    rbtnb1.setChecked(true);
+//                    rbtnb2.setChecked(true);
+//                    rbtnb3.setChecked(true);
 //
 //                    //set c controls
 //                    edtcmnths.setEnabled(true);
@@ -274,6 +287,31 @@ public class q801 extends AppCompatActivity implements Serializable {
 //                    //chkc9999.setChecked(false);
 //
 //// set d controls
+//                    rbtnd1.setEnabled(true);
+//                    rbtnd2.setEnabled(true);
+//                    rbtnd3.setEnabled(true);
+//                    rbtnd4.setEnabled(true);
+//                    rbtnd5.setEnabled(true);
+//                    rbtnd6.setEnabled(true);
+//                    rbtnd7.setEnabled(true);
+//                    rbtnd8.setEnabled(true);
+//                    rbtnd10.setEnabled(true);
+//                    rbtnd11.setEnabled(true);
+//                    rbtnd12.setEnabled(true);
+//                    rbtndOther.setEnabled(true);
+//
+//                    rbtnd1.setChecked(true);
+//                    rbtnd2.setChecked(true);
+//                    rbtnd3.setChecked(true);
+//                    rbtnd4.setChecked(true);
+//                    rbtnd5.setChecked(true);
+//                    rbtnd6.setChecked(true);
+//                    rbtnd7.setChecked(true);
+//                    rbtnd8.setChecked(true);
+//                    rbtnd10.setChecked(true);
+//                    rbtnd11.setChecked(true);
+//                    rbtnd12.setChecked(true);
+//                    rbtndOther.setChecked(true);
 //
 //
 //
@@ -288,14 +326,17 @@ public class q801 extends AppCompatActivity implements Serializable {
 //                    rbtnf5.setEnabled(true);
 //
 //
-//
 //                    t801a.setTextColor(Color.LTGRAY);
 //
 //                    t801c.setTextColor(Color.LTGRAY);
 //
 //                    t801f.setTextColor(Color.LTGRAY);
 //                }
+//                Intent intent = new Intent(q801.this, q804.class);
+//                intent.putExtra("Individual", individual);
+//                startActivity(intent);
 //            }
+//
 //        });
 
 
@@ -319,13 +360,13 @@ public class q801 extends AppCompatActivity implements Serializable {
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.q801_1 &&  ((Integer.valueOf(individual.getQ102()) <= 64 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2")))))
+                if(i == R.id.q801_1 &&  Integer.valueOf(individual.getQ102()) <= 64 )
                 {
 
                     rbtna1.setEnabled(true);
                     rbtna2.setEnabled(true);
-
                     rbtnb1.setEnabled(true);
+
                     rbtnb2.setEnabled(true);
                     rbtnb3.setEnabled(true);
 
@@ -374,101 +415,127 @@ public class q801 extends AppCompatActivity implements Serializable {
                     t801e.setTextColor(Color.BLACK);
                     t801f.setTextColor(Color.BLACK);
                 }
-                else
-                {
-                    rbtna1.setEnabled(false);
-                    rbtna2.setEnabled(false);
-                    rbtna1.setChecked(false);
-                    rbtna2.setChecked(false);
+                else {
+                    if (i == R.id.q801_1 && Integer.valueOf(individual.getQ102()) >= 64) {
+
+                        rbtna1.setEnabled(true);
+                        rbtna2.setEnabled(true);
+
+
+                        edtcmnths.setEnabled(true);
+                        edtcyear.setEnabled(true);
+                        chkc99.setEnabled(true);
+                        chkc9999.setEnabled(true);
+
+
+                        rbtnf1.setEnabled(true);
+                        rbtnf2.setEnabled(true);
+                        rbtnf3.setEnabled(true);
+                        rbtnf4.setEnabled(true);
+                        rbtnf5.setEnabled(true);
+
+
+                        t801a.setTextColor(Color.BLACK);
+
+                        t801c.setTextColor(Color.BLACK);
+
+                        t801f.setTextColor(Color.BLACK);
+                    }
+                    else {
+                        rbtna1.setEnabled(false);
+                        rbtna2.setEnabled(false);
+                        rbtna1.setChecked(false);
+                        rbtna2.setChecked(false);
 
 // set b controls.
-                    rbtnb1.setEnabled(false);
-                    rbtnb2.setEnabled(false);
-                    rbtnb3.setEnabled(false);
+                        rbtnb1.setEnabled(false);
+                        rbtnb2.setEnabled(false);
+                        rbtnb3.setEnabled(false);
 
-                    rbtnb1.setChecked(false);
-                    rbtnb2.setChecked(false);
-                    rbtnb3.setChecked(false);
-                    //set c controls
-                    edtcmnths.setEnabled(false);
-                    edtcyear.setEnabled(false);
-                    chkc99.setEnabled(false);
-                    chkc9999.setEnabled(false);
+                        rbtnb1.setChecked(false);
+                        rbtnb2.setChecked(false);
+                        rbtnb3.setChecked(false);
+                        //set c controls
+                        edtcmnths.setEnabled(false);
+                        edtcyear.setEnabled(false);
+                        chkc99.setEnabled(false);
+                        chkc9999.setEnabled(false);
 
-                    edtcmnths.setText("");
-                    edtcyear.setText("");
-                    chkc99.setChecked(false);
-                    chkc9999.setChecked(false);
+                        edtcmnths.setText("");
+                        edtcyear.setText("");
+                        chkc99.setChecked(false);
+                        chkc9999.setChecked(false);
 
 // set d controls
-                    rbtnd1.setEnabled(false);
-                    rbtnd2.setEnabled(false);
-                    rbtnd3.setEnabled(false);
-                    rbtnd4.setEnabled(false);
-                    rbtnd5.setEnabled(false);
-                    rbtnd6.setEnabled(false);
-                    rbtnd7.setEnabled(false);
-                    rbtnd8.setEnabled(false);
-                    rbtnd10.setEnabled(false);
-                    rbtnd11.setEnabled(false);
-                    rbtnd12.setEnabled(false);
-                    rbtndOther.setEnabled(false);
+                        rbtnd1.setEnabled(false);
+                        rbtnd2.setEnabled(false);
+                        rbtnd3.setEnabled(false);
+                        rbtnd4.setEnabled(false);
+                        rbtnd5.setEnabled(false);
+                        rbtnd6.setEnabled(false);
+                        rbtnd7.setEnabled(false);
+                        rbtnd8.setEnabled(false);
+                        rbtnd10.setEnabled(false);
+                        rbtnd11.setEnabled(false);
+                        rbtnd12.setEnabled(false);
+                        rbtndOther.setEnabled(false);
 
-                    rbtnd1.setChecked(false);
-                    rbtnd2.setChecked(false);
-                    rbtnd3.setChecked(false);
-                    rbtnd4.setChecked(false);
-                    rbtnd5.setChecked(false);
-                    rbtnd6.setChecked(false);
-                    rbtnd7.setChecked(false);
-                    rbtnd8.setChecked(false);
-                    rbtnd10.setChecked(false);
-                    rbtnd11.setChecked(false);
-                    rbtnd12.setChecked(false);
-                    rbtndOther.setChecked(false);
+                        rbtnd1.setChecked(false);
+                        rbtnd2.setChecked(false);
+                        rbtnd3.setChecked(false);
+                        rbtnd4.setChecked(false);
+                        rbtnd5.setChecked(false);
+                        rbtnd6.setChecked(false);
+                        rbtnd7.setChecked(false);
+                        rbtnd8.setChecked(false);
+                        rbtnd10.setChecked(false);
+                        rbtnd11.setChecked(false);
+                        rbtnd12.setChecked(false);
+                        rbtndOther.setChecked(false);
 
 // set e controls
-                    rbtne1.setEnabled(false);
-                    rbtne2.setEnabled(false);
-                    rbtne3.setEnabled(false);
-                    rbtne4.setEnabled(false);
-                    rbtne5.setEnabled(false);
-                    rbtne6.setEnabled(false);
-                    rbtne7.setEnabled(false);
-                    rbtne8.setEnabled(false);
-                    rbtne9.setEnabled(false);
-                    rbtneOther.setEnabled(false);
+                        rbtne1.setEnabled(false);
+                        rbtne2.setEnabled(false);
+                        rbtne3.setEnabled(false);
+                        rbtne4.setEnabled(false);
+                        rbtne5.setEnabled(false);
+                        rbtne6.setEnabled(false);
+                        rbtne7.setEnabled(false);
+                        rbtne8.setEnabled(false);
+                        rbtne9.setEnabled(false);
+                        rbtneOther.setEnabled(false);
 
-                    rbtne1.setChecked(false);
-                    rbtne2.setChecked(false);
-                    rbtne3.setChecked(false);
-                    rbtne4.setChecked(false);
-                    rbtne5.setChecked(false);
-                    rbtne6.setChecked(false);
-                    rbtne7.setChecked(false);
-                    rbtne8.setChecked(false);
-                    rbtne9.setChecked(false);
-                    rbtneOther.setChecked(false);
+                        rbtne1.setChecked(false);
+                        rbtne2.setChecked(false);
+                        rbtne3.setChecked(false);
+                        rbtne4.setChecked(false);
+                        rbtne5.setChecked(false);
+                        rbtne6.setChecked(false);
+                        rbtne7.setChecked(false);
+                        rbtne8.setChecked(false);
+                        rbtne9.setChecked(false);
+                        rbtneOther.setChecked(false);
 
 //set f controls
-                    rbtnf1.setEnabled(false);
-                    rbtnf2.setEnabled(false);
-                    rbtnf3.setEnabled(false);
-                    rbtnf4.setEnabled(false);
-                    rbtnf5.setEnabled(false);
+                        rbtnf1.setEnabled(false);
+                        rbtnf2.setEnabled(false);
+                        rbtnf3.setEnabled(false);
+                        rbtnf4.setEnabled(false);
+                        rbtnf5.setEnabled(false);
 
-                    rbtnf1.setChecked(false);
-                    rbtnf2.setChecked(false);
-                    rbtnf3.setChecked(false);
-                    rbtnf4.setChecked(false);
-                    rbtnf5.setChecked(false);
+                        rbtnf1.setChecked(false);
+                        rbtnf2.setChecked(false);
+                        rbtnf3.setChecked(false);
+                        rbtnf4.setChecked(false);
+                        rbtnf5.setChecked(false);
 
-                    t801a.setTextColor(Color.LTGRAY);
-                    t801b.setTextColor(Color.LTGRAY);
-                    t801c.setTextColor(Color.LTGRAY);
-                    t801d.setTextColor(Color.LTGRAY);
-                    t801e.setTextColor(Color.LTGRAY);
-                    t801f.setTextColor(Color.LTGRAY);
+                        t801a.setTextColor(Color.LTGRAY);
+                        t801b.setTextColor(Color.LTGRAY);
+                        t801c.setTextColor(Color.LTGRAY);
+                        t801d.setTextColor(Color.LTGRAY);
+                        t801e.setTextColor(Color.LTGRAY);
+                        t801f.setTextColor(Color.LTGRAY);
+                    }
                 }
             }
         });
@@ -476,160 +543,36 @@ public class q801 extends AppCompatActivity implements Serializable {
 
 
 
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.q801_1 &&  ((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("3") || sample.getStatusCode().equals("2")))))
-                {
-
-
-                    rbtna1.setEnabled(true);
-                    rbtna2.setEnabled(true);
-
-
-
-                    edtcmnths.setEnabled(true);
-                    edtcyear.setEnabled(true);
-                    chkc99.setEnabled(true);
-                    chkc9999.setEnabled(true);
-
-
-
-                    rbtnf1.setEnabled(true);
-                    rbtnf2.setEnabled(true);
-                    rbtnf3.setEnabled(true);
-                    rbtnf4.setEnabled(true);
-                    rbtnf5.setEnabled(true);
-
-
-                    t801a.setTextColor(Color.BLACK);
-
-                    t801c.setTextColor(Color.BLACK);
-
-                    t801f.setTextColor(Color.BLACK);
-                }
-                else
-                {
-                    rbtna1.setEnabled(false);
-                    rbtna2.setEnabled(false);
-                    rbtna1.setChecked(false);
-                    rbtna2.setChecked(false);
-
-// set b controls.
-                    rbtnb1.setEnabled(false);
-                    rbtnb2.setEnabled(false);
-                    rbtnb3.setEnabled(false);
-
-                    rbtnb1.setChecked(false);
-                    rbtnb2.setChecked(false);
-                    rbtnb3.setChecked(false);
-                    //set c controls
-                    edtcmnths.setEnabled(false);
-                    edtcyear.setEnabled(false);
-                    chkc99.setEnabled(false);
-                    chkc9999.setEnabled(false);
-
-                    edtcmnths.setText("");
-                    edtcyear.setText("");
-                    chkc99.setChecked(false);
-                    chkc9999.setChecked(false);
-
-// set d controls
-                    rbtnd1.setEnabled(false);
-                    rbtnd2.setEnabled(false);
-                    rbtnd3.setEnabled(false);
-                    rbtnd4.setEnabled(false);
-                    rbtnd5.setEnabled(false);
-                    rbtnd6.setEnabled(false);
-                    rbtnd7.setEnabled(false);
-                    rbtnd8.setEnabled(false);
-                    rbtnd10.setEnabled(false);
-                    rbtnd11.setEnabled(false);
-                    rbtnd12.setEnabled(false);
-                    rbtndOther.setEnabled(false);
-
-                    rbtnd1.setChecked(false);
-                    rbtnd2.setChecked(false);
-                    rbtnd3.setChecked(false);
-                    rbtnd4.setChecked(false);
-                    rbtnd5.setChecked(false);
-                    rbtnd6.setChecked(false);
-                    rbtnd7.setChecked(false);
-                    rbtnd8.setChecked(false);
-                    rbtnd10.setChecked(false);
-                    rbtnd11.setChecked(false);
-                    rbtnd12.setChecked(false);
-                    rbtndOther.setChecked(false);
-
-// set e controls
-                    rbtne1.setEnabled(false);
-                    rbtne2.setEnabled(false);
-                    rbtne3.setEnabled(false);
-                    rbtne4.setEnabled(false);
-                    rbtne5.setEnabled(false);
-                    rbtne6.setEnabled(false);
-                    rbtne7.setEnabled(false);
-                    rbtne8.setEnabled(false);
-                    rbtne9.setEnabled(false);
-                    rbtneOther.setEnabled(false);
-
-                    rbtne1.setChecked(false);
-                    rbtne2.setChecked(false);
-                    rbtne3.setChecked(false);
-                    rbtne4.setChecked(false);
-                    rbtne5.setChecked(false);
-                    rbtne6.setChecked(false);
-                    rbtne7.setChecked(false);
-                    rbtne8.setChecked(false);
-                    rbtne9.setChecked(false);
-                    rbtneOther.setChecked(false);
-
-//set f controls
-                    rbtnf1.setEnabled(false);
-                    rbtnf2.setEnabled(false);
-                    rbtnf3.setEnabled(false);
-                    rbtnf4.setEnabled(false);
-                    rbtnf5.setEnabled(false);
-
-                    rbtnf1.setChecked(false);
-                    rbtnf2.setChecked(false);
-                    rbtnf3.setChecked(false);
-                    rbtnf4.setChecked(false);
-                    rbtnf5.setChecked(false);
-
-                    t801a.setTextColor(Color.LTGRAY);
-                    t801b.setTextColor(Color.LTGRAY);
-                    t801c.setTextColor(Color.LTGRAY);
-                    t801d.setTextColor(Color.LTGRAY);
-                    t801e.setTextColor(Color.LTGRAY);
-                    t801f.setTextColor(Color.LTGRAY);
-                }
-            }
-        });
 
 
 
         rga.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.q801a_1 && ((Integer.valueOf(individual.getQ102()) < 64 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2")))))
+                if(i == R.id.q801a_1 && Integer.valueOf(individual.getQ102()) <=64)
                 {
                     rbtnb1.setEnabled(true);
                     rbtnb2.setEnabled(true);
                     rbtnb3.setEnabled(true);
                     t801b.setTextColor(Color.BLACK);
                 }
-                else
-                {
-                    rbtnb1.setEnabled(false);
-                    rbtnb2.setEnabled(false);
-                    rbtnb3.setEnabled(false);
-                    t801b.setTextColor(Color.LTGRAY);
+                else {
+                    if (i == R.id.q801a_1 && Integer.valueOf(individual.getQ102()) >= 65) {
+                        rbtnb1.setEnabled(false);
+                        rbtnb2.setEnabled(false);
+                        rbtnb3.setEnabled(false);
+                        t801b.setTextColor(Color.BLACK);
+                    } else {
+                        rbtnb1.setEnabled(false);
+                        rbtnb2.setEnabled(false);
+                        rbtnb3.setEnabled(false);
+                        t801b.setTextColor(Color.LTGRAY);
 
 
-                    rbtnb1.setChecked(false);
-                    rbtnb2.setChecked(false);
-                    rbtnb3.setChecked(false);
+                        rbtnb1.setChecked(false);
+                        rbtnb2.setChecked(false);
+                        rbtnb3.setChecked(false);
+                    }
                 }
             }
         });
@@ -809,8 +752,8 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                 startActivity(intent);
 
                                                             } else {
-                                                //888888888888888*********************************************normal 15-64**************answered sec:A NO
-                                                                if (rbtn1.isChecked()&& rbtna2.isChecked() && sample.getStatusCode().equals("2")
+                                                //*********************************************normal 15-64**************answered sec:A NO
+                                                                if (rbtn1.isChecked()&& rbtna2.isChecked() && sample.getStatusCode().equals("2" ) || sample.getStatusCode().equals("1" )
                                                                         && Integer.valueOf(individual.getQ102()) <= 64) {
 
 
@@ -862,7 +805,7 @@ public class q801 extends AppCompatActivity implements Serializable {
 
                                                                     } else {
                                                                         //normal answered all 15-64
-                                                                        if (rbtn1.isChecked() && rbtna1.isChecked() && sample.getStatusCode().equals("2")
+                                                                        if (rbtn1.isChecked() && rbtna1.isChecked() && sample.getStatusCode().equals("2") || sample.getStatusCode().equals("1")
                                                                                 && Integer.valueOf(individual.getQ102()) <= 64) {
                                                                             //Set q801 for the current individual
 

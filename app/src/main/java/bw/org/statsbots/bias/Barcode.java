@@ -90,6 +90,7 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
                     else {
 
                         try{
+                            individual  = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
                             individual.setIndBarcode(contentTxt.getText().toString());
                         }catch(Exception dd){
 

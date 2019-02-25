@@ -56,11 +56,11 @@ public class P17 extends AppCompatActivity implements Serializable {
 
 
         Button btnNext = (Button) findViewById(R.id.p17_btnNext);
-        Button btnPrev = (Button) findViewById(R.id.button3);
+        Button btnPrev = (Button) findViewById(R.id.p03_btnPrev);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (sample.EACode.equals("1") ) {
+                if (sample.getStatusCode().equals("1") ) {
                     Intent intent = new Intent(P17.this, P20.class);
                     intent.putExtra("Household", thisHouse);
                     startActivity(intent);
@@ -78,7 +78,7 @@ public class P17 extends AppCompatActivity implements Serializable {
                     Sample s = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
 
 
-                    if (Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 64 && s.EACode.equals("1") ) {
+                    if (Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 64 && s.getStatusCode().equals("1") ) {
 
                         //add to listview
                         p17.add(p1.getP01());

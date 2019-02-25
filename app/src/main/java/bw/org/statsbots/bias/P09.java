@@ -152,7 +152,7 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
                 }
             }
 
-            else if (thisHouse.previous != null && Integer.parseInt(p1.getP09()) < 2) {
+            else if (thisHouse.previous != null && Integer.parseInt(p1.getP04YY()) < 2) {
                 if (p1.getSRNO() == 0) {
                     //Next question P03
                     //thisHouse.previous=String.valueOf(p1.getLineNumber());//set previous to last person covered

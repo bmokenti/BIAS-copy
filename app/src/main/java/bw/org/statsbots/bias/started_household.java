@@ -593,7 +593,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                         //**Replace This house with 1 individual
 
                                 ////replaced HIVConsentOver64
-                                       Intent q1o2 = new Intent(started_household.this, HIVConsentOver64.class);
+                                       Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                         q1o2.putExtra("Personroster", person1);
                                         startActivity(q1o2);
 
@@ -611,7 +611,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                     btn.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
+                                            Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                             q1o2.putExtra("Personroster", person1);
                                             startActivity(q1o2);
                                         }
@@ -627,7 +627,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                         btn.setCompoundDrawablesWithIntrinsicBounds( d1,null, null, null);
 
 
-                                        Intent q1o2 = new Intent(started_household.this, HIVParentalConsent6wks_9y.class);
+                                        Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                         q1o2.putExtra("Personroster", person1);
                                         startActivity(q1o2);
 
@@ -640,7 +640,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                             @Override
                                             public void onClick(View view) {
                                                 //**Replace This house with 1 individual
-                                                Intent q1o2 = new Intent(started_household.this, HIVParentalConsent10_14yrs.class);
+                                                Intent q1o2 = new Intent(started_household.this, Barcode.class);
 
                                                 q1o2.putExtra("Personroster", person1);
                                                 startActivity(q1o2);
@@ -715,7 +715,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                 @Override
                                 public void onClick(View view) {
                                     //**Replace This house with 1 individual
-                                    Intent q1o2 = new Intent(started_household.this, IndQuetParentalConsent.class);
+                                    Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                     q1o2.putExtra("Personroster", temp);
                                     q1o2.putExtra("Individual", temp1);
                                     //Log.d("HHHHH",temp1.getQ101());
@@ -1134,7 +1134,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                 @Override
                                 public void onClick(View view) {
                                     //**Replace This house with 1 individual
-                                    Intent q1o2 = new Intent(started_household.this, IndQuetParentalConsent.class);
+                                    Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                     q1o2.putExtra("Personroster", temp);
                                     q1o2.putExtra("Individual", temp1);
                                     //Log.d("HHHHH",temp1.getQ101());

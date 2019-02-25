@@ -46,14 +46,27 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
         Intent ii = getIntent();
         p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
 
-       // int p = 0;
-if(Integer.valueOf(individual.getQ102()) >= 18 && (individual.getQ1114().equals("1") || individual.getQ1114().equals("2")))
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+
+        // int p = 0;
+if(Integer.valueOf(individual.getQ102()) >= 18 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2")))
 {
     Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
     intent.putExtra("Individual", individual);
     intent.putExtra("Personroster", p1);
     startActivity(intent);
 }
+
 /*
         if( Integer.valueOf(p1.getP04YY()) >= 18)
         {

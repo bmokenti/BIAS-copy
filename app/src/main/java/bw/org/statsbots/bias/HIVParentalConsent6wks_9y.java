@@ -73,9 +73,9 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
             setTitle("Parental Consent 18 months to 9 years");
         }
 
-        if(Integer.valueOf(p1.getP04YY()) > 15  )
+        if(Integer.valueOf(p1.getP04YY()) >=18  )
         {
-            Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, IndQuetParentalConsent.class);
+            Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, IndividualQuestionaireConsent.class);
             q1o2.putExtra("Individual", individual);
             q1o2.putExtra("Personroster", p1);
             startActivity(q1o2);
@@ -150,14 +150,12 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         t6  = (TextView) findViewById(R.id.bloodColectionStatus);
         t5  = (TextView) findViewById(R.id.txtstore);
 
-        if(Integer.valueOf(p1.getP04YY()) >= 1 && Integer.valueOf(p1.getP04MM()) <=6)
+        if(Integer.valueOf(p1.getP04YY()) < 2 && Integer.valueOf(p1.getP04MM()) <=6)
         {
             rbtn3.setEnabled(false);
             rbtn4.setEnabled(false);
             rbtn5.setEnabled(false);
             rbtn6.setEnabled(false);
-
-
 
         }
         else {
