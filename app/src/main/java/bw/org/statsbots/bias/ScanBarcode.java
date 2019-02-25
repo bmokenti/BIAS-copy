@@ -40,6 +40,7 @@ public class ScanBarcode extends AppCompatActivity implements Serializable {
     DatabaseHelper myDB;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -64,6 +65,16 @@ public class ScanBarcode extends AppCompatActivity implements Serializable {
         scanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(individual.getIndBarcode()!=null){
+
+                    List<HouseHold> thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+
+                    Intent intent1 = new Intent(ScanBarcode.this,q101.class);
+                    intent1.putExtra("Household",  thisHouse.get(0));
+                    startActivity(intent1);
+
+                }
+
                 IntentIntegrator scanIntegrator = new IntentIntegrator(ScanBarcode.this);
                 scanIntegrator.initiateScan();
 
@@ -71,15 +82,21 @@ public class ScanBarcode extends AppCompatActivity implements Serializable {
         });
 
 
+
+
+
+
         ScrollView l = findViewById(R.id.scrollView3);
         LinearLayout linear = findViewById(R.id.RosterButton);
-        //contentTxt.setText("25534493");
+
 
 
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         //retrieve scan result
+
+
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanningResult != null) {
             //we have a result

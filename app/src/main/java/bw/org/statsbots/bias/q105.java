@@ -502,7 +502,7 @@ public class q105 extends AppCompatActivity implements Serializable{
             @Override
             public void onClick(View v) {
 
-                if(ind.getQ103().equals("3")){
+                /*if(ind.getQ103().equals("3")){
                     Intent q1o2 = new Intent(q105.this, q103.class);
                     q1o2.putExtra("Personroster", p1);
 
@@ -510,8 +510,8 @@ public class q105 extends AppCompatActivity implements Serializable{
 
                 }else{
                     finish();
-                }
-
+                }*/
+            q105.super.onBackPressed();
 
 
             }

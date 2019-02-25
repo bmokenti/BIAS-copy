@@ -239,13 +239,13 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
 
                             if (myDB.checkIndividual(individual)) {
                                 //Update
-                                myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),String.valueOf(individual.getQ103()));
+                                myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(),individual.getQ103(),String.valueOf(individual.getSRNO()));
 
                                 //SET SKIPPED TO NULL
-                                myDB.updateInd("Q104",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),null);
-                                myDB.updateInd("Q104a",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),null);
-                                myDB.updateInd("Q104b",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),null);
-                                myDB.updateInd("Q104c",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),null);
+                                myDB.updateInd("Q104",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+                                myDB.updateInd("Q104a",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+                                myDB.updateInd("Q104b",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+                                myDB.updateInd("Q104c",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
 
                                 myDB.close();
 
@@ -262,7 +262,7 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
 
                             if (myDB.checkIndividual(individual)) {
                                 //Update
-                                myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),String.valueOf(individual.getQ103()));
+                                myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(),individual.getQ103(),String.valueOf(individual.getSRNO()));
 
                             }
 

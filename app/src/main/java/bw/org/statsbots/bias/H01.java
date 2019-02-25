@@ -58,6 +58,19 @@ public class H01 extends AppCompatActivity implements Serializable, View.OnClick
 
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
+
+        String assid = thisHouse.getAssignment_ID();
+        String batch = thisHouse.getBatchNumber();
+
+        if(assid==null && batch==null){
+
+            Log.d("String null", assid + "   " + batch);
+
+        }else{
+
+            Log.d("String not null", assid + "   " + batch);
+        }
+
         Log.d("Ass ID",thisHouse.getAssignment_ID() + "   " + thisHouse.getBatchNumber());
        List<HouseHold>  houseList = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
        myDB.close();
