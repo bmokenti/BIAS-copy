@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class IndividualQuestionaireConsent extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -65,6 +66,14 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
         Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+        List<PersonRoster> pp = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+
+        for (PersonRoster p2:pp
+             ) {
+            if(p2.getSRNO()==ind.getSRNO()){
+                p1=p2;
+            }
+        }
 
         Log.d("adasdasd",ind.getQ101()+"");
         RadioButton[] bt = new RadioButton[2];
@@ -93,7 +102,7 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
         }
 
 
-        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), p1.getAssignmentID());
         sample.getSample();
 
         if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getStatusCode().equals("2") )

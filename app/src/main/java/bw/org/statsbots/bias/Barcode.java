@@ -105,7 +105,7 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
                         myDB.updateInd("IndBarcode", p1.getAssignmentID(), p1.getBatch(), p1.getBarcode(), String.valueOf(p1.getSRNO()));
                         myDB.close();
 finish();
-
+                        Toast.makeText(getApplicationContext(),p1.getBarcode(),Toast.LENGTH_LONG);
                       Intent intent = new Intent(Barcode.this, HIVParentalConsent6wks_9y.class);
                         intent.putExtra("Individual", individual);
                         intent.putExtra("Personroster", p1);
