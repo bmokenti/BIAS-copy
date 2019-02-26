@@ -85,6 +85,7 @@ public class q105 extends AppCompatActivity implements Serializable{
 
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
         //int p = 0;
+
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
         individual = ind;
 

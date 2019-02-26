@@ -26,7 +26,7 @@ public class q1106 extends AppCompatActivity implements Serializable {
     protected RadioGroup rGroup1, rGroup2,rGroup3;
     protected RadioButton rbtn1, rbtn2, rbtn6a1 ,rbtn6a2, rbtn6a3, rbtn6a9, rbtn6b1, rbtn6b2, rbtn6b3, rbtn6b4,rbtn6b5other, selectedRbtn1, selectedRbtn2, selectedRbtn3;
     protected EditText q1106btxtOther;
-    protected LibraryClass lib;
+    protected LibraryClass lib;protected DatabaseHelper myDB;
     PersonRoster p1 = null;
     protected Individual individual;
     protected TextView txt1, txt2, txt3;
@@ -61,6 +61,10 @@ public class q1106 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         Button btnnext = findViewById(R.id.btnNext);
 

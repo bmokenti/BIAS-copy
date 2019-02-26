@@ -11,13 +11,15 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
-public class q902 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q902 extends AppCompatActivity implements Serializable {
 
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
-    protected CheckBox ck1txt, ck2txt;
+    protected CheckBox ck1txt, ck2txt;protected DatabaseHelper myDB;
     protected Button btn;
     protected  Individual individual;
     protected EditText edtmnths, edtyear;
@@ -43,6 +45,10 @@ public class q902 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
         Button btnnext = findViewById(R.id.btnNext);

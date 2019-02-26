@@ -25,7 +25,7 @@ public class q904 extends AppCompatActivity implements Serializable {
     protected Individual individual;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
-    protected LibraryClass lib;
+    protected LibraryClass lib;protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5,rbtnaOther , rbtnc1, rbtnc2, rbtnc3, rbtnc4, rbtnc5, rbtnc6, rbtnc7, rbtnc8, rbtnc10, rbtnc11,  rbtnc12, rbtnc13,rbtncOther  ;
     protected RadioGroup rg, rga, rgc;
     protected EditText edta, edtc, edtbmnths, edtbyear;
@@ -102,6 +102,11 @@ public class q904 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
         Button btnnext = findViewById(R.id.button);

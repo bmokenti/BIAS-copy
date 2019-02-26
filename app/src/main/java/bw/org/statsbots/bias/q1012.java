@@ -24,7 +24,7 @@ public class q1012 extends AppCompatActivity  implements Serializable {
     protected CheckBox ck1txt, ck2txt;
     protected Button btn;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtn8, rbtnOther;
-    protected RadioGroup rg;
+    protected RadioGroup rg;protected  DatabaseHelper myDB;
     protected TextView t1;
     protected Individual individual;
     protected EditText edtwks, edtmnths, edtyear;
@@ -55,6 +55,10 @@ public class q1012 extends AppCompatActivity  implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 if(individual.getQ1011().equals("1")||individual.getQ1011().equals("4") || individual.getQ1011().equals("7"))
 {

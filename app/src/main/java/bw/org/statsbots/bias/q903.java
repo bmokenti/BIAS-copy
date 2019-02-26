@@ -19,7 +19,7 @@ public class q903 extends AppCompatActivity implements Serializable {
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
-    protected CheckBox ck1txt, ck2txt;
+    protected CheckBox ck1txt, ck2txt;protected DatabaseHelper myDB;
     protected Button btn;
     protected Individual individual;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtn8, rbtn9, rbtn10, rbtn11, rbtn12, rbtn13, rbtn14;
@@ -75,6 +75,10 @@ public class q903 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
         Button btnnext = findViewById(R.id.button);

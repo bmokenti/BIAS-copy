@@ -25,7 +25,7 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, selected = null;
     protected  RadioButton selectedRbtn;
     protected EditText text1113other;
-    protected PersonRoster p1 = null;
+    protected PersonRoster p1 = null;protected DatabaseHelper myDB;
     protected Individual individual;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,10 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         Button btnext = findViewById(R.id.btnnext);
 

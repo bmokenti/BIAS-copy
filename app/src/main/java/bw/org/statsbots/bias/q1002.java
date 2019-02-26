@@ -27,7 +27,7 @@ public class q1002 extends AppCompatActivity implements Serializable {
     protected CheckBox chka1, chka2, chka3,chka4, chka5,  chka6, chka7,  chka8, chka10, chka11, chka12, chka13, chka14, chka15, chka16, chka17, chka18, chkaOther ;
     protected RadioGroup rg, rga, rgb;
     protected TextView ta, tb;
-    protected  Individual individual;
+    protected  Individual individual;protected  DatabaseHelper myDB;
     protected EditText edtOthertxt, edtbOther;
     protected RadioButton selectedRbtn, selectedRbtna, selectedRbtnb;
     @Override
@@ -92,6 +92,10 @@ public class q1002 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
         Button btnnext = findViewById(R.id.button);

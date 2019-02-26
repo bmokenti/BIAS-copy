@@ -14,7 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class q1004 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q1004 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
@@ -23,7 +25,7 @@ public class q1004 extends AppCompatActivity {
     protected Individual individual;
     protected Button btn;
     protected RadioButton rbtna1, rbtna2, rbtnb1, rbtnb2, rbtnb3, rbtnb4, rbtnb5, rbtnb6, rbtnb7, rbtnb8, rbtnb10, rbtnb11, rbtnb12, rbtnbOther ;
-    protected RadioGroup rgb, rga;
+    protected RadioGroup rgb, rga;protected  DatabaseHelper myDB;
     protected TextView ta, tb;
     protected EditText edtdays, edtmonths, edtyears, edtOther;
     protected RadioButton selectedRbtna, selectedRbtnb;
@@ -72,6 +74,10 @@ public class q1004 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
 

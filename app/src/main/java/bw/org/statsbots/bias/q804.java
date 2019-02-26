@@ -49,6 +49,13 @@ public class q804 extends AppCompatActivity implements Serializable{
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
+
+
         if(individual.getQ801().equals("1") )
         {
 

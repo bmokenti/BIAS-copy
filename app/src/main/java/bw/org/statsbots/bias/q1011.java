@@ -26,7 +26,7 @@ public class q1011 extends AppCompatActivity implements Serializable {
     protected Button btn;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtn8, rbtnOther ;
     protected RadioGroup rg ;
-    protected TextView t1;
+    protected TextView t1;protected  DatabaseHelper myDB;
     protected EditText edtOther;
     protected RadioButton selectedRbtn ;
     @Override
@@ -63,6 +63,10 @@ public class q1011 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
         Button btnnext = findViewById(R.id.button);

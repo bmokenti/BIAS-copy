@@ -17,7 +17,7 @@ public class q702 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
-    protected Individual individual;
+    protected Individual individual;protected DatabaseHelper myDB;
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, selected;
     protected RadioGroup rbtngroup;
@@ -40,7 +40,10 @@ public class q702 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
         /**
          * NEXT question
          */

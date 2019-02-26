@@ -26,7 +26,7 @@ public class q1105 extends AppCompatActivity implements  Serializable {
     protected HouseHold thisHouse;
     protected RadioButton  Q1105_1, Q1105_2, selectedRbtn;
     PersonRoster p1 = null;
-    Individual pp1 = null;
+    Individual pp1 = null;protected DatabaseHelper myDB;
     protected  Individual individual;
 
 
@@ -45,6 +45,11 @@ public class q1105 extends AppCompatActivity implements  Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
 
         Button btnNext = (Button) findViewById(R.id.btnNext);
         //btnNext.setText(btnLabel);

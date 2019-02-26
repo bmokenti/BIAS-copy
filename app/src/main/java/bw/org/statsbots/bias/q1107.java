@@ -29,7 +29,7 @@ public class q1107 extends AppCompatActivity implements  Serializable {
     protected TextView txtq1107aq, txt1107dd, txt1107wks;
     protected LinearLayout viewa;
     protected Individual individual;
-    PersonRoster p1 = null;
+    PersonRoster p1 = null;protected DatabaseHelper myDB;
     protected  HouseHold thisHouse;
     protected CheckBox chk1107a, selectedchk;
     protected LibraryClass lib;
@@ -56,6 +56,10 @@ public class q1107 extends AppCompatActivity implements  Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

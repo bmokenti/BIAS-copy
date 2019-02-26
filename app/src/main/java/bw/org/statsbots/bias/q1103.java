@@ -27,7 +27,7 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
     protected PersonRoster p1=null;
     protected String currentHH=null;
     protected LibraryClass lib;
-    protected RadioButton rbtnY,rbtnN,  selectedRbtn;
+    protected RadioButton rbtnY,rbtnN,  selectedRbtn;protected DatabaseHelper myDB;
     protected RadioGroup rg;
     protected CheckBox chkb99;
     protected TextView q1103aQues, txt1103dd, txt1103wks;
@@ -64,6 +64,10 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
         
 if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
 {

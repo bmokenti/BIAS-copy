@@ -27,7 +27,7 @@ protected RadioGroup rg;
 protected RadioButton rbty, rbtn, selectedRbtn;
 protected EditText txtq1108dd, txtq1108wks;
 protected TextView q1108aques, t1108dd, t1108wks;
-    protected CheckBox chkq1108;
+    protected CheckBox chkq1108;protected DatabaseHelper myDB;
     protected Individual individual;
     PersonRoster p1 = null;
 
@@ -56,6 +56,10 @@ protected LibraryClass lib;
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

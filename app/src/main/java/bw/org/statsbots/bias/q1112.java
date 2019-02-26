@@ -23,7 +23,7 @@ public class q1112 extends AppCompatActivity implements View.OnClickListener, Se
     protected HouseHold thisHouse;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, selected = null;
     protected  RadioButton selectedRbtn;
-    protected Individual individual;
+    protected Individual individual;protected DatabaseHelper myDB;
     protected PersonRoster p1 = null;
     protected EditText text1112other;
     @Override
@@ -50,6 +50,10 @@ public class q1112 extends AppCompatActivity implements View.OnClickListener, Se
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
 

@@ -27,7 +27,7 @@ public class q1005 extends AppCompatActivity implements Serializable {
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5 ;
     protected RadioGroup rga, rg;
     protected TextView ta, tb;
-    protected RadioButton selectedRbtna, selectedRbtn;
+    protected RadioButton selectedRbtna, selectedRbtn;protected  DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,10 @@ public class q1005 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         Button btnnext = (Button) findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener()  {

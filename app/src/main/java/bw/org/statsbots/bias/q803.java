@@ -19,7 +19,7 @@ public class q803 extends AppCompatActivity implements Serializable {
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected Individual individual;
-    protected LibraryClass lib;
+    protected LibraryClass lib;protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtn8, rbtnother, selected;
     protected RadioGroup rbtngroup;
     protected EditText edtother;
@@ -147,7 +147,10 @@ public class q803 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         if(individual.getQ801a().equals("1")  && individual.getQ801f().equals("1"))
         {

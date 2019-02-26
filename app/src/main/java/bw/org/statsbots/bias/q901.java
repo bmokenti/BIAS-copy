@@ -72,6 +72,8 @@ public class q901 extends AppCompatActivity implements Serializable {
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 

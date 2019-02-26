@@ -113,9 +113,8 @@ public class q801 extends AppCompatActivity implements Serializable {
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
-
-        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         Log.d("age",individual.getQ102());
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());

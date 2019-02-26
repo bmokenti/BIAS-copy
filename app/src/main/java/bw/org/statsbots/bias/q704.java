@@ -42,8 +42,8 @@ public class q704 extends AppCompatActivity implements Serializable {
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
-
-        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
 

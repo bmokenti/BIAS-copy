@@ -23,7 +23,7 @@ public class q1015 extends AppCompatActivity implements Serializable {
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt;
     protected Individual individual;
-    protected Button btn;
+    protected Button btn;protected  DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtna1, rbtna2, rbtna3, rbtna4, rbtna5, rbtnb1, rbtnb2 ;
     protected RadioGroup rg, rga, rgb;
     protected TextView ta, tb;
@@ -64,6 +64,10 @@ public class q1015 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
         Button btnnext = findViewById(R.id.btnNext);

@@ -29,7 +29,7 @@ public class q1102 extends AppCompatActivity implements  Serializable {
     protected String currentHH = null;
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, rbtn3, selectedRbtn;
-    protected RadioGroup rg;
+    protected RadioGroup rg;protected DatabaseHelper myDB;
     protected EditText q1102ay;
     protected TextView q1102aylbl;
 
@@ -64,6 +64,10 @@ public class q1102 extends AppCompatActivity implements  Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

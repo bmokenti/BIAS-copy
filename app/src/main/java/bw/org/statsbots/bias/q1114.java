@@ -49,17 +49,15 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
         p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
 
 
-        myDB = new DatabaseHelper(this);
-        myDB.getWritableDatabase();
 
-            //rbtn1.setOnClickListener(this);
-            //rbtn2.setOnClickListener(this);
-
-            // final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
             Button btnext = findViewById(R.id.btnnext);
 
