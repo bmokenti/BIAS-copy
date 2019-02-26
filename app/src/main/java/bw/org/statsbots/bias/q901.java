@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -67,31 +68,43 @@ public class q901 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
 
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
-
+        Log.d("age",individual.getQ102());
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
 
 
-        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ101().equals("2")
-        && (Integer.valueOf(individual.getQ102()) < 65 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2"))))
-        {
-            Intent intent = new Intent(q901.this, q1001.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-        }
-        else {
+//        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ101().equals("2")
+//        && (Integer.valueOf(individual.getQ102()) < 65 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2"))))
+//        {
+//            Intent intent = new Intent(q901.this, q1001.class);
+//            intent.putExtra("Individual", individual);
+//            startActivity(intent);
+//        }
+//        else {
+//
+//        }
 
-        }
+//        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9"))&& individual.getQ101().equals("1")
+//        && (Integer.valueOf(individual.getQ102()) < 64 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2"))))
+//        {
+//            Intent intent = new Intent(q901.this, q1101.class);
+//            intent.putExtra("Individual", individual);
+//            startActivity(intent);
+//        }
+//        else {
+//
+//        }
 
-        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9"))&& individual.getQ101().equals("1")
-        && (Integer.valueOf(individual.getQ102()) < 64 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2"))))
+        if(!individual.getQ801f().equals("1") && Integer.valueOf(individual.getQ102()) >= 65 && (sample.getStatusCode().equals("2") ))
         {
             Intent intent = new Intent(q901.this, q1101.class);
             intent.putExtra("Individual", individual);
@@ -101,14 +114,21 @@ public class q901 extends AppCompatActivity implements Serializable {
 
         }
 
-        if(!individual.getQ801f().equals("1") && Integer.valueOf(individual.getQ102()) >= 65 && (sample.getStatusCode().equals("2") || sample.getStatusCode().equals("3")))
+
+        if(sample.getStatusCode().equals("3") && individual.getQ801f().equals("1"))
         {
-            Intent intent = new Intent(q901.this, q1101.class);
+            Intent intent = new Intent(q901.this, q904.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
         }
-        else {
 
+
+
+            if(sample.getStatusCode().equals("3") && (individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9")))
+            {
+                Intent intent = new Intent(q901.this, q1101.class);
+                intent.putExtra("Individual", individual);
+                startActivity(intent);
         }
 
 

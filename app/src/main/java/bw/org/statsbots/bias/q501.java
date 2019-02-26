@@ -25,7 +25,7 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
     protected String currentHH = null;
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, rbtn3, selected = null;
-    protected RadioGroup rg;
+    protected RadioGroup rg;protected DatabaseHelper myDB;
     protected RadioButton selectedRbtn;
     HouseHold thisHose;
 

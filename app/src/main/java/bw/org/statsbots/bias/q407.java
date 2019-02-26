@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class q407 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
-    protected PersonRoster p1=null;
+    protected PersonRoster p1=null;protected DatabaseHelper myDB;
     protected String currentHH=null;
     protected LibraryClass lib;
     protected RadioButton rbtn1,rbtn2;
@@ -41,7 +41,8 @@ public class q407 extends AppCompatActivity implements View.OnClickListener, Ser
 
         rg = (RadioGroup)findViewById(R.id.q407radioGroup) ;
 
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;

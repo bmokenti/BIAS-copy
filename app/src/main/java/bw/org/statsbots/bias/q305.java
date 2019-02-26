@@ -52,7 +52,8 @@ public class q305 extends AppCompatActivity {
 
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();

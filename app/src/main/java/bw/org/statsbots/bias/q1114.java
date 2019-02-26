@@ -102,7 +102,9 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
                         positiveButton.setLayoutParams(positiveButtonLL);
 
 
-                    } else {
+                    }
+
+                    else {
                         //Set q101 for the current individual
 
                        individual.setQ1114(selectedRbtn.getText().toString().substring(0,1));

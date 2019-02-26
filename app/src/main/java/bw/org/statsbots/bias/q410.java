@@ -21,7 +21,7 @@ import java.io.Serializable;
 public class q410 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
-    protected PersonRoster p1 = null;
+    protected PersonRoster p1 = null;protected DatabaseHelper myDB;
     protected String currentHH = null;
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtn8, rbtn9, rbtn10, rbtn11, rbtn12, rbtn13, rbtn14;
@@ -45,6 +45,8 @@ public class q410 extends AppCompatActivity implements Serializable {
         rg6 = (RadioGroup) findViewById(R.id.rg6) ;
         rg7 = (RadioGroup) findViewById(R.id.rg7) ;
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
         rbtn1 = (RadioButton) findViewById(R.id.rg1_01) ;
         rbtn2 = (RadioButton) findViewById(R.id.rg1_02) ;

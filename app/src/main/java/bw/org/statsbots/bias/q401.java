@@ -60,7 +60,8 @@ public class q401 extends AppCompatActivity implements View.OnClickListener, Ser
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 

@@ -16,7 +16,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class q302 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q302 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -24,6 +26,7 @@ public class q302 extends AppCompatActivity {
     protected RadioGroup rg ;
     protected TextView txt1;
     PersonRoster p1 = null;
+    protected DatabaseHelper myDB;
     Individual pp1 = null;
     protected RadioButton selectedRbtn1 ;
     @Override
@@ -50,12 +53,15 @@ public class q302 extends AppCompatActivity {
         rg = (RadioGroup) findViewById(R.id.q302radioGroup);
 
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();

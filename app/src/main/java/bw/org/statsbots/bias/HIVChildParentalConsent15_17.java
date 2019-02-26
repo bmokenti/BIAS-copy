@@ -67,6 +67,14 @@ if(Integer.valueOf(individual.getQ102()) >= 18 && (sample.getStatusCode().equals
     startActivity(intent);
 }
 
+        if( sample.getStatusCode().equals("3"))
+        {
+            Intent intent = new Intent(HIVChildParentalConsent15_17.this, Dashboard.class);
+            intent.putExtra("Individual", individual);
+            intent.putExtra("Personroster", p1);
+            startActivity(intent);
+        }
+
 /*
         if( Integer.valueOf(p1.getP04YY()) >= 18)
         {

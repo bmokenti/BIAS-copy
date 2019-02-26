@@ -47,7 +47,8 @@ public class q204 extends AppCompatActivity implements Serializable {
 
 //        PersonRoster pr[] = thisHouse.getPersons();
 // skip condition
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
         if ( individual.getQ201().equals("1") || individual.getQ201().equals("4")|| individual.getQ201().equals("5")|| individual.getQ201().equals("6"))
@@ -62,8 +63,7 @@ public class q204 extends AppCompatActivity implements Serializable {
         }
 
 
-        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
-        individual = ind;
+
 
         if(individual.getQ204()!=null){
             edt.setText(individual.getQ204());

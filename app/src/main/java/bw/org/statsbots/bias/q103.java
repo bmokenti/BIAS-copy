@@ -144,13 +144,13 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
                                     myDB = new DatabaseHelper(q103.this);
                                     myDB.onOpen(myDB.getReadableDatabase());
 
-                                    myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(),ind.getQ103(),String.valueOf(individual.getQ103()));
-
+                                    myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(),individual.getQ103(),String.valueOf(individual.getSRNO()));
+                                    Log.d("Individual--- ",ind.getQ103());
                                     //SET SKIPPED TO NULL
-                                    myDB.updateInd("Q104",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(ind.getSRNO()));
-                                    myDB.updateInd("Q104a",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(ind.getSRNO()));
-                                    myDB.updateInd("Q104b",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(ind.getSRNO()));
-                                    myDB.updateInd("Q104c",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(ind.getSRNO()));
+                                    myDB.updateInd("Q104",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+                                    myDB.updateInd("Q104a",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+                                    myDB.updateInd("Q104b",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+                                    myDB.updateInd("Q104c",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
 
                                     myDB.close();
 
@@ -166,6 +166,9 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
                                     myDB = new DatabaseHelper(q103.this);
                                     myDB.onOpen(myDB.getReadableDatabase());
                                     myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(), individual.getQ103(),String.valueOf(individual.getSRNO()));
+
+
+                                    Log.d("Individual--- ",ind.getQ103());
                                     myDB.close();
 
                                     Intent q1o2 = new Intent(q103.this, q104.class);
@@ -192,16 +195,10 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
 
                                 individual.setQ103(selectedRbtn.getText().toString().substring(0, 1));
 
-                                if (myDB.checkIndividual(individual)) {
-                                    //Update
 
-                                    myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                    myDB.updateInd("Q103",individual.getAssignmentID(),individual.getBatch(), individual.getQ103(),String.valueOf(individual.getSRNO()));
+                                    myDB.close();
 
-                                } else {
-                                    //Insert
-                                    myDB.insertIndividual(individual);
-
-                                }
 
                             }
                         });

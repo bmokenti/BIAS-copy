@@ -59,7 +59,7 @@ public class q102 extends AppCompatActivity implements Serializable {
 
 
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
-
+        individual = ind;
         Log.d("adasdasd",ind.getQ101()+"");
          if(ind.getQ102()!= null)
          {
@@ -141,15 +141,11 @@ public class q102 extends AppCompatActivity implements Serializable {
                                 myDB = new DatabaseHelper(q102.this);
                                 myDB.onOpen(myDB.getReadableDatabase());
 
-                                if (myDB.checkIndividual(individual)) {
+
                                     //Update
                                     myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
-                                } else {
-                                    //Insert
-                                    myDB.insertIndividual(individual);
 
-                                }
 
                             }
 
@@ -169,16 +165,10 @@ public class q102 extends AppCompatActivity implements Serializable {
 
                                 individual.setQ102(edt.getText().toString());
 
-                                if (myDB.checkIndividual(individual)) {
-                                    //Update
 
                                     myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
-                                } else {
-                                    //Insert
-                                    myDB.insertIndividual(individual);
 
-                                }
                                 Intent intent = new Intent(q102.this, q103.class);
                                 intent.putExtra("Individual", individual);
                                 intent.putExtra("Personroster", p1);

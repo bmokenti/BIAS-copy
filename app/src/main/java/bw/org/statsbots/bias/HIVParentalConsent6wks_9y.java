@@ -324,7 +324,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
                             int selectedId3 = rg3.getCheckedRadioButtonId();
                             selected3 = (RadioButton) findViewById(selectedId3);
 
-                            if (selected3 == null && rbtn3.isChecked()) {
+                            if (selected3 == null && rbtn3.isChecked() && !(Integer.valueOf(p1.getP04YY()) < 2 && Integer.valueOf(p1.getP04MM()) <=6)) {
                                 lib.showError(HIVParentalConsent6wks_9y.this, "RHT Results: Error: 2a", "Please record RHT results?");
                                 /**
                                  * VIBRATE DEVICE

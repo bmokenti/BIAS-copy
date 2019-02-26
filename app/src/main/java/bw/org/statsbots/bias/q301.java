@@ -60,6 +60,7 @@ public class q301 extends AppCompatActivity implements Serializable{
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 

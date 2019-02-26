@@ -95,6 +95,10 @@ public class q106 extends AppCompatActivity implements Serializable {
         p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
+        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+        individual = ind;
+
+
         if(individual.getQ105().equals("1") || individual.getQ105().equals("2") || individual.getQ105().equals("3") || individual.getQ105().equals("4"))
         {
 
@@ -155,8 +159,6 @@ public class q106 extends AppCompatActivity implements Serializable {
             }
         });
 
-        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
-        individual = ind;
 
         RadioButton[] bt = new RadioButton[2];
         RadioGroup rg1 = findViewById(R.id.q106radioGroup);

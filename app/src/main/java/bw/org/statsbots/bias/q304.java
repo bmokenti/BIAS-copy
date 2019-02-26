@@ -23,7 +23,7 @@ public class q304 extends AppCompatActivity {
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2;
     protected RadioGroup rg, rga;
     protected TextView txt1;
-    PersonRoster p1 = null;
+    PersonRoster p1 = null;protected DatabaseHelper myDB;
     Individual pp1 = null;
     protected RadioButton selectedRbtn1, selectedRbtn2;
     @Override
@@ -46,7 +46,8 @@ public class q304 extends AppCompatActivity {
         // txt2 = (TextView) findViewById(R.id.q205atxt);
 
 
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
 
         rg = (RadioGroup) findViewById(R.id.q304radioGroup);
@@ -57,7 +58,8 @@ public class q304 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 

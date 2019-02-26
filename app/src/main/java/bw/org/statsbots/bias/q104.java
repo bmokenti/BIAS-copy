@@ -65,7 +65,8 @@ public class q104 extends AppCompatActivity implements Serializable {
 
 
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
-        Log.d("Individual--- ",ind.getQ103());
+
+        individual = ind;
 
 
 

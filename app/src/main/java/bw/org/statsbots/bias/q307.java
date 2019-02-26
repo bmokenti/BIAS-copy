@@ -15,14 +15,16 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class q307 extends AppCompatActivity implements View.OnClickListener{
+import java.io.Serializable;
+
+public class q307 extends AppCompatActivity implements View.OnClickListener, Serializable {
 
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2 ;
     protected RadioGroup rbtngroup;
-    protected RadioButton selectedRbtn;
+    protected RadioButton selectedRbtn;protected DatabaseHelper myDB;
     PersonRoster p1 = null;
     Individual pp1 = null;
     @Override
@@ -41,12 +43,14 @@ public class q307 extends AppCompatActivity implements View.OnClickListener{
 
 
         final RadioGroup rg = (RadioGroup) findViewById(R.id.q307radioGroup);
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 

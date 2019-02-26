@@ -5,19 +5,23 @@ import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class q1001 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q1001 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt;
     protected Button btn;
+    protected DatabaseHelper myDB;
     protected Individual individual;
     protected RadioButton rbtn1, rbtn2, rbtn3;
     protected RadioGroup rg;
@@ -41,7 +45,26 @@ public class q1001 extends AppCompatActivity {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-        if((individual.getQ101().equals("1") && Integer.parseInt( individual.getQ102() )>49) || individual.getQ401().equals("2") || individual.getQ101().equals("1"))
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+        Log.d("age",individual.getQ102());
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+
+        if( sample.getStatusCode().equals("3") )
+        {
+            Intent intent = new Intent(q1001.this, q1101.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
+        if((individual.getQ101().equals("1")) || (individual.getQ101().equals("2") && (Integer.parseInt( individual.getQ102() )>49 || individual.getQ401().equals("2"))
+                && ( sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1")) )) )
         {
             Intent intent = new Intent(q1001.this, q1101.class);
             intent.putExtra("Individual", individual);

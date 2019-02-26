@@ -25,6 +25,7 @@ public class q802 extends AppCompatActivity implements Serializable {
     protected RadioButton rbtn1, rbtn2, rbtna2, rbtna3, rbtna4, rbtna5, rbtnaother, selected, selected1;
     protected RadioGroup rbtngroup, rbtngroup1;
     protected EditText edtnaOther;
+    protected DatabaseHelper myDB;
     protected TextView txt1;
 
     @Override
@@ -54,6 +55,38 @@ public class q802 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+
+        if(sample.getStatusCode().equals("3") && individual.getQ801f().equals("1"))
+        {
+            Intent intent = new Intent(q802.this, q904.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
+
+
+        if(sample.getStatusCode().equals("3") && (individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9")))
+        {
+            Intent intent = new Intent(q802.this, q1101.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
+
+
+
+
         if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")  && individual.getQ801a().equals("2")))
 
         {
@@ -72,17 +105,17 @@ public class q802 extends AppCompatActivity implements Serializable {
                     startActivity(intent);
                 }
 
-    else
-                {
-                    if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("1")
-                            && individual.getQ101().equals("1"))
-                    {
+    else {
+                    if ((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("1")
+                            && individual.getQ101().equals("1")) {
                         Intent intent = new Intent(q802.this, q1101.class);
                         intent.putExtra("Individual", individual);
                         startActivity(intent);
                     }
 
                 }
+
+
 
 
         /**

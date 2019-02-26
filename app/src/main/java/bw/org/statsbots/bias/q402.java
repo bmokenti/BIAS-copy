@@ -23,7 +23,7 @@ public class q402 extends AppCompatActivity implements Serializable {
     Individual pp1 = null;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
-    protected LibraryClass lib, lib2;
+    protected LibraryClass lib, lib2;protected DatabaseHelper myDB;
     protected RadioButton rbtn99, rbtn1a, rbtn2a, rbtn4, rbtn1b, rbtn2b, rbtn3b, selectedRbtn, selectedRbtn1;
     protected RadioGroup rbtngroupa, rbtngroupb;
     protected EditText edtq402;
@@ -58,7 +58,8 @@ public class q402 extends AppCompatActivity implements Serializable {
 
 
         //final int selectedId = rbtngroup.getCheckedRadioButtonId();
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
         //setTitle("Q402b Was the condom used during sexual intercourse?");
         lib = new LibraryClass();
         rbtn1b = (RadioButton) findViewById(R.id.q402b_1);

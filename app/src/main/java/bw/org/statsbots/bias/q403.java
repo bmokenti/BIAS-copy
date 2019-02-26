@@ -23,7 +23,7 @@ public class q403 extends AppCompatActivity implements View.OnClickListener, Ser
     protected Individual individual;
     protected PersonRoster p1=null;
     protected String currentHH=null;
-    protected LibraryClass lib;
+    protected LibraryClass lib;protected DatabaseHelper myDB;
     protected  RadioButton rbtn1,rbtn2,rbtn3, selected=null;
     protected RadioGroup rg;
     protected RadioButton selectedRbtn;
@@ -47,7 +47,8 @@ public class q403 extends AppCompatActivity implements View.OnClickListener, Ser
         //rbtn1.setOnClickListener(this);
         //rbtn2.setOnClickListener(this);
 
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
         // final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
         Intent i = getIntent();

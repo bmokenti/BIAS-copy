@@ -86,6 +86,9 @@ public class q107 extends AppCompatActivity implements Serializable{
         myDB = new DatabaseHelper(q107.this);
         myDB.onOpen(myDB.getReadableDatabase());
         myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+        individual = ind;
+
 
         chk99.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,8 +259,7 @@ public class q107 extends AppCompatActivity implements Serializable{
             }
         });
 
-        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
-        individual = ind;
+
         RadioButton[] bt = new RadioButton[2];
         RadioGroup rg22 = findViewById(R.id.q107radioGroup);
 

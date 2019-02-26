@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class q406 extends AppCompatActivity implements  Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
-    protected PersonRoster p1=null;
+    protected PersonRoster p1=null;protected DatabaseHelper myDB;
     protected String currentHH=null;
     protected LibraryClass lib;
 
@@ -38,7 +38,8 @@ public class q406 extends AppCompatActivity implements  Serializable {
         lib = new LibraryClass();
         edt = (EditText) findViewById(R.id.q406_partners) ;
 
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");

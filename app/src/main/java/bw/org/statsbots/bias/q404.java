@@ -23,7 +23,7 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
     protected HouseHold thisHouse;
     protected Individual individual;
     protected PersonRoster p1=null;
-    protected String currentHH=null;
+    protected String currentHH=null;protected DatabaseHelper myDB;
     protected LibraryClass lib;
     protected RadioButton rbtn1,rbtn2,rbtn3, selected=null;
     protected CheckBox chk1, chk2, chk3 ;
@@ -54,7 +54,8 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
         //rbtn1.setOnClickListener(this);
         //rbtn2.setOnClickListener(this);
 
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;

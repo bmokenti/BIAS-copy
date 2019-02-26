@@ -18,10 +18,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class q306 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q306 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
-
+    protected DatabaseHelper myDB;
     protected LibraryClass lib;
 
     protected CheckBox chkb9;
@@ -40,13 +42,15 @@ public class q306 extends AppCompatActivity {
         q306_dd = (EditText) findViewById(R.id.q306_Days);
         chkb9 = (CheckBox) findViewById(R.id.q306_9);
 
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

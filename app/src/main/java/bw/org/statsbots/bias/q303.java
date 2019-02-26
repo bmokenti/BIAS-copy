@@ -23,7 +23,7 @@ public class q303 extends AppCompatActivity {
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2;
     protected RadioGroup rg, rga;
     protected TextView txt1;
-    PersonRoster p1 = null;
+    PersonRoster p1 = null;protected DatabaseHelper myDB;
     Individual pp1 = null;
     protected RadioButton selectedRbtn1, selectedRbtn2;
     @Override
@@ -31,6 +31,8 @@ public class q303 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q303);
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
         setTitle("Q303: ALCOHOL CONSUMPTION AND SUBSTANCE USE");
         lib = new LibraryClass();
@@ -56,7 +58,8 @@ public class q303 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 

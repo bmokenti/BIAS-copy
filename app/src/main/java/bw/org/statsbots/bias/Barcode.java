@@ -55,9 +55,12 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
             myDB = new DatabaseHelper(this);
             myDB.onOpen(myDB.getReadableDatabase());
 
+            final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+            individual = ind;
+
             if(Integer.valueOf(p1.getP04YY()) > 15)
             {
-                setTitle("Barcode scan for Children less than 15 years");
+                setTitle("Barcode  Children < 15 years");
             }
 
 
@@ -76,6 +79,9 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
             }
 
 
+            contentTxt.setText(individual.getIndBarcode());
+
+
 
             btnNext = (Button)findViewById(R.id.bar_btnNext);
             btnNext.setOnClickListener(new View.OnClickListener() {
@@ -90,21 +96,27 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
                     else {
 
                         try{
-                            individual  = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
                             individual.setIndBarcode(contentTxt.getText().toString());
+                            p1.setBarcode(contentTxt.getText().toString());
+                            myDB.updateInd("IndBarcode",individual.getAssignmentID(),individual.getBatch(), individual.getIndBarcode(),String.valueOf(individual.getSRNO()));
+                            myDB.updateConsents("Barcode", p1.getAssignmentID(), p1.getBatch(), p1.getBarcode(), String.valueOf(p1.getSRNO()));
+
+
+                            myDB.close();
+
+
                         }catch(Exception dd){
 
                         }
 
 
-                        p1.setBarcode(contentTxt.getText().toString());
+/*
                         myDB = new DatabaseHelper(Barcode.this);
                         myDB.onOpen(myDB.getReadableDatabase());
                         //  myDB.updateRoster(thisHouse,"tRapidDate",p1.getRapidDate(), String.valueOf(p1.getSRNO()));
-                        myDB.updateConsents("Barcode", p1.getAssignmentID(), p1.getBatch(), p1.getBarcode(), String.valueOf(p1.getSRNO()));
                         myDB.updateInd("IndBarcode", p1.getAssignmentID(), p1.getBatch(), p1.getBarcode(), String.valueOf(p1.getSRNO()));
-                        myDB.close();
-finish();
+                        myDB.close();*/
+                        //finish();
                         Toast.makeText(getApplicationContext(),p1.getBarcode(),Toast.LENGTH_LONG);
                       Intent intent = new Intent(Barcode.this, HIVParentalConsent6wks_9y.class);
                         intent.putExtra("Individual", individual);
@@ -128,8 +140,18 @@ finish();
 
         public void onClick(View v){
             if(v.getId()==R.id.scan_button){
-                IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-                scanIntegrator.initiateScan();
+
+                if(individual.getIndBarcode()!=null){
+                    Toast.makeText(getApplicationContext(),p1.getBarcode(),Toast.LENGTH_LONG);
+                    Intent intent = new Intent(Barcode.this, HIVParentalConsent6wks_9y.class);
+                    intent.putExtra("Individual", individual);
+                    intent.putExtra("Personroster", p1);
+                    startActivity(intent);
+                }else{
+                    IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+                    scanIntegrator.initiateScan();
+                }
+
             }
         }
 
