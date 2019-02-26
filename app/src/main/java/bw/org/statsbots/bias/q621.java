@@ -15,8 +15,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.io.Serializable;
 
-public class q621 extends AppCompatActivity {
+
+public class q621 extends AppCompatActivity implements Serializable {
 
 
     protected HouseHold thisHouse;
@@ -26,6 +28,7 @@ public class q621 extends AppCompatActivity {
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, rbtb1,rbtb2,rbtbOther;
     protected RadioGroup rg1,rg2;
+    protected  DatabaseHelper myDB;
     protected EditText edtbOther, edtaOther;
     protected RadioButton selectedRbtn,selectedRbtn2;
     protected TextView txta, txtb;
@@ -69,6 +72,10 @@ public class q621 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -223,7 +230,10 @@ public class q621 extends AppCompatActivity {
                                         individual.setQ621(selectedRbtn.getText().toString().substring(0, 1));
                                         individual.setQ621b(selectedRbtn2.getText().toString().substring(0, 1));
                                         individual.setQ621bOther(edtbOther.getText().toString());
-
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.close();
                                         Intent intent = new Intent(q621.this, q622.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);
@@ -284,6 +294,10 @@ public class q621 extends AppCompatActivity {
                                             individual.setQ621a_Other("2");
                                         }
 
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.close();
 
                                         Intent intent = new Intent(q621.this, q622.class);
                                         intent.putExtra("Individual", individual);

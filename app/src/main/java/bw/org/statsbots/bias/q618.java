@@ -22,6 +22,7 @@ public class q618 extends AppCompatActivity implements Serializable {
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2, rbtn9;
     protected RadioGroup rg1;
+    protected DatabaseHelper myDB;
     protected RadioButton selectedRbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,10 @@ public class q618 extends AppCompatActivity implements Serializable {
                 else {
                             //  individual.setQ618(selectedRbtn.getText().toString().substring(0,1));
                                 individual.setQ618(selectedRbtn.getText().toString().substring(0, 1));
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
                                         Intent intent = new Intent(q618.this, q619.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);

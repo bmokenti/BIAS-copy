@@ -52,12 +52,14 @@ public class q504 extends AppCompatActivity implements Serializable {
         chkOther = findViewById(R.id.Q504_Other);
         Q504edt = findViewById(R.id.Q504edt_Other);
 
-        myDB = new DatabaseHelper(this);
-        myDB.getWritableDatabase();
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
         Button btnnext = findViewById(R.id.button);
@@ -144,13 +146,12 @@ public class q504 extends AppCompatActivity implements Serializable {
                     }else{
                         individual.setQ504_Other("2");
                     }
-                    if(myDB.checkIndividual(individual)){
-                        //Update
-                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-
-                    }
 
 
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
 
                     Intent intent = new Intent(q504.this, q601.class);
                     intent.putExtra("Individual", individual);

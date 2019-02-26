@@ -40,6 +40,10 @@ public class q609 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         /**
          * NEXT question
@@ -67,14 +71,11 @@ public class q609 extends AppCompatActivity implements Serializable {
                     vibs.vibrate(100);
                 } else {
                     individual.setQ609(selected.getText().toString().substring(0,1));
-                    myDB = new DatabaseHelper(q609.this);
+
                     myDB.onOpen(myDB.getReadableDatabase());
                     myDB.getWritableDatabase();
-                    if(myDB.checkIndividual(individual)){
-                        //Update
-                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-
-                    }
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
 
                     Intent intent = new Intent(q609.this, q610.class);
                     intent.putExtra("Individual", individual);

@@ -17,7 +17,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class q305 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q305 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -136,6 +138,11 @@ public class q305 extends AppCompatActivity {
                     }else{
                         individual.setQ305_4("2");
                     }
+
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
 
                         Intent q1o2 = new Intent(q305.this, q306.class);
                         q1o2.putExtra("Individual", individual);

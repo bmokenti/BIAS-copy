@@ -53,6 +53,10 @@ public class q503 extends AppCompatActivity implements View.OnClickListener, Ser
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
         if(individual.getQ501().equals("1"))
@@ -104,6 +108,10 @@ public class q503 extends AppCompatActivity implements View.OnClickListener, Ser
                         // to include ea status code on the check
                         individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
 
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
                         Intent q1o2 = new Intent(q503.this, q601.class);
                         q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
@@ -115,6 +123,10 @@ public class q503 extends AppCompatActivity implements View.OnClickListener, Ser
                    individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
 
                     //Next question q504
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
 
 
                     Intent intent = new Intent(q503.this, q504.class);

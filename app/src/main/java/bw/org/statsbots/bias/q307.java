@@ -97,10 +97,15 @@ public class q307 extends AppCompatActivity implements View.OnClickListener, Ser
                         //Set q101 for the current individual
                        individual.setQ307(selectedRbtn.getText().toString().substring(0, 1));
 
-                        /**
-                         * If current person LineNumber is equal to TotalPersons-1
-                         * Proceed to next Question in the roster
-                         */
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
+
+                    /**
+                     * If current person LineNumber is equal to TotalPersons-1
+                     * Proceed to next Question in the roster
+                     */
                         // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
 
                         //Next question q102

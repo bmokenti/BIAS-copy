@@ -27,6 +27,7 @@ public class q604 extends AppCompatActivity implements Serializable {
     protected RadioButton rbtn1, rbtn2, rbtna1, rbtna2, selectedRbtn, selectedRbtna;
     protected RadioGroup rg, rga;
     protected EditText q604edt;
+    protected  DatabaseHelper myDB;
     protected TextView t1, t2;
 
     @Override
@@ -42,6 +43,11 @@ public class q604 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         rbtn1 = findViewById(R.id.q604_1);
         rbtn2 = findViewById(R.id.q604_2);
@@ -263,9 +269,8 @@ public class q604 extends AppCompatActivity implements Serializable {
                                             }
 
                                             //update individual
-                                            DatabaseHelper myDB = new DatabaseHelper(q604.this);
-
                                             myDB.onOpen(myDB.getReadableDatabase());
+                                            myDB.getWritableDatabase();
                                             myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                                             myDB.close();
 

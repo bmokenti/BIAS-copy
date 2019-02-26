@@ -79,10 +79,13 @@ public class q410 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
         if (individual.getQ101().equals("1"))
         {
+
 
             Intent intent = new Intent(q410.this, q501.class);
             intent.putExtra("Individual", individual);
@@ -262,6 +265,11 @@ public class q410 extends AppCompatActivity implements Serializable {
                     }else{
 
                         individual.setQ410MadeAfraid("2");
+
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
 
                         Intent intent = new Intent(q410.this, q501.class);
                         intent.putExtra("Individual", individual);

@@ -99,6 +99,11 @@ public class q306 extends AppCompatActivity implements Serializable {
 
                          individual.setQ306(q306_dd.getText().toString());
 
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
+
                         Intent q1o3 = new Intent(q306.this, q307.class);
                         q1o3.putExtra("Individual", individual);
                         startActivity(q1o3);

@@ -54,7 +54,8 @@ public class q403 extends AppCompatActivity implements View.OnClickListener, Ser
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +96,10 @@ public class q403 extends AppCompatActivity implements View.OnClickListener, Ser
                     //Set q402 for the current individual
                   individual.setQ403(selectedRbtn.getText().toString().substring(0,1));
 
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
 
 
                     Intent q1o2 = new Intent(q403.this, q404.class);

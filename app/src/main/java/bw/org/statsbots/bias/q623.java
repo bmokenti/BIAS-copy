@@ -45,6 +45,10 @@ public class q623 extends AppCompatActivity implements Serializable {
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
 
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
+
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 
@@ -77,12 +81,20 @@ public class q623 extends AppCompatActivity implements Serializable {
                 } else {
                     if (rbtn2.isChecked()) {
                         individual.setQ623(selectedRbtn.getText().toString().substring(0, 1));
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
+
                         Intent intent = new Intent(q623.this, q701.class);
                         intent.putExtra("Individual", individual);
                         startActivity(intent);
                     } else {
                         individual.setQ623(selectedRbtn.getText().toString().substring(0, 1));
-
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
                         Intent intent = new Intent(q623.this, q624.class);
                         intent.putExtra("Individual", individual);
                         startActivity(intent);

@@ -19,6 +19,7 @@ public class q607 extends AppCompatActivity implements Serializable {
     protected Individual indv;
     protected LibraryClass lib;
     protected  Individual individual;
+    protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, rbtn9, selected;
     protected RadioGroup rbtngroup;
 
@@ -40,6 +41,10 @@ public class q607 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         /**
          * NEXT question
@@ -67,7 +72,10 @@ public class q607 extends AppCompatActivity implements Serializable {
                     vibs.vibrate(100);
                 } else {
                  individual.setQ607(selected.getText().toString().substring(0,1));
-
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
                  Intent intent = new Intent(q607.this, q608.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);

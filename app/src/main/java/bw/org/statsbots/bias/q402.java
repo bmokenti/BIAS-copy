@@ -60,6 +60,10 @@ public class q402 extends AppCompatActivity implements Serializable {
         //final int selectedId = rbtngroup.getCheckedRadioButtonId();
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
         //setTitle("Q402b Was the condom used during sexual intercourse?");
         lib = new LibraryClass();
         rbtn1b = (RadioButton) findViewById(R.id.q402b_1);
@@ -184,6 +188,11 @@ public class q402 extends AppCompatActivity implements Serializable {
                                 individual.setQ402a(selectedRbtn.getText().toString().substring(0, 1));
                                 individual.setQ402b(selectedRbtn1.getText().toString().substring(0, 1));
                                 String i = individual.getQ101();
+
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.close();
 
                                 //Check if country entered is in the list
                                 Intent intent = new Intent(q402.this, q403.class);

@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class q620 extends AppCompatActivity {
+import java.io.Serializable;
+
+public class q620 extends AppCompatActivity implements Serializable {
 
     protected HouseHold thisHouse;
     protected Individual individual;
@@ -21,6 +23,7 @@ public class q620 extends AppCompatActivity {
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn9, rbtnOther;
     protected RadioGroup rg1;
     protected EditText edtOther;
+    protected  DatabaseHelper myDB;
     protected RadioButton selectedRbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,10 @@ public class q620 extends AppCompatActivity {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -86,7 +93,10 @@ public class q620 extends AppCompatActivity {
 
                             individual.setQ620(selectedRbtn.getText().toString().substring(0, 1));
                             individual.setQ620_Other(edtOther.getText().toString());
-
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.close();
 
                             Intent intent = new Intent(q620.this, q621.class);
                             intent.putExtra("Individual", individual);

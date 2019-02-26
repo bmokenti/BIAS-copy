@@ -45,7 +45,8 @@ public class q406 extends AppCompatActivity implements  Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +83,10 @@ public class q406 extends AppCompatActivity implements  Serializable {
                     } else {
                         //Set q406 for the current individual
                    individual.setQ406(edt.getText().toString());
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
 
 
                         Intent q1o2 = new Intent(q406.this, q407.class);

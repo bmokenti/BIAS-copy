@@ -183,7 +183,12 @@ public class q301 extends AppCompatActivity implements Serializable{
                     } else {
                         if (rbtn2.isChecked()) {
                             //Set q301 for the current individual
+
                             individual.setQ301(selectedRbtn1.getText().toString().substring(0, 1));
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.close();
 
                             Intent q1o2 = new Intent(q301.this, q302.class);
                             q1o2.putExtra("Individual", individual);
@@ -192,6 +197,11 @@ public class q301 extends AppCompatActivity implements Serializable{
                         } else {
                             individual.setQ301(selectedRbtn1.getText().toString().substring(0, 1));
                             individual.setQ301a(selectedRbtn2.getText().toString().substring(0, 1));
+
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.close();
 
 
                             Intent q1o2 = new Intent(q301.this, q302.class);

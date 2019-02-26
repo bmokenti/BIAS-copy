@@ -51,6 +51,9 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
         int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -168,6 +171,10 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
                         {if(rbtn2.isChecked())
                         {
                             individual.setQ408(selectedRbtn.getText().toString().substring(0,1));
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.close();
 
                             Intent q1o2 = new Intent(q408.this, q410.class);
                             q1o2.putExtra("Individual", individual);
@@ -179,6 +186,11 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
 
                            individual.setQ408(selectedRbtn.getText().toString().substring(0,1));
                            individual.setQ408a(selectedRbtna.getText().toString().substring(0,1));
+                            myDB.onOpen(myDB.getReadableDatabase());
+
+                            myDB.getWritableDatabase();
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.close();
 
 
                             Intent q1o2 = new Intent(q408.this, q410.class);

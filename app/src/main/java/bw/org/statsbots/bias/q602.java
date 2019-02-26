@@ -48,6 +48,9 @@ public class q602 extends AppCompatActivity implements Serializable{
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
 
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
@@ -196,7 +199,10 @@ public class q602 extends AppCompatActivity implements Serializable{
                         } else {
                             individual.setQ602_Other("2");
                         }
-
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
                         Intent intent = new Intent(q602.this, q603.class);
                         intent.putExtra("Individual", individual);
                         startActivity(intent);

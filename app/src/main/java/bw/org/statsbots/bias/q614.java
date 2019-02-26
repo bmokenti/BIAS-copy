@@ -25,6 +25,7 @@ public class q614 extends AppCompatActivity implements Serializable {
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn9, rbtnother, selected;
     protected RadioGroup rbtngroup;
     protected EditText edt;
+    protected DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,11 @@ public class q614 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         rbtngroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -101,6 +107,11 @@ public class q614 extends AppCompatActivity implements Serializable {
                     {
                         individual.setQ614(selected.getText().toString().substring(0, 1));
                         individual.setQ614Other(edt.getText().toString());
+
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
 
                         Intent intent = new Intent(q614.this, q615.class);
                         intent.putExtra("Individual", individual);

@@ -22,6 +22,7 @@ public class q617 extends AppCompatActivity implements Serializable {
     protected LibraryClass lib;
     private EditText edtOther;
     protected CheckBox chkOther;
+    protected DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn7, rbtn8, rbtn9, rbtn10, rbtn11, rbtn12, rbtn13, rbtn14, rbtn15, rbtn16, rbtn17, rbtn18, rbtn19, rbtn20, rbtn21, rbtn22, rbtn23, rbtn24, rbtnOther;
     protected RadioGroup  rg1, rg2, rg3, rg4, rg5, rg6, rg7, rg8;
     protected RadioButton selected1, selected2, selected3, selected4, selected5, selected6, selected7, selected8;
@@ -369,7 +370,10 @@ public class q617 extends AppCompatActivity implements Serializable {
                                         individual.setQ617h(s8[0]);
                                         individual.setQ617_0ther(edtOther.getText().toString());
 
-
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.close();
                                         Intent intent = new Intent(q617.this, q618.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);

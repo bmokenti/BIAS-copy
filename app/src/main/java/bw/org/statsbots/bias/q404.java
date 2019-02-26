@@ -60,7 +60,8 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
-
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         if (individual.getQ403().equals("2") && individual.getQ101().equals("1")) {
             Intent intent = new Intent(q404.this, q501.class);
@@ -171,6 +172,11 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
                         }
 
                         individual.setQ404a(selectedRbtn.getText().toString().substring(0,1));
+
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
 
                         Intent q1o2 = new Intent(q404.this, q405.class);
                         q1o2.putExtra("Individual", individual);

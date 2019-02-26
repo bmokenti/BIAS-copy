@@ -21,6 +21,7 @@ public class q619 extends AppCompatActivity implements Serializable {
     protected LibraryClass lib;
     protected CheckBox ck1txt, ck2txt, ck3txt, ck4txt, ck5txt, ck6txt, ck7txt, ck8txt, ck10txt, ck11txt, ck12txt, ck13txt, ck14txt, ck9txt, chkOther;
     protected Button btn;
+    protected  DatabaseHelper myDB;
     protected EditText q619edt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,10 @@ public class q619 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
         chkOther.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -240,10 +245,18 @@ public class q619 extends AppCompatActivity implements Serializable {
                                 individual.setQ619_Other("");
                             }
                             if (!ck9txt.isChecked()) {
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.close();
                                 Intent intent = new Intent(q619.this, q620.class);
                                 intent.putExtra("Individual", individual);
                                 startActivity(intent);
                             } else {
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.close();
                                 Intent intent = new Intent(q619.this, q621.class);
                                 intent.putExtra("Individual", individual);
                                 startActivity(intent);

@@ -36,6 +36,10 @@ public class q605 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
 //        myDB = new DatabaseHelper(this);
@@ -166,16 +170,10 @@ public class q605 extends AppCompatActivity implements Serializable {
 
 
                     //Check if individual already been saved and update
-                    DatabaseHelper myDB = new DatabaseHelper(q605.this);
                     myDB.onOpen(myDB.getReadableDatabase());
-
-                    if(myDB.checkIndividual(individual))
-                    {
-                        //Update
-                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                        //myDB.close();
-                    }
-
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
 
                     Intent intent = new Intent(q605.this, q606.class);
                     intent.putExtra("Individual", individual);

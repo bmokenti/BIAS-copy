@@ -15,7 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class q202 extends AppCompatActivity implements View.OnClickListener  {
+import java.io.Serializable;
+
+public class q202 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;

@@ -22,6 +22,7 @@ public class q613 extends AppCompatActivity implements Serializable {
     protected String currentHH=null;
     protected Individual individual;
     protected LibraryClass lib;
+    protected DatabaseHelper myDB;
     protected RadioButton rbtn1,rbtn2,rbtn9,rbtna1, rbtna2, rbtna3,rbtna9, rbtnaOther, selected, selected1;
     protected RadioGroup rbtngroup, rbtngroup1;
     protected EditText edt;
@@ -55,11 +56,15 @@ public class q613 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 
-                /**
-                 * NEXT question
-                 */
+        /**
+         * NEXT question
+         */
                 Button btnNext = (Button)findViewById(R.id.button);
 
 
@@ -107,7 +112,10 @@ public class q613 extends AppCompatActivity implements Serializable {
 
                                     if (rbtn2.isChecked() || rbtn9.isChecked()) {
                                         individual.setQ613(selected.getText().toString().substring(0, 1));
-
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.close();
                                         Intent intent = new Intent(q613.this, q614.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);
@@ -117,7 +125,10 @@ public class q613 extends AppCompatActivity implements Serializable {
                                         individual.setQ613a(selected1.getText().toString().substring(0, 1));
                                         individual.setQ613aOther(edt.getText().toString());
 
-
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.close();
                                         //Next question q614
                                         Intent intent = new Intent(q613.this, q614.class);
                                         intent.putExtra("Individual", individual);

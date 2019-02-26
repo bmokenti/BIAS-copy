@@ -21,6 +21,7 @@ public class q603 extends AppCompatActivity implements Serializable {
     protected CheckBox ck1txt, ck2txt, ck3txt, ck4txt, ck5txt, ck6txt, ck7txt, ck8txt, ck9txt,chkOther, selected = null;
     protected Button btn;
     protected EditText q603edt;
+    protected DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,11 @@ public class q603 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
 //btn = findViewById(R.id.btn);
 
@@ -165,7 +171,10 @@ else
                         individual.setQ603_Other("2");
                     }
 
-
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
 
 
 

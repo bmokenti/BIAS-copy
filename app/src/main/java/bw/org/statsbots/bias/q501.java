@@ -50,6 +50,12 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
         if(individual.getQ101().equals("2"))
         {
             Intent intent = new Intent(q501.this, q601.class);
@@ -103,7 +109,10 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
 
                         individual.setQ501(selectedRbtn.getText().toString().substring(0,1));
 
-
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
                         Intent q1o2 = new Intent(q501.this, q503.class);
                         q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
@@ -113,7 +122,10 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
                         //Set q501 for the current individual
                        individual.setQ501(selectedRbtn.getText().toString().substring(0,1));
 
-
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
 
                         Intent intent = new Intent(q501.this, q502.class);
                         intent.putExtra("Individual", individual);

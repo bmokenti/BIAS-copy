@@ -47,6 +47,8 @@ public class q407 extends AppCompatActivity implements View.OnClickListener, Ser
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
         if (individual.getQ301().equals("2") && individual.getQ302().equals("2")) {
 
             Intent intent = new Intent(q407.this, q408.class);
@@ -95,6 +97,10 @@ public class q407 extends AppCompatActivity implements View.OnClickListener, Ser
 
                         //Set q407 for the current individual
                         individual.setQ407(selectedRbtn.getText().toString().substring(0,1));
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
 
                         Intent q1o2 = new Intent(q407.this, q408.class);
                         q1o2.putExtra("Individual", individual);
