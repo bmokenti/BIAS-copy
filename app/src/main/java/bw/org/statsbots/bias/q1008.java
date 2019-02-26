@@ -120,6 +120,12 @@ public class q1008 extends AppCompatActivity implements Serializable {
 
                                 individual.setQ1008(selectedRbtn.getText().toString().substring(0, 1));
 
+
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.close();
+
                                 Intent skipto1009 = new Intent(q1008.this, q1010.class);
                                 skipto1009.putExtra("Individual", individual);
                                 startActivity(skipto1009);
@@ -128,6 +134,11 @@ public class q1008 extends AppCompatActivity implements Serializable {
                                 individual.setQ1008(selectedRbtn.getText().toString().substring(0, 1));
                                 individual.setQ1008a(selectedRbtna.getText().toString().substring(0, 1));
                                 individual.setQ1008a_Other(edtOther.getText().toString());
+
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.close();
 
                                 Intent skipto1009 = new Intent(q1008.this, q1010.class);
                                 skipto1009.putExtra("Individual", individual);

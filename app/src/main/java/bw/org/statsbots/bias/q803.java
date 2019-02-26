@@ -224,6 +224,12 @@ public class q803 extends AppCompatActivity implements Serializable {
 
                     if (rbtn8.isChecked() ) {
                       //  Intent intent = new Intent(q803.this, q901.class);;
+                        individual.setQ803(rbtn8.getText().toString().substring(0, 1));
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
+
 
                         Intent intent = new Intent(q803.this, q901.class);
                         intent.putExtra("Individual", individual);
@@ -235,6 +241,12 @@ public class q803 extends AppCompatActivity implements Serializable {
                             //  Intent intent = new Intent(q803.this, q901.class);;
                       individual.setQ803(selected.getText().toString().substring(0, 1));
                        individual.setQ803Other(edtother.getText().toString());
+
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
+
 
                             Intent intent = new Intent(q803.this, q804.class);
                             intent.putExtra("Individual", individual);

@@ -107,15 +107,10 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
 
                        individual.setQ1114(selectedRbtn.getText().toString().substring(0,1));
 
-                        //update individual
-                        DatabaseHelper myDB = new DatabaseHelper(q1114.this);
                         myDB.onOpen(myDB.getReadableDatabase());
-
-                        if(myDB.checkIndividual(individual)){
-                            //Update
-                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-
-                        }
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
 
                         Intent intent = new Intent(q1114.this, HIVChildParentalConsent15_17.class);
                         intent.putExtra("Individual",  individual);

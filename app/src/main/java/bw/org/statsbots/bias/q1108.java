@@ -136,7 +136,10 @@ protected LibraryClass lib;
                                 individual.setQ1108aWks(txtq1108wks.getText().toString());
                             }
 
-
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.close();
 
 
                             Intent intent = new Intent(q1108.this, q1109.class);

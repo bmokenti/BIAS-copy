@@ -71,6 +71,10 @@ public class q702 extends AppCompatActivity implements Serializable {
                 } else {
                    individual.setQ702(selected.getText().toString().substring(0, 1));
 
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
                     Intent intent = new Intent(q702.this, q703.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);

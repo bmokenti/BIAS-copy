@@ -70,7 +70,10 @@ public class q703 extends AppCompatActivity implements Serializable{
                     vibs.vibrate(100);
                 } else {
                     individual.setQ703(selected.getText().toString().substring(0, 1));
-
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
                     Intent intent = new Intent(q703.this, q704.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);

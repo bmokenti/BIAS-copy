@@ -19,6 +19,7 @@ public class q624 extends AppCompatActivity implements Serializable {
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
+    private DatabaseHelper myDB;
     protected RadioButton rbtn1, rbtn2,rbtn3;
     protected RadioGroup rg1,rg2,rg3;
     protected EditText edtOther;
@@ -40,6 +41,11 @@ public class q624 extends AppCompatActivity implements Serializable {
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +63,11 @@ public class q624 extends AppCompatActivity implements Serializable {
                 else
                 {
                     individual.setQ624(selectedRbtn.getText().toString().substring(0, 1));
+
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
 
                     Intent intent = new Intent(q624.this, q625.class);
                     intent.putExtra("Individual", individual);

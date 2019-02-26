@@ -113,6 +113,11 @@ public class q1015 extends AppCompatActivity implements Serializable {
                             if (rbtn2.isChecked() || rbtn3.isChecked()) {
                                 individual.setQ1015(selectedRbtn.getText().toString().substring(0, 1));
 
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.close();
+
                                 Intent intent1 = new Intent(q1015.this, q1101.class);
                                 intent1.putExtra("Individual", individual);
                                 startActivity(intent1);
@@ -125,6 +130,11 @@ public class q1015 extends AppCompatActivity implements Serializable {
                                     individual.setQ1014(selectedRbtn.getText().toString().substring(0, 1));
                                     individual.setQ1014a(selectedRbtna.getText().toString().substring(0, 1));
 
+                                    myDB.onOpen(myDB.getReadableDatabase());
+                                    myDB.getWritableDatabase();
+                                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                    myDB.close();
+
                                     Intent intent = new Intent(q1015.this, q1016.class);
                                     intent.putExtra("Individual", individual);
                                     startActivity(intent);
@@ -134,6 +144,11 @@ public class q1015 extends AppCompatActivity implements Serializable {
                                     individual.setQ1015(selectedRbtn.getText().toString().substring(0, 1));
                                     individual.setQ1015a(selectedRbtna.getText().toString().substring(0, 1));
                                     individual.setQ1015b(selectedRbtnb.getText().toString().substring(0, 1));
+
+                                    myDB.onOpen(myDB.getReadableDatabase());
+                                    myDB.getWritableDatabase();
+                                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                    myDB.close();
 
                                     Intent intent = new Intent(q1015.this, q1016.class);
                                     intent.putExtra("Individual", individual);

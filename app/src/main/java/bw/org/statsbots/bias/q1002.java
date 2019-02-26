@@ -277,6 +277,12 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                         individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
                                         individual.setQ1002bOther(edtbOther.getText().toString());
 
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.close();
+
+
                                         Intent intent = new Intent(q1002.this, q1003.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);

@@ -736,16 +736,9 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                             individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
                                                             myDB = new DatabaseHelper(q801.this);
                                                             myDB.onOpen(myDB.getReadableDatabase());
+                                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                                            myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
 
-                                                            if (myDB.checkIndividual(individual)) {
-                                                                //Update
-                                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-                                                                myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
-                                                            } else {
-                                                                //Insert
-                                                                myDB.insertIndividual(individual);
-
-                                                            }
                                                             Intent intent = new Intent(q801.this, q804.class);
                                                             intent.putExtra("Individual", individual);
                                                             startActivity(intent);
@@ -783,15 +776,9 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                 myDB = new DatabaseHelper(q801.this);
                                                                 myDB.onOpen(myDB.getReadableDatabase());
 
-                                                                if (myDB.checkIndividual(individual)) {
-                                                                    //Update
                                                                     myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                                                     myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
-                                                                } else {
-                                                                    //Insert
-                                                                    myDB.insertIndividual(individual);
 
-                                                                }
                                                                 Intent intent = new Intent(q801.this, q901.class);
                                                                 intent.putExtra("Individual", individual);
                                                                 startActivity(intent);
@@ -806,17 +793,10 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                // individual.setQ801f("0");
                                                                 myDB = new DatabaseHelper(q801.this);
                                                                 myDB.onOpen(myDB.getReadableDatabase());
+                                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                                                myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
 
-                                                                if (myDB.checkIndividual(individual)) {
-                                                                    //Update
-                                                                    myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-                                                                    myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
 
-                                                                } else {
-                                                                    //Insert
-                                                                    myDB.insertIndividual(individual);
-
-                                                                }
                                                                 Intent intent = new Intent(q801.this, q901.class);
                                                                 intent.putExtra("Individual", individual);
                                                                 //startActivity(intent);
@@ -861,15 +841,10 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                     myDB = new DatabaseHelper(q801.this);
                                                                     myDB.onOpen(myDB.getReadableDatabase());
 
-                                                                    if (myDB.checkIndividual(individual)) {
-                                                                        //Update
+
                                                                         myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                                                         myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
-                                                                    } else {
-                                                                        //Insert
-                                                                        myDB.insertIndividual(individual);
 
-                                                                    }
                                                                     Intent intent = new Intent(q801.this, q802.class);
                                                                     intent.putExtra("Individual", individual);
                                                                     //startActivity(intent);
@@ -913,16 +888,11 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                             myDB = new DatabaseHelper(q801.this);
                                                                             myDB.onOpen(myDB.getReadableDatabase());
 
-                                                                            if (myDB.checkIndividual(individual)) {
-                                                                                //Update
+
                                                                                 myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                                                                 myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
 
-                                                                            } else {
-                                                                                //Insert
-                                                                                myDB.insertIndividual(individual);
-
-                                                                            }
+                                                                             
                                                                             Intent intent = new Intent(q801.this, q802.class);
                                                                             intent.putExtra("Individual", individual);
                                                                             //startActivity(intent);

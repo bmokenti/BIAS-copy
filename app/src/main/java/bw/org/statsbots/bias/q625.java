@@ -59,11 +59,9 @@ public class q625 extends AppCompatActivity {
                     myDB = new DatabaseHelper(q625.this);
                     myDB.onOpen(myDB.getReadableDatabase());
                     myDB.getWritableDatabase();
-                    if(myDB.checkIndividual(individual)){
-                        //Update
+
                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
-                    }
                     Intent intent = new Intent(q625.this, q701.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);

@@ -188,6 +188,13 @@ public class q1004 extends AppCompatActivity implements Serializable {
                                                 individual.setQ1004_Year(edtyears.getText().toString());
                                                 individual.setQ1004a(selectedRbtna.getText().toString().substring(0, 1));
 
+
+                                                myDB.onOpen(myDB.getReadableDatabase());
+                                                myDB.getWritableDatabase();
+                                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                                myDB.close();
+
+
                                                 Intent intent = new Intent(q1004.this, q1005.class);
                                                 intent.putExtra("Individual", individual);
                                                 startActivity(intent);
@@ -199,6 +206,14 @@ public class q1004 extends AppCompatActivity implements Serializable {
                                                 individual.setQ1004a(selectedRbtna.getText().toString().substring(0, 1));
                                                 individual.setQ1004b(selectedRbtnb.getText().toString().substring(0, 1));
                                                 individual.setQ1004b_Other(edtOther.getText().toString());
+
+
+                                                myDB.onOpen(myDB.getReadableDatabase());
+                                                myDB.getWritableDatabase();
+                                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                                myDB.close();
+
+
 
                                                 Intent intent = new Intent(q1004.this, q1005.class);
                                                 intent.putExtra("Individual", individual);

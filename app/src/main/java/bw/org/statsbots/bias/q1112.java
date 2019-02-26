@@ -101,6 +101,11 @@ public class q1112 extends AppCompatActivity implements View.OnClickListener, Se
                     individual.setQ1112(selectedRbtn.getText().toString().substring(0,1));
                     individual.setQ1112_Other(text1112other.getText().toString());
 
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
+
                     Intent intent = new Intent(q1112.this, q1114.class);
                     intent.putExtra("Individual",  individual);
                     startActivity(intent);

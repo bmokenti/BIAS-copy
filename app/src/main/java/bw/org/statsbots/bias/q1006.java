@@ -85,11 +85,22 @@ public class q1006 extends AppCompatActivity implements Serializable {
                         if (rbtn1.isChecked()) {
                             individual.setQ1006(selectedRbtn.getText().toString().substring(0,1));
 
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.close();
+
                             Intent skipto1008 = new Intent(q1006.this, q1010.class);
                             skipto1008.putExtra("Individual", individual);
                             startActivity(skipto1008);
                         } else {
                             individual.setQ1006(selectedRbtn.getText().toString().substring(0,1));
+
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.close();
+
 
                             Intent intent = new Intent(q1006.this, q1008.class);
                             intent.putExtra("Individual", individual);

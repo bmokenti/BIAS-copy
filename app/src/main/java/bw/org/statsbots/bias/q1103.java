@@ -139,6 +139,11 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
                             if (rbtnN.isChecked()) {
                                 individual.setQ1103(selectedRbtn.getText().toString().substring(0,1));
 
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.close();
+
                                 Intent q1o3i = new Intent(q1103.this, q1107.class);
                                 q1o3i.putExtra("Individual", individual);
                                 startActivity(q1o3i);
@@ -146,6 +151,7 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
                             } else {
 
                                 individual.setQ1103(selectedRbtn.getText().toString().substring(0,1));
+
 
                                 if(q1103dd.getText().toString().length()==0){
                                     individual.setQ1103aDD("00");
@@ -164,7 +170,10 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
                                     individual.setQ1103aWks(q1103wks.getText().toString());
                                 }
 
-
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.close();
 
                                 Intent q1o3 = new Intent(q1103.this, q1104.class);
                                 q1o3.putExtra("Individual", individual);

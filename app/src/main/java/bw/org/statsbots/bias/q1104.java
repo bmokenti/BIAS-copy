@@ -112,6 +112,11 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
                     if (rbtn2.isChecked()) {
                         individual.setQ1104(selectedRbtn.getText().toString().substring(0,1));
 
+
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
                         Intent q11047 = new Intent(q1104.this, q1107.class);
                         q11047.putExtra("Individual", individual);
                         startActivity(q11047);
@@ -121,7 +126,10 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
 
                         individual.setQ1104(selectedRbtn.getText().toString().substring(0,1));
 
-
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
                         //Next question P04
                         Intent intent = new Intent(q1104.this, q1105.class);
                         intent.putExtra("Individual", individual);

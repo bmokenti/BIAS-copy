@@ -250,6 +250,11 @@ public class q901 extends AppCompatActivity implements Serializable {
                                     // to include ea status code on the check
                                     individual.setQ901(selectedRbtn.getText().toString().substring(0, 1));
 
+                                    myDB.onOpen(myDB.getReadableDatabase());
+                                    myDB.getWritableDatabase();
+                                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                    myDB.close();
+
                                     Intent q1o2 = new Intent(q901.this, q902.class);
                                     q1o2.putExtra("Individual", individual);
                                     startActivity(q1o2);
@@ -260,6 +265,11 @@ public class q901 extends AppCompatActivity implements Serializable {
                                     individual.setQ901(selectedRbtn.getText().toString().substring(0, 1));
                                     individual.setQ901a(selectedRbtna.getText().toString().substring(0, 1));
                                     individual.setQ901a(edt.getText().toString());
+
+                                    myDB.onOpen(myDB.getReadableDatabase());
+                                    myDB.getWritableDatabase();
+                                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                    myDB.close();
 
                                     Intent intent = new Intent(q901.this, q902.class);
                                     intent.putExtra("Individual", individual);

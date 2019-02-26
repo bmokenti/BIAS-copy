@@ -179,6 +179,13 @@ public class q903 extends AppCompatActivity implements Serializable {
                                             individual.setQ903f(selectedRbtn6.getText().toString().substring(0,1));
                                             individual.setQ903g(selectedRbtn7.getText().toString().substring(0,1));
 
+                                            myDB.onOpen(myDB.getReadableDatabase());
+                                            myDB.getWritableDatabase();
+                                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                            myDB.close();
+
+
+
                                             Intent intent = new Intent(q903.this, q904.class);
                                             intent.putExtra("Individual", individual);
                                             startActivity(intent);

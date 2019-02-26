@@ -81,11 +81,9 @@ public class q1017 extends AppCompatActivity implements Serializable {
                     myDB = new DatabaseHelper(q1017.this);
                     myDB.onOpen(myDB.getReadableDatabase());
                     myDB.getWritableDatabase();
-                    if(myDB.checkIndividual(individual)){
-                        //Update
+
                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
-                    }
                     Intent intent = new Intent(q1017.this, q1101.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);

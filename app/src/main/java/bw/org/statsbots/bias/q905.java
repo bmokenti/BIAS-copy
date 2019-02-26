@@ -120,11 +120,9 @@ public class q905 extends AppCompatActivity implements Serializable {
                             myDB = new DatabaseHelper(q905.this);
                             myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();
-                            if(myDB.checkIndividual(individual)){
-                                //Update
+
                                 myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
-                            }
                             Intent intent = new Intent(q905.this, q1001.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);
@@ -137,11 +135,9 @@ public class q905 extends AppCompatActivity implements Serializable {
                             myDB = new DatabaseHelper(q905.this);
                             myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();
-                            if(myDB.checkIndividual(individual)){
-                                //Update
+
                                 myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
-                            }
                             Intent intent = new Intent(q905.this, q1001.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);

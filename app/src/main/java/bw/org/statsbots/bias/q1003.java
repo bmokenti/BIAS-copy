@@ -69,12 +69,22 @@ public class q1003 extends AppCompatActivity implements Serializable {
 
                         individual.setQ1003(selectedRbtn.getText().toString().substring(0,1));
 
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
+
                         Intent skipto1017 = new Intent(q1003.this, q1017.class);
                         skipto1017.putExtra("Individual", individual);
                         startActivity(skipto1017);
                     } else {
 
                        individual.setQ1003(selectedRbtn.getText().toString().substring(0,1));
+
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.close();
 
                         Intent intent = new Intent(q1003.this, q1004.class);
                         intent.putExtra("Individual", individual);

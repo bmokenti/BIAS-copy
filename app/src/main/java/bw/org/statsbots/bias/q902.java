@@ -87,6 +87,10 @@ public class q902 extends AppCompatActivity implements Serializable {
                                    individual.setQ902Month(m);
                                    individual.setQ902Year(y);
 
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.close();
 
                                 Intent intent = new Intent(q902.this, q903.class);
                                 intent.putExtra("Individual", individual);

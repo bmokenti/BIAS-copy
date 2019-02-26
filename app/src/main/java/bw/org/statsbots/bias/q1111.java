@@ -103,7 +103,10 @@ public class q1111 extends AppCompatActivity implements  Serializable {
                    individual.setQ1111(selectedRbtn.getText().toString().substring(0,1));
                    individual.setQ1111Other(text1111other.getText().toString());
 
-
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
 
 
                     Intent intent = new Intent(q1111.this, q1112.class);

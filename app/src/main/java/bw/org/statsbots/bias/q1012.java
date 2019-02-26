@@ -135,6 +135,11 @@ else{
                                         individual.setQ1012_Month(edtmnths.getText().toString());
                                        individual.setQ1012_Year(edtyear.getText().toString());
 
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.close();
+
                                         Intent intent = new Intent(q1012.this, q1013.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);

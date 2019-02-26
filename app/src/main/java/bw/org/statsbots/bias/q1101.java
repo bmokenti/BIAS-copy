@@ -153,6 +153,11 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
                     int selectedId1 = rg2.getCheckedRadioButtonId();
                     selectedRbtn1 = (RadioButton) findViewById(selectedId1);
 
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
+
                     if ((selectedRbtn1 == null) && ((rbtn1.isChecked() || rbtn2.isChecked()))) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(q1101.this);
                         builder.setTitle("Q1101: Error");
@@ -218,6 +223,11 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
 
                                 individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
 
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.close();
+
 
                                 Intent intent = new Intent(q1101.this, q1102.class);
                                 intent.putExtra("Individual", individual);
@@ -227,6 +237,12 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
                                 if ((rbtn3.isChecked() || rbtn4.isChecked()) && sample.getStatusCode().equals("1")) {
 
                                     individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
+                                    myDB.onOpen(myDB.getReadableDatabase());
+                                    myDB.getWritableDatabase();
+                                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                    myDB.close();
+
+
                                     Intent intent = new Intent(q1101.this, q1103.class);
                                     intent.putExtra("Individual", individual);
                                     startActivity(intent);
@@ -235,6 +251,11 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
                                     if ((rbtn1.isChecked() || rbtn2.isChecked()) && sample.getStatusCode().equals("1")) {
 
                                         individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
+
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.close();
                                         Intent intent = new Intent(q1101.this, HIVChildParentalConsent15_17.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);
@@ -245,6 +266,11 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
                                         individual.setQ1101a(selectedRbtn1.getText().toString().substring(0, 1));
                                         individual.setQ1101aOther(q1101aOther.getText().toString());
 
+
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.close();
                                         Intent q1o3 = new Intent(q1101.this, q1102.class);
                                         q1o3.putExtra("Individual", individual);
                                         startActivity(q1o3);

@@ -77,7 +77,7 @@ public class q701 extends AppCompatActivity implements Serializable {
                     myDB.close();
 
 
-                   Intent intent = new Intent(q701.this, q702.class);
+                    Intent intent = new Intent(q701.this, q702.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);
 

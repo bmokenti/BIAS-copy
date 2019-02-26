@@ -91,6 +91,10 @@ public class q1105 extends AppCompatActivity implements  Serializable {
 
                individual.setQ1105(selectedRbtn.getText().toString().substring(0,1));
 
+                    myDB.onOpen(myDB.getReadableDatabase());
+                    myDB.getWritableDatabase();
+                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.close();
 
                         //Next question P04
                         Intent intent = new Intent(q1105.this, q1106.class);

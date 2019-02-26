@@ -202,11 +202,9 @@ public class q804 extends AppCompatActivity implements Serializable{
                             myDB = new DatabaseHelper(q804.this);
                             myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();
-                            if(myDB.checkIndividual(individual)){
-                                //Update
+
                                 myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
-                            }
                             Intent intent = new Intent(q804.this, q1001.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);
@@ -216,11 +214,9 @@ public class q804 extends AppCompatActivity implements Serializable{
                             myDB = new DatabaseHelper(q804.this);
                             myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();
-                            if(myDB.checkIndividual(individual)){
-                                //Update
+
                                 myDB.updateIndividual(myDB.getWritableDatabase(),individual);
 
-                            }
                             Intent intent = new Intent(q804.this, q1101.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);

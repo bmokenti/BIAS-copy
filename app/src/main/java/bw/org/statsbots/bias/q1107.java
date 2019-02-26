@@ -135,7 +135,10 @@ public class q1107 extends AppCompatActivity implements  Serializable {
                                 individual.setQ1107aWks(txtweeks.getText().toString());
                             }
 
-
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.close();
 
                             Intent intent = new Intent(q1107.this, q1108.class);
                             intent.putExtra("Individual", individual);
