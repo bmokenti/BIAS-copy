@@ -799,7 +799,7 @@ public class q801 extends AppCompatActivity implements Serializable {
 
                                                                 Intent intent = new Intent(q801.this, q901.class);
                                                                 intent.putExtra("Individual", individual);
-                                                                //startActivity(intent);
+                                                                startActivity(intent);
 
                                                             } else {
                                                 //*********************************************normal 15-64**************answered sec:A NO
@@ -847,7 +847,7 @@ public class q801 extends AppCompatActivity implements Serializable {
 
                                                                     Intent intent = new Intent(q801.this, q802.class);
                                                                     intent.putExtra("Individual", individual);
-                                                                    //startActivity(intent);
+                                                                    startActivity(intent);
 
                                                                 } else {
                                                                         //normal answered all 15-64
@@ -895,7 +895,7 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                              
                                                                             Intent intent = new Intent(q801.this, q802.class);
                                                                             intent.putExtra("Individual", individual);
-                                                                            //startActivity(intent);
+                                                                            startActivity(intent);
                                                                         }
 
                                                                     }
