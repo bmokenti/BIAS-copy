@@ -28,6 +28,7 @@ import org.json.JSONObject;
 
 
 import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -225,6 +226,7 @@ public class login extends AppCompatActivity {
         private  final String UserName;
         private  final String PasswordHash;
         private HttpURLConnection conn;
+        final String ipaddress = preferences.getString("server_ip", null);
         protected LibraryClass lib = new LibraryClass();
 
         UserLoginTask(String UserName, String PasswordHash){
@@ -242,7 +244,9 @@ public class login extends AppCompatActivity {
             try
             {
 
-                String url="http://10.30.3.169:8080/Webservice/login?Username=" + UserName + "&password=" + PasswordHash;
+                String url = ipaddress+"login?Username=" + UserName + "&password=" + PasswordHash;
+                Log.d("Login",url);
+                //String url="http://10.30.3.169:8080/Webservice/login?Username=" + UserName + "&password=" + PasswordHash;
                 HttpHandler sh = new HttpHandler();
                 String jsonStr = sh.makeServiceCall(url);
 

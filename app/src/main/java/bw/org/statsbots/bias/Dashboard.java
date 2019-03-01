@@ -191,7 +191,9 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
     {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_dash, menu);
-        menu.getItem(0).setTitle("Log out (" + preferences.getString("Name",null)+ " "+ preferences.getString("Surname_Name",null)+ ")");
+        String con = "Log out (" + preferences.getString("Name",null)+ " "+ preferences.getString("Surname_Name",null)+ ")";
+        Log.d("****" , con);
+        menu.getItem(0).setTitle(con);
         return super.onCreateOptionsMenu(menu);
 
     }
