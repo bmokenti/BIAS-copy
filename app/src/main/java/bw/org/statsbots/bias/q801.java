@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q801 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -116,12 +117,16 @@ public class q801 extends AppCompatActivity implements Serializable {
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
+
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
+
         Log.d("age",individual.getQ102());
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
-        if((Integer.valueOf(individual.getQ102()) > 64 && sample.getStatusCode().equals("2")) ||
-                ((Integer.valueOf(individual.getQ102()) >=15 && Integer.valueOf(individual.getQ102()) <65) && (sample.getStatusCode().equals("3"))) )
+        if((Integer.valueOf(individual.getQ102()) > 64 && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") ) ||
+                sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")))
         {
 
 
@@ -159,184 +164,7 @@ public class q801 extends AppCompatActivity implements Serializable {
             rbtneOther.setEnabled(false);
 
         }
-//        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-//                if(i == R.id.q801_2 &&  ((  Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2")) ) ||
-//                        ((Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))) )))
-//                {
-//                    rbtna1.setEnabled(false);
-//                    rbtna2.setEnabled(false);
-//                    rbtna1.setChecked(false);
-//                    rbtna2.setChecked(false);
-//
-//// set b controls.
-//                    rbtnb1.setEnabled(false);
-//                    rbtnb2.setEnabled(false);
-//                    rbtnb3.setEnabled(false);
-//
-//                    rbtnb1.setChecked(false);
-//                    rbtnb2.setChecked(false);
-//                    rbtnb3.setChecked(false);
-//                    //set c controls
-//                    edtcmnths.setEnabled(false);
-//                    edtcyear.setEnabled(false);
-//                    chkc99.setEnabled(false);
-//                    chkc9999.setEnabled(false);
-//
-//                    edtcmnths.setText("");
-//                    edtcyear.setText("");
-//                    chkc99.setChecked(false);
-//                    chkc9999.setChecked(false);
-//
-//// set d controls
-//                    rbtnd1.setEnabled(false);
-//                    rbtnd2.setEnabled(false);
-//                    rbtnd3.setEnabled(false);
-//                    rbtnd4.setEnabled(false);
-//                    rbtnd5.setEnabled(false);
-//                    rbtnd6.setEnabled(false);
-//                    rbtnd7.setEnabled(false);
-//                    rbtnd8.setEnabled(false);
-//                    rbtnd10.setEnabled(false);
-//                    rbtnd11.setEnabled(false);
-//                    rbtnd12.setEnabled(false);
-//                    rbtndOther.setEnabled(false);
-//
-//                    rbtnd1.setChecked(false);
-//                    rbtnd2.setChecked(false);
-//                    rbtnd3.setChecked(false);
-//                    rbtnd4.setChecked(false);
-//                    rbtnd5.setChecked(false);
-//                    rbtnd6.setChecked(false);
-//                    rbtnd7.setChecked(false);
-//                    rbtnd8.setChecked(false);
-//                    rbtnd10.setChecked(false);
-//                    rbtnd11.setChecked(false);
-//                    rbtnd12.setChecked(false);
-//                    rbtndOther.setChecked(false);
-//
-//// set e controls
-//                    rbtne1.setEnabled(false);
-//                    rbtne2.setEnabled(false);
-//                    rbtne3.setEnabled(false);
-//                    rbtne4.setEnabled(false);
-//                    rbtne5.setEnabled(false);
-//                    rbtne6.setEnabled(false);
-//                    rbtne7.setEnabled(false);
-//                    rbtne8.setEnabled(false);
-//                    rbtne9.setEnabled(false);
-//                    rbtneOther.setEnabled(false);
-//
-//                    rbtne1.setChecked(false);
-//                    rbtne2.setChecked(false);
-//                    rbtne3.setChecked(false);
-//                    rbtne4.setChecked(false);
-//                    rbtne5.setChecked(false);
-//                    rbtne6.setChecked(false);
-//                    rbtne7.setChecked(false);
-//                    rbtne8.setChecked(false);
-//                    rbtne9.setChecked(false);
-//                    rbtneOther.setChecked(false);
-//
-////set f controls
-//                    rbtnf1.setEnabled(false);
-//                    rbtnf2.setEnabled(false);
-//                    rbtnf3.setEnabled(false);
-//                    rbtnf4.setEnabled(false);
-//                    rbtnf5.setEnabled(false);
-//
-//                    rbtnf1.setChecked(false);
-//                    rbtnf2.setChecked(false);
-//                    rbtnf3.setChecked(false);
-//                    rbtnf4.setChecked(false);
-//                    rbtnf5.setChecked(false);
-//
-//                    t801a.setTextColor(Color.LTGRAY);
-//                    t801b.setTextColor(Color.LTGRAY);
-//                    t801c.setTextColor(Color.LTGRAY);
-//                    t801d.setTextColor(Color.LTGRAY);
-//                    t801e.setTextColor(Color.LTGRAY);
-//                    t801f.setTextColor(Color.LTGRAY);
-//                }
-//                else
-//                {
-//                    rbtna1.setEnabled(true);
-//                    rbtna2.setEnabled(true);
-//
-//
-//// set b controls.
-//                    rbtnb1.setEnabled(true);
-//                    rbtnb2.setEnabled(true);
-//                    rbtnb3.setEnabled(true);
-//
-//                    rbtnb1.setChecked(true);
-//                    rbtnb2.setChecked(true);
-//                    rbtnb3.setChecked(true);
-//
-//                    //set c controls
-//                    edtcmnths.setEnabled(true);
-//                    edtcyear.setEnabled(true);
-//                    chkc99.setEnabled(true);
-//                    chkc9999.setEnabled(true);
-//
-//                   // edtcmnths.setText("");
-//                    //edtcyear.setText("");
-//                   // chkc99.setChecked(false);
-//                    //chkc9999.setChecked(false);
-//
-//// set d controls
-//                    rbtnd1.setEnabled(true);
-//                    rbtnd2.setEnabled(true);
-//                    rbtnd3.setEnabled(true);
-//                    rbtnd4.setEnabled(true);
-//                    rbtnd5.setEnabled(true);
-//                    rbtnd6.setEnabled(true);
-//                    rbtnd7.setEnabled(true);
-//                    rbtnd8.setEnabled(true);
-//                    rbtnd10.setEnabled(true);
-//                    rbtnd11.setEnabled(true);
-//                    rbtnd12.setEnabled(true);
-//                    rbtndOther.setEnabled(true);
-//
-//                    rbtnd1.setChecked(true);
-//                    rbtnd2.setChecked(true);
-//                    rbtnd3.setChecked(true);
-//                    rbtnd4.setChecked(true);
-//                    rbtnd5.setChecked(true);
-//                    rbtnd6.setChecked(true);
-//                    rbtnd7.setChecked(true);
-//                    rbtnd8.setChecked(true);
-//                    rbtnd10.setChecked(true);
-//                    rbtnd11.setChecked(true);
-//                    rbtnd12.setChecked(true);
-//                    rbtndOther.setChecked(true);
-//
-//
-//
-//// set e controls
-//
-//
-////set f controls
-//                    rbtnf1.setEnabled(true);
-//                    rbtnf2.setEnabled(true);
-//                    rbtnf3.setEnabled(true);
-//                    rbtnf4.setEnabled(true);
-//                    rbtnf5.setEnabled(true);
-//
-//
-//                    t801a.setTextColor(Color.LTGRAY);
-//
-//                    t801c.setTextColor(Color.LTGRAY);
-//
-//                    t801f.setTextColor(Color.LTGRAY);
-//                }
-//                Intent intent = new Intent(q801.this, q804.class);
-//                intent.putExtra("Individual", individual);
-//                startActivity(intent);
-//            }
-//
-//        });
+
 
 
         rgd.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -359,7 +187,7 @@ public class q801 extends AppCompatActivity implements Serializable {
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.q801_1 &&  Integer.valueOf(individual.getQ102()) <= 64 && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("1")) )
+                if(i == R.id.q801_1 &&  ((sample.getStatusCode().equals("1")) || ( Integer.valueOf(individual.getQ102()) <= 64 && sample.getStatusCode().equals("2")&& thisHous.get(0).getHIVTB40().equals("1"))) )
                 {
 
                     rbtna1.setEnabled(true);
@@ -415,7 +243,8 @@ public class q801 extends AppCompatActivity implements Serializable {
                     t801f.setTextColor(Color.BLACK);
                 }
                 else {
-                    if (i == R.id.q801_1 && ((Integer.valueOf(individual.getQ102()) >= 64 && sample.getStatusCode().equals("2")) || sample.getStatusCode().equals("3"))) {
+                    if (i == R.id.q801_1 && ((Integer.valueOf(individual.getQ102()) >= 65 && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") )
+                            || sample.getStatusCode().equals("3")  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")))) {
 
                         rbtna1.setEnabled(true);
                         rbtna2.setEnabled(true);
@@ -548,7 +377,8 @@ public class q801 extends AppCompatActivity implements Serializable {
         rga.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.q801a_1 && Integer.valueOf(individual.getQ102()) <=64 && (sample.getStatusCode().equals("1") ||sample.getStatusCode().equals("2") ) )
+                if(i == R.id.q801a_1 && Integer.valueOf(individual.getQ102()) <=64 && (sample.getStatusCode().equals("1") ||
+                        (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") )) )
                 {
                     rbtnb1.setEnabled(true);
                     rbtnb2.setEnabled(true);
@@ -556,7 +386,9 @@ public class q801 extends AppCompatActivity implements Serializable {
                     t801b.setTextColor(Color.BLACK);
                 }
                 else {
-                    if (i == R.id.q801a_1 && ((Integer.valueOf(individual.getQ102()) >= 64 && sample.getStatusCode().equals("2")) || sample.getStatusCode().equals("3"))) {
+                    if (i == R.id.q801a_1 && ((Integer.valueOf(individual.getQ102()) >= 65 && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) ||
+                            (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
+                            || sample.getStatusCode().equals("3"))) {
                         rbtnb1.setEnabled(false);
                         rbtnb2.setEnabled(false);
                         rbtnb3.setEnabled(false);
@@ -717,7 +549,7 @@ public class q801 extends AppCompatActivity implements Serializable {
 
                                                     int selectedIdf = rgf.getCheckedRadioButtonId();
                                                     selectedRbtnf = (RadioButton) findViewById(selectedIdf);
-                                                    Log.d("results", selectedRbtnf.getText().toString().substring(0, 1));
+                                                 //   Log.d("results", selectedRbtnf.getText().toString().substring(0, 1));
 
                                                     if (selectedRbtnf == null && (rbtn1.isChecked())) {
                                                         lib.showError(q801.this, "Q801f: ERROR", "What was the result of your last HIV test?");
@@ -728,26 +560,28 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                         vibs.vibrate(100);
 
                                                     } else {
-                                                        //15-64 = no
-
-                                                        if (rbtn2.isChecked()  && sample.getStatusCode().equals("2")
-                                                                && Integer.valueOf(individual.getQ102()) <= 64) {
+                                                        //if no and is combined  or HIV only
+                                                        if (rbtn2.isChecked() && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") || sample.getStatusCode().equals("1"))) {
 
                                                             individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
+
                                                             myDB = new DatabaseHelper(q801.this);
                                                             myDB.onOpen(myDB.getReadableDatabase());
                                                             myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-                                                            myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
+                                                            myDB.updateInd("Q801", individual.getAssignmentID(), individual.getBatch(), individual.getQ801(), String.valueOf(individual.getSRNO()));
+
 
                                                             Intent intent = new Intent(q801.this, q804.class);
                                                             intent.putExtra("Individual", individual);
                                                             startActivity(intent);
 
                                                         } else {
-                                                            //above 64
+                                                            //above 64 and tb oly
 
-                                                            if ( rbtn1.isChecked() && (((sample.getStatusCode().equals("2") && Integer.valueOf(individual.getQ102()) > 64) ||
-                                                                    sample.getStatusCode().equals("3")))) {
+                                                            if (rbtn1.isChecked() && ((((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64) ||
+                                                                    (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
+
+                                                                    sample.getStatusCode().equals("3"))))) {
 
                                                                 individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
                                                                 individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
@@ -768,95 +602,101 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                 } else {
                                                                     individual.setQ801cYear(edtcyear.getText().toString());
                                                                 }
+
+                                                                //  Log.d("results", selectedRbtnf.getText().toString().substring(0, 1));
+                                                                // Log.d("result", individual.getQ801f());
+
                                                                 individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
-
-                                                                Log.d("results", selectedRbtnf.getText().toString().substring(0, 1));
-                                                                Log.d("result", individual.getQ801f());
-
                                                                 myDB = new DatabaseHelper(q801.this);
                                                                 myDB.onOpen(myDB.getReadableDatabase());
 
-                                                                    myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-                                                                    myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
-
-                                                                Intent intent = new Intent(q801.this, q901.class);
-                                                                intent.putExtra("Individual", individual);
-                                                                startActivity(intent);
-
-                                                            } else {
-                                                            //above 64... 801 = no
-
-                                                            if (rbtn2.isChecked() && (sample.getStatusCode().equals("2") && Integer.valueOf(individual.getQ102()) > 64) ||
-                                                                    sample.getStatusCode().equals("3"))  {
-
-                                                                individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
-                                                               // individual.setQ801f("0");
-                                                                myDB = new DatabaseHelper(q801.this);
-                                                                myDB.onOpen(myDB.getReadableDatabase());
                                                                 myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-                                                                myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
-
+                                                                myDB.updateInd("Q801f", individual.getAssignmentID(), individual.getBatch(), individual.getQ801f(), String.valueOf(individual.getSRNO()));
 
                                                                 Intent intent = new Intent(q801.this, q901.class);
                                                                 intent.putExtra("Individual", individual);
                                                                 startActivity(intent);
 
                                                             } else {
-                                                //*********************************************normal 15-64**************answered sec:A NO
-                                                                if (rbtn1.isChecked()&& rbtna2.isChecked() && sample.getStatusCode().equals("2" ) || sample.getStatusCode().equals("1" )
-                                                                        && Integer.valueOf(individual.getQ102()) <= 64) {
+                                                                //NO and above 64 and tb only
 
+                                                                if (rbtn2.isChecked() && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")   && Integer.valueOf(individual.getQ102()) > 64) ||
+                                                                        sample.getStatusCode().equals("3")  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )) {
 
                                                                     individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
-                                                                    individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
-
-
-                                                                    if (edtcmnths.getText().toString().length() == 0) {
-                                                                        individual.setQ801cMonth("00");
-                                                                    } else if (edtcmnths.getText().toString().length() == 1) {
-                                                                        individual.setQ801cMonth("0" + edtcmnths.getText().toString());
-                                                                    } else {
-                                                                        individual.setQ801cMonth(edtcmnths.getText().toString());
-                                                                    }
-
-
-                                                                    if (edtcyear.getText().toString().length() == 0) {
-                                                                        individual.setQ801cYear("0000");
-                                                                    } else if (edtcyear.getText().toString().length() == 2) {
-                                                                        individual.setQ801cYear("00" + edtcyear.getText().toString());
-                                                                    } else {
-                                                                        individual.setQ801cYear(edtcyear.getText().toString());
-                                                                    }
-
-
-
-                                                                    individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
-                                                                    individual.setQ801dOther(edtdother.getText().toString());
-                                                                    individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
-                                                                    individual.setQ801eOther(edteother.getText().toString());
-                                                                    individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
-                                                                    Log.d("results", selectedRbtnf.getText().toString().substring(0, 1));
-                                                                    Log.d("result", individual.getQ801f());
-
+                                                                    // individual.setQ801f("0");
                                                                     myDB = new DatabaseHelper(q801.this);
                                                                     myDB.onOpen(myDB.getReadableDatabase());
+                                                                    myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                                                    myDB.updateInd("Q801f", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+                                                                   // myDB.updateInd("Q202",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
 
-
-                                                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-                                                                        myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
-
-                                                                    Intent intent = new Intent(q801.this, q802.class);
+                                                                    Intent intent = new Intent(q801.this, q901.class);
                                                                     intent.putExtra("Individual", individual);
                                                                     startActivity(intent);
 
                                                                 } else {
+                                                                    //*********************************************normal 15-64**************answered sec:A NO for combined and HIV only*********
+                                                                    if (rbtn1.isChecked() && rbtna2.isChecked() && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")   && Integer.valueOf(individual.getQ102()) <= 64)
+
+                                                                            || sample.getStatusCode().equals("1")) {
+
+
+                                                                        individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
+                                                                        individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
+                                                                       // individual.setQ801b(selectedRbtnb.getText().toString().substring(0, 1));
+
+
+                                                                        if (edtcmnths.getText().toString().length() == 0) {
+                                                                            individual.setQ801cMonth("00");
+                                                                        } else if (edtcmnths.getText().toString().length() == 1) {
+                                                                            individual.setQ801cMonth("0" + edtcmnths.getText().toString());
+                                                                        } else {
+                                                                            individual.setQ801cMonth(edtcmnths.getText().toString());
+                                                                        }
+
+
+                                                                        if (edtcyear.getText().toString().length() == 0) {
+                                                                            individual.setQ801cYear("0000");
+                                                                        } else if (edtcyear.getText().toString().length() == 2) {
+                                                                            individual.setQ801cYear("00" + edtcyear.getText().toString());
+                                                                        } else {
+                                                                            individual.setQ801cYear(edtcyear.getText().toString());
+                                                                        }
+
+
+                                                                        individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
+                                                                        individual.setQ801dOther(edtdother.getText().toString());
+                                                                        individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
+                                                                        individual.setQ801eOther(edteother.getText().toString());
+                                                                        individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
+                                                                       // Log.d("results", selectedRbtnf.getText().toString().substring(0, 1));
+                                                                       // Log.d("result", individual.getQ801f());
+
+                                                                        myDB = new DatabaseHelper(q801.this);
+                                                                        myDB.onOpen(myDB.getReadableDatabase());
+
+
+                                                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                                                        myDB.updateInd("Q801f", individual.getAssignmentID(), individual.getBatch(), individual.getQ801f(), String.valueOf(individual.getSRNO()));
+
+                                                                        Intent intent = new Intent(q801.this, q802.class);
+                                                                        intent.putExtra("Individual", individual);
+                                                                        startActivity(intent);
+
+                                                                    } else {
+
                                                                         //normal answered all 15-64
-                                                                        if (rbtn1.isChecked() && rbtna1.isChecked() && (sample.getStatusCode().equals("2") || sample.getStatusCode().equals("1"))
-                                                                                && Integer.valueOf(individual.getQ102()) <= 64) {
+                                                                        if (rbtn1.isChecked() && rbtna1.isChecked() && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")   && Integer.valueOf(individual.getQ102()) <= 64)
+
+                                                                                || sample.getStatusCode().equals("1")) {
                                                                             //Set q801 for the current individual
 
                                                                             individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
                                                                             individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
+
+                                                                            individual.setQ801b(selectedRbtnb.getText().toString().substring(0, 1));
+
                                                                             if (edtcmnths.getText().toString().length() == 0) {
                                                                                 individual.setQ801cMonth("00");
                                                                             } else if (edtcmnths.getText().toString().length() == 1) {
@@ -864,7 +704,6 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                             } else {
                                                                                 individual.setQ801cMonth(edtcmnths.getText().toString());
                                                                             }
-
 
 
                                                                             if (edtcyear.getText().toString().length() == 0) {
@@ -875,7 +714,7 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                                 individual.setQ801cYear(edtcyear.getText().toString());
                                                                             }
 
-                                                                            individual.setQ801b(selectedRbtnb.getText().toString().substring(0, 1));
+
 
 
                                                                             individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
@@ -883,16 +722,16 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                             individual.setQ801e(selectedRbtne.getText().toString().substring(0, 1));
                                                                             individual.setQ801eOther(edteother.getText().toString());
                                                                             individual.setQ801f(selectedRbtnf.getText().toString().substring(0, 1));
-                                                                            Log.d("results", selectedRbtnf.getText().toString().substring(0, 1));
-                                                                            Log.d("result", individual.getQ801f());
+                                                                            //Log.d("results", selectedRbtnf.getText().toString().substring(0, 1));
+                                                                           // Log.d("result", individual.getQ801f());
                                                                             myDB = new DatabaseHelper(q801.this);
                                                                             myDB.onOpen(myDB.getReadableDatabase());
 
 
-                                                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-                                                                                myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
+                                                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                                                            // myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
 
-                                                                             
+
                                                                             Intent intent = new Intent(q801.this, q802.class);
                                                                             intent.putExtra("Individual", individual);
                                                                             startActivity(intent);
@@ -900,10 +739,11 @@ public class q801 extends AppCompatActivity implements Serializable {
 
                                                                     }
 
+
                                                                 }
                                                             }
-                                                        }
 
+                                                        }
                                                     }
                                                 }
                                             }

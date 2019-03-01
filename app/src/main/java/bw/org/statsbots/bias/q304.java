@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q304 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -62,6 +63,51 @@ public class q304 extends AppCompatActivity implements Serializable {
         int p = 0;
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
+
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
+        RadioButton[] bt1 = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ304()!= null &&  !ind.getQ304().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ304())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        onRadioButtonClicked(radioButton);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rga.getChildCount();f++)
+        {
+            View o = rga.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ304a()!= null &&  !ind.getQ304a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ304a())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
 

@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q202 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
@@ -32,8 +33,7 @@ public class q202 extends AppCompatActivity implements View.OnClickListener, Ser
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q202);
-        myDB = new DatabaseHelper(this);
-        myDB.getWritableDatabase();
+
 
 
            setTitle("Q202: MARITAL STATUS AND RELATIONSHIP");
@@ -54,13 +54,14 @@ public class q202 extends AppCompatActivity implements View.OnClickListener, Ser
 
         Button btnext = findViewById(R.id.btnnext);
 //        PersonRoster pr[] = thisHouse.getPersons();
-
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
-
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
         RadioButton[] bt1 = new RadioButton[2];
-
 
         for(int f=0;f<rg.getChildCount();f++)
         {

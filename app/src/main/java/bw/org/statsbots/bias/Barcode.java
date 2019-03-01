@@ -58,6 +58,9 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
             final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
             individual = ind;
 
+
+
+
             if(Integer.valueOf(p1.getP04YY()) > 15)
             {
                 setTitle("Barcode  Children < 15 years");
@@ -80,6 +83,8 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
 
 
             contentTxt.setText(individual.getIndBarcode());
+
+            contentTxt.setText(p1.getBarcode());
 
 
 

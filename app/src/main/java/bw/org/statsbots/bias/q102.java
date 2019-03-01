@@ -60,7 +60,7 @@ public class q102 extends AppCompatActivity implements Serializable {
 
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
         individual = ind;
-        Log.d("adasdasd",ind.getQ101()+"");
+       // Log.d("adasdasd",ind.getQ101()+"");
          if(ind.getQ102()!= null)
          {
                 edt.setText(ind.getQ102());

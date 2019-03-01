@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q1107 extends AppCompatActivity implements  Serializable {
 
@@ -60,6 +61,10 @@ public class q1107 extends AppCompatActivity implements  Serializable {
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
+
+
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +115,10 @@ public class q1107 extends AppCompatActivity implements  Serializable {
                         if (rbtn2.isChecked()) {
 
                             individual.setQ1107(selectedRbtn.getText().toString().substring(0, 1));
+                            myDB.onOpen(myDB.getReadableDatabase());
+                            myDB.getWritableDatabase();
+                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.close();
 
                             Intent intent = new Intent(q1107.this, q1108.class);
                             intent.putExtra("Individual", individual);

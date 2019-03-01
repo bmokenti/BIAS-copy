@@ -200,7 +200,7 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
                             myDB.close();
                         }
 
-                        Intent intent = new Intent(IndividualQuestionaireConsent.this, q101.class);
+                        Intent intent = new Intent(IndividualQuestionaireConsent.this, Dashboard.class);
 
                         intent.putExtra("Individual", individual);
                         intent.putExtra("Personroster", p1);
@@ -219,16 +219,16 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
                         if (myDB.checkIndividual(individual)) {
                             //Update
                             myDB.updateInd("IndvQuestionnaireConsent",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnaireConsent(),String.valueOf(individual.getSRNO()));
+                            myDB.close();
                         } else {
                             //Insert
-                            myDB.insertIndividual(individual);
+                           // myDB.insertIndividual(individual);
 
                         }
 
                         //Next question P17
 
                         Intent intent = new Intent(IndividualQuestionaireConsent.this, q101.class);
-
                         intent.putExtra("Individual", individual);
                         intent.putExtra("Personroster", p1);
                         startActivity(intent);

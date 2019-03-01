@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q305 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -57,16 +58,22 @@ public class q305 extends AppCompatActivity implements Serializable {
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
+
+
+
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
-        if( sample.getStatusCode().equals("1") || Integer.valueOf(individual.getQ102()) >=15 )
-        {
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
-            Intent q1o2 = new Intent(q305.this, q307.class);
-            q1o2.putExtra("Individual", individual);
-            startActivity(q1o2);
-        }
+//        if( sample.getStatusCode().equals("1") || Integer.valueOf(individual.getQ102()) >=15 )
+//        {
+//
+//            Intent q1o2 = new Intent(q305.this, q307.class);
+//            q1o2.putExtra("Individual", individual);
+//            startActivity(q1o2);
+//        }
 
 
 

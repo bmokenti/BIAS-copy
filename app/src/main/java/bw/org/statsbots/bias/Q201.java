@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Q201 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
@@ -69,8 +70,18 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
         sample.getSTATUS();
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
-        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2"))) || (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))))
+        if((sample.getStatusCode().equals("3"))  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")))
+        {
+
+            Intent q1o2 = new Intent(Q201.this, q305.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
+
+        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))))
         {
 
             Intent q1o2 = new Intent(Q201.this, q305.class);
@@ -84,26 +95,26 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
 
 
 
-//        RadioButton[] bt1 = new RadioButton[6];
-//
-//
-//        for(int f=0;f<rg.getChildCount();f++)
-//        {
-//            View o = rg.getChildAt(f);
-//            if (o instanceof RadioButton)
-//            {
-//                bt1[f]=((RadioButton)o);
-//                if(ind.getQ201()!= null &&  !ind.getQ201().equals(""))
-//                {
-//                    if(Integer.parseInt(ind.getQ201())==f+1)
-//                    {
-//                        RadioButton radioButton = bt1[f];
-//                        radioButton.setChecked(true);
-//                        break;
-//                    }
-//                }
-//            }
-//        }
+        RadioButton[] bt1 = new RadioButton[6];
+
+
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ201()!= null &&  !ind.getQ201().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ201())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
 
         btnext.setOnClickListener(new View.OnClickListener()

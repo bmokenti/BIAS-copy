@@ -3587,7 +3587,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
            // dataModel.setB3_Date(B3_Date);
 
 
-
+            dataModel.setBarcode(Barcode);
             dataModel.setBloodDraw(BloodDraw);
             dataModel.setBloodVolume_1(BloodVolume_1);
             dataModel.setBloodVolume_4(BloodVolume_4);

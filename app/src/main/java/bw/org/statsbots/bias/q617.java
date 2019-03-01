@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q617 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -95,6 +96,13 @@ public class q617 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
         final String[] s1 = new String[1];
         final String[] s2 = new String[1];
@@ -374,6 +382,7 @@ public class q617 extends AppCompatActivity implements Serializable {
                                         myDB.getWritableDatabase();
                                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                                         myDB.close();
+
                                         Intent intent = new Intent(q617.this, q618.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);

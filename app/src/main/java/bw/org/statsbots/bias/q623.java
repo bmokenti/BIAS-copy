@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q623 extends AppCompatActivity implements Serializable {
 
@@ -56,14 +57,23 @@ public class q623 extends AppCompatActivity implements Serializable {
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
-        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2")) && (individual.getQ622().equals("9") || individual.getQ622().equals("1") || individual.getQ622().equals("2") )) ||
-                ((Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))) && (individual.getQ622().equals("9") || individual.getQ622().equals("1") || individual.getQ622().equals("2") )))
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
+
+
+        if((Integer.valueOf(individual.getQ102()) > 64 && sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1"))||
+
+
+                (sample.getStatusCode().equals("3")) ||
+                        (sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("0")) )
         {
 
             Intent q1o2 = new Intent(q623.this, q704.class);
             q1o2.putExtra("Individual", individual);
             startActivity(q1o2);
         }
+
+
 
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {

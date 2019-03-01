@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q302 extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -62,6 +63,29 @@ public class q302 extends AppCompatActivity implements Serializable {
         int p = 0;
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
+        RadioButton[] bt1 = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ302()!= null &&  !ind.getQ302().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ302())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        onRadioButtonClicked(radioButton);
+                        break;
+                    }
+                }
+            }
+        }
+
+
 
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();

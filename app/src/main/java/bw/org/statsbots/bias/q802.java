@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q802 extends AppCompatActivity implements Serializable {
 
@@ -61,13 +62,16 @@ public class q802 extends AppCompatActivity implements Serializable {
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
 
-        if(sample.getStatusCode().equals("3") && individual.getQ801f().equals("1"))
+        if((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
+                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64)) && individual.getQ801f().equals("1"))
         {
             Intent intent = new Intent(q802.this, q904.class);
             intent.putExtra("Individual", individual);
@@ -76,7 +80,9 @@ public class q802 extends AppCompatActivity implements Serializable {
 
 
 
-        if(sample.getStatusCode().equals("3") && (individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9")))
+        if((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
+                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64)) && !individual.getQ801f().equals("1"))
+
         {
             Intent intent = new Intent(q802.this, q1101.class);
             intent.putExtra("Individual", individual);

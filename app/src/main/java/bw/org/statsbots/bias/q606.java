@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q606 extends AppCompatActivity implements Serializable{
 
@@ -49,6 +50,9 @@ public class q606 extends AppCompatActivity implements Serializable{
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
+
 
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
@@ -57,21 +61,19 @@ public class q606 extends AppCompatActivity implements Serializable{
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
-        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2"))) ||
-                (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))))
-        {
-
-            Intent q1o2 = new Intent(q606.this, q616.class);
-            q1o2.putExtra("Individual", individual);
-            startActivity(q1o2);
-        }
+//        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2"))))
+//        {
+//
+//            Intent q1o2 = new Intent(q606.this, q616.class);
+//            q1o2.putExtra("Individual", individual);
+//            startActivity(q1o2);
+//        }
 
 
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 
-        if((Integer.valueOf(individual.getQ102()) > 64 && sample.getStatusCode().equals("2")  && individual.getQ604().equals("2")) ||
-                (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3")) && individual.getQ604().equals("2")))
+        if((Integer.valueOf(individual.getQ102()) > 64 && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && individual.getQ604().equals("2")))
         {
 
             Intent q1o2 = new Intent(q606.this, q704.class);
@@ -79,7 +81,16 @@ public class q606 extends AppCompatActivity implements Serializable{
             startActivity(q1o2);
         }
 
-        if (individual.getQ601().equals("2") ){
+//        if(sample.getStatusCode().equals("3") && individual.getQ604().equals("2"))
+//        {
+//
+//            Intent q1o2 = new Intent(q606.this, q704.class);
+//            q1o2.putExtra("Individual", individual);
+//            startActivity(q1o2);
+//        }
+
+
+        if (individual.getQ601().equals("2") &&   sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("0")){
 
             Intent intent = new Intent(q606.this, q616.class);
             intent.putExtra("Individual", individual);
@@ -89,8 +100,17 @@ public class q606 extends AppCompatActivity implements Serializable{
             //do nothing
         }
 
+        if (individual.getQ601().equals("2") &&   sample.getStatusCode().equals("1")){
 
-        if ( (Integer.valueOf(individual.getQ102()) > 24 && Integer.valueOf(individual.getQ102()) <64) && individual.getQ601().equals("1") && (sample.getStatusCode().equals("2") || (sample.getStatusCode().equals("1")))  ) {
+            Intent intent = new Intent(q606.this, q623.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
+
+        if ( (Integer.valueOf(individual.getQ102()) > 24 && Integer.valueOf(individual.getQ102()) <=64) && individual.getQ601().equals("1") && ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") )|| (sample.getStatusCode().equals("1")))) {
 
             Intent intent = new Intent(q606.this, q611.class);
             intent.putExtra("Individual", individual);

@@ -19,8 +19,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class q1101 extends AppCompatActivity implements View.OnClickListener, Serializable {
+public class q1101 extends AppCompatActivity implements  Serializable {
 
 
     protected HouseHold thisHouse;
@@ -74,15 +75,20 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
+
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
 
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
-        if( sample.getStatusCode().equals("1"))
+
+        if( sample.getStatusCode().equals("1") )
         {
 
             rbtna1.setEnabled(false);
@@ -92,7 +98,18 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
             rbtna5.setEnabled(false);
             rbtnaOther.setEnabled(false);
             q1101aOther.setEnabled(false);
+
+            rbtna1.setChecked(false);
+            rbtna2.setChecked(false);
+            rbtna3.setChecked(false);
+            rbtna4.setEnabled(false);
+            rbtna5.setChecked(false);
+            rbtnaOther.setChecked(false);
+
         }
+
+
+
 
 
 
@@ -113,6 +130,104 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
             }
         });
 
+//        rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//                                           @Override
+//                                           public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//                                               if ((i == R.id.q1101_1 || i == R.id.q1101_2 || i == R.id.q1101_3 || i == R.id.q1101_4) && sample.getStatusCode().equals("1")) {
+//                                                   // is checked
+//                                                   rbtna1.setEnabled(false);
+//                                                   rbtna2.setEnabled(false);
+//                                                   rbtna3.setEnabled(false);
+//                                                   rbtna4.setEnabled(false);
+//                                                   rbtna5.setEnabled(false);
+//                                                   rbtnaOther.setEnabled(false);
+//                                                   q1101aOther.setEnabled(false);
+//
+//                                                   rbtna1.setChecked(false);
+//                                                   rbtna2.setChecked(false);
+//                                                   rbtna3.setChecked(false);
+//                                                   rbtna4.setChecked(false);
+//                                                   rbtna5.setChecked(false);
+//
+//                                                   q1101atext.setTextColor(Color.LTGRAY);
+//
+//                                               }
+//                                           }
+//                                       });
+
+
+        rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if((i == R.id.q1101_3 ||i == R.id.q1101_4 ) && (sample.getStatusCode().equals("2") || sample.getStatusCode().equals("3")))
+                {
+                    // is checked
+                    rbtna1.setEnabled(false);
+                    rbtna2.setEnabled(false);
+                    rbtna3.setEnabled(false);
+                    rbtna4.setEnabled(false);
+                    rbtna5.setEnabled(false);
+                    rbtnaOther.setEnabled(false);
+                    q1101aOther.setEnabled(false);
+
+                    rbtna1.setChecked(false);
+                    rbtna2.setChecked(false);
+                    rbtna3.setChecked(false);
+                    rbtna4.setChecked(false);
+                    rbtna5.setChecked(false);
+
+                    q1101atext.setTextColor(Color.LTGRAY);
+
+                }
+                else
+                {
+                    rbtna1.setEnabled(true);
+                    rbtna2.setEnabled(true);
+                    rbtna3.setEnabled(true);
+                    rbtna4.setEnabled(true);
+                    rbtna5.setEnabled(true);
+                    rbtnaOther.setEnabled(true);
+                    q1101aOther.setEnabled(true);
+                    q1101atext.setTextColor(Color.BLACK);
+                }
+            }
+        });
+//        rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//                if(i == R.id.H11_3  && (sample.getStatusCode().equals("2") || sample.getStatusCode().equals("3")))
+//                {
+//                    // is checked
+//                    rbtna1.setEnabled(false);
+//                    rbtna2.setEnabled(false);
+//                    rbtna3.setEnabled(false);
+//                    rbtna4.setEnabled(false);
+//                    rbtna5.setEnabled(false);
+//                    rbtnaOther.setEnabled(false);
+//                    q1101aOther.setEnabled(false);
+//
+//                    rbtna1.setChecked(false);
+//                    rbtna2.setChecked(false);
+//                    rbtna3.setChecked(false);
+//                    rbtna4.setChecked(false);
+//                    rbtna5.setChecked(false);
+//
+//                    q1101atext.setTextColor(Color.LTGRAY);
+//
+//                }
+//                else
+//                {
+//                    rbtna1.setEnabled(true);
+//                    rbtna2.setEnabled(true);
+//                    rbtna3.setEnabled(true);
+//                    rbtna4.setEnabled(true);
+//                    rbtna5.setEnabled(true);
+//                    rbtnaOther.setEnabled(true);
+//                    q1101aOther.setEnabled(true);
+//                    q1101atext.setTextColor(Color.BLACK);
+//                }
+//            }
+//        });
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -158,7 +273,7 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
                     myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                     myDB.close();
 
-                    if ((selectedRbtn1 == null) && ((rbtn1.isChecked() || rbtn2.isChecked()))) {
+                    if ((selectedRbtn1 == null) && (rbtn1.isChecked() || rbtn2.isChecked()) && (sample.getStatusCode().equals("2") || sample.getStatusCode().equals("3")) ) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(q1101.this);
                         builder.setTitle("Q1101: Error");
                         builder.setIcon(R.drawable.ic_warning_orange_24dp);
@@ -225,7 +340,7 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
 
                                 myDB.onOpen(myDB.getReadableDatabase());
                                 myDB.getWritableDatabase();
-                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.updateInd("Q1101",individual.getAssignmentID(),individual.getBatch(),ind.getQ1101(),String.valueOf(individual.getSRNO()));
                                 myDB.close();
 
 
@@ -233,29 +348,17 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
                                 intent.putExtra("Individual", individual);
                                 startActivity(intent);
 
-                            } else {
-                                if ((rbtn3.isChecked() || rbtn4.isChecked()) && sample.getStatusCode().equals("1")) {
-
-                                    individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
-                                    myDB.onOpen(myDB.getReadableDatabase());
-                                    myDB.getWritableDatabase();
-                                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                                    myDB.close();
-
-
-                                    Intent intent = new Intent(q1101.this, q1103.class);
-                                    intent.putExtra("Individual", individual);
-                                    startActivity(intent);
-
-                                } else {
+                            }  else {
                                     if ((rbtn1.isChecked() || rbtn2.isChecked()) && sample.getStatusCode().equals("1")) {
 
                                         individual.setQ1101(selectedRbtn.getText().toString().substring(0, 1));
 
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();
-                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.updateInd("Q1101",individual.getAssignmentID(),individual.getBatch(),ind.getQ1101(),String.valueOf(individual.getSRNO()));
+                                       // myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                                         myDB.close();
+
                                         Intent intent = new Intent(q1101.this, HIVChildParentalConsent15_17.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);
@@ -270,6 +373,9 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();
                                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.updateInd("Q1101",individual.getAssignmentID(),individual.getBatch(),ind.getQ1101(),String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q1101a",individual.getAssignmentID(),individual.getBatch(),ind.getQ1101a(),String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q1101aOther",individual.getAssignmentID(),individual.getBatch(),ind.getQ1101aOther(),String.valueOf(individual.getSRNO()));
                                         myDB.close();
                                         Intent q1o3 = new Intent(q1101.this, q1102.class);
                                         q1o3.putExtra("Individual", individual);
@@ -277,7 +383,6 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
                                         //setting q103 value
                                     }
                                 }
-                            }
                         }
                     }
                 }
@@ -293,131 +398,5 @@ public class q1101 extends AppCompatActivity implements View.OnClickListener, Se
 
 
         });
-    }
-
-
-
-
-
-
-
-
-    public void onRadioButtonClicked(View v) {
-        TextView q1101atext = findViewById(R.id.q1101atxt);
-        RadioGroup rg1 = (RadioGroup) findViewById(R.id.q1101radioGroupa);
-        // Is the current Radio Button checked?
-        boolean checked = ((RadioButton) v).isChecked();
-
-        switch (v.getId()) {
-            case R.id.q1101_1:
-                if (checked)
-                    for (int i = 0; i < rg1.getChildCount(); i++) {
-                        ((RadioButton) rg1.getChildAt(i)).setEnabled(checked);
-                        q1101atext.setTextColor(Color.BLACK);
-
-                    }
-                    break;
-
-
-            case R.id.q1101_2:
-                if (checked)
-                    for (int i = 0; i < rg1.getChildCount(); i++) {
-                        ((RadioButton) rg1.getChildAt(i)).setEnabled(checked);
-                        q1101atext.setTextColor(Color.BLACK);
-                    }
-
-                break;
-            case R.id.q1101_3:
-                if (checked)
-                    for (int i = 0; i < rg1.getChildCount(); i++) {
-                        ((RadioButton) rg1.getChildAt(i)).setEnabled(false);
-                        rbtna1.setChecked(false);
-                        rbtna2.setChecked(false);
-                        rbtna3.setChecked(false);
-                        rbtna4.setChecked(false);
-                        rbtna5.setChecked(false);
-                        q1101atext.setTextColor(Color.LTGRAY);
-                    }
-                break;
-            case R.id.q1101_4:
-                if (checked) {
-                    for (int i = 0; i < rg1.getChildCount(); i++) {
-                        ((RadioButton) rg1.getChildAt(i)).setEnabled(false);
-                        rbtna1.setChecked(false);
-                        rbtna2.setChecked(false);
-                        rbtna3.setChecked(false);
-                        rbtna4.setChecked(false);
-                        rbtna5.setChecked(false);
-                        q1101atext.setTextColor(Color.LTGRAY);
-                    }
-                    break;
-                }
-        }
-    }
-
-
-    @Override
-    public void onClick(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-        switch (view.getId())
-        {
-            case R.id.q1101_1:
-                //if(checked)
-                   // q1101atext.setVisibility(View.VISIBLE);
-                //rg1.setVisibility(View.VISIBLE);
-               // rbtna1.setVisibility(View.VISIBLE);
-
-
-                break;
-
-            case R.id.q1101_2:
-               // if(checked)
-                   // q1101atext.setVisibility(View.VISIBLE);
-               // rg1.setVisibility(View.VISIBLE);
-                //rbtna1.setVisibility(View.VISIBLE);
-                break;
-
-            case R.id.q1101_3:
-              //  Intent intent2 = new Intent(this, q1102.class);
-               // startActivity(intent2);
-                break;
-            case R.id.q1101_4:
-                //Intent intent3 = new Intent(this, q1102.class);
-                //startActivity(intent3);
-                break;
-
-            case R.id.q1101a_1:
-              //  Intent intent4 = new Intent(this, q1102.class);
-                //startActivity(intent4);
-
-                break;
-            case R.id.q1101a_2:
-                //Intent intent5 = new Intent(this, q1102.class);
-                //startActivity(intent5);
-                break;
-
-
-            case R.id.q1101a_3:
-                //Intent intent6 = new Intent(this, q1102.class);
-               // startActivity(intent6);
-                break;
-
-            case R.id.q1101a_4:
-               // Intent intent7 = new Intent(this, q1102.class);
-                //startActivity(intent7);
-                break;
-
-            case R.id.q1101a_5:
-               // Intent intent8 = new Intent(this, q1102.class);
-                //startActivity(intent8);
-                break;
-
-            default:
-                break;
-        }
-
-
-
-
     }
 }

@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q602 extends AppCompatActivity implements Serializable{
 
@@ -51,7 +52,8 @@ public class q602 extends AppCompatActivity implements Serializable{
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
-
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 
@@ -59,13 +61,25 @@ public class q602 extends AppCompatActivity implements Serializable{
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
-        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2"))) || (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))))
+        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1"))))
         {
 
             Intent q1o2 = new Intent(q602.this, q604.class);
             q1o2.putExtra("Individual", individual);
             startActivity(q1o2);
         }
+
+        if((sample.getStatusCode().equals("3") || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))) ) )
+        {
+
+            Intent q1o2 = new Intent(q602.this, q604.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
+
+
+
+
 
 //btn = findViewById(R.id.btn);
 
@@ -203,6 +217,7 @@ public class q602 extends AppCompatActivity implements Serializable{
                         myDB.getWritableDatabase();
                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                         myDB.close();
+
                         Intent intent = new Intent(q602.this, q603.class);
                         intent.putExtra("Individual", individual);
                         startActivity(intent);

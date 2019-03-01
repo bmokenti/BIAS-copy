@@ -145,13 +145,13 @@ public class IndQuetParentalConsent extends Activity implements Serializable {
                              if (myDB.checkIndividual(individual)) {
                             //Update
                                  myDB.updateInd("IndvQuestionnairePConsent15_17",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnairePConsent15_17(),String.valueOf(individual.getSRNO()));
-
+                                 myDB.close();
                             }
 
 
                             //Next question P17
 
-                            Intent intent = new Intent(IndQuetParentalConsent.this, HIVParentalConsent6wks_9y.class);
+                            Intent intent = new Intent(IndQuetParentalConsent.this, Dashboard.class);
                             intent.putExtra("Individual", individual);
                             intent.putExtra("Personroster", p1);
                             startActivity(intent);
@@ -167,7 +167,7 @@ public class IndQuetParentalConsent extends Activity implements Serializable {
                             if (myDB.checkIndividual(individual)) {
                             //Update
                                 myDB.updateInd("IndvQuestionnairePConsent15_17",individual.getAssignmentID(),individual.getBatch(),individual.getIndvQuestionnairePConsent15_17(),String.valueOf(individual.getSRNO()));
-
+                                myDB.close();
                             }
 
 

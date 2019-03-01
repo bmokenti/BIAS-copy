@@ -340,15 +340,10 @@ import java.io.Serializable;
                                                             myDB = new DatabaseHelper(HIVAdultsConsent18Plus.this);
                                                             myDB.onOpen(myDB.getReadableDatabase());
 
-                                                            if (myDB.checkIndividual(individual)) {
-                                                                //Update
-                                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
-                                                            } else {
-                                                                //Insert
-                                                                myDB.insertIndividual(individual);
-
-                                                            }
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            myDB.getWritableDatabase();
+                                                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                                            myDB.close();
 
 
 
@@ -397,18 +392,11 @@ import java.io.Serializable;
 
 
                                                             //Next question P17
-                                                            myDB = new DatabaseHelper(HIVAdultsConsent18Plus.this);
                                                             myDB.onOpen(myDB.getReadableDatabase());
+                                                            myDB.getWritableDatabase();
+                                                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                                            myDB.close();
 
-                                                            if (myDB.checkIndividual(individual)) {
-                                                                //Update
-                                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
-                                                            } else {
-                                                                //Insert
-                                                                myDB.insertIndividual(individual);
-
-                                                            }
 
                                                             Intent intent = new Intent(HIVAdultsConsent18Plus.this, Dashboard.class);
                                                             intent.putExtra("Individual", individual);

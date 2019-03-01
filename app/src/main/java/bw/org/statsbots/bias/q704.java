@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q704 extends AppCompatActivity implements Serializable {
 
@@ -45,7 +46,8 @@ public class q704 extends AppCompatActivity implements Serializable {
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
-
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
@@ -104,6 +106,12 @@ public class q704 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
                 q704.super.onBackPressed();
+                if (sample.getStatusCode().equals("3"))
+                {
+                    Intent q1o2 = new Intent(q704.this, q604.class);
+                    q1o2.putExtra("Individual", individual);
+                    startActivity(q1o2);
+                }
             }
 
 

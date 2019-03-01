@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q401 extends AppCompatActivity implements View.OnClickListener, Serializable {
 
@@ -65,7 +66,8 @@ public class q401 extends AppCompatActivity implements View.OnClickListener, Ser
         individual = ind;
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
-
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();

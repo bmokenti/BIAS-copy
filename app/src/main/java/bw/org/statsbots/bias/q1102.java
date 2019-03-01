@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q1102 extends AppCompatActivity implements  Serializable {
 
@@ -66,8 +67,24 @@ public class q1102 extends AppCompatActivity implements  Serializable {
         int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
+
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
+
+
+        if( sample.getStatusCode().equals("1") )
+        {
+            Intent q1o3 = new Intent(q1102.this, q1103.class);
+            q1o3.putExtra("Individual", individual);
+            startActivity(q1o3);
+
+        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

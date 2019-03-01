@@ -14,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q616 extends AppCompatActivity implements Serializable {
 
@@ -56,15 +57,9 @@ public class q616 extends AppCompatActivity implements Serializable {
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
-        if (individual.getQ604().equals("2") ){
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
-            Intent intent = new Intent(q616.this, q623.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-
-        } else {
-
-        }
             //do nothing
 
         myDB = new DatabaseHelper(this);
@@ -77,7 +72,15 @@ public class q616 extends AppCompatActivity implements Serializable {
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
-        if( sample.getStatusCode().equals("1") )
+        if( sample.getStatusCode().equals("1") && individual.getQ604().equals("2") )
+        {
+
+            Intent q1o2 = new Intent(q616.this, q623.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
+
+        if( sample.getStatusCode().equals("1") && individual.getQ604().equals("1") )
         {
 
             Intent q1o2 = new Intent(q616.this, q622.class);
@@ -85,7 +88,15 @@ public class q616 extends AppCompatActivity implements Serializable {
             startActivity(q1o2);
         }
 
+        if (individual.getQ604().equals("2") && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")){
 
+            Intent intent = new Intent(q616.this, q623.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+
+        }
         chk9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override

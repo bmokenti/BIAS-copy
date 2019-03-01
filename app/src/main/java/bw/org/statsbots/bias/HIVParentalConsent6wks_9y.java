@@ -54,6 +54,10 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 
+       // p1.getChPrntlConsentBloodDraw();
+     //  rbtn1.setText(p1.getChPrntlConsentBloodDraw());
+
+
         if((Integer.valueOf(p1.getP04YY()) <= 1 && Integer.valueOf(p1.getP04MM()) <= 5 ))
         {
             setTitle("Parental Consent less than 18 months");
@@ -312,7 +316,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
                         int selectedId2 = rg2.getCheckedRadioButtonId();
                         selected2 = (RadioButton) findViewById(selectedId2);
 
-                        if (selected2 == null) {
+                        if (selected2 == null && (Integer.valueOf(p1.getP04YY()) >1 && Integer.valueOf(p1.getP04MM()) >6)) {
                             lib.showError(HIVParentalConsent6wks_9y.this, "RHT: Error: 2", "Do you agree for the survey team to do RHT?");
                             /**
                              * VIBRATE DEVICE
@@ -565,6 +569,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
 
 
                                                     }
+
 
                                                     //Check if individual already been saved and update
 

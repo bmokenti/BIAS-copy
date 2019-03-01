@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q1012 extends AppCompatActivity  implements Serializable {
     protected HouseHold thisHouse;
@@ -59,6 +60,9 @@ public class q1012 extends AppCompatActivity  implements Serializable {
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
+
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
 if(individual.getQ1011().equals("1")||individual.getQ1011().equals("4") || individual.getQ1011().equals("7"))
 {
@@ -131,9 +135,41 @@ else{
                                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                         vibs.vibrate(100);
                                     } else {
-                                        individual.setQ1012_Week(edtwks.getText().toString());
-                                        individual.setQ1012_Month(edtmnths.getText().toString());
-                                       individual.setQ1012_Year(edtyear.getText().toString());
+
+
+
+                                        if (edtwks.getText().toString().length() == 0) {
+                                            individual.setQ1012_Week("00");
+                                        } else if (edtwks.getText().toString().length() == 1) {
+                                            individual.setQ1012_Week("0" + edtwks.getText().toString());
+                                        } else {
+                                            individual.setQ1012_Week(edtwks.getText().toString());
+
+                                        }
+
+                                        if (edtyear.getText().toString().length() == 0) {
+                                            individual.setQ1012_Month("00");
+                                        } else if (edtyear.getText().toString().length() == 1) {
+                                            individual.setQ1012_Month("0" + edtyear.getText().toString());
+                                        } else {
+                                            individual.setQ1012_Month(edtmnths.getText().toString());
+                                        }
+
+                                        if (edtyear.getText().toString().length() == 0) {
+                                            individual.setQ801cYear("0000");
+                                        } else if (edtyear.getText().toString().length() == 3) {
+                                            individual.setQ801cYear("000" + edtyear.getText().toString());
+                                        }
+                                        else if (edtyear.getText().toString().length() == 1) {
+                                            individual.setQ801cYear("000" + edtyear.getText().toString());
+                                        }
+                                        else if (edtyear.getText().toString().length() == 2) {
+                                            individual.setQ801cYear("00" + edtyear.getText().toString());
+                                        }else {
+                                            individual.setQ1012_Year(edtyear.getText().toString());
+                                        }
+
+
 
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();

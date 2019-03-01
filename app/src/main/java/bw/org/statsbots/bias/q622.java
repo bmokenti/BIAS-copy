@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q622 extends AppCompatActivity implements Serializable {
 
@@ -69,6 +70,8 @@ public class q622 extends AppCompatActivity implements Serializable {
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
 
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
@@ -254,40 +257,44 @@ public class q622 extends AppCompatActivity implements Serializable {
                                         individual.setQ622aOther(edtaOther.getText().toString());
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();
-                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                         myDB.close();
+
                                         Intent intent = new Intent(q622.this, q623.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);
-                                    } else {
-                                        if (rbtn2.isChecked()) {
-                                            individual.setQ622(selectedRbtn.getText().toString().substring(0, 1));
-                                            individual.setQ622b(selectedRbtnb.getText().toString().substring(0, 1));
-                                            individual.setQ622bOther(edtbOther.getText().toString());
-                                            myDB.onOpen(myDB.getReadableDatabase());
-                                            myDB.getWritableDatabase();
-                                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                                            myDB.close();
-                                            Intent intent = new Intent(q622.this, q623.class);
-                                            intent.putExtra("Individual", individual);
-                                            startActivity(intent);
-                                        } else {
-                                            individual.setQ622(selectedRbtn.getText().toString().substring(0, 1));
-                                            myDB.onOpen(myDB.getReadableDatabase());
-                                            myDB.getWritableDatabase();
-                                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                                            myDB.close();
-                                            Intent intent = new Intent(q622.this, q623.class);
-                                            intent.putExtra("Individual", individual);
-                                            startActivity(intent);
-                                        }
                                     }
+                                   else {
+                                            if (rbtn2.isChecked()) {
+                                                individual.setQ622(selectedRbtn.getText().toString().substring(0, 1));
+                                                individual.setQ622b(selectedRbtnb.getText().toString().substring(0, 1));
+                                                individual.setQ622bOther(edtbOther.getText().toString());
+                                                myDB.onOpen(myDB.getReadableDatabase());
+                                                myDB.getWritableDatabase();
+                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                                myDB.close();
+                                                Intent intent = new Intent(q622.this, q623.class);
+                                                intent.putExtra("Individual", individual);
+                                                startActivity(intent);
+                                            } else {
+                                                    individual.setQ622(selectedRbtn.getText().toString().substring(0, 1));
 
+                                                    myDB.onOpen(myDB.getReadableDatabase());
+                                                    myDB.getWritableDatabase();
+                                                    myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                                    myDB.close();
+                                                    Intent intent = new Intent(q622.this, q623.class);
+                                                    intent.putExtra("Individual", individual);
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                        }
 
+                                    }
                                 }
                             }
-                        }
-                    }
+
+
                 }
             }
         });
