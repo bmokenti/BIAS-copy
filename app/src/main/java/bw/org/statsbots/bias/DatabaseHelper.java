@@ -4040,11 +4040,11 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             ind.setQ205a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q205a")));
             ind.setQ301(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
             ind.setQ301a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
-            ind.setQ302(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
-            ind.setQ303(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
-            ind.setQ303a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
-            ind.setQ304(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
-            ind.setQ304a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q301")));
+            ind.setQ302(cursor2.getString(cursor2.getColumnIndexOrThrow("Q302")));
+            ind.setQ303(cursor2.getString(cursor2.getColumnIndexOrThrow("Q303")));
+            ind.setQ303a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q303a")));
+            ind.setQ304(cursor2.getString(cursor2.getColumnIndexOrThrow("Q304")));
+            ind.setQ304a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q304a")));
             ind.setQ305_1(cursor2.getString(cursor2.getColumnIndexOrThrow("Q305Smoking")));
             ind.setQ305_2(cursor2.getString(cursor2.getColumnIndexOrThrow("Q305Sniffing")));
             ind.setQ305_3(cursor2.getString(cursor2.getColumnIndexOrThrow("Q305Chewing")));
