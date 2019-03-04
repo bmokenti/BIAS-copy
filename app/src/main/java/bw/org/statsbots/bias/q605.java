@@ -106,6 +106,86 @@ public class q605 extends AppCompatActivity implements Serializable {
         }
 
 
+        if(ind.getQ605_1()!= null &&  !ind.getQ605_1().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ605_1())== 1)
+            {
+                ck1txt.setChecked(true);
+
+            }else
+            {
+                ck1txt.setChecked(false);
+            }
+        }
+
+
+
+        if(ind.getQ605_2()!= null &&  !ind.getQ605_2().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ605_2())== 1)
+            {
+                ck2txt.setChecked(true);
+
+            }else
+            {
+                ck2txt.setChecked(false);
+            }
+        }
+        if(ind.getQ605_3()!= null &&  !ind.getQ605_3().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ605_3())== 1)
+            {
+                ck3txt.setChecked(true);
+
+            }else
+            {
+                ck3txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ605_4()!= null &&  !ind.getQ605_4().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ605_4())== 1)
+            {
+                ck4txt.setChecked(true);
+
+            }else
+            {
+                ck4txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ605_5()!= null &&  !ind.getQ605_5().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ605_5())== 1)
+            {
+                ck5txt.setChecked(true);
+
+            }else
+            {
+                ck5txt.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ605_Other() != null &&  !ind.getQ605_Other().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ605_Other())== 1)
+            {
+                chkOther.setChecked(true);
+
+            }else
+            {
+                chkOther.setChecked(false);
+            }
+        }
+
+        if(ind.getQ605_Otherspecify()!= null )
+        {
+            q605edt.setText(ind.getQ605_Otherspecify());
+        }
+
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

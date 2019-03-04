@@ -62,6 +62,26 @@ public class q1006 extends AppCompatActivity implements Serializable {
             startActivity(intent);
         }
 
+
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1006()!= null &&  !ind.getQ1006().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1006())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

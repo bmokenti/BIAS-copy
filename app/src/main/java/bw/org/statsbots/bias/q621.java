@@ -172,8 +172,155 @@ public class q621 extends AppCompatActivity implements Serializable {
             }
         });
 
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg1.getChildCount();f++)
+        {
+            View o = rg1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ621()!= null &&  !ind.getQ621().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ621())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] btb = new RadioButton[3];
+        for(int f=0;f<rg2.getChildCount();f++)
+        {
+            View o = rg2.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                btb[f]=((RadioButton)o);
+                if(ind.getQ621b()!= null &&  !ind.getQ621b().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ621b())==f+1)
+                    {
+                        RadioButton radioButton = btb[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(ind.getQ621a_1()!= null &&  !ind.getQ621a_1().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ621a_1())== 1)
+            {
+                chka1.setChecked(true);
+
+            }else
+            {
+                chka1.setChecked(false);
+            }
+        }
 
 
+
+        if(ind.getQ621a_2()!= null &&  !ind.getQ621a_2().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ621a_2())== 1)
+            {
+                chka2.setChecked(true);
+
+            }else
+            {
+                chka2.setChecked(false);
+            }
+        }
+        if(ind.getQ621a_3()!= null &&  !ind.getQ621a_3().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ621a_3())== 1)
+            {
+                chka3.setChecked(true);
+
+            }else
+            {
+                chka3.setChecked(false);
+            }
+        }
+
+        if(ind.getQ621a_4()!= null &&  !ind.getQ621a_4().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ621a_4())== 1)
+            {
+                chka4.setChecked(true);
+
+            }else
+            {
+                chka4.setChecked(false);
+            }
+        }
+
+        if(ind.getQ621a_5()!= null &&  !ind.getQ621a_5().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ621a_5())== 1)
+            {
+                chka5.setChecked(true);
+
+            }else
+            {
+                chka5.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ621a_6()!= null &&  !ind.getQ621a_6().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ621a_6())== 1)
+            {
+                chka6.setChecked(true);
+
+            }else
+            {
+                chka6.setChecked(false);
+            }
+        }
+
+        if(ind.getQ621a_7()!= null &&  !ind.getQ621a_7().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ621a_7())== 1)
+            {
+                chka7.setChecked(true);
+
+            }else
+            {
+                chka7.setChecked(false);
+            }
+        }
+
+
+
+
+        if(ind.getQ621a_Other() != null &&  !ind.getQ621a_Other().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ621a_Other())== 1)
+            {
+                chkaOther.setChecked(true);
+
+            }else
+            {
+                chkaOther.setChecked(false);
+            }
+        }
+
+        if(ind.getQ621a_Other1() != null )
+        {
+            edtaOther.setText(ind.getQ621a_Other1());
+        }
+
+
+        if(ind.getQ621bOther() != null)
+        {
+            edtbOther.setText(ind.getQ621bOther());
+        }
 
 
         Button btnnext = findViewById(R.id.btnNext);
@@ -315,6 +462,7 @@ public class q621 extends AppCompatActivity implements Serializable {
                 }
             }
             });
+
         Button btprev = findViewById(R.id.button3);
 
         btprev.setOnClickListener(new View.OnClickListener() {

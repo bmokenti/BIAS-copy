@@ -66,6 +66,38 @@ public class q1107 extends AppCompatActivity implements  Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg1.getChildCount();f++)
+        {
+            View o = rg1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1107()!= null &&  !ind.getQ1107().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1107())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(ind.getQ1107aDD()!= null)
+        {
+            txtdays.setText(ind.getQ1107aDD());
+        }
+
+
+        if(ind.getQ1107aWks()!= null)
+        {
+            txtweeks.setText(ind.getQ1107aWks());
+        }
+
+
+
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

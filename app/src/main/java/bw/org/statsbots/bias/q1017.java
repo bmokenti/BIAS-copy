@@ -65,6 +65,26 @@ public class q1017 extends AppCompatActivity implements Serializable {
         thisHous.get(0).getHIVTB40();
 
 
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1017()!= null &&  !ind.getQ1017().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1017())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

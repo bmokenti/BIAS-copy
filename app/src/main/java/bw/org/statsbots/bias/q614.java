@@ -72,6 +72,34 @@ public class q614 extends AppCompatActivity implements Serializable {
             }
         });
 
+
+        RadioButton[] bt = new RadioButton[6];
+        for(int f=0;f<rbtngroup.getChildCount();f++)
+        {
+            View o = rbtngroup.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ614()!= null &&  !ind.getQ614().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ614())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(ind.getQ614Other()!= null)
+        {
+            edt.setText(ind.getQ614Other());
+        }
+
+
+
+
         /**
          * NEXT question
          */

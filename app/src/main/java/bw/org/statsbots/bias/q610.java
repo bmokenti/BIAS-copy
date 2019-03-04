@@ -48,6 +48,27 @@ protected DatabaseHelper myDB;
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=0;f<rbtngroup.getChildCount();f++)
+        {
+            View o = rbtngroup.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ610()!= null &&  !ind.getQ610().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ610())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+
         /**
          * NEXT question
          */

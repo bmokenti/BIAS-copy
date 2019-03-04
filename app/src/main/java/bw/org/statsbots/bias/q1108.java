@@ -65,6 +65,39 @@ protected LibraryClass lib;
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1108()!= null &&  !ind.getQ1108().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1108())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(ind.getQ1108aDD()!= null)
+        {
+            txtq1108dd.setText(ind.getQ1107aDD());
+        }
+
+
+        if(ind.getQ1108aWks()!= null)
+        {
+            txtq1108wks.setText(ind.getQ1107aWks());
+        }
+
+
+
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -111,7 +111,8 @@ public class q802 extends AppCompatActivity implements Serializable {
                     startActivity(intent);
                 }
 
-    else {
+    else
+        {
                     if ((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("1")
                             && individual.getQ101().equals("1")) {
                         Intent intent = new Intent(q802.this, q1101.class);
@@ -121,7 +122,48 @@ public class q802 extends AppCompatActivity implements Serializable {
 
                 }
 
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rbtngroup.getChildCount();f++)
+        {
+            View o = rbtngroup.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ802()!= null &&  !ind.getQ802().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ802())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
+        RadioButton[] bta = new RadioButton[5];
+        for(int f=0;f<rbtngroup1.getChildCount();f++)
+        {
+            View o = rbtngroup1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bta[f]=((RadioButton)o);
+                if(ind.getQ802a()!= null &&  !ind.getQ802a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ802a())==f+1)
+                    {
+                        RadioButton radioButton = bta[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if( ind.getQ802aOther() != null)
+        {
+            edtnaOther.setText(ind.getQ802aOther());
+        }
 
 
         /**

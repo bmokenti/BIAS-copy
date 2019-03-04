@@ -80,6 +80,65 @@ public class q1014 extends AppCompatActivity implements Serializable {
         int months = 0;
         int days = 0;
 
+
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1014()!= null &&  !ind.getQ1014().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1014())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        RadioButton[] bta = new RadioButton[5];
+        for(int f=0;f<rga.getChildCount();f++)
+        {
+            View o = rga.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bta[f]=((RadioButton)o);
+                if(ind.getQ1014a()!= null &&  !ind.getQ1014a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1014a())==f+1)
+                    {
+                        RadioButton radioButton = bta[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] btb = new RadioButton[2];
+        for(int f=0;f<rgb.getChildCount();f++)
+        {
+            View o = rgb.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                btb[f]=((RadioButton)o);
+                if(ind.getQ1014b()!= null &&  !ind.getQ1014b().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1014b())==f+1)
+                    {
+                        RadioButton radioButton = btb[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

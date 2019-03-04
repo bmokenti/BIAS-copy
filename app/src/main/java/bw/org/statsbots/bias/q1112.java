@@ -60,8 +60,29 @@ public class q1112 extends AppCompatActivity implements View.OnClickListener, Se
         thisHous.get(0).getHIVTB40();
 
 
+        RadioButton[] bt = new RadioButton[5];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1112()!= null &&  !ind.getQ1112().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1112())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
-
+        if(ind.getQ1112_Other()!= null)
+        {
+            text1112other.setText(ind.getQ1112_Other());
+        }
 
         btnnext.setOnClickListener(new View.OnClickListener()
 

@@ -167,9 +167,8 @@ public class q803 extends AppCompatActivity implements Serializable {
         }
 
 
-        if((individual.getQ801a().equals("1")) && individual.getQ101().equals("2") && individual.getQ401().equals("1")   && (Integer.parseInt( individual.getQ102() )>14
-                && Integer.parseInt( individual.getQ102() )<50) && (individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||
-                individual.getQ801f().equals("4") || individual.getQ801f().equals("9")))
+        if((individual.getQ801a().equals("1")) && individual.getQ101().equals("2") && individual.getQ401().equals("1") && (Integer.parseInt( individual.getQ102() )>14
+                && Integer.parseInt( individual.getQ102() )<50) && !individual.getQ801f().equals("1"))
         {
             Intent intent = new Intent(q803.this, q1001.class);
             intent.putExtra("Individual", individual);
@@ -178,14 +177,29 @@ public class q803 extends AppCompatActivity implements Serializable {
         else {
 
         }
-        if(individual.getQ801a().equals("1") && individual.getQ101().equals("1"))
-        {
-            Intent intent = new Intent(q803.this, q1101.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-        }
-        else {
 
+
+        RadioButton[] bt = new RadioButton[9];
+        for(int f=0;f<rbtngroup.getChildCount();f++)
+        {
+            View o = rbtngroup.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ803()!= null &&  !ind.getQ803().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ803())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+        if( ind.getQ803Other() != null)
+        {
+            edtother.setText(ind.getQ803Other());
         }
 
 

@@ -60,6 +60,24 @@ public class q704 extends AppCompatActivity implements Serializable {
             startActivity(q1o2);
         }
 
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rbtngroup.getChildCount();f++)
+        {
+            View o = rbtngroup.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ704()!= null &&  !ind.getQ704().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ704())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
 
         /**

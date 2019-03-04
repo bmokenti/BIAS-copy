@@ -509,7 +509,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
                                                         myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentRHT(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
-                                                        if (rbtn3.isChecked()) {
+                                                        if (rbtn3.isChecked() ) {
 
                                                             p1.setRapidResults(selected3.getText().toString().substring(0, 1));
                                                             myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);

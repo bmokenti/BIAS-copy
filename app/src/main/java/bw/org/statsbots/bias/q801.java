@@ -425,6 +425,143 @@ public class q801 extends AppCompatActivity implements Serializable {
                 }
             }
         });
+
+
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ801()!= null &&  !ind.getQ801().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ801())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        RadioButton[] bta = new RadioButton[2];
+        for(int f=0;f<rga.getChildCount();f++)
+        {
+            View o = rga.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bta[f]=((RadioButton)o);
+                if(ind.getQ801a()!= null &&  !ind.getQ801a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ801a())==f+1)
+                    {
+                        RadioButton radioButton = bta[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] btb = new RadioButton[3];
+        for(int f=0;f<rgb.getChildCount();f++)
+        {
+            View o = rgb.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                btb[f]=((RadioButton)o);
+                if(ind.getQ801b()!= null &&  !ind.getQ801b().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ801b())==f+1)
+                    {
+                        RadioButton radioButton = btb[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+               if(ind.getQ801cMonth()!= null)
+        {
+            edtcmnths.setText(ind.getQ801cMonth());
+        }
+
+        if(ind.getQ801cYear()!= null)
+        {
+            edtcyear.setText(ind.getQ801cYear());
+        }
+
+        if(ind.getQ801cMonth() == "99")
+        {
+            chkc99.setChecked(true);
+        }
+        if(ind.getQ801cYear() == "9999")
+        {
+            chkc9999.setChecked(true);
+        }
+
+
+        RadioButton[] btd = new RadioButton[12];
+        for(int f=0;f<rgd.getChildCount();f++)
+        {
+            View o = rgd.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                btd[f]=((RadioButton)o);
+                if(ind.getQ801d()!= null &&  !ind.getQ801d().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ801d())==f+1)
+                    {
+                        RadioButton radioButton = btd[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bte = new RadioButton[10];
+        for(int f=0;f<rge.getChildCount();f++)
+        {
+            View o = rge.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bte[f]=((RadioButton)o);
+                if(ind.getQ801e()!= null &&  !ind.getQ801e().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ801e())==f+1)
+                    {
+                        RadioButton radioButton = bte[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] btf = new RadioButton[5];
+        for(int f=0;f<rgf.getChildCount();f++)
+        {
+            View o = rgf.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                btf[f]=((RadioButton)o);
+                if(ind.getQ801f()!= null &&  !ind.getQ801f().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ801f())==f+1)
+                    {
+                        RadioButton radioButton = btf[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -460,8 +597,9 @@ public class q801 extends AppCompatActivity implements Serializable {
                         int selectedIdb = rgb.getCheckedRadioButtonId();
                         selectedRbtnb = (RadioButton) findViewById(selectedIdb);
 
-                        if (selectedRbtnb == null && (rbtn1.isChecked() && rbtna1.isChecked()) && (sample.getStatusCode().equals("2")  ||
-                                (sample.getStatusCode().equals("2")) && Integer.valueOf(individual.getQ102()) <= 64)) {
+                        if (selectedRbtnb == null && (sample.getStatusCode().equals("1")  ||
+                                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && rbtna1.isChecked()
+                                        && Integer.valueOf(individual.getQ102()) <= 64) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")  && rbtna1.isChecked()))) {
 
                             lib.showError(q801.this, "Q801b: ERROR", "Did you test together with your partner in the past 12 months?");
                             /**
@@ -497,8 +635,9 @@ public class q801 extends AppCompatActivity implements Serializable {
                                     int selectedIdd = rgd.getCheckedRadioButtonId();
                                     selectedRbtnd = (RadioButton) findViewById(selectedIdd);
 
-                                    if (selectedRbtnd == null && (rbtn1.isChecked()) && (sample.getStatusCode().equals("2")  ||
-                                            sample.getStatusCode().equals("2")) && Integer.valueOf(individual.getQ102()) <= 64 )
+                                    if (selectedRbtnd == null &&  (sample.getStatusCode().equals("1")  ||
+                                            (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")
+                                                    && Integer.valueOf(individual.getQ102()) <= 64) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))))
                                     {
                                         lib.showError(q801.this, "Q801d: ERROR", "What was the MAIN reason for your last HIV test?");
                                         /**
@@ -524,8 +663,9 @@ public class q801 extends AppCompatActivity implements Serializable {
                                             int selectedIde = rge.getCheckedRadioButtonId();
                                             selectedRbtne = (RadioButton) findViewById(selectedIde);
 
-                                            if (selectedRbtne == null && (rbtn1.isChecked()) && (sample.getStatusCode().equals("1")  ||
-                                                    (sample.getStatusCode().equals("2") && Integer.valueOf(individual.getQ102()) <= 64))) {
+                                            if (selectedRbtne == null &&  (sample.getStatusCode().equals("1")  ||
+                                                    (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")
+                                                            && Integer.valueOf(individual.getQ102()) <= 64) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")))) {
                                                 lib.showError(q801.this, "Q801e: ERROR", "Where was the LAST test done?");
                                                 /**
                                                  * VIBRATE DEVICE
@@ -637,7 +777,8 @@ public class q801 extends AppCompatActivity implements Serializable {
 
                                                                 } else {
                                                                     //*********************************************normal 15-64**************answered sec:A NO for combined and HIV only*********
-                                                                    if (rbtn1.isChecked() && rbtna2.isChecked() && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")   && Integer.valueOf(individual.getQ102()) <= 64)
+                                                                    if (rbtn1.isChecked() && rbtna2.isChecked() && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")   &&
+                                                                            Integer.valueOf(individual.getQ102()) <= 64)
 
                                                                             || sample.getStatusCode().equals("1")) {
 
@@ -687,7 +828,8 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                     } else {
 
                                                                         //normal answered all 15-64
-                                                                        if (rbtn1.isChecked() && rbtna1.isChecked() && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")   && Integer.valueOf(individual.getQ102()) <= 64)
+                                                                        if (rbtn1.isChecked() && rbtna1.isChecked() && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")   &&
+                                                                                Integer.valueOf(individual.getQ102()) <= 64)
 
                                                                                 || sample.getStatusCode().equals("1")) {
                                                                             //Set q801 for the current individual

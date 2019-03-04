@@ -869,7 +869,8 @@ public class started_household extends AppCompatActivity implements Serializable
                             }
                         }
 
-                    } else {
+                    }
+                    else {
                         //15 years and over****************************************************************************************************************
 
                         List<Individual> Ind = myDB.getdataIndivisual(thisHouse);
@@ -939,12 +940,18 @@ public class started_household extends AppCompatActivity implements Serializable
                             });
 
                         } else {
-
+                            final Individual temp1 = individual;
                             Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
                             btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
                             Info = "Questionnaire, Rapid Test Done";
 
-
+//                            Intent q1o2 = new Intent(started_household.this, Barcode.class);
+//                            q1o2.putExtra("Personroster", temp);
+//                            q1o2.putExtra("Individual", temp1);
+//                            //Log.d("HHHHH",temp1.getQ101());
+//                            q1o2.putExtra("Household", thisHouse);
+//
+//                            startActivity(q1o2);
                         }
 
 

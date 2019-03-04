@@ -64,6 +64,57 @@ public class q613 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=0;f<rbtngroup.getChildCount();f++)
+        {
+            View o = rbtngroup.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ613()!= null &&  !ind.getQ613().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ613())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+
+        RadioButton[] bta = new RadioButton[5];
+        for(int f=0;f<rbtngroup1.getChildCount();f++)
+        {
+            View o = rbtngroup1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bta[f]=((RadioButton)o);
+                if(ind.getQ613a()!= null &&  !ind.getQ613a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ613a())==f+1)
+                    {
+                        RadioButton radioButton = bta[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+
+
+        if(ind.getQ613aOther()!= null)
+        {
+            edt.setText(ind.getQ613aOther());
+        }
+
+
+
+
         /**
          * NEXT question
          */

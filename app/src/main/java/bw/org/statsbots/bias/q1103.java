@@ -82,6 +82,35 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
 
 }
 
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1103()!= null &&  !ind.getQ1103().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1103())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(ind.getQ1103aDD()!= null)
+        {
+            q1103dd.setText(ind.getQ1103aDD());
+        }
+
+        if(ind.getQ1103aWks()!= null)
+        {
+            q1103wks.setText(ind.getQ1103aWks());
+        }
+
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -72,7 +72,28 @@ public class q401 extends AppCompatActivity implements View.OnClickListener, Ser
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
-        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2"))) || (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))))
+
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ401()!= null &&  !ind.getQ401().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ401())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("1"))) || (sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("0"))
+                || (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))))
         {
 
             Intent q1o2 = new Intent(q401.this, q601.class);

@@ -195,6 +195,82 @@ public class q622 extends AppCompatActivity implements Serializable {
                 }
             }
         });
+
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=0;f<rg1.getChildCount();f++)
+        {
+            View o = rg1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ622()!= null &&  !ind.getQ622().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ622())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+
+        RadioButton[] bt1 = new RadioButton[3];
+
+        for(int f=0;f<rg2.getChildCount();f++)
+        {
+            View o = rg2.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ622a()!= null &&  !ind.getQ622a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ622a())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(ind.getQ621a_Other1() != null)
+        {
+            edtbOther.setText(ind.getQ621a_Other1());
+        }
+
+
+
+        RadioButton[] bt2 = new RadioButton[3];
+
+        for(int f=0;f<rg3.getChildCount();f++)
+        {
+            View o = rg3.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt2[f]=((RadioButton)o);
+                if(ind.getQ622b()!= null &&  !ind.getQ622b().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ622b())==f+1)
+                    {
+                        RadioButton radioButton = bt2[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        if(ind.getQ621bOther() != null)
+        {
+            edtbOther.setText(ind.getQ621bOther());
+        }
+
+
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -87,6 +87,231 @@ public class q604 extends AppCompatActivity implements Serializable {
         t2 = findViewById(R.id.q604b);
 
 
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ604()!= null &&  !ind.getQ604().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ604())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bta = new RadioButton[2];
+        for(int f=0;f<rga.getChildCount();f++)
+        {
+            View o = rga.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bta[f]=((RadioButton)o);
+                if(ind.getQ604a()!= null &&  !ind.getQ604a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ604a())==f+1)
+                    {
+                        RadioButton radioButton = bta[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        if(ind.getQ604b_1()!= null &&  !ind.getQ604b_1().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_1())== 1)
+            {
+                ck1txt.setChecked(true);
+
+            }else
+            {
+                ck1txt.setChecked(false);
+            }
+        }
+
+
+
+        if(ind.getQ604b_2()!= null &&  !ind.getQ604b_2().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_2())== 1)
+            {
+                ck2txt.setChecked(true);
+
+            }else
+            {
+                ck2txt.setChecked(false);
+            }
+        }
+        if(ind.getQ604b_3()!= null &&  !ind.getQ604b_3().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_3())== 1)
+            {
+                ck3txt.setChecked(true);
+
+            }else
+            {
+                ck3txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ604b_4()!= null &&  !ind.getQ604b_4().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_4())== 1)
+            {
+                ck4txt.setChecked(true);
+
+            }else
+            {
+                ck4txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ604b_5()!= null &&  !ind.getQ604b_5().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_5())== 1)
+            {
+                ck5txt.setChecked(true);
+
+            }else
+            {
+                ck5txt.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ604b_6()!= null &&  !ind.getQ604b_6().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_6())== 1)
+            {
+                ck6txt.setChecked(true);
+
+            }else
+            {
+                ck6txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ604b_7()!= null &&  !ind.getQ604b_7().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_7())== 1)
+            {
+                ck7txt.setChecked(true);
+
+            }else
+            {
+                ck7txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ604b_8()!= null &&  !ind.getQ604b_8().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_8())== 1)
+            {
+                ck8txt.setChecked(true);
+
+            }else
+            {
+                ck8txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ604b_10()!= null &&  !ind.getQ604b_10().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_10())== 1)
+            {
+                ck10txt.setChecked(true);
+
+            }else
+            {
+                ck10txt.setChecked(false);
+            }
+        }
+        if(ind.getQ604b_11()!= null &&  !ind.getQ604b_11().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_11())== 1)
+            {
+                ck11txt.setChecked(true);
+
+            }else
+            {
+                ck11txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ604b_12()!= null &&  !ind.getQ604b_12().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_12())== 1)
+            {
+                ck12txt.setChecked(true);
+
+            }else
+            {
+                ck12txt.setChecked(false);
+            }
+        }
+        if(ind.getQ604b_13()!= null &&  !ind.getQ604b_13().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_13())== 1)
+            {
+                ck13txt.setChecked(true);
+
+            }else
+            {
+                ck13txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ604b_14()!= null &&  !ind.getQ604b_14().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_14())== 1)
+            {
+                ck14txt.setChecked(true);
+
+            }else
+            {
+                ck14txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ604b_15()!= null &&  !ind.getQ604b_15().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_15())== 1)
+            {
+                ck15txt.setChecked(true);
+
+            }else
+            {
+                ck15txt.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ604b_Other() != null &&  !ind.getQ604b_Other().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ604b_Other())== 1)
+            {
+                ck15txt.setChecked(true);
+
+            }else
+            {
+                ck15txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ604b_Otherspecify()!= null )
+        {
+            q604edt.setText(ind.getQ604b_Otherspecify());
+        }
+
 
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {

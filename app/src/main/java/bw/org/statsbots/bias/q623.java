@@ -73,6 +73,25 @@ public class q623 extends AppCompatActivity implements Serializable {
             startActivity(q1o2);
         }
 
+        RadioButton[] bt = new RadioButton[2];
+
+        for(int f=0;f<rg1.getChildCount();f++)
+        {
+            View o = rg1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ623()!= null &&  !ind.getQ623().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ623())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
 
         Button btnnext = findViewById(R.id.btnNext);

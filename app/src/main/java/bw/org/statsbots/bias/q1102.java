@@ -86,6 +86,31 @@ public class q1102 extends AppCompatActivity implements  Serializable {
 
         }
 
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1102()!= null &&  !ind.getQ1102().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1102())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(ind.getQ1102a()!= null)
+        {
+            q1102ay.setText(ind.getQ1102a());
+        }
+
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

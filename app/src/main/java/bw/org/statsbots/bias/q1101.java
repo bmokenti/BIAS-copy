@@ -130,30 +130,6 @@ public class q1101 extends AppCompatActivity implements  Serializable {
             }
         });
 
-//        rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//                                           @Override
-//                                           public void onCheckedChanged(RadioGroup radioGroup, int i) {
-//                                               if ((i == R.id.q1101_1 || i == R.id.q1101_2 || i == R.id.q1101_3 || i == R.id.q1101_4) && sample.getStatusCode().equals("1")) {
-//                                                   // is checked
-//                                                   rbtna1.setEnabled(false);
-//                                                   rbtna2.setEnabled(false);
-//                                                   rbtna3.setEnabled(false);
-//                                                   rbtna4.setEnabled(false);
-//                                                   rbtna5.setEnabled(false);
-//                                                   rbtnaOther.setEnabled(false);
-//                                                   q1101aOther.setEnabled(false);
-//
-//                                                   rbtna1.setChecked(false);
-//                                                   rbtna2.setChecked(false);
-//                                                   rbtna3.setChecked(false);
-//                                                   rbtna4.setChecked(false);
-//                                                   rbtna5.setChecked(false);
-//
-//                                                   q1101atext.setTextColor(Color.LTGRAY);
-//
-//                                               }
-//                                           }
-//                                       });
 
 
         rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -192,42 +168,50 @@ public class q1101 extends AppCompatActivity implements  Serializable {
                 }
             }
         });
-//        rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-//                if(i == R.id.H11_3  && (sample.getStatusCode().equals("2") || sample.getStatusCode().equals("3")))
-//                {
-//                    // is checked
-//                    rbtna1.setEnabled(false);
-//                    rbtna2.setEnabled(false);
-//                    rbtna3.setEnabled(false);
-//                    rbtna4.setEnabled(false);
-//                    rbtna5.setEnabled(false);
-//                    rbtnaOther.setEnabled(false);
-//                    q1101aOther.setEnabled(false);
-//
-//                    rbtna1.setChecked(false);
-//                    rbtna2.setChecked(false);
-//                    rbtna3.setChecked(false);
-//                    rbtna4.setChecked(false);
-//                    rbtna5.setChecked(false);
-//
-//                    q1101atext.setTextColor(Color.LTGRAY);
-//
-//                }
-//                else
-//                {
-//                    rbtna1.setEnabled(true);
-//                    rbtna2.setEnabled(true);
-//                    rbtna3.setEnabled(true);
-//                    rbtna4.setEnabled(true);
-//                    rbtna5.setEnabled(true);
-//                    rbtnaOther.setEnabled(true);
-//                    q1101aOther.setEnabled(true);
-//                    q1101atext.setTextColor(Color.BLACK);
-//                }
-//            }
-//        });
+
+
+
+        RadioButton[] bt = new RadioButton[4];
+        for(int f=0;f<rg1.getChildCount();f++)
+        {
+            View o = rg1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1101()!= null &&  !ind.getQ1101().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1101())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bta = new RadioButton[6];
+        for(int f=0;f<rg2.getChildCount();f++)
+        {
+            View o = rg2.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bta[f]=((RadioButton)o);
+                if(ind.getQ1101a()!= null &&  !ind.getQ1101a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1101a())==f+1)
+                    {
+                        RadioButton radioButton = bta[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+        if(ind.getQ1101aOther()!= null)
+        {
+            q1101aOther.setText(ind.getQ1101aOther());
+        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

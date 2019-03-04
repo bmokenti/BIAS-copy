@@ -158,6 +158,134 @@ public class q616 extends AppCompatActivity implements Serializable {
             }
         });
 
+        if(ind.getQ616_1()!= null &&  !ind.getQ616_1().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ616_1())== 1)
+            {
+                chk1.setChecked(true);
+
+            }else
+            {
+                chk1.setChecked(false);
+            }
+        }
+
+
+
+        if(ind.getQ616_2()!= null &&  !ind.getQ616_2().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ616_2())== 1)
+            {
+                chk2.setChecked(true);
+
+            }else
+            {
+                chk2.setChecked(false);
+            }
+        }
+        if(ind.getQ616_3()!= null &&  !ind.getQ616_3().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ616_3())== 1)
+            {
+                chk3.setChecked(true);
+
+            }else
+            {
+                chk3.setChecked(false);
+            }
+        }
+
+        if(ind.getQ616_4()!= null &&  !ind.getQ616_4().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ616_4())== 1)
+            {
+                chk4.setChecked(true);
+
+            }else
+            {
+                chk4.setChecked(false);
+            }
+        }
+
+        if(ind.getQ616_5()!= null &&  !ind.getQ616_5().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ616_5())== 1)
+            {
+                chk5.setChecked(true);
+
+            }else
+            {
+                chk5.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ616_6()!= null &&  !ind.getQ616_6().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ616_6())== 1)
+            {
+                chk6.setChecked(true);
+
+            }else
+            {
+                chk6.setChecked(false);
+            }
+        }
+
+        if(ind.getQ616_7()!= null &&  !ind.getQ616_7().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ616_7())== 1)
+            {
+                chk7.setChecked(true);
+
+            }else
+            {
+                chk7.setChecked(false);
+            }
+        }
+
+        if(ind.getQ616_8()!= null &&  !ind.getQ616_8().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ616_8())== 1)
+            {
+                chk8.setChecked(true);
+
+            }else
+            {
+                chk8.setChecked(false);
+            }
+        }
+
+        if(ind.getQ616_9()!= null &&  !ind.getQ616_9().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ616_9())== 1)
+            {
+                chk9.setChecked(true);
+
+            }else
+            {
+                chk9.setChecked(false);
+            }
+        }
+
+
+
+        if(ind.getQ616_10() != null &&  !ind.getQ616_10().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ616_10())== 1)
+            {
+                chkOther.setChecked(true);
+
+            }else
+            {
+                chkOther.setChecked(false);
+            }
+        }
+
+        if(ind.getQ616_Other()!= null )
+        {
+            edt616Other.setText(ind.getQ616_Other());
+        }
 
         /**
          * NEXT question

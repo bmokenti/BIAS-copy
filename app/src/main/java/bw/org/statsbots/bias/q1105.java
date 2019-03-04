@@ -54,7 +54,24 @@ public class q1105 extends AppCompatActivity implements  Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
-
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=1;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1105()!= null &&  !ind.getQ1105().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1105())==f)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
         Button btnNext = (Button) findViewById(R.id.btnNext);
         //btnNext.setText(btnLabel);
         btnNext.setOnClickListener(new View.OnClickListener() {

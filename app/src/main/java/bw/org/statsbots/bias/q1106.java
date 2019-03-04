@@ -70,6 +70,72 @@ public class q1106 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rGroup1.getChildCount();f++)
+        {
+            View o = rGroup1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1106()!= null &&  !ind.getQ1106().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1106())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        RadioButton[] bta = new RadioButton[4];
+        for(int f=0;f<rGroup2.getChildCount();f++)
+        {
+            View o = rGroup2.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bta[f]=((RadioButton)o);
+                if(ind.getQ1106a()!= null &&  !ind.getQ1106a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1106a())==f+1)
+                    {
+                        RadioButton radioButton = bta[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] btb = new RadioButton[5];
+        for(int f=0;f<rGroup2.getChildCount();f++)
+        {
+            View o = rGroup2.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                btb[f]=((RadioButton)o);
+                if(ind.getQ1106b()!= null &&  !ind.getQ1106b().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1106b())==f+1)
+                    {
+                        RadioButton radioButton = btb[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(ind.getQ1106bOther()!= null)
+        {
+            rbtn6b5other.setText(ind.getQ1106bOther());
+        }
+
+
+
         Button btnnext = findViewById(R.id.btnNext);
 
         btnnext.setOnClickListener(new View.OnClickListener() {

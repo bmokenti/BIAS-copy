@@ -76,6 +76,57 @@ public class q305 extends AppCompatActivity implements Serializable {
 //        }
 
 
+                if(individual.getQ305_1()!= null &&  !individual.getQ305_1().equals(""))
+                {
+                    if(Integer.parseInt(individual.getQ305_1())== 1)
+                    {
+                       chk1.setChecked(true);
+
+                    }else
+                    {
+                        chk1.setChecked(false);
+                }
+            }
+
+        if(ind.getQ305_2()!= null &&  !ind.getQ305_2().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ305_2())== 1)
+            {
+                chk2.setChecked(true);
+
+            }else
+            {
+                chk2.setChecked(false);
+            }
+        }
+
+        if(ind.getQ305_3()!= null &&  !ind.getQ305_3().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ305_3())== 1)
+            {
+                chk3.setChecked(true);
+
+            }else
+            {
+                chk3.setChecked(false);
+            }
+        }
+
+        if(ind.getQ305_4()!= null &&  !ind.getQ305_4().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ305_4())== 1)
+            {
+                chk4.setChecked(true);
+
+            }else
+            {
+                chk4.setChecked(false);
+            }
+        }
+
+
+
+
 
         Button btnext = findViewById(R.id.button);
 
@@ -166,7 +217,13 @@ public class q305 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q305.super.onBackPressed();
+                if (individual.getQ302().equals("2")) {
+                    Intent q1o2 = new Intent(q305.this, q302.class);
+                    q1o2.putExtra("Individual", individual);
+                    startActivity(q1o2);
+                } else {
+                    q305.super.onBackPressed();
+                }
             }
 
 

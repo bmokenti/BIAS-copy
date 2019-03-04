@@ -61,6 +61,26 @@ public class q403 extends AppCompatActivity implements View.OnClickListener, Ser
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        RadioButton[] bt1 = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ403()!= null &&  !ind.getQ403().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ403())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

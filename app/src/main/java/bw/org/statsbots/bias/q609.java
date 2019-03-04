@@ -47,6 +47,28 @@ public class q609 extends AppCompatActivity implements Serializable {
         individual = ind;
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=0;f<rbtngroup.getChildCount();f++)
+        {
+            View o = rbtngroup.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ609()!= null &&  !ind.getQ609().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ609())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+
         /**
          * NEXT question
          */

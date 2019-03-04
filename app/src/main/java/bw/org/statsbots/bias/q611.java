@@ -59,6 +59,67 @@ public class q611 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=0;f<rbtngroup.getChildCount();f++)
+        {
+            View o = rbtngroup.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ611a()!= null &&  !ind.getQ611a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ611a())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt2 = new RadioButton[3];
+        for(int f=0;f<rbtngroupb.getChildCount();f++)
+        {
+            View o = rbtngroupb.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt2[f]=((RadioButton)o);
+                if(ind.getQ611b()!= null &&  !ind.getQ611b().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ611b())==f+1)
+                    {
+                        RadioButton radioButton = bt2[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt3 = new RadioButton[3];
+        for(int f=0;f<rbtngroupc.getChildCount();f++)
+        {
+            View o = rbtngroupc.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt3[f]=((RadioButton)o);
+                if(ind.getQ611c()!= null &&  !ind.getQ611c().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ611c())==f+1)
+                    {
+                        RadioButton radioButton = bt3[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+
+
         /**
          * NEXT question
          */

@@ -48,6 +48,7 @@ public class q1001 extends AppCompatActivity implements Serializable {
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
@@ -60,20 +61,45 @@ public class q1001 extends AppCompatActivity implements Serializable {
         sample.getSTATUS();
 
 
-        if( sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("0")) )
+        if( sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) )
         {
             Intent intent = new Intent(q1001.this, q1101.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
         }
 
-        if((individual.getQ101().equals("1")) || (individual.getQ101().equals("2") && (Integer.parseInt( individual.getQ102() )>49 || individual.getQ401().equals("2"))
-                && ( sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1")) )) )
+        if((individual.getQ101().equals("1")) || (individual.getQ101().equals("2") && (Integer.parseInt( individual.getQ102() )>49 && individual.getQ401().equals("2"))
+                && ( sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) )) )
         {
             Intent intent = new Intent(q1001.this, q1101.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
         }
+
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1001()!= null &&  !ind.getQ1001().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1001())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+//        if( ind.getQ905aOther() != null)
+//        {
+//            edtaother.setText(ind.getQ905aOther());
+//        }
+
+
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

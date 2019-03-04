@@ -55,6 +55,29 @@ public class q306 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+
+        if(ind.getQ306()!= null)
+        {
+            if(ind.getQ306().equals("9") )
+            {
+                chkb9.setChecked(true);
+
+            }else
+            {
+                chkb9.setChecked(false);
+
+            }
+            q306_dd.setText(ind.getQ306());
+        }
+
+
+
+
+
+
+
+
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

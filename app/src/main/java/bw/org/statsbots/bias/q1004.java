@@ -102,6 +102,66 @@ public class q1004 extends AppCompatActivity implements Serializable {
             }
         });
 
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rga.getChildCount();f++)
+        {
+            View o = rga.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1004a()!= null &&  !ind.getQ1004a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1004a())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+        RadioButton[] btb = new RadioButton[12];
+        for(int f=0;f<rgb.getChildCount();f++)
+        {
+            View o = rgb.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                btb[f]=((RadioButton)o);
+                if(ind.getQ1004b()!= null &&  !ind.getQ1004b().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1004b())==f+1)
+                    {
+                        RadioButton radioButton = btb[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(ind.getQ1012_Week()!= null)
+        {
+            edtdays.setText(ind.getQ1012_Week());
+        }
+
+        if(ind.getQ1012_Month()!= null)
+        {
+            edtmonths.setText(ind.getQ1012_Month());
+        }
+
+
+        if(ind.getQ1012_Year()!= null)
+        {
+            edtyears.setText(ind.getQ1012_Year());
+        }
+
+
+
+
+
+
+
+
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

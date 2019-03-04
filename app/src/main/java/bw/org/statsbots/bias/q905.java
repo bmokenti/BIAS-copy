@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -65,11 +66,55 @@ public class q905 extends AppCompatActivity implements Serializable {
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        //Log.d("results", selectedRbtnf.getText().toString().substring(0, 1));
+        //Log.d("eastatus",  thisHous.get(0).getHIVTB40() );
+
+        if( ind.getQ905() != null)
+        {
+            edtdays.setText(ind.getQ905());
+        }
+
+
+//        if( ind.getQ905().equals("99") )
+//        {
+//            ck1txt.setChecked(true);
+//        }
+//
+//        if( ind.getQ905().equals("00"))
+//        {
+//            ck2txt.setChecked(true);
+//        }
+
+
+        RadioButton[] bt = new RadioButton[7];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ905a()!= null &&  !ind.getQ905a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ905a())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+        if( ind.getQ905aOther() != null)
+        {
+            edtaother.setText(ind.getQ905aOther());
+        }
 
 
 

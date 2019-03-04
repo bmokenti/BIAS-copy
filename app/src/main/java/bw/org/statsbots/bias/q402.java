@@ -116,8 +116,60 @@ public class q402 extends AppCompatActivity implements Serializable {
 
         }
 
+        if(ind.getQ402()!= null)
+        {
+            edtq402.setText(ind.getQ402());
+        }
 
 
+        if(ind.getQ402() == "99" )
+
+        {
+            chk99.setChecked(true);
+
+        }else
+        {
+            chk99.setChecked(false);
+        }
+
+
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rbtngroupa.getChildCount();f++)
+        {
+            View o = rbtngroupa.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ402a()!= null &&  !ind.getQ402a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ402a())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt1 = new RadioButton[3];
+        for(int f=0;f<rbtngroupb.getChildCount();f++)
+        {
+            View o = rbtngroupb.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ402b()!= null &&  !ind.getQ402b().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ402b())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
 
 

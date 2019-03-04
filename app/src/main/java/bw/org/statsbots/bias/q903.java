@@ -84,6 +84,141 @@ public class q903 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        RadioButton[] bt1 = new RadioButton[2];
+        for(int f=0;f<rg1.getChildCount();f++)
+        {
+            View o = rg1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ903a()!= null &&  !ind.getQ903a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ903a())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt2 = new RadioButton[2];
+        for(int f=0;f<rg2.getChildCount();f++)
+        {
+            View o = rg2.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt2[f]=((RadioButton)o);
+                if(ind.getQ903b()!= null &&  !ind.getQ903b().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ903b())==f+1)
+                    {
+                        RadioButton radioButton = bt2[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        RadioButton[] bt3 = new RadioButton[2];
+        for(int f=0;f<rg3.getChildCount();f++)
+        {
+            View o = rg3.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt3[f]=((RadioButton)o);
+                if(ind.getQ903c()!= null &&  !ind.getQ903c().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ903c())==f+1)
+                    {
+                        RadioButton radioButton = bt3[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        RadioButton[] bt4 = new RadioButton[2];
+        for(int f=0;f<rg4.getChildCount();f++)
+        {
+            View o = rg4.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt4[f]=((RadioButton)o);
+                if(ind.getQ903d()!= null &&  !ind.getQ903d().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ903d())==f+1)
+                    {
+                        RadioButton radioButton = bt4[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+        RadioButton[] bt5 = new RadioButton[2];
+        for(int f=0;f<rg5.getChildCount();f++)
+        {
+            View o = rg5.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt5[f]=((RadioButton)o);
+                if(ind.getQ903e()!= null &&  !ind.getQ903e().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ903e())==f+1)
+                    {
+                        RadioButton radioButton = bt5[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        RadioButton[] bt6 = new RadioButton[2];
+        for(int f=0;f<rg6.getChildCount();f++)
+        {
+            View o = rg6.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt6[f]=((RadioButton)o);
+                if(ind.getQ903f()!= null &&  !ind.getQ903f().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ903f())==f+1)
+                    {
+                        RadioButton radioButton = bt6[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt7= new RadioButton[2];
+        for(int f=0;f<rg7.getChildCount();f++)
+        {
+            View o = rg7.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt7[f]=((RadioButton)o);
+                if(ind.getQ903g()!= null &&  !ind.getQ903g().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ903g())==f+1)
+                    {
+                        RadioButton radioButton = bt7[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
 
 
         Button btnnext = findViewById(R.id.button);

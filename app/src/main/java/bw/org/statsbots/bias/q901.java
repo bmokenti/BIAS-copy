@@ -112,14 +112,24 @@ public class q901 extends AppCompatActivity implements Serializable {
 //        }
 
 
-        if(sample.getStatusCode().equals("3") && individual.getQ801().equals("2"))
+        if((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") ))
+                && individual.getQ801().equals("2"))
         {
             Intent intent = new Intent(q901.this, q1101.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
         }
 
-        if(sample.getStatusCode().equals("3") && individual.getQ801f().equals("1"))
+
+        if( sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )
+        {
+            Intent intent = new Intent(q901.this, q1101.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
+        if(sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") ) &&
+                ( individual.getQ801().equals("1") && individual.getQ801f().equals("1")))
         {
             Intent intent = new Intent(q901.this, q904.class);
             intent.putExtra("Individual", individual);
@@ -135,7 +145,9 @@ public class q901 extends AppCompatActivity implements Serializable {
                 startActivity(intent);
         }
 
-        if( individual.getQ801().equals("1") && !individual.getQ801f().equals("1") && Integer.valueOf(individual.getQ102()) >= 65 && (sample.getStatusCode().equals("2") ))
+
+        if( individual.getQ801().equals("1") && !individual.getQ801f().equals("1") && Integer.valueOf(individual.getQ102()) >= 65 &&
+                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") ))
         {
             Intent intent = new Intent(q901.this, q1101.class);
             intent.putExtra("Individual", individual);
@@ -143,6 +155,61 @@ public class q901 extends AppCompatActivity implements Serializable {
         }
         else {
 
+        }
+
+
+        if(( individual.getQ801().equals("1") && !individual.getQ801f().equals("1")) && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") )
+         || sample.getStatusCode().equals("1")&& individual.getQ102().equals("1"))
+        {
+            Intent intent = new Intent(q901.this, q1001.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
+
+
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ901()!= null &&  !ind.getQ901().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ901())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+        RadioButton[] bta = new RadioButton[11];
+        for(int f=0;f<rga.getChildCount();f++)
+        {
+            View o = rga.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bta[f]=((RadioButton)o);
+                if(ind.getQ901a()!= null &&  !ind.getQ901a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ901a())==f+1)
+                    {
+                        RadioButton radioButton = bta[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if( ind.getQ901aOther() != null)
+        {
+            edt.setText(ind.getQ901aOther());
         }
 
 

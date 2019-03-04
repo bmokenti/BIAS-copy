@@ -139,6 +139,185 @@ public class q619 extends AppCompatActivity implements Serializable {
 
             }
         });
+
+
+
+        if(ind.getQ619_1()!= null &&  !ind.getQ619_1().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_1())== 1)
+            {
+                ck1txt.setChecked(true);
+
+            }else
+            {
+                ck1txt.setChecked(false);
+            }
+        }
+
+
+
+        if(ind.getQ619_2()!= null &&  !ind.getQ619_2().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_2())== 1)
+            {
+                ck2txt.setChecked(true);
+
+            }else
+            {
+                ck2txt.setChecked(false);
+            }
+        }
+        if(ind.getQ619_3()!= null &&  !ind.getQ619_3().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_3())== 1)
+            {
+                ck3txt.setChecked(true);
+
+            }else
+            {
+                ck3txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ619_4()!= null &&  !ind.getQ619_4().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_4())== 1)
+            {
+                ck4txt.setChecked(true);
+
+            }else
+            {
+                ck4txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ619_5()!= null &&  !ind.getQ619_5().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_5())== 1)
+            {
+                ck5txt.setChecked(true);
+
+            }else
+            {
+                ck5txt.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ619_6()!= null &&  !ind.getQ619_6().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_6())== 1)
+            {
+                ck6txt.setChecked(true);
+
+            }else
+            {
+                ck6txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ619_7()!= null &&  !ind.getQ619_7().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_7())== 1)
+            {
+                ck7txt.setChecked(true);
+
+            }else
+            {
+                ck7txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ619_8()!= null &&  !ind.getQ619_8().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_8())== 1)
+            {
+                ck8txt.setChecked(true);
+
+            }else
+            {
+                ck8txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ619_10()!= null &&  !ind.getQ619_10().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_10())== 1)
+            {
+                ck10txt.setChecked(true);
+
+            }else
+            {
+                ck10txt.setChecked(false);
+            }
+        }
+        if(ind.getQ619_11()!= null &&  !ind.getQ619_11().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_11())== 1)
+            {
+                ck11txt.setChecked(true);
+
+            }else
+            {
+                ck11txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ619_12()!= null &&  !ind.getQ619_12().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_12())== 1)
+            {
+                ck12txt.setChecked(true);
+
+            }else
+            {
+                ck12txt.setChecked(false);
+            }
+        }
+        if(ind.getQ619_13()!= null &&  !ind.getQ619_13().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_13())== 1)
+            {
+                ck13txt.setChecked(true);
+
+            }else
+            {
+                ck13txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ619_14()!= null &&  !ind.getQ619_14().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_14())== 1)
+            {
+                ck14txt.setChecked(true);
+
+            }else
+            {
+                ck14txt.setChecked(false);
+            }
+        }
+
+
+
+
+        if(ind.getQ619_15() != null &&  !ind.getQ619_15().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_15())== 1)
+            {
+                chkOther.setChecked(true);
+
+            }else
+            {
+                chkOther.setChecked(false);
+            }
+        }
+
+        if(ind.getQ619_Other()!= null )
+        {
+            q619edt.setText(ind.getQ619_Other());
+        }
+
         Button btnNext = (Button) findViewById(R.id.button);
         btnNext.setOnClickListener(new View.OnClickListener() {
                 @Override

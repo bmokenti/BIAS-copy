@@ -51,6 +51,7 @@ public class q407 extends AppCompatActivity implements View.OnClickListener, Ser
 
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
+
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
@@ -63,6 +64,26 @@ public class q407 extends AppCompatActivity implements View.OnClickListener, Ser
         } else {
             //do nothing
         }
+
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ407()!= null &&  !ind.getQ407().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ407())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

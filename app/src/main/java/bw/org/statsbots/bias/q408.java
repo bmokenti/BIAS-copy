@@ -101,6 +101,43 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
         } else {
             //do nothing
         }
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ408()!= null &&  !ind.getQ408().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ408())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt1 = new RadioButton[2];
+        for(int f=0;f<rga.getChildCount();f++)
+        {
+            View o = rga.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(ind.getQ408a()!= null &&  !ind.getQ408a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ408a())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
 
 

@@ -54,6 +54,28 @@ public class q902 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        if( ind.getQ902Month() != null)
+        {
+            edtmnths.setText(ind.getQ902Month());
+        }
+
+        if( ind.getQ902Year() != null)
+        {
+            edtmnths.setText(ind.getQ902Year());
+        }
+
+        if( ind.getQ902Month() == "99")
+        {
+            ck1txt.setChecked(true);
+        }
+
+        if( ind.getQ902Year()  == "9999")
+        {
+            ck2txt.setChecked(true);
+        }
+
+
+
 
         Button btnnext = findViewById(R.id.btnNext);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -86,8 +108,11 @@ public class q902 extends AppCompatActivity implements Serializable {
                                     m="0"+m;
                                 }
                                 if(y.length()==1){
-                                    y="0"+y;
+                                    y="000"+y;
                                 }
+                        if(y.length()==2){
+                            y="00"+y;
+                        }
                                    individual.setQ902Month(m);
                                    individual.setQ902Year(y);
 

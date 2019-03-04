@@ -70,6 +70,16 @@ public class q804 extends AppCompatActivity implements Serializable{
 
         }
 
+        if(individual.getQ801f().equals("1") && individual.getQ101().equals("1")  && Integer.parseInt( individual.getQ102() )<50)
+        {
+            Intent intent = new Intent(q804.this, q1001.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+        else {
+
+        }
+
 
 
 
@@ -163,6 +173,29 @@ public class q804 extends AppCompatActivity implements Serializable{
                 }
             }
         });
+
+        RadioButton[] bt = new RadioButton[8];
+        for(int f=0;f<rbtngroup.getChildCount();f++)
+        {
+            View o = rbtngroup.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ804()!= null &&  !ind.getQ804().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ804())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+        if( ind.getQ804Other() != null)
+        {
+            edt804other.setText(ind.getQ804Other());
+        }
 
         /**
          * NEXT question

@@ -49,6 +49,11 @@ public class q406 extends AppCompatActivity implements  Serializable {
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
+        if(ind.getQ406()!= null)
+        {
+            edt.setText(ind.getQ406());
+        }
+
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
         Button btnnext = findViewById(R.id.button);

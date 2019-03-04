@@ -80,6 +80,25 @@ public class q1110 extends AppCompatActivity implements Serializable {
             startActivity(intent);
         }
 
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1110()!= null &&  !ind.getQ1110().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1110())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
         Button btnext = findViewById(R.id.btnNext);
 
 

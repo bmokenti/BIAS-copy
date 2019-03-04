@@ -102,6 +102,274 @@ public class q1002 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+
+
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1002()!= null &&  !ind.getQ1002().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1002())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+
+        if(ind.getQ1002a_1()!= null &&  !ind.getQ1002a_1().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_1())== 1)
+            {
+                chka1.setChecked(true);
+
+            }else
+            {
+                chka1.setChecked(false);
+            }
+        }
+
+
+
+        if(ind.getQ1002a_2()!= null &&  !ind.getQ1002a_2().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_2())== 1)
+            {
+                chka2.setChecked(true);
+
+            }else
+            {
+                chka2.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ1002a_3()!= null &&  !ind.getQ1002a_3().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_3())== 1)
+            {
+                chka3.setChecked(true);
+
+            }else
+            {
+                chka3.setChecked(false);
+            }
+        }
+
+        if(ind.getQ1002a_4()!= null &&  !ind.getQ1002a_4().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_4())== 1)
+            {
+                chka4.setChecked(true);
+
+            }else
+            {
+                chka4.setChecked(false);
+            }
+        }
+
+        if(ind.getQ1002a_5()!= null &&  !ind.getQ1002a_5().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_5())== 1)
+            {
+                chka5.setChecked(true);
+
+            }else
+            {
+                chka5.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ1002a_6()!= null &&  !ind.getQ1002a_6().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_6())== 1)
+            {
+                chka6.setChecked(true);
+
+            }else
+            {
+                chka6.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ1002a_7()!= null &&  !ind.getQ1002a_7().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_7())== 1)
+            {
+                chka7.setChecked(true);
+
+            }else
+            {
+                chka7.setChecked(false);
+            }
+        }
+
+        if(ind.getQ1002a_8()!= null &&  !ind.getQ1002a_8().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_8())== 1)
+            {
+                chka8.setChecked(true);
+
+            }else
+            {
+                chka8.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ1002a_10()!= null &&  !ind.getQ1002a_10().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_10())== 1)
+            {
+                chka10.setChecked(true);
+
+            }else
+            {
+                chka10.setChecked(false);
+            }
+        }
+
+        if(ind.getQ1002a_11()!= null &&  !ind.getQ1002a_11().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_11())== 1)
+            {
+                chka11.setChecked(true);
+
+            }else
+            {
+                chka11.setChecked(false);
+            }
+        }
+
+        if(ind.getQ1002a_12()!= null &&  !ind.getQ1002a_12().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_12())== 1)
+            {
+                chka12.setChecked(true);
+
+            }else
+            {
+                chka12.setChecked(false);
+            }
+        }
+        if(ind.getQ1002a_13()!= null &&  !ind.getQ1002a_13().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_13())== 1)
+            {
+                chka13.setChecked(true);
+
+            }else
+            {
+                chka13.setChecked(false);
+            }
+        }
+        if(ind.getQ1002a_14()!= null &&  !ind.getQ1002a_14().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_14())== 1)
+            {
+                chka14.setChecked(true);
+
+            }else
+            {
+                chka14.setChecked(false);
+            }
+        }
+
+        if(ind.getQ1002a_15()!= null &&  !ind.getQ1002a_15().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_15())== 1)
+            {
+                chka15.setChecked(true);
+
+            }else
+            {
+                chka15.setChecked(false);
+            }
+        }
+
+        if(ind.getQ1002a_16()!= null &&  !ind.getQ1002a_16().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_16())== 1)
+            {
+                chka16.setChecked(true);
+
+            }else
+            {
+                chka16.setChecked(false);
+            }
+        }
+
+        if(ind.getQ1002a_17()!= null &&  !ind.getQ1002a_17().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_17())== 1)
+            {
+                chka17.setChecked(true);
+
+            }else
+            {
+                chka17.setChecked(false);
+            }
+        }
+
+        if(ind.getQ1002a_18()!= null &&  !ind.getQ1002a_18().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_18())== 1)
+            {
+                chka18.setChecked(true);
+
+            }else
+            {
+                chka18.setChecked(false);
+            }
+        }
+
+        if(ind.getQ1002a_Other()!= null &&  !ind.getQ1002a_Other().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ1002a_Other())== 1)
+            {
+                chkaOther.setChecked(true);
+
+            }else
+            {
+                chkaOther.setChecked(false);
+            }
+        }
+
+//        if(ind.getQ1002_Other()!= null )
+//        {
+//            q619edt.setText(ind.getQ619_Other());
+//        }
+
+
+        RadioButton[] btb = new RadioButton[7];
+        for(int f=0;f<rgb.getChildCount();f++)
+        {
+            View o = rgb.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                btb[f]=((RadioButton)o);
+                if(ind.getQ1002b()!= null &&  !ind.getQ1002b().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1002b())==f+1)
+                    {
+                        RadioButton radioButton = btb[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -278,8 +546,8 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                         individual.setQ1002a_18(chka18.getText().toString().substring(0, 1));
                                         individual.setQ1002a_Other(edtOthertxt.getText().toString());
 */
-                                        individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
-                                        individual.setQ1002bOther(edtbOther.getText().toString());
+                                        //individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
+                                       // individual.setQ1002bOther(edtbOther.getText().toString());
 
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();

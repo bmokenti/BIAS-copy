@@ -65,7 +65,24 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
             startActivity(intent);
 
         }
-
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ501()!= null &&  !ind.getQ501().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ501())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

@@ -65,6 +65,141 @@ public class q504 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        if(individual.getQ504_1()!= null &&  !individual.getQ504_1().equals(""))
+        {
+            if(Integer.parseInt(individual.getQ504_1())== 1)
+            {
+                ck1txt.setChecked(true);
+
+            }else
+            {
+                ck1txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ504_2()!= null &&  !ind.getQ504_2().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ504_2())== 1)
+            {
+                ck2txt.setChecked(true);
+
+            }else
+            {
+                ck2txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ504_3()!= null &&  !ind.getQ504_3().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ504_3())== 1)
+            {
+                ck3txt.setChecked(true);
+
+            }else
+            {
+                ck3txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ504_4()!= null &&  !ind.getQ504_4().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ504_4())== 1)
+            {
+                ck4txt.setChecked(true);
+
+            }else
+            {
+                ck4txt.setChecked(false);
+            }
+        }
+        ////
+        if(ind.getQ504_5()!= null &&  !ind.getQ504_5().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ504_5())== 1)
+            {
+                ck5txt.setChecked(true);
+
+            }else
+            {
+                ck5txt.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ504_6()!= null &&  !ind.getQ504_6().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ504_6())== 1)
+            {
+                ck6txt.setChecked(true);
+
+            }else
+            {
+                ck6txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ504_7()!= null &&  !ind.getQ504_7().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ504_7())== 1)
+            {
+                ck7txt.setChecked(true);
+
+            }else
+            {
+                ck7txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ504_8()!= null &&  !ind.getQ504_8().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ504_8())== 1)
+            {
+                ck8txt.setChecked(true);
+
+            }else
+            {
+                ck8txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ504_10()!= null &&  !ind.getQ504_10().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ504_10())== 1)
+            {
+                ck10txt.setChecked(true);
+
+            }else
+            {
+                ck10txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ504_Other()!= null &&  !ind.getQ504_Other().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ504_Other())== 1)
+            {
+                chkOther.setChecked(true);
+
+            }else
+            {
+                chkOther.setChecked(false);
+            }
+        }
+
+        if((ind.getQ504_Other()!= null &&  !ind.getQ504_Other().equals("")) &&  ind.getQ504_OtherSpecify() != null )
+
+        {
+            Q504edt.setText(ind.getQ504_OtherSpecify());
+        }
+
+
+
+
+
+
+
+
+
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override

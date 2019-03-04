@@ -86,7 +86,60 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
             //do nothing
         }
 
+        if(individual.getQ404_1()!= null &&  !individual.getQ404_1().equals(""))
+        {
+            if(Integer.parseInt(individual.getQ404_1())== 1)
+            {
+                chk1.setChecked(true);
 
+            }else
+            {
+                chk1.setChecked(false);
+            }
+        }
+
+        if(ind.getQ404_2()!= null &&  !ind.getQ404_2().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ404_2())== 1)
+            {
+                chk2.setChecked(true);
+
+            }else
+            {
+                chk2.setChecked(false);
+            }
+        }
+
+        if(ind.getQ404_3()!= null &&  !ind.getQ404_3().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ404_3())== 1)
+            {
+                chk3.setChecked(true);
+
+            }else
+            {
+                chk3.setChecked(false);
+            }
+        }
+
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ404a()!= null &&  !ind.getQ404a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ404a())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

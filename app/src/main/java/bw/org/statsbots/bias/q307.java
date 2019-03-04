@@ -60,6 +60,25 @@ public class q307 extends AppCompatActivity implements View.OnClickListener, Ser
 //        PersonRoster pr[] = thisHouse.getPersons();
 
 
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ307()!= null &&  !ind.getQ307().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ307())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
 
         btnext.setOnClickListener(new View.OnClickListener()
 

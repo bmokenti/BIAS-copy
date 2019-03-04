@@ -66,6 +66,8 @@ public class q304 extends AppCompatActivity implements Serializable {
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+
         RadioButton[] bt1 = new RadioButton[2];
         for(int f=0;f<rg.getChildCount();f++)
         {

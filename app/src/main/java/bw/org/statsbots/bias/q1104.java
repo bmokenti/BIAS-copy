@@ -73,6 +73,24 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
             startActivity(intent);
 
         }
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(ind.getQ1104()!= null &&  !ind.getQ1104().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ1104())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
 
         Button btnnext = findViewById(R.id.button);
