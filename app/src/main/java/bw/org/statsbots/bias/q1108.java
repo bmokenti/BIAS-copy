@@ -66,8 +66,8 @@ protected LibraryClass lib;
         thisHous.get(0).getHIVTB40();
 
 
-        RadioButton[] bt = new RadioButton[2];
-        for(int f=0;f<rg.getChildCount();f++)
+        RadioButton[] bt = new RadioButton[3];
+        for(int f=1;f<rg.getChildCount();f++)
         {
             View o = rg.getChildAt(f);
             if (o instanceof RadioButton)
@@ -75,7 +75,7 @@ protected LibraryClass lib;
                 bt[f]=((RadioButton)o);
                 if(ind.getQ1108()!= null &&  !ind.getQ1108().equals(""))
                 {
-                    if(Integer.parseInt(ind.getQ1108())==f+1)
+                    if(Integer.parseInt(ind.getQ1108())==f)
                     {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);

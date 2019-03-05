@@ -52,6 +52,7 @@ public class q604 extends AppCompatActivity implements Serializable {
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
+
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
@@ -361,7 +362,8 @@ public class q604 extends AppCompatActivity implements Serializable {
                                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                     vibs.vibrate(100);
                                 } else {
-                                    if (rbtn2.isChecked() && (sample.getStatusCode().equals("1") || sample.getStatusCode().equals("2")) ) {
+                                    if (rbtn2.isChecked() && (sample.getStatusCode().equals("1")) ||
+                                            (rbtn2.isChecked() && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))) {
 
                                         individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
 
@@ -415,8 +417,9 @@ public class q604 extends AppCompatActivity implements Serializable {
                                                 startActivity(intent1);
 
                                             } else {
-                                                individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
+
                                                 individual.setQ604a(selectedRbtna.getText().toString().substring(0, 1));
+                                                individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
 
                                            /* individual.setQ604b_1(ck1txt.getText().toString().substring(0, 1));
                                             individual.setQ604b_2(ck2txt.getText().toString().substring(0, 1));

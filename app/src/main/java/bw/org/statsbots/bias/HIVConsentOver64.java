@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class HIVConsentOver64 extends AppCompatActivity implements Serializable {
@@ -211,6 +213,24 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+                Date today = new Date();
+
+                //Convert to calendar Object
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(today);
+
+
+                CharSequence s = android.text.format.DateFormat.format("dd/MM/yyyy",today.getTime());
+                EdtDate.setText(s.toString());
+
+            }
+        });
+
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override

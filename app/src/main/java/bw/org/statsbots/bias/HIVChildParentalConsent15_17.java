@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 public class HIVChildParentalConsent15_17 extends AppCompatActivity implements Serializable  {
 
@@ -181,6 +183,41 @@ if(Integer.valueOf(individual.getQ102()) >= 18 && (sample.getStatusCode().equals
         });
 
 
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+                Date today = new Date();
+
+                //Convert to calendar Object
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(today);
+
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+                EdtDate.setText(today.toString());
+
+            }
+        });
+
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+                Date today = new Date();
+
+                //Convert to calendar Object
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(today);
+
+
+                CharSequence s = android.text.format.DateFormat.format("dd/MM/yyyy",today.getTime());
+                EdtDate.setText(s.toString());
+
+            }
+        });
 
 
 
@@ -279,7 +316,7 @@ if(Integer.valueOf(individual.getQ102()) >= 18 && (sample.getStatusCode().equals
                                             //individual.setPrntlConsentLabTest(selected3.getText().toString().substring(0, 1));
                                             individual.setPrntlConsentBloodStore(selected4.getText().toString().substring(0, 1));
                                             individual.setPrntlParentID(selected5.getText().toString().substring(0, 1));
-                                            individual.setPrntlConsentDate("12122015");
+                                            individual.setPrntlConsentDate(EdtDate.getText().toString());
                                                    // (EdtDate.getText().toString());
 
 

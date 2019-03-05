@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Serializable{
     protected HouseHold thisHouse;
@@ -282,6 +284,23 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
 
 
                 }
+            }
+        });
+
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+                Date today = new Date();
+
+                //Convert to calendar Object
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(today);
+
+
+                CharSequence s = android.text.format.DateFormat.format("dd/MM/yyyy",today.getTime());
+                EdtDate.setText(s.toString());
+
             }
         });
 
