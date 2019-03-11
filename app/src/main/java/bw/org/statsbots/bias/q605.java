@@ -36,7 +36,7 @@ public class q605 extends AppCompatActivity implements Serializable {
 //btn = findViewById(R.id.btn);
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
@@ -47,6 +47,17 @@ public class q605 extends AppCompatActivity implements Serializable {
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
 
 //        myDB = new DatabaseHelper(this);
 //        myDB.getWritableDatabase();
@@ -206,7 +217,59 @@ public class q605 extends AppCompatActivity implements Serializable {
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
-                } else if (sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))) {
+                } else {
+                    if (sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
+                            || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64)) {
+
+
+                        if (ck1txt.isChecked()) {
+                            individual.setQ605_1("1");
+                        } else {
+                            individual.setQ605_1("2");
+                        }
+                        if (ck2txt.isChecked()) {
+                            individual.setQ605_2("1");
+                        } else {
+                            individual.setQ605_2("2");
+                        }
+                        if (ck3txt.isChecked()) {
+                            individual.setQ605_3("1");
+                        } else {
+                            individual.setQ605_3("2");
+                        }
+                        if (ck4txt.isChecked()) {
+                            individual.setQ605_4("1");
+                        } else {
+                            individual.setQ605_4("2");
+                        }
+                        if (ck5txt.isChecked()) {
+                            individual.setQ605_5("1");
+                        } else {
+                            individual.setQ605_5("2");
+                        }
+                        if (ck9txt.isChecked()) {
+                            individual.setQ605_9("1");
+                        } else {
+                            individual.setQ605_9("2");
+                        }
+                        if (chkOther.isChecked()) {
+                            individual.setQ605_Other("1");
+                            individual.setQ605_Otherspecify(q605edt.getText().toString());
+                        } else {
+                            individual.setQ605_Other("2");
+                        }
+
+
+                        //Check if individual already been saved and update
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                        myDB.close();
+
+                        Intent intent = new Intent(q605.this, q616.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+                    } else {
                    /* individual.setQ605_1(ck1txt.getText().toString().substring(0,1));
                    individual.setQ605_2(ck2txt.getText().toString().substring(0,1));
                     individual.setQ605_3(ck3txt.getText().toString().substring(0,1));
@@ -217,117 +280,56 @@ public class q605 extends AppCompatActivity implements Serializable {
                      individual.setQ605_Other(chkOther.getText().toString().substring(0,1));
                     individual.setQ605_Otherspecify(q605edt.getText().toString());*/
 
-                    if (ck1txt.isChecked()) {
-                        individual.setQ605_1("1");
-                    } else {
-                        individual.setQ605_1("2");
-                    }
-                    if (ck2txt.isChecked()) {
-                        individual.setQ605_2("1");
-                    } else {
-                        individual.setQ605_2("2");
-                    }
-                    if (ck3txt.isChecked()) {
-                        individual.setQ605_3("1");
-                    } else {
-                        individual.setQ605_3("2");
-                    }
-                    if (ck4txt.isChecked()) {
-                        individual.setQ605_4("1");
-                    } else {
-                        individual.setQ605_4("2");
-                    }
-                    if (ck5txt.isChecked()) {
-                        individual.setQ605_5("1");
-                    } else {
-                        individual.setQ605_5("2");
-                    }
-                    if(ck9txt.isChecked()) {
-                        individual.setQ605_9("1");
-                    }else {
-                        individual.setQ605_9("2");
-                    }
-                    if(chkOther.isChecked()) {
-                        individual.setQ605_Other("1");
-                        individual.setQ605_Otherspecify(q605edt.getText().toString());
-                    }else {
-                        individual.setQ605_Other("2");
-                    }
+                        if (ck1txt.isChecked()) {
+                            individual.setQ605_1("1");
+                        } else {
+                            individual.setQ605_1("2");
+                        }
+                        if (ck2txt.isChecked()) {
+                            individual.setQ605_2("1");
+                        } else {
+                            individual.setQ605_2("2");
+                        }
+                        if (ck3txt.isChecked()) {
+                            individual.setQ605_3("1");
+                        } else {
+                            individual.setQ605_3("2");
+                        }
+                        if (ck4txt.isChecked()) {
+                            individual.setQ605_4("1");
+                        } else {
+                            individual.setQ605_4("2");
+                        }
+                        if (ck5txt.isChecked()) {
+                            individual.setQ605_5("1");
+                        } else {
+                            individual.setQ605_5("2");
+                        }
+                        if (ck9txt.isChecked()) {
+                            individual.setQ605_9("1");
+                        } else {
+                            individual.setQ605_9("2");
+                        }
+                        if (chkOther.isChecked()) {
+                            individual.setQ605_Other("1");
+                            individual.setQ605_Otherspecify(q605edt.getText().toString());
+                        } else {
+                            individual.setQ605_Other("2");
+                        }
 
 
-                    //Check if individual already been saved and update
-                    myDB.onOpen(myDB.getReadableDatabase());
-                    myDB.getWritableDatabase();
-                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                    myDB.close();
+                        //Check if individual already been saved and update
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                        myDB.close();
 
-                    Intent intent = new Intent(q605.this, q616.class);
-                    intent.putExtra("Individual", individual);
-                    startActivity(intent);
+                        Intent intent = new Intent(q605.this, q606.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+                    }
+
                 }
-
-
-                    else
-                 {
-                   /* individual.setQ605_1(ck1txt.getText().toString().substring(0,1));
-                   individual.setQ605_2(ck2txt.getText().toString().substring(0,1));
-                    individual.setQ605_3(ck3txt.getText().toString().substring(0,1));
-                    individual.setQ605_4(ck4txt.getText().toString().substring(0,1));
-                    individual.setQ605_5(ck5txt.getText().toString().substring(0,1));
-                     individual.setQ605_5(ck9txt.getText().toString().substring(0,1));
-
-                     individual.setQ605_Other(chkOther.getText().toString().substring(0,1));
-                    individual.setQ605_Otherspecify(q605edt.getText().toString());*/
-
-                    if (ck1txt.isChecked()) {
-                        individual.setQ605_1("1");
-                    } else {
-                        individual.setQ605_1("2");
-                    }
-                    if (ck2txt.isChecked()) {
-                        individual.setQ605_2("1");
-                    } else {
-                        individual.setQ605_2("2");
-                    }
-                    if (ck3txt.isChecked()) {
-                        individual.setQ605_3("1");
-                    } else {
-                        individual.setQ605_3("2");
-                    }
-                    if (ck4txt.isChecked()) {
-                        individual.setQ605_4("1");
-                    } else {
-                        individual.setQ605_4("2");
-                    }
-                    if (ck5txt.isChecked()) {
-                        individual.setQ605_5("1");
-                    } else {
-                        individual.setQ605_5("2");
-                    }
-                    if(ck9txt.isChecked()) {
-                        individual.setQ605_9("1");
-                    }else {
-                        individual.setQ605_9("2");
-                    }
-                    if(chkOther.isChecked()) {
-                        individual.setQ605_Other("1");
-                        individual.setQ605_Otherspecify(q605edt.getText().toString());
-                    }else {
-                        individual.setQ605_Other("2");
-                    }
-
-
-                    //Check if individual already been saved and update
-                    myDB.onOpen(myDB.getReadableDatabase());
-                    myDB.getWritableDatabase();
-                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                    myDB.close();
-
-                    Intent intent = new Intent(q605.this, q606.class);
-                    intent.putExtra("Individual", individual);
-                    startActivity(intent);
-                }
-
             }
 
         });

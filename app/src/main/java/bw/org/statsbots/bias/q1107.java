@@ -56,7 +56,7 @@ public class q1107 extends AppCompatActivity implements  Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
@@ -66,6 +66,16 @@ public class q1107 extends AppCompatActivity implements  Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
         RadioButton[] bt = new RadioButton[2];
         for(int f=0;f<rg1.getChildCount();f++)
         {
@@ -141,49 +151,59 @@ public class q1107 extends AppCompatActivity implements  Serializable {
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
-                    } else {
+                    }  else {
 
 
-                        if (rbtn2.isChecked()) {
-
-                            individual.setQ1107(selectedRbtn.getText().toString().substring(0, 1));
-                            myDB.onOpen(myDB.getReadableDatabase());
-                            myDB.getWritableDatabase();
-                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                            myDB.close();
-
-                            Intent intent = new Intent(q1107.this, q1108.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
+                        if (((txtdays.getText().toString().equals("0") || txtdays.getText().toString().equals("00")) &&
+                                (txtweeks.getText().toString().equals("0") || txtweeks.getText().toString().equals("00")) && rbtn1.isChecked())) {
+                            lib.showError(q1107.this, "Q1107", "a) Days and weeks can not be both 0/00");
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
                         } else {
-                            individual.setQ1107(selectedRbtn.getText().toString().substring(0, 1));
-                            if(txtdays.getText().toString().length()==0){
-                                individual.setQ1107aDD("00");
-                            }
-                            else if(txtdays.getText().toString().length()==1){
-                                individual.setQ1107aDD("0"+txtdays.getText().toString());
-                            }else{
-                                individual.setQ1107aDD(txtdays.getText().toString());
-                            }
 
 
-                            if(txtweeks.getText().toString().length()==0){
-                                individual.setQ1107aWks("00");
-                            }
-                            else if(txtweeks.getText().toString().length()==1){
-                                individual.setQ1107aWks("0"+txtweeks.getText().toString());
-                            }else{
-                                individual.setQ1107aWks(txtweeks.getText().toString());
-                            }
+                            if (rbtn2.isChecked()) {
 
-                            myDB.onOpen(myDB.getReadableDatabase());
-                            myDB.getWritableDatabase();
-                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                            myDB.close();
+                                individual.setQ1107(selectedRbtn.getText().toString().substring(0, 1));
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                myDB.close();
 
-                            Intent intent = new Intent(q1107.this, q1108.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
+                                Intent intent = new Intent(q1107.this, q1108.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                            } else {
+                                individual.setQ1107(selectedRbtn.getText().toString().substring(0, 1));
+                                if (txtdays.getText().toString().length() == 0) {
+                                    individual.setQ1107aDD("00");
+                                } else if (txtdays.getText().toString().length() == 1) {
+                                    individual.setQ1107aDD("0" + txtdays.getText().toString());
+                                } else {
+                                    individual.setQ1107aDD(txtdays.getText().toString());
+                                }
+
+
+                                if (txtweeks.getText().toString().length() == 0) {
+                                    individual.setQ1107aWks("00");
+                                } else if (txtweeks.getText().toString().length() == 1) {
+                                    individual.setQ1107aWks("0" + txtweeks.getText().toString());
+                                } else {
+                                    individual.setQ1107aWks(txtweeks.getText().toString());
+                                }
+
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                myDB.close();
+
+                                Intent intent = new Intent(q1107.this, q1108.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                            }
                         }
                     }
                 }

@@ -56,7 +56,7 @@ protected LibraryClass lib;
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
@@ -65,7 +65,16 @@ protected LibraryClass lib;
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
 
+
+        }
         RadioButton[] bt = new RadioButton[3];
         for(int f=1;f<rg.getChildCount();f++)
         {
@@ -144,51 +153,62 @@ protected LibraryClass lib;
                     } else {
 
 
-                        if (rbtn.isChecked()) {
-                            individual.setQ1108(selectedRbtn.getText().toString().substring(0, 1));
-                            myDB.onOpen(myDB.getReadableDatabase());
-                            myDB.getWritableDatabase();
-                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                            myDB.close();
-                            Intent intent = new Intent(q1108.this, q1109.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
+                        if (((txtq1108dd.getText().toString().equals("0") || txtq1108dd.getText().toString().equals("00")) &&
+                                (txtq1108wks.getText().toString().equals("0") || txtq1108wks.getText().toString().equals("00")) && rbty.isChecked())) {
+                            lib.showError(q1108.this, "Q1107", "a) Days and weeks can not be both 0/00");
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
                         } else {
 
-                            individual.setQ1108(selectedRbtn.getText().toString().substring(0, 1));
+
+                            if (rbtn.isChecked()) {
+                                individual.setQ1108(selectedRbtn.getText().toString().substring(0, 1));
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                myDB.close();
+                                Intent intent = new Intent(q1108.this, q1109.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                            } else {
+
+                                individual.setQ1108(selectedRbtn.getText().toString().substring(0, 1));
 
 
-                            if(txtq1108dd.getText().toString().length()==0){
-                                individual.setQ1108aDD("00");
+                                if (txtq1108dd.getText().toString().length() == 0) {
+                                    individual.setQ1108aDD("00");
+                                } else if (txtq1108dd.getText().toString().length() == 1) {
+                                    individual.setQ1108aDD("0" + txtq1108dd.getText().toString());
+                                } else {
+                                    individual.setQ1108aDD(txtq1108dd.getText().toString());
+                                }
+
+
+                                if (txtq1108wks.getText().toString().length() == 0) {
+                                    individual.setQ1108aWks("00");
+                                } else if (txtq1108wks.getText().toString().length() == 1) {
+                                    individual.setQ1108aWks("0" + txtq1108wks.getText().toString());
+                                } else {
+                                    individual.setQ1108aWks(txtq1108wks.getText().toString());
+                                }
+
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                myDB.close();
+
+
+                                Intent intent = new Intent(q1108.this, q1109.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
                             }
-                            else if(txtq1108dd.getText().toString().length()==1){
-                                individual.setQ1108aDD("0"+txtq1108dd.getText().toString());
-                            }else{
-                                individual.setQ1108aDD(txtq1108dd.getText().toString());
-                            }
 
-
-                            if(txtq1108wks.getText().toString().length()==0){
-                                individual.setQ1108aWks("00");
-                            }else if(txtq1108wks.getText().toString().length()==1){
-                                individual.setQ1108aWks("0"+txtq1108wks.getText().toString());
-                            }else{
-                                individual.setQ1108aWks(txtq1108wks.getText().toString());
-                            }
-
-                            myDB.onOpen(myDB.getReadableDatabase());
-                            myDB.getWritableDatabase();
-                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                            myDB.close();
-
-
-                            Intent intent = new Intent(q1108.this, q1109.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
                         }
 
                     }
-
                 }
             }
         });

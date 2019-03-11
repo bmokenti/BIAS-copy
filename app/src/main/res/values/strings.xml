@@ -681,7 +681,7 @@ www.moh.gov.bw
     <string name="q1106aq">a) If YES, what was the result?</string>
     <string name="q1106ques">Did you submit a sputum sample?</string>
     <string name="q1106bq">b) If NO, why not?</string>
-    <string name="q1106b_1">1. COULD NOT SUBMIT SPUTUM</string>
+    <string name="q1106b_1">1. COULD NOT PRODUCE SPUTUM</string>
     <string name="q1106b_2">2. COULD NOT GET TO THE CLINIC OR HEALTH CENTRE</string>
     <string name="q1106b_3">3. I WAS NOT ASKED TO SUBMIT A SPUTUM SAMPLE</string>
     <string name="q1106b_4">4. NO SPUTUM CONTAINER</string>
@@ -1517,7 +1517,7 @@ www.moh.gov.bw
 
 
     <string name="q618">
-      Q618. Do you think that TB can be treated?
+      Q618. Do you think that TB can be treated/cured?
     </string>
     <string name="q618_1">1. Yes</string>
     <string name="q618_2">2. No </string>
@@ -2276,8 +2276,8 @@ www.moh.gov.bw
     <string name="H09Other">Other specify</string>
     <string name="OwnFlushToilet">1 Own flush toilet</string>
     <string name="OwnPitLatrine">2 Own pit latrine</string>
-    <string name="NeighboursFlushToilet">3 Neighbours Pitlatrine</string>
-    <string name="NeighboursPitLatrine">4 Neighbours Pitlaterine</string>
+    <string name="NeighboursFlushToilet">3 Neighbours flush toilet</string>
+    <string name="NeighboursPitLatrine">4 Neighbours Pitla terine</string>
     <string name="CommunalFlushToilet">5 Communal flush toilet</string>
     <string name="CommunalPitLatrine">6 Communal pit laterine</string>
     <string name="PailOrBucketLatrine">7 Pail or bucket latrine</string>

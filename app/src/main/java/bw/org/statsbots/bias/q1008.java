@@ -71,7 +71,7 @@ public class q1008 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
-        if (individual.getQ1007a().equals("2") || individual.getQ1007a().equals("3") ||individual.getQ1007a().equals("4") || individual.getQ1007a().equals("9"))
+        if (individual.getQ1007a() != null &&  !individual.getQ1007a().equals("1"))
         {
             Intent intent = new Intent(q1008.this, q1009.class);
             intent.putExtra("Individual", individual);

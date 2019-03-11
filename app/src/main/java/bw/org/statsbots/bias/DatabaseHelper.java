@@ -4375,7 +4375,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             ind.setPrntlConsentBloodStore(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentBloodStore")));
             ind.setPrntlParentID(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlParentID")));
             ind.setPrntlConsentDate(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentDate")));
-            ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
+            //ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
 
 
 

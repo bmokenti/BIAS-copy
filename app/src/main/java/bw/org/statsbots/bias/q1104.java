@@ -50,7 +50,7 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
@@ -66,7 +66,23 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
-        if( sample.getStatusCode().equals("1"))
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
+//
+//
+//        if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
+//                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
+
+        if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
+                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
         {
             Intent intent = new Intent(q1104.this, q1107.class);
             intent.putExtra("Individual", individual);

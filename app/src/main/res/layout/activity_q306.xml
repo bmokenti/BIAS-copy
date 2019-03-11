@@ -90,7 +90,7 @@
                 android:ems="10"
                 android:layout_marginTop="10dp"
                 android:padding="3dp"
-                android:maxLength="2"
+                android:maxLength="1"
                 android:hint="Number of Days"
                 android:inputType="number" />
 

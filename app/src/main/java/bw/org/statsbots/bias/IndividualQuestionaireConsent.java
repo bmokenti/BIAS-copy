@@ -200,7 +200,7 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
                             myDB.close();
                         }
 
-                        Intent intent = new Intent(IndividualQuestionaireConsent.this, Dashboard.class);
+                        Intent intent = new Intent(IndividualQuestionaireConsent.this, HIVChildParentalConsent15_17.class);
 
                         intent.putExtra("Individual", individual);
                         intent.putExtra("Personroster", p1);

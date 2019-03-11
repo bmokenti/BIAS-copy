@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q105 extends AppCompatActivity implements Serializable{
 
@@ -32,7 +33,7 @@ public class q105 extends AppCompatActivity implements Serializable{
     protected DatabaseHelper myDB;
     protected EditText edt, edt1, edt2;
     TextView q105text;
-    protected  PersonRoster p1 ;
+   protected  PersonRoster p1 ;
     Individual pp1 = null;
 
     @Override
@@ -78,7 +79,7 @@ public class q105 extends AppCompatActivity implements Serializable{
 
         myDB.getWritableDatabase();
 //        myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
-        int p = 0;
+      //  int p = 0;
 
         edt1.clearFocus();
         edt2.clearFocus();
@@ -88,6 +89,20 @@ public class q105 extends AppCompatActivity implements Serializable{
 
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
         individual = ind;
+
+
+
+
+     final List<PersonRoster> roster = myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+        for (PersonRoster p: roster
+             ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
 
         RadioButton[] bt = new RadioButton[9];
         for(int f=0;f<rg.getChildCount();f++)

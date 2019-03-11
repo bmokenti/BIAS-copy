@@ -87,6 +87,9 @@ public class q205 extends AppCompatActivity implements Serializable {
 
                         boolean checked = radioButton.isChecked();
 
+
+
+
                         switch (radioButton.getId()) {
                             case R.id.q205_1:
                                 if (checked) {
@@ -325,7 +328,10 @@ public class q205 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q205.super.onBackPressed();
+                Intent q1o2 = new Intent(q205.this, q204.class);
+                q1o2.putExtra("Individual", individual);
+                startActivity(q1o2);
+                //q205.super.onBackPressed();
             }
 
 

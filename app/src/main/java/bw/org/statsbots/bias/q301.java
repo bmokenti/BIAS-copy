@@ -196,6 +196,7 @@ public class q301 extends AppCompatActivity implements Serializable{
                             q1o2.putExtra("Individual", individual);
                             startActivity(q1o2);
 
+
                         } else {
                             individual.setQ301(selectedRbtn1.getText().toString().substring(0, 1));
                             individual.setQ301a(selectedRbtn2.getText().toString().substring(0, 1));
@@ -222,7 +223,34 @@ public class q301 extends AppCompatActivity implements Serializable{
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q301.super.onBackPressed();
+                if (individual.getQ202() != null && individual.getQ202().equals("2")) {
+
+                    Intent q1o2 = new Intent(q301.this, q202.class);
+                    q1o2.putExtra("Individual", individual);
+                    startActivity(q1o2);
+
+                }
+
+                if ( !(individual.getQ201().equals("2") || individual.getQ201().equals("3")))
+                {
+
+                    Intent skipto301 = new Intent(q301.this, q203.class);
+                    skipto301.putExtra("Individual", individual);
+                    startActivity(skipto301);
+
+                }
+
+                if ( individual.getQ205() != null && individual.getQ205().equals("1")) {
+
+
+                    Intent q1o2 = new Intent(q301.this, q205.class);
+                    q1o2.putExtra("Individual", individual);
+                    startActivity(q1o2);
+                }
+                else{
+                    q301.super.onBackPressed();
+                }
+
             }
 
 

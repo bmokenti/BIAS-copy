@@ -50,6 +50,7 @@ public class q203 extends AppCompatActivity implements Serializable {
         individual = ind;
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
         if(individual.getQ203()!=null){
             edt.setText(individual.getQ203());
         }
@@ -126,6 +127,11 @@ public class q203 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent q1o2 = new Intent(q203.this, q202.class);
+                q1o2.putExtra("Individual", individual);
+                startActivity(q1o2);
+
                 q203.super.onBackPressed();
             }
 

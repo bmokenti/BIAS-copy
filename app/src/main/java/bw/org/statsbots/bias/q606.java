@@ -43,7 +43,7 @@ public class q606 extends AppCompatActivity implements Serializable{
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+      //  int p = 0;
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
@@ -90,6 +90,8 @@ public class q606 extends AppCompatActivity implements Serializable{
 //        }
 
 
+
+
         if (individual.getQ601().equals("2") &&   sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("0")){
 
             Intent intent = new Intent(q606.this, q616.class);
@@ -100,7 +102,32 @@ public class q606 extends AppCompatActivity implements Serializable{
             //do nothing
         }
 
-        if (individual.getQ601().equals("2") &&   sample.getStatusCode().equals("1")){
+
+        if (individual.getQ601().equals("2") &&   (sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1")
+        && (Integer.valueOf(individual.getQ102()) <= 24 )) || sample.getStatusCode().equals("1")){
+
+            Intent intent = new Intent(q606.this, q623.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
+
+        if (individual.getQ601().equals("2") && (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
+                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))))
+
+       {
 
             Intent intent = new Intent(q606.this, q623.class);
             intent.putExtra("Individual", individual);
@@ -110,7 +137,9 @@ public class q606 extends AppCompatActivity implements Serializable{
             //do nothing
         }
 
-        if ( (Integer.valueOf(individual.getQ102()) > 24 && Integer.valueOf(individual.getQ102()) <=64) && individual.getQ601().equals("1") && ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") )|| (sample.getStatusCode().equals("1")))) {
+        if ( (Integer.valueOf(individual.getQ102()) > 24 && Integer.valueOf(individual.getQ102()) <=64) && individual.getQ601().equals("1")
+                && ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") ) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
+                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))|| (sample.getStatusCode().equals("1")))) {
 
             Intent intent = new Intent(q606.this, q611.class);
             intent.putExtra("Individual", individual);

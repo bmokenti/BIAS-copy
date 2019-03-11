@@ -48,7 +48,7 @@ public class q804 extends AppCompatActivity implements Serializable{
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+    //    int p = 0;
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
@@ -57,8 +57,16 @@ public class q804 extends AppCompatActivity implements Serializable{
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
 
 
+        }
         if(individual.getQ801().equals("1") )
         {
 
@@ -70,7 +78,7 @@ public class q804 extends AppCompatActivity implements Serializable{
 
         }
 
-        if(individual.getQ801f().equals("1") && individual.getQ101().equals("1")  && Integer.parseInt( individual.getQ102() )<50)
+        if(individual.getQ801().equals("1") && individual.getQ801f().equals("1") && individual.getQ101().equals("1")  && Integer.parseInt( individual.getQ102() )<50)
         {
             Intent intent = new Intent(q804.this, q1001.class);
             intent.putExtra("Individual", individual);
@@ -232,7 +240,9 @@ public class q804 extends AppCompatActivity implements Serializable{
                         vibs.vibrate(100);
                     }
                     else {
-                        if (individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) > 14 && (Integer.valueOf(individual.getQ102()) < 50)) && individual.getQ401().equals("1")) {
+                        if (individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) > 14 && (Integer.valueOf(individual.getQ102()) < 50))
+                                && individual.getQ401().equals("1"))
+                        {
                             individual.setQ804(selected.getText().toString().substring(0, 1));
                             individual.setQ804Other(edt804other.getText().toString());
                             myDB = new DatabaseHelper(q804.this);

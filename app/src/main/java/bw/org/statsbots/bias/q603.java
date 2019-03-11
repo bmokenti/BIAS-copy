@@ -93,6 +93,132 @@ else
     ck8txt.setEnabled(true);
     chkOther.setEnabled(true);
 }
+        if(individual.getQ603_1()!= null &&  !individual.getQ603_1().equals(""))
+        {
+            if(Integer.parseInt(individual.getQ603_1())== 1)
+            {
+                ck1txt.setChecked(true);
+
+            }else
+            {
+                ck1txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ603_2()!= null &&  !ind.getQ603_2().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ603_2())== 1)
+            {
+                ck2txt.setChecked(true);
+
+            }else
+            {
+                ck2txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ603_3()!= null &&  !ind.getQ603_3().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ603_3())== 1)
+            {
+                ck3txt.setChecked(true);
+
+            }else
+            {
+                ck3txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ603_4()!= null &&  !ind.getQ603_4().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ603_4())== 1)
+            {
+                ck4txt.setChecked(true);
+
+            }else
+            {
+                ck4txt.setChecked(false);
+            }
+        }
+        ////
+        if(ind.getQ603_5()!= null &&  !ind.getQ603_5().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ603_5())== 1)
+            {
+                ck5txt.setChecked(true);
+
+            }else
+            {
+                ck5txt.setChecked(false);
+            }
+        }
+
+
+        if(ind.getQ603_6()!= null &&  !ind.getQ603_6().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ603_6())== 1)
+            {
+                ck6txt.setChecked(true);
+
+            }else
+            {
+                ck6txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ603_7()!= null &&  !ind.getQ603_7().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ603_7())== 1)
+            {
+                ck7txt.setChecked(true);
+
+            }else
+            {
+                ck7txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ603_8()!= null &&  !ind.getQ603_8().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ603_8())== 1)
+            {
+                ck8txt.setChecked(true);
+
+            }else
+            {
+                ck8txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ603_9()!= null &&  !ind.getQ603_9().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ603_9())== 1)
+            {
+                ck9txt.setChecked(true);
+
+            }else
+            {
+                ck9txt.setChecked(false);
+            }
+        }
+
+        if(ind.getQ603_Other()!= null &&  !ind.getQ603_Other().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ603_Other())== 1)
+            {
+                chkOther.setChecked(true);
+
+            }else
+            {
+                chkOther.setChecked(false);
+            }
+        }
+
+        if((ind.getQ603_Otherspecify()!= null &&  !ind.getQ603_Otherspecify().equals("")) &&  ind.getQ603_Otherspecify() != null )
+
+        {
+            q603edt.setText(ind.getQ504_OtherSpecify());
+        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

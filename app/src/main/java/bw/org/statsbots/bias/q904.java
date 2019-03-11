@@ -102,7 +102,7 @@ public class q904 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+      //  int p = 0;
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
@@ -112,6 +112,17 @@ public class q904 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
         RadioButton[] bt = new RadioButton[4];
         for(int f=0;f<rg.getChildCount();f++)
         {
@@ -236,7 +247,8 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                         //individual.setQ503(selectedRbtn.getText().toString().substring(0,1));
 
-                        if (!chkb99.isChecked() && (rbtn1.isChecked() || rbtn2.isChecked()) && ((edtbmnths.length() == 0 || Integer.valueOf(edtbmnths.getText().toString()) >= 13))) {
+                        if (!chkb99.isChecked() && (rbtn1.isChecked() || rbtn2.isChecked()) &&
+                                ((edtbmnths.length() == 0 || Integer.valueOf(edtbmnths.getText().toString()) >= 13))) {
                             lib.showError(q904.this, "Q904b:ERROR: Month", "What month and year did you first start taking ARVs?" +
                                     "Please provide month or select dont know month");
                             /**
@@ -304,6 +316,11 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                                             individual.setQ904(selectedRbtn.getText().toString().substring(0, 1));
 
+
+                                            myDB.onOpen(myDB.getReadableDatabase());
+                                            myDB.getWritableDatabase();
+                                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                            myDB.close();
                                             Intent q1o2 = new Intent(q904.this, q1001.class);
                                             q1o2.putExtra("Individual", individual);
                                             startActivity(q1o2);
@@ -323,6 +340,11 @@ public class q904 extends AppCompatActivity implements Serializable {
                                                 individual.setQ904bMM(edtbmnths.getText().toString());
                                                 individual.setQ904bYYYY(edtbyear.getText().toString());
 
+
+                                                myDB.onOpen(myDB.getReadableDatabase());
+                                                myDB.getWritableDatabase();
+                                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                                myDB.close();
                                                 Intent q1o2 = new Intent(q904.this, q1001.class);
                                                 q1o2.putExtra("Individual", individual);
                                                 startActivity(q1o2);
@@ -336,7 +358,10 @@ public class q904 extends AppCompatActivity implements Serializable {
                                             individual.setQ904bMM(edtbmnths.getText().toString());
                                             individual.setQ904bYYYY(edtbyear.getText().toString());
 
-
+                                                myDB.onOpen(myDB.getReadableDatabase());
+                                                myDB.getWritableDatabase();
+                                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                                myDB.close();
                                             Intent intent = new Intent(q904.this, q905.class);
                                             intent.putExtra("Individual", individual);
                                             startActivity(intent);

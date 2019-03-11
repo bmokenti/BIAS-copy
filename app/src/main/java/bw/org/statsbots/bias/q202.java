@@ -126,8 +126,8 @@ public class q202 extends AppCompatActivity implements View.OnClickListener, Ser
                         myDB.onOpen(myDB.getReadableDatabase());
 
                         myDB.updateInd("Q202",individual.getAssignmentID(),individual.getBatch(),ind.getQ202(),String.valueOf(individual.getSRNO()));
-                        myDB.updateInd("Q203",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
-                        myDB.updateInd("Q204",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+                        myDB.updateInd("Q203",individual.getAssignmentID(),individual.getBatch(),"00",String.valueOf(individual.getSRNO()));
+                        myDB.updateInd("Q204",individual.getAssignmentID(),individual.getBatch(),"00",String.valueOf(individual.getSRNO()));
                         myDB.updateInd("Q205",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
                         myDB.updateInd("Q205a",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
 

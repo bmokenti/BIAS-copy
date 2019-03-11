@@ -43,7 +43,7 @@ public class q604 extends AppCompatActivity implements Serializable {
 //btn = findViewById(R.id.btn);
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
@@ -55,6 +55,18 @@ public class q604 extends AppCompatActivity implements Serializable {
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
+
 
 
         rbtn1 = findViewById(R.id.q604_1);
@@ -362,21 +374,34 @@ public class q604 extends AppCompatActivity implements Serializable {
                                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                     vibs.vibrate(100);
                                 } else {
-                                    if (rbtn2.isChecked() && (sample.getStatusCode().equals("1")) ||
-                                            (rbtn2.isChecked() && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))) {
+
+
+
+                                        if (rbtn2.isChecked() && (sample.getStatusCode().equals("1")) ||
+                                            (rbtn2.isChecked() && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) ||
+                                                (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
+                                                        (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )) ){
 
                                         individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
-
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                        myDB.close();
                                         Intent intent1 = new Intent(q604.this, q606.class);
                                         intent1.putExtra("Individual", individual);
                                         startActivity(intent1);
 
                                     } else {
                                         if ((rbtn2.isChecked() && sample.getStatusCode().equals("3") )  ||
-                                                (rbtn2.isChecked() && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))) {
+                                                (rbtn2.isChecked() && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
+                                        || (rbtn2.isChecked() && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
+                                                Integer.valueOf(individual.getQ102()) > 64)) {
 
                                             individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
-
+                                            myDB.onOpen(myDB.getReadableDatabase());
+                                            myDB.getWritableDatabase();
+                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                            myDB.close();
                                             Intent intent1 = new Intent(q604.this, q704.class);
                                             intent1.putExtra("Individual", individual);
                                             startActivity(intent1);
@@ -426,6 +451,7 @@ public class q604 extends AppCompatActivity implements Serializable {
                                             individual.setQ604b_3(ck3txt.getText().toString().substring(0, 1));
                                             individual.setQ604b_4(ck4txt.getText().toString().substring(0, 1));
                                             individual.setQ604b_5(ck5txt.getText().toString().substring(0, 1));
+
                                             individual.setQ604b_6(ck6txt.getText().toString().substring(0, 1));
                                             individual.setQ604b_7(ck7txt.getText().toString().substring(0, 1));
                                             individual.setQ604b_8(ck8txt.getText().toString().substring(0, 1));

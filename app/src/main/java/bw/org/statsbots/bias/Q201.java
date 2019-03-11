@@ -68,13 +68,43 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
         individual = ind;
 
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
+
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
         sample.getSTATUS();
+
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
-        if((sample.getStatusCode().equals("3"))  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")))
+        if((sample.getStatusCode().equals("3"))  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
+                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")  && (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
         {
+
+
+            myDB.updateInd("Q201",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+            individual.setQ202(null);
+            individual.setQ203("00");
+            individual.setQ204("00");
+            individual.setQ205(null);
+            individual.setQ205a(null);
+            individual.setQ301(null);
+            individual.setQ302(null);
+            individual.setQ303(null);
+            individual.setQ304(null);
+
+            myDB.onOpen(myDB.getReadableDatabase());
+            myDB.getWritableDatabase();
+            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+            myDB.close();
 
             Intent q1o2 = new Intent(Q201.this, q305.class);
             q1o2.putExtra("Individual", individual);
@@ -83,6 +113,22 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
 
         if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))))
         {
+            myDB.updateInd("Q201",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+            individual.setQ202(null);
+            individual.setQ203("00");
+            individual.setQ204("00");
+            individual.setQ205(null);
+            individual.setQ205a(null);
+            individual.setQ301(null);
+            individual.setQ302(null);
+            individual.setQ303(null);
+            individual.setQ304(null);
+
+
+            myDB.onOpen(myDB.getReadableDatabase());
+            myDB.getWritableDatabase();
+            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+            myDB.close();
 
             Intent q1o2 = new Intent(Q201.this, q305.class);
             q1o2.putExtra("Individual", individual);
@@ -198,10 +244,23 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Q201.this, q107.class);
-                intent.putExtra("Individual", individual);
-                intent.putExtra("Personroster", p1);
-                startActivity(intent);
+
+                if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1")
+                ) || (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))
+                {
+
+
+
+                    Intent q1o3 = new Intent(Q201.this, q106.class);
+                    q1o3.putExtra("Individual", individual);
+                    q1o3.putExtra("Personroster", p1);
+                    startActivity(q1o3);
+                }
+                else
+                {
+                    Q201.super.onBackPressed();
+                }
+
             }
 
 

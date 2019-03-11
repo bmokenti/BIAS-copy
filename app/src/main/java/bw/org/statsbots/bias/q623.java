@@ -41,7 +41,7 @@ public class q623 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
@@ -50,8 +50,16 @@ public class q623 extends AppCompatActivity implements Serializable {
         individual = ind;
 
 
-        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
 
+
+        }
 
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
@@ -62,10 +70,8 @@ public class q623 extends AppCompatActivity implements Serializable {
 
 
         if((Integer.valueOf(individual.getQ102()) > 64 && sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1"))||
-
-
                 (sample.getStatusCode().equals("3")) ||
-                        (sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("0")) )
+                (sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("0")) )
         {
 
             Intent q1o2 = new Intent(q623.this, q704.class);

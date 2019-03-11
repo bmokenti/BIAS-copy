@@ -214,6 +214,202 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
 
+
+        RadioButton[] bt1 = new RadioButton[2];
+        for(int f=0;f<rg1.getChildCount();f++)
+        {
+            View o = rg1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(p1.getBloodDraw()!= null &&  !p1.getBloodDraw().equals(""))
+                {
+                    if(Integer.parseInt(p1.getBloodDraw())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(p1.getBloodVolume_1()!= null &&  !p1.getBloodVolume_1().equals(""))
+        {
+            if(Integer.parseInt(p1.getBloodVolume_1())== 1)
+            {
+                vol1.setChecked(true);
+
+            }else
+            {
+                vol1.setChecked(false);
+            }
+        }
+
+        if(p1.getBloodVolume_4()!= null &&  !p1.getBloodVolume_4().equals(""))
+        {
+            if(Integer.parseInt(p1.getBloodVolume_4())== 1)
+            {
+                vol2.setChecked(true);
+
+            }else
+            {
+                vol2.setChecked(false);
+            }
+        }
+
+        if(p1.getBloodVolume_6()!= null &&  !p1.getBloodVolume_6().equals(""))
+        {
+            if(Integer.parseInt(p1.getBloodVolume_6())== 1)
+            {
+                vol3.setChecked(true);
+
+            }else
+            {
+                vol3.setChecked(false);
+            }
+        }
+
+        if(p1.getBloodVolume_10()!= null &&  !p1.getBloodVolume_10().equals(""))
+        {
+            if(Integer.parseInt(p1.getBloodVolume_10())== 1)
+            {
+                vol4.setChecked(true);
+
+            }else
+            {
+                vol4.setChecked(false);
+            }
+        }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////
+        RadioButton[] bt2 = new RadioButton[2];
+        for(int f=0;f<rg2.getChildCount();f++)
+        {
+            View o = rg2.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt2[f]=((RadioButton)o);
+                if(p1.getRapid()!= null &&  !p1.getRapid().equals(""))
+                {
+                    if(Integer.parseInt(p1.getRapid())==f+1)
+                    {
+                        RadioButton radioButton = bt2[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt3 = new RadioButton[2];
+        for(int f=0;f<rg3.getChildCount();f++)
+        {
+            View o = rg3.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt3[f]=((RadioButton)o);
+                if(p1.getRapidResults()!= null &&  !p1.getRapidResults().equals(""))
+                {
+                    if(Integer.parseInt(p1.getRapidResults())==f+1)
+                    {
+                        RadioButton radioButton = bt3[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt4 = new RadioButton[2];
+        for(int f=0;f<rg4.getChildCount();f++)
+        {
+            View o = rg4.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt4[f]=((RadioButton)o);
+                if(p1.getBloodLabTest()!= null &&  !p1.getBloodLabTest().equals(""))
+                {
+                    if(Integer.parseInt(p1.getBloodLabTest())==f+1)
+                    {
+                        RadioButton radioButton = bt4[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt5 = new RadioButton[2];
+        for(int f=0;f<rg5.getChildCount();f++)
+        {
+            View o = rg5.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt5[f]=((RadioButton)o);
+                if(p1.getBloodStore()!= null &&  !p1.getBloodStore().equals(""))
+                {
+                    if(Integer.parseInt(p1.getBloodStore())==f+1)
+                    {
+                        RadioButton radioButton = bt5[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if( p1.getBloodVolumeComment() != null)
+        {
+            Edttubevolume.setText(p1.getBloodVolumeComment());
+        }
+
+        if( p1.getRapidDate() != null)
+        {
+            EdtDate.setText(p1.getRapidDate());
+        }
+
+        RadioButton[] bt6 = new RadioButton[3];
+        for(int f=0;f<rg6.getChildCount();f++)
+        {
+            View o = rg6.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt6[f]=((RadioButton)o);
+                if(p1.getBloodSampleCollected()!= null &&  !p1.getBloodSampleCollected().equals(""))
+                {
+                    if(Integer.parseInt(p1.getBloodSampleCollected())==f+1)
+                    {
+                        RadioButton radioButton = bt6[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (individual.getQ102() != null && Integer.valueOf(individual.getQ102())>= 15 )
+        {
+            vol3.setEnabled(false);
+
+        }
+
+        if (p1.getP04YY() != null && (Integer.valueOf(p1.getP04YY())>= 3 && Integer.valueOf(p1.getP04YY())<= 14) )
+        {
+            vol2.setEnabled(false);
+            vol4.setEnabled(false);
+
+        }
+
+        if (p1.getP04YY() != null && Integer.valueOf(p1.getP04YY())< 3 )
+        {
+            vol2.setEnabled(false);
+            vol3.setEnabled(false);
+            vol4.setEnabled(false);
+
+        }
+
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -257,24 +453,26 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
 
-                    } else {
-                        int selectedId2 = rg2.getCheckedRadioButtonId();
-                        selected2 = (RadioButton) findViewById(selectedId2);
+                    }
+                    else {
 
-                        if (selected2 == null) {
-                            lib.showError(HIVConsentOver64.this, "RHT: Error: 2", "Do you agree for the survey team to do RHT?");
+                        if ((((vol2.isChecked() && (!vol4.isChecked()) )) || ((vol4.isChecked() && (!vol2.isChecked())))
+                                || (vol2.isChecked() && vol1.isChecked()) ||  (vol4.isChecked() && vol1.isChecked()) ||
+                                (vol4.isChecked() && vol1.isChecked() && vol2.isChecked())) ){
+                            lib.showError(HIVConsentOver64.this, "IndividualConsent: Error: 1a", "10ml container and 4ml container can not be used" +
+                                    " in isolation. The participant need 14ml or just 1ml for rht. Please select accordingly");
                             /**
                              * VIBRATE DEVICE
                              */
                             Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibs.vibrate(100);
 
-                        } else {
-                            int selectedId3 = rg3.getCheckedRadioButtonId();
-                            selected3 = (RadioButton) findViewById(selectedId3);
+                        }else {
+                            int selectedId2 = rg2.getCheckedRadioButtonId();
+                            selected2 = (RadioButton) findViewById(selectedId2);
 
-                            if (selected3 == null && rbtn3.isChecked()) {
-                                lib.showError(HIVConsentOver64.this, "RHT Results: Error: 2a", "Please record RHT results?");
+                            if (selected2 == null) {
+                                lib.showError(HIVConsentOver64.this, "RHT: Error: 2", "Do you agree for the survey team to do RHT?");
                                 /**
                                  * VIBRATE DEVICE
                                  */
@@ -282,11 +480,11 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                 vibs.vibrate(100);
 
                             } else {
-                                int selectedId4 = rg4.getCheckedRadioButtonId();
-                                selected4 = (RadioButton) findViewById(selectedId4);
+                                int selectedId3 = rg3.getCheckedRadioButtonId();
+                                selected3 = (RadioButton) findViewById(selectedId3);
 
-                                if (selected4 == null && rbtn1.isChecked()) {
-                                    lib.showError(HIVConsentOver64.this, "Laboratory: Error: 3", "3. Do you agree for your blood sample to be sent to the laboratory for additional HIV related testing?");
+                                if (selected3 == null && rbtn3.isChecked()) {
+                                    lib.showError(HIVConsentOver64.this, "RHT Results: Error: 2a", "Please record RHT results?");
                                     /**
                                      * VIBRATE DEVICE
                                      */
@@ -294,11 +492,11 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                     vibs.vibrate(100);
 
                                 } else {
-                                    int selectedId5 = rg5.getCheckedRadioButtonId();
-                                    selected5 = (RadioButton) findViewById(selectedId5);
+                                    int selectedId4 = rg4.getCheckedRadioButtonId();
+                                    selected4 = (RadioButton) findViewById(selectedId4);
 
-                                    if (selected5 == null && rbtn1.isChecked()) {
-                                        lib.showError(HIVConsentOver64.this, "Storage: Error: 4", "4. Do you agree for your blood sample to be stored for up to 5 years for future HIV/TB - related research?");
+                                    if (selected4 == null && rbtn1.isChecked()) {
+                                        lib.showError(HIVConsentOver64.this, "Laboratory: Error: 3", "3. Do you agree for your blood sample to be sent to the laboratory for additional HIV related testing?");
                                         /**
                                          * VIBRATE DEVICE
                                          */
@@ -306,10 +504,11 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                         vibs.vibrate(100);
 
                                     } else {
+                                        int selectedId5 = rg5.getCheckedRadioButtonId();
+                                        selected5 = (RadioButton) findViewById(selectedId5);
 
-
-                                        if (EdtDate == null) {
-                                            lib.showError(HIVConsentOver64.this, "DATE: Error: ", "Please record date");
+                                        if (selected5 == null && rbtn1.isChecked()) {
+                                            lib.showError(HIVConsentOver64.this, "Storage: Error: 4", "4. Do you agree for your blood sample to be stored for up to 5 years for future HIV/TB - related research?");
                                             /**
                                              * VIBRATE DEVICE
                                              */
@@ -317,30 +516,41 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                             vibs.vibrate(100);
 
                                         } else {
-                                            int selectedId6 = rg6.getCheckedRadioButtonId();
-                                            selected6 = (RadioButton) findViewById(selectedId6);
 
-                                            if (selected6 == null && rbtn1.isChecked()) {
-                                                lib.showError(HIVConsentOver64.this, "Blood collection: Error: 2a", "Please record blood status");
+
+                                            if (EdtDate == null) {
+                                                lib.showError(HIVConsentOver64.this, "DATE: Error: ", "Please record date");
                                                 /**
                                                  * VIBRATE DEVICE
                                                  */
                                                 Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                                 vibs.vibrate(100);
 
-                                            }  else {
+                                            } else {
+                                                int selectedId6 = rg6.getCheckedRadioButtonId();
+                                                selected6 = (RadioButton) findViewById(selectedId6);
+
+                                                if (selected6 == null && rbtn1.isChecked()) {
+                                                    lib.showError(HIVConsentOver64.this, "Blood collection: Error: 2a", "Please record blood status");
+                                                    /**
+                                                     * VIBRATE DEVICE
+                                                     */
+                                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                                    vibs.vibrate(100);
+
+                                                } else {
 
                                                     if (rbtn2.isChecked()) {
 
                                                         p1.setBloodDraw(selected1.getText().toString().substring(0, 1));
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getBloodDraw(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
 
                                                         p1.setRapid(selected2.getText().toString().substring(0, 1));
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("Rapid", p1.getAssignmentID(), p1.getBatch(), p1.getRapid(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
@@ -348,7 +558,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                         if (rbtn3.isChecked()) {
 
                                                             p1.setRapidResults(selected3.getText().toString().substring(0, 1));
-                                                            myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                             myDB.onOpen(myDB.getReadableDatabase());
                                                             //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
                                                             myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
@@ -356,7 +566,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                         }
 
                                                         p1.setRapidDate(EdtDate.getText().toString());
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         //  myDB.updateRoster(thisHouse,"tRapidDate",p1.getRapidDate(), String.valueOf(p1.getSRNO()));
                                                         myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
@@ -371,7 +581,6 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                         p1.setBloodDraw(selected1.getText().toString().substring(0, 1));
 
 
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getBloodDraw(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
@@ -383,7 +592,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                         } else {
                                                             p1.setBloodVolume_1("2");
                                                         }
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolume_1", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_1(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
@@ -395,7 +604,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                             p1.setBloodVolume_4("2");
                                                         }
 
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolume_4", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_4(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
@@ -405,7 +614,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                         } else {
                                                             p1.setBloodVolume_6("2");
                                                         }
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolume_6", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_6(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
@@ -416,21 +625,21 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                             p1.setBloodVolume_10("2");
                                                         }
 
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolume_10", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_10(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
 
                                                         p1.setBloodVolumeComment(Edttubevolume.getText().toString());
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolumeComment", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolumeComment(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
 
                                                         p1.setRapid(selected2.getText().toString().substring(0, 1));
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("Rapid", p1.getAssignmentID(), p1.getBatch(), p1.getRapid(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
@@ -438,7 +647,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                         if (rbtn3.isChecked()) {
 
                                                             p1.setRapidResults(selected3.getText().toString().substring(0, 1));
-                                                            myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                             myDB.onOpen(myDB.getReadableDatabase());
                                                             //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
                                                             myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
@@ -447,26 +656,26 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
 
 
                                                         p1.setBloodLabTest(selected4.getText().toString().substring(0, 1));
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodLabTest", p1.getAssignmentID(), p1.getBatch(), p1.getBloodLabTest(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
                                                         p1.setBloodStore(selected5.getText().toString().substring(0, 1));
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodStore", p1.getAssignmentID(), p1.getBatch(), p1.getBloodStore(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
 
                                                         p1.setRapidDate(EdtDate.getText().toString());
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
                                                         p1.setBloodSampleCollected(selected6.getText().toString().substring(0, 1));
-                                                        myDB = new DatabaseHelper(HIVConsentOver64.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodSampleCollected", p1.getAssignmentID(), p1.getBatch(), p1.getBloodSampleCollected(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
@@ -486,10 +695,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                         intent.putExtra("Personroster", p1);
                                                         startActivity(intent);
 
-
                                                     }
-
-                                                    //Check if individual already been saved and update
 
                                                 }
                                             }
@@ -497,7 +703,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                     }
                                 }
                             }
-
+                        }
                     }
                 }
             }

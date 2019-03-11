@@ -40,21 +40,24 @@ public class q1015 extends AppCompatActivity implements Serializable {
         lib = new LibraryClass();
 
 //btn = findViewById(R.id.btn);
-        rg = (RadioGroup)findViewById(R.id.q1015radioGroup) ;
+
         rbtn1 = (RadioButton) findViewById(R.id.q1015_1);
         rbtn2 = (RadioButton) findViewById(R.id.q1015_2);
         rbtn3 = (RadioButton) findViewById(R.id.q1015_9);
+        rg = (RadioGroup)findViewById(R.id.q1015radioGroup) ;
 
-        rga = (RadioGroup)findViewById(R.id.q1015aGroup1) ;
+
         rbtna1 = (RadioButton) findViewById(R.id.q1015a_1);
         rbtna2 = (RadioButton) findViewById(R.id.q1015a_2);
         rbtna3 = (RadioButton) findViewById(R.id.q1015a_3);
         rbtna4 = (RadioButton) findViewById(R.id.q1015a_4);
         rbtna5 = (RadioButton) findViewById(R.id.q1015a_9);
+        rga = (RadioGroup)findViewById(R.id.q1015aGroup1) ;
 
-        rgb = (RadioGroup)findViewById(R.id.q1015bGroup2) ;
+
         rbtnb1 = (RadioButton) findViewById(R.id.q1015b_1);
         rbtnb2 = (RadioButton) findViewById(R.id.q1015b_2);
+        rgb = (RadioGroup)findViewById(R.id.q1015bGroup2) ;
 
         ta = (TextView) findViewById(R.id.q1015a) ;
         tb = (TextView) findViewById(R.id.q1015b) ;
@@ -86,6 +89,13 @@ public class q1015 extends AppCompatActivity implements Serializable {
                     {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
+
+                        if(ind.getQ1015().equals("2")  || ind.getQ1015().equals("3"))
+                        {
+                            rga.setEnabled(false);
+                            rgb.setEnabled(false);
+                        }
+
                         break;
                     }
                 }
@@ -179,7 +189,7 @@ public class q1015 extends AppCompatActivity implements Serializable {
                                 myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                                 myDB.close();
 
-                                Intent intent1 = new Intent(q1015.this, q1101.class);
+                                Intent intent1 = new Intent(q1015.this, q1016.class);
                                 intent1.putExtra("Individual", individual);
                                 startActivity(intent1);
                             } else {

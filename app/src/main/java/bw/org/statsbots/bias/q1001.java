@@ -44,7 +44,7 @@ public class q1001 extends AppCompatActivity implements Serializable {
         //rg = (RadioGroup) findViewById(R.id.q901radioGroup);
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+     //   int p = 0;
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
@@ -56,12 +56,28 @@ public class q1001 extends AppCompatActivity implements Serializable {
         thisHous.get(0).getHIVTB40();
 
 
-        Log.d("age",individual.getQ102());
+       // Log.d("age",individual.getQ102());
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
 
-        if( sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) )
+
+        }
+//
+//
+//        if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
+//                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
+
+
+        if( sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
+                || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.parseInt(individual.getQ102()) >64))
         {
             Intent intent = new Intent(q1001.this, q1101.class);
             intent.putExtra("Individual", individual);
@@ -69,7 +85,9 @@ public class q1001 extends AppCompatActivity implements Serializable {
         }
 
         if((individual.getQ101().equals("1")) || (individual.getQ101().equals("2") && (Integer.parseInt( individual.getQ102() )>49 && individual.getQ401().equals("2"))
-                && ( sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) )) )
+                && ( sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) )
+        && (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
+              (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )) ))
         {
             Intent intent = new Intent(q1001.this, q1101.class);
             intent.putExtra("Individual", individual);

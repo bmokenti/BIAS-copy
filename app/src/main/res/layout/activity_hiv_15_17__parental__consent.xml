@@ -7,6 +7,20 @@
         android:layout_height="match_parent"
         tools:context=".HIVChildParentalConsent15_17">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/q106radio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingTop="20dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="40dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="89dp">
         <ScrollView
             android:id="@+id/scrollView3"
             android:layout_width="match_parent"
@@ -70,55 +84,56 @@
                             android:text="2. NO, I do not agree for the survey team to draw my child’s blood for HIV testing and other related testing." />
                     </RadioGroup>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+
+                    <TextView
+                        android:id="@+id/rhttxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:ems="10"
+                        android:padding="3dp"
+                        android:text="2: Do you agree for survey team to do RHT with your childs Blood?"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-
-
-                        <TextView
-                            android:id="@+id/rhttxt"
+                        <RadioGroup
+                            android:id="@+id/rg2"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:ems="10"
-                            android:padding="3dp"
-                            android:text="2 Do you agree for survey team to do RHT with your childs Blood?"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:textSize="16sp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <RadioGroup
-                                android:id="@+id/rg2"
+                            <RadioButton
+                                android:id="@+id/rbtn3"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginTop="30dp"
-                                android:layout_marginEnd="8dp"
-                                android:layout_marginRight="8dp"
-                                android:textSize="16sp">
+                                android:layout_height="wrap_content"
+                                android:text="1.  YES, I agree for survey team to do RHT with my Child's blood" />
 
-                                <RadioButton
-                                    android:id="@+id/rbtn3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="1.  YES, I agree for survey team to do RHT with my Child's blood" />
+                            <RadioButton
+                                android:id="@+id/rbtn4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="2. NO, I do not agree for survey team to do RHT with my Child's blood" />
 
-                                <RadioButton
-                                    android:id="@+id/rbtn4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="2. NO, I do not agree for survey team to do RHT with my Child's blood" />
+                        </RadioGroup>
 
-                            </RadioGroup>
-
-                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -237,7 +252,7 @@
                         android:layout_marginTop="10dp"
                         android:ems="10"
                         android:padding="3dp"
-                        android:text="Please select parent ID"
+                        android:text="Please Enter parent Name"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         />
@@ -257,7 +272,7 @@
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
                             android:background="@drawable/edit_text_background"
-                            android:hint="date"
+                            android:hint="parent name"
                             android:inputType="text"
                             android:padding="3dp"
                             android:paddingLeft="10dp" />
@@ -315,6 +330,7 @@
             </LinearLayout>
 
         </ScrollView>
+    </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/P02Navigation"

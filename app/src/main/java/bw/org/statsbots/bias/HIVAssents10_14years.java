@@ -16,6 +16,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class HIVAssents10_14years extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -48,7 +51,20 @@ public class HIVAssents10_14years extends AppCompatActivity implements Serializa
 
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
 
+
+        final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
 
                 rg1 = (RadioGroup) findViewById(R.id.rg1);
                 rg2 = (RadioGroup) findViewById(R.id.rg2);
@@ -184,6 +200,23 @@ public class HIVAssents10_14years extends AppCompatActivity implements Serializa
                         }
                     }
                 });
+
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+                Date today = new Date();
+
+                //Convert to calendar Object
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(today);
+
+
+                CharSequence s = android.text.format.DateFormat.format("dd/MM/yyyy",today.getTime());
+                EdtDate.setText(s.toString());
+
+            }
+        });
 
 
                 btnNext.setOnClickListener(new View.OnClickListener() {

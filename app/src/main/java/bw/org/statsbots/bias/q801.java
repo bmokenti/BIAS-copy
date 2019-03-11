@@ -110,7 +110,7 @@ public class q801 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual =(Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+      //  int p = 0;
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
@@ -124,6 +124,17 @@ public class q801 extends AppCompatActivity implements Serializable {
         Log.d("age",individual.getQ102());
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
 
         if((Integer.valueOf(individual.getQ102()) > 64 && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") ) ||
                 sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")))
@@ -162,6 +173,14 @@ public class q801 extends AppCompatActivity implements Serializable {
             rbtne8.setEnabled(false);
             rbtne9.setEnabled(false);
             rbtneOther.setEnabled(false);
+
+
+            t801b.setTextColor(Color.LTGRAY);
+            t801d.setTextColor(Color.LTGRAY);
+            t801e.setTextColor(Color.LTGRAY);
+
+
+
 
         }
 
@@ -597,9 +616,9 @@ public class q801 extends AppCompatActivity implements Serializable {
                         int selectedIdb = rgb.getCheckedRadioButtonId();
                         selectedRbtnb = (RadioButton) findViewById(selectedIdb);
 
-                        if (selectedRbtnb == null && (sample.getStatusCode().equals("1")  ||
-                                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && rbtna1.isChecked()
-                                        && Integer.valueOf(individual.getQ102()) <= 64) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")  && rbtna1.isChecked()))) {
+                        if (selectedRbtnb == null && rbtna1.isChecked() && (sample.getStatusCode().equals("1")  ||
+                                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")
+                                        && Integer.valueOf(individual.getQ102()) <= 64) )) {
 
                             lib.showError(q801.this, "Q801b: ERROR", "Did you test together with your partner in the past 12 months?");
                             /**
@@ -635,9 +654,8 @@ public class q801 extends AppCompatActivity implements Serializable {
                                     int selectedIdd = rgd.getCheckedRadioButtonId();
                                     selectedRbtnd = (RadioButton) findViewById(selectedIdd);
 
-                                    if (selectedRbtnd == null &&  (sample.getStatusCode().equals("1")  ||
-                                            (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")
-                                                    && Integer.valueOf(individual.getQ102()) <= 64) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))))
+                                    if (selectedRbtnd == null && rbtn1.isChecked() && (sample.getStatusCode().equals("1")  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")
+                                                    && Integer.valueOf(individual.getQ102()) <= 64)))
                                     {
                                         lib.showError(q801.this, "Q801d: ERROR", "What was the MAIN reason for your last HIV test?");
                                         /**
@@ -663,9 +681,9 @@ public class q801 extends AppCompatActivity implements Serializable {
                                             int selectedIde = rge.getCheckedRadioButtonId();
                                             selectedRbtne = (RadioButton) findViewById(selectedIde);
 
-                                            if (selectedRbtne == null &&  (sample.getStatusCode().equals("1")  ||
+                                            if (selectedRbtne == null && rbtn1.isChecked() &&  (sample.getStatusCode().equals("1")  ||
                                                     (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")
-                                                            && Integer.valueOf(individual.getQ102()) <= 64) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")))) {
+                                                            && Integer.valueOf(individual.getQ102()) <= 64) )) {
                                                 lib.showError(q801.this, "Q801e: ERROR", "Where was the LAST test done?");
                                                 /**
                                                  * VIBRATE DEVICE
@@ -856,7 +874,9 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                                 individual.setQ801cYear(edtcyear.getText().toString());
                                                                             }
 
-
+                                                                            myDB = new DatabaseHelper(q801.this);
+                                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
 
                                                                             individual.setQ801d(selectedRbtnd.getText().toString().substring(0, 1));
@@ -868,8 +888,6 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                            // Log.d("result", individual.getQ801f());
                                                                             myDB = new DatabaseHelper(q801.this);
                                                                             myDB.onOpen(myDB.getReadableDatabase());
-
-
                                                                             myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                                                             // myDB.updateInd("Q801f",individual.getAssignmentID(),individual.getBatch(),individual.getQ801f(),String.valueOf(individual.getSRNO()));
 

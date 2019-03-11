@@ -49,7 +49,7 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
@@ -58,6 +58,18 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
         individual = ind;
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
+
         if(individual.getQ101().equals("2"))
         {
             Intent intent = new Intent(q501.this, q601.class);

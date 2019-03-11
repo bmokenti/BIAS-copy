@@ -51,7 +51,7 @@ public class q616 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
@@ -68,7 +68,16 @@ public class q616 extends AppCompatActivity implements Serializable {
         //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
 
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
 
+
+        }
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
@@ -121,7 +130,7 @@ public class q616 extends AppCompatActivity implements Serializable {
                     chk6.setChecked(false);
                     chk7.setChecked(false);
                     chk8.setChecked(false);
-                    chk1.setChecked(false);
+                   // chk1.setChecked(false);
                     chkOther.setChecked(false);
                     edt616Other.setText("");
                 }
@@ -141,6 +150,58 @@ public class q616 extends AppCompatActivity implements Serializable {
 
             }
         });
+
+
+        chk1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (chk1.isChecked()) {
+
+                    chk2.setEnabled(false);
+                    chk3.setEnabled(false);
+                    chk4.setEnabled(false);
+                    chk5.setEnabled(false);
+                    chk6.setEnabled(false);
+                    chk7.setEnabled(false);
+                    chk8.setEnabled(false);
+                    chk9.setEnabled(false);
+                    chkOther.setEnabled(false);
+                    edt616Other.setVisibility(View.INVISIBLE);
+
+                    chk9.setChecked(false);
+                    chk2.setChecked(false);
+                    chk3.setChecked(false);
+                    chk4.setChecked(false);
+                    chk5.setChecked(false);
+                    chk6.setChecked(false);
+                    chk7.setChecked(false);
+                    chk8.setChecked(false);
+                   // chk1.setChecked(false);
+                    chkOther.setChecked(false);
+                    edt616Other.setText("");
+                }
+                else
+                {
+                    chk9.setEnabled(true);
+                    chk2.setEnabled(true);
+                    chk3.setEnabled(true);
+                    chk4.setEnabled(true);
+                    chk5.setEnabled(true);
+                    chk6.setEnabled(true);
+                    chk7.setEnabled(true);
+                    chk8.setEnabled(true);
+                    chkOther.setEnabled(true);
+
+                }
+
+            }
+        });
+
+
+
+
+
 
         chkOther.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 

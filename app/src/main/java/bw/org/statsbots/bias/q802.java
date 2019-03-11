@@ -54,7 +54,7 @@ public class q802 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+      //  int p = 0;
 
 
         myDB = new DatabaseHelper(this);
@@ -69,7 +69,16 @@ public class q802 extends AppCompatActivity implements Serializable {
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
 
+
+        }
         if((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
                 (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64)) && individual.getQ801f().equals("1"))
         {
@@ -93,7 +102,7 @@ public class q802 extends AppCompatActivity implements Serializable {
 
 
 
-        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")  && individual.getQ801a().equals("2")))
+        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("2"))
 
         {
             Intent intent = new Intent(q802.this, q803.class);
@@ -218,6 +227,10 @@ public class q802 extends AppCompatActivity implements Serializable {
                             if (rbtn2.isChecked()) {
                                 individual.setQ802(selected.getText().toString().substring(0, 1));
 
+                                myDB.onOpen(myDB.getReadableDatabase());
+                                myDB.getWritableDatabase();
+                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                myDB.close();
 
                                 Intent intent = new Intent(q802.this, q803.class);
                                 intent.putExtra("Individual", individual);
@@ -246,6 +259,11 @@ public class q802 extends AppCompatActivity implements Serializable {
 
             }
         });
+
+
+
+
+
         Button btprev = findViewById(R.id.button3);
 
         btprev.setOnClickListener(new View.OnClickListener() {

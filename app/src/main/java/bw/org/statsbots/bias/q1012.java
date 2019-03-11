@@ -74,6 +74,22 @@ else{
 
         }
 
+        if(individual.getQ1012_Week()!= null)
+        {
+            edtwks.setText(individual.getQ1012_Week());
+        }
+
+        if(individual.getQ1012_Month()!= null)
+        {
+            edtmnths.setText(individual.getQ1012_Month());
+        }
+
+        if(individual.getQ1012_Year()!= null)
+        {
+            edtyear.setText(individual.getQ1012_Year());
+        }
+
+
 
 
         Button btnnext = findViewById(R.id.button);
@@ -158,15 +174,15 @@ else{
                                         }
 
                                         if (edtyear.getText().toString().length() == 0) {
-                                            individual.setQ801cYear("0000");
+                                            individual.setQ1012_Year("0000");
                                         } else if (edtyear.getText().toString().length() == 3) {
-                                            individual.setQ801cYear("000" + edtyear.getText().toString());
+                                            individual.setQ1012_Year("0" + edtyear.getText().toString());
                                         }
                                         else if (edtyear.getText().toString().length() == 1) {
-                                            individual.setQ801cYear("000" + edtyear.getText().toString());
+                                            individual.setQ1012_Year("000" + edtyear.getText().toString());
                                         }
                                         else if (edtyear.getText().toString().length() == 2) {
-                                            individual.setQ801cYear("00" + edtyear.getText().toString());
+                                            individual.setQ1012_Year("00" + edtyear.getText().toString());
                                         }else {
                                             individual.setQ1012_Year(edtyear.getText().toString());
                                         }

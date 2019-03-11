@@ -53,8 +53,19 @@ public class q204 extends AppCompatActivity implements Serializable {
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
         if ( individual.getQ201().equals("1") || individual.getQ201().equals("4")|| individual.getQ201().equals("5")|| individual.getQ201().equals("6"))
         {
+
+            myDB.onOpen(myDB.getReadableDatabase());
+
+
+            myDB.updateInd("Q205",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+            myDB.updateInd("Q205a",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+
+            myDB.close();
+
+
             Intent skipto301 = new Intent(q204.this, q301.class);
             skipto301.putExtra("Individual", individual);
             startActivity(skipto301);

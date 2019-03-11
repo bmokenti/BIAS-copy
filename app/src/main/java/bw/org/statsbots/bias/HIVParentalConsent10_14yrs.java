@@ -16,6 +16,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
@@ -41,11 +44,33 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
         Intent h = getIntent();
         p1 = (PersonRoster) h.getSerializableExtra("Personroster");
 
+        Intent i = getIntent();
+        individual = (Individual) i.getSerializableExtra("Individual");
+
+
+        Intent h1 = getIntent();
+        p1 = (PersonRoster) h1.getSerializableExtra("Personroster");
+
 
         myDB = new DatabaseHelper(this);
         myDB.onOpen(myDB.getReadableDatabase());
 
-        myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+      final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
+
+        final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
+
+
 
 
                 lib = new LibraryClass();
@@ -70,7 +95,7 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
                 rbtn11 = (RadioButton) findViewById(R.id.rbtn11);
                 rbtn12 = (RadioButton) findViewById(R.id.rbtn12);
                 rbtn13 = (RadioButton) findViewById(R.id.rbtn13);
-                EDTParentID = (EditText) findViewById(R.id.ParentTxt);
+              //  EDTParentID = (EditText) findViewById(R.id.ParentTxt);
                 EdtDate = (EditText) findViewById(R.id.DateTxt);
                 EdtGuardian = (EditText) findViewById(R.id.ParentTxt);
                 btnDate = (Button) findViewById(R.id.datebtn);
@@ -136,9 +161,112 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
 
 
 
-        Intent i = getIntent();
-        individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+
+        //////////////////////////////////////////////////////////////////////////////////////////////
+        RadioButton[] bt2 = new RadioButton[2];
+        for(int f=0;f<rg2.getChildCount();f++)
+        {
+            View o = rg2.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt2[f]=((RadioButton)o);
+                if(p1.getChPrntlConsentRHT()!= null &&  !p1.getChPrntlConsentRHT().equals(""))
+                {
+                    if(Integer.parseInt(p1.getChPrntlConsentRHT())==f+1)
+                    {
+                        RadioButton radioButton = bt2[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt1 = new RadioButton[2];
+        for(int f=0;f<rg1.getChildCount();f++)
+        {
+            View o = rg1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt1[f]=((RadioButton)o);
+                if(p1.getChPrntlConsentBloodDraw()!= null &&  !p1.getChPrntlConsentBloodDraw().equals(""))
+                {
+                    if(Integer.parseInt(p1.getChPrntlConsentBloodDraw())==f+1)
+                    {
+                        RadioButton radioButton = bt1[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt4 = new RadioButton[2];
+        for(int f=0;f<rg4.getChildCount();f++)
+        {
+            View o = rg4.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt4[f]=((RadioButton)o);
+                if(p1.getChPrntlConsentLabTest()!= null &&  !p1.getChPrntlConsentLabTest().equals(""))
+                {
+                    if(Integer.parseInt(p1.getChPrntlConsentLabTest())==f+1)
+                    {
+                        RadioButton radioButton = bt4[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        RadioButton[] bt5 = new RadioButton[2];
+        for(int f=0;f<rg5.getChildCount();f++)
+        {
+            View o = rg5.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt5[f]=((RadioButton)o);
+                if(p1.getChPrntlConsentBloodStore()!= null &&  !p1.getChPrntlConsentBloodStore().equals(""))
+                {
+                    if(Integer.parseInt(p1.getChPrntlConsentBloodStore())==f+1)
+                    {
+                        RadioButton radioButton = bt5[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        if( p1.getRapidDate() != null)
+        {
+            EdtDate.setText(p1.getRapidDate());
+        }
+
+        if( p1.getB3_Guardian() != null)
+        {
+            EdtGuardian.setText(p1.getB3_Guardian());
+        }
+
+
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+                Date today = new Date();
+
+                //Convert to calendar Object
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(today);
+
+
+                CharSequence s = android.text.format.DateFormat.format("dd/MM/yyyy",today.getTime());
+                EdtDate.setText(s.toString());
+
+            }
+        });
 
                 btnNext.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -207,27 +335,27 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
                                                     if (rbtn2.isChecked()) {
 
                                                         p1.setChPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
-                                                        myDB = new DatabaseHelper(HIVParentalConsent10_14yrs.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("ChPrntlConsentBloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentBloodDraw(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
 
                                                         p1.setChPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
-                                                        myDB = new DatabaseHelper(HIVParentalConsent10_14yrs.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentRHT(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
 
                                                         p1.setB3_Guardian(EdtGuardian.getText().toString());
-                                                        myDB = new DatabaseHelper(HIVParentalConsent10_14yrs.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("B3_Guardian", p1.getAssignmentID(), p1.getBatch(), p1.getB3_Guardian(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
                                                         p1.setRapidDate(EdtDate.getText().toString());
-                                                        myDB = new DatabaseHelper(HIVParentalConsent10_14yrs.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         //  myDB.updateRoster(thisHouse,"tRapidDate",p1.getRapidDate(), String.valueOf(p1.getSRNO()));
                                                         myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
@@ -241,14 +369,14 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
                                                     } else {
                                                         p1.setChPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
 
-                                                        myDB = new DatabaseHelper(HIVParentalConsent10_14yrs.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("ChPrntlConsentBloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentBloodDraw(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
 
                                                         p1.setChPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
-                                                        myDB = new DatabaseHelper(HIVParentalConsent10_14yrs.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentRHT(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
@@ -256,26 +384,26 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
 
 
                                                         p1.setChPrntlConsentLabTest(selected4.getText().toString().substring(0, 1));
-                                                        myDB = new DatabaseHelper(HIVParentalConsent10_14yrs.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("ChPrntlConsentLabTest", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentLabTest(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
                                                         p1.setChPrntlConsentBloodStore(selected5.getText().toString().substring(0, 1));
-                                                        myDB = new DatabaseHelper(HIVParentalConsent10_14yrs.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("ChPrntlConsentBloodStore", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentBloodStore(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
                                                         //************************set guardian id or name***************************************/
                                                         p1.setB3_Guardian(EdtGuardian.getText().toString());
-                                                        myDB = new DatabaseHelper(HIVParentalConsent10_14yrs.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("B3_Guardian", p1.getAssignmentID(), p1.getBatch(), p1.getB3_Guardian(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
                                                         p1.setRapidDate(EdtDate.getText().toString());
-                                                        myDB = new DatabaseHelper(HIVParentalConsent10_14yrs.this);
+
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();

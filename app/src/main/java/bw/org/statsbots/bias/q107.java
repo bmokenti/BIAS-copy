@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class q107 extends AppCompatActivity implements Serializable{
@@ -45,7 +46,7 @@ public class q107 extends AppCompatActivity implements Serializable{
         individual = (Individual) i.getSerializableExtra("Individual");
 
         Intent ii = getIntent();
-        p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
+      p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
 
 
 
@@ -90,13 +91,43 @@ public class q107 extends AppCompatActivity implements Serializable{
 
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
         individual = ind;
+
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
         sample.getSTATUS();
+
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
-        if (sample.getStatusCode().equals("1"))
+
+     final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+             ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
+       // (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )
+        if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1")
+               ) || (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))
         {
+            individual.setQ107(null);
+            individual.setQ107b(null);
+            individual.setQ107c(null);
+            individual.setQ107cOther(null);
+            individual.setQ107aYY(null);
+            individual.setQ107aMnth(null);
+            individual.setQ107bOther(null);
+
+            myDB.onOpen(myDB.getReadableDatabase());
+            myDB.getWritableDatabase();
+            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+            myDB.close();
+
+
+
             Intent q1o3 = new Intent(q107.this, Q201.class);
             q1o3.putExtra("Individual", individual);
             q1o3.putExtra("Personroster", p1);
@@ -712,6 +743,7 @@ public class q107 extends AppCompatActivity implements Serializable{
 
 
                 }else{
+
                     q107.super.onBackPressed();
                 }
 

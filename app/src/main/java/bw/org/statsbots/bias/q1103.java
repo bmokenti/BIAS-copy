@@ -64,7 +64,7 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
@@ -73,7 +73,19 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
-        
+
+
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
 if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
 {
     Intent q1o3 = new Intent(q1103.this, q1114.class);
@@ -160,8 +172,10 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
                     } else {
 
 
-                        if (chkb99.isEnabled() && !chkb99.isChecked() && (q1103dd.length() == 0 && q1103wks.length() == 0 && rbtnY.isChecked())) {
-                            lib.showError(q1103.this, "Q1103", "a) How long have you had this cough? Please select Dont know or input days or weeks");
+                        if (((q1103dd.getText().toString().equals("0")|| q1103dd.getText().toString().equals("00"))   &&
+                                        ( q1103wks.getText().toString().equals("0") || q1103wks.getText().toString().equals("00")) && rbtnY.isChecked()) )
+                        {
+                            lib.showError(q1103.this, "Q1103", "a) Days and weeks can not be 0/00");
                             /**
                              * VIBRATE DEVICE
                              */
@@ -187,11 +201,15 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
                                 individual.setQ1103(selectedRbtn.getText().toString().substring(0,1));
 
 
-                                if(q1103dd.getText().toString().length()==0){
+                                if(q1103dd.getText().toString().length()==0)
+                                {
                                     individual.setQ1103aDD("00");
-                                }else if(q1103dd.getText().toString().length()==1){
+                                }
+                                else if(q1103dd.getText().toString().length()==1)
+                                {
                                     individual.setQ1103aDD("0"+q1103dd.getText().toString());
-                                }else{
+                                }
+                                else{
                                     individual.setQ1103aDD(q1103dd.getText().toString());
                                 }
 
@@ -268,7 +286,7 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
                     q1103dd.setText("");
                    // q1103dd.setBackgroundColor(Color.LTGRAY);
                     txt1103dd.setTextColor(Color.LTGRAY);
-                            txt1103wks.setTextColor(Color.LTGRAY);
+                    txt1103wks.setTextColor(Color.LTGRAY);
                     q1103wks.setEnabled(false);
                     q1103wks.setText("");
                    // q1103wks.setBackgroundColor(Color.LTGRAY);

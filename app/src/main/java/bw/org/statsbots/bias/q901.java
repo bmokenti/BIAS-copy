@@ -68,7 +68,7 @@ public class q901 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
 
 
         myDB = new DatabaseHelper(this);
@@ -110,6 +110,24 @@ public class q901 extends AppCompatActivity implements Serializable {
 //        else {
 //
 //        }
+
+
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
+//
+//
+//        if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
+//                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
+
 
 
         if((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") ))

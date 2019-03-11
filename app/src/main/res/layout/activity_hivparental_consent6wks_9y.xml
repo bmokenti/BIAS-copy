@@ -7,6 +7,21 @@
         android:layout_height="match_parent"
         tools:context=".HIVParentalConsent6wks_9y">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/q106radio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingTop="20dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="40dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="89dp">
+
         <ScrollView
 
             android:id="@+id/scrollView3"
@@ -340,7 +355,7 @@
                         android:layout_marginTop="10dp"
                         android:ems="10"
                         android:padding="3dp"
-                        android:text="Please select the parent ID"
+                        android:text="Please enter parent name"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -360,7 +375,7 @@
                             android:layout_centerVertical="true"
                             android:layout_toLeftOf="@id/datebtn"
                             android:background="@drawable/edit_text_background"
-                            android:hint="parent"
+                            android:hint="parent name"
                             android:inputType="text"
                             android:padding="3dp"
                             android:paddingLeft="10dp" />
@@ -481,6 +496,7 @@
             </LinearLayout>
 
         </ScrollView>
+    </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/P02Navigation"
@@ -513,7 +529,8 @@
                 android:text="@string/next" />
 
 
-        </LinearLayout>
+
+    </LinearLayout>
 
 
 

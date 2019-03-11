@@ -17,8 +17,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
-        public class HIVAdultsConsent18Plus extends AppCompatActivity implements Serializable {
+public class HIVAdultsConsent18Plus extends AppCompatActivity implements Serializable {
 
             protected HouseHold thisHouse;
             protected PersonRoster p1 = null;
@@ -28,7 +30,7 @@ import java.io.Serializable;
             protected DatabaseHelper myDB;
             protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7,rbtn9, rbtn10,rbtn11,rbtn12, rbtn13,  selected1, selected2, selected3,  selected4, selected5 , selected6 ;
             protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
-            protected EditText Edttubevolume, EdtDate;
+            protected EditText Edttubevolume, EdtDate, EdtparentID;
             protected CheckBox vol1, vol2, vol3, vol4;
             protected Button btnNext, btnDate, btnPrev;
             protected TextView t1, t2, t3, t4, t5, t6, t7, t8;
@@ -67,12 +69,13 @@ import java.io.Serializable;
 
                 //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
-
+                final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+                individual = ind;
 
                 final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
                 sample.getSTATUS();
 
-                if(Integer.valueOf(individual.getQ102()) >= 65 && sample.getStatusCode().equals("2"))
+                if(Integer.valueOf(individual.getQ102()) >= 65 && sample.getStatusCode().equals("2")  )
                 {
                     Intent intent = new Intent(HIVAdultsConsent18Plus.this, HIVConsentOver64.class);
                     intent.putExtra("Individual", individual);
@@ -109,6 +112,7 @@ import java.io.Serializable;
                 rbtn13 = (RadioButton) findViewById(R.id.rbtn13);
                 Edttubevolume = (EditText) findViewById(R.id.TubeVolComment);
                 EdtDate = (EditText) findViewById(R.id.DateTxt);
+                EdtparentID = (EditText) findViewById(R.id.ParentTxt);
                 btnDate = (Button) findViewById(R.id.datebtn);
                 btnNext = (Button) findViewById(R.id.btnnext);
                 btnPrev = (Button) findViewById(R.id.btnprev);
@@ -134,7 +138,7 @@ import java.io.Serializable;
                             // is checked
                             vol1.setEnabled(true);
                             vol2.setEnabled(true);
-                            vol3.setEnabled(true);
+                            vol3.setEnabled(false);
                             vol4.setEnabled(true);
                             Edttubevolume.setEnabled(true);
                             t1.setTextColor(Color.BLACK);
@@ -199,6 +203,26 @@ import java.io.Serializable;
                 });
 
 
+                if (individual.getPrntlConsentBloodDraw()!= null && individual.getPrntlConsentBloodDraw().equals("2"))
+                {   t1.setTextColor(Color.LTGRAY);
+                    vol1.setEnabled(false);
+                    vol2.setEnabled(false);
+                    vol3.setEnabled(false);
+                    vol4.setEnabled(false);
+
+
+                    rbtn11.setEnabled(false);
+                    rbtn12.setEnabled(false);
+                    rbtn13.setEnabled(false);
+                    t6.setTextColor(Color.LTGRAY);
+                }
+
+                if (individual.getQ102() != null && Integer.valueOf(individual.getQ102())>= 15 )
+                {
+                    vol3.setEnabled(false);
+
+                }
+
                 rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -215,9 +239,7 @@ import java.io.Serializable;
                         {
                             rbtn5.setEnabled(false);
                             rbtn6.setEnabled(false);
-
                             t3.setTextColor(Color.LTGRAY);
-
                             rbtn5.setChecked(false);
                             rbtn6.setChecked(false);
 
@@ -228,6 +250,193 @@ import java.io.Serializable;
                     }
                 });
 
+
+                RadioButton[] bt1 = new RadioButton[2];
+                for(int f=0;f<rg1.getChildCount();f++)
+                {
+                    View o = rg1.getChildAt(f);
+                    if (o instanceof RadioButton)
+                    {
+                        bt1[f]=((RadioButton)o);
+                        if(individual.getIndvBloodDraw()!= null &&  !individual.getIndvBloodDraw().equals(""))
+                        {
+                            if(Integer.parseInt(individual.getIndvBloodDraw())==f+1)
+                            {
+                                RadioButton radioButton = bt1[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+
+                RadioButton[] bt2 = new RadioButton[2];
+                for(int f=0;f<rg2.getChildCount();f++)
+                {
+                    View o = rg2.getChildAt(f);
+                    if (o instanceof RadioButton)
+                    {
+                        bt2[f]=((RadioButton)o);
+                        if(individual.getB8_O15_Rapid()!= null &&  !individual.getB8_O15_Rapid().equals(""))
+                        {
+                            if(Integer.parseInt(individual.getB8_O15_Rapid())==f+1)
+                            {
+                                RadioButton radioButton = bt2[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                RadioButton[] bt3 = new RadioButton[2];
+                for(int f=0;f<rg3.getChildCount();f++)
+                {
+                    View o = rg3.getChildAt(f);
+                    if (o instanceof RadioButton)
+                    {
+                        bt3[f]=((RadioButton)o);
+                        if(individual.getIndRapidResults()!= null &&  !individual.getIndRapidResults().equals(""))
+                        {
+                            if(Integer.parseInt(individual.getIndRapidResults())==f+1)
+                            {
+                                RadioButton radioButton = bt3[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                RadioButton[] bt4 = new RadioButton[2];
+                for(int f=0;f<rg4.getChildCount();f++)
+                {
+                    View o = rg4.getChildAt(f);
+                    if (o instanceof RadioButton)
+                    {
+                        bt4[f]=((RadioButton)o);
+                        if(individual.getIndBloodLabTest()!= null &&  !individual.getIndBloodLabTest().equals(""))
+                        {
+                            if(Integer.parseInt(individual.getIndBloodLabTest())==f+1)
+                            {
+                                RadioButton radioButton = bt4[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                RadioButton[] bt5 = new RadioButton[2];
+                for(int f=0;f<rg5.getChildCount();f++)
+                {
+                    View o = rg5.getChildAt(f);
+                    if (o instanceof RadioButton)
+                    {
+                        bt5[f]=((RadioButton)o);
+                        if(individual.getIndBloodStore()!= null &&  !individual.getIndBloodStore().equals(""))
+                        {
+                            if(Integer.parseInt(individual.getIndBloodStore())==f+1)
+                            {
+                                RadioButton radioButton = bt5[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+
+                if( individual.getIndRapidDate() != null)
+                {
+                    EdtDate.setText(individual.getIndRapidDate());
+                }
+
+                RadioButton[] bt6 = new RadioButton[3];
+                for(int f=0;f<rg6.getChildCount();f++)
+                {
+                    View o = rg6.getChildAt(f);
+                    if (o instanceof RadioButton)
+                    {
+                        bt6[f]=((RadioButton)o);
+                        if(individual.getIndBloodSampleCollected()!= null &&  !individual.getIndBloodSampleCollected().equals(""))
+                        {
+                            if(Integer.parseInt(individual.getIndBloodSampleCollected())==f+1)
+                            {
+                                RadioButton radioButton = bt6[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
+                        }
+                    }
+                }
+                if(individual.getBloodVol_1()!= null &&  !individual.getBloodVol_1().equals(""))
+                {
+                    if(Integer.parseInt(individual.getBloodVol_1())== 1)
+                    {
+                        vol1.setChecked(true);
+
+                    }else
+                    {
+                        vol1.setChecked(false);
+                    }
+                }
+
+                if(individual.getBloodVol_4()!= null &&  !individual.getBloodVol_4().equals(""))
+                {
+                    if(Integer.parseInt(individual.getBloodVol_4())== 1)
+                    {
+                        vol2.setChecked(true);
+
+                    }else
+                    {
+                        vol2.setChecked(false);
+                    }
+                }
+
+                if(individual.getBloodVol_6()!= null &&  !individual.getBloodVol_6().equals(""))
+                {
+                    if(Integer.parseInt(individual.getBloodVol_6())== 1)
+                    {
+                        vol3.setChecked(true);
+
+                    }else
+                    {
+                        vol3.setChecked(false);
+                    }
+                }
+
+                if(individual.getBloodVol_10()!= null &&  !individual.getBloodVol_10().equals(""))
+                {
+                    if(Integer.parseInt(individual.getBloodVol_10())== 1)
+                    {
+                        vol4.setChecked(true);
+
+                    }else
+                    {
+                        vol4.setChecked(false);
+                    }
+                }
+
+
+
+                btnDate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //Create Date Object
+                        Date today = new Date();
+
+                        //Convert to calendar Object
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(today);
+
+
+                        CharSequence s = android.text.format.DateFormat.format("dd/MM/yyyy",today.getTime());
+                        EdtDate.setText(s.toString());
+
+                    }
+                });
 
 
                 btnNext.setOnClickListener(new View.OnClickListener() {
@@ -256,7 +465,20 @@ import java.io.Serializable;
                                 Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                 vibs.vibrate(100);
 
-                            } else {
+                            }
+                            else {
+
+                                if (((vol2.isChecked() && (!vol4.isChecked()) )) || ((vol4.isChecked() && (!vol2.isChecked())))
+                                || (vol2.isChecked() && vol1.isChecked()) ||  (vol4.isChecked() && vol1.isChecked()) || (vol4.isChecked() && vol1.isChecked() && vol2.isChecked()) ){
+                                    lib.showError(HIVAdultsConsent18Plus.this, "IndividualConsent: Error: 1a", "10ml container and 4ml container can not be used" +
+                                            " in isolation. The participant need 14ml or just 1ml for rht. Please select accordingly");
+                                    /**
+                                     * VIBRATE DEVICE
+                                     */
+                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                    vibs.vibrate(100);
+
+                                }else {
                                 int selectedId2 = rg2.getCheckedRadioButtonId();
                                 selected2 = (RadioButton) findViewById(selectedId2);
 
@@ -342,9 +564,8 @@ import java.io.Serializable;
 
                                                             myDB.onOpen(myDB.getReadableDatabase());
                                                             myDB.getWritableDatabase();
-                                                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                                             myDB.close();
-
 
 
                                                             Intent intent = new Intent(HIVAdultsConsent18Plus.this, Dashboard.class);
@@ -394,7 +615,7 @@ import java.io.Serializable;
                                                             //Next question P17
                                                             myDB.onOpen(myDB.getReadableDatabase());
                                                             myDB.getWritableDatabase();
-                                                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                                             myDB.close();
 
 
@@ -407,6 +628,7 @@ import java.io.Serializable;
                                                     }
                                                 }
                                             }
+                                        }
                                         }
                                     }
                                 }

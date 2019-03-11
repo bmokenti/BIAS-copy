@@ -141,6 +141,7 @@ public class q601 extends AppCompatActivity implements Serializable {
                             myDB.getWritableDatabase();
                             myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                             myDB.close();
+
                             Intent intent = new Intent(q601.this, q604.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);
