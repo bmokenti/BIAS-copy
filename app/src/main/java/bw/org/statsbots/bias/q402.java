@@ -47,7 +47,7 @@ public class q402 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+      //  int p = 0;
 
 
         // final int selectedId = rbtngroup.getCheckedRadioButtonId();
@@ -67,6 +67,15 @@ public class q402 extends AppCompatActivity implements Serializable {
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+        }
 
         //setTitle("Q402b Was the condom used during sexual intercourse?");
         lib = new LibraryClass();
@@ -91,7 +100,11 @@ public class q402 extends AppCompatActivity implements Serializable {
         }
 
 
-        if (individual.getQ401().equals("2") && individual.getQ101().equals("1") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64))
+
+
+
+        if (individual.getQ401().equals("2") && individual.getQ101().equals("1") &&
+                (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64))
         {
             Intent intent = new Intent(q402.this, q501.class);
             intent.putExtra("Individual", individual);

@@ -69,9 +69,11 @@ public class q623 extends AppCompatActivity implements Serializable {
         thisHous.get(0).getHIVTB40();
 
 
-        if((Integer.valueOf(individual.getQ102()) > 64 && sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1"))||
-                (sample.getStatusCode().equals("3")) ||
-                (sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("0")) )
+
+        if( ((sample.getStatusCode().equals("3") )  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )
+                || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
+        ) ||((sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1")) &&
+                p1.getP06().equals("2")  ) ))
         {
 
             Intent q1o2 = new Intent(q623.this, q704.class);

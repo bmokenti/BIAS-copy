@@ -629,7 +629,8 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                 }
                                             }
                                         }
-                                        }
+
+                                    }
                                     }
                                 }
 

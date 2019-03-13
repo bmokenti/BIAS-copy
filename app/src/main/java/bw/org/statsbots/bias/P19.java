@@ -3,6 +3,7 @@ package bw.org.statsbots.bias;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -52,18 +53,20 @@ public class P19 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View view)
             {
-                if(sample.getStatusCode().equals("2") & thisHouse.getIsHIVTB40().equals("1"))
-                {
-                    //P20 & P21
-                    Intent intent = new Intent(P19.this, P20.class);
-                    intent.putExtra("Household", thisHouse);
-                    startActivity(intent);
-                }else {
-                    //P21
+
+                if(sample.getStatusCode().equals("3")){
                     Intent intent = new Intent(P19.this, P21.class);
                     intent.putExtra("Household", thisHouse);
                     startActivity(intent);
-
+                }
+                else if(sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1"))
+                {
+                    Intent intent = new Intent(P19.this, P20.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+                }
+                else{
+                    Log.d("Status",sample.getStatusCode());
                 }
             }
         });
@@ -87,8 +90,9 @@ public class P19 extends AppCompatActivity implements Serializable {
 
         for (int r = 0; r < thisHouse.getTotalPersons(); r++) {
             p1 = thisHouse.getPersons()[r];
-            if ((Integer.valueOf(p1.getP04YY())>=15 && Integer.valueOf(p1.getP04YY())<=64 && (Integer.valueOf(p1.getP06())==1 )) ||
-            ((Integer.valueOf(p1.getP04YY())>=15 && Integer.valueOf(p1.getP04YY())<=64) && (Integer.valueOf(p1.getP06())==3 && Integer.valueOf(p1.getP07())>=14)))
+            if((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1")) &&
+                    ((Integer.valueOf(p1.getP04YY())>=15 && Integer.valueOf(p1.getP04YY())<=64) &&(Integer.valueOf(p1.getP06())==1  ||
+             (Integer.valueOf(p1.getP06())==3 && Integer.valueOf(p1.getP07())>=14))))
             {
 
                 //add to listview

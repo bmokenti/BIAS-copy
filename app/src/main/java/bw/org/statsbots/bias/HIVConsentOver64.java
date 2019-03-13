@@ -410,6 +410,17 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
 
         }
 
+        if (p1.getChPrntlConsentBloodDraw() != null && p1.getChPrntlConsentBloodDraw().equals("2") )
+        {
+
+            myDB.onOpen(myDB.getReadableDatabase());
+            myDB.updateConsents("ChPrntlConsentBloodDraw", p1.getAssignmentID(), p1.getBatch(), "0", String.valueOf(p1.getSRNO()));
+            myDB.close();
+
+
+        }
+
+
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

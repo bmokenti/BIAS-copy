@@ -78,7 +78,7 @@ public class q410 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
 
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
@@ -86,6 +86,14 @@ public class q410 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+        }
 
         if (individual.getQ101().equals("1"))
         {
@@ -430,6 +438,16 @@ public class q410 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if ( individual.getQ403().equals("2")  && individual.getQ101().equals("2") &&
+                        (individual.getQ201().equals("2") || individual.getQ201().equals("3") ||individual.getQ201().equals("4") ||
+                                individual.getQ201().equals("5") || individual.getQ202().equals("1"))) {
+
+                    Intent intent = new Intent(q410.this, q403.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+
+                }
                 q410.super.onBackPressed();
             }
 

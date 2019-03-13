@@ -152,6 +152,18 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (individual.getQ1110() != null && individual.getQ1110().equals("2")) {
+
+                    individual.setQ1110(selectedRbtn.getText().toString().substring(0,1));
+
+
+
+                    Intent intent = new Intent(q1113.this, q1110.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+
+                }
                 q1113.super.onBackPressed();
             }
 

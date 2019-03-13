@@ -94,7 +94,6 @@ public class q1101 extends AppCompatActivity implements  Serializable {
                 break;
             }
 
-
         }
 //
 //
@@ -391,9 +390,25 @@ public class q1101 extends AppCompatActivity implements  Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1101.super.onBackPressed();
-            }
+                if ((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
+                        (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64))
+                        && !individual.getQ801f().equals("1")) {
+                    Intent intent = new Intent(q1101.this, q801.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                } else
+                    {
+                    if (sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
+                            || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.parseInt(individual.getQ102()) > 64)) {
+                        Intent intent = new Intent(q1101.this, q905.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+                    } else {
+                        q1101.super.onBackPressed();
+                    }
 
+                }
+            }
 
         });
     }

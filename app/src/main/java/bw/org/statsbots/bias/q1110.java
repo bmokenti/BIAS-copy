@@ -78,8 +78,9 @@ public class q1110 extends AppCompatActivity implements Serializable {
 //        if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
 //                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
 
-        if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
-               (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
+        if ((sample.getStatusCode().equals("1") && !p1.getP06().equals(2)) || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
+               (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))  || sample.getStatusCode().equals("1") ||
+                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && !p1.getP06().equals(2)))
         {
             Intent intent = new Intent(q1110.this, HIVChildParentalConsent15_17.class);
             intent.putExtra("Individual", individual);

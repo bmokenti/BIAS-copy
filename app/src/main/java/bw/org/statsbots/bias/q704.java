@@ -139,14 +139,33 @@ public class q704 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
                 q704.super.onBackPressed();
-                if (sample.getStatusCode().equals("3"))
-                {
-                    Intent q1o2 = new Intent(q704.this, q604.class);
-                    q1o2.putExtra("Individual", individual);
-                    startActivity(q1o2);
-                }
-            }
 
+                    if ((individual.getQ604().equals("2")  && sample.getStatusCode().equals("3") )  ||
+                            (individual.getQ604().equals("2") && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
+                            || (individual.getQ604().equals("2") && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
+                            Integer.valueOf(individual.getQ102()) > 64))
+                    {
+                        Intent q1o2 = new Intent(q704.this, q604.class);
+                        q1o2.putExtra("Individual", individual);
+                        startActivity(q1o2);
+                        finish();
+
+                    }
+                    else
+                    {
+                        if( ((sample.getStatusCode().equals("3") )  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )
+                                || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
+                        ) ||((sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1")) &&
+                                p1.getP06().equals("2")  ) ))
+                        {
+
+                            Intent q1o2 = new Intent(q704.this, q622.class);
+                            q1o2.putExtra("Individual", individual);
+                            startActivity(q1o2);
+                            finish();
+                        }
+                    }
+                }
 
         });
     }

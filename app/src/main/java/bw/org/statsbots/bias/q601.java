@@ -58,15 +58,38 @@ public class q601 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+      //  int p = 0;
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
+        sample.getSTATUS();
+
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+        }
+
+
+
+        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("1"))) || (sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("0"))
+                || (Integer.valueOf(individual.getQ102()) >=15 && sample.getStatusCode().equals("3")))
+        {
+
+            Intent q1o2 = new Intent(q601.this, q604.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
 
         RadioButton[] bt = new RadioButton[2];
         for(int f=0;f<rg.getChildCount();f++)
@@ -170,7 +193,44 @@ public class q601 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q601.super.onBackPressed();
+
+                if (individual.getQ401().equals("2") && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 ||
+                        Integer.valueOf(individual.getQ102()) <= 64)) {
+                    Intent intent = new Intent(q601.this, q401.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                    finish();
+
+                } else {
+                    if (((sample.getStatusCode().equals("3")) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
+                            || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
+                    ) || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) &&
+                            p1.getP06().equals("2")))) {
+
+                        Intent q1o2 = new Intent(q601.this, q307.class);
+                        q1o2.putExtra("Individual", individual);
+                        startActivity(q1o2);
+                    } else {
+                        if (individual.getQ401().equals("2") && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64)) {
+                            Intent intent = new Intent(q601.this, q401.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+
+                        } else {
+                            if ((individual.getQ101().equals("2") && individual.getQ401().equals("1")) && (individual.getQ201().equals("1") || individual.getQ201().equals("4") ||
+                                    individual.getQ201().equals("5") || individual.getQ201().equals("6")) || (Integer.parseInt(individual.getQ102()) > 49)) {
+                                Intent intent = new Intent(q601.this, q407.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                                finish();
+
+                            } else {
+                                q601.super.onBackPressed();
+                                finish();
+                            }
+                        }
+                    }
+                }
             }
 
         });

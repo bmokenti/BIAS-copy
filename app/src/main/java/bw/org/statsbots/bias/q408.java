@@ -49,7 +49,7 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
 
@@ -58,6 +58,16 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+        }
+
 
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -82,7 +92,8 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
         });
 
         if ((individual.getQ101().equals("2") &&  individual.getQ401().equals("1")) && (individual.getQ201().equals("1") || individual.getQ201().equals("4") ||
-                individual.getQ201().equals("5") || individual.getQ201().equals("6")) || (Integer.parseInt(individual.getQ102()) > 49 )) {
+                individual.getQ201().equals("5") || individual.getQ201().equals("6")) || (Integer.parseInt(individual.getQ102()) > 49 ))
+        {
             Intent intent = new Intent(q408.this, q601.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);

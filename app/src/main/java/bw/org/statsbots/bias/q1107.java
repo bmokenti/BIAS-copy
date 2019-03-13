@@ -59,12 +59,16 @@ public class q1107 extends AppCompatActivity implements  Serializable {
        // int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
 
         final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
         for (PersonRoster p: roster
@@ -214,10 +218,38 @@ public class q1107 extends AppCompatActivity implements  Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1107.super.onBackPressed();
+
+                if (individual.getQ1103() != null && individual.getQ1103().equals("1")) {
+                    individual.setQ1103(selectedRbtn.getText().toString().substring(0, 1));
+
+
+                    Intent q1o3i = new Intent(q1107.this, q1103.class);
+                    q1o3i.putExtra("Individual", individual);
+                    startActivity(q1o3i);
+
+
+                } else {
+                    if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
+                            (p1.getP07() != null && Integer.parseInt(p1.getP07()) < 14))) {
+                        Intent intent = new Intent(q1107.this, q1103.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+                        finish();
+
+                    } else {
+                        if (individual.getQ1104().equals("2")) {
+                            Intent intent = new Intent(q1107.this, q1104.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+                            finish();
+
+                        } else {
+                            q1107.super.onBackPressed();
+                            finish();
+                        }
+                    }
+                }
             }
-
-
         });
     }
 

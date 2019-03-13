@@ -107,11 +107,15 @@ public class q107 extends AppCompatActivity implements Serializable{
                 break;
             }
 
-
         }
        // (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )
-        if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1")
-               ) || (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))
+
+
+      //  || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))
+        //        || ((p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ) || p1.getP06().equals("2")))
+        if ((sample.getStatusCode().equals("1")) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
+                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )) ||
+                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && p1.getP06().equals("2")))
         {
             individual.setQ107(null);
             individual.setQ107b(null);
@@ -125,8 +129,6 @@ public class q107 extends AppCompatActivity implements Serializable{
             myDB.getWritableDatabase();
             myDB.updateIndividual(myDB.getWritableDatabase(),individual);
             myDB.close();
-
-
 
             Intent q1o3 = new Intent(q107.this, Q201.class);
             q1o3.putExtra("Individual", individual);
@@ -744,7 +746,10 @@ public class q107 extends AppCompatActivity implements Serializable{
 
                 }else{
 
-                    q107.super.onBackPressed();
+
+                    Intent q1o2 = new Intent(q107.this, q106.class);
+                    q1o2.putExtra("Personroster", p1);
+                    startActivity(q1o2);
                 }
 
             }

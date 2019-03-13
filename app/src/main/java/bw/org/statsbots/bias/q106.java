@@ -128,8 +128,6 @@ public class q106 extends AppCompatActivity implements Serializable {
 
             myDB.close();
 
-
-
             Intent intent = new Intent(q106.this, q107.class);
             intent.putExtra("Individual", individual);
             intent.putExtra("Personroster", p1);
@@ -541,7 +539,10 @@ public class q106 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q106.super.onBackPressed();
+
+                Intent q1o2 = new Intent(q106.this, q105.class);
+                q1o2.putExtra("Personroster", p1);
+                startActivity(q1o2);
             }
 
 

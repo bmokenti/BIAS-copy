@@ -518,21 +518,22 @@ public class q105 extends AppCompatActivity implements Serializable{
             @Override
             public void onClick(View v) {
 
-                /*if(ind.getQ103().equals("3")){
+                if (ind.getQ103().equals("3")) {
                     Intent q1o2 = new Intent(q105.this, q103.class);
                     q1o2.putExtra("Personroster", p1);
 
                     startActivity(q1o2);
 
-                }else{
-                    finish();
-                }*/
-            q105.super.onBackPressed();
+                } else {
+                    if (ind.getQ103().equals("1") || ind.getQ103().equals("2")) {
+                        Intent q1o2 = new Intent(q105.this, q104.class);
+                        q1o2.putExtra("Personroster", p1);
+                        startActivity(q1o2);
+                    }
 
+                }
 
             }
-
-
         });
     }
 

@@ -845,6 +845,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
     //create table consents
 
+
     /*
     private static final String Create_Table_Consent = "CREATE TABLE " + tblConsents + "("
     + BatchNumberC + " nvarchar(3),"
@@ -2133,7 +2134,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(BloodVol_10, houseHold.getIndividual()[i].getBloodVol_10() );
             individualValues.put(BloodVolComment, houseHold.getIndividual()[i].getBloodVolComment());
 
-            individualValues.put(B8_O15_Rapid, houseHold.getIndividual()[i].getB8_O15_Rapid() );
+           //individualValues.put(B8_O15_Rapid, houseHold.getIndividual()[i].getB8_O15_Rapid() );
             individualValues.put(IndRapidResults, houseHold.getIndividual()[i].getIndRapidResults());
             individualValues.put(IndBloodLabTest, houseHold.getIndividual()[i].getIndBloodLabTest());
             individualValues.put(IndBloodStore, houseHold.getIndividual()[i].getIndBloodStore() );
@@ -6140,7 +6141,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setPrntlParentID(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlParentID" )) );
                 ind.setPrntlConsentDate(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentDate" )) );
 
-                ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
+               // ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
 
                 individuals[cursor2.getPosition()]=(ind);
             }

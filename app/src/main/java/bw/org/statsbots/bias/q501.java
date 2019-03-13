@@ -172,9 +172,44 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q501.super.onBackPressed();
-            }
 
+                if (individual.getQ401().equals("2") && individual.getQ101().equals("1") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64)) {
+                    Intent intent = new Intent(q501.this, q401.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+
+                } else {
+
+
+                    if (individual.getQ403().equals("2") && individual.getQ101().equals("1")) {
+                        Intent intent = new Intent(q501.this, q403.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+
+                    } else {
+                        if ((individual.getQ101().equals("1") && individual.getQ401().equals("1")) && (individual.getQ201().equals("1") || individual.getQ201().equals("4") ||
+                                individual.getQ201().equals("5") || individual.getQ201().equals("6")) || Integer.valueOf(individual.getQ102()) >= 50) {
+                            Intent intent = new Intent(q501.this, q407.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+                            finish();
+
+                        }
+                        if (individual.getQ401().equals("2") && individual.getQ101().equals("1") &&
+                                (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64))
+                        {
+                            Intent intent = new Intent(q501.this, q401.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+
+                        } else {
+                            q501.super.onBackPressed();
+                            finish();
+                        }
+                    }
+
+                }
+            }
 
         });
 

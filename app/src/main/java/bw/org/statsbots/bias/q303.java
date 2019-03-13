@@ -60,11 +60,21 @@ public class q303 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+        }
+
 
         RadioButton[] bt1 = new RadioButton[2];
         for(int f=0;f<rg.getChildCount();f++)
@@ -207,7 +217,6 @@ public class q303 extends AppCompatActivity implements Serializable {
                             Intent q1o2 = new Intent(q303.this, q304.class);
                             q1o2.putExtra("Individual", individual);
                             startActivity(q1o2);
-
                         }
                     }
                 }
@@ -219,7 +228,9 @@ public class q303 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 q303.super.onBackPressed();
+                finish();
             }
 
 

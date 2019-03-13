@@ -283,7 +283,11 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q103.super.onBackPressed();
+
+                Intent q1o2 = new Intent(q103.this, q102.class);
+                q1o2.putExtra("Personroster", p1);
+
+                startActivity(q1o2);
             }
 
         });

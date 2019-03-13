@@ -149,9 +149,25 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1114.super.onBackPressed();
-            }
 
+                if (individual.getQ1101().equals("1") || individual.getQ1101().equals("2")) {
+                    Intent q1o3 = new Intent(q1114.this, q1102.class);
+                    q1o3.putExtra("Individual", individual);
+                    startActivity(q1o3);
+                    finish();
+
+                } else {
+                    if (individual.getQ1103().equals("2") && individual.getQ1107().equals("2") && individual.getQ1108().equals("2") && individual.getQ1109().equals("2")) {
+                        Intent intent = new Intent(q1114.this, q1109.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+                    } else {
+                        q1114.super.onBackPressed();
+                        finish();
+                    }
+
+                }
+            }
 
         });
     }

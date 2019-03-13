@@ -59,7 +59,7 @@ public class q301 extends AppCompatActivity implements Serializable{
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
 
 
         Button btnext = findViewById(R.id.button);
@@ -69,6 +69,17 @@ public class q301 extends AppCompatActivity implements Serializable{
         individual = ind;
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+        }
+
+
         RadioButton[] bt1 = new RadioButton[2];
         for(int f=0;f<rg.getChildCount();f++)
         {
@@ -228,32 +239,34 @@ public class q301 extends AppCompatActivity implements Serializable{
                     Intent q1o2 = new Intent(q301.this, q202.class);
                     q1o2.putExtra("Individual", individual);
                     startActivity(q1o2);
+                    finish();
 
+                } else {
+
+
+                    if (!(individual.getQ201().equals("2") || individual.getQ201().equals("3"))) {
+
+                        Intent skipto301 = new Intent(q301.this, q203.class);
+                        skipto301.putExtra("Individual", individual);
+                        startActivity(skipto301);
+                        finish();
+
+                    } else {
+                        if (individual.getQ205() != null && individual.getQ205().equals("1")) {
+
+
+                            Intent q1o2 = new Intent(q301.this, q205.class);
+                            q1o2.putExtra("Individual", individual);
+                            startActivity(q1o2);
+                            finish();
+                        } else {
+                            q301.super.onBackPressed();
+                            finish();
+                        }
+
+                    }
                 }
-
-                if ( !(individual.getQ201().equals("2") || individual.getQ201().equals("3")))
-                {
-
-                    Intent skipto301 = new Intent(q301.this, q203.class);
-                    skipto301.putExtra("Individual", individual);
-                    startActivity(skipto301);
-
-                }
-
-                if ( individual.getQ205() != null && individual.getQ205().equals("1")) {
-
-
-                    Intent q1o2 = new Intent(q301.this, q205.class);
-                    q1o2.putExtra("Individual", individual);
-                    startActivity(q1o2);
-                }
-                else{
-                    q301.super.onBackPressed();
-                }
-
             }
-
-
         });
 
     }
@@ -271,17 +284,6 @@ public class q301 extends AppCompatActivity implements Serializable{
                     rbtna1.setEnabled(true);
                     rbtna2.setEnabled(true);
 
-                    //rbtna1.setChecked(true);
-                    //rbtna2.setChecked(true);
-
-
-
-                    // viewa.setVisibility(View.VISIBLE);
-
-
-
-
-                    //rb99.setVisibility(View.VISIBLE);
                 }
 
 
@@ -308,17 +310,9 @@ public class q301 extends AppCompatActivity implements Serializable{
             case R.id.q301a_2:
                 if (checked) {
 
-
                 }
 
                 break;
-
-
-
-
-
-
-
 
         }
     }

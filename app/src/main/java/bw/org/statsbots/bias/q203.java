@@ -41,7 +41,7 @@ public class q203 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
 
         Button btnext = findViewById(R.id.button);
 //        PersonRoster pr[] = thisHouse.getPersons();
@@ -53,6 +53,16 @@ public class q203 extends AppCompatActivity implements Serializable {
 
         if(individual.getQ203()!=null){
             edt.setText(individual.getQ203());
+        }
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
         }
 
 
@@ -127,12 +137,26 @@ public class q203 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!(individual.getQ201().equals("1"))) {
 
-                Intent q1o2 = new Intent(q203.this, q202.class);
-                q1o2.putExtra("Individual", individual);
-                startActivity(q1o2);
 
-                q203.super.onBackPressed();
+
+                    Intent skipto203 = new Intent(q203.this, Q201.class);
+                    skipto203.putExtra("Individual", individual);
+                    startActivity(skipto203);
+
+
+                }
+                else
+                {
+                    Intent q1o2 = new Intent(q203.this, q202.class);
+                    q1o2.putExtra("Individual", individual);
+                    startActivity(q1o2);
+
+                  //  q203.super.onBackPressed();
+                }
+
+
             }
 
 

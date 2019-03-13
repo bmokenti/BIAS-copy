@@ -73,7 +73,8 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
-
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
 
 
         final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
@@ -243,7 +244,20 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1103.super.onBackPressed();
+
+                if( sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
+                        (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
+                {
+                    Intent q1o3 = new Intent(q1103.this, q1101.class);
+                    q1o3.putExtra("Individual", individual);
+                    startActivity(q1o3);
+
+                }
+                else
+                {
+                    q1103.super.onBackPressed();
+                }
+
             }
 
 

@@ -59,13 +59,23 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
         myDB.getWritableDatabase();
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
 
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+        }
+
 
         if (individual.getQ403().equals("2") && individual.getQ101().equals("1")) {
             Intent intent = new Intent(q404.this, q501.class);
@@ -76,8 +86,14 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
             //do nothing
         }
 
+
+//        if( ((sample.getStatusCode().equals("3") )  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )
+//                || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
+//        ) ||((sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1")) &&
+//                p1.getP06().equals("2") ) ))
        //skip
-        if ( individual.getQ403().equals("2")  && individual.getQ101().equals("2") &&(individual.getQ201().equals("2") || individual.getQ201().equals("3") ||individual.getQ201().equals("4") || individual.getQ201().equals("5") || individual.getQ202().equals("1"))) {
+        if ( individual.getQ403().equals("2")  && individual.getQ101().equals("2") &&
+                (individual.getQ201().equals("2") || individual.getQ201().equals("3") ||individual.getQ201().equals("4") || individual.getQ201().equals("5") || individual.getQ202().equals("1"))) {
             Intent intent = new Intent(q404.this, q410.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);

@@ -85,8 +85,10 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
-        if((sample.getStatusCode().equals("3"))  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
-                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")  && (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
+        if( ((sample.getStatusCode().equals("3") )  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )
+                || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
+        ) ||((sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1")) &&
+                p1.getP06().equals("2")  ) ))
         {
 
 
@@ -245,20 +247,21 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
             @Override
             public void onClick(View v) {
 
-                if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1")
-                ) || (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))
+                if ((sample.getStatusCode().equals("1")) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
+                        (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )) ||
+                        (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && p1.getP06().equals("2")))
                 {
-
-
 
                     Intent q1o3 = new Intent(Q201.this, q106.class);
                     q1o3.putExtra("Individual", individual);
                     q1o3.putExtra("Personroster", p1);
                     startActivity(q1o3);
+                    finish();
                 }
                 else
                 {
                     Q201.super.onBackPressed();
+                    finish();
                 }
 
             }

@@ -3,6 +3,7 @@ package bw.org.statsbots.bias;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -92,24 +93,25 @@ public class P20 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View view) {
 
-                if(sample.getStatusCode().equals("2") & thisHouse.getIsHIVTB40().equals("1"))
-                {
-                    //XRAY
+                if(sample.getStatusCode().equals("3")){
                     Intent intent = new Intent(P20.this, P21.class);
                     intent.putExtra("Household", thisHouse);
                     startActivity(intent);
-
-                }else{
-                    //Show HOUSE DETAILS
-
-                    Intent intent = new Intent(P20.this,H01.class);
-                    intent.putExtra("Household",  thisHouse);
+                }
+                else if(sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1"))
+                {
+                    Intent intent = new Intent(P20.this, P21.class);
+                    intent.putExtra("Household", thisHouse);
                     startActivity(intent);
                 }
-
-
+                else{
+                    Intent intent = new Intent(P20.this, H01.class);
+                    intent.putExtra("Household", thisHouse);
+                    startActivity(intent);
+                }
             }
         });
+
 
         btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override

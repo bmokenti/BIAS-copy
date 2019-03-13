@@ -42,7 +42,7 @@ public class q204 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
 
         Button btnext = findViewById(R.id.button);
 
@@ -53,6 +53,16 @@ public class q204 extends AppCompatActivity implements Serializable {
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+        }
+
 
         if ( individual.getQ201().equals("1") || individual.getQ201().equals("4")|| individual.getQ201().equals("5")|| individual.getQ201().equals("6"))
         {

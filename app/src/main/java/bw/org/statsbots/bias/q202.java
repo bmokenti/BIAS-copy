@@ -21,6 +21,7 @@ import java.util.List;
 public class q202 extends AppCompatActivity implements View.OnClickListener, Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
+
     protected LibraryClass lib;
     protected RadioButton rbtn1, rbtn2;
     protected RadioGroup rbtngroup;
@@ -49,7 +50,8 @@ public class q202 extends AppCompatActivity implements View.OnClickListener, Ser
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
+
 
 
         Button btnext = findViewById(R.id.btnnext);
@@ -58,6 +60,18 @@ public class q202 extends AppCompatActivity implements View.OnClickListener, Ser
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
+
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();

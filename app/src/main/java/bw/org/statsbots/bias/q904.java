@@ -112,6 +112,8 @@ public class q904 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
 
         final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
         for (PersonRoster p: roster
@@ -382,7 +384,19 @@ public class q904 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q904.super.onBackPressed();
+
+                if ((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
+                        (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64))
+                        && individual.getQ801f().equals("1")) {
+                    Intent intent = new Intent(q904.this, q801.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                    finish();
+                } else {
+finish();
+                    q904.super.onBackPressed();
+
+                }
             }
 
 

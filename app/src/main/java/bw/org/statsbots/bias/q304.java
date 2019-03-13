@@ -222,6 +222,7 @@ public class q304 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
                 q304.super.onBackPressed();
+                finish();
             }
 
 

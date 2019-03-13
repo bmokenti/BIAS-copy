@@ -139,9 +139,16 @@ public class q403 extends AppCompatActivity implements View.OnClickListener, Ser
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q403.super.onBackPressed();
-            }
 
+                if (individual.getQ401().equals("1") && Integer.valueOf(individual.getQ102()) >= 24) {
+
+                    Intent intent = new Intent(q403.this, q401.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                } else {
+                    q403.super.onBackPressed();
+                }
+            }
 
         });
 

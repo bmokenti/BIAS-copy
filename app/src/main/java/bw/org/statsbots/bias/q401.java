@@ -56,7 +56,7 @@ public class q401 extends AppCompatActivity implements View.OnClickListener, Ser
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
 
 
         myDB = new DatabaseHelper(this);
@@ -72,6 +72,16 @@ public class q401 extends AppCompatActivity implements View.OnClickListener, Ser
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
 
         RadioButton[] bt = new RadioButton[2];
         for(int f=0;f<rg.getChildCount();f++)
@@ -92,8 +102,10 @@ public class q401 extends AppCompatActivity implements View.OnClickListener, Ser
             }
         }
 
-        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("1"))) || (sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("0"))
-                || (Integer.valueOf(individual.getQ102()) >=15 && (sample.getStatusCode().equals("3"))))
+        if( ((sample.getStatusCode().equals("3") )  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )
+                || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
+        ) ||((sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1")) &&
+                p1.getP06().equals("2") ) ))
         {
 
             Intent q1o2 = new Intent(q401.this, q601.class);
@@ -147,15 +159,6 @@ public class q401 extends AppCompatActivity implements View.OnClickListener, Ser
                     myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                     myDB.close();
 
-                                /**
-                                 * If current person LineNumber is equal to TotalPersons-1
-                                 * Proceed to next Question in the roster
-                                 */
-                                // Log.d("Current Person: ", p1.getLineNumber() + "===" + p1.getP01());
-
-                                //Next question q102
-
-
                                 Intent q1o2 = new Intent(q401.this, q402.class);
                                 q1o2.putExtra("Individual", individual);
                                 startActivity(q1o2);
@@ -173,17 +176,14 @@ public class q401 extends AppCompatActivity implements View.OnClickListener, Ser
             @Override
             public void onClick(View v) {
                 q401.super.onBackPressed();
+                finish();
             }
-
-
         });
-
     }
 
 
     @Override
     public void onClick(View view) {
-
 
         //
         switch (view.getId()) {
@@ -192,17 +192,12 @@ public class q401 extends AppCompatActivity implements View.OnClickListener, Ser
                 //Intent intent3 = new Intent(this, q402.class);
                //startActivity(intent3);
                 break;
-
             case R.id.q401_2:
                // Intent intent4 = new Intent(this, q402.class);
                 //startActivity(intent4);
                 break;
-
-
             default:
                 break;
-
-
         }
     }
 }
