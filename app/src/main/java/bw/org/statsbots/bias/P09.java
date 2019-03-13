@@ -64,14 +64,15 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
 
         }
 
-        Log.d("Check P09",p1.getSRNO()+" " + p1.getP01() + " -- " + p1.getP04YY());
+
         /**
          * ---------FOR EXISTING DATA
          *
          */
+
         if(thisHouse.next!=null && Integer.parseInt(p1.getP04YY()) > 1){
             //Next Members
-            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
+            //p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
 
             if(p1.getP09()!=null) {
                 RadioButton[] bt = new RadioButton[3];
@@ -85,7 +86,6 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
                         {
                             if(Integer.parseInt(p1.getP09())==f+1)
                             {
-
                                 RadioButton radioButton = bt[f];
                                 radioButton.setChecked(true);
                                 selected = radioButton;
@@ -245,13 +245,14 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
                                     myDB.close();
                                 }
 
-
+                                finish();
                                 Intent intent = new Intent(P09.this,P10.class);
                                 intent.putExtra("Household",  thisHouse);
                                 startActivity(intent);
 
+
                             }else{
-                                thisHouse.setCurrent(String.valueOf(p1.getSRNO()));
+                                thisHouse.next = String.valueOf(0);
                                 //UPDATE HOUSEHOLD
                                 List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
                                 if(ll.size()>0){
@@ -270,6 +271,7 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
 
                             if(p1.getSRNO()>=0 && p1.getSRNO()<thisHouse.getPersons().length) {
                                 if(p1.getP09().equals("1") || p1.getP09().equals("2")){
+                                    thisHouse.next = String.valueOf(p1.getSRNO());
                                     thisHouse.setCurrent(String.valueOf(p1.getSRNO()));
                                     //UPDATE HOUSEHOLD
                                     myDB = new DatabaseHelper(P09.this);
@@ -281,11 +283,12 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
                                         myDB.updateRoster(thisHouse,"P09",p1.getP09(), String.valueOf(p1.getSRNO()));
                                         myDB.close();
                                     }
-
-
+                                    Log.d("#####################", thisHouse.next);
+                                    finish();
                                     Intent intent = new Intent(P09.this,P10.class);
                                     intent.putExtra("Household",  thisHouse);
                                     startActivity(intent);
+
 
                                 }else{
 
@@ -301,14 +304,12 @@ public class P09 extends  AppCompatActivity implements Serializable, View.OnClic
                                         myDB.close();
                                     }
                                     //Restart the current activity for next individual
-                                    finish();
 
+                                    Log.d("After grand Ma",p1.getP01() + " " + p1.getP09());
                                     Intent intent = new Intent(P09.this, P09.class);
                                     intent.putExtra("Household", thisHouse);
                                     startActivity(intent);
-
-
-
+                                    finish();
 
                                 }
 

@@ -121,7 +121,7 @@ public class P11 extends AppCompatActivity implements Serializable {
                                 myDB.close();
                             }
 
-                            Log.d("Education ","Last person  " + p1.getP10());
+                            Log.d("Education ","Last person  "+p1.getP01() + p1.getP10());
                             Intent intent = new Intent(P11.this, P12.class);
                             intent.putExtra("Household", thisHouse);
                             startActivity(intent);
@@ -129,6 +129,7 @@ public class P11 extends AppCompatActivity implements Serializable {
                         }
                         else{
                             thisHouse.next = String.valueOf(p1.getSRNO() + 1);
+                            p1.setP11(thisHouse.getPersons()[p1.getLineNumber()].getP11());
 
                             myDB = new DatabaseHelper(P11.this);
                             myDB.onOpen(myDB.getWritableDatabase());
@@ -140,7 +141,7 @@ public class P11 extends AppCompatActivity implements Serializable {
                                 myDB.close();
                             }
 
-                            Log.d("Education ","Last person  " + p1.getP10());
+                            Log.d("Checking p09-----",thisHouse.next);
                             Intent intent = new Intent(P11.this, P09.class);
                             intent.putExtra("Household", thisHouse);
                             startActivity(intent);

@@ -1227,7 +1227,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
 
                             }
-
                             //Save to DB
 
 
@@ -1594,11 +1593,12 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                     {
                         status = output;
                     }
-                    Log.d("data P01", status);
+
                     conn.disconnect();
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d("Error in Send", e.toString());
+                    status="error" + e.toString();
                 }
             }
 
@@ -1620,7 +1620,11 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
         @Override
         protected void onPostExecute(String result){
-                d.dismiss();
+            Log.d("From Server", "The...." + result);
+            int r = Integer.parseInt(result);
+            if(result!=null){
+                if(r==1){
+                    d.dismiss();
                     AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
                     builder.setTitle("Success");
                     builder.setIcon(R.drawable.ic_done_all_black_24dp);
@@ -1633,7 +1637,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                         }
                     });
 
-
                     AlertDialog alertDialog =  builder.show();
                     final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
                     LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
@@ -1641,6 +1644,67 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                     positiveButton.setTextColor(Color.WHITE);
                     positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
                     positiveButton.setLayoutParams(positiveButtonLL);
+
+
+                }else{
+                    if(r==1){
+                        d.dismiss();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
+                        builder.setTitle("Error");
+                        builder.setIcon(R.drawable.ic_error_red_24dp);
+
+                        builder.setMessage("An error has been encountered while synchronizing");
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //Do nothing only when the Head of House is selected we proceed.
+
+                            }
+                        });
+
+
+                        AlertDialog alertDialog =  builder.show();
+                        final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                        positiveButtonLL.width= ViewGroup.LayoutParams.MATCH_PARENT;
+                        positiveButton.setTextColor(Color.WHITE);
+                        positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
+                        positiveButton.setLayoutParams(positiveButtonLL);
+                    }else{
+                        //exception during sync
+                        d.dismiss();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
+                        builder.setTitle("Fatal Error");
+                        builder.setIcon(R.drawable.ic_error_red_24dp);
+
+                        builder.setMessage("An error has been encountered while synchronizing");
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //Do nothing only when the Head of House is selected we proceed.
+
+                            }
+                        });
+
+
+                        AlertDialog alertDialog =  builder.show();
+                        final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                        positiveButtonLL.width= ViewGroup.LayoutParams.MATCH_PARENT;
+                        positiveButton.setTextColor(Color.WHITE);
+                        positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
+                        positiveButton.setLayoutParams(positiveButtonLL);
+
+                    }
+
+
+                }
+
+
+
+            }else{
+
+
+            }
+
 
 
         }

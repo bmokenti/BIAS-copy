@@ -25,7 +25,7 @@ public class P10 extends AppCompatActivity implements Serializable {
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
-    HouseHold thisHose;
+
     TextView txtq104text;
     protected DatabaseHelper myDB;
     TextView q;
@@ -53,11 +53,14 @@ public class P10 extends AppCompatActivity implements Serializable {
 
         //***************************Read Roster from Database and load it into Object thisHouse
         List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+
+
         thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
 
 
         if(thisHouse.next!=null){
-            p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
+            p1 = thisHouse.getHouseHoldeMembers()[Integer.parseInt(thisHouse.next)];
+
 
         }else if(thisHouse.previous!=null){
             p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];
@@ -65,15 +68,14 @@ public class P10 extends AppCompatActivity implements Serializable {
         }
 
 
-
         int p = 0;
 
 
-        for (int r = 0; r < thisHouse.getTotalPersons(); r++) {
+        /*for (int r = 0; r < thisHouse.getTotalPersons(); r++) {
             p1 = thisHouse.getPersons()[r];
-            /*String code1=p1.getP10().substring(0,2);
+            *//*String code1=p1.getP10().substring(0,2);
             String code2=p1.getP10().substring(2,3);
-            String code3=p1.getP10().substring(3,4);*/
+            String code3=p1.getP10().substring(3,4);*//*
 
             if(p1.getP10()==null){
                 Log.d("Education ","Check  " + p1.getP01()+ " --- "+ p1.getP10());
@@ -93,7 +95,7 @@ public class P10 extends AppCompatActivity implements Serializable {
                 }
             }
 
-        }
+        }*/
 
         String s = q.getText().toString();
         int t = s.indexOf("#");
@@ -342,10 +344,15 @@ public class P10 extends AppCompatActivity implements Serializable {
                                 //Check if country entered is in the list
                                 boolean existsY = false;
                                 for (String y : lst2) {
-                                    if (Integer.valueOf(y) == Integer.valueOf(Selectedyear)) {
-                                        existsY = true;
-                                        break;
+                                    try{
+                                        if (Integer.valueOf(y) == Integer.valueOf(Selectedyear)) {
+                                            existsY = true;
+                                            break;
+                                        }
+                                    }catch (Exception c){
+
                                     }
+
                                 }
                                 //Log.d("P05", String.valueOf(exists));
                                 if (exists && exist && existsY)
@@ -365,6 +372,7 @@ public class P10 extends AppCompatActivity implements Serializable {
 
                                     if(isValid(typ,lvl,yr)){
                                         thisHouse.getPersons()[p1.getLineNumber()].setP10(code1+code2+code3);
+                                        p1.setP10(code1+code2+code3);
 
 
                                         //Next question P07
@@ -416,8 +424,9 @@ public class P10 extends AppCompatActivity implements Serializable {
                                             //else loop p10
                                             else
                                                 {
+                                                    Log.d("Next Person 1",thisHouse.next);
                                                 thisHouse.next = String.valueOf(p1.getSRNO() + 1);
-
+                                                Log.d("Next Person 2",thisHouse.next);
                                                 myDB = new DatabaseHelper(P10.this);
                                                 myDB.onOpen(myDB.getWritableDatabase());
 
@@ -428,11 +437,12 @@ public class P10 extends AppCompatActivity implements Serializable {
                                                     myDB.updateRoster(thisHouse,"P11",null, String.valueOf(p1.getSRNO()));
                                                     myDB.close();
                                                 }
-
+                                                    //finish();
                                                 //Restart the current activity for next individual
                                                 Intent intent = new Intent(P10.this, P09.class);
                                                 intent.putExtra("Household", thisHouse);
                                                 startActivity(intent);
+
                                             }
                                         }
 
