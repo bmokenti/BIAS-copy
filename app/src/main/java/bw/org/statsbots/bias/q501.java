@@ -194,22 +194,24 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
                             startActivity(intent);
                             finish();
 
-                        }
-                        if (individual.getQ401().equals("2") && individual.getQ101().equals("1") &&
-                                (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64))
-                        {
-                            Intent intent = new Intent(q501.this, q401.class);
-                            intent.putExtra("Individual", individual);
-                            startActivity(intent);
-
                         } else {
-                            q501.super.onBackPressed();
-                            finish();
+                            if (individual.getQ401().equals("2") && individual.getQ101().equals("1") &&
+                                    (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64)) {
+                                Intent intent = new Intent(q501.this, q401.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+
+                            }
+
+                            else {
+                                q501.super.onBackPressed();
+                                finish();
+                            }
                         }
                     }
-
                 }
             }
+
 
         });
 

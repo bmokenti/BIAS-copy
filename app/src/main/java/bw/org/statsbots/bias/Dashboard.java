@@ -1621,7 +1621,9 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         @Override
         protected void onPostExecute(String result){
             Log.d("From Server", "The...." + result);
-            int r = Integer.parseInt(result);
+            int r = 3;
+            try{
+            r=Integer.parseInt(result);}catch (Exception g){}
             if(result!=null){
                 if(r==1){
                     d.dismiss();
@@ -1647,7 +1649,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
 
                 }else{
-                    if(r==1){
+                    if(r==0){
                         d.dismiss();
                         AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
                         builder.setTitle("Error");
@@ -1690,7 +1692,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                         LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
                         positiveButtonLL.width= ViewGroup.LayoutParams.MATCH_PARENT;
                         positiveButton.setTextColor(Color.WHITE);
-                        positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
+                        positiveButton.setBackgroundColor(Color.parseColor("#FF0000"));
                         positiveButton.setLayoutParams(positiveButtonLL);
 
                     }

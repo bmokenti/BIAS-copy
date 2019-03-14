@@ -571,7 +571,6 @@ public class q604 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
                 if (((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) &&
-
                         (Integer.valueOf(individual.getQ102()) > 64)) ||
                         sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
                         || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) &&
@@ -583,19 +582,17 @@ public class q604 extends AppCompatActivity implements Serializable {
                 } else {
 
 
-                    if (individual.getQ601().equals("2") ) {
+                    if (individual.getQ601().equals("2")) {
                         Intent q1o2 = new Intent(q604.this, q601.class);
                         q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
-                    }
-                    else
-                    {
-                        Intent q1o2 = new Intent(q604.this, q603.class);
-                        q1o2.putExtra("Individual", individual);
-                        startActivity(q1o2);
+                    } else {
+                            Intent q1o2 = new Intent(q604.this, q603.class);
+                            q1o2.putExtra("Individual", individual);
+                            startActivity(q1o2);
+                        }
                     }
                 }
-            }
 
 
         });

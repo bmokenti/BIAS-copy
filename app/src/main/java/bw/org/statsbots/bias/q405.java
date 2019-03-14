@@ -142,6 +142,7 @@ public class q405 extends AppCompatActivity implements View.OnClickListener, Ser
             @Override
             public void onClick(View v) {
                 q405.super.onBackPressed();
+                finish();
             }
 
 

@@ -774,7 +774,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             }
 
 
-                            if ((yy > 64)) {
+                            if ((yy > 64  && r.get(o).getP06().equals("3") && Integer.valueOf(r.get(o).getP07()) <14 )) {
                                 //nkuku
                                 //Log.d("18 MONTHS TO 14 YEARS", r.get(o).getP01() + "  " + r.get(o).getP04YY() +"/"+ r.get(o).getP04MM()+"/"+r.get(o).getP04WKS());
 
@@ -791,9 +791,9 @@ public class started_household extends AppCompatActivity implements Serializable
                                         Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                         q1o2.putExtra("Personroster", person1);
                                         startActivity(q1o2);
-
-
                                     }
+
+
                                 });
 
                             }
@@ -897,25 +897,41 @@ public class started_household extends AppCompatActivity implements Serializable
                             int yy = Integer.parseInt(r.get(o).getP04YY());
 
 
-                            if (yy > 64) {
-                                Info = "Pending Questionnaire  TB Only and X-Ray";
+                            if( (yy > 64 && r.get(o).getP06().equals("3") && Integer.valueOf(r.get(o).getP07()) > 14)
+                                    || (yy > 64 && r.get(o).getP06().equals("1") || yy > 64 && r.get(o).getP06().equals("2") ))
+                            {
+                                    Info = "Pending Questionnaire  TB Only and X-Ray, Blood collection";
                             } else {
-                                if ((r.get(o).getP07() != null)) {
-                                    int dd = Integer.parseInt(r.get(o).getP07());
-                                    if (dd <= 13) {
-                                        Info = "Pending Questionnaire  HIV Only and Blood Collection";
+
+                                    if ((r.get(o).getP07() != null)) {
+                                        int dd = Integer.parseInt(r.get(o).getP07());
+                                        if (dd <= 13 && yy < 65) {
+                                            Info = "Pending Questionnaire  HIV Only and Blood Collection";
+                                        }
+                                        else  {
+
+                                            // int dd = Integer.parseInt(r.get(o).getP07());
+                                            if (dd <= 13 && yy >= 65){
+                                                Info = "Pending  Blood Collection";
+                                            } else {
+
+                                                // int dd = Integer.parseInt(r.get(o).getP07());
+                                                if (dd >= 14) {
+                                                    Info = "Pending Questionnaire HIV&TB, X-Ray and Blood Collection";
+                                                }
+                                            }
+                                        }
+
                                     } else {
 
-                                        // int dd = Integer.parseInt(r.get(o).getP07());
-                                        if (dd >= 14) {
+                                        if (r.get(o).getP06().equals("2")) {
+                                            Info = "Pending Questionnaire TB, X-Ray";
+                                        } else {
                                             Info = "Pending Questionnaire HIV&TB, X-Ray and Blood Collection";
                                         }
                                     }
-
-                                } else {
-                                    Info = "Pending Questionnaire HIV&TB, X-Ray and Blood Collection";
                                 }
-                            }
+
 
 
 

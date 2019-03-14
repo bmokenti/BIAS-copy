@@ -91,7 +91,8 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
             }
         });
 
-        if ((individual.getQ101().equals("2") &&  individual.getQ401().equals("1")) && (individual.getQ201().equals("1") || individual.getQ201().equals("4") ||
+        if ((individual.getQ101().equals("2") &&  individual.getQ401().equals("1")) && (individual.getQ201().equals("1")
+                || individual.getQ201().equals("4") ||
                 individual.getQ201().equals("5") || individual.getQ201().equals("6")) || (Integer.parseInt(individual.getQ102()) > 49 ))
         {
             Intent intent = new Intent(q408.this, q601.class);
@@ -262,7 +263,18 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q408.super.onBackPressed();
+                if (individual.getQ301().equals("2") && individual.getQ302().equals("2")) {
+
+                    Intent intent = new Intent(q408.this, q406.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+
+                }else
+                {
+                    q408.super.onBackPressed();
+                    finish();
+                }
+
             }
 
 

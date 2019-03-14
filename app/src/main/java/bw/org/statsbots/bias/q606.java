@@ -98,8 +98,9 @@ public class q606 extends AppCompatActivity implements Serializable{
         }
 
 
-        if (individual.getQ601().equals("2") &&   (sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1")
-                && (Integer.valueOf(individual.getQ102()) <= 24 )) || sample.getStatusCode().equals("1")){
+        if (individual.getQ601().equals("2") &&   ((sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1"))
+                || sample.getStatusCode().equals("1")  ) && (Integer.valueOf(individual.getQ102()) <= 24 )
+                && (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ) ){
 
             Intent intent = new Intent(q606.this, q623.class);
             intent.putExtra("Individual", individual);
@@ -109,19 +110,19 @@ public class q606 extends AppCompatActivity implements Serializable{
             //do nothing
         }
 
-        if (individual.getQ601().equals("2") && (sample.getStatusCode().equals("1") ||
-                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
-                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))))
-
-       {
-
-            Intent intent = new Intent(q606.this, q623.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-
-        } else {
-            //do nothing
-        }
+//        if (individual.getQ601().equals("2") && (sample.getStatusCode().equals("1") ||
+//                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
+//                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))))
+//
+//       {
+//
+//            Intent intent = new Intent(q606.this, q623.class);
+//            intent.putExtra("Individual", individual);
+//            startActivity(intent);
+//
+//        } else {
+//            //do nothing
+//        }
 
         if ( ((Integer.valueOf(individual.getQ102()) > 24 && Integer.valueOf(individual.getQ102()) <=64) && individual.getQ601().equals("1")
                 && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") )) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
@@ -200,9 +201,17 @@ public class q606 extends AppCompatActivity implements Serializable{
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q606.super.onBackPressed();
-            }
+                if (individual.getQ604().equals("2")) {
 
+                    Intent intent = new Intent(q606.this, q604.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    q606.super.onBackPressed();
+                    finish();
+                }
+            }
 
         });
     }

@@ -320,9 +320,17 @@ else
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q603.super.onBackPressed();
-            }
 
+
+                if (individual.getQ601a().equals("2")) {
+                    Intent q1o2 = new Intent(q603.this, q601.class);
+                    q1o2.putExtra("Individual", individual);
+                    startActivity(q1o2);
+                } else
+                    {
+                    q603.super.onBackPressed();
+                }
+            }
 
         });
 

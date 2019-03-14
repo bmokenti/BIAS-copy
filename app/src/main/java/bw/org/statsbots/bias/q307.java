@@ -149,7 +149,11 @@ public class q307 extends AppCompatActivity implements View.OnClickListener, Ser
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q307.super.onBackPressed();
+                finish();
+                Intent q1o2 = new Intent(q307.this, q306.class);
+                q1o2.putExtra("Individual", individual);
+                startActivity(q1o2);
+                //q307.super.onBackPressed();
             }
 
 

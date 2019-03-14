@@ -146,7 +146,7 @@ public class P16 extends AppCompatActivity implements Serializable {
                             }
                             else if(sample.getStatusCode().equals("2") )
                             {
-                                if(thisHouse.getIsHIVTB40().equals("2")){
+                                if(thisHouse.getHIVTB40().equals("0")){
                                     //TB ONLY
                                     Intent intent = new Intent(P16.this, P18.class);
                                     intent.putExtra("Household", thisHouse);

@@ -50,7 +50,7 @@ public class q611 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
@@ -58,7 +58,22 @@ public class q611 extends AppCompatActivity implements Serializable {
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
 
+
+
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
 
         RadioButton[] bt = new RadioButton[3];
         for(int f=0;f<rbtngroup.getChildCount();f++)
@@ -202,9 +217,18 @@ public class q611 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q611.super.onBackPressed();
-            }
+                if (((Integer.valueOf(individual.getQ102()) > 24 && Integer.valueOf(individual.getQ102()) <= 64) && individual.getQ601().equals("1")
+                        && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
+                        (p1.getP07() != null && Integer.parseInt(p1.getP07()) < 14)) || (sample.getStatusCode().equals("1"))) {
 
+                    Intent intent = new Intent(q611.this, q605.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+
+                } else {
+                    q611.super.onBackPressed();
+                }
+            }
 
         });
     }

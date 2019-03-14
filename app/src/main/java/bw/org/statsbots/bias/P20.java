@@ -50,7 +50,8 @@ public class P20 extends AppCompatActivity implements Serializable {
 
         for (int r = 0; r < thisHouse.getTotalPersons(); r++) {
             p1 = thisHouse.getPersons()[r];
-            if (Integer.valueOf(p1.getP04YY())>=1 || Integer.valueOf(p1.getP04MM())>=1 || Integer.valueOf(p1.getP04WKS())>=6 && Integer.valueOf(p1.getP06())==1 || Integer.valueOf(p1.getP06())==3) {
+            if ((Integer.valueOf(p1.getP04YY())>=1 || Integer.valueOf(p1.getP04MM())>=1 || Integer.valueOf(p1.getP04WKS())>=6 )&&
+                     Integer.valueOf(p1.getP06())==1 || Integer.valueOf(p1.getP06())==3) {
 
                 //add to listview
                 p20.add(p1.getP01());

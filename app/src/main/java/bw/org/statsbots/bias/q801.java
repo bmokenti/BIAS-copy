@@ -136,7 +136,17 @@ public class q801 extends AppCompatActivity implements Serializable {
 
         }
 
-        if((Integer.valueOf(individual.getQ102()) > 64 && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") ) ||
+        if(Integer.valueOf(individual.getQ102()) >=65 &&
+                (sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))
+                || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))))
+        {
+
+            Intent intent = new Intent(q801.this, q1101.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
+        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) ) ||
                 sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")))
         {
 

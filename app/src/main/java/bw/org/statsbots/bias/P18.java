@@ -18,6 +18,7 @@ import java.util.List;
 public class P18 extends AppCompatActivity implements Serializable {
 
     HouseHold thisHouse;
+   protected HouseHold thisHous;
     protected PersonRoster p1 = null;
     protected String currentHH = null;
     protected LibraryClass lib;
@@ -34,106 +35,120 @@ public class P18 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         thisHouse.getPersons();
-        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        thisHous.get(0).getHIVTB40();
 
-        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+
+
+
+
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), thisHouse.getAssignment_ID());
+
+        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
         thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
 
-        if(thisHouse.next!=null){
+        if (thisHouse.next != null) {
             p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
 
-        }else if(thisHouse.previous!=null){
+        } else if (thisHouse.previous != null) {
             p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];
 
         }
 
 
-
         Button btnNext = (Button) findViewById(R.id.p18_btnNext);
         Button btnPrev = (Button) findViewById(R.id.p03_btnPrev);
+
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sample.getStatusCode().equals("3")){
-                    Intent intent = new Intent(P18.this, P21.class);
-                    intent.putExtra("Household", thisHouse);
-                    startActivity(intent);
+                if (sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") &&  thisHouse.getHIVTB40().equals("0"))) {
+                        Intent intent = new Intent(P18.this, P21.class);
+                        intent.putExtra("Household", thisHouse);
+                        startActivity(intent);
+                    }
+                    else {
+                    if (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1")) {
+
+                        Intent intent = new Intent(P18.this, P19.class);
+                        intent.putExtra("Household", thisHouse);
+                        startActivity(intent);
+                    }
                 }
-                else if(sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1"))
-                {
-                    Intent intent = new Intent(P18.this, P19.class);
-                    intent.putExtra("Household", thisHouse);
-                    startActivity(intent);
-                }
-                else{
-                    Log.d("Status",sample.getStatusCode());
-                }
+
             }
         });
 
-        List<String> p18 = new ArrayList<>();
-
-        for (int r = 0; r < thisHouse.getTotalPersons(); r++) {
-            p1 = thisHouse.getPersons()[r];
-            if (((((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("0") || sample.getStatusCode().equals("3") ||
-                    (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1") &&  Integer.valueOf(p1.getP04YY()) >= 64 )) &&
-                    Integer.valueOf(p1.getP04YY()) >= 15 && (Integer.valueOf(p1.getP06()) == 1 || Integer.valueOf(p1.getP06()) == 2  ||
-                    (Integer.valueOf(p1.getP06()) == 3 && Integer.valueOf(p1.getP07()) >=14 ))))))
-            {
-
-                //add to listview
-                p18.add(p1.getP01());
-                //Set P02 fir the current individual
-                thisHouse.getPersons()[p1.getLineNumber()].setP18("1");
-                p1.setP18("1");
-
-                myDB = new DatabaseHelper(P18.this);
-                myDB.onOpen(myDB.getWritableDatabase());
-
-                myDB.updateRoster(thisHouse,"P18",p1.getP18(), String.valueOf(p1.getSRNO()));
-                myDB.close();
 
 
+    List<String> p18 = new ArrayList<>();
+
+        for(
+    int r = 0; r<thisHouse.getTotalPersons();r++)
+
+    {
+        p1 = thisHouse.getPersons()[r];
+        if ((((((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1") && Integer.valueOf(p1.getP04YY()) >= 64)
+                ||((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("0") )|| sample.getStatusCode().equals("3"))
+                 &&
+                Integer.valueOf(p1.getP04YY()) >= 15 && (Integer.valueOf(p1.getP06()) == 1 || Integer.valueOf(p1.getP06()) == 2 ||
+                (Integer.valueOf(p1.getP06()) == 3 && Integer.valueOf(p1.getP07()) >= 14))))))) {
+
+            //add to listview
+            p18.add(p1.getP01());
+            //Set P02 fir the current individual
+            thisHouse.getPersons()[p1.getLineNumber()].setP18("1");
+            p1.setP18("1");
+
+            myDB = new DatabaseHelper(P18.this);
+            myDB.onOpen(myDB.getWritableDatabase());
+
+            myDB.updateRoster(thisHouse, "P18", p1.getP18(), String.valueOf(p1.getSRNO()));
+            myDB.close();
 
 
+        } else {
+            //Set P02 fir the current individual
+            thisHouse.getPersons()[p1.getLineNumber()].setP18("2");
+            p1.setP18("2");
 
-            } else {
-                //Set P02 fir the current individual
-                thisHouse.getPersons()[p1.getLineNumber()].setP18("2");
-                p1.setP18("2");
+            myDB = new DatabaseHelper(P18.this);
+            myDB.onOpen(myDB.getWritableDatabase());
 
-                myDB = new DatabaseHelper(P18.this);
-                myDB.onOpen(myDB.getWritableDatabase());
-
-                myDB.updateRoster(thisHouse,"P18",p1.getP18(), String.valueOf(p1.getSRNO()));
-                myDB.close();
+            myDB.updateRoster(thisHouse, "P18", p1.getP18(), String.valueOf(p1.getSRNO()));
+            myDB.close();
 
 
-                continue;
-            }
+            continue;
         }
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, p18);
+    }
 
-        Allpersonslist = (ListView) findViewById(R.id.personslist);
+    ArrayAdapter<String> itemsAdapter =
+            new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, p18);
+
+    Allpersonslist =(ListView)
+
+    findViewById(R.id.personslist);
         Allpersonslist.setAdapter(itemsAdapter);
 
 
 
-        btnPrev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //thisHouse.previous = String.valueOf(p1.getSRNO());
+        btnPrev.setOnClickListener(new View.OnClickListener()
 
-                finish();
+    {
+        @Override
+        public void onClick (View view){
+        //thisHouse.previous = String.valueOf(p1.getSRNO());
 
-                //Intent intent = new Intent(P18.this, P17.class);
-                //intent.putExtra("Household", thisHouse);
-                //startActivity(intent);
-            }
-        });
+        finish();
 
-
-
+        //Intent intent = new Intent(P18.this, P17.class);
+        //intent.putExtra("Household", thisHouse);
+        //startActivity(intent);
     }
+    });
+
+
+}
 }

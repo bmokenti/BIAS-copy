@@ -82,15 +82,6 @@ public class q601 extends AppCompatActivity implements Serializable {
 
 
 
-        if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("1"))) || (sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("0"))
-                || (Integer.valueOf(individual.getQ102()) >=15 && sample.getStatusCode().equals("3")))
-        {
-
-            Intent q1o2 = new Intent(q601.this, q604.class);
-            q1o2.putExtra("Individual", individual);
-            startActivity(q1o2);
-        }
-
         RadioButton[] bt = new RadioButton[2];
         for(int f=0;f<rg.getChildCount();f++)
         {
@@ -194,7 +185,7 @@ public class q601 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
 
-                if (individual.getQ401().equals("2") && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 ||
+                if ( (individual.getQ401() != null && individual.getQ401().equals("2")) && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 ||
                         Integer.valueOf(individual.getQ102()) <= 64)) {
                     Intent intent = new Intent(q601.this, q401.class);
                     intent.putExtra("Individual", individual);
@@ -206,7 +197,7 @@ public class q601 extends AppCompatActivity implements Serializable {
                             || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
                     ) || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) &&
                             p1.getP06().equals("2")))) {
-
+finish();
                         Intent q1o2 = new Intent(q601.this, q307.class);
                         q1o2.putExtra("Individual", individual);
                         startActivity(q1o2);
@@ -225,8 +216,35 @@ public class q601 extends AppCompatActivity implements Serializable {
                                 finish();
 
                             } else {
-                                q601.super.onBackPressed();
-                                finish();
+                                if ((individual.getQ101().equals("2")) && ((individual.getQ201().equals("1") &&
+                                        individual.getQ202().equals("2")) || individual.getQ201().equals("6"))
+                                        || Integer.valueOf(individual.getQ102()) >= 50) {
+
+                                    Intent intent = new Intent(q601.this, q407.class);
+                                    intent.putExtra("Individual", individual);
+                                    startActivity(intent);
+
+                                } else {
+                                    if ((individual.getQ101().equals("2")) && ((individual.getQ201().equals("1") && individual.getQ202().equals("2")) || individual.getQ201().equals("6"))
+                                            || Integer.valueOf(individual.getQ102()) >= 50) {
+
+                                        Intent intent = new Intent(q601.this, q408.class);
+                                        intent.putExtra("Individual", individual);
+                                        startActivity(intent);
+
+                                    } else {
+                                        if (individual.getQ101().equals("2")) {
+                                            Intent intent = new Intent(q601.this, q410.class);
+                                            intent.putExtra("Individual", individual);
+                                            startActivity(intent);
+
+                                        } else {
+
+                                            q601.super.onBackPressed();
+                                            finish();
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

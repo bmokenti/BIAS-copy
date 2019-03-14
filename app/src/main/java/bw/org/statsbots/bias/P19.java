@@ -51,22 +51,22 @@ public class P19 extends AppCompatActivity implements Serializable {
         Button btnPrev = (Button)findViewById(R.id.p03_btnPrev);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
 
-                if(sample.getStatusCode().equals("3")){
+                if (sample.getStatusCode().equals("3")) {
                     Intent intent = new Intent(P19.this, P21.class);
                     intent.putExtra("Household", thisHouse);
                     startActivity(intent);
                 }
-                else if(sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1"))
-                {
-                    Intent intent = new Intent(P19.this, P20.class);
-                    intent.putExtra("Household", thisHouse);
-                    startActivity(intent);
-                }
-                else{
-                    Log.d("Status",sample.getStatusCode());
+                else {
+                    if (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1"))
+                    {
+                        Intent intent = new Intent(P19.this, P20.class);
+                        intent.putExtra("Household", thisHouse);
+                        startActivity(intent);
+                    } else {
+                        Log.d("Status", sample.getStatusCode());
+                    }
                 }
             }
         });

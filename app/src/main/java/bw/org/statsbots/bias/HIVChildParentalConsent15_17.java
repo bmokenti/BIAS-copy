@@ -252,11 +252,8 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
         thisHous.get(0).getHIVTB40();
 
 
-        // int p = 0;
-if(Integer.valueOf(individual.getQ102()) >= 18 && (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1")) ||
-         (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
-              (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))  ||(sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
-       Integer.valueOf(individual.getQ102()) >=65) ) )
+if( individual.getIndvQuestionnaireConsent().equals("2") &&
+        Integer.valueOf(p1.getP04YY()) >= 18 )
 {
     Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
     intent.putExtra("Individual", individual);
@@ -264,11 +261,22 @@ if(Integer.valueOf(individual.getQ102()) >= 18 && (sample.getStatusCode().equals
     startActivity(intent);
 }
 
-        if( sample.getStatusCode().equals("3")
-        ||  sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("0"))
+
+
+        if( sample.getStatusCode().equals("3") ||  sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("0"))
 
         {
             Intent intent = new Intent(HIVChildParentalConsent15_17.this, Dashboard.class);
+            intent.putExtra("Individual", individual);
+            intent.putExtra("Personroster", p1);
+            startActivity(intent);
+        }
+
+
+        if ((individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 18) && (sample.getStatusCode().equals("1") ||
+                (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1")) ) )
+        {
+            Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
             intent.putExtra("Individual", individual);
             intent.putExtra("Personroster", p1);
             startActivity(intent);
@@ -295,7 +303,7 @@ if(Integer.valueOf(individual.getQ102()) >= 18 && (sample.getStatusCode().equals
         }
 
 */
-    if (Integer.valueOf(individual.getQ102()) >= 16 )
+    if (individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 16 )
         {
     rbtn3.setEnabled(false);
     rbtn4.setEnabled(false);
@@ -351,24 +359,6 @@ if(Integer.valueOf(individual.getQ102()) >= 18 && (sample.getStatusCode().equals
 
 
 
-        btnDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Create Date Object
-                Date today = new Date();
-
-                //Convert to calendar Object
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(today);
-
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-
-                EdtDate.setText(today.toString());
-
-            }
-        });
 
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override

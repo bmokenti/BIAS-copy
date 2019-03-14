@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class HIVAdultsConsent18Plus extends AppCompatActivity implements Serializable {
 
@@ -51,19 +52,13 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
 
                 Intent i = getIntent();
                 individual = (Individual) i.getSerializableExtra("Individual");
-                int p = 0;
+                //int p = 0;
 
                 Intent ii = getIntent();
                 p1 = (PersonRoster) ii.getSerializableExtra("Personroster");
                 //int p = 0;
 
-                if ( Integer.valueOf(individual.getQ102()) >= 18  ) {
-                    setTitle("Individual Consent [18-64]");
-                }
-                else
-                {
-                    setTitle("Individual Assent 15-17");
-                }
+
                 myDB = new DatabaseHelper(this);
                 myDB.getWritableDatabase();
 
@@ -75,7 +70,27 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                 final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
                 sample.getSTATUS();
 
-                if(Integer.valueOf(individual.getQ102()) >= 65 && sample.getStatusCode().equals("2")  )
+
+                final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+                for (PersonRoster p: roster
+                ) {
+                    if (p.getSRNO() == ind.getSRNO()){
+                        p1 = p;
+                        break;
+                    }
+
+
+                }
+
+                if (  (individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 18 )  || (Integer.valueOf(p1.getP04YY()) >= 18 ) ) {
+                    setTitle("Individual Consent [18-64]");
+                }
+                else
+                {
+                    setTitle("Individual Assent 15-17");
+                }
+
+                if(individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 65 && sample.getStatusCode().equals("2")  )
                 {
                     Intent intent = new Intent(HIVAdultsConsent18Plus.this, HIVConsentOver64.class);
                     intent.putExtra("Individual", individual);
@@ -83,7 +98,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                     startActivity(intent);
                 }
 
-                if((Integer.valueOf(individual.getQ102()) <= 17  && individual.getPrntlConsentBloodDraw().equals(2) && individual.getPrntlConsentRHT().equals(2)))
+                if(( individual.getQ102() != null && Integer.valueOf(individual.getQ102()) <= 17  && individual.getPrntlConsentBloodDraw().equals(2) && individual.getPrntlConsentRHT().equals(2)))
                 {
                     Intent intent = new Intent(HIVAdultsConsent18Plus.this, Dashboard.class);
                     intent.putExtra("Individual", individual);
@@ -631,7 +646,9 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                         }
 
                                     }
-                                    }
+
+                                }
+
                                 }
 
                             }

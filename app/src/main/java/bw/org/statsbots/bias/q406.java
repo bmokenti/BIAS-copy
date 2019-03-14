@@ -112,7 +112,9 @@ public class q406 extends AppCompatActivity implements  Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 q406.super.onBackPressed();
+                finish();
             }
 
 
