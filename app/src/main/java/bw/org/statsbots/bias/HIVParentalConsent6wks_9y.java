@@ -52,8 +52,10 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         myDB.onOpen(myDB.getReadableDatabase());
 
 
-        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch());
         thisHous.get(0).getHIVTB40();
+
+
 
        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getStatusCode();

@@ -766,7 +766,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             final  int FinalResult[] = new int[1];
 
                             final AlertDialog.Builder builder2 = new AlertDialog.Builder(started_household.this);
-                            builder2.setTitle("Select Visit Number");
+                            builder2.setTitle("Select Visit Number for : " + r.get(position).getP01());
 
                             int  i=0;
 
@@ -1636,6 +1636,9 @@ public class started_household extends AppCompatActivity implements Serializable
                 if(indiv!=null) {
                     if (indiv.getVISIT1() != null && indiv.getVISIT2() == null && indiv.getVISIT3() == null) {
                         if (indiv.getVISIT1().equals("1")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1643,6 +1646,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Completed");
                         } else if (indiv.getVISIT1().equals("2")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1650,6 +1656,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Partially Completed");
                         } else if (indiv.getVISIT1().equals("3")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1657,6 +1666,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT1().equals("4")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1664,6 +1676,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT1().equals("5")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1671,6 +1686,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Postponed");
                         } else if (indiv.getVISIT1().equals("6")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1680,6 +1698,9 @@ public class started_household extends AppCompatActivity implements Serializable
                         }
                     } else if (indiv.getVISIT1() != null && indiv.getVISIT2() != null && indiv.getVISIT3() == null) {
                         if (indiv.getVISIT2().equals("1")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1687,6 +1708,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Completed");
                         } else if (indiv.getVISIT2().equals("2")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1694,6 +1718,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Partially Completed");
                         } else if (indiv.getVISIT2().equals("3")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1701,6 +1728,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT2().equals("4")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1708,6 +1738,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT2().equals("5")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1715,6 +1748,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Postponed");
                         } else if (indiv.getVISIT2().equals("6")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1724,6 +1760,9 @@ public class started_household extends AppCompatActivity implements Serializable
                         }
                     } else if (indiv.getVISIT1() != null && indiv.getVISIT2() != null && indiv.getVISIT3() != null) {
                         if (indiv.getVISIT3().equals("1")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1731,6 +1770,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Completed");
                         } else if (indiv.getVISIT3().equals("2")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1738,6 +1780,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Partially Completed");
                         } else if (indiv.getVISIT3().equals("3")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1745,6 +1790,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT3().equals("4")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1752,6 +1800,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT3().equals("5")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
@@ -1759,6 +1810,9 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Postponed");
                         } else if (indiv.getVISIT3().equals("6")) {
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(10,10,10,10);
+                            btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");

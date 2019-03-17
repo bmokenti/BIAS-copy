@@ -1,21 +1,30 @@
 package bw.org.statsbots.bias;
 
+import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -213,6 +222,9 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
+        List<HouseHold> hhh = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHouse=hhh.get(0);
 
 
         RadioButton[] bt1 = new RadioButton[2];
@@ -589,9 +601,230 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                         myDB.close();
 
 
-                                                        Intent intent = new Intent(HIVConsentOver64.this, Dashboard.class);
-                                                        intent.putExtra("Individual", individual);
-                                                        startActivity(intent);
+                                                        /*******************Launch VISIT***************************/
+
+
+                                                        final CharSequence[] list1 = new String[3];
+                                                        final ArrayList<String> list = new ArrayList<>();
+                                                        try {
+                                                            if (individual.getVISIT1() != null && individual.getVISIT2() == null && individual.getVISIT3() == null) {
+
+                                                                list1[0] = "Visit 1 : " + individual.getDATE1();
+                                                                list.add("Visit 1 : " + individual.getDATE1());
+                                                                list1[1] = "Visit 2 : ";
+                                                                list.add("Visit 2 : ");
+                                                            } else if (individual.getVISIT1() != null && individual.getVISIT2() != null && individual.getVISIT3() == null) {
+
+                                                                list1[0] = "Visit 1 : " + individual.getDATE1();
+                                                                list.add("Visit 1 : " + individual.getDATE1());
+                                                                list1[1] = "Visit 2 : " + individual.getDATE2();
+                                                                list.add("Visit 2 : " + individual.getDATE2());
+                                                                list1[2] = "Visit 3 : ";
+                                                                list.add("Visit 3 : ");
+                                                            } else if (individual.getVISIT1() != null && individual.getVISIT2() != null && individual.getVISIT3() != null) {
+
+                                                                list1[0] = "Visit 1 : " + individual.getDATE1();
+                                                                list.add("Visit 1 : " + individual.getDATE1());
+                                                                list1[1] = "Visit 2 : " + individual.getDATE2();
+                                                                list.add("Visit 2 : " + individual.getDATE2());
+                                                                list1[2] = "Visit 3 : ";
+                                                                list.add("Visit 3 : " + individual.getDATE3());
+                                                            } else {
+                                                                list.add("Visit 1 ");
+                                                            }
+
+
+                                                        } catch (Exception f) {
+                                                            f.printStackTrace();
+                                                        }
+
+
+                                                        final int FinalResult[] = new int[1];
+
+                                                        final AlertDialog.Builder builder2 = new AlertDialog.Builder(HIVConsentOver64.this);
+                                                        builder2.setTitle("Select Visit Number");
+
+                                                        int i = 0;
+
+                                                        final String[] s = list.toArray(new String[list.size()]);
+                                                        final Individual tempIndiv = individual;
+                                                        builder2.setSingleChoiceItems(
+                                                                s, // Items list
+                                                                -1, // Index of checked item (-1 = no selection)
+                                                                new DialogInterface.OnClickListener() // Item click listener
+                                                                {
+                                                                    @Override
+                                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                                        // Get the alert dialog selected item's text
+                                                                        final CharSequence[] results = new String[6];
+                                                                        results[0] = "1. Completed";
+                                                                        results[1] = "2. Partially Completed";
+                                                                        results[2] = "3. Present but not available for interviews";
+                                                                        results[3] = "4. Refused";
+                                                                        results[4] = "5. Postponed";
+                                                                        results[5] = "6. Other (Specify)";
+
+
+                                                                        if (i == 0) {
+                                                                            //SHOW LIST FOR RESULTS
+                                                                            final AlertDialog.Builder builder3 = new AlertDialog.Builder(HIVConsentOver64.this);
+                                                                            builder3.setTitle("Select Visit 1 Result");
+                                                                            builder3.setSingleChoiceItems(
+                                                                                    results, // Items list
+                                                                                    -1, // Index of checked item (-1 = no selection)
+                                                                                    new DialogInterface.OnClickListener() // Item click listener
+                                                                                    {
+                                                                                        @Override
+                                                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                                                            //save the selected results
+                                                                                            SQLiteDatabase db = myDB.getWritableDatabase();
+                                                                                            ContentValues hhValues = new ContentValues();
+                                                                                            hhValues.put("VISIT1", i + 1);
+                                                                                            Date d = new Date();
+                                                                                            CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss", d.getTime());
+                                                                                            hhValues.put("DATE1", s.toString());
+                                                                                            i = db.update
+                                                                                                    ("Individual", // table
+                                                                                                            hhValues, // column/value
+                                                                                                            "Assignment_ID = ? and BatchNumber = ? and SRNO=?", // selections
+                                                                                                            new String[]{String.valueOf(tempIndiv.getAssignmentID()), String.valueOf(tempIndiv.getBatch()), String.valueOf(tempIndiv.getSRNO())}
+                                                                                                    );
+
+                                                                                            db.close();
+
+
+                                                                                            //Restart the current activity
+                                                                                            Intent intent = new Intent(HIVConsentOver64.this, started_household.class);
+                                                                                            intent.putExtra("Household", thisHouse);
+                                                                                            startActivity(intent);
+                                                                                            finish();
+
+
+                                                                                        }
+                                                                                    });
+                                                                            AlertDialog ad2 = builder3.show();
+
+                                                                            //SET DIVIDER
+                                                                            ListView listView = ad2.getListView();
+                                                                            listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+                                                                            listView.setDividerHeight(3);
+
+
+                                                                        } else if (s.length == 2) {
+
+                                                                            final AlertDialog.Builder builder3 = new AlertDialog.Builder(HIVConsentOver64.this);
+                                                                            builder3.setTitle("Select Visit 2 Result");
+                                                                            builder3.setSingleChoiceItems(
+                                                                                    results, // Items list
+                                                                                    -1, // Index of checked item (-1 = no selection)
+                                                                                    new DialogInterface.OnClickListener() // Item click listener
+                                                                                    {
+                                                                                        @Override
+                                                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                                                            //save the selected results
+                                                                                            SQLiteDatabase db = myDB.getWritableDatabase();
+                                                                                            ContentValues hhValues = new ContentValues();
+                                                                                            hhValues.put("VISIT2", i + 1);
+                                                                                            Date d = new Date();
+                                                                                            CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss", d.getTime());
+                                                                                            hhValues.put("DATE2", s.toString());
+                                                                                            i = db.update
+                                                                                                    ("Individual", // table
+                                                                                                            hhValues, // column/value
+                                                                                                            "Assignment_ID = ? and BatchNumber = ? and SRNO=?", // selections
+                                                                                                            new String[]{String.valueOf(tempIndiv.getAssignmentID()), String.valueOf(tempIndiv.getBatch()), String.valueOf(tempIndiv.getSRNO())}
+                                                                                                    );
+
+                                                                                            db.close();
+
+
+                                                                                            //Restart the current activity
+                                                                                            Intent intent = new Intent(HIVConsentOver64.this, started_household.class);
+                                                                                            intent.putExtra("Household", thisHouse);
+                                                                                            startActivity(intent);
+                                                                                            finish();
+
+
+                                                                                        }
+                                                                                    });
+                                                                            AlertDialog ad2 = builder3.show();
+
+                                                                            //SET DIVIDER
+                                                                            ListView listView = ad2.getListView();
+                                                                            listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+                                                                            listView.setDividerHeight(3);
+
+                                                                        } else {
+
+                                                                            final AlertDialog.Builder builder3 = new AlertDialog.Builder(HIVConsentOver64.this);
+                                                                            builder3.setTitle("Select Visit 3 Result");
+                                                                            builder3.setSingleChoiceItems(
+                                                                                    results, // Items list
+                                                                                    -1, // Index of checked item (-1 = no selection)
+                                                                                    new DialogInterface.OnClickListener() // Item click listener
+                                                                                    {
+                                                                                        @Override
+                                                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                                                            //save the selected results
+                                                                                            SQLiteDatabase db = myDB.getWritableDatabase();
+                                                                                            ContentValues hhValues = new ContentValues();
+                                                                                            hhValues.put("VISIT3", i + 1);
+                                                                                            Date d = new Date();
+                                                                                            CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss", d.getTime());
+                                                                                            hhValues.put("DATE3", s.toString());
+                                                                                            i = db.update
+                                                                                                    ("Individual", // table
+                                                                                                            hhValues, // column/value
+                                                                                                            "Assignment_ID = ? and BatchNumber = ? and SRNO=?", // selections
+                                                                                                            new String[]{String.valueOf(tempIndiv.getAssignmentID()), String.valueOf(tempIndiv.getBatch()), String.valueOf(tempIndiv.getSRNO())}
+                                                                                                    );
+
+                                                                                            db.close();
+
+
+                                                                                            //Restart the current activity
+                                                                                            Intent intent = new Intent(HIVConsentOver64.this, started_household.class);
+                                                                                            intent.putExtra("Household", thisHouse);
+                                                                                            startActivity(intent);
+                                                                                            finish();
+
+
+                                                                                        }
+                                                                                    });
+                                                                            AlertDialog ad2 = builder3.show();
+
+                                                                            //SET DIVIDER
+                                                                            ListView listView = ad2.getListView();
+                                                                            listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+                                                                            listView.setDividerHeight(3);
+
+
+                                                                        }
+
+
+                                                                    }
+                                                                });
+
+                                                        AlertDialog ad = builder2.show();
+
+                                                        //SET DIVIDER
+                                                        ListView listView = ad.getListView();
+                                                        //listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+
+
+                                                        listView.setDividerHeight(3);
+
+
+                                                        //OK Button layout
+                                                        final Button positiveButton = ad.getButton(AlertDialog.BUTTON_POSITIVE);
+                                                        LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                                                        positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                                                        positiveButton.setTextColor(Color.WHITE);
+                                                        positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
+                                                        positiveButton.setLayoutParams(positiveButtonLL);
+
+                                                        /******************************END SET STATUS************************************************/
+
 
                                                     } else {
                                                         p1.setBloodDraw(selected1.getText().toString().substring(0, 1));

@@ -52,6 +52,14 @@ public class P02 extends AppCompatActivity implements Serializable {
         //***************************Read Roster from Database and load it into Object thisHouse
         List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
 
+        String Head="";
+        for (PersonRoster pp:list
+             ) {
+            if(pp.getP02().equals("00")){
+                Head=pp.getP01();
+            }
+        }
+
         /**
         * *IF NEXT PERSON IS NOT NULL
         **/
@@ -167,9 +175,22 @@ public class P02 extends AppCompatActivity implements Serializable {
 
             TextView textView = (TextView)findViewById(R.id.P02);
             String s = getResources().getString(R.string.P02);
+
             int t = s.indexOf("#");
+            int tt = s.indexOf("*");
 
             s=s.replace("#","<b>" + p1.getP01() + "</b> ");
+
+            if(p1.getSRNO()==0){
+                s=s.replace("*","");
+                s=s.replace("(","");
+                s=s.replace(")","");
+            }else{
+                s=s.replace("*","<b>" + Head + "</b> ");
+            }
+
+
+
             textView.setText(Html.fromHtml(s));
 
             //Check if the variable has data and display it
