@@ -27,13 +27,12 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
     protected RadioGroup rbtngroup;
     protected  DatabaseHelper myDB;
     protected RadioButton selectedRbtn;
-    PersonRoster p1 = null;
+    protected PersonRoster p1 ;
     Individual pp1 = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q201);
-
 
 
         setTitle("Q201: MARITAL STATUS AND RELATIONSHIP");
@@ -56,31 +55,42 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
         thisHouse = (HouseHold) h.getSerializableExtra("Household");
 
 
-        Intent intent = getIntent();
-        p1 = (PersonRoster) intent.getSerializableExtra("Personroster");
-
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
 
+        Intent intent = getIntent();
+        p1 = (PersonRoster) intent.getSerializableExtra("Personroster");
 
-        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+//        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+//        individual = ind;
 
-        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
-        individual = ind;
+        if (p1 != null) {
+            final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(), p1.getBatch(), p1.getSRNO());
+            individual = ind;
+        } else  {
+            individual = myDB.getdataIndivisual(individual.getAssignmentID(), individual.getBatch(), individual.getSRNO());
+        }
 
-        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
-        sample.getSTATUS();
+        final Individual ind = individual;
+
 
         final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
         for (PersonRoster p: roster
         ) {
-            if (p.getSRNO() == ind.getSRNO()){
+            if (p.getSRNO() == individual.getSRNO()){
                 p1 = p;
                 break;
             }
 
 
         }
+
+
+       // myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
+        sample.getSTATUS();
+
 
 
 

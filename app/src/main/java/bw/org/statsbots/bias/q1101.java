@@ -405,7 +405,7 @@ public class q1101 extends AppCompatActivity implements  Serializable {
                                     || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))))
                     {
                         finish();
-                        Intent intent = new Intent(q1101.this, q704.class);
+                        Intent intent = new Intent(q1101.this, q705.class);
                         intent.putExtra("Individual", individual);
                         startActivity(intent);
                     } else {

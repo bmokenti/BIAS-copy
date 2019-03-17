@@ -129,7 +129,7 @@ public class H06 extends AppCompatActivity implements Serializable {
                         startActivity(q1o2);
 
                     }else{
-                        lib.showError(H06.this,"H06 Error","Number of rooms expected 0 to 15 only");
+                        lib.showError(H06.this,"H06 Error","Number of rooms should not exceed those in H02");
                         /**
                          * VIBRATE DEVICE
                          */

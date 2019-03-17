@@ -89,7 +89,8 @@ public class P17 extends AppCompatActivity implements Serializable {
 
                     if (((Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 64) && sample.getStatusCode().equals("1")
                             && (p1.getP06().equals("1") || p1.getP06().equals("3")))||
-                            (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1") && (p1.getP06().equals("1") || p1.getP06().equals("3"))&&
+                            ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1")) && (
+                                    (p1.getP06().equals("3") && Integer.valueOf(p1.getP07()) < 14))&&
                                     Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 64) )
                             {
 

@@ -404,14 +404,14 @@ public class q622 extends AppCompatActivity implements Serializable {
             public void onClick(View v) {
                 if( sample.getStatusCode().equals("1") && individual.getQ604().equals("1") )
                 {
-
+                    finish();
                     Intent q1o2 = new Intent(q622.this, q615.class);
                     q1o2.putExtra("Individual", individual);
                     startActivity(q1o2);
                 }
                 else {
-
-                    Intent q1o2 = new Intent(q622.this, q620.class);
+                    finish();
+                    Intent q1o2 = new Intent(q622.this, q621.class);
                     q1o2.putExtra("Individual", individual);
                     startActivity(q1o2);
                 }

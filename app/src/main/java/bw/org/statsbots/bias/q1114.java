@@ -60,7 +60,7 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
@@ -71,6 +71,20 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
 
         List<HouseHold> hhh = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHouse=hhh.get(0);
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
+        sample.getSTATUS();
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == individual.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
 
         RadioButton[] bt = new RadioButton[2];
         for(int f=0;f<rg.getChildCount();f++)
@@ -138,7 +152,8 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
                         //Set q101 for the current individual
 
                         Sample s = myDB.getSample(myDB.getReadableDatabase(),individual.getAssignmentID());
-                        if(s.getStatusCode().equals("3") || (s.getStatusCode().equals("2") && thisHouse.getIsHIVTB40().equals("0"))){
+                        if(s.getStatusCode().equals("3") || (s.getStatusCode().equals("2") &&   thisHous.get(0).getHIVTB40().equals("0"))
+                        || ((s.getStatusCode().equals("2") &&   thisHous.get(0).getHIVTB40().equals("1")) && p1.getP06().equals("2"))){
                             /*******************Launch VISIT***************************/
 
 

@@ -104,6 +104,28 @@ public class q105 extends AppCompatActivity implements Serializable{
 
         }
 
+//        RadioButton[] bt1 = new RadioButton[9];
+//
+//
+//        for(int f=0;f<rg.getChildCount();f++)
+//        {
+//            View o = rg.getChildAt(f);
+//            if (o instanceof RadioButton)
+//            {
+//                bt1[f]=((RadioButton)o);
+//                if(ind.getQ105()!= null &&  !ind.getQ105().equals(""))
+//                {
+//                    if(Integer.parseInt(ind.getQ105())==f+1)
+//                    {
+//                        RadioButton radioButton = bt1[f];
+//                        radioButton.setChecked(true);
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+
+
         RadioButton[] bt = new RadioButton[9];
         for(int f=0;f<rg.getChildCount();f++)
         {
@@ -111,134 +133,132 @@ public class q105 extends AppCompatActivity implements Serializable{
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ105()!= null &&  !ind.getQ105().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ105())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-
-                        TextView q802atext = findViewById(R.id.q802a_other);
-                        RadioGroup rg1 = (RadioGroup) findViewById(R.id.q802radioGroupa);
-                        // Is the current Radio Button checked?
-                        boolean checked = radioButton.isChecked();
-                        View v = radioButton;
-                        switch (v.getId()) {
-                            case R.id.rbtn1:
-                                if (checked)
-                                    edt.setVisibility(View.INVISIBLE);
-                                edt.setText("");
-                                edt2.setEnabled(true);
-                                edt1.setEnabled(true);
 
 
-
-                                break;
-
-
-                            case R.id.q105_1b:
-                                if (checked)
-
-                                    edt.setVisibility(View.INVISIBLE);
-                                edt.setText("");
-                                edt2.setEnabled(true);
-                                edt1.setEnabled(true);
-
-
-
-
-                                break;
-                            case R.id.q105_1c:
-                                if (checked)
-                                    edt.setVisibility(View.INVISIBLE);
-                                edt.setText("");
-                                edt2.setEnabled(true);
-                                edt1.setEnabled(true);
-
-
-                                break;
-                            case R.id.q105_1d:
-                                if (checked)
-                                    edt.setVisibility(View.INVISIBLE);
-                                edt.setText("");
-                                edt2.setEnabled(true);
-                                edt1.setEnabled(true);
-
-
-                                break;
-                            case R.id.q105_1e:
-                                if (checked)
-                                    edt.setVisibility(View.INVISIBLE);
-                                edt.setText("");
-                                edt1.setText("");
-
-                                edt1.setEnabled(false);
-                                edt2.setEnabled(false);
-                                edt2.setText("");
-
-
-                                break;
-                            case R.id.q105_1f:
-                                if (checked)
-                                    edt.setVisibility(View.INVISIBLE);
-                                edt.setText("");
-                                edt1.setText("");
-
-                                edt1.setEnabled(false);
-                                edt2.setEnabled(false);
-                                edt2.setText("");
-
-                                break;
-                            case R.id.q105_1g:
-                                if (checked)
-                                    edt.setVisibility(View.INVISIBLE);
-                                edt.setText("");
-                                edt1.setText("");
-                                edt1.setEnabled(false);
-
-                                edt2.setEnabled(false);
-                                edt2.setText("");
-
-                                break;
-
-                            case R.id.q105_1h:
-                                if (checked)
-                                    edt.setVisibility(View.INVISIBLE);
-                                edt.setText("");
-                                edt1.setText("");
-                                edt1.setEnabled(false);
-
-                                edt2.setEnabled(false);
-                                edt2.setText("");
-
-                                break;
-                            case R.id.q105_other:
-                                if (checked)
-                                    edt.setVisibility(View.VISIBLE);
-
-
-                                edt1.setEnabled(true);
-                                edt2.setEnabled(true);
-                                break;
-
-                        }
-
-
-
-
-
-
-                        break;
-                    }
+                if(ind.getQ105Other()!=null){
+                    rbtn9.setChecked(true);
+                    edt.setText(ind.getQ105Other());
                 }else{
 
-                    if(ind.getQ105Other()!=null){
-                        rbtn9.setChecked(true);
-                        edt.setText(ind.getQ105Other());
-                    }
+                    if(ind.getQ105()!= null &&  !ind.getQ105().equals(""))
+                    {
+                        if(Integer.parseInt(ind.getQ105())==f+1)
+                        {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
 
-                    Log.d("h1333333 Lost Here","**********    " + ind.getQ101());
+                            TextView q802atext = findViewById(R.id.q802a_other);
+                            RadioGroup rg1 = (RadioGroup) findViewById(R.id.q802radioGroupa);
+                            // Is the current Radio Button checked?
+                            boolean checked = radioButton.isChecked();
+                            View v = radioButton;
+                            switch (v.getId()) {
+                                case R.id.rbtn1:
+                                    if (checked)
+                                        edt.setVisibility(View.INVISIBLE);
+                                    edt.setText("");
+                                    edt2.setEnabled(true);
+                                    edt1.setEnabled(true);
+
+
+
+                                    break;
+
+
+                                case R.id.q105_1b:
+                                    if (checked)
+
+                                        edt.setVisibility(View.INVISIBLE);
+                                    edt.setText("");
+                                    edt2.setEnabled(true);
+                                    edt1.setEnabled(true);
+
+
+
+
+                                    break;
+                                case R.id.q105_1c:
+                                    if (checked)
+                                        edt.setVisibility(View.INVISIBLE);
+                                    edt.setText("");
+                                    edt2.setEnabled(true);
+                                    edt1.setEnabled(true);
+
+
+                                    break;
+                                case R.id.q105_1d:
+                                    if (checked)
+                                        edt.setVisibility(View.INVISIBLE);
+                                    edt.setText("");
+                                    edt2.setEnabled(true);
+                                    edt1.setEnabled(true);
+
+
+                                    break;
+                                case R.id.q105_1e:
+                                    if (checked)
+                                        edt.setVisibility(View.INVISIBLE);
+                                    edt.setText("");
+                                    edt1.setText("");
+
+                                    edt1.setEnabled(false);
+                                    edt2.setEnabled(false);
+                                    edt2.setText("");
+
+
+                                    break;
+                                case R.id.q105_1f:
+                                    if (checked)
+                                        edt.setVisibility(View.INVISIBLE);
+                                    edt.setText("");
+                                    edt1.setText("");
+
+                                    edt1.setEnabled(false);
+                                    edt2.setEnabled(false);
+                                    edt2.setText("");
+
+                                    break;
+                                case R.id.q105_1g:
+                                    if (checked)
+                                        edt.setVisibility(View.INVISIBLE);
+                                    edt.setText("");
+                                    edt1.setText("");
+                                    edt1.setEnabled(false);
+
+                                    edt2.setEnabled(false);
+                                    edt2.setText("");
+
+                                    break;
+
+                                case R.id.q105_1h:
+                                    if (checked)
+                                        edt.setVisibility(View.INVISIBLE);
+                                    edt.setText("");
+                                    edt1.setText("");
+                                    edt1.setEnabled(false);
+
+                                    edt2.setEnabled(false);
+                                    edt2.setText("");
+
+                                    break;
+                                case R.id.q105_other:
+                                    if (checked)
+                                        edt.setVisibility(View.VISIBLE);
+
+
+                                    edt1.setEnabled(true);
+                                    edt2.setEnabled(true);
+                                    break;
+
+                            }
+
+                            break;
+                        }
+                    }
                 }
+
+
+
             }
             else
             {
@@ -254,7 +274,8 @@ public class q105 extends AppCompatActivity implements Serializable{
 
             edt1.setText(ind.getQ105a());
         }
-        if(ind.getQ105b()!=null){
+        if(ind.getQ105b()!=null)
+        {
 
             edt2.setText(ind.getQ105b());
         }

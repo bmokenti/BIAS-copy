@@ -230,24 +230,27 @@ public class q305 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (individual.getQ302().equals("2")) {
+                if (individual.getQ302() != null && individual.getQ302().equals("2")) {
+
                     Intent q1o2 = new Intent(q305.this, q302.class);
                     q1o2.putExtra("Individual", individual);
+                   // q1o2.putExtra("Personroster", p1);
                     startActivity(q1o2);
                 } else {
                     // ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))  && (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))
-                    if (((sample.getStatusCode().equals("3")) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
-                            || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
-                    ) || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) &&
-                            p1.getP06().equals("2")))) {
+                    if ((((sample.getStatusCode().equals("3")) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")))
+                            || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64)
+                            || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && p1.getP06().equals("2")))) {
 
 
-                        Intent q1o2 = new Intent(q305.this, Q201.class);
+                        Intent q1o2 = new Intent(q305.this, q107.class);
                         q1o2.putExtra("Individual", individual);
+                       // q1o2.putExtra("Personroster", p1);
                         startActivity(q1o2);
                     } else {
                         Intent q1o2 = new Intent(q305.this, q304.class);
                         q1o2.putExtra("Individual", individual);
+                       //q1o2.putExtra("Personroster", p1);
                         startActivity(q1o2);
                     }
                 }

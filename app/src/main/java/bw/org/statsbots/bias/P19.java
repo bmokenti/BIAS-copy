@@ -53,25 +53,24 @@ public class P19 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View view) {
 
-                if (sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("0"))) {
-                    Intent intent = new Intent(P19.this, P21.class);
-                    intent.putExtra("Household", thisHouse);
-                    startActivity(intent);
-                }
-                else {
-                    if (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1")
-                            && (Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 64)
-                            && (p1.getP06().equals("1") || p1.getP06().equals("3")))
-                    {
-                        Intent intent = new Intent(P19.this, P20.class);
-                        intent.putExtra("Household", thisHouse);
-                        startActivity(intent);
-                    } else {
-                        Log.d("Status", sample.getStatusCode());
-                    }
-                }
+
+        if (sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") &&  thisHouse.getHIVTB40().equals("0"))) {
+            Intent intent = new Intent(P19.this, P21.class);
+            intent.putExtra("Household", thisHouse);
+            startActivity(intent);
+        }
+        else {
+            if ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1")) )
+                   {
+
+                Intent intent = new Intent(P19.this, P20.class);
+                intent.putExtra("Household", thisHouse);
+                startActivity(intent);
             }
-        });
+        }
+
+    }
+});
 
 
         btnPrev.setOnClickListener(new View.OnClickListener() {
@@ -131,10 +130,11 @@ public class P19 extends AppCompatActivity implements Serializable {
 
         Allpersonslist = (ListView) findViewById(R.id.personslist);
         Allpersonslist.setAdapter(itemsAdapter);
-        Allpersonslist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Allpersonslist.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
 
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    @Override
+                                    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
                 Intent intent = new Intent(P19.this, q101.class);
                 intent.putExtra("Household", thisHouse);

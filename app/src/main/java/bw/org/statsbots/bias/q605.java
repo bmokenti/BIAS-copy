@@ -339,7 +339,9 @@ public class q605 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
                 finish();
-                q605.super.onBackPressed();
+                Intent intent = new Intent(q605.this, q604.class);
+                intent.putExtra("Individual", individual);
+                startActivity(intent);
             }
 
 

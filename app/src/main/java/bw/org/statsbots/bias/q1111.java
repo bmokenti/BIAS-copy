@@ -54,6 +54,7 @@ public class q1111 extends AppCompatActivity implements  Serializable {
         int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 

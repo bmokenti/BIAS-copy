@@ -264,8 +264,9 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
 
                 if (individual.getQ102() != null && Integer.valueOf(individual.getQ102())>= 15 )
                 {
-                    vol3.setEnabled(false);
-
+                    if (individual.getIndvBloodDraw() == null || individual.getIndvBloodDraw() != null ) {
+                        vol3.setEnabled(false);
+                    }
                 }
 
                 rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

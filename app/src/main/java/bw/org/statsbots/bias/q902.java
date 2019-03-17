@@ -94,7 +94,7 @@ public class q902 extends AppCompatActivity implements Serializable {
                 } else {
 
 
-                    if (!ck2txt.isChecked() && ((edtyear.length() < 4 || Integer.valueOf(edtyear.getText().toString()) <= 1988 ||Integer.valueOf(edtyear.getText().toString()) >= 2020))) {
+                    if (!ck2txt.isChecked() && ((edtyear.length() < 4 || Integer.valueOf(edtyear.getText().toString()) <= 1988 ||Integer.valueOf(edtyear.getText().toString()) >= 2019))) {
                         lib.showError(q902.this, "Q902: year", "Please input year or select Dont know Year: Year shoud be btween 1988 and 2020");
                         /**
                          * VIBRATE DEVICE
@@ -146,7 +146,6 @@ public class q902 extends AppCompatActivity implements Serializable {
 
 
 }
-
 
 
     public void onCheckboxClicked(View view) {

@@ -89,8 +89,18 @@ public class q107 extends AppCompatActivity implements Serializable{
         myDB.onOpen(myDB.getReadableDatabase());
         myDB.getWritableDatabase();
 
-        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
-        individual = ind;
+//        final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
+//        individual = ind;
+
+        if (p1 != null) {
+            final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(), p1.getBatch(), p1.getSRNO());
+            individual = ind;
+        } else  {
+            individual = myDB.getdataIndivisual(individual.getAssignmentID(), individual.getBatch(), individual.getSRNO());
+        }
+
+        final Individual ind = individual;
+
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
         sample.getSTATUS();
