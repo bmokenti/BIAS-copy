@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q103 extends AppCompatActivity implements View.OnClickListener, Serializable {
 
@@ -63,6 +64,17 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
         //int p = 0;
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
         individual = ind;
+
+        final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
 
         RadioButton[] bt = new RadioButton[3];
         for(int f=0;f<rg.getChildCount();f++)
@@ -286,7 +298,6 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
 
                 Intent q1o2 = new Intent(q103.this, q102.class);
                 q1o2.putExtra("Personroster", p1);
-
                 startActivity(q1o2);
             }
 

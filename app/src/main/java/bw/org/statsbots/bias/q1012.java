@@ -55,7 +55,7 @@ public class q1012 extends AppCompatActivity  implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
@@ -165,25 +165,21 @@ else{
 
                                         }
 
-                                        if (edtyear.getText().toString().length() == 0) {
+                                        if (edtmnths.getText().toString().length() == 0) {
                                             individual.setQ1012_Month("00");
-                                        } else if (edtyear.getText().toString().length() == 1) {
-                                            individual.setQ1012_Month("0" + edtyear.getText().toString());
+                                        } else if (edtmnths.getText().toString().length() == 1) {
+                                            individual.setQ1012_Month("0" + edtmnths.getText().toString());
                                         } else {
                                             individual.setQ1012_Month(edtmnths.getText().toString());
                                         }
 
+
                                         if (edtyear.getText().toString().length() == 0) {
-                                            individual.setQ1012_Year("0000");
-                                        } else if (edtyear.getText().toString().length() == 3) {
+                                            individual.setQ1012_Year("00");
+                                        } else if (edtyear.getText().toString().length() == 1) {
                                             individual.setQ1012_Year("0" + edtyear.getText().toString());
                                         }
-                                        else if (edtyear.getText().toString().length() == 1) {
-                                            individual.setQ1012_Year("000" + edtyear.getText().toString());
-                                        }
-                                        else if (edtyear.getText().toString().length() == 2) {
-                                            individual.setQ1012_Year("00" + edtyear.getText().toString());
-                                        }else {
+                                        else {
                                             individual.setQ1012_Year(edtyear.getText().toString());
                                         }
 
@@ -215,7 +211,10 @@ else{
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1012.super.onBackPressed();
+                finish();
+                Intent intent = new Intent(q1012.this, q1011.class);
+                intent.putExtra("Individual", individual);
+                startActivity(intent);
             }
 
 

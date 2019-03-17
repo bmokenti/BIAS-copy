@@ -217,7 +217,10 @@ protected LibraryClass lib;
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1108.super.onBackPressed();
+                finish();
+                Intent intent = new Intent(q1108.this, q1107.class);
+                intent.putExtra("Individual", individual);
+                startActivity(intent);
             }
 
 

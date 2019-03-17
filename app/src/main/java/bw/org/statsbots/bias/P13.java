@@ -38,13 +38,13 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
 
         setTitle("P13 ECONOMIC ACTIVITY");
         lib = new LibraryClass();
-        rbtn1 =  (RadioButton)findViewById(R.id.P13_1);
-        rbtn2 =  (RadioButton)findViewById(R.id.P13_2);
-        rbtn3 =  (RadioButton)findViewById(R.id.P13_3);
-        rbtn4 =  (RadioButton)findViewById(R.id.P13_4);
-        rbtn5 =  (RadioButton)findViewById(R.id.P13_5);
-        rbtn6 =  (RadioButton)findViewById(R.id.P13_other);
-        rbtngroup = (RadioGroup)findViewById(R.id.P13radioGroup) ;
+        rbtn1 = (RadioButton) findViewById(R.id.P13_1);
+        rbtn2 = (RadioButton) findViewById(R.id.P13_2);
+        rbtn3 = (RadioButton) findViewById(R.id.P13_3);
+        rbtn4 = (RadioButton) findViewById(R.id.P13_4);
+        rbtn5 = (RadioButton) findViewById(R.id.P13_5);
+        rbtn6 = (RadioButton) findViewById(R.id.P13_other);
+        rbtngroup = (RadioGroup) findViewById(R.id.P13radioGroup);
         edt = (EditText) findViewById(R.id.P13_txtOther);
 
         rbtn1.setOnClickListener(this);
@@ -57,40 +57,38 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
         final int selectedId = rbtngroup.getCheckedRadioButtonId();
 
         Intent i = getIntent();
-        thisHouse = (HouseHold)i.getSerializableExtra("Household");
-        int p=0;
+        thisHouse = (HouseHold) i.getSerializableExtra("Household");
+        int p = 0;
 
-        thisHouse.setIsHIVTB40("2");
+        thisHouse.setHIVTB40("1");
 
-        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), thisHouse.getAssignment_ID());
 
-        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+//        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+//        thisHous.get(0).getHIVTB40();
+
+        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
         thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
 
-        if(thisHouse.next!=null){
+        if (thisHouse.next != null) {
             p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
 
-        }else if(thisHouse.previous!=null){
+        } else if (thisHouse.previous != null) {
             p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];
 
         }
 
 
-
-        if(thisHouse.next!=null &&  (p1.getP13()  != null || p1.getP13Other()!=null)){
+        if (thisHouse.next != null && (p1.getP13() != null || p1.getP13Other() != null)) {
             RadioButton[] bt = new RadioButton[5];
-            for(int f=0;f<rbtngroup.getChildCount();f++)
-            {
+            for (int f = 0; f < rbtngroup.getChildCount(); f++) {
 
                 View o = rbtngroup.getChildAt(f);
-                if (o instanceof RadioButton)
-                {
-                    bt[f]=((RadioButton)o);
-                    if(p1.getP13()!= null)
-                    {
-                        if(f==5)
-                        {
-                            if(p1.getP13Other() !=null){
+                if (o instanceof RadioButton) {
+                    bt[f] = ((RadioButton) o);
+                    if (p1.getP13() != null) {
+                        if (f == 5) {
+                            if (p1.getP13Other() != null) {
 
                                 RadioButton radioButton = bt[5];
                                 radioButton.setChecked(true);
@@ -98,9 +96,8 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                                 edt.setText(p1.getP13Other());
                                 break;
 
-                            }else {
-                                if(Integer.parseInt(p1.getP13())==f+1)
-                                {
+                            } else {
+                                if (Integer.parseInt(p1.getP13()) == f + 1) {
 
                                     RadioButton radioButton = bt[f];
                                     radioButton.setChecked(true);
@@ -109,9 +106,8 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                                 }
                             }
 
-                        }else{
-                            if(Integer.parseInt(p1.getP13())==f+1)
-                            {
+                        } else {
+                            if (Integer.parseInt(p1.getP13()) == f + 1) {
 
                                 RadioButton radioButton = bt[f];
                                 radioButton.setChecked(true);
@@ -120,8 +116,8 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                             }
                         }
 
-                    }else {
-                        if(p1.getP13Other() != null){
+                    } else {
+                        if (p1.getP13Other() != null) {
 
                             RadioButton radioButton = bt[5];
                             radioButton.setChecked(true);
@@ -136,182 +132,163 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
         }
 
 
+        TextView textView = (TextView) findViewById(R.id.P13);
+        String s = getResources().getString(R.string.P13);
+        int t = s.indexOf("#");
+        s = s.replace("#", "<b>" + p1.getP01() + "</b> ");
+
+        textView.setText(Html.fromHtml(s));
+
+        /**
+         * NEXT Person BUTTON
+         */
+        Button btnNext = (Button) findViewById(R.id.button);
+        Button btnPrev = (Button) findViewById(R.id.button3);
+        String btnLabel = "";
+
+        if (p1.getLineNumber() + 1 == thisHouse.getTotalPersons()) {
+            btnLabel = "Next";
+        } else {
+            btnLabel = "Next > ";
+        }
+
+        /**
+         * NEXT BUTTON
+         */
+        btnNext.setText(btnLabel);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selected == null) {
+                    lib.showError(P13.this, "P13 Error", "Since" + p1.getP01() + "did not work for payment, profit or home use, what did he/she do?");
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+                } else {
+
+                    //Set P02 fir the current individual
+                    thisHouse.getPersons()[p1.getLineNumber()].setP13(selected.getText().toString().substring(0, 1));
+                    //Restart the current activity for next individual
+
+                    int total = thisHouse.getTotalPersons();
 
 
-            TextView textView = (TextView) findViewById(R.id.P13);
-            String s = getResources().getString(R.string.P13);
-            int t = s.indexOf("#");
-            s = s.replace("#", "<b>" + p1.getP01() +"</b> ");
+                    if (p1.getLineNumber() == thisHouse.getTotalPersons() - 1) {
+                        //Next question P07
+                        if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") || thisHouse.getHIVTB40().equals("1"))) {
+                            //HIV ONLY or combined that is part of 40
+                            myDB = new DatabaseHelper(P13.this);
+                            myDB.onOpen(myDB.getWritableDatabase());
 
-            textView.setText(Html.fromHtml(s));
+                            //UPDATE HOUSEHOLD
+                            List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
 
-            /**
-             * NEXT Person BUTTON
-             */
-            Button btnNext = (Button)findViewById(R.id.button);
-            Button btnPrev = (Button)findViewById(R.id.button3);
-            String btnLabel="";
-
-            if(p1.getLineNumber()+1==thisHouse.getTotalPersons()){
-                btnLabel="Next";
-            }else{
-                btnLabel="Next > ";
-            }
-
-            /**
-             * NEXT BUTTON
-             */
-            btnNext.setText(btnLabel);
-            btnNext.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    if(selected==null)
-                    {
-                        lib.showError(P13.this,"P13 Error","Since"+ p1.getP01() + "did not work for payment, profit or home use, what did he/she do?");
-                        /**
-                         * VIBRATE DEVICE
-                         */
-                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        vibs.vibrate(100);
-                    }
-                    else
-                        {
-
-                        //Set P02 fir the current individual
-                        thisHouse.getPersons()[p1.getLineNumber()].setP13(selected.getText().toString().substring(0,1));
-                        //Restart the current activity for next individual
-
-                        int total = thisHouse.getTotalPersons();
-
-
-                            if(p1.getLineNumber() == thisHouse.getTotalPersons()-1)
-                            {
-                                    //Next question P07
-                                    if(sample.getStatusCode().equals("1") )
-                                    {
-                                        //HIV ONLY
-                                        myDB = new DatabaseHelper(P13.this);
-                                        myDB.onOpen(myDB.getWritableDatabase());
-
-                                        //UPDATE HOUSEHOLD
-                                        List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
-                                        if(ll.size()>0){
-                                            myDB.updateRoster(thisHouse,"P13",p1.getP13(), String.valueOf(p1.getSRNO()));
-                                            myDB.close();
-                                        }
-
-
-                                        Intent intent = new Intent(P13.this, P17.class);
-                                        intent.putExtra("Household", thisHouse);
-                                        startActivity(intent);
-                                    }
-                                    else if(sample.getStatusCode().equals("2") )
-                                    {
-                                        if(thisHouse.getIsHIVTB40().equals("2")){
-                                            //TB ONLY
-                                            myDB = new DatabaseHelper(P13.this);
-                                            myDB.onOpen(myDB.getWritableDatabase());
-
-                                            //UPDATE HOUSEHOLD
-                                            List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
-                                            if(ll.size()>0){
-                                                myDB.updateRoster(thisHouse,"P13",p1.getP13(), String.valueOf(p1.getSRNO()));
-                                                myDB.close();
-                                            }
-
-                                            Intent intent = new Intent(P13.this, P18.class);
-                                            intent.putExtra("Household", thisHouse);
-                                            startActivity(intent);
-                                        }else{
-                                            //HIV+TB
-
-                                            myDB = new DatabaseHelper(P13.this);
-                                            myDB.onOpen(myDB.getWritableDatabase());
-
-                                            //UPDATE HOUSEHOLD
-                                            List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
-                                            if(ll.size()>0){
-                                                myDB.updateRoster(thisHouse,"P13",p1.getP13(), String.valueOf(p1.getSRNO()));
-                                                myDB.close();
-                                            }
-
-                                            Intent intent = new Intent(P13.this, P19.class);
-                                            intent.putExtra("Household", thisHouse);
-                                            startActivity(intent);
-                                        }
-
-
-
-                                    }
-                                    else{
-                                        //TB ONLY
-
-                                        myDB = new DatabaseHelper(P13.this);
-                                        myDB.onOpen(myDB.getWritableDatabase());
-
-                                        //UPDATE HOUSEHOLD
-                                        List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
-                                        if(ll.size()>0){
-                                            myDB.updateRoster(thisHouse,"P13",p1.getP13(), String.valueOf(p1.getSRNO()));
-                                            myDB.close();
-                                        }
-
-
-
-                                        Intent intent = new Intent(P13.this, P18.class);
-                                        intent.putExtra("Household", thisHouse);
-                                        startActivity(intent);
-
-                                    }
-
-                                }else{
-                                    //Restart the current activity for next individual
-                                    thisHouse.next = String.valueOf(p1.getSRNO() + 1);
-                                    myDB = new DatabaseHelper(P13.this);
-                                    myDB.onOpen(myDB.getWritableDatabase());
-
-                                    //UPDATE HOUSEHOLD
-                                    List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
-                                    if(ll.size()>0){
-                                        myDB.updateRoster(thisHouse,"P13",p1.getP13(), String.valueOf(p1.getSRNO()));
-                                        myDB.close();
-                                    }
-                                    finish();
-                                    Intent intent = new Intent(P13.this,P12.class);
-                                    intent.putExtra("Household",  thisHouse);
-                                    startActivity(intent);
-                                }
-
-
-
+                            if (ll.size() > 0) {
+                                myDB.updateRoster(thisHouse, "P13", p1.getP13(), String.valueOf(p1.getSRNO()));
+                                myDB.close();
                             }
 
 
+                            Intent intent = new Intent(P13.this, P17.class);
+                            intent.putExtra("Household", thisHouse);
+                            startActivity(intent);
+                        } else if ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("0"))
+                                || sample.getStatusCode().equals("3")) {
+                            //TB ONLY
+                            myDB = new DatabaseHelper(P13.this);
+                            myDB.onOpen(myDB.getWritableDatabase());
+
+                            //UPDATE HOUSEHOLD
+                            List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
+                            if (ll.size() > 0) {
+                                myDB.updateRoster(thisHouse, "P13", p1.getP13(), String.valueOf(p1.getSRNO()));
+                                myDB.close();
+                            }
+
+                            Intent intent = new Intent(P13.this, P18.class);
+                            intent.putExtra("Household", thisHouse);
+                            startActivity(intent);
+                        } else {
+
+                            //HIV+TB
+                            if ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1"))) {
+                                myDB = new DatabaseHelper(P13.this);
+                                myDB.onOpen(myDB.getWritableDatabase());
+
+                                //UPDATE HOUSEHOLD
+                                List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
+                                if (ll.size() > 0) {
+                                    myDB.updateRoster(thisHouse, "P13", p1.getP13(), String.valueOf(p1.getSRNO()));
+                                    myDB.close();
+                                }
+
+                                Intent intent = new Intent(P13.this, P19.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent);
+                            }
+                        }
+
+                    } else {
+                        if ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("0")) || sample.getStatusCode().equals("3")) {
+                            //TB ONLY
+
+                            myDB = new DatabaseHelper(P13.this);
+                            myDB.onOpen(myDB.getWritableDatabase());
+
+                            //UPDATE HOUSEHOLD
+                            List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
+                            if (ll.size() > 0) {
+                                myDB.updateRoster(thisHouse, "P13", p1.getP13(), String.valueOf(p1.getSRNO()));
+                                myDB.close();
+                            }
 
 
+                            Intent intent = new Intent(P13.this, P18.class);
+                            intent.putExtra("Household", thisHouse);
+                            startActivity(intent);
 
 
+                        } else {
+                            //Restart the current activity for next individual
+                            thisHouse.next = String.valueOf(p1.getSRNO() + 1);
+                            myDB = new DatabaseHelper(P13.this);
+                            myDB.onOpen(myDB.getWritableDatabase());
 
+                            //UPDATE HOUSEHOLD
+                            List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
+                            if (ll.size() > 0) {
+                                myDB.updateRoster(thisHouse, "P13", p1.getP13(), String.valueOf(p1.getSRNO()));
+                                myDB.close();
+                            }
+                            finish();
+                            Intent intent = new Intent(P13.this, P12.class);
+                            intent.putExtra("Household", thisHouse);
+                            startActivity(intent);
+                        }
+
+
+                    }
 
 
                 }
-            });
+            }
+        });
 
-            btnPrev.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    thisHouse.previous = String.valueOf(p1.getSRNO());
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                thisHouse.previous = String.valueOf(p1.getSRNO());
 
-                    Log.d("P13 Prev", thisHouse.previous);
-                    finish();
+                Log.d("P13 Prev", thisHouse.previous);
+                finish();
 
-                    Intent intent = new Intent(P13.this, P12.class);
-                    intent.putExtra("Household", thisHouse);
-                    startActivity(intent);
-                }
-            });
+                Intent intent = new Intent(P13.this, P12.class);
+                intent.putExtra("Household", thisHouse);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -342,7 +319,6 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
         }
     }
 }
-
 
 
 

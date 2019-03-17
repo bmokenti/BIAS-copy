@@ -62,11 +62,14 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
 
-        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
+        //myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
 
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
         individual = ind;
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
+        sample.getSTATUS();
 
         final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
         for (PersonRoster p: roster
@@ -79,8 +82,8 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
 
         }
 
-        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
-        sample.getSTATUS();
+
+
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
@@ -251,17 +254,21 @@ public class Q201 extends AppCompatActivity implements View.OnClickListener, Ser
                         (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )) ||
                         (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && p1.getP06().equals("2")))
                 {
-
+                    finish();
                     Intent q1o3 = new Intent(Q201.this, q106.class);
                     q1o3.putExtra("Individual", individual);
                     q1o3.putExtra("Personroster", p1);
                     startActivity(q1o3);
-                    finish();
+
                 }
                 else
                 {
-                    Q201.super.onBackPressed();
+
                     finish();
+                    Intent q1o3 = new Intent(Q201.this, q107.class);
+                    q1o3.putExtra("Individual", individual);
+                    q1o3.putExtra("Personroster", p1);
+                    startActivity(q1o3);
                 }
 
             }

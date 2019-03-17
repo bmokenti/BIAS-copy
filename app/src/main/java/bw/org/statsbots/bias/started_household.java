@@ -566,7 +566,7 @@ public class started_household extends AppCompatActivity implements Serializable
                          * rapid - blood
                          */
 
-                        if (r.get(o).getU15Rapid_Results() == null || r.get(o).getU15Rapid_Results().equals("null") || r.get(o).getU15Rapid_Results().equals("")) {
+                        if (r.get(o).getRapidResults() == null || r.get(o).getRapidResults().equals("null") || r.get(o).getRapidResults().equals("")) {
 
                             Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_filter_center_focus_blue_24dp);
                             btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
@@ -657,14 +657,14 @@ public class started_household extends AppCompatActivity implements Serializable
 
                         } else {
                             Log.d("Over 15", r.get(o).getP01() + "  " + r.get(o).getP04YY() + "/" + r.get(o).getP04MM() + "/" + r.get(o).getP04WKS());
-                            if (r.get(o).getU15Rapid_Results().equals("4") ) {
+                            if (r.get(o).getRapidResults().equals("4") ) {
                                 Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_library_books_blue_24dp);
                                 btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
                                 //btn.setEnabled(false);
                                 Info = "Has Documentation";
 
                             } else {
-                                if (r.get(o).getRapidDate() != null) {
+                                if (r.get(o).getRapidDate() != null || r.get(o).getBloodDraw() != null || r.get(o).getChPrntlConsentBloodDraw() != null ) {
                                     Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
                                     btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
                                     Info = "Rapid Test Done";
@@ -729,11 +729,11 @@ public class started_household extends AppCompatActivity implements Serializable
                             });
 
                         } else {
-
-                            Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
-                            btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
-                            Info = "Questionnaire, Rapid Test Done";
-
+                            if(individual.getIndvBloodDraw() != null || individual.getPrntlConsentBloodDraw() != null) {
+                                Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
+                                btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
+                                Info = "HIV Questionnaire, Blood Collection  Done";
+                            }
 
                         }
 
@@ -758,7 +758,7 @@ public class started_household extends AppCompatActivity implements Serializable
                          * rapid - blood
                          */
 
-                        if (r.get(o).getU15Rapid_Results() == null || r.get(o).getU15Rapid_Results().equals("null") || r.get(o).getU15Rapid_Results().equals("")) {
+                        if (r.get(o).getRapidResults() == null || r.get(o).getRapidResults().equals("null") || r.get(o).getRapidResults().equals("")) {
 
                             Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_filter_center_focus_blue_24dp);
                             btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
@@ -797,6 +797,10 @@ public class started_household extends AppCompatActivity implements Serializable
                                 });
 
                             }
+
+
+
+
                             if (yy < 15) {
                                 //Less than  15
                                 if (yy >= 1 && mm >= 6) {
@@ -828,7 +832,6 @@ public class started_household extends AppCompatActivity implements Serializable
 //                                        Intent b = new Intent(started_household.this, Barcode.class);
 //                                        b.putExtra("Personroster", person1);
 //                                        startActivity(b);
-
 
                                         Intent q1o2 = new Intent(started_household.this, Barcode.class);
                                         q1o2.putExtra("Personroster", person1);
@@ -863,17 +866,18 @@ public class started_household extends AppCompatActivity implements Serializable
 
                         } else {
                             Log.d("Over 15", r.get(o).getP01() + "  " + r.get(o).getP04YY() + "/" + r.get(o).getP04MM() + "/" + r.get(o).getP04WKS());
-                            if (r.get(o).getU15Rapid_Results().equals("4")) {
+                            if (r.get(o).getRapidResults().equals("4")) {
                                 Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_library_books_blue_24dp);
                                 btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
                                 //btn.setEnabled(false);
                                 Info = "Has Documentation";
 
                             } else {
-                                Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
-                                btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
-                                Info = "Rapid Test Done";
-
+                                if (r.get(o).getRapidDate() != null || r.get(o).getBloodDraw() != null || r.get(o).getChPrntlConsentBloodDraw() != null ) {
+                                    Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
+                                    btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
+                                    Info = "Blood collection Done";
+                                }
                             }
                         }
 
@@ -884,6 +888,8 @@ public class started_household extends AppCompatActivity implements Serializable
                         List<Individual> Ind = myDB.getdataIndivisual(thisHouse);
                         Individual individual = null;
                         for (Individual ii : Ind) {
+
+
                             if (ii.getSRNO() == r.get(o).getSRNO()) {
                                 individual = ii;
                             }
@@ -896,96 +902,95 @@ public class started_household extends AppCompatActivity implements Serializable
                             individual = new Individual();
                             int yy = Integer.parseInt(r.get(o).getP04YY());
 
-
-                            if( (yy > 64 && r.get(o).getP06().equals("3") && Integer.valueOf(r.get(o).getP07()) > 14)
-                                    || (yy > 64 && r.get(o).getP06().equals("1") || yy > 64 && r.get(o).getP06().equals("2") ))
-                            {
-                                    Info = "Pending Questionnaire  TB Only and X-Ray, Blood collection";
+//|| yy > //64 && r.get(o).getP06().equals("2")
+                            if ((yy > 64 && r.get(o).getP06().equals("3") && Integer.valueOf(r.get(o).getP07()) > 14)
+                                    || (yy > 64 && r.get(o).getP06().equals("1") )) {
+                                Info = "Pending Questionnaire  TB Only and X-Ray, Blood collection";
                             } else {
 
-                                    if ((r.get(o).getP07() != null)) {
-                                        int dd = Integer.parseInt(r.get(o).getP07());
-                                        if (dd <= 13 && yy < 65) {
-                                            Info = "Pending Questionnaire  HIV Only and Blood Collection";
-                                        }
-                                        else  {
-
-                                            // int dd = Integer.parseInt(r.get(o).getP07());
-                                            if (dd <= 13 && yy >= 65){
-                                                Info = "Pending  Blood Collection";
-                                            } else {
-
-                                                // int dd = Integer.parseInt(r.get(o).getP07());
-                                                if (dd >= 14) {
-                                                    Info = "Pending Questionnaire HIV&TB, X-Ray and Blood Collection";
-                                                }
-                                            }
-                                        }
-
+                                if ((r.get(o).getP07() != null)) {
+                                    int dd = Integer.parseInt(r.get(o).getP07());
+                                    if (dd <= 13 && yy < 65) {
+                                        Info = "Pending Questionnaire  HIV Only and Blood Collection";
                                     } else {
 
-                                        if (r.get(o).getP06().equals("2")) {
-                                            Info = "Pending Questionnaire TB, X-Ray";
+                                        // int dd = Integer.parseInt(r.get(o).getP07());
+                                        if (dd <= 13 && yy >= 65) {
+                                            Info = "Pending  Blood Collection";
                                         } else {
-                                            Info = "Pending Questionnaire HIV&TB, X-Ray and Blood Collection";
+
+                                            // int dd = Integer.parseInt(r.get(o).getP07());
+                                            if (dd >= 14) {
+                                                Info = "Pending Questionnaire HIV&TB, X-Ray and Blood Collection";
+                                            }
                                         }
                                     }
-                                }
-
-
-
-
-
-                                individual.setSRNO(r.get(o).getSRNO());
-                                individual.setAssignmentID(r.get(o).getAssignmentID());
-                                individual.setBatch(r.get(o).getBatch());
-
-                                if (myDB.checkIndividual(individual)) {
 
                                 } else {
-                                    //Insert
-                                    myDB.insertIndividual(individual);
 
-                                }
+                                    if (r.get(o).getP06().equals("2")) {
+                                        Info = "Pending Questionnaire TB, X-Ray";
+                                    } else {
 
-
-                                List<HouseHold> h = myDB.getHouseHold(myDB.getReadableDatabase(), "", individual.getAssignmentID());
-                                for (HouseHold hhh : h) {
-                                    if (hhh.getAssignment_ID().equals(individual.getAssignmentID()) && hhh.getBatchNumber().equals(individual.getBatch()) && hhh.getIsHIVTB40().equals("True")) {
-                                        if (thisHouse.getHIVTB40().equals("True")) {
-                                           Info = Info + ", Blood Collection ";
-                                        }
+                                        Info = "Pending Questionnaire HIV&TB, X-Ray and Blood Collection";
                                     }
                                 }
+                            }
 
 
-                                final Individual temp1 = individual;
-                                btn.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        //**Replace This house with 1 individual
+                            individual.setSRNO(r.get(o).getSRNO());
+                            individual.setAssignmentID(r.get(o).getAssignmentID());
+                            individual.setBatch(r.get(o).getBatch());
+
+                            if (myDB.checkIndividual(individual)) {
+
+                            } else {
+                                //Insert
+                                myDB.insertIndividual(individual);
+
+                            }
+
+
+                            List<HouseHold> h = myDB.getHouseHold(myDB.getReadableDatabase(), "", individual.getAssignmentID());
+                            for (HouseHold hhh : h) {
+                                if (hhh.getAssignment_ID().equals(individual.getAssignmentID()) && hhh.getBatchNumber().equals(individual.getBatch()) && hhh.getIsHIVTB40().equals("True")) {
+                                    if (thisHouse.getHIVTB40().equals("True")) {
+                                        Info = Info + ", Blood Collection ";
+                                    }
+                                }
+                            }
+
+
+                            final Individual temp1 = individual;
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    //**Replace This house with 1 individual
 
 //                                    Intent b = new Intent(started_household.this, Barcode.class);
 //                                    b.putExtra("Personroster", temp);
 //                                    startActivity(b);
 
-                                        Intent q1o2 = new Intent(started_household.this, Barcode.class);
-                                        q1o2.putExtra("Personroster", temp);
-                                        q1o2.putExtra("Individual", temp1);
-                                        //Log.d("HHHHH",temp1.getQ101());
-                                        q1o2.putExtra("Household", thisHouse);
+                                    Intent q1o2 = new Intent(started_household.this, Barcode.class);
+                                    q1o2.putExtra("Personroster", temp);
+                                    q1o2.putExtra("Individual", temp1);
+                                    //Log.d("HHHHH",temp1.getQ101());
+                                    q1o2.putExtra("Household", thisHouse);
 
-                                        startActivity(q1o2);
+                                    startActivity(q1o2);
 
 
-                                    }
-                                });
+                                }
+                            });
 
-                            } else{
-                                final Individual temp1 = individual;
+                        } else
+                            {
+                            final Individual temp1 = individual;
+                            if (individual.getIndvBloodDraw() != null || individual.getIndvQuestionnairePConsent15_17() != null || individual.getIndvQuestionnaireConsent() != null )
+                            {
                                 Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
                                 btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
-                                Info = "Questionnaire, Rapid Test Done";
+                                Info = "Questionnaire, Blood collection Done";
 
                                 btn.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -1008,7 +1013,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                     }
                                 });
                             }
-
+                        }
 
                     }
 
@@ -1097,7 +1102,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             List<HouseHold> h = myDB.getHouseHold(myDB.getReadableDatabase(), "", individual.getAssignmentID());
                             for (HouseHold hhh : h) {
                                 if (hhh.getAssignment_ID().equals(individual.getAssignmentID()) && hhh.getBatchNumber().equals(individual.getBatch()) && hhh.getIsHIVTB40().equals("True")) {
-                                    if (thisHouse.getIsHIVTB40().equals("True")) {
+                                    if (thisHouse.getHIVTB40().equals("1")) {
                                         Info = Info + ", ";
                                     }
                                 }
@@ -1128,7 +1133,7 @@ public class started_household extends AppCompatActivity implements Serializable
 
                         } else {
 
-                            if(individual.getQ1114() !=null){
+                            if(individual.getQ1114() !=null || individual.getIndvQuestionnaireConsent() != null){
                                 Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
                                 btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
                             }

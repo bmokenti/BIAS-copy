@@ -118,9 +118,35 @@ public class q1016 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1016.super.onBackPressed();
-            }
+                if ((individual.getQ1005a() != null && !(individual.getQ1005a().equals("1")) || (individual.getQ1007a() != null && !(individual.getQ1007a().equals("1")))
+                        || (individual.getQ1009a() != null && !(individual.getQ1009a().equals("1"))))) {
 
+                    finish();
+                    Intent intent = new Intent(q1016.this, q1013.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                } else {
+                    if ((individual.getQ1004_Month() != null && Integer.valueOf(individual.getQ1004_Month()) <= 1) &&
+                            (individual.getQ1004_Day() != null && Integer.valueOf(individual.getQ1004_Day()) <= 13)) {
+                        finish();
+                        Intent intent = new Intent(q1016.this, q1013.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+                    } else {
+                        if (individual.getQ1014() != null && individual.getQ1015() == null) {
+                            finish();
+                            Intent intent = new Intent(q1016.this, q1014.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+
+                        } else {
+                            Intent intent = new Intent(q1016.this, q1015.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+                        }
+                    }
+                }
+            }
 
         });
     }

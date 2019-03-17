@@ -402,7 +402,19 @@ public class q622 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q622.super.onBackPressed();
+                if( sample.getStatusCode().equals("1") && individual.getQ604().equals("1") )
+                {
+
+                    Intent q1o2 = new Intent(q622.this, q615.class);
+                    q1o2.putExtra("Individual", individual);
+                    startActivity(q1o2);
+                }
+                else {
+
+                    Intent q1o2 = new Intent(q622.this, q620.class);
+                    q1o2.putExtra("Individual", individual);
+                    startActivity(q1o2);
+                }
             }
 
 

@@ -89,14 +89,6 @@ public class q616 extends AppCompatActivity implements Serializable {
             startActivity(q1o2);
         }
 
-        if( sample.getStatusCode().equals("1") && individual.getQ604().equals("1") )
-        {
-
-            Intent q1o2 = new Intent(q616.this, q622.class);
-            q1o2.putExtra("Individual", individual);
-            startActivity(q1o2);
-        }
-
         if (individual.getQ604().equals("2") && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")){
 
             Intent intent = new Intent(q616.this, q623.class);
@@ -106,6 +98,16 @@ public class q616 extends AppCompatActivity implements Serializable {
         } else {
 
         }
+
+        if( sample.getStatusCode().equals("1") && individual.getQ604().equals("1") )
+        {
+
+            Intent q1o2 = new Intent(q616.this, q622.class);
+            q1o2.putExtra("Individual", individual);
+            startActivity(q1o2);
+        }
+
+
         chk9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override

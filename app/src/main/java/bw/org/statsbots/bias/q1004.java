@@ -139,20 +139,20 @@ public class q1004 extends AppCompatActivity implements Serializable {
             }
         }
 
-        if(ind.getQ1012_Week()!= null)
+        if(ind.getQ1004_Day() != null)
         {
-            edtdays.setText(ind.getQ1012_Week());
+            edtdays.setText(ind.getQ1004_Day());
         }
 
-        if(ind.getQ1012_Month()!= null)
+        if(ind.getQ1004_Month()!= null)
         {
-            edtmonths.setText(ind.getQ1012_Month());
+            edtmonths.setText(ind.getQ1004_Month());
         }
 
 
-        if(ind.getQ1012_Year()!= null)
+        if(ind.getQ1004_Year()!= null)
         {
-            edtyears.setText(ind.getQ1012_Year());
+            edtyears.setText(ind.getQ1004_Year());
         }
 
 
@@ -301,7 +301,10 @@ public class q1004 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1004.super.onBackPressed();
+                Intent skipto1017 = new Intent(q1004.this, q1003.class);
+                skipto1017.putExtra("Individual", individual);
+                startActivity(skipto1017);
+
             }
 
 

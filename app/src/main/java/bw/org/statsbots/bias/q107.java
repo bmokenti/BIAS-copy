@@ -735,26 +735,27 @@ public class q107 extends AppCompatActivity implements Serializable{
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(individual.getQ105().equals("1") ||individual.getQ105().equals("2") ||individual.getQ105().equals("3") ||individual.getQ105().equals("4")){
 
+
+                if (individual.getQ105() != null && (individual.getQ105().equals("1") || individual.getQ105().equals("2")
+                        || individual.getQ105().equals("3") || (individual.getQ105().equals("4")))) {
+                     finish();
                     Intent intent = new Intent(q107.this, q105.class);
                     intent.putExtra("Individual", individual);
                     intent.putExtra("Personroster", p1);
                     startActivity(intent);
 
 
+                } else {
 
-                }else{
-
-
+                    finish();
                     Intent q1o2 = new Intent(q107.this, q106.class);
                     q1o2.putExtra("Personroster", p1);
                     startActivity(q1o2);
                 }
 
+
             }
-
-
         });
     }
 

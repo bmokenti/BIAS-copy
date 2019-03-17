@@ -137,7 +137,8 @@ public class q801 extends AppCompatActivity implements Serializable {
         }
 
         if(Integer.valueOf(individual.getQ102()) >=65 &&
-                (sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))
+                (sample.getStatusCode().equals("3") ||
+                        (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))
                 || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))))
         {
 
@@ -746,10 +747,10 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                         } else {
                                                             //above 64 and tb oly
 
-                                                            if (rbtn1.isChecked() && ((((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64) ||
-                                                                    (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
-
-                                                                    sample.getStatusCode().equals("3"))))) {
+                                                            if ((rbtn1.isChecked()) && ((((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64)
+                                                                    || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
+                                                                    || sample.getStatusCode().equals("3")
+                                                                    || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && p1.getP06().equals("2"))) ))) {
 
                                                                 individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
                                                                 individual.setQ801a(selectedRbtna.getText().toString().substring(0, 1));
@@ -781,14 +782,15 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                 myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                                                 myDB.updateInd("Q801f", individual.getAssignmentID(), individual.getBatch(), individual.getQ801f(), String.valueOf(individual.getSRNO()));
 
-                                                                Intent intent = new Intent(q801.this, q901.class);
+                                                                Intent intent = new Intent(q801.this, q904.class);
                                                                 intent.putExtra("Individual", individual);
                                                                 startActivity(intent);
 
                                                             } else {
                                                                 //NO and above 64 and tb only
 
-                                                                if (rbtn2.isChecked() && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")   && Integer.valueOf(individual.getQ102()) > 64) ||
+                                                                if (rbtn2.isChecked() && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")
+                                                                        && Integer.valueOf(individual.getQ102()) > 64) ||
                                                                         sample.getStatusCode().equals("3")  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )) {
 
                                                                     individual.setQ801(selectedRbtn.getText().toString().substring(0, 1));
@@ -799,7 +801,7 @@ public class q801 extends AppCompatActivity implements Serializable {
                                                                     myDB.updateInd("Q801f", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
                                                                    // myDB.updateInd("Q202",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
 
-                                                                    Intent intent = new Intent(q801.this, q901.class);
+                                                                    Intent intent = new Intent(q801.this, q904.class);
                                                                     intent.putExtra("Individual", individual);
                                                                     startActivity(intent);
 

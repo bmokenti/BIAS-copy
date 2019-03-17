@@ -79,32 +79,33 @@ public class q802 extends AppCompatActivity implements Serializable {
 
 
         }
-        if((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
-                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64))
-                && individual.getQ801f().equals("1"))
-        {
-            Intent intent = new Intent(q802.this, q904.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-        }
+//        if((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
+//                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64))
+//                && individual.getQ801f().equals("1"))
+//        {
+//            Intent intent = new Intent(q802.this, q904.class);
+//            intent.putExtra("Individual", individual);
+//            startActivity(intent);
+//        }
 
 
 
-        if((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
-                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64))
-                && !individual.getQ801f().equals("1"))
-
-        {
-            Intent intent = new Intent(q802.this, q1101.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-        }
-
-
+//        if((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
+//                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64))
+//                && !individual.getQ801f().equals("1"))
+//
+//        {
+//            Intent intent = new Intent(q802.this, q1101.class);
+//            intent.putExtra("Individual", individual);
+//            startActivity(intent);
+//        }
 
 
 
-        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("2"))
+
+
+        if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4")
+                || individual.getQ801f().equals("9")) && individual.getQ801a().equals("2"))
 
         {
             Intent intent = new Intent(q802.this, q803.class);
@@ -114,8 +115,10 @@ public class q802 extends AppCompatActivity implements Serializable {
 
         else
 
-                if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("1")
-                        && individual.getQ101().equals("2") && ((Integer.valueOf(individual.getQ102()) > 14 && (Integer.valueOf(individual.getQ102()) < 50))))
+                if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") ||
+                        individual.getQ801f().equals("9")) && individual.getQ801a().equals("1")
+                        && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) > 14 &&
+                        Integer.valueOf(individual.getQ102()) < 50))
                 {
                     Intent intent = new Intent(q802.this, q1001.class);
                     intent.putExtra("Individual", individual);
@@ -124,7 +127,8 @@ public class q802 extends AppCompatActivity implements Serializable {
 
     else
         {
-                    if ((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("1")
+                    if ((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||
+                            individual.getQ801f().equals("4") || individual.getQ801f().equals("9")) && individual.getQ801a().equals("1")
                             && individual.getQ101().equals("1")) {
                         Intent intent = new Intent(q802.this, q1101.class);
                         intent.putExtra("Individual", individual);

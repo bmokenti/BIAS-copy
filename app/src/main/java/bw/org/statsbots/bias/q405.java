@@ -141,8 +141,9 @@ public class q405 extends AppCompatActivity implements View.OnClickListener, Ser
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q405.super.onBackPressed();
                 finish();
+                q405.super.onBackPressed();
+
             }
 
 

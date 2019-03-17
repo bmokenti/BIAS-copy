@@ -84,7 +84,8 @@ public class q1001 extends AppCompatActivity implements Serializable {
             startActivity(intent);
         }
 
-        if((individual.getQ101().equals("1")) || (individual.getQ101().equals("2") && (Integer.parseInt( individual.getQ102() )>49 && individual.getQ401().equals("2"))
+        if((individual.getQ101().equals("1")) || (individual.getQ101().equals("2") &&
+                (Integer.parseInt( individual.getQ102() )>49 && individual.getQ401().equals("2"))
                 && ( sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) )
         && (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
               (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )) ))
@@ -172,9 +173,41 @@ public class q1001 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1001.super.onBackPressed();
+                if
+                ((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") ||
+                        individual.getQ801f().equals("9")) && individual.getQ801a().equals("1")
+                        && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) > 14 &&
+                        Integer.valueOf(individual.getQ102()) < 50)) {
+                    finish();
+                    Intent intent = new Intent(q1001.this, q801.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                } else {
+                    if ((individual.getQ801a().equals("1")) && individual.getQ101().equals("2") && individual.getQ401().equals("1") &&
+                            (Integer.parseInt(individual.getQ102()) > 14
+                                    && Integer.parseInt(individual.getQ102()) < 50) && !individual.getQ801f().equals("1")) {
+                        Intent intent = new Intent(q1001.this, q802.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+                    } else {
+                        if (individual.getQ901() != null && individual.getQ901().equals("2")) {
+                            Intent intent = new Intent(q1001.this, q901.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+                        } else {
+                            if (individual.getQ904() != null && individual.getQ904().equals("4")) {
+                                Intent intent = new Intent(q1001.this, q904.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(q1001.this, q905.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                            }
+                        }
+                    }
+                }
             }
-
 
         });
     }

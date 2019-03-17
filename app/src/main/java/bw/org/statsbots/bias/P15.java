@@ -131,14 +131,7 @@ public class P15 extends AppCompatActivity implements Serializable {
                         intent.putExtra("Household",  thisHouse);
                         startActivity(intent);
 
-
-
-
                     }
-
-
-
-
 
                 }
             });

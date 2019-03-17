@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class q104 extends AppCompatActivity implements Serializable {
 
@@ -52,7 +53,7 @@ public class q104 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+        //int p = 0;
 
         myDB = new DatabaseHelper(q104.this);
         myDB.onOpen(myDB.getReadableDatabase());
@@ -69,7 +70,16 @@ public class q104 extends AppCompatActivity implements Serializable {
         individual = ind;
 
 
+        final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
 
+
+        }
 
         //int p = 0;
 
@@ -414,7 +424,6 @@ public class q104 extends AppCompatActivity implements Serializable {
 
                 Intent q1o2 = new Intent(q104.this, q103.class);
                 q1o2.putExtra("Personroster", p1);
-
                 startActivity(q1o2);
             }
 

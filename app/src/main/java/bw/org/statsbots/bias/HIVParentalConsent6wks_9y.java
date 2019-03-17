@@ -52,9 +52,11 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         myDB.onOpen(myDB.getReadableDatabase());
 
 
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+        thisHous.get(0).getHIVTB40();
 
        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
-        sample.getSTATUS();
+        sample.getStatusCode();
 
 //        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
 //        sample.getSTATUS();
@@ -76,14 +78,16 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
 
        // p1.getChPrntlConsentBloodDraw();
      //  rbtn1.setText(p1.getChPrntlConsentBloodDraw());
+int yy =Integer.valueOf(p1.getP04YY());
+int mm = Integer.valueOf(p1.getP04MM());
+int wks = Integer.valueOf(p1.getP04WKS());
 
-
-        if((Integer.valueOf(p1.getP04YY()) <= 1 && Integer.valueOf(p1.getP04MM()) <= 5 ))
+        if((yy == 1 && mm <= 6 ) || (yy == 00 && mm <= 11) || (mm == 1 && wks >= 2))
         {
             setTitle("Parental Consent less than 18 months");
         }
         else {
-            setTitle("Parental Consent 18 months to 9 years");
+            setTitle("Parental Consent 19 months to 9 years");
         }
 
         if(Integer.valueOf(p1.getP04YY()) >=10 && Integer.valueOf(p1.getP04YY()) <=14)
@@ -109,6 +113,15 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         if(Integer.valueOf(p1.getP04YY()) >= 15  && Integer.valueOf(p1.getP04YY()) <= 64)
         {
             Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, IndQuetParentalConsent.class);
+            q1o2.putExtra("Individual", individual);
+            q1o2.putExtra("Personroster", p1);
+            startActivity(q1o2);
+        }
+
+        if((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")  && Integer.valueOf(p1.getP04YY()) >= 65) &&
+                (p1.getP06().equals("3") && Integer.valueOf(p1.getP07()) < 14))
+        {
+            Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, HIVConsentOver64.class);
             q1o2.putExtra("Individual", individual);
             q1o2.putExtra("Personroster", p1);
             startActivity(q1o2);
@@ -156,13 +169,14 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
         t6  = (TextView) findViewById(R.id.bloodColectionStatus);
         t5  = (TextView) findViewById(R.id.txtstore);
 
-        if(Integer.valueOf(p1.getP04YY()) < 2 && Integer.valueOf(p1.getP04MM()) <=6)
+        if((yy == 1 && mm <= 6 ) || (yy == 00 && mm <= 11) || (mm == 1 && wks >= 2))
         {
             rbtn3.setEnabled(false);
             rbtn4.setEnabled(false);
             rbtn5.setEnabled(false);
             rbtn6.setEnabled(false);
-
+            t2.setTextColor(Color.LTGRAY);
+            t3.setTextColor(Color.LTGRAY);
         }
         else {
            // rbtn3.setEnabled(true);
@@ -171,13 +185,36 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
             //rbtn6.setEnabled(true);
 
         }
+        if((yy == 1 && mm <= 6 ) || (yy == 00 && mm <= 11) || (mm == 1 && wks >= 2))
+        {
+            vol3.setEnabled(false);
+            vol2.setEnabled(false);
+            vol4.setEnabled(false);
 
+        }
 
+        if((yy == 1 && mm >= 7 ) || (yy <= 2) )
+        {
+            vol3.setEnabled(false);
+            vol2.setEnabled(false);
+            vol4.setEnabled(false);
+
+        }
+
+        if((yy >=3 && yy <= 14))
+        {
+            vol2.setEnabled(false);
+            vol4.setEnabled(false);
+
+        }
 
         rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rbtn1)
+                int yy =Integer.valueOf(p1.getP04YY());
+                int mm = Integer.valueOf(p1.getP04MM());
+                int wks = Integer.valueOf(p1.getP04WKS());
+                if(i == R.id.rbtn1 && (yy >=3 && yy <= 14))
                 {
                     // is checked
                     vol1.setEnabled(true);

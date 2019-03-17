@@ -70,6 +70,10 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                 final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
                 sample.getSTATUS();
 
+                final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+                thisHous.get(0).getHIVTB40();
+
+
 
                 final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
                 for (PersonRoster p: roster
@@ -82,6 +86,9 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
 
                 }
 
+
+
+
                 if (  (individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 18 )  || (Integer.valueOf(p1.getP04YY()) >= 18 ) ) {
                     setTitle("Individual Consent [18-64]");
                 }
@@ -90,7 +97,8 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                     setTitle("Individual Assent 15-17");
                 }
 
-                if(individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 65 && sample.getStatusCode().equals("2")  )
+                if(individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 65 &&
+                        (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) )
                 {
                     Intent intent = new Intent(HIVAdultsConsent18Plus.this, HIVConsentOver64.class);
                     intent.putExtra("Individual", individual);
@@ -143,6 +151,18 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                 t4  = (TextView) findViewById(R.id.txtslab);
                 t6  = (TextView) findViewById(R.id.bloodColectionStatus);
                 t5  = (TextView) findViewById(R.id.txtstore);
+
+
+                if ((individual.getQ801f() != null && individual.getQ801f() .equals("1"))
+                        && (individual.getQ904() != null && individual.getQ904() .equals("1"))  )
+                {
+                    rbtn5.setEnabled(false);
+                    rbtn6.setEnabled(false);
+                    t3.setTextColor(Color.LTGRAY);
+                    rbtn4.setEnabled(false);
+                    rbtn3.setEnabled(false);
+                    t2.setTextColor(Color.LTGRAY);
+                }
 
 
                 rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -497,7 +517,10 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                 int selectedId2 = rg2.getCheckedRadioButtonId();
                                 selected2 = (RadioButton) findViewById(selectedId2);
 
-                                if (selected2 == null ) {
+                                if (selected2 == null && (individual.getQ801f() != null && !individual.getQ801f() .equals("1"))
+                                        && (individual.getQ904() != null && !individual.getQ904() .equals("1") ))
+
+                                {
                                     lib.showError(HIVAdultsConsent18Plus.this, "RHT: Error: 2", "Do you agree for the survey team to do RHT?");
                                     /**
                                      * VIBRATE DEVICE
@@ -612,8 +635,11 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                                 individual.setBloodVol_10("2");
                                                             }
                                                             individual.setBloodVolComment(Edttubevolume.getText().toString());
-
-                                                            individual.setB8_O15_Rapid(selected2.getText().toString().substring(0, 1));
+                                                                if((individual.getQ801f() != null && !individual.getQ801f() .equals("1"))
+                                                                        && (individual.getQ904() != null && !individual.getQ904() .equals("1") ))
+                                                                {
+                                                                    individual.setB8_O15_Rapid(selected2.getText().toString().substring(0, 1));
+                                                                }
                                                             if (rbtn3.isChecked()) {
                                                                 individual.setIndRapidResults(selected3.getText().toString().substring(0, 1));
 
@@ -632,7 +658,6 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                             myDB.getWritableDatabase();
                                                             myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                                             myDB.close();
-
 
                                                             Intent intent = new Intent(HIVAdultsConsent18Plus.this, Dashboard.class);
                                                             intent.putExtra("Individual", individual);

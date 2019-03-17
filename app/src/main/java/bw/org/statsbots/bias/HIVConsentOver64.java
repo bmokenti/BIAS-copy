@@ -395,6 +395,11 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
 
         }
 
+        if (individual.getQ102() != null && Integer.valueOf(individual.getQ102())>= 65 )
+        {
+            vol3.setEnabled(false);
+
+        }
         if (p1.getP04YY() != null && (Integer.valueOf(p1.getP04YY())>= 3 && Integer.valueOf(p1.getP04YY())<= 14) )
         {
             vol2.setEnabled(false);

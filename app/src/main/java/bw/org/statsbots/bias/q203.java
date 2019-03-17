@@ -139,8 +139,7 @@ public class q203 extends AppCompatActivity implements Serializable {
             public void onClick(View v) {
                 if (!(individual.getQ201().equals("1"))) {
 
-
-
+                    finish();
                     Intent skipto203 = new Intent(q203.this, Q201.class);
                     skipto203.putExtra("Individual", individual);
                     startActivity(skipto203);
@@ -149,6 +148,7 @@ public class q203 extends AppCompatActivity implements Serializable {
                 }
                 else
                 {
+                    finish();
                     Intent q1o2 = new Intent(q203.this, q202.class);
                     q1o2.putExtra("Individual", individual);
                     startActivity(q1o2);

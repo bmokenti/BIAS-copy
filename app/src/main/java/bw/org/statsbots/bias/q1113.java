@@ -155,16 +155,14 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
 
                 if (individual.getQ1110() != null && individual.getQ1110().equals("2")) {
 
-                    individual.setQ1110(selectedRbtn.getText().toString().substring(0,1));
-
-
+                    finish();
 
                     Intent intent = new Intent(q1113.this, q1110.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);
 
                 }
-                q1113.super.onBackPressed();
+                // q1113.super.onBackPressed();
             }
 
 
@@ -215,13 +213,6 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
                     text1113other.setVisibility(View.INVISIBLE);
 
                 }
-
-
-
-
-                //txtdays.setVisibility(View.INVISIBLE);
-                // txtweeks.setVisibility(View.INVISIBLE);
-
 
         }
     }

@@ -167,7 +167,10 @@ public class q1005 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1005.super.onBackPressed();
+                finish();
+                Intent skipto1017 = new Intent(q1005.this, q1004.class);
+                skipto1017.putExtra("Individual", individual);
+                startActivity(skipto1017);
             }
 
 

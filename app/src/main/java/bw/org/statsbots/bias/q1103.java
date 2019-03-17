@@ -87,7 +87,7 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
 
 
         }
-if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
+if(individual.getQ1101() != null && individual.getQ1101().equals("1") )
 {
     Intent q1o3 = new Intent(q1103.this, q1114.class);
     q1o3.putExtra("Individual", individual);
@@ -255,7 +255,10 @@ if(individual.getQ1101().equals("1") || individual.getQ1101().equals("2"))
                 }
                 else
                 {
-                    q1103.super.onBackPressed();
+                    finish();
+                    Intent q1o3 = new Intent(q1103.this, q1102.class);
+                    q1o3.putExtra("Individual", individual);
+                    startActivity(q1o3);;
                 }
 
             }

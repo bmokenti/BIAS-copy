@@ -186,7 +186,11 @@ public class q202 extends AppCompatActivity implements View.OnClickListener, Ser
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q202.super.onBackPressed();
+                finish();
+                Intent q1o3 = new Intent(q202.this, Q201.class);
+                q1o3.putExtra("Individual", individual);
+                q1o3.putExtra("Personroster", p1);
+                startActivity(q1o3);
             }
 
 

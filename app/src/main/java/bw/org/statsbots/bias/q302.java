@@ -183,7 +183,11 @@ public class q302 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q302.super.onBackPressed();
+                finish();
+                Intent q1o3 = new Intent(q302.this, q301.class);
+                q1o3.putExtra("Individual", individual);
+                q1o3.putExtra("Personroster", p1);
+                startActivity(q1o3);
             }
 
 

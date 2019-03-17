@@ -186,7 +186,10 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1104.super.onBackPressed();
+                finish();
+                Intent intent = new Intent(q1104.this, q1103.class);
+                intent.putExtra("Individual", individual);
+                startActivity(intent);
             }
 
 

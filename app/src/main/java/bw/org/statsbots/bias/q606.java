@@ -136,7 +136,21 @@ public class q606 extends AppCompatActivity implements Serializable{
             //do nothing
         }
 
-        RadioButton[] bt = new RadioButton[3];
+
+        if( ((sample.getStatusCode().equals("3") )  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )
+                || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
+        ) ||((sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1")) &&
+                p1.getP06().equals("2")  ) ))
+        {
+
+
+            Intent intent1 = new Intent(q606.this, q616.class);
+            intent1.putExtra("Individual", individual);
+            startActivity(intent1);
+        }
+
+
+            RadioButton[] bt = new RadioButton[3];
         for(int f=0;f<rbtngroup.getChildCount();f++)
         {
             View o = rbtngroup.getChildAt(f);

@@ -146,7 +146,11 @@ public class q403 extends AppCompatActivity implements View.OnClickListener, Ser
                     intent.putExtra("Individual", individual);
                     startActivity(intent);
                 } else {
-                    q403.super.onBackPressed();
+                    finish();
+                    Intent q1o3 = new Intent(q403.this, q402.class);
+                    q1o3.putExtra("Individual", individual);
+                    q1o3.putExtra("Personroster", p1);
+                    startActivity(q1o3);
                 }
             }
 

@@ -525,7 +525,8 @@ public class q105 extends AppCompatActivity implements Serializable{
                     startActivity(q1o2);
 
                 } else {
-                    if (ind.getQ103().equals("1") || ind.getQ103().equals("2")) {
+                    if (ind.getQ103().equals("1") || ind.getQ103().equals("2"))
+                    {
                         Intent q1o2 = new Intent(q105.this, q104.class);
                         q1o2.putExtra("Personroster", p1);
                         startActivity(q1o2);

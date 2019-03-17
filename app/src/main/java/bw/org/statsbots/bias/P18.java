@@ -35,17 +35,15 @@ public class P18 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         thisHouse.getPersons();
-        final List<HouseHold> thisHous = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
-        thisHous.get(0).getHIVTB40();
+
+        //final List<HouseHold> thisHous = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        //thisHous.get(0).getHIVTB40();
 
 
 
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
 
-
-
-        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), thisHouse.getAssignment_ID());
-
-        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
+        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
         thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
 
         if (thisHouse.next != null) {
@@ -69,7 +67,7 @@ public class P18 extends AppCompatActivity implements Serializable {
                         startActivity(intent);
                     }
                     else {
-                    if (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1")) {
+                    if ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1") ) )  {
 
                         Intent intent = new Intent(P18.this, P19.class);
                         intent.putExtra("Household", thisHouse);
@@ -89,13 +87,21 @@ public class P18 extends AppCompatActivity implements Serializable {
 
     {
         p1 = thisHouse.getPersons()[r];
-        if ((((((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1") && Integer.valueOf(p1.getP04YY()) >= 64)
-                ||((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("0") )|| sample.getStatusCode().equals("3"))
-                 &&
-                Integer.valueOf(p1.getP04YY()) >= 15 && (Integer.valueOf(p1.getP06()) == 1 || Integer.valueOf(p1.getP06()) == 2 ||
-                (Integer.valueOf(p1.getP06()) == 3 && Integer.valueOf(p1.getP07()) >= 14))))))) {
+//        if ((((((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1") && Integer.valueOf(p1.getP04YY()) >= 64
+//        &&  (Integer.valueOf(p1.getP06()) == 1 || Integer.valueOf(p1.getP06()) == 2 ||(Integer.valueOf(p1.getP06()) == 3 && Integer.valueOf(p1.getP07()) >= 14)))
+//                ||(((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("0") )|| sample.getStatusCode().equals("3"))
+//                 &&
+//                Integer.valueOf(p1.getP04YY()) >= 15 && ((Integer.valueOf(p1.getP06()) == 1 || Integer.valueOf(p1.getP06()) == 2) ||
+//                (Integer.valueOf(p1.getP06()) == 3 && Integer.valueOf(p1.getP07()) >= 14)))))))) {
 
-            //add to listview
+
+        if ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1") && Integer.valueOf(p1.getP04YY()) >= 64)
+                && ((Integer.valueOf(p1.getP06()) == 1 || Integer.valueOf(p1.getP06()) == 2) ||(Integer.valueOf(p1.getP06()) == 3 && Integer.valueOf(p1.getP07()) >= 14))
+        || ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("0") || sample.getStatusCode().equals("3")) &&
+                (Integer.valueOf(p1.getP04YY()) >= 15  & ((Integer.valueOf(p1.getP06()) == 1 || Integer.valueOf(p1.getP06()) == 2) ||
+             (Integer.valueOf(p1.getP06()) == 3 && Integer.valueOf(p1.getP07()) >= 14)))))
+        {
+        //add to listview
             p18.add(p1.getP01());
             //Set P02 fir the current individual
             thisHouse.getPersons()[p1.getLineNumber()].setP18("1");

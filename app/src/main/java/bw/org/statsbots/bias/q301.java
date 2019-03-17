@@ -254,11 +254,12 @@ public class q301 extends AppCompatActivity implements Serializable{
                     } else {
                         if (individual.getQ205() != null && individual.getQ205().equals("1")) {
 
-
+finish();
                             Intent q1o2 = new Intent(q301.this, q205.class);
                             q1o2.putExtra("Individual", individual);
                             startActivity(q1o2);
-                            finish();
+
+
                         } else {
                             q301.super.onBackPressed();
                             finish();

@@ -37,7 +37,7 @@ public class q602 extends AppCompatActivity implements Serializable{
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
 
         if (individual.getQ601a().equals("2"))
         {
@@ -61,6 +61,16 @@ public class q602 extends AppCompatActivity implements Serializable{
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+        }
+
+
         if((Integer.valueOf(individual.getQ102()) > 64 && (sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1"))))
         {
 
@@ -69,7 +79,8 @@ public class q602 extends AppCompatActivity implements Serializable{
             startActivity(q1o2);
         }
 
-        if((sample.getStatusCode().equals("3") || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))) ) )
+        if((sample.getStatusCode().equals("3") || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")))
+        || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) &&(p1.getP06().equals("2"))) ))
         {
 
             Intent q1o2 = new Intent(q602.this, q604.class);

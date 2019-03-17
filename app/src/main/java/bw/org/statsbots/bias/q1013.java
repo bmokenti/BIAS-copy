@@ -51,8 +51,10 @@ public class q1013 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
         int p = 0;
+
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
+
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
@@ -62,12 +64,13 @@ public class q1013 extends AppCompatActivity implements Serializable {
 
 
 
-        if(!(individual.getQ1005a().equals("1") || individual.getQ1007a().equals("1") || individual.getQ1009a().equals("1")))
-        {
-            Intent intent = new Intent(q1013.this, q1016.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-        }
+    if ((individual.getQ1005a() != null &&!(individual.getQ1005a().equals("1")) || ( individual.getQ1007a() != null && !(individual.getQ1007a().equals("1")))
+            || (individual.getQ1009a() != null && !(individual.getQ1009a().equals("1"))))) {
+        Intent intent = new Intent(q1013.this, q1016.class);
+        intent.putExtra("Individual", individual);
+        startActivity(intent);
+
+}
         else{
 
         }
@@ -125,10 +128,14 @@ public class q1013 extends AppCompatActivity implements Serializable {
         });
         Button btprev = findViewById(R.id.button3);
 
-        btprev.setOnClickListener(new View.OnClickListener() {
+        btprev.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
-                q1013.super.onBackPressed();
+                finish();
+                Intent intent = new Intent(q1013.this, q1012.class);
+                intent.putExtra("Individual", individual);
+                startActivity(intent);
             }
 
 

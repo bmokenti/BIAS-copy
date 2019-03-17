@@ -219,10 +219,10 @@ public class q1107 extends AppCompatActivity implements  Serializable {
             @Override
             public void onClick(View v) {
 
-                if (individual.getQ1103() != null && individual.getQ1103().equals("1")) {
-                    individual.setQ1103(selectedRbtn.getText().toString().substring(0, 1));
+                if (individual.getQ1103() != null && individual.getQ1103().equals("2")) {
 
 
+                    finish();
                     Intent q1o3i = new Intent(q1107.this, q1103.class);
                     q1o3i.putExtra("Individual", individual);
                     startActivity(q1o3i);
@@ -231,21 +231,27 @@ public class q1107 extends AppCompatActivity implements  Serializable {
                 } else {
                     if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
                             (p1.getP07() != null && Integer.parseInt(p1.getP07()) < 14))) {
+                        finish();
                         Intent intent = new Intent(q1107.this, q1103.class);
                         intent.putExtra("Individual", individual);
                         startActivity(intent);
                         finish();
 
                     } else {
-                        if (individual.getQ1104().equals("2")) {
+                        if (individual.getQ1104() != null && individual.getQ1104().equals("2"))
+                        {
+                            finish();
                             Intent intent = new Intent(q1107.this, q1104.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);
-                            finish();
+
 
                         } else {
-                            q1107.super.onBackPressed();
                             finish();
+                            Intent intent = new Intent(q1107.this, q1106.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+
                         }
                     }
                 }

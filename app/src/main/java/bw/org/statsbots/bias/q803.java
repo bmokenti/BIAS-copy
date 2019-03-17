@@ -156,7 +156,8 @@ public class q803 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
-        if(individual.getQ801a().equals("1")  && individual.getQ801f().equals("1"))
+
+        if((individual.getQ801a() != null && individual.getQ801a().equals("1"))  && individual.getQ801f().equals("1"))
         {
             Intent intent = new Intent(q803.this, q901.class);
             intent.putExtra("Individual", individual);
@@ -167,8 +168,10 @@ public class q803 extends AppCompatActivity implements Serializable {
         }
 
 
-        if((individual.getQ801a().equals("1")) && individual.getQ101().equals("2") && individual.getQ401().equals("1") && (Integer.parseInt( individual.getQ102() )>14
+        if((individual.getQ801a().equals("1")) && individual.getQ101().equals("2") && individual.getQ401().equals("1") &&
+                (Integer.parseInt( individual.getQ102() )>14
                 && Integer.parseInt( individual.getQ102() )<50) && !individual.getQ801f().equals("1"))
+
         {
             Intent intent = new Intent(q803.this, q1001.class);
             intent.putExtra("Individual", individual);
@@ -280,7 +283,23 @@ public class q803 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q803.super.onBackPressed();
+                if((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4")
+                        || individual.getQ801f().equals("9")) && individual.getQ801a().equals("2"))
+
+                {
+                    finish();
+                    Intent intent = new Intent(q803.this, q801.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                }
+else
+                {
+                    finish();
+                    Intent intent = new Intent(q803.this, q802.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                }
+
             }
 
 

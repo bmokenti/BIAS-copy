@@ -80,6 +80,15 @@ public class q1014 extends AppCompatActivity implements Serializable {
         int months = 0;
         int days = 0;
 
+if ((individual.getQ1004_Month() != null && Integer.valueOf(individual.getQ1004_Month()) <=1 ) &&
+        (individual.getQ1004_Day() != null && Integer.valueOf(individual.getQ1004_Day()) >= 13 ))
+{
+    Intent intent = new Intent(q1014.this, q1016.class);
+    intent.putExtra("Individual", individual);
+    startActivity(intent);
+}
+
+
 
         RadioButton[] bt = new RadioButton[3];
         for(int f=0;f<rg.getChildCount();f++)
@@ -238,7 +247,20 @@ public class q1014 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1014.super.onBackPressed();
+                if(individual.getQ1011().equals("1")||individual.getQ1011().equals("4") || individual.getQ1011().equals("7"))
+                {finish();
+                    Intent intent = new Intent(q1014.this, q1011.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                }
+                else
+                {
+                    finish();
+                    Intent intent = new Intent(q1014.this, q1011.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                }
+
             }
 
 

@@ -49,7 +49,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
 
         Intent h = getIntent();
         thisHouse = (HouseHold) h.getSerializableExtra("Household");
@@ -61,6 +61,17 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
 
         Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
         individual = ind;
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
 
                     RadioButton[] bt = new RadioButton[2];
                     for(int f=0;f<rg.getChildCount();f++)

@@ -145,6 +145,7 @@ public class q623 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (individual.getQ601().equals("2") && ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))
                         || sample.getStatusCode().equals("1")) && (Integer.valueOf(individual.getQ102()) <= 24)
                         && (p1.getP07() != null && Integer.parseInt(p1.getP07()) < 14)) {
@@ -154,7 +155,26 @@ public class q623 extends AppCompatActivity implements Serializable {
                     startActivity(intent);
 
                 } else {
-                    q623.super.onBackPressed();
+                    if (sample.getStatusCode().equals("1") && individual.getQ604().equals("2")) {
+
+                        Intent q1o2 = new Intent(q623.this, q615.class);
+                        q1o2.putExtra("Individual", individual);
+                        startActivity(q1o2);
+                    } else {
+                        if (individual.getQ604().equals("2") && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) {
+
+                            Intent intent = new Intent(q623.this, q615.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+
+
+                        } else {
+                            Intent intent = new Intent(q623.this, q622.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+
+                        }
+                    }
                 }
             }
 

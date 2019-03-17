@@ -40,6 +40,7 @@ public class P17 extends AppCompatActivity implements Serializable {
         Intent i = getIntent();
         thisHouse = (HouseHold) i.getSerializableExtra("Household");
         thisHouse.getPersons();
+
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
 
         List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
@@ -60,14 +61,22 @@ public class P17 extends AppCompatActivity implements Serializable {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (sample.getStatusCode().equals("1") ) {
-                    Intent intent = new Intent(P17.this, P20.class);
+                              if ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1")))
+                {
+                    Intent intent = new Intent(P17.this, P18.class);
                     intent.putExtra("Household", thisHouse);
                     startActivity(intent);
                 }
+                else
+                    {
+                                      Intent intent = new Intent(P17.this, P20.class);
+                                      intent.putExtra("Household", thisHouse);
+                                      startActivity(intent);
+                        }
+
+                    }
 
 
-            }
 
         });
 
@@ -78,8 +87,11 @@ public class P17 extends AppCompatActivity implements Serializable {
                     Sample s = myDB.getSample(myDB.getReadableDatabase(),thisHouse.getAssignment_ID());
 
 
-                    if ((Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 64) && s.getStatusCode().equals("1")
-                            && (p1.getP06().equals("1") || p1.getP06().equals("3"))) {
+                    if (((Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 64) && sample.getStatusCode().equals("1")
+                            && (p1.getP06().equals("1") || p1.getP06().equals("3")))||
+                            (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1") && (p1.getP06().equals("1") || p1.getP06().equals("3"))&&
+                                    Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 64) )
+                            {
 
                         //add to listview
                         p17.add(p1.getP01());

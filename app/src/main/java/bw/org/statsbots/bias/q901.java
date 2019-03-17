@@ -130,56 +130,39 @@ public class q901 extends AppCompatActivity implements Serializable {
 
 
 
-        if((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") ))
-                && individual.getQ801().equals("2"))
+
+
+
+
+
+
+//            if(sample.getStatusCode().equals("3") && !(individual.getQ801f().equals("1")))
+//            {
+//                Intent intent = new Intent(q901.this, q1101.class);
+//                intent.putExtra("Individual", individual);
+//                startActivity(intent);
+//        }
+
+//
+//        if( individual.getQ801().equals("1") && !individual.getQ801f().equals("1") && Integer.valueOf(individual.getQ102()) >= 65 &&
+//                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") ))
+//        {
+//            Intent intent = new Intent(q901.this, q1101.class);
+//            intent.putExtra("Individual", individual);
+//            startActivity(intent);
+//        }
+//        else {
+//
+//        }
+
+
+        if(( individual.getQ801().equals("1") && !individual.getQ801f().equals("1")) &&
+                ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") ) ||
+        (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && !p1.getP06().equals("2") )
+         || sample.getStatusCode().equals("1")&& individual.getQ101().equals("1") ))
+
         {
             Intent intent = new Intent(q901.this, q1101.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-        }
-
-
-        if( sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )
-        {
-            Intent intent = new Intent(q901.this, q1101.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-        }
-
-        if(sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") ) &&
-                ( individual.getQ801().equals("1") && individual.getQ801f().equals("1")))
-        {
-            Intent intent = new Intent(q901.this, q904.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-        }
-
-
-
-            if(sample.getStatusCode().equals("3") && (individual.getQ801f().equals("2") || individual.getQ801f().equals("3") ||individual.getQ801f().equals("4") || individual.getQ801f().equals("9")))
-            {
-                Intent intent = new Intent(q901.this, q1101.class);
-                intent.putExtra("Individual", individual);
-                startActivity(intent);
-        }
-
-
-        if( individual.getQ801().equals("1") && !individual.getQ801f().equals("1") && Integer.valueOf(individual.getQ102()) >= 65 &&
-                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") ))
-        {
-            Intent intent = new Intent(q901.this, q1101.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-        }
-        else {
-
-        }
-
-
-        if(( individual.getQ801().equals("1") && !individual.getQ801f().equals("1")) && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") )
-         || sample.getStatusCode().equals("1")&& individual.getQ102().equals("1"))
-        {
-            Intent intent = new Intent(q901.this, q1001.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
         }
@@ -384,9 +367,35 @@ public class q901 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q901.super.onBackPressed();
-            }
+                if (individual.getQ803() != null && individual.getQ803().equals("8")) {
+                    finish();
+                    Intent intent = new Intent(q901.this, q803.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                } else {
+                    if (individual.getQ801() != null && individual.getQ801().equals("1")) {
+                        finish();
 
+                        Intent intent = new Intent(q901.this, q801.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+                    } else {
+                        if ((individual.getQ801a() != null && individual.getQ801a().equals("1")) && individual.getQ801f().equals("1")) {
+                            finish();
+                            Intent intent = new Intent(q901.this, q802.class);
+                            intent.putExtra("Individual", individual);
+                            startActivity(intent);
+                        } else
+                            {
+                            finish();
+                                Intent intent = new Intent(q901.this, q804.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                        }
+
+                    }
+                }
+            }
 
         });
     }

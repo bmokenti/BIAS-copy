@@ -4313,7 +4313,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")) != null) {
                 ind.setQ1012_Week(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(0, 2));
                 ind.setQ1012_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(2, 4));
-                ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4, 8));
+                ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4, 6));
             }
             ind.setQ1013(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1013")));
             ind.setQ1014(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1014")));
@@ -6055,7 +6055,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012"))!=null){
                     ind.setQ1012_Week(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(0,2));
                     ind.setQ1012_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(2,4));
-                    ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4,8));
+                    ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4,6));
                 }
 
                 ind.setQ1013(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1013")));
@@ -6820,7 +6820,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012"))!=null){
                     ind.setQ1012_Week(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(0,2));
                     ind.setQ1012_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(2,4));
-                    ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4,8));
+                    ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4,6));
                 }
 
                 ind.setQ1013(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1013")));

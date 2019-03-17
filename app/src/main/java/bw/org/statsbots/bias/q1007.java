@@ -171,9 +171,33 @@ public class q1007 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1007.super.onBackPressed();
-            }
+                if (individual.getQ1005a() != null && !(individual.getQ1005a().equals("1"))) {
 
+                    Intent intent = new Intent(q1007.this, q1005.class);
+                    intent.putExtra("Individual", individual);
+                    intent.putExtra("Personroster", p1);
+                    startActivity(intent);
+
+
+                } else {
+                    if (individual.getQ1005() != null && ((individual.getQ1005().equals("2")))) {
+
+                        Intent intent = new Intent(q1007.this, q1005.class);
+                        intent.putExtra("Individual", individual);
+                        intent.putExtra("Personroster", p1);
+                        startActivity(intent);
+
+
+                    } else {
+
+
+                        Intent q1o2 = new Intent(q1007.this, q1006.class);
+                        q1o2.putExtra("Personroster", p1);
+                        startActivity(q1o2);
+                    }
+
+                }
+            }
 
         });
     }

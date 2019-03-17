@@ -263,7 +263,7 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
 
 
 
-        if( sample.getStatusCode().equals("3") ||  sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("0"))
+        if( sample.getStatusCode().equals("3") || ( sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("0")))
 
         {
             Intent intent = new Intent(HIVChildParentalConsent15_17.this, Dashboard.class);
@@ -271,6 +271,40 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
             intent.putExtra("Personroster", p1);
             startActivity(intent);
         }
+
+
+        if(   sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("1") &&
+                p1.getP06().equals("2") && Integer.valueOf(p1.getP04YY()) < 65)
+
+        {
+            Intent intent = new Intent(HIVChildParentalConsent15_17.this, Dashboard.class);
+            intent.putExtra("Individual", individual);
+            intent.putExtra("Personroster", p1);
+            startActivity(intent);
+        }
+
+        if(( sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("1")) && p1.getP06().equals("3")
+                && Integer.valueOf(p1.getP07()) <= 13 && (Integer.valueOf(p1.getP04YY()) >=18 && Integer.valueOf(p1.getP04YY()) < 65))
+
+        {
+            Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
+            intent.putExtra("Individual", individual);
+            intent.putExtra("Personroster", p1);
+            startActivity(intent);
+        }
+
+
+        if(( sample.getStatusCode().equals("2") &&  thisHous.get(0).getHIVTB40().equals("1")) && p1.getP06().equals("3")
+                && Integer.valueOf(p1.getP07()) <= 13 && Integer.valueOf(p1.getP04YY()) >= 65)
+
+        {
+            Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVConsentOver64.class);
+            intent.putExtra("Individual", individual);
+            intent.putExtra("Personroster", p1);
+            startActivity(intent);
+        }
+
+
 
 
         if ((individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 18) && (sample.getStatusCode().equals("1") ||

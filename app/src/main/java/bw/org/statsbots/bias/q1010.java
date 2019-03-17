@@ -60,8 +60,6 @@ public class q1010 extends AppCompatActivity implements Serializable {
         edtOther = (EditText)  findViewById(R.id.q1010_other1);
 
 
-
-
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -152,7 +150,26 @@ public class q1010 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1010.super.onBackPressed();
+                if (individual.getQ1006() != null || individual.getQ1006().equals("1")) {
+                    Intent intent = new Intent(q1010.this, q1006.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                } else
+                    {
+
+                    if (individual.getQ1008() != null )
+                    {
+                        Intent intent = new Intent(q1010.this, q1006.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+                    } else
+                        {
+                        Intent intent = new Intent(q1010.this, q1009.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+                    }
+
+                }
             }
 
 

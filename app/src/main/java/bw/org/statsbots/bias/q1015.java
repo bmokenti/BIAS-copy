@@ -76,6 +76,15 @@ public class q1015 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        if (((individual.getQ1004_Month() != null && Integer.valueOf(individual.getQ1004_Month()) <=1 ) &&
+                (individual.getQ1004_Day() != null && Integer.valueOf(individual.getQ1004_Day()) >= 13 )))
+        {
+            Intent intent = new Intent(q1015.this, q1016.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
+
         RadioButton[] bt = new RadioButton[3];
         for(int f=0;f<rg.getChildCount();f++)
         {
@@ -239,7 +248,11 @@ public class q1015 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q1015.super.onBackPressed();
+                finish();
+                Intent intent = new Intent(q1015.this, q1014.class);
+                intent.putExtra("Individual", individual);
+                startActivity(intent);
+
             }
 
 

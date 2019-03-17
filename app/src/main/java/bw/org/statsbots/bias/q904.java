@@ -123,8 +123,28 @@ public class q904 extends AppCompatActivity implements Serializable {
                 break;
             }
 
-
         }
+
+
+
+        if( ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) || sample.getStatusCode().equals("3")
+                || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && p1.getP06().equals("2")))
+                && (individual.getQ801() != null &&  individual.getQ801().equals("2") ) )
+        {
+            Intent intent = new Intent(q904.this, q1101.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+        }
+
+//        if((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )
+//                || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && p1.getP06().equals("2"))) &&
+//                ( individual.getQ801().equals("1") && individual.getQ801f().equals("1")))
+//        {
+//            Intent intent = new Intent(q901.this, q904.class);
+//            intent.putExtra("Individual", individual);
+//            startActivity(intent);
+//        }
+
         RadioButton[] bt = new RadioButton[4];
         for(int f=0;f<rg.getChildCount();f++)
         {
@@ -388,6 +408,7 @@ public class q904 extends AppCompatActivity implements Serializable {
                 if ((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
                         (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64))
                         && individual.getQ801f().equals("1")) {
+
                     Intent intent = new Intent(q904.this, q801.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);

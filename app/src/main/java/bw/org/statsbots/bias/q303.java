@@ -229,8 +229,11 @@ public class q303 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
 
-                q303.super.onBackPressed();
                 finish();
+                Intent q1o3 = new Intent(q303.this, q302.class);
+                q1o3.putExtra("Individual", individual);
+                q1o3.putExtra("Personroster", p1);
+                startActivity(q1o3);
             }
 
 

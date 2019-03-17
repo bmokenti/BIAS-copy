@@ -380,7 +380,7 @@ public class q604 extends AppCompatActivity implements Serializable {
                                         if (rbtn2.isChecked() && (sample.getStatusCode().equals("1")) ||
                                             (rbtn2.isChecked() && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) ||
                                                 (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
-                                                        (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )) ){
+                                                        (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ) &&  Integer.valueOf(individual.getQ102()) < 65) ){
 
                                         individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
                                         myDB.onOpen(myDB.getReadableDatabase());
@@ -392,10 +392,12 @@ public class q604 extends AppCompatActivity implements Serializable {
                                         startActivity(intent1);
 
                                     } else {
-                                        if ((rbtn2.isChecked() && sample.getStatusCode().equals("3") )  ||
-                                                (rbtn2.isChecked() && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
-                                        || (rbtn2.isChecked() && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
-                                                Integer.valueOf(individual.getQ102()) > 64)) {
+
+                                            if( rbtn2.isChecked() && ((sample.getStatusCode().equals("3") )  || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )
+                                                    || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
+                                            ) ||((sample.getStatusCode().equals("2")  && thisHous.get(0).getHIVTB40().equals("1")) &&
+                                                    p1.getP06().equals("2")  ) ))
+                                            {
 
                                             individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
                                             myDB.onOpen(myDB.getReadableDatabase());

@@ -47,7 +47,7 @@ public class q102 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+       // int p = 0;
 
 
 
@@ -60,6 +60,19 @@ public class q102 extends AppCompatActivity implements Serializable {
 
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
         individual = ind;
+
+        final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
+            }
+
+
+        }
+
+
        // Log.d("adasdasd",ind.getQ101()+"");
          if(ind.getQ102()!= null)
          {
@@ -234,7 +247,6 @@ public class q102 extends AppCompatActivity implements Serializable {
 
                 Intent q1o2 = new Intent(q102.this, q101.class);
                 q1o2.putExtra("Personroster", p1);
-
                 startActivity(q1o2);
             }
 

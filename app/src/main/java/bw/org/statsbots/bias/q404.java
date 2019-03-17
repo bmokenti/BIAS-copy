@@ -265,7 +265,11 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q404.super.onBackPressed();
+                finish();
+                Intent q1o3 = new Intent(q404.this, q403.class);
+                q1o3.putExtra("Individual", individual);
+                q1o3.putExtra("Personroster", p1);
+                startActivity(q1o3);
             }
 
 
