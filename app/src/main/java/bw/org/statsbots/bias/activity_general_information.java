@@ -85,6 +85,9 @@ public class activity_general_information extends AppCompatActivity implements S
         if(st.equals("1")){
             status= status+ " (Part of HIV 40)";
         }
+
+        txtenumerators_code.setText(thisHouse.getENUMERATOR());
+        txtsupervisors_code.setText(thisHouse.getSUPERVISOR());
         //txt_status_code.setText(status);
         txtEAStatus.setText(status);
 
@@ -183,9 +186,18 @@ public class activity_general_information extends AppCompatActivity implements S
             @Override
             public void onClick(View view) {
                 finish();
-
+                Intent intent = new Intent(activity_general_information.this, Dashboard.class);
+                startActivity(intent);
             }
         });
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(activity_general_information.this, Dashboard.class);
+        startActivity(intent);
     }
 }

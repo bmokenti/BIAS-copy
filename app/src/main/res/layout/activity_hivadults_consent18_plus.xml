@@ -489,7 +489,7 @@
             android:layout_gravity="end"
             android:layout_weight="2"
             android:drawableRight="@drawable/ic_arrow_forward_blue_24dp"
-            android:text="@string/next" />
+            android:text="Finish" />
 
 
 

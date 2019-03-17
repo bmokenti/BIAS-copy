@@ -53,6 +53,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     private static final String HQ_Code = "HQ_Code";
 
 
+
     private static final String tblAssignments = "EA_Assignments";
     private static final String EA_Assignment_ID = "EA_Assignment_ID";
     private static final String STRATUM = "STRATUM";
@@ -568,6 +569,13 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     private static final String PrntlConsentBloodStore = "PrntlConsentBloodStore";
     private static final String PrntlParentID = "PrntlParentID";
     private static final String PrntlConsentDate = "PrntlConsentDate";
+    private static final String VISIT1 = "VISIT1";
+    private static final String VISIT2 = "VISIT2";
+    private static final String VISIT3 = "VISIT3";
+    private static final String INDDATE1 = "DATE1";
+    private static final String INDDATE2 = "DATE2";
+    private static final String INDDATE3 = "DATE3";
+    private static final String Sync = "Sync";
 
 
 
@@ -1241,7 +1249,14 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + PrntlConsentLabTest + " nvarchar(1),"
             + PrntlConsentBloodStore + " nvarchar(1),"
             + PrntlParentID + " nvarchar(1),"
-            + PrntlConsentDate + " nvarchar(8))";
+            + PrntlConsentDate + " nvarchar(8),"
+            + Sync + " nvarchar(1),"
+            + VISIT1 + " nvarchar(1),"
+            + VISIT2 + " nvarchar(1),"
+            + VISIT3 + " nvarchar(1),"
+            + INDDATE1 + " datetime,"
+            + INDDATE2 + " datetime,"
+            + INDDATE3 + " datetime)";
 
 
 
@@ -2139,6 +2154,13 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(IndBloodLabTest, houseHold.getIndividual()[i].getIndBloodLabTest());
             individualValues.put(IndBloodStore, houseHold.getIndividual()[i].getIndBloodStore() );
             individualValues.put(IndRapidDate, houseHold.getIndividual()[i].getIndRapidDate() );
+            individualValues.put(VISIT1, houseHold.getIndividual()[i].getVISIT1() );
+            individualValues.put(VISIT2, houseHold.getIndividual()[i].getVISIT2() );
+            individualValues.put(VISIT3, houseHold.getIndividual()[i].getVISIT3() );
+            individualValues.put(INDDATE1, houseHold.getIndividual()[i].getDATE1() );
+            individualValues.put(INDDATE2, houseHold.getIndividual()[i].getDATE2() );
+            individualValues.put(INDDATE3, houseHold.getIndividual()[i].getDATE3() );
+            individualValues.put(Sync, houseHold.getIndividual()[i].getSync() );
 
 
             individualValues.put(IndBloodSampleCollected, houseHold.getIndividual()[i].getIndBloodSampleCollected() );
@@ -2531,6 +2553,15 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q1113, houseHold.getQ1113() );
             individualValues.put(Q1113Other, houseHold.getQ1113Other() );
             individualValues.put(Q1114, houseHold.getQ1114() );
+
+            individualValues.put(VISIT1, houseHold.getVISIT1() );
+            individualValues.put(VISIT2, houseHold.getVISIT2() );
+            individualValues.put(VISIT3, houseHold.getVISIT3() );
+            individualValues.put(INDDATE1, houseHold.getDATE1() );
+            individualValues.put(INDDATE2, houseHold.getDATE2() );
+            individualValues.put(INDDATE3, houseHold.getDATE3() );
+            individualValues.put(Sync, houseHold.getSync() );
+
             // individualValues.put(IndBloodSampleCollected, houseHold.getIndBloodSampleCollected() );
             //individualValues.put(B8_Yes_No, houseHold.getB8_Yes_No() );
             //individualValues.put(B8_Date, houseHold.getB8_Date() );
@@ -2555,6 +2586,9 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(IndBloodLabTest, houseHold.getIndBloodLabTest());
             individualValues.put(IndBloodStore, houseHold.getIndBloodStore() );
             individualValues.put(IndRapidDate, houseHold.getIndRapidDate() );
+
+
+
 
 
             individualValues.put(IndBloodSampleCollected, houseHold.getIndBloodSampleCollected() );
@@ -2931,6 +2965,14 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         individualValues.put(PrntlParentID, ind.getPrntlParentID() );
         individualValues.put(PrntlConsentDate, ind.getPrntlConsentDate() );
 
+
+        individualValues.put(VISIT1, ind.getVISIT1() );
+        individualValues.put(VISIT2, ind.getVISIT2() );
+        individualValues.put(VISIT3, ind.getVISIT3() );
+        individualValues.put(INDDATE1, ind.getDATE1() );
+        individualValues.put(INDDATE2, ind.getDATE2() );
+        individualValues.put(INDDATE3, ind.getDATE3() );
+        individualValues.put(Sync, ind.getSync() );
         // individualValues.put(Q801f, ind.getQ801f() );
         //individualValues.put(IndRapidResults, ind.getIndRapidResults() );
         // individualValues.put(IndRapidDate, ind.getIndRapidDate() );
@@ -3884,6 +3926,14 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             String PrntlParentID = cursor.getString(cursor.getColumnIndexOrThrow("PrntlParentID"));
             String PrntlConsentDate = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentDate"));
 
+            String VISIT1= cursor.getString(cursor.getColumnIndexOrThrow("VISIT1") );
+            String  VISIT2= cursor.getString(cursor.getColumnIndexOrThrow("VISIT2") );
+            String VISIT3= cursor.getString(cursor.getColumnIndexOrThrow("VISIT3") );
+            String INDDATE1= cursor.getString(cursor.getColumnIndexOrThrow("DATE1") );
+            String INDDATE2= cursor.getString(cursor.getColumnIndexOrThrow("DATE2") );
+            String INDDATE3= cursor.getString(cursor.getColumnIndexOrThrow("DATE3") );
+            String Sync= cursor.getString(cursor.getColumnIndexOrThrow("Sync") );
+
 
 
 
@@ -3970,6 +4020,14 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             dataModel.setPrntlConsentBloodStore(PrntlConsentBloodStore);
             dataModel.setPrntlParentID(PrntlParentID);
             dataModel.setPrntlConsentDate(PrntlConsentDate);
+
+            dataModel.setVISIT1(VISIT1);
+            dataModel.setVISIT2(VISIT2);
+            dataModel.setVISIT3(VISIT3);
+            dataModel.setDATE1(INDDATE1);
+            dataModel.setDATE2(INDDATE2);
+            dataModel.setDATE3(INDDATE3);
+            dataModel.setSync(Sync);
 
 
 
@@ -4377,6 +4435,13 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             ind.setPrntlParentID(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlParentID")));
             ind.setPrntlConsentDate(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentDate")));
             //ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
+            ind.setVISIT1(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT1")));
+            ind.setVISIT2(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT2") ));
+            ind.setVISIT3(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT3")) );
+            ind.setDATE1(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE1") ));
+            ind.setDATE2(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE2")) );
+            ind.setDATE3(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE3")) );
+            ind.setSync(cursor2.getString(cursor2.getColumnIndexOrThrow("Sync") ));
 
 
 
@@ -5279,6 +5344,13 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("PrntlConsentBloodStore", ind.getPrntlConsentBloodStore() );
         hhValues.put("PrntlParentID", ind.getPrntlParentID() );
         hhValues.put("PrntlConsentDate", ind.getPrntlConsentDate() );
+        hhValues.put(VISIT1, ind.getVISIT1() );
+        hhValues.put(VISIT2, ind.getVISIT2() );
+        hhValues.put(VISIT3, ind.getVISIT3() );
+        hhValues.put(INDDATE1, ind.getDATE1() );
+        hhValues.put(INDDATE2, ind.getDATE2() );
+        hhValues.put(INDDATE3, ind.getDATE3() );
+        hhValues.put(Sync, ind.getSync() );
 
 
         //hhValues.put("Q801f",ind.getQ801f());
@@ -6141,7 +6213,15 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setPrntlParentID(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlParentID" )) );
                 ind.setPrntlConsentDate(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentDate" )) );
 
-               // ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
+                ind.setVISIT1(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT1")));
+                ind.setVISIT2(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT2")));
+                ind.setVISIT3(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT3")));
+                ind.setDATE1(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE1")));
+                ind.setDATE2(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE2")));
+                ind.setDATE3(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE3")));
+                ind.setSync(cursor2.getString(cursor2.getColumnIndexOrThrow("Sync")));
+
+                // ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
 
                 individuals[cursor2.getPosition()]=(ind);
             }
@@ -6169,7 +6249,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                 dataModel= new HouseHold();
                 String HH_Assignment_ID = cursor.getString(cursor.getColumnIndexOrThrow("EA_Assignment_ID"));
-            Log.d("HH ", HH_Assignment_ID);
+                Log.d("HH ", HH_Assignment_ID);
                 String BatchNumber = cursor.getString(cursor.getColumnIndexOrThrow("BatchNumber"));
                 String DWELLING_NO = cursor.getString(cursor.getColumnIndexOrThrow("DWELLING_NO"));
                 String HH_NO = cursor.getString(cursor.getColumnIndexOrThrow("HH_NO"));
@@ -6905,6 +6985,13 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setPrntlConsentBloodStore(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentBloodStore" )) );
                 ind.setPrntlParentID(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlParentID" )) );
                 ind.setPrntlConsentDate(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentDate" )) );
+                ind.setVISIT1(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT1")));
+                ind.setVISIT2(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT2") ));
+                ind.setVISIT3(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT3")) );
+                ind.setDATE1(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE1") ));
+                ind.setDATE2(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE2")) );
+                ind.setDATE3(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE3")) );
+                ind.setSync(cursor2.getString(cursor2.getColumnIndexOrThrow("Sync") ));
 
 
                 //ind.setB8_Yes_No(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Yes_No")));
@@ -7361,7 +7448,15 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setPrntlParentID(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlParentID" )) );
                 ind.setPrntlConsentDate(cursor2.getString(cursor2.getColumnIndexOrThrow("PrntlConsentDate" )) );
 
-               // ind.setB8_Yes_No(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Yes_No")));
+                ind.setVISIT1(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT1")));
+                ind.setVISIT2(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT2") ));
+                ind.setVISIT3(cursor2.getString(cursor2.getColumnIndexOrThrow("VISIT3")) );
+                ind.setDATE1(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE1") ));
+                ind.setDATE2(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE2")) );
+                ind.setDATE3(cursor2.getString(cursor2.getColumnIndexOrThrow("DATE3")) );
+                ind.setSync(cursor2.getString(cursor2.getColumnIndexOrThrow("Sync") ));
+
+                // ind.setB8_Yes_No(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Yes_No")));
                // ind.setB8_Date(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Date")));
                ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
                 //ind.setQ801f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801f")));

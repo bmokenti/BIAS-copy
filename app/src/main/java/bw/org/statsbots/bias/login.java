@@ -46,13 +46,26 @@ public class login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         preferences = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         final boolean userlogin_Status = preferences.getBoolean("is_logged", false);
         final String ipaddress = preferences.getString("server_ip", null);
         setContentView(R.layout.activity_login);
 
+
+
+        //check if the ip address of server is null and prompt for it to be entered.
         if (ipaddress == null) {
-            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            //initialize the ip address of the server
+            editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+            editor.putString("server_ip", "https://bais.statsbots.org.bw/webservice/");
+            editor.apply();
+            finish();
+            Intent intent = new Intent(login.this,login.class);
+            startActivity(intent);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            /*Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             vibs.vibrate(100);
             AlertDialog.Builder adBuilder = new AlertDialog.Builder(login.this)
                     .setTitle("Application Setting Error !")
@@ -69,7 +82,7 @@ public class login extends AppCompatActivity {
                     });
 
             //call show() to build and show the AlertDialog.
-            AlertDialog ad = adBuilder.show();
+            AlertDialog ad = adBuilder.show();*/
         }
 
                 //Will be executed if there is no active session
@@ -143,7 +156,45 @@ public class login extends AppCompatActivity {
                                 }
                             } else {
 
-                                    /*//Check from Shared Preferences
+                                if(preferences.getString("Username",null)==null && preferences.getString("Password",null)==null){
+                                    if (Validator.isNetworkAvailable(login.this)) {
+                                        //Proceed connect to web service
+                                        new UserLoginTask(username, password).execute();
+
+                                    } else {
+                                        //Request the user to enable network settings. Build the AlertDialog first.
+                                        /**
+                                         * VIBRATE DEVICE
+                                         */
+                                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                        vibs.vibrate(100);
+                                        AlertDialog.Builder adBuilder = new AlertDialog.Builder(login.this)
+                                                .setTitle("Internet Connection !")
+                                                .setMessage("No active internet connections detected. Please enable mobile data or connect to WIFI")
+                                                .setPositiveButton("appSettings", new DialogInterface.OnClickListener() {
+
+                                                    public void onClick(DialogInterface dialog, int which) {
+
+                                                        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                                                        login.this.startActivities(new Intent[]{intent});
+                                                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    }
+
+                                                })
+                                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        dialog.cancel();
+                                                    }
+                                                });
+
+                                        //call show() to build and show the AlertDialog.
+                                        AlertDialog ad = adBuilder.show();
+
+                                    }
+                                }else{
+
+                                    //Check from Shared Preferences
                                     if((preferences.getString("Username",null).equals(username) && preferences.getString("Password",null).equals(password)))
                                     {
 
@@ -153,6 +204,10 @@ public class login extends AppCompatActivity {
                                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                                         {
                                             // Apply activity transition
+                                            editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                                            editor.putString("last_access", DateHelper.getDateTime().toString());
+                                            editor.putBoolean("is_logged", true);
+                                            editor.apply();
                                             startActivity(intentHome, ActivityOptions.makeSceneTransitionAnimation(login.this).toBundle());
 
                                         }
@@ -162,42 +217,27 @@ public class login extends AppCompatActivity {
                                             startActivity(intentHome);
                                         }
 
+                                    }else{
+
+                                        //Request the user to enable network settings. Build the AlertDialog first.
+                                        /**
+                                         * VIBRATE DEVICE
+                                         */
+                                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                        vibs.vibrate(100);
+                                        AlertDialog.Builder adBuilder = new AlertDialog.Builder(login.this)
+                                                .setTitle("Login Error !")
+                                                .setMessage("Invalid login credentials, Please retry with correct details.")
+                                                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        dialog.cancel();
+                                                    }
+                                                });
+
+                                        //call show() to build and show the AlertDialog.
+                                        AlertDialog ad = adBuilder.show();
                                     }
-                                    else {*/
-                                //Check Network State
-                                if (Validator.isNetworkAvailable(login.this)) {
-                                    //Proceed connect to web service
-                                    new UserLoginTask(username, password).execute();
-
-                                } else {
-                                    //Request the user to enable network settings. Build the AlertDialog first.
-                                    /**
-                                     * VIBRATE DEVICE
-                                     */
-                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                                    vibs.vibrate(100);
-                                    AlertDialog.Builder adBuilder = new AlertDialog.Builder(login.this)
-                                            .setTitle("Internet Connection !")
-                                            .setMessage("No active internet connections detected. Please enable mobile data or connect to WIFI")
-                                            .setPositiveButton("appSettings", new DialogInterface.OnClickListener() {
-
-                                                public void onClick(DialogInterface dialog, int which) {
-
-                                                    Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
-                                                    login.this.startActivities(new Intent[]{intent});
-                                                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                }
-
-                                            })
-                                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    dialog.cancel();
-                                                }
-                                            });
-
-                                    //call show() to build and show the AlertDialog.
-                                    AlertDialog ad = adBuilder.show();
 
                                 }
                             }
@@ -296,6 +336,7 @@ public class login extends AppCompatActivity {
                     User user = new User();
                     user.setCode((String) map.get("Code"));
                     user.setName((String) map.get("Name"));
+                    user.setPassword((String)map.get("password"));
                     user.setSName((String) map.get("SName"));
                     user.setContact((String) map.get("Contact"));
                     user.setQC_Code((String) map.get("QC_Code"));

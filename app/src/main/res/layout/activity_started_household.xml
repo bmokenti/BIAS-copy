@@ -164,6 +164,8 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/lightBlue"
                 android:layout_marginTop="0dp"
+                android:divider="@drawable/spinner_item_divider"
+                android:showDividers="middle"
                 android:animateLayoutChanges="true"
                 android:padding="5dp"
                 android:orientation="vertical">

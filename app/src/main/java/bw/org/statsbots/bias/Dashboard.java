@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -195,7 +196,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         Log.d("****" , con);
         menu.getItem(0).setTitle(con);
         return super.onCreateOptionsMenu(menu);
-
     }
 
     @Override
@@ -245,12 +245,47 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 return true;
             case R.id.action_sync:
                 // Execute Syncronize Activity
+                if (Validator.isNetworkAvailable(Dashboard.this)) {
+                    //Proceed connect to web service
+                    new SyncAssignments().execute();
+                    new SyncSample().execute();
+                    new SyncEAssgn().execute();
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
 
-                new SyncAssignments().execute();
-                new SyncSample().execute();
-                new SyncEAssgn().execute();
-                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                vibs.vibrate(100);
+                } else {
+                    //Request the user to enable network settings. Build the AlertDialog first.
+                    /**
+                     * VIBRATE DEVICE
+                     */
+                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibs.vibrate(100);
+                    AlertDialog.Builder adBuilder = new AlertDialog.Builder(Dashboard.this)
+                            .setTitle("Internet Connection !")
+                            .setMessage("No active internet connections detected. Please enable mobile data or connect to WIFI")
+                            .setPositiveButton("appSettings", new DialogInterface.OnClickListener() {
+
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                                    Dashboard.this.startActivities(new Intent[]{intent});
+                                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                }
+
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                    //call show() to build and show the AlertDialog.
+                    AlertDialog ad = adBuilder.show();
+
+                }
+
+
 
 
 
@@ -269,7 +304,44 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                 }
                 else{
-                    new syncDataToServer().execute();
+
+
+                    if (Validator.isNetworkAvailable(Dashboard.this)) {
+                        //Proceed connect to web service
+                        new syncDataToServer().execute();
+
+                    } else {
+                        //Request the user to enable network settings. Build the AlertDialog first.
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+                        AlertDialog.Builder adBuilder = new AlertDialog.Builder(Dashboard.this)
+                                .setTitle("Internet Connection !")
+                                .setMessage("No active internet connections detected. Please enable mobile data or connect to WIFI")
+                                .setPositiveButton("appSettings", new DialogInterface.OnClickListener() {
+
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                                        Dashboard.this.startActivities(new Intent[]{intent});
+                                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    }
+
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        //call show() to build and show the AlertDialog.
+                        AlertDialog ad = adBuilder.show();
+
+                    }
+
                 }
 
 
@@ -301,7 +373,11 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
             try
             {
+
+
+
                 String url=preferences.getString("server_ip",null)+"sync?Username=" + preferences.getString("Username",null);
+                Log.d("SERVER: ",url);
                 HttpHandler sh = new HttpHandler();
                 String jsonStr = sh.makeServiceCall(url);
 
@@ -1214,6 +1290,14 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                     ind.setPrntlParentID(roster.get("PrntlParentID").toString());
                                     ind.setPrntlConsentDate(roster.get("PrntlConsentDate").toString());
 
+                                    ind.setVISIT1(roster.get("VISIT1").toString());
+                                    ind.setVISIT2(roster.get("VISIT2").toString());
+                                    ind.setVISIT3(roster.get("VISIT3").toString());
+                                    ind.setDATE1(roster.get("DATE").toString());
+                                    ind.setDATE2(roster.get("DATE2").toString());
+                                    ind.setDATE3(roster.get("DATE3").toString());
+                                    ind.setSync(roster.get("Sync").toString());
+
 
 
                                     //check if the entry exists in the database first
@@ -1703,7 +1787,28 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
 
             }else{
+//exception during sync
+                d.dismiss();
+                AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
+                builder.setTitle("Synchronization Error");
+                builder.setIcon(R.drawable.ic_error_red_24dp);
 
+                builder.setMessage("An error has been encountered while synchronizing, no response returned");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //Do nothing only when the Head of House is selected we proceed.
+
+                    }
+                });
+
+
+                AlertDialog alertDialog =  builder.show();
+                final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                positiveButtonLL.width= ViewGroup.LayoutParams.MATCH_PARENT;
+                positiveButton.setTextColor(Color.WHITE);
+                positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
+                positiveButton.setLayoutParams(positiveButtonLL);
 
             }
 

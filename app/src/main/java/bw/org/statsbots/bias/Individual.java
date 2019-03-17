@@ -6,6 +6,72 @@ public class Individual implements Serializable {
     private String AssignmentID;
 
 
+    private String VISIT1;
+
+    public String getSync() {
+        return Sync;
+    }
+
+    public void setSync(String sync) {
+        Sync = sync;
+    }
+
+    private String Sync;
+
+    public String getVISIT1() {
+        return VISIT1;
+    }
+
+    public void setVISIT1(String VISIT1) {
+        this.VISIT1 = VISIT1;
+    }
+
+    public String getVISIT2() {
+        return VISIT2;
+    }
+
+    public void setVISIT2(String VISIT2) {
+        this.VISIT2 = VISIT2;
+    }
+
+    public String getVISIT3() {
+        return VISIT3;
+    }
+
+    public void setVISIT3(String VISIT3) {
+        this.VISIT3 = VISIT3;
+    }
+
+    public String getDATE1() {
+        return DATE1;
+    }
+
+    public void setDATE1(String DATE1) {
+        this.DATE1 = DATE1;
+    }
+
+    public String getDATE2() {
+        return DATE2;
+    }
+
+    public void setDATE2(String DATE2) {
+        this.DATE2 = DATE2;
+    }
+
+    public String getDATE3() {
+        return DATE3;
+    }
+
+    public void setDATE3(String DATE3) {
+        this.DATE3 = DATE3;
+    }
+
+    private String VISIT2;
+    private String VISIT3;
+    private String DATE1;
+    private String DATE2;
+    private String DATE3;
+
 
     private String Batch;
     private String Q101;
