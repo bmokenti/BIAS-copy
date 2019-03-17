@@ -841,9 +841,9 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                         /******************************END SET STATUS************************************************/
 
 
-                                                        Intent intent = new Intent(HIVAdultsConsent18Plus.this, Dashboard.class);
+                                                        /*Intent intent = new Intent(HIVAdultsConsent18Plus.this, Dashboard.class);
                                                         intent.putExtra("Household", thisHouse);
-                                                        startActivity(intent);
+                                                        startActivity(intent);*/
 
                                                         } else {
                                                             individual.setIndConsentQuestionnaire(selected1.getText().toString().substring(0, 1));
@@ -1125,9 +1125,9 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
 
 
 
-                                                        Intent intent = new Intent(HIVAdultsConsent18Plus.this, started_household.class);
+                                                        /*Intent intent = new Intent(HIVAdultsConsent18Plus.this, started_household.class);
                                                         intent.putExtra("Household", thisHouse);
-                                                        startActivity(intent);
+                                                        startActivity(intent);*/
 
 
                                                         }
