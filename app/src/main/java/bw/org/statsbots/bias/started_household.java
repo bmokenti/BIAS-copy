@@ -1636,7 +1636,7 @@ public class started_household extends AppCompatActivity implements Serializable
                 if(indiv!=null) {
                     if (indiv.getVISIT1() != null && indiv.getVISIT2() == null && indiv.getVISIT3() == null) {
                         if (indiv.getVISIT1().equals("1")) {
-                            btn.setBackgroundResource(R.drawable.completed_btn_background);
+                            btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
                             btn.setTextColor(Color.WHITE);
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
                             btn.setTypeface(font);
