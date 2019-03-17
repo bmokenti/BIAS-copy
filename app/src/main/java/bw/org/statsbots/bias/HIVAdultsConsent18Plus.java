@@ -77,7 +77,10 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                 final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
                 sample.getSTATUS();
 
-                final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+                List<HouseHold> hhh = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
+                thisHouse=hhh.get(0);
+
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
                 thisHous.get(0).getHIVTB40();
 
 
