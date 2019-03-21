@@ -195,7 +195,7 @@ public class login extends AppCompatActivity {
                                 }else{
 
                                     //Check from Shared Preferences
-                                    if((preferences.getString("Username",null).equals(username) && preferences.getString("Password",null).equals(password)))
+                                    if((preferences.getString("Username",null).matches(username) && preferences.getString("Password",null).matches(password)))
                                     {
 
                                         //proceed to Dashboard

@@ -250,6 +250,16 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
                                                                                 new String[]{String.valueOf(tempIndiv.getAssignmentID()), String.valueOf(tempIndiv.getBatch()), String.valueOf(tempIndiv.getSRNO())}
                                                                         );
 
+                                                                /**************************************************/
+
+
+                                                                //UPDATE HOUSEHOLD
+                                                                myDB.updateHousehold(db,thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                                myDB.close();
+
+
+                                                                /*************************************************/
+
                                                                 db.close();
 
 

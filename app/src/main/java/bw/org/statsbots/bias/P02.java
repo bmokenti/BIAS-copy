@@ -55,9 +55,12 @@ public class P02 extends AppCompatActivity implements Serializable {
         String Head="";
         for (PersonRoster pp:list
              ) {
-            if(pp.getP02().equals("00")){
-                Head=pp.getP01();
+            if(pp.getP02()!=null){
+                if(pp.getP02().equals("00")){
+                    Head=pp.getP01();
+                }
             }
+
         }
 
         /**

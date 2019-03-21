@@ -359,7 +359,13 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         //  myDB.updateRoster(thisHouse,"tRapidDate",p1.getRapidDate(), String.valueOf(p1.getSRNO()));
                                                         myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+
+                                                        /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
+
+                                                        //UPDATE HOUSEHOLD
+                                                        myDB.updateHousehold(myDB.getReadableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
                                                         myDB.close();
+                                                        /********************END PARTIAL****************/
 
 
                                                         Intent intent = new Intent(HIVParentalConsent10_14yrs.this, Dashboard.class);

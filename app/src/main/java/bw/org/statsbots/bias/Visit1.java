@@ -83,7 +83,6 @@ public class Visit1 extends Activity  implements Serializable {
                 myDB.onOpen(myDB.getReadableDatabase());
 
                 //Save this house
-                thisHouse.setVISIT1_RESULT("2");
                 thisHouse.setInterview_Status("9");
 
                 myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);

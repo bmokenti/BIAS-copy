@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -447,9 +448,8 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                 //Convert to calendar Object
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(today);
-
-
-                CharSequence s = android.text.format.DateFormat.format("dd/MM/yyyy",today.getTime());
+                Date d = new Date();
+                CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss",today.getTime());
                 EdtDate.setText(s.toString());
 
             }
@@ -1027,7 +1027,12 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                                                                             new String[]{String.valueOf(tempIndiv.getAssignmentID()), String.valueOf(tempIndiv.getBatch()), String.valueOf(tempIndiv.getSRNO())}
                                                                                                     );
 
-                                                                                            db.close();
+                                                                                            /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
+
+                                                                                            //UPDATE HOUSEHOLD
+                                                                                            myDB.updateHousehold(myDB.getReadableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                                                            myDB.close();
+                                                                                            /********************END PARTIAL****************/
 
 
                                                                                             //Restart the current activity
@@ -1072,7 +1077,12 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                                                                             new String[]{String.valueOf(tempIndiv.getAssignmentID()), String.valueOf(tempIndiv.getBatch()), String.valueOf(tempIndiv.getSRNO())}
                                                                                                     );
 
-                                                                                            db.close();
+                                                                                            /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
+
+                                                                                            //UPDATE HOUSEHOLD
+                                                                                            myDB.updateHousehold(myDB.getReadableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                                                            myDB.close();
+                                                                                            /********************END PARTIAL****************/
 
 
                                                                                             //Restart the current activity
@@ -1116,7 +1126,13 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                                                                             new String[]{String.valueOf(tempIndiv.getAssignmentID()), String.valueOf(tempIndiv.getBatch()), String.valueOf(tempIndiv.getSRNO())}
                                                                                                     );
 
-                                                                                            db.close();
+                                                                                            /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
+
+                                                                                            //UPDATE HOUSEHOLD
+                                                                                            myDB.updateHousehold(myDB.getReadableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                                                            myDB.close();
+                                                                                            /********************END PARTIAL****************/
+
 
 
                                                                                             //Restart the current activity

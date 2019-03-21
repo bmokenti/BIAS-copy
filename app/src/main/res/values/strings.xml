@@ -571,7 +571,7 @@ www.moh.gov.bw
 
 
     <string name="q501">
-      q501.  Are you circumcised?
+      Q501.  Are you circumcised?
 
     </string>
     <string name="q501_1">1. Yes</string>
@@ -893,7 +893,7 @@ www.moh.gov.bw
         OCCUPATION IN FULL. ALSO RECONCILE WITH LEVEL OF EDUCATION
 
     </string>
-    <string name="q106C_1">106c Occupation</string>
+    <string name="q106C_1">Q106c Occupation</string>
 
 
     <string name="q106d">
@@ -901,7 +901,7 @@ www.moh.gov.bw
         USE TWO OR MORE WORDS TO DESCRIBE THE INDUSTRY
 
     </string>
-    <string name="q106D_1">106d Main Product/Service</string>
+    <string name="q106D_1">Q106d Main Product/Service</string>
 
 
     <string name="q107">
@@ -920,7 +920,7 @@ www.moh.gov.bw
     <string name="q107a_2">Q107_MONTH</string>
 
     <string name="q107b">
-    q107b.  What was your occupation?
+    Q107b.  What was your occupation?
     </string>
 
     <string name="q107b_1">1. Loader</string>
@@ -932,7 +932,7 @@ www.moh.gov.bw
 
 
     <string name="q107c">
-    q107c.  What is/was the type of the commodity mined?
+    Q107c.  What is/was the type of the commodity mined?
     </string>
 
     <string name="q107c_1">1. Quarry</string>
@@ -940,11 +940,11 @@ www.moh.gov.bw
     <string name="q107c_3">3. Kimberlite</string>
     <string name="q107c_4">4. Copper/Nickel</string>
     <string name="q107c_5">5. Asbestos</string>
-    <string name="q107c_specify">q107c specify</string>
+    <string name="q107c_specify">Q107c specify</string>
 
 
     <string name="q201">  READ OUT............ Now i am going to ask you questions about current and previous relationships and /or marriages......................
-    q201.  What is your current marital status?
+    Q201.  What is your current marital status?
     </string>
 
     <string name="q201_1">1. Never married</string>
@@ -955,14 +955,14 @@ www.moh.gov.bw
     <string name="q201_6">6. Widowed</string>
 
     <string name="q202">
-    q202.  Have you ever lived together with a partner as if you were married?
+    Q202.  Have you ever lived together with a partner as if you were married?
     </string>
 
     <string name="q202_1">1. Yes</string>
     <string name="q202_2">2. No</string>
 
     <string name="q203">
-    q203.  Altogether, how many wives/husbands or live in partners have you had?
+    Q203.  Altogether, how many wives/husbands or live in partners have you had?
     </string>
 
     <string name="q203_1">partner_number </string>
@@ -972,7 +972,7 @@ www.moh.gov.bw
     q204.  For how many years have you been married or living together?
     </string>
 
-    <string name="q204_1">q204_years </string>
+    <string name="q204_1">Q204_years </string>
 
     <string name="q205">
     q205.  Does your husband/wife/partner live with you now or he/she stays elsewhere?
@@ -982,7 +982,7 @@ www.moh.gov.bw
     <string name="q205_2">2. Staying elsewhere</string>
 
     <string name="q205a">
-    q205a.  How often do you see/visit each other?
+    Q205a.  How often do you see/visit each other?
     </string>
 
     <string name="q205a_1">1. Daily</string>
@@ -1059,7 +1059,7 @@ www.moh.gov.bw
     q306. During the past 7 days, on how many days did someone smoke around you?
     </string>
 
-    <string name="q306_1">q306_number of days</string>
+    <string name="q306_1">Q306_number of days</string>
     <string name="q306_9">9. Dont know</string>
 
 
@@ -1071,7 +1071,7 @@ www.moh.gov.bw
     <string name="q307_2">2. No</string>
 
     <string name="q404">
-      q404.  Which type of sex have you had in the past 12 months? ................... MULTIPLE RESPONSES
+      Q404.  Which type of sex have you had in the past 12 months? ................... MULTIPLE RESPONSES
 
     </string>
     <string name="q404_1">1. Vaginal Sex</string>

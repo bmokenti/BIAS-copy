@@ -706,7 +706,12 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                                                                             new String[]{String.valueOf(tempIndiv.getAssignmentID()), String.valueOf(tempIndiv.getBatch()), String.valueOf(tempIndiv.getSRNO())}
                                                                                                     );
 
-                                                                                            db.close();
+                                                                                            /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
+
+                                                                                            //UPDATE HOUSEHOLD
+                                                                                            myDB.updateHousehold(db,thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                                                            myDB.close();
+                                                                                            /********************END PARTIAL****************/
 
 
                                                                                             //Restart the current activity

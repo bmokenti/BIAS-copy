@@ -16,6 +16,7 @@ import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -29,6 +30,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,392 +74,336 @@ public class started_household extends AppCompatActivity implements Serializable
         thisHouse = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber()).get(0);
 
 
+        if(thisHouse.getSuperComment()!=null){
+            commenttxt.setVisibility(View.VISIBLE);
+            commenttxt.setText(thisHouse.getSuperComment());
+        }
+
 
         btnComplete=findViewById(R.id.btnComplete);
+
         btnComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                final CharSequence[] list = new String[4];
-                list[0] = "1. Completed";
-                list[1] = "2. Partially Completed";
-                list[2] = "4. Refused";
-                list[3] = "6. Other (Specify)";
+                final CharSequence[] list1 = new String[3];
+                final ArrayList<String> list=new ArrayList<>();
+                try {
+                    if (thisHouse.getVISIT1_RESULT()!=null   && thisHouse.getVISIT2_RESULT()==null && thisHouse.getVISIT3_RESULT()==null)
+                    {
+
+                        String mytime=thisHouse.getDATE1();
+
+                        Date date=null;
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
+                        try
+                        {
+                            date = format.parse(mytime);
+                            System.out.println(date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        list1[0] = "Visit 1 : " + thisHouse.getDATE1();
+                        list.add("Visit 1 : " + thisHouse.getDATE1());
+                        list1[1] = "Visit 2 : ";
+                        list.add("Visit 2 : ");
+                    } else if (thisHouse.getVISIT1_RESULT()!=null   && thisHouse.getVISIT2_RESULT()!=null && thisHouse.getVISIT3_RESULT()==null) {
+
+                        String mytime=thisHouse.getDATE2();
+
+                        Date date=null;
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
+                        try
+                        {
+                            date = format.parse(mytime);
+                            System.out.println(date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        list1[0] = "Visit 1 : " + thisHouse.getDATE1();
+                        list.add("Visit 1 : " + thisHouse.getDATE1());
+                        list1[1] = "Visit 2 : " + thisHouse.getDATE2();
+                        list.add("Visit 2 : " + thisHouse.getDATE2());
+                        list1[2] = "Visit 3 : ";
+                        list.add("Visit 3 : ");
+                    } else if (thisHouse.getVISIT1_RESULT()!=null   && thisHouse.getVISIT2_RESULT()!=null && thisHouse.getVISIT3_RESULT()!=null) {
+
+                        list1[0] = "Visit 1 : " + thisHouse.getDATE1();
+                        list.add("Visit 1 : " + thisHouse.getDATE1());
+                        list1[1] = "Visit 2 : " + thisHouse.getDATE2();
+                        list.add("Visit 2 : " + thisHouse.getDATE2());
+                        list1[2] = "Visit 3 : "+ thisHouse.getDATE3();
+                        list.add("Visit 3 : "+ thisHouse.getDATE3());
+                    } else {
+                        list.add("Visit 1 ");
+                    }
+
+
+
+
+                }catch (Exception f){
+                    f.printStackTrace();
+                }
+
 
                 final  int FinalResult[] = new int[1];
 
-                final AlertDialog.Builder builder1 = new AlertDialog.Builder(started_household.this);
-                builder1.setTitle("Select Visit Result ~ Questionnaire");
+                final AlertDialog.Builder builder2 = new AlertDialog.Builder(started_household.this);
+                builder2.setTitle("Select Visit Number (Household Questionnaire)");
 
-                int  i=0;
+                int i = 0;
 
-
-                builder1.setSingleChoiceItems(
-                        list, // Items list
+                final String[] ss = list.toArray(new String[list.size()]);
+                final HouseHold tempIndiv = thisHouse;
+                builder2.setSingleChoiceItems(
+                        ss, // Items list
                         -1, // Index of checked item (-1 = no selection)
                         new DialogInterface.OnClickListener() // Item click listener
                         {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // Get the alert dialog selected item's text
-                                String visitNumber=null;
-                                String commentOther=null;
-
-                                if((thisHouse.getDATE1()!=null) &&
-                                        (thisHouse.getVISIT1_RESULT()==null)){
-                                    visitNumber = "VISIT1_RESULT";
-                                    commentOther= "COMMENT1";
-                                }else if((thisHouse.getDATE2()!= null)
-                                        && (thisHouse.getVISIT2_RESULT()==null)){
-                                    visitNumber = "VISIT2_RESULT";
-                                    commentOther= "COMMENT2";
-                                }else if((thisHouse.getDATE3()!=null)
-                                        && (thisHouse.getVISIT3_RESULT()==null)){
-                                    visitNumber = "VISIT3_RESULT";
-                                    commentOther= "COMMENT3";
-                                }else {
-
-                                    if(thisHouse.getDATE2()==null){
-                                        Date d = new Date();
-                                        CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss",d.getTime());
-                                        thisHouse.setDATE2(s.toString());
-
-                                        visitNumber = "VISIT2_RESULT";
-                                        commentOther= "COMMENT2";
-
-                                        SQLiteDatabase db = myDB.getWritableDatabase();
-                                        ContentValues hhValues = new ContentValues();
-
-                                        hhValues.put("DATE2",s.toString());
-
-                                        i = db.update
-                                                (   "House_Hold_Assignments", // table
-                                                        hhValues, // column/value
-                                                        "EA_Assignment_ID = ? and BatchNumber = ?", // selections
-                                                        new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
-                                                );
-
-                                        db.close();
-
-
-                                    }
-
-                                    if(thisHouse.getDATE3()==null){
-                                        Date d = new Date();
-                                        CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss",d.getTime());
-                                        thisHouse.setDATE3(s.toString());
-                                        visitNumber = "VISIT3_RESULT";
-                                        commentOther= "COMMENT_3";
-
-                                        SQLiteDatabase db = myDB.getWritableDatabase();
-                                        ContentValues hhValues = new ContentValues();
-
-                                        hhValues.put("DATE3",s.toString());
-
-                                        i = db.update
-                                                (   "House_Hold_Assignments", // table
-                                                        hhValues, // column/value
-                                                        "EA_Assignment_ID = ? and BatchNumber = ?", // selections
-                                                        new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
-                                                );
-
-                                        db.close();
-
-                                    }
-
-                                    //set default to visit 3
-                                    if((thisHouse.getDATE3()!=null)
-                                            && (thisHouse.getVISIT3_RESULT()!=null)){
-                                        visitNumber = "VISIT3_RESULT";
-                                        commentOther= "COMMENT_3";
-                                    }
-
-                                }
-
-
-
-                                if(i==0){
-                                    //1. Completed
-
-                                    //Intent intent = new Intent(started_household.this,MainActivity.class);
-                                    //intent.putExtra("Household",thisHouse);
-                                    //startActivity(intent);
-                                    FinalResult[0] = 1;
-                                    SQLiteDatabase db = myDB.getWritableDatabase();
-                                    ContentValues hhValues = new ContentValues();
-                                    hhValues.put("Interview_Status","10");
-                                    hhValues.put(visitNumber,String.valueOf(FinalResult[0]));
-                                    hhValues.put(commentOther,"");
-
-
-                                    i = db.update
-                                            (   "House_Hold_Assignments", // table
-                                                    hhValues, // column/value
-                                                    "EA_Assignment_ID = ? and BatchNumber = ?", // selections
-                                                    new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
-                                            );
-
-                                    db.close();
-
-                                    if(i==1){
-
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
-                                        builder.setTitle("Done");
-                                        builder.setIcon(R.drawable.ic_done_all_black_24dp);
-
-                                        builder.setMessage("House hold Status has been changed to Completed");
-                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                //Do nothing only when the Head of House is selected we proceed.
-                                                Intent intent = new Intent(started_household.this, Dashboard.class);
-                                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(started_household.this).toBundle());
-
-                                            }
-                                        });
-
-
-                                        AlertDialog alertDialog =  builder.show();
-
-
-                                    }else{
-
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
-                                        builder.setTitle("Failed");
-                                        builder.setIcon(R.drawable.ic_error_red_24dp);
-
-                                        builder.setMessage("House hold Status change has failed");
-                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                //Do nothing only when the Head of House is selected we proceed.
-
-                                            }
-                                        });
-
-
-                                        AlertDialog alertDialog =  builder.show();
-
-
-                                    }
-
-                                }else if(i==1){
-                                    //2. Partially Completed
-
-                                    //Intent intent = new Intent(started_household.this,H01.class);
-                                    //intent.putExtra("Household",thisHouse);
-                                    //startActivity(intent);
-                                    FinalResult[0] = 2;
-                                    SQLiteDatabase db = myDB.getWritableDatabase();
-                                    ContentValues hhValues = new ContentValues();
-                                    hhValues.put("Interview_Status","10");
-                                    hhValues.put(visitNumber,String.valueOf(FinalResult[0]));
-                                    hhValues.put(commentOther,"");
-
-                                    i = db.update
-                                            (   "House_Hold_Assignments", // table
-                                                    hhValues, // column/value
-                                                    "EA_Assignment_ID = ? and BatchNumber = ?", // selections
-                                                    new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
-                                            );
-
-                                    db.close();
-                                    if(i==1){
-
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
-                                        builder.setTitle("Done");
-                                        builder.setIcon(R.drawable.ic_done_all_black_24dp);
-
-                                        builder.setMessage("House hold Status has been changed to Partially Completed");
-                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                //Do nothing only when the Head of House is selected we proceed.
-                                                Intent intent = new Intent(started_household.this, Dashboard.class);
-                                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(started_household.this).toBundle());
-
-                                            }
-                                        });
-
-
-                                        AlertDialog alertDialog =  builder.show();
-
-
-                                    }else{
-
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
-                                        builder.setTitle("Failed");
-                                        builder.setIcon(R.drawable.ic_error_red_24dp);
-
-                                        builder.setMessage("House hold Status change has failed");
-                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                //Do nothing only when the Head of House is selected we proceed.
-
-                                            }
-                                        });
-
-
-                                        AlertDialog alertDialog =  builder.show();
-
-
-                                    }
-
-                                }else if(i==2){
-                                    //2. Partially Completed
-
-                                    //Intent intent = new Intent(started_household.this,H01.class);
-                                    //intent.putExtra("Household",thisHouse);
-                                    //startActivity(intent);
-                                    FinalResult[0] = 4;
-                                    SQLiteDatabase db = myDB.getWritableDatabase();
-                                    ContentValues hhValues = new ContentValues();
-                                    hhValues.put("Interview_Status","10");
-                                    hhValues.put(visitNumber,String.valueOf(FinalResult[0]));
-                                    hhValues.put(commentOther,"");
-                                    i = db.update
-                                            (   "House_Hold_Assignments", // table
-                                                    hhValues, // column/value
-                                                    "EA_Assignment_ID = ? and BatchNumber = ?", // selections
-                                                    new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
-                                            );
-
-                                    db.close();
-                                    if(i==1){
-
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
-                                        builder.setTitle("Done");
-                                        builder.setIcon(R.drawable.ic_done_all_black_24dp);
-
-                                        builder.setMessage("House hold Status has been changed to Refused");
-                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                //Do nothing only when the Head of House is selected we proceed.
-                                                Intent intent = new Intent(started_household.this, Dashboard.class);
-                                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(started_household.this).toBundle());
-
-                                            }
-                                        });
-
-
-                                        AlertDialog alertDialog =  builder.show();
-
-
-                                    }else{
-
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
-                                        builder.setTitle("Failed");
-                                        builder.setIcon(R.drawable.ic_error_red_24dp);
-
-                                        builder.setMessage("House hold Status change has failed");
-                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                //Do nothing only when the Head of House is selected we proceed.
-
-                                            }
-                                        });
-
-
-                                        AlertDialog alertDialog =  builder.show();
-
-
-                                    }
-
-
-                                }
-                                else if(i==3){
-                                    //2. Partially Completed
-
-                                    //Intent intent = new Intent(started_household.this,H01.class);
-                                    //intent.putExtra("Household",thisHouse);
-                                    //startActivity(intent);
-                                    FinalResult[0] = 6;
-
-                                    final String OtherSpecify[]= new String[1];
-
-                                    if(OtherSpecify[0]== null){
-
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
-
-                                        LayoutInflater inflater = getLayoutInflater();
-                                        View dialogView = inflater.inflate(R.layout.alertdialog_custom_view,null);
-
-                                        // Specify alert dialog is not cancelable/not ignorable
-                                        builder.setCancelable(false);
-
-                                        // Set the custom layout as alert dialog view
-                                        builder.setView(dialogView);
-
-                                        // Get the custom alert dialog view widgets reference
-                                        Button btn_positive = (Button) dialogView.findViewById(R.id.dialog_positive_btn);
-                                        Button btn_negative = (Button) dialogView.findViewById(R.id.dialog_negative_btn);
-                                        final EditText et_name = (EditText) dialogView.findViewById(R.id.et_name);
-
-                                        // Create the alert dialog
-                                        final AlertDialog dialog = builder.create();
-                                        final String res = visitNumber;
-                                        final String otherspecify = commentOther;
-                                        // Set positive/yes button click listener
-                                        btn_positive.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                // Dismiss the alert dialog
-                                                dialog.cancel();
-                                                String specify = et_name.getText().toString();
-                                                if(specify.isEmpty()){
-                                                    //stay here
-                                                }else{
-                                                    //save
-
-                                                    SQLiteDatabase db = myDB.getWritableDatabase();
+                                final CharSequence[] results = new String[6];
+                                results[0] = "1. Completed";
+                                results[1] = "2. Partially Completed";
+                                results[2] = "3. Present but not available for interviews";
+                                results[3] = "4. Refused";
+                                results[4] = "5. Postponed";
+                                results[5] = "6. Other (Specify)";
+
+
+                                if (i == 0) {
+                                    //SHOW LIST FOR RESULTS
+                                    final AlertDialog.Builder builder3 = new AlertDialog.Builder(started_household.this);
+                                    builder3.setTitle("Select Visit 1 Result");
+                                    builder3.setSingleChoiceItems(
+                                            results, // Items list
+                                            -1, // Index of checked item (-1 = no selection)
+                                            new DialogInterface.OnClickListener() // Item click listener
+                                            {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    //save the selected results
+                                                    final SQLiteDatabase db = myDB.getWritableDatabase();
                                                     ContentValues hhValues = new ContentValues();
-                                                    hhValues.put("Interview_Status","10");
-
-                                                    hhValues.put(res,String.valueOf(FinalResult[0]));
-                                                    hhValues.put(otherspecify,specify);
-
-                                                    final int i = db.update
-                                                            (   "House_Hold_Assignments", // table
-                                                                    hhValues, // column/value
-                                                                    "EA_Assignment_ID = ? and BatchNumber = ?", // selections
-                                                                    new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
-                                                            );
-
-                                                    db.close();
-                                                    if(i==1){
-
-                                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
-                                                        builder.setTitle("Done");
-                                                        builder.setIcon(R.drawable.ic_done_all_black_24dp);
-
-                                                        builder.setMessage("House hold Status has been changed to Other");
-                                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                                            public void onClick(DialogInterface dialog, int id) {
-                                                                //Do nothing only when the Head of House is selected we proceed.
-                                                                Intent intent = new Intent(started_household.this, Dashboard.class);
-                                                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(started_household.this).toBundle());
-
-                                                            }
-                                                        });
+                                                    hhValues.put("VISIT1_RESULT", i + 1);
+                                                    Date d = new Date();
+                                                    CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss", d.getTime());
+                                                    //hhValues.put("DATE1", s.toString());
 
 
-                                                        AlertDialog alertDialog =  builder.show();
+                                                    final int result = i+1;
+                                                    if(result==6){
 
+                                                        final ContentValues cvalues = hhValues;
+
+                                                        final EditText taskEditText = new EditText(started_household.this);
+                                                        AlertDialog dialog = new AlertDialog.Builder(started_household.this)
+                                                                .setTitle("Other Specify")
+                                                                .setMessage("Enter Other Specify")
+                                                                .setView(taskEditText)
+                                                                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(DialogInterface dialog, int which) {
+                                                                        String val = String.valueOf(taskEditText.getText());
+
+                                                                        if(TextUtils.isEmpty(val) && val==null && val.contentEquals(null)){
+
+                                                                            final AlertDialog.Builder builder1 = new AlertDialog.Builder(started_household.this);
+                                                                            builder1.setTitle("Other Specify");
+                                                                            builder1.setIcon(R.drawable.ic_warning_orange_24dp);
+                                                                            builder1.setMessage("Other Specify cannot be empty, Retry");
+                                                                            builder1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                                                public void onClick(DialogInterface dialog, int id) {
+                                                                                    Intent intent = new Intent(started_household.this, started_household.class);
+                                                                                    intent.putExtra("Household", thisHouse);
+                                                                                    startActivity(intent);
+                                                                                    finish();
+                                                                                }
+                                                                            });
+                                                                            AlertDialog alert = builder1.create();
+                                                                            alert.show();
+
+
+
+                                                                        }else {
+//save household visit status
+                                                                            cvalues.put("COMMENT1",val);
+                                                                            int i = db.update
+                                                                                    ("House_Hold_Assignments", // table
+                                                                                            cvalues, // column/value
+                                                                                            "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                                                            new String[]{String.valueOf(tempIndiv.getAssignment_ID()), String.valueOf(tempIndiv.getBatchNumber())}
+                                                                                    );
+
+                                                                            db.close();
+
+
+                                                                            ContentValues hhValues = new ContentValues();
+                                                                            hhValues.put("VISIT1_RESULT", i + 1);
+
+
+                                                                            //Restart the current activity
+                                                                            Intent intent = new Intent(started_household.this, started_household.class);
+                                                                            intent.putExtra("Household", thisHouse);
+                                                                            startActivity(intent);
+                                                                            finish();
+
+
+                                                                        }
+
+
+                                                                    }
+                                                                })
+                                                                .setNegativeButton("Cancel", null)
+                                                                .create();
+                                                                dialog.show();
 
                                                     }else{
 
-                                                        AlertDialog.Builder builder = new AlertDialog.Builder(started_household.this);
-                                                        builder.setTitle("Failed");
-                                                        builder.setIcon(R.drawable.ic_error_red_24dp);
+                                                        i = db.update
+                                                                ("House_Hold_Assignments", // table
+                                                                        hhValues, // column/value
+                                                                        "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                                        new String[]{String.valueOf(tempIndiv.getAssignment_ID()), String.valueOf(tempIndiv.getBatchNumber())}
+                                                                );
 
-                                                        builder.setMessage("House hold Status change has failed");
-                                                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                                            public void onClick(DialogInterface dialog, int id) {
-                                                                //Do nothing only when the Head of House is selected we proceed.
+                                                        /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
 
-                                                            }
-                                                        });
+                                                        //UPDATE HOUSEHOLD
+                                                        myDB.updateHousehold(db,thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                        myDB.close();
+                                                        /********************END PARTIAL****************/
 
 
-                                                        AlertDialog alertDialog =  builder.show();
+                                                        //Restart the current activity
+                                                        Intent intent = new Intent(started_household.this, started_household.class);
+                                                        intent.putExtra("Household", thisHouse);
+                                                        startActivity(intent);
+                                                        finish();
 
+                                                    }
+                                                }
+                                            });
+                                    AlertDialog ad2 = builder3.show();
+
+                                    //SET DIVIDER
+                                    ListView listView = ad2.getListView();
+                                    listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+                                    listView.setDividerHeight(3);
+
+
+                                } else if (ss.length == 2) {
+
+                                    final AlertDialog.Builder builder3 = new AlertDialog.Builder(started_household.this);
+                                    builder3.setTitle("Select Visit 2 Result");
+                                    builder3.setSingleChoiceItems(
+                                            results, // Items list
+                                            -1, // Index of checked item (-1 = no selection)
+                                            new DialogInterface.OnClickListener() // Item click listener
+                                            {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    //save the selected results
+                                                    final SQLiteDatabase db = myDB.getWritableDatabase();
+                                                    ContentValues hhValues = new ContentValues();
+
+                                                    hhValues.put("VISIT2_RESULT", i + 1);
+                                                    Date d = new Date();
+                                                    CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss", d.getTime());
+                                                    hhValues.put("DATE2", s.toString());
+
+                                                    final int result = i+1;
+                                                    if(result==6){
+
+                                                        final ContentValues cvalues = hhValues;
+
+                                                        final EditText taskEditText = new EditText(started_household.this);
+                                                        AlertDialog dialog = new AlertDialog.Builder(started_household.this)
+                                                                .setTitle("Other Specify")
+                                                                .setMessage("Enter Other Specify")
+                                                                .setView(taskEditText)
+                                                                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(DialogInterface dialog, int which) {
+                                                                        String val = String.valueOf(taskEditText.getText());
+
+                                                                        if(TextUtils.isEmpty(val) && val==null && val.contentEquals(null)){
+
+                                                                            final AlertDialog.Builder builder1 = new AlertDialog.Builder(started_household.this);
+                                                                            builder1.setTitle("Other Specify");
+                                                                            builder1.setIcon(R.drawable.ic_warning_orange_24dp);
+                                                                            builder1.setMessage("Other Specify cannot be empty, Retry");
+                                                                            builder1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                                                public void onClick(DialogInterface dialog, int id) {
+                                                                                    Intent intent = new Intent(started_household.this, started_household.class);
+                                                                                    intent.putExtra("Household", thisHouse);
+                                                                                    startActivity(intent);
+                                                                                    finish();
+                                                                                }
+                                                                            });
+                                                                            AlertDialog alert = builder1.create();
+                                                                            alert.show();
+
+
+
+                                                                        }else {
+//save household visit status
+                                                                            cvalues.put("COMMENT2",val);
+                                                                            int i = db.update
+                                                                                    ("House_Hold_Assignments", // table
+                                                                                            cvalues, // column/value
+                                                                                            "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                                                            new String[]{String.valueOf(tempIndiv.getAssignment_ID()), String.valueOf(tempIndiv.getBatchNumber())}
+                                                                                    );
+
+                                                                            db.close();
+
+
+                                                                            ContentValues hhValues = new ContentValues();
+                                                                            hhValues.put("VISIT1_RESULT", i + 1);
+
+
+                                                                            //Restart the current activity
+                                                                            Intent intent = new Intent(started_household.this, started_household.class);
+                                                                            intent.putExtra("Household", thisHouse);
+                                                                            startActivity(intent);
+                                                                            finish();
+
+
+                                                                        }
+
+
+                                                                    }
+                                                                })
+                                                                .setNegativeButton("Cancel", null)
+                                                                .create();
+                                                        dialog.show();
+
+                                                    }else{
+
+                                                        i = db.update
+                                                                ("House_Hold_Assignments", // table
+                                                                        hhValues, // column/value
+                                                                        "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                                        new String[]{String.valueOf(tempIndiv.getAssignment_ID()), String.valueOf(tempIndiv.getBatchNumber())}
+                                                                );
+
+                                                        /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
+
+                                                        //UPDATE HOUSEHOLD
+                                                        myDB.updateHousehold(db,thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                        myDB.close();
+                                                        /********************END PARTIAL****************/
+
+
+                                                        //Restart the current activity
+                                                        Intent intent = new Intent(started_household.this, started_household.class);
+                                                        intent.putExtra("Household", thisHouse);
+                                                        startActivity(intent);
+                                                        finish();
 
                                                     }
 
@@ -464,54 +411,160 @@ public class started_household extends AppCompatActivity implements Serializable
 
 
 
+                                                }
+                                            });
+                                    AlertDialog ad2 = builder3.show();
+
+                                    //SET DIVIDER
+                                    ListView listView = ad2.getListView();
+                                    listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+                                    listView.setDividerHeight(3);
+
+                                } else {
+
+                                    final AlertDialog.Builder builder3 = new AlertDialog.Builder(started_household.this);
+                                    builder3.setTitle("Select Visit 3 Result");
+                                    builder3.setSingleChoiceItems(
+                                            results, // Items list
+                                            -1, // Index of checked item (-1 = no selection)
+                                            new DialogInterface.OnClickListener() // Item click listener
+                                            {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    //save the selected results
+                                                    final SQLiteDatabase db = myDB.getWritableDatabase();
+                                                    ContentValues hhValues = new ContentValues();
+                                                    hhValues.put("VISIT3_RESULT", i + 1);
+                                                    Date d = new Date();
+                                                    CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss", d.getTime());
+                                                    hhValues.put("DATE3", s.toString());
+                                                    final int result = i+1;
+                                                    if(result==6){
+
+                                                        final ContentValues cvalues = hhValues;
+
+                                                        final EditText taskEditText = new EditText(started_household.this);
+                                                        AlertDialog dialog = new AlertDialog.Builder(started_household.this)
+                                                                .setTitle("Other Specify")
+                                                                .setMessage("Enter Other Specify")
+                                                                .setView(taskEditText)
+                                                                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(DialogInterface dialog, int which) {
+                                                                        String val = String.valueOf(taskEditText.getText());
+
+                                                                        if(TextUtils.isEmpty(val) && val==null && val.contentEquals(null)){
+
+                                                                            final AlertDialog.Builder builder1 = new AlertDialog.Builder(started_household.this);
+                                                                            builder1.setTitle("Other Specify");
+                                                                            builder1.setIcon(R.drawable.ic_warning_orange_24dp);
+                                                                            builder1.setMessage("Other Specify cannot be empty, Retry");
+                                                                            builder1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                                                public void onClick(DialogInterface dialog, int id) {
+                                                                                    Intent intent = new Intent(started_household.this, started_household.class);
+                                                                                    intent.putExtra("Household", thisHouse);
+                                                                                    startActivity(intent);
+                                                                                    finish();
+                                                                                }
+                                                                            });
+                                                                            AlertDialog alert = builder1.create();
+                                                                            alert.show();
 
 
+
+                                                                        }else {
+//save household visit status
+                                                                            cvalues.put("COMMENT1",val);
+                                                                            int i = db.update
+                                                                                    ("House_Hold_Assignments", // table
+                                                                                            cvalues, // column/value
+                                                                                            "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                                                            new String[]{String.valueOf(tempIndiv.getAssignment_ID()), String.valueOf(tempIndiv.getBatchNumber())}
+                                                                                    );
+
+                                                                            db.close();
+
+
+                                                                            ContentValues hhValues = new ContentValues();
+                                                                            hhValues.put("VISIT1_RESULT", i + 1);
+
+
+                                                                            //Restart the current activity
+                                                                            Intent intent = new Intent(started_household.this, started_household.class);
+                                                                            intent.putExtra("Household", thisHouse);
+                                                                            startActivity(intent);
+                                                                            finish();
+
+
+                                                                        }
+
+
+                                                                    }
+                                                                })
+                                                                .setNegativeButton("Cancel", null)
+                                                                .create();
+                                                        dialog.show();
+
+                                                    }else{
+
+                                                        i = db.update
+                                                                ("House_Hold_Assignments", // table
+                                                                        hhValues, // column/value
+                                                                        "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                                        new String[]{String.valueOf(tempIndiv.getAssignment_ID()), String.valueOf(tempIndiv.getBatchNumber())}
+                                                                );
+
+                                                        /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
+
+                                                        //UPDATE HOUSEHOLD
+                                                        myDB.updateHousehold(db,thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                        myDB.close();
+                                                        /********************END PARTIAL****************/
+
+
+                                                        //Restart the current activity
+                                                        Intent intent = new Intent(started_household.this, started_household.class);
+                                                        intent.putExtra("Household", thisHouse);
+                                                        startActivity(intent);
+                                                        finish();
+
+                                                    }
 
                                                 }
-                                            }
-                                        });
+                                            });
+                                    AlertDialog ad2 = builder3.show();
 
-                                        // Set negative/no button click listener
-                                        btn_negative.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                // Dismiss/cancel the alert dialog
-                                                //dialog.cancel();
-                                                dialog.dismiss();
+                                    //SET DIVIDER
+                                    ListView listView = ad2.getListView();
+                                    listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+                                    listView.setDividerHeight(3);
 
-                                            }
-                                        });
 
-                                        // Display the custom alert dialog on interface
-                                        dialog.show();
-                                    }
                                 }
+
 
                             }
                         });
 
-                //builder.setIcon(R.drawable.ic_person_black_24dp);
-                AlertDialog ad = builder1.show();
+                AlertDialog ad = builder2.show();
 
                 //SET DIVIDER
                 ListView listView = ad.getListView();
                 //listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+
+
                 listView.setDividerHeight(3);
 
 
                 //OK Button layout
                 final Button positiveButton = ad.getButton(AlertDialog.BUTTON_POSITIVE);
                 LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
-                positiveButtonLL.width=ViewGroup.LayoutParams.MATCH_PARENT;
+                positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
                 positiveButton.setTextColor(Color.WHITE);
                 positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
                 positiveButton.setLayoutParams(positiveButtonLL);
 
-
-
-
-
-
+                /******************************END SET STATUS************************************************/
 
             }
         });
@@ -815,6 +868,11 @@ public class started_household extends AppCompatActivity implements Serializable
                                                                         );
 
                                                                 db.close();
+                                                                /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
+
+                                                                //UPDATE HOUSEHOLD
+                                                                myDB.updateHousehold(db,thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                                myDB.close();
 
 
                                                                 //Restart the current activity
@@ -866,8 +924,12 @@ public class started_household extends AppCompatActivity implements Serializable
                                                                                 new String[]{ String.valueOf(tempIndiv.getAssignmentID()),String.valueOf(tempIndiv.getBatch()), String.valueOf(tempIndiv.getSRNO()) }
                                                                         );
 
-                                                                db.close();
+                                                                /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
 
+                                                                //UPDATE HOUSEHOLD
+                                                                myDB.updateHousehold(db,thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                                myDB.close();
+                                                                /********************END PARTIAL****************/
 
                                                                 //Restart the current activity
                                                                 Intent intent=new Intent(started_household.this,started_household.class);                               intent.putExtra("Household", thisHouse);
@@ -910,7 +972,12 @@ public class started_household extends AppCompatActivity implements Serializable
                                                                                 new String[]{ String.valueOf(tempIndiv.getAssignmentID()),String.valueOf(tempIndiv.getBatch()), String.valueOf(tempIndiv.getSRNO()) }
                                                                         );
 
-                                                                db.close();
+                                                                /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
+
+                                                                //UPDATE HOUSEHOLD
+                                                                myDB.updateHousehold(db,thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                                myDB.close();
+                                                                /********************END PARTIAL****************/
 
 
                                                                 //Restart the current activity
@@ -1358,8 +1425,7 @@ public class started_household extends AppCompatActivity implements Serializable
                                     Info = "Questionnaire, Blood collection Done";
                                 }
                             } else {
-
-                                if ((r.get(o).getP07() != null)) {
+                                if ((r.get(o).getP07() != null) && (!r.get(o).getP07().trim().equals(""))) {
                                     int dd = Integer.parseInt(r.get(o).getP07());
                                     if (dd <= 13 && yy < 65) {
                                         Info = "Pending Questionnaire  HIV Only and Blood Collection";
@@ -1673,7 +1739,7 @@ public class started_household extends AppCompatActivity implements Serializable
                 if(indiv!=null) {
                     if (indiv.getVISIT1() != null && indiv.getVISIT2() == null && indiv.getVISIT3() == null) {
                         if (indiv.getVISIT1().equals("1")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1683,7 +1749,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Completed");
                         } else if (indiv.getVISIT1().equals("2")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1693,7 +1759,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Partially Completed");
                         } else if (indiv.getVISIT1().equals("3")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1703,7 +1769,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT1().equals("4")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1713,7 +1779,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT1().equals("5")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1723,7 +1789,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Postponed");
                         } else if (indiv.getVISIT1().equals("6")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1735,7 +1801,7 @@ public class started_household extends AppCompatActivity implements Serializable
                         }
                     } else if (indiv.getVISIT1() != null && indiv.getVISIT2() != null && indiv.getVISIT3() == null) {
                         if (indiv.getVISIT2().equals("1")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1745,7 +1811,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Completed");
                         } else if (indiv.getVISIT2().equals("2")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1755,7 +1821,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Partially Completed");
                         } else if (indiv.getVISIT2().equals("3")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1765,7 +1831,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT2().equals("4")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1775,7 +1841,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT2().equals("5")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1785,7 +1851,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Postponed");
                         } else if (indiv.getVISIT2().equals("6")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1797,7 +1863,7 @@ public class started_household extends AppCompatActivity implements Serializable
                         }
                     } else if (indiv.getVISIT1() != null && indiv.getVISIT2() != null && indiv.getVISIT3() != null) {
                         if (indiv.getVISIT3().equals("1")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1807,7 +1873,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Completed");
                         } else if (indiv.getVISIT3().equals("2")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1817,7 +1883,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Partially Completed");
                         } else if (indiv.getVISIT3().equals("3")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1827,7 +1893,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT3().equals("4")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1837,7 +1903,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Present but not Available");
                         } else if (indiv.getVISIT3().equals("5")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1847,7 +1913,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             String txt = btn.getText().toString();
                             btn.setText(txt + " - Status: Postponed");
                         } else if (indiv.getVISIT3().equals("6")) {
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
                             btn.setLayoutParams(params);
                             btn.setBackgroundResource(R.drawable.partiallycomplete_btn_bg);
@@ -1865,7 +1931,7 @@ public class started_household extends AppCompatActivity implements Serializable
             }
         }else {
             TextView t = new TextView(this);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             params.setMargins(10,10,10,10);
             t.setLayoutParams(params);
             Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_error_red_24dp);
@@ -2016,5 +2082,11 @@ public class started_household extends AppCompatActivity implements Serializable
 
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(started_household.this,Dashboard.class);
+        intent.putExtra("tbNumber", "1");
+        startActivity(intent);
     }
 }

@@ -35,7 +35,15 @@ public class HouseHold implements Serializable {
 
     private String HIVTB40;
 
+    public String getClear() {
+        return Clear;
+    }
 
+    public void setClear(String clear) {
+        Clear = clear;
+    }
+
+    private String Clear;
 
     /**VISIT 1*/
     private String INTERVIEWER_VISIT1;
@@ -597,7 +605,21 @@ public class HouseHold implements Serializable {
     }
 
     public String getDATE1() {
-        return DATE1;
+        String d="";
+        if(DATE1!=null){
+            if(DATE1.equals("null")){
+                DATE1=null;
+            }else if(DATE1.trim().equals("")){
+                DATE1=null;
+            }else{
+                d= DATE1;
+            }
+
+        }else{
+                d=null;
+            }
+
+        return d;
     }
 
     public void setDATE1(String DATE1) {
@@ -605,7 +627,13 @@ public class HouseHold implements Serializable {
     }
 
     public String getVISIT1_RESULT() {
-        return VISIT1_RESULT;
+        String s="";
+        if(VISIT1_RESULT==null){
+
+        }else {
+            s=VISIT1_RESULT;
+        }
+        return s;
     }
 
     public void setVISIT1_RESULT(String VISIT1_RESULT) {
@@ -629,7 +657,22 @@ public class HouseHold implements Serializable {
     }
 
     public String getDATE2() {
-        return DATE2;
+
+        String d="";
+        if(DATE2!=null){
+            if(DATE2.equals("null")){
+                DATE2=null;
+            }else if(DATE2.trim().equals("")){
+                DATE2=null;
+            }else{
+                d= DATE2;
+            }
+
+        }else{
+            d=null;
+        }
+
+        return d;
     }
 
     public void setDATE2(String DATE2) {
@@ -637,7 +680,13 @@ public class HouseHold implements Serializable {
     }
 
     public String getVISIT2_RESULT() {
-        return VISIT2_RESULT;
+        String s="";
+        if(VISIT2_RESULT==null){
+
+        }else {
+            s=VISIT2_RESULT;
+        }
+        return s;
     }
 
     public void setVISIT2_RESULT(String VISIT2_RESULT) {
@@ -661,7 +710,20 @@ public class HouseHold implements Serializable {
     }
 
     public String getDATE3() {
-        return DATE3;
+        String d="";
+        if(DATE3!=null){
+            if(DATE3.equals("null")){
+                DATE3=null;
+            }else if(DATE3.trim().equals("")){
+                DATE3=null;
+            }else{
+                d= DATE3;
+            }
+        }else{
+            d=null;
+        }
+
+        return d;
     }
 
     public void setDATE3(String DATE3) {
@@ -669,7 +731,13 @@ public class HouseHold implements Serializable {
     }
 
     public String getVISIT3_RESULT() {
-        return VISIT3_RESULT;
+        String s="";
+        if(VISIT3_RESULT==null){
+
+        }else {
+            s=VISIT3_RESULT;
+        }
+        return s;
     }
 
     public void setVISIT3_RESULT(String VISIT3_RESULT) {

@@ -146,7 +146,7 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
         public void onClick(View v){
             if(v.getId()==R.id.scan_button){
 
-                if(individual.getIndBarcode()!=null){
+                if(individual.getIndBarcode()!=null && individual.getIndBarcode().trim().length()!=0){
                     Toast.makeText(getApplicationContext(),p1.getBarcode(),Toast.LENGTH_LONG);
                     Intent intent = new Intent(Barcode.this, HIVParentalConsent6wks_9y.class);
                     intent.putExtra("Individual", individual);

@@ -3,10 +3,12 @@ package bw.org.statsbots.bias;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -32,7 +34,9 @@ import android.widget.ProgressBar;
 import com.google.gson.Gson;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -41,11 +45,22 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.SQLData;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static java.sql.Types.NULL;
 
 
 public class Dashboard extends AppCompatActivity implements Serializable, NavigationView.OnNavigationItemSelectedListener {
@@ -59,6 +74,9 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
     private DatabaseHelper myDB;
     private HouseHold thisHouse;
     private ProgressBar progressBar;
+    List<HouseHold> forClearing = new ArrayList<>(); //list of house holds to be cleared
+    List<HouseHold> PartialSend = new ArrayList<>(); //list of house holds to be kept
+
 
 
     @Override
@@ -131,6 +149,9 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         }
 
 
+        Intent i = getIntent();
+        String tab = (String)i.getSerializableExtra("tbNumber");
+
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -167,6 +188,14 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
             }
         });
+
+        if(tab !=null){
+            int tabPos=Integer.parseInt(tab);
+            tabLayout.getTabAt(tabPos).select();
+        }
+
+
+
     }
 
 
@@ -295,7 +324,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 List<HouseHold> CompleteddHH = myDB.getCompleted();
                 LibraryClass lib = new LibraryClass();
                 if(CompleteddHH.size()==0){
-                    lib.showError(Dashboard.this,"Synchronization","You have no completed assignments to synchronize");
+                    lib.showError(Dashboard.this,"Synchronization","You have no completed assignments to synchronize, You  have to mark at least 1 Household for synchronization");
                     /**
                      * VIBRATE DEVICE
                      */
@@ -309,6 +338,10 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                     if (Validator.isNetworkAvailable(Dashboard.this)) {
                         //Proceed connect to web service
                         new syncDataToServer().execute();
+
+
+
+
 
                     } else {
                         //Request the user to enable network settings. Build the AlertDialog first.
@@ -373,8 +406,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
             try
             {
-
-
 
                 String url=preferences.getString("server_ip",null)+"sync?Username=" + preferences.getString("Username",null);
                 Log.d("SERVER: ",url);
@@ -454,7 +485,31 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             String jsonItem = jsnArray.get(i).toString();
 
 
+                            //JSONObject jObject1 = new JSONObject(jsonItem);
                             JSONObject jObject = new JSONObject(jsonItem);
+
+                           /* Iterator<String> iter = jObject1.keys();
+                            //Log.d("Cloumns",iter.next() + " " + jObject1.get(iter.next()));
+                            while (iter.hasNext()) {
+                                String key = iter.next();
+                                try {
+
+                                    if(jObject1.has(key)){
+                                        Object value =  jObject1.get(key);
+                                        if(value==null || value.equals("")){
+                                            jObject.put(key,  "");
+                                            Log.d("Items: ", key + "="+value);
+                                        }else{
+                                            jObject.put(key,value);
+                                            Log.d("Items: ", key + "="+value);
+                                        }
+                                    }
+
+                                } catch (JSONException e) {
+                                    // Something went wrong!
+                                    e.printStackTrace();
+                                }
+                            }*/
 
                             HouseHold j = myDB.searchHouse(myDB.getReadableDatabase(),jObject.get("Assignment_ID").toString(),jObject.get("BatchNumber").toString());
 
@@ -471,23 +526,22 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setINTERVIEWER_VISITS1(jObject.get("INTERVIEWER_VISITS1").toString());
 
 
-                            String dateInString = jObject.get("DATE1").toString();
-
-
-                            DateTime result = null;
-                            if (dateInString != null) {
-                                Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
-                                Matcher m = datePatt.matcher(dateInString);
-                                if (m.matches()) {
-                                    Long l = Long.parseLong(m.group(1));
-                                    result = new DateTime(l);
-                                    hh.setDATE1(result.toString());
-                                    // Time zone is not needed to calculate date
-                                } else {
-                                    //throw new IllegalArgumentException("Wrong date format");
+                            String dateInString  = jObject.get("DATE1").toString();
+                                DateTime DateNext1 = null;
+                                if (dateInString != null) {
+                                    Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                    Matcher m = datePatt.matcher(dateInString);
+                                    if (m.matches()) {
+                                        Long l = Long.parseLong(m.group(1));
+                                        DateNext1 = new DateTime(l);
+                                        hh.setDATE1(DateNext1.toString());
+                                        // Time zone is not needed to calculate date
+                                    } else {
+                                        //throw new IllegalArgumentException("Wrong date format");
+                                    }
+                                }else {
+                                    hh.setDATE1(dateInString);
                                 }
-                            }
-
 
 
 
@@ -509,6 +563,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 } else {
                                     //throw new IllegalArgumentException("Wrong date format");
                                 }
+                            }else {
+                                hh.setDATE2(dateInString);
                             }
 
                             hh.setNEXT_VISIT_2(jObject.get("NEXT_VISIT_2").toString());
@@ -522,11 +578,16 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 if (m.matches()) {
                                     Long l = Long.parseLong(m.group(1));
                                     DateNext3 = new DateTime(l);
+
+
+
                                     hh.setDATE2(DateNext3.toString());
                                     // Time zone is not needed to calculate date
                                 } else {
                                     //throw new IllegalArgumentException("Wrong date format");
                                 }
+                            }else {
+                                hh.setDATE2(dateInString);
                             }
 
 
@@ -565,6 +626,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                 } else {
                                     //throw new IllegalArgumentException("Wrong date format");
                                 }
+                            }else {
+                                hh.setDATE3(dateInString);
                             }
 
 
@@ -579,7 +642,12 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setFINAL_RESULT(jObject.get("FINAL_RESULT").toString());
                             hh.setFINAL_OTHER(jObject.get("FINAL_OTHER").toString());
                             hh.setSuperComment(jObject.get("SuperComment").toString());
+
+
                             hh.setInterview_Status(jObject.get("Interview_Status").toString());
+
+
+
                             hh.setH01(jObject.get("H01").toString());
 
                             hh.setH02(jObject.get("H02").toString());
@@ -616,6 +684,11 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             hh.setH13DonkeyCart(jObject.get("H13DonkeyCart").toString());
                             hh.setH13DonkeyHorse(jObject.get("H13DonkeyHorse").toString());
                             hh.setH13Camels(jObject.get("H13Camels").toString());
+                            if(jObject.get("Clear")!=null){
+                                if(jObject.get("Clear").toString().equals("1")){
+                                    hh.setClear("3");
+                                }
+                            }
 
                                 String tb40=jObject.get("HIVTB40").toString();
 
@@ -630,12 +703,57 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
 
 
-
                             //Check if the entry exisits in the database firs
 
                             //INSERT INTO HOUSEHOLD
 
                                     myDB.inserthousehold(hh);
+
+                                /***********************CHECK IF THERE CAME NULLS *
+
+                                String[] field = myDB.getTableColumns(); //obtain field object
+                                for (int ii = 0; ii < field.length; ii++) {
+                                    String fieldName = field[ii];
+                                    if(myDB.getValue(fieldName,hh.getAssignment_ID(),hh.getBatchNumber())==null){
+try{
+                                        SQLiteDatabase db = myDB.getWritableDatabase();
+                                        ContentValues contentValues = new ContentValues();
+                                        contentValues.putNull(fieldName);
+
+                                        db.update("House_Hold_Assignments", contentValues,  "EA_Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber(), null);
+db.close();
+}
+                                        catch (Exception fff){
+    //fff.printStackTrace();
+    Log.d(">>>>"+fieldName , fff.getMessage());
+                                        }
+
+
+
+                                    }else if(myDB.getValue(fieldName,hh.getAssignment_ID(),hh.getBatchNumber()).equals("null")){
+                                            try{
+                                                SQLiteDatabase db = myDB.getWritableDatabase();
+                                                ContentValues contentValues = new ContentValues();
+                                                contentValues.putNull(fieldName);
+
+                                                db.update("House_Hold_Assignments", contentValues,  "EA_Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber(), null);
+                                                db.close();
+                                            }
+                                            catch (Exception fff){
+                                                //fff.printStackTrace();
+                                                Log.d(">>>>"+fieldName , fff.getMessage());
+                                            }
+
+                                    }
+
+
+                                }
+
+                              ******************************END NULL RELACEMENT************************************/
+
+
+
+
 
                                 //Person Roster
                                 JSONArray k = (JSONArray)jObject.get("roster");
@@ -687,6 +805,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                     pp.setBarcode( roster.get("BarCode").toString());
 
                                     pp.setP08( roster.get("P08").toString());
+                                    pp.setP09( roster.get("P09").toString());
                                     pp.setP10( roster.get("P10").toString());
                                     pp.setP11( roster.get("P11").toString());
                                     pp.setP12( roster.get("P12").toString());
@@ -733,6 +852,53 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                     //INSERT ROSTER FOR THIS HOUSE  HOLD
                                     myDB.insertSyncRoster(pp,hh.getAssignment_ID(),hh.getBatchNumber());
 
+                                    /***********************CHECK IF THERE CAME NULLS *******************************
+
+                                    String[] fields = myDB.RosterColumns(); //obtain field object
+                                    for (int ii = 0; ii < fields.length; ii++) {
+                                        String fieldName = fields[ii];
+                                        if(myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO())==null){
+                                            try{
+                                                SQLiteDatabase db = myDB.getWritableDatabase();
+                                                ContentValues contentValues = new ContentValues();
+                                                contentValues.putNull(fieldName);
+
+                                                db.update("HHP_ROSTER", contentValues,  "EA_Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber() + " and SRNO="+pp.getSRNO(), null);
+                                                db.close();
+                                            }
+                                            catch (Exception fff){
+                                                //fff.printStackTrace();
+                                                Log.d(">>>>"+fieldName , fff.getMessage());
+                                            }
+
+
+
+                                        }else if(myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO()).equals("null") || myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO()).length()==0 || myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO()).equals("nullnull") || myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO()).equals("nullnullnull") || myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO()).equals("nullnullnullnull")){
+                                            try{
+                                                SQLiteDatabase db = myDB.getWritableDatabase();
+                                                ContentValues contentValues = new ContentValues();
+                                                contentValues.putNull(fieldName);
+
+                                                db.update("HHP_ROSTER", contentValues,  "EA_Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber() + " and SRNO="+pp.getSRNO(), null);
+                                                db.close();
+                                            }
+                                            catch (Exception fff){
+                                                //fff.printStackTrace();
+                                                Log.d(">>>>"+fieldName , fff.getMessage());
+                                            }
+                                        }
+
+
+                                    }
+
+                                    *********************************END NULL RELACEMENT************************************/
+
+
+
+
+
+
+
                                 }
 
                                 //Individual
@@ -743,6 +909,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                                     //PersonRoster
                                     Individual ind = new Individual();
+
                                     ind.setSRNO(Integer.parseInt(roster.get("SRNO").toString()));
 
                                     ind.setIndBarcode(roster.get("BarCode").toString());
@@ -1220,8 +1387,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                     if (roster.get("Q1108a").toString().equals(null) || roster.get("Q1108a").toString().equals("")) {
 
                                     } else {
-                                        ind.setQ1108aDD(roster.get("Q1108a").toString().substring(0, 2));
-                                        ind.setQ1108aWks(roster.get("Q1108a").toString().substring(2, 4));
+                                        ind.setQ1108aDD(roster.get("Q1108a").toString());
+                                        ind.setQ1108aWks(roster.get("Q1108a").toString());
                                     }
 
                                     ind.setQ1108aDontKnow(roster.get("Q1108a").toString());
@@ -1293,10 +1460,70 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                     ind.setVISIT1(roster.get("VISIT1").toString());
                                     ind.setVISIT2(roster.get("VISIT2").toString());
                                     ind.setVISIT3(roster.get("VISIT3").toString());
-                                    ind.setDATE1(roster.get("DATE").toString());
-                                    ind.setDATE2(roster.get("DATE2").toString());
-                                    ind.setDATE3(roster.get("DATE3").toString());
-                                    ind.setSync(roster.get("Sync").toString());
+
+                                    String date1InString = roster.get("DATE1").toString();
+
+                                    DateTime Date11 = null;
+                                    if (date1InString != null) {
+                                        Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                        Matcher m = datePatt.matcher(date1InString);
+                                        if (m.matches()) {
+                                            Long l1 = Long.parseLong(m.group(1));
+                                            Date11 = new DateTime(l1);
+                                            ind.setDATE1(Date11.toString());
+                                            // Time zone is not needed to calculate date
+                                        } else {
+                                            //throw new IllegalArgumentException("Wrong date format");
+                                        }
+                                    }else {
+                                        ind.setDATE1(date1InString);
+                                    }
+
+
+
+
+
+
+
+                                    String date2InString = roster.get("DATE2").toString();
+
+                                    DateTime Date22 = null;
+                                    if (date2InString != null) {
+                                        Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                        Matcher m = datePatt.matcher(date2InString);
+                                        if (m.matches()) {
+                                            Long l1 = Long.parseLong(m.group(1));
+                                            Date22 = new DateTime(l1);
+                                            ind.setDATE2(Date22.toString());
+                                            // Time zone is not needed to calculate date
+                                        } else {
+                                            //throw new IllegalArgumentException("Wrong date format");
+                                        }
+                                    }else {
+                                        ind.setDATE2(date2InString);
+                                    }
+
+
+                                    //ind.setDATE3(roster.get("DATE3").toString());
+                                    String date3InString = roster.get("DATE3").toString();
+
+                                    DateTime Date33 = null;
+                                    if (date3InString != null) {
+                                        Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                        Matcher m = datePatt.matcher(date3InString);
+                                        if (m.matches()) {
+                                            Long l1 = Long.parseLong(m.group(1));
+                                            Date33 = new DateTime(l1);
+                                            ind.setDATE3(Date33.toString());
+                                            // Time zone is not needed to calculate date
+                                        } else {
+                                            //throw new IllegalArgumentException("Wrong date format");
+                                        }
+                                    }else {
+                                        ind.setDATE3(date3InString);
+                                    }
+                                    //ind.setSync(roster.get("Sync").toString());
+
 
 
 
@@ -1306,8 +1533,82 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                                     //INSERT INDIVIDUALS FROM THIS HOUSE
                                     myDB.insertSyncIndividual(ind, hh.getAssignment_ID(), hh.getBatchNumber(), ind.getSRNO());
 
-                                }
+                                    myDB.close();
+                                    /***********************CHECK IF THERE CAME NULLS ******************************
+                                    myDB.onOpen(myDB.getReadableDatabase());
+                                    String[] fields = myDB.IndColumns(); //obtain field object
 
+                                    for (int ii = 0; ii < fields.length; ii++) {
+                                        String fieldName = fields[ii];
+                                        if(myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO())==null){
+                                            try{
+                                                SQLiteDatabase db = myDB.getWritableDatabase();
+                                                ContentValues contentValues = new ContentValues();
+                                                contentValues.putNull(fieldName);
+
+
+                                                db.update("Individual", contentValues,  " Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber() + " and SRNO="+ind.getSRNO(), null);
+                                                db.close();
+                                            }
+                                            catch (Exception fff){
+                                                //fff.printStackTrace();
+
+                                            }
+
+
+
+                                        }else if(myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO()).equals("null") || myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO()).length()==0 || myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO()).equals("nullnull") || myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO()).equals("nullnullnull") || myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO()).equals("nullnullnullnull")){
+                                            try{
+                                                SQLiteDatabase db = myDB.getWritableDatabase();
+                                                ContentValues contentValues = new ContentValues();
+                                                contentValues.putNull(fieldName);
+
+                                                db.update("Individual", contentValues,  " Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber() + " and SRNO="+ind.getSRNO(), null);
+                                                db.close();
+                                            }
+                                            catch (Exception fff){
+                                                //fff.printStackTrace();
+                                                Log.d(">>>>"+fieldName , fff.getMessage());
+                                            }
+                                        }
+
+
+                                    }
+
+                                    ********************************END NULL RELACEMENT************************************/
+
+
+
+
+
+
+
+                                }
+                            }else{
+
+                                j.setSuperComment(jObject.get("SuperComment").toString());
+                                j.setSuperComment(jObject.get("Interview_Status").toString());
+
+                                if(jObject.get("Clear")!=null){
+                                    if(jObject.get("Clear").toString().equals("1")){
+                                        j.setClear("3");
+                                    }
+                                }
+                                SQLiteDatabase db = myDB.getWritableDatabase();
+                                ContentValues hhValues = new ContentValues();
+                                hhValues.put("SuperComment",j.getSuperComment());
+                                hhValues.put("Interview_Status",j.getInterview_Status());
+                                hhValues.put("Clear",j.getClear());
+
+
+                                i = db.update
+                                        (   "House_Hold_Assignments", // table
+                                                hhValues, // column/value
+                                                "Assignment_ID = ? and BatchNumber = ? and SRNO=?", // selections
+                                                new String[]{ String.valueOf(j.getAssignment_ID()),String.valueOf(j.getBatchNumber()) }
+                                        );
+
+                                db.close();
 
 
                             }
@@ -1637,6 +1938,16 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
              * INTERVIEWS FROM FIELD
              */
             for(HouseHold h : CompleteddHH){
+                if(h.getClear()!=null){
+                    if(h.getClear().equals("1")){
+                        //send and clear
+                        forClearing.add(h);
+
+                    }else{
+                        //send partial
+                        PartialSend.add(h);
+                    }
+                }
                 h.setInterview_Status("0");
             }
 
@@ -1705,9 +2016,10 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         @Override
         protected void onPostExecute(String result){
             Log.d("From Server", "The...." + result);
+            result = result.replace("\"", "");
             int r = 3;
-            try{
-            r=Integer.parseInt(result);}catch (Exception g){}
+            try{ r=Integer.parseInt(result);}catch (Exception g){ Log.d("Syncronize error",g.toString());}
+
             if(result!=null){
                 if(r==1){
                     d.dismiss();
@@ -1718,12 +2030,26 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                     builder.setMessage("Your work has been synchronized successfully");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            //Do nothing only when the Head of House is selected we proceed.
+                            //Check if there are any assigments to be cleared
+                            if(forClearing.size()>0){
+                                for(int n=0;n<forClearing.size();n++){
+                                    HouseHold house = forClearing.get(n);
+                                    if(house!=null){
+                                        //clear
+                                        myDB.cleardata(myDB.getReadableDatabase(),house);
 
+                                    }
+                                }
+                            }
+
+                            Intent intent = new Intent(Dashboard.this,Dashboard.class);
+                            intent.putExtra("tbNumber", "1");
+                            startActivity(intent);
                         }
                     });
 
                     AlertDialog alertDialog =  builder.show();
+                    alertDialog.setCancelable(false);
                     final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
                     LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
                     positiveButtonLL.width= ViewGroup.LayoutParams.MATCH_PARENT;
@@ -1739,7 +2065,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                         builder.setTitle("Error");
                         builder.setIcon(R.drawable.ic_error_red_24dp);
 
-                        builder.setMessage("An error has been encountered while synchronizing");
+                        builder.setMessage("An error has been encountered while synchronizing: From Server");
                         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //Do nothing only when the Head of House is selected we proceed.
@@ -1762,7 +2088,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                         builder.setTitle("Fatal Error");
                         builder.setIcon(R.drawable.ic_error_red_24dp);
 
-                        builder.setMessage("An error has been encountered while synchronizing");
+                        builder.setMessage("An error has been encountered while synchronizing: try did not work" + r + "::"+status);
                         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //Do nothing only when the Head of House is selected we proceed.

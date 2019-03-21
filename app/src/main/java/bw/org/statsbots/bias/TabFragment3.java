@@ -1,6 +1,9 @@
 package bw.org.statsbots.bias;
 
+import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -20,6 +23,8 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import static java.sql.Types.NULL;
 
 public class TabFragment3 extends Fragment implements Serializable {
     protected HouseHold thisHouse;
@@ -60,7 +65,7 @@ public class TabFragment3 extends Fragment implements Serializable {
         myDB = new DatabaseHelper(container.getContext());
         myDB.onOpen(myDB.getWritableDatabase());
         myDB.getdataHouseInfo();
-        completedHH = (ArrayList<HouseHold>) myDB.getCompleted();
+        completedHH = (ArrayList<HouseHold>) myDB.getCompletedFinal();
 
 
 
@@ -108,19 +113,69 @@ public class TabFragment3 extends Fragment implements Serializable {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 //Show started Household to edit
-                Intent intent = new Intent(getActivity(),started_household.class);
+
+
+                final Intent intent = new Intent(getActivity(),started_household.class);
                 String selectedFromList = (listView.getItemAtPosition(i).toString());
                 Log.d("Text: ",selectedFromList);
 
-                HouseHold h=j.get(i);
+                final HouseHold h=j.get(i);
 
 
                 if(h==null){
                     Log.d("From started ","house hold null");
                 }
                 else{
-                    intent.putExtra("Household",  h);
-                    startActivity(intent);
+                    if(h.getClear()!=null){
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setMessage("You have marked this household to be sent to the supervisor. Do you want to open it? This will move the house to Started Tab.");
+                        alertDialogBuilder.setPositiveButton("Yes",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+
+                                        //Change the status of the Interviewer visit
+                                        SQLiteDatabase db = myDB.getWritableDatabase();
+                                        ContentValues hhValues = new ContentValues();
+                                        hhValues.put("Interview_Status","9");
+                                        hhValues.put("Clear",NULL);
+
+
+                                        int i = db.update
+                                                (   "House_Hold_Assignments", // table
+                                                        hhValues, // column/value
+                                                        "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                        new String[]{ String.valueOf(h.getAssignment_ID()),String.valueOf(h.getBatchNumber()) }
+                                                );
+
+                                        //UPDATE HOUSEHOLD
+                                        myDB.updateHousehold(myDB.getReadableDatabase(),h.getAssignment_ID(),h.getBatchNumber(),"Clear", "3");
+                                        myDB.close();
+                                        /********************END PARTIAL****************/
+
+
+
+                                        intent.putExtra("Household",  h);
+                                        startActivity(intent);
+                                    }
+                                });
+
+                        alertDialogBuilder.setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener(){
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+
+                                    }
+                                });
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+
+
+                    }else{
+                        intent.putExtra("Household",  h);
+                        startActivity(intent);
+                    }
+
                 }
 
             }

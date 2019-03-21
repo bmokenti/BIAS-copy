@@ -72,7 +72,7 @@ public class P14 extends AppCompatActivity implements Serializable {
             p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
 
 
-            RadioButton[] bt = new RadioButton[8];
+            RadioButton[] bt = new RadioButton[9];
             for(int f=0;f<rg.getChildCount();f++)
             {
                 View o = rg.getChildAt(f);
@@ -99,7 +99,7 @@ public class P14 extends AppCompatActivity implements Serializable {
             p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
 
 
-            RadioButton[] bt = new RadioButton[8];
+            RadioButton[] bt = new RadioButton[9];
             for(int f=0;f<rg.getChildCount();f++)
             {
                 View o = rg.getChildAt(f);

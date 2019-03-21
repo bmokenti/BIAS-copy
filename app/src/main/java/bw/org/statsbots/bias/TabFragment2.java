@@ -1,6 +1,9 @@
 package bw.org.statsbots.bias;
 
+import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -14,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -21,6 +25,7 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -91,12 +96,14 @@ public class TabFragment2 extends Fragment implements Serializable {
                          "<br/><b>EA No:</b>" + s.EACode +
                          "<br/><b>Dwelling No:</b>" + RejectedHH.get(h).getDWELLING_NO()+
                          "<br/><b>House Hold No:</b>" + RejectedHH.get(h).getHH_NO()+
-                         "<br/><i style='color:red;'>Supervisor Comment:</i>" + RejectedHH.get(h).getSuperComment()
+                         "<br/><b>Assignment No:</b>" + RejectedHH.get(h).getAssignment_ID() +
+                         "<br/><b>Batch No:</b>" + RejectedHH.get(h).getBatchNumber() +
+                         "<br/><i style='text-color:#ff0000;'>Supervisor Comment:</i>" + RejectedHH.get(h).getSuperComment()
                     );
                     j.add(RejectedHH.get(h));
                 }
 
-                t.setText("There are "+ RejectedHH.size()+"  rejected and " +StartedHH.size() + " started Interviews" );
+                t.setText(Html.fromHtml("*There are "+ RejectedHH.size()+"  Rejected and " +StartedHH.size() + " Started Interviews <br/> *Press and hold a Household to mark it for final synchronization"));
             }
             else {
 
@@ -124,7 +131,7 @@ public class TabFragment2 extends Fragment implements Serializable {
                     j.add(StartedHH.get(h));
                 }
 
-                t.setText("There are "+ RejectedHH.size()+"  rejected and " +StartedHH.size() + " started Interviews" );
+                t.setText(Html.fromHtml("*There are "+ RejectedHH.size()+"  Rejected and " +StartedHH.size() + " Started Interviews <br/> *Press and hold a Household to mark it for final synchronization") );
             }
 
 
@@ -133,6 +140,7 @@ public class TabFragment2 extends Fragment implements Serializable {
 
             for(String s:hhDetails)
             {
+
                 adapter.add(Html.fromHtml(s));
 
             }
@@ -145,163 +153,133 @@ public class TabFragment2 extends Fragment implements Serializable {
 
                     HouseHold thisHouse = j.get(i);
 
-                    //Show started Household to edit
-                    int interview1 = 0;
-                    int interview2 = 0;
-                    int interview3 = 0;
 
-                    if(thisHouse.getVISIT1_RESULT() != null && !thisHouse.getVISIT1_RESULT().equals("")){
-                        interview1 = Integer.parseInt(thisHouse.getVISIT1_RESULT());
-                    }if(thisHouse.getVISIT2_RESULT() != null && !thisHouse.getVISIT2_RESULT().equals("")){
-                        interview2 = Integer.parseInt(thisHouse.getVISIT2_RESULT());
-                    }if(thisHouse.getVISIT3_RESULT() != null && !thisHouse.getVISIT3_RESULT().equals("")){
-                        interview3 = Integer.parseInt(thisHouse.getVISIT3_RESULT());
-                    }
-
-                    if(thisHouse.getVISIT1_RESULT() != null && !thisHouse.getVISIT1_RESULT().equals("")
-                            && thisHouse.getVISIT2_RESULT() == null && !thisHouse.getVISIT2_RESULT().equals("")
-                            && thisHouse.getVISIT3_RESULT() == null && !thisHouse.getVISIT3_RESULT().equals(""))
-                    {
-
-                        if(interview1 > 2){
-                            Intent intent = new Intent(getActivity(),activity_general_information.class);
+                            Intent intent = new Intent(getActivity(), started_household.class);
                             String selectedFromList = (listView.getItemAtPosition(i).toString());
-                            Log.d("Text: ",selectedFromList);
 
-                            HouseHold h=j.get(i);
-
-
-                            if(h==null){
-                                Log.d("From started ","house hold null");
-                            }
-                            else{
-                                Log.d("Inside","house hold not null");
-                                intent.putExtra("Household",  h);
-                                startActivity(intent);
-                            }
-
-                        }else{
-
-                            Intent intent = new Intent(getActivity(),started_household.class);
-                            String selectedFromList = (listView.getItemAtPosition(i).toString());
-                            Log.d("Text: ",selectedFromList);
-
-                            HouseHold h=j.get(i);
+                            HouseHold h = j.get(i);
 
 
-                            if(h==null){
-                                Log.d("From started ","house hold null");
-                            }
-                            else{
-                                intent.putExtra("Household",  h);
+                            if (h == null) {
+
+                            } else {
+                                Log.d("Inside", "house hold not null");
+                                intent.putExtra("Household", h);
                                 startActivity(intent);
                             }
 
 
-
-                        }
-
-
-
-
-
-
-                    }
-                    if(thisHouse.getVISIT1_RESULT() != null && thisHouse.getVISIT2_RESULT() != null && thisHouse.getVISIT3_RESULT() == null)
-                    {
-                        if(interview2 > 2){
-                            Intent intent = new Intent(getActivity(),activity_general_information.class);
-                            String selectedFromList = (listView.getItemAtPosition(i).toString());
-                            Log.d("Text: ",selectedFromList);
-
-                            HouseHold h=j.get(i);
-
-
-                            if(h==null){
-                                Log.d("From started ","house hold null");
-                            }
-                            else{
-                                intent.putExtra("Household",  h);
-                                startActivity(intent);
-                            }
-
-
-
-                        }else{
-
-                            Intent intent = new Intent(getActivity(),started_household.class);
-                            String selectedFromList = (listView.getItemAtPosition(i).toString());
-                            Log.d("Text: ",selectedFromList);
-
-                            HouseHold h=j.get(i);
-
-
-                            if(h==null){
-                                Log.d("From started ","house hold null");
-                            }
-                            else{
-                                intent.putExtra("Household",  h);
-                                startActivity(intent);
-                            }
-
-
-                        }
-
-
-                    }
-                    else if(thisHouse.getVISIT1_RESULT() != null && thisHouse.getVISIT2_RESULT() != null && thisHouse.getVISIT3_RESULT() != null)
-                    {
-                         if(interview3 > 2){
-
-                             Intent intent = new Intent(getActivity(),activity_general_information.class);
-                             String selectedFromList = (listView.getItemAtPosition(i).toString());
-                             Log.d("Text: ",selectedFromList);
-
-                             HouseHold h=j.get(i);
-
-
-                             if(h==null){
-                                 Log.d("From started ","house hold null");
-                             }
-                             else{
-                                 intent.putExtra("Household",  h);
-                                 startActivity(intent);
-                             }
-
-
-                         }else{
-
-                             Intent intent = new Intent(getActivity(),started_household.class);
-                             String selectedFromList = (listView.getItemAtPosition(i).toString());
-                             Log.d("Text: ",selectedFromList);
-
-                             HouseHold h=j.get(i);
-
-
-                             if(h==null){
-                                 Log.d("From started ","house hold null");
-                             }
-                             else{
-                                 intent.putExtra("Household",  h);
-                                 startActivity(intent);
-                             }
-
-
-
-                         }
-
-
-
-                    }
                 }
+
             });
 
-        listView.setOnLongClickListener(new View.OnLongClickListener() {
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                try {
+                    String hhd = hhDetails.get(i);
+                    String[] sss = hhd.split("Assignment No:</b>");
+                    String assid=sss[1].substring(0,8);
+
+                    String[] ss = hhd.split("Batch No:</b>");
+
+                    Log.d("Assignment ID:",assid);//Assignment ID
+                    String checkBacth[] = ss[1].split("<br/>");
+                    String batch=checkBacth[0]; //Batch number
+
+                    List<HouseHold> hh = myDB.getHouseForUpdate(assid,batch);
+                    thisHouse=hh.get(0);
+
+                    if(thisHouse.getVISIT1_RESULT()==null && thisHouse.getVISIT2_RESULT()==null && thisHouse.getVISIT3_RESULT()!=null){
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setMessage("You cannot send a house without at least 1 Visit. Please record Visits before you can send the household");
+                                alertDialogBuilder.setPositiveButton("Ok",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface arg0, int arg1) {
+                                                Intent intent = new Intent(getContext(),started_household.class);
+                                                intent.putExtra("Household",  thisHouse);
+                                                startActivity(intent);
+                                            }
+                                        });
+
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                    }else{
+                        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+
+                        alertDialogBuilder.setMessage("This action will remove this household from your tablet to you Supervisor on your next synchronization. Do you want to proceed?");
+                        alertDialogBuilder.setPositiveButton("Send",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+
+                                        //Change the status of the Interviewer visit
+                                        SQLiteDatabase db = myDB.getWritableDatabase();
+                                        ContentValues hhValues = new ContentValues();
+                                        hhValues.put("Interview_Status","10");
+                                        hhValues.put("Clear","1");
 
 
-                return false;
+                                        int i = db.update
+                                                (   "House_Hold_Assignments", // table
+                                                        hhValues, // column/value
+                                                        "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                                                        new String[]{ String.valueOf(thisHouse.getAssignment_ID()),String.valueOf(thisHouse.getBatchNumber()) }
+                                                );
+
+                                        db.close();
+
+
+
+
+                                        Intent intent = new Intent(getContext(),Dashboard.class);
+                                        intent.putExtra("tbNumber", "1");
+                                        startActivity(intent);
+                                    }
+                                });
+
+                        alertDialogBuilder.setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+
+                                    }
+                                });
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.requestWindowFeature(Window.FEATURE_LEFT_ICON);
+                        alertDialog.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_info_outline_blue_24dp);
+                        //alertDialog.setContentView(R.layout.custom_dialog);
+                        alertDialog.setTitle("Mark House for Final Sync");
+
+                        alertDialog.show();
+                    }
+
+
+
+
+                }catch (Exception g){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setIcon(R.drawable.ic_error_red_24dp);
+                    builder.setMessage("Error encounter while retrieving Assignment Id and Batch Number")
+                            .setPositiveButton("Send", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                }
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // User cancelled the dialog
+                                }
+                            });
+                    // Create the AlertDialog object and return it
+                    builder.create();
+                }
+
+
+
+                return true;
             }
         });
 

@@ -57,7 +57,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
 
 
 
-       final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+       final Sample sample = myDB.getSample(myDB.getReadableDatabase(), thisHous.get(0).getAssignment_ID());
         sample.getStatusCode();
 
 //        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
@@ -121,12 +121,20 @@ int wks = Integer.valueOf(p1.getP04WKS());
         }
 
         if((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")  && Integer.valueOf(p1.getP04YY()) >= 65) &&
-                (p1.getP06().equals("3") && Integer.valueOf(p1.getP07()) < 14))
+                (p1.getP06().equals("3")))
         {
-            Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, HIVConsentOver64.class);
-            q1o2.putExtra("Individual", individual);
-            q1o2.putExtra("Personroster", p1);
-            startActivity(q1o2);
+            if(p1.getP07()!=null){
+                if(Integer.valueOf(p1.getP07()) < 14){
+                    Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, HIVConsentOver64.class);
+                    q1o2.putExtra("Individual", individual);
+                    q1o2.putExtra("Personroster", p1);
+                    startActivity(q1o2);
+                }
+
+
+            }
+
+
         }
 
 
@@ -666,7 +674,14 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+                                                        /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
+
+                                                        //UPDATE HOUSEHOLD
+                                                        myDB.updateHousehold(myDB.getReadableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
                                                         myDB.close();
+                                                        /********************END PARTIAL****************/
+
+
 
 
                                                         Intent intent = new Intent(HIVParentalConsent6wks_9y.this, Dashboard.class);

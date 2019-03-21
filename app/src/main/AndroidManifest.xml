@@ -238,6 +238,7 @@
             android:label="@string/title_activity_hiv_over64_tests" />
         <activity
             android:name=".Barcode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_barcode" />
         <activity android:name=".deletethisone" />
         <activity android:name=".ScanBarcode" />

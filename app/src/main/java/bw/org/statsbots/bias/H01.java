@@ -67,11 +67,12 @@ public class H01 extends AppCompatActivity implements Serializable, View.OnClick
 
            thisHouse=houseList.get(0);
 
-           if(thisHouse.getH13Camels() !=null){
+              if(thisHouse.getH13Camels()==null ){}
+           else{
 
                AlertDialog.Builder builder = new AlertDialog.Builder(H01.this);
                builder.setTitle("Confirm");
-               builder.setMessage("You have already finished this section, Do you want to editing it?");
+               builder.setMessage("You have already finished this section, Do you want to continue editing it?");
                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
