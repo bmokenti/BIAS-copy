@@ -1357,7 +1357,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         if(s.trim().equals("") || s.isEmpty()){
 
         }else{
-            if(s.trim().equals("null") || s.trim().equals("nullnu") || s.trim().equals("nullnull") || s.trim().equals("nullnullnull") || s.trim().equals("nullnullnullnull")){
+            if(s.trim().length()==0 || s.trim().equals("null") || s.trim().equals("nullnu") || s.trim().equals("nullnull") || s.trim().equals("nullnullnull") || s.trim().equals("nullnullnullnull")){
                 f=null;
             }else {
                 f=s;

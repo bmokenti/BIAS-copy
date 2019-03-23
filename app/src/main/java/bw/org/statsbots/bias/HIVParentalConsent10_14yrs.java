@@ -58,6 +58,7 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
       final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
+        thisHouse = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch()).get(0);
 
         final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
         for (PersonRoster p: roster
@@ -447,5 +448,12 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
 
 
             }
-        }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(HIVParentalConsent10_14yrs.this, started_household.class);
+        intent.putExtra("Household", thisHouse);
+        startActivity(intent);
+    }
+
+}
 

@@ -53,6 +53,8 @@ public class HIVAssents10_14years extends AppCompatActivity implements Serializa
 
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
+        thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
 
 
         final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
@@ -341,5 +343,12 @@ public class HIVAssents10_14years extends AppCompatActivity implements Serializa
                 });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(HIVAssents10_14years.this, started_household.class);
+        intent.putExtra("Household", thisHouse);
+        startActivity(intent);
     }
 }

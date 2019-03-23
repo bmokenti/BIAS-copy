@@ -78,7 +78,10 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
 
         }
 
-       // p1.getChPrntlConsentBloodDraw();
+        thisHouse = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch()).get(0);
+
+
+        // p1.getChPrntlConsentBloodDraw();
      //  rbtn1.setText(p1.getChPrntlConsentBloodDraw());
 int yy =Integer.valueOf(p1.getP04YY());
 int mm = Integer.valueOf(p1.getP04MM());
@@ -838,7 +841,12 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
 
     }
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(HIVParentalConsent6wks_9y.this, started_household.class);
+        intent.putExtra("Household", thisHouse);
+        startActivity(intent);
+    }
 }
 
 

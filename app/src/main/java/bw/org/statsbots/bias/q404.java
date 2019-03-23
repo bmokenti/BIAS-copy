@@ -75,7 +75,14 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
                 break;
             }
         }
+        if (individual.getQ403().equals("2") && individual.getQ101().equals("1")) {
+            Intent intent = new Intent(q404.this, q501.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
 
+        } else {
+            //do nothing
+        }
 
         if (individual.getQ403().equals("2") && individual.getQ101().equals("1")) {
             Intent intent = new Intent(q404.this, q501.class);
@@ -93,7 +100,8 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
 //                p1.getP06().equals("2") ) ))
        //skip
         if ( individual.getQ403().equals("2")  && individual.getQ101().equals("2") &&
-                (individual.getQ201().equals("2") || individual.getQ201().equals("3") ||individual.getQ201().equals("4") || individual.getQ201().equals("5") || individual.getQ202().equals("1"))) {
+                (individual.getQ201().equals("2") || individual.getQ201().equals("3") ||individual.getQ201().equals("4") || individual.getQ201().equals("5") || individual.getQ202().equals("1")))
+        {
             Intent intent = new Intent(q404.this, q410.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
@@ -101,6 +109,19 @@ public class q404 extends AppCompatActivity implements View.OnClickListener, Ser
         } else {
             //do nothing
         }
+
+        if ( individual.getQ403().equals("2")  && individual.getQ101().equals("2") &&
+                (individual.getQ201().equals("1") || individual.getQ201().equals("6") ))
+        {
+            Intent intent = new Intent(q404.this, q601.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
+
+
 
         if(individual.getQ404_1()!= null &&  !individual.getQ404_1().equals(""))
         {

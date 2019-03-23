@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="bw.org.statsbots.bias.MainDash">
+
+    <group android:id="@+id/pausegrp" android:checkableBehavior="none" >
+    <item
+        android:id="@+id/pause"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/pause"
+        android:title="Pause" />
+    </group>
+</menu>

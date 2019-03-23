@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -75,6 +76,7 @@ public class IndQuetParentalConsent extends Activity implements Serializable {
 
 
         myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+        thisHouse = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch()).get(0);
 
 
         if(Integer.valueOf(p1.getP04YY()) >= 18 )
@@ -87,7 +89,30 @@ public class IndQuetParentalConsent extends Activity implements Serializable {
         }
 
 
-
+        RadioButton[] bt = new RadioButton[2];
+        for(int f=0;f<rg.getChildCount();f++)
+        {
+            View o = rg.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bt[f]=((RadioButton)o);
+                if(individual.getIndvQuestionnairePConsent15_17()!= null &&  !individual.getIndvQuestionnairePConsent15_17().equals(""))
+                {
+                    if(Integer.parseInt(individual.getIndvQuestionnairePConsent15_17())==f+1)
+                    {
+                        RadioButton radioButton = bt[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }else{
+                    Log.d("h1333333 Lost Here","**********    " + individual.getQ101());
+                }
+            }
+            else
+            {
+                Log.d("h13 Lost Here","**********");
+            }
+        }
 
 
         plus = (ImageButton) findViewById(R.id.plus);
@@ -198,6 +223,13 @@ public class IndQuetParentalConsent extends Activity implements Serializable {
             });
         }
 
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(IndQuetParentalConsent.this, started_household.class);
+        intent.putExtra("Household", thisHouse);
+        startActivity(intent);
     }
+}
 
 

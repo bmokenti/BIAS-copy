@@ -59,6 +59,10 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
             individual = ind;
 
 
+            thisHouse = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch()).get(0);
+            if(thisHouse==null){
+                thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+            }
 
 
             if(Integer.valueOf(p1.getP04YY()) > 15)
@@ -177,4 +181,12 @@ public class Barcode extends AppCompatActivity implements OnClickListener, Seria
                 toast.show();
             }
         }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Barcode.this, started_household.class);
+        intent.putExtra("Household", thisHouse);
+        startActivity(intent);
     }
+
+}

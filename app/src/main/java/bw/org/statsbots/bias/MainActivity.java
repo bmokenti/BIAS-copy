@@ -570,7 +570,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
 
 
-                    builder.setTitle("Select/Confirm head of House");
+                    builder.setTitle("Select/Confirm head of Household");
                     int selected = Head; // or whatever you want
 
                     builder.setIcon(R.drawable.ic_person_black_24dp);

@@ -2,10 +2,12 @@ package bw.org.statsbots.bias;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -75,7 +77,7 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
             }
         }
 
-        Log.d("adasdasd",ind.getQ101()+"");
+
         RadioButton[] bt = new RadioButton[2];
         for(int f=0;f<rg.getChildCount();f++)
         {
@@ -104,6 +106,9 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
 
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), p1.getAssignmentID());
         sample.getSample();
+
+        thisHouse = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch()).get(0);
+
 
         if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getStatusCode().equals("2") )
         {
@@ -154,6 +159,7 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
                 plus.setVisibility(View.GONE);
                 minus.setVisibility(View.VISIBLE);
                 descText.setMaxLines(Integer.MAX_VALUE);
+
 
             }
         });
@@ -255,6 +261,13 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
                 startActivity(q1o2);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(IndividualQuestionaireConsent.this, started_household.class);
+        intent.putExtra("Household", thisHouse);
+        startActivity(intent);
     }
 
 }
