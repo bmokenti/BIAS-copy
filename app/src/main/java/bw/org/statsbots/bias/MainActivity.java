@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         myDB.onOpen(myDB.getWritableDatabase());
 
 
-        Log.d("House", thisHouse.getAssignment_ID());
+        //Log.d("House", thisHouse.getAssignment_ID());
 
         //***************************Read Roster from Database and load it into Object thisHouse
         List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
@@ -481,10 +481,10 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
 
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
                 int Head=0;
-
-                if(hhArray[0]==null){
+                if(hhArray[0]==null)
+                {
                     AlertDialog.Builder builderErr = new AlertDialog.Builder(MainActivity.this);
                     builderErr.setTitle("P01 Error");
                     builderErr.setIcon(R.drawable.ic_warning_orange_24dp);
@@ -532,33 +532,40 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
                             if(memberExist[0]==1){
 
-                                if(counter == thisHouse.getPersons().length){
-
-                                    if(thisHouse.getPersons()!=null){
-                                        if(thisHouse.getPersons()[i].getP02() != null ){
-                                            if(thisHouse.getPersons()[i].getP02().equals("00")){
+                                if(counter == thisHouse.getPersons().length)
+                                {
+                                    if(thisHouse.getPersons()!=null)
+                                    {
+                                        if(thisHouse.getPersons()[i].getP02() != null )
+                                        {
+                                            if(thisHouse.getPersons()[i].getP02().equals("00"))
+                                            {
                                                 Head = i;
                                             }
-
                                         }
                                     }
-                                }else{
-
-                                    if(thisHouse.getPersons()!=null){
-                                        if(i==thisHouse.getPersons().length && thisHouse.getPersons().length!=0 ){
+                                }
+                                /*else
+                                {
+                                  if(thisHouse.getPersons()!=null)
+                                  {
+                                     if(i  ==  thisHouse.getPersons().length && thisHouse.getPersons().length!=0)
+                                        {
                                             break;
-                                        }else{
-                                            if(thisHouse.getPersons()[i].getP02() != null ){
-                                                if(thisHouse.getPersons()[i].getP02().equals("00")){
+                                        }
+                                        else
+                                        {
+                                            if(thisHouse.getPersons()[i].getP02() != null)
+                                            {
+                                                if(thisHouse.getPersons()[i].getP02().equals("00"))
+                                                {
                                                     Head = i;
                                                 }
-
                                             }
                                         }
-
                                     }
 
-                                }
+                                }*/
 
 
                             }
@@ -584,11 +591,11 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                             for(int i =0;i<counter;i++)
                             {
                                 plist[i]= hhArray[i].getText().toString();
-                                Log.d("Name",plist[i] );
+                                //Log.d("Name",plist[i] );
                             }
 
                             //Set the Head of house to index of selected array
-                            Log.d("Size ",plist.length+"");
+                            //Log.d("Size ",plist.length+"");
                             HeadofHouse = which;
 
                             thisHouse.setHead(HeadofHouse);
@@ -606,7 +613,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                                 if(i==which){
                                     p[i].setP02("00");
                                 }
-                                Log.d("Person ", p[i].getLineNumber() + " " + p[i].getP01());
+                                //Log.d("Person ", p[i].getLineNumber() + " " + p[i].getP01());
                             }
 
 
@@ -626,7 +633,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
                                 thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
 
-                                Log.d("Memmbers", thisHouse.getPersons().length+"");
+                                //Log.d("Memmbers", thisHouse.getPersons().length+"");
                                 List<PersonRoster> kTemp = new ArrayList<>();
 
                                 for(int ii =0; ii<plist.length;ii++){
@@ -637,7 +644,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                                         thisHouse.getPersons()[ii].setP01(p[ii].getP01());
                                     }
 
-                                    Log.d("Check Persons", ii+"======================");
+                                    //Log.d("Check Persons", ii+"======================");
                                 }
 
                                 List<PersonRoster> finalList = new ArrayList<>();
