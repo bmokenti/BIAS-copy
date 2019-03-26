@@ -84,6 +84,19 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
         if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
                 (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
         {
+
+
+            individual.setQ1104(null);
+            individual.setQ1105(null);
+            individual.setQ1106(null);
+            individual.setQ1106a(null);
+            individual.setQ1106b(null);
+            individual.setQ1106bOther(null);
+            myDB.onOpen(myDB.getReadableDatabase());
+            myDB.getWritableDatabase();
+            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+            myDB.close();
+
             Intent intent = new Intent(q1104.this, q1107.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
@@ -151,7 +164,11 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
                     if (rbtn2.isChecked()) {
                         individual.setQ1104(selectedRbtn.getText().toString().substring(0,1));
 
-
+                        individual.setQ1105(null);
+                        individual.setQ1106(null);
+                        individual.setQ1106a(null);
+                        individual.setQ1106b(null);
+                        individual.setQ1106bOther(null);
                         myDB.onOpen(myDB.getReadableDatabase());
                         myDB.getWritableDatabase();
                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);

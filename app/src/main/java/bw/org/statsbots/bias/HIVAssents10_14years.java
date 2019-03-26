@@ -329,8 +329,6 @@ public class HIVAssents10_14years extends AppCompatActivity implements Serializa
                                                         intent.putExtra("Household", thisHouse);
                                                         startActivity(intent);
 
-
-
                                                     }
                                                 }
                                             }

@@ -284,9 +284,11 @@ public class q602 extends AppCompatActivity implements Serializable{
 
         if(ind.getQ602_Other()!= null &&  !ind.getQ602_Other().equals(""))
         {
-            if(Integer.parseInt(ind.getQ602_Other())== 1)
+            if(Integer.parseInt(ind.getQ602_Other().substring(0,1)) == 1)
             {
                 ck15txt.setChecked(true);
+                Q602edt.setVisibility(View.VISIBLE);
+                Q602edt.setText(ind.getQ602_Other().substring(1,ind.getQ602_Other().length()));
 
             }else
             {
@@ -294,10 +296,6 @@ public class q602 extends AppCompatActivity implements Serializable{
             }
         }
 
-        if(ind.getQ602_Otherspecify()!= null )
-        {
-           Q602edt.setText(ind.getQ602_Otherspecify());
-        }
 
 
 
@@ -407,7 +405,8 @@ public class q602 extends AppCompatActivity implements Serializable{
                             individual.setQ602_15("2");
                         } if (chkOther.isChecked()) {
                             individual.setQ602_Other("1");
-                            individual.setQ602_Otherspecify(Q602edt.getText().toString());
+                            individual.setQ602_Other("1"+Q602edt.getText().toString());
+
                         } else {
                             individual.setQ602_Other("2");
                         }

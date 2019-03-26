@@ -1126,11 +1126,6 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
 
                                                         /******************************END SET STATUS************************************************/
 
-
-
-
-
-
                                                         /*Intent intent = new Intent(HIVAdultsConsent18Plus.this, started_household.class);
                                                         intent.putExtra("Household", thisHouse);
                                                         startActivity(intent);*/

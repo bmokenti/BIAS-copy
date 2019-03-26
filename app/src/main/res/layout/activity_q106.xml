@@ -372,7 +372,7 @@
                             android:hint="Fully Describe the industry"
                             android:textSize="12dp"
                             android:padding="10dp"
-                            android:text="" />
+                             />
 
                     </LinearLayout>
 

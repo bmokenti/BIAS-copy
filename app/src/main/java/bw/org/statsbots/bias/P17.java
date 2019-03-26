@@ -55,6 +55,17 @@ public class P17 extends AppCompatActivity implements Serializable {
         }
 
 
+        if ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("0")) || sample.getStatusCode().equals("3"))
+        {
+            //TB ONLY
+
+            finish();
+            Intent intent = new Intent(P17.this, P18.class);
+            intent.putExtra("Household", thisHouse);
+            startActivity(intent);
+
+
+        }
 
         Button btnNext = (Button) findViewById(R.id.p17_btnNext);
         Button btnPrev = (Button) findViewById(R.id.p03_btnPrev);
@@ -147,7 +158,8 @@ public class P17 extends AppCompatActivity implements Serializable {
 
         btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 //thisHouse.previous = String.valueOf(p1.getSRNO());
 
 

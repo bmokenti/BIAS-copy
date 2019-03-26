@@ -198,6 +198,8 @@ public class q301 extends AppCompatActivity implements Serializable{
                             //Set q301 for the current individual
 
                             individual.setQ301(selectedRbtn1.getText().toString().substring(0, 1));
+                            individual.setQ301a(null);
+
                             myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();
                             myDB.updateIndividual(myDB.getWritableDatabase(),individual);

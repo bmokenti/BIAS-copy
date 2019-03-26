@@ -203,6 +203,7 @@ public class q104 extends AppCompatActivity implements Serializable {
         }
 
 
+
         if(ind.getQ104a()!=null){
             String type = ind.getQ104a();
             int pos = 0;
@@ -229,7 +230,7 @@ public class q104 extends AppCompatActivity implements Serializable {
 
         }
 
-        if(ind.getQ104c() !=null){
+        if(ind.getQ104c() !=null  ){
             edtq104c.setText(ind.getQ104c());
         }
 
@@ -310,22 +311,23 @@ public class q104 extends AppCompatActivity implements Serializable {
                             //Check if country entered is in the list
                             boolean exist = false;
                             for (String l : lst1) {
-                                if (l.matches(Selectedlevel)) {
+                                if (l.matches(Selectedlevel))
+                                {
                                     exist = true;
                                     break;
                                 }
                             }
-                            if (edtq104c == null || edtq104c.length() == 0) {
+                            if (edtq104c == null || edtq104c.length() == 0 ) {
                                 int typ= Integer.parseInt(autoTypeEducation.getText().toString().substring(0,2));
                                 if(typ > 10){
-
-                                }else{
                                     lib.showError(q104.this, "Field of education", "Please type field of education");
                                     /**
                                      * VIBRATE DEVICE
                                      */
                                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                     vibs.vibrate(100);
+                                }else{
+
                                 }
 
                             }
@@ -347,6 +349,9 @@ public class q104 extends AppCompatActivity implements Serializable {
                                         break;
                                     }
                                 }
+
+
+
                                 //Log.d("P05", String.valueOf(exists));
                                 if (exists && exist && existsY) {
                                     int typ= Integer.parseInt(autoTypeEducation.getText().toString().substring(0,2));
@@ -400,11 +405,6 @@ public class q104 extends AppCompatActivity implements Serializable {
 
                                 }
 
-
-
-
-
-
                             }
 
 
@@ -414,18 +414,7 @@ public class q104 extends AppCompatActivity implements Serializable {
 
                 }
 
-
-
-
-
             }
-
-
-
-
-
-
-
 
         });
 
@@ -498,15 +487,3 @@ public class q104 extends AppCompatActivity implements Serializable {
 }
 
 
-
-/*
-*
-*  boolean exists = false;
-                    for (String s : lst) {
-                        if (s.equals(Selectedtype)) {
-
-                            exists = true;
-                            break;
-                        }
-                    }
- */

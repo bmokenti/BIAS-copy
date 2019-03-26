@@ -225,6 +225,8 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
                         {if(rbtn2.isChecked())
                         {
                             individual.setQ408(selectedRbtn.getText().toString().substring(0,1));
+                            individual.setQ408a(null);
+
                             myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();
                             myDB.updateIndividual(myDB.getWritableDatabase(),individual);
@@ -240,8 +242,8 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
 
                            individual.setQ408(selectedRbtn.getText().toString().substring(0,1));
                            individual.setQ408a(selectedRbtna.getText().toString().substring(0,1));
-                            myDB.onOpen(myDB.getReadableDatabase());
 
+                            myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();
                             myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                             myDB.close();
@@ -271,8 +273,10 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
 
                 }else
                 {
-                    q408.super.onBackPressed();
                     finish();
+                    Intent intent = new Intent(q408.this, q407.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
                 }
 
             }

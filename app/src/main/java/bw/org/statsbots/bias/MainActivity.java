@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         myDB.onOpen(myDB.getWritableDatabase());
 
 
-        //Log.d("House", thisHouse.getAssignment_ID());
+        Log.d("House", thisHouse.getAssignment_ID());
 
         //***************************Read Roster from Database and load it into Object thisHouse
         List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
@@ -481,10 +481,10 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
 
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 int Head=0;
-                if(hhArray[0]==null)
-                {
+
+                if(hhArray[0]==null){
                     AlertDialog.Builder builderErr = new AlertDialog.Builder(MainActivity.this);
                     builderErr.setTitle("P01 Error");
                     builderErr.setIcon(R.drawable.ic_warning_orange_24dp);
@@ -528,44 +528,37 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                     for(int i =0;i<counter;i++){
 
                             list[i]= (i+1) + " - " + hhArray[i].getText().toString();
-                            Log.d("Roster ",hhArray.length + " ---- " + counter);
+                            //Log.d("Roster ",hhArray.length + " ---- " + counter);
 
                             if(memberExist[0]==1){
 
-                                if(counter == thisHouse.getPersons().length)
-                                {
-                                    if(thisHouse.getPersons()!=null)
-                                    {
-                                        if(thisHouse.getPersons()[i].getP02() != null )
-                                        {
-                                            if(thisHouse.getPersons()[i].getP02().equals("00"))
-                                            {
+                                if(counter == thisHouse.getPersons().length){
+
+                                    if(thisHouse.getPersons()!=null){
+                                        if(thisHouse.getPersons()[i].getP02() != null && thisHouse.getPersons()[i].getP02().trim() != ""){
+                                            if(thisHouse.getPersons()[i].getP02().equals("00")){
                                                 Head = i;
                                             }
+
                                         }
                                     }
-                                }
-                                /*else
-                                {
-                                  if(thisHouse.getPersons()!=null)
-                                  {
-                                     if(i  ==  thisHouse.getPersons().length && thisHouse.getPersons().length!=0)
-                                        {
+                                }else{
+
+                                    if(thisHouse.getPersons()!=null){
+                                        if(i==thisHouse.getPersons().length && thisHouse.getPersons().length!=0 ){
                                             break;
-                                        }
-                                        else
-                                        {
-                                            if(thisHouse.getPersons()[i].getP02() != null)
-                                            {
-                                                if(thisHouse.getPersons()[i].getP02().equals("00"))
-                                                {
+                                        }else{
+                                            if(thisHouse.getPersons()[i].getP02() != null && thisHouse.getPersons()[i].getP02().trim() != "" ){
+                                                if(thisHouse.getPersons()[i].getP02().equals("00")){
                                                     Head = i;
                                                 }
+
                                             }
                                         }
+
                                     }
 
-                                }*/
+                                }
 
 
                             }

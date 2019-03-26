@@ -448,7 +448,12 @@ public class q410 extends AppCompatActivity implements Serializable {
                     startActivity(intent);
 
                 }
-                q410.super.onBackPressed();
+               else
+                {
+                    Intent intent = new Intent(q410.this, q408.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
+                }
             }
 
 

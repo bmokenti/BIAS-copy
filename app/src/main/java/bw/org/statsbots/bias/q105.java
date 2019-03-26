@@ -32,7 +32,7 @@ public class q105 extends AppCompatActivity implements Serializable{
     protected RadioButton selectedRbtn;
     protected DatabaseHelper myDB;
     protected EditText edt, edt1, edt2;
-    TextView q105text;
+    TextView q105text, txta, txtb;
    protected  PersonRoster p1 ;
     Individual pp1 = null;
 
@@ -59,6 +59,8 @@ public class q105 extends AppCompatActivity implements Serializable{
 
         edt1 = (EditText) findViewById(R.id.Q105atxt);
         edt2 = (EditText) findViewById(R.id.Q105btxt);
+        txta = (TextView) findViewById(R.id.q105type);
+        txtb = (TextView) findViewById(R.id.q105b);
 
         final RadioGroup rg = (RadioGroup)findViewById(R.id.q105radioGroup);
 
@@ -159,6 +161,8 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     edt.setText("");
                                     edt2.setEnabled(true);
                                     edt1.setEnabled(true);
+                                    txtb.setTextColor(Color.BLACK);
+                                    txta.setTextColor(Color.BLACK);
 
 
 
@@ -172,6 +176,8 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     edt.setText("");
                                     edt2.setEnabled(true);
                                     edt1.setEnabled(true);
+                                    txtb.setTextColor(Color.BLACK);
+                                    txta.setTextColor(Color.BLACK);
 
 
 
@@ -183,6 +189,9 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     edt.setText("");
                                     edt2.setEnabled(true);
                                     edt1.setEnabled(true);
+                                    txtb.setTextColor(Color.BLACK);
+                                    txta.setTextColor(Color.BLACK);
+
 
 
                                     break;
@@ -193,6 +202,8 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     edt2.setEnabled(true);
                                     edt1.setEnabled(true);
 
+                                    txtb.setTextColor(Color.BLACK);
+                                    txta.setTextColor(Color.BLACK);
 
                                     break;
                                 case R.id.q105_1e:
@@ -204,6 +215,9 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     edt1.setEnabled(false);
                                     edt2.setEnabled(false);
                                     edt2.setText("");
+                                    txtb.setTextColor(Color.LTGRAY);
+                                    txta.setTextColor(Color.LTGRAY);
+
 
 
                                     break;
@@ -216,6 +230,9 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     edt1.setEnabled(false);
                                     edt2.setEnabled(false);
                                     edt2.setText("");
+                                    txtb.setTextColor(Color.LTGRAY);
+                                    txta.setTextColor(Color.LTGRAY);
+
 
                                     break;
                                 case R.id.q105_1g:
@@ -224,6 +241,8 @@ public class q105 extends AppCompatActivity implements Serializable{
                                     edt.setText("");
                                     edt1.setText("");
                                     edt1.setEnabled(false);
+                                    txtb.setTextColor(Color.LTGRAY);
+                                    txta.setTextColor(Color.LTGRAY);
 
                                     edt2.setEnabled(false);
                                     edt2.setText("");
@@ -239,12 +258,17 @@ public class q105 extends AppCompatActivity implements Serializable{
 
                                     edt2.setEnabled(false);
                                     edt2.setText("");
+                                    txtb.setTextColor(Color.LTGRAY);
+                                    txta.setTextColor(Color.LTGRAY);
+
 
                                     break;
                                 case R.id.q105_other:
                                     if (checked)
                                         edt.setVisibility(View.VISIBLE);
 
+                                    txtb.setTextColor(Color.BLACK);
+                                    txta.setTextColor(Color.BLACK);
 
                                     edt1.setEnabled(true);
                                     edt2.setEnabled(true);
@@ -574,6 +598,8 @@ public class q105 extends AppCompatActivity implements Serializable{
                 edt.setText("");
                 edt2.setEnabled(true);
                 edt1.setEnabled(true);
+                txtb.setTextColor(Color.BLACK);
+                txta.setTextColor(Color.BLACK);
 
 
 
@@ -587,7 +613,8 @@ public class q105 extends AppCompatActivity implements Serializable{
                 edt.setText("");
                 edt2.setEnabled(true);
                 edt1.setEnabled(true);
-
+                txtb.setTextColor(Color.BLACK);
+                txta.setTextColor(Color.BLACK);
 
 
 
@@ -598,6 +625,8 @@ public class q105 extends AppCompatActivity implements Serializable{
                 edt.setText("");
                 edt2.setEnabled(true);
                 edt1.setEnabled(true);
+                txtb.setTextColor(Color.BLACK);
+                txta.setTextColor(Color.BLACK);
 
 
                 break;
@@ -607,6 +636,8 @@ public class q105 extends AppCompatActivity implements Serializable{
                 edt.setText("");
                 edt2.setEnabled(true);
                 edt1.setEnabled(true);
+                txtb.setTextColor(Color.BLACK);
+                txta.setTextColor(Color.BLACK);
 
 
                 break;
@@ -619,6 +650,8 @@ public class q105 extends AppCompatActivity implements Serializable{
                 edt1.setEnabled(false);
                 edt2.setEnabled(false);
                 edt2.setText("");
+                txtb.setTextColor(Color.LTGRAY);
+                txta.setTextColor(Color.LTGRAY);
 
 
                 break;
@@ -631,6 +664,9 @@ public class q105 extends AppCompatActivity implements Serializable{
                 edt1.setEnabled(false);
                 edt2.setEnabled(false);
                 edt2.setText("");
+                txtb.setTextColor(Color.LTGRAY);
+                txta.setTextColor(Color.LTGRAY);
+
 
                 break;
             case R.id.q105_1g:
@@ -642,6 +678,8 @@ public class q105 extends AppCompatActivity implements Serializable{
 
                 edt2.setEnabled(false);
                 edt2.setText("");
+                txtb.setTextColor(Color.LTGRAY);
+                txta.setTextColor(Color.LTGRAY);
 
                 break;
 
@@ -654,12 +692,16 @@ public class q105 extends AppCompatActivity implements Serializable{
 
                 edt2.setEnabled(false);
                 edt2.setText("");
+                txtb.setTextColor(Color.LTGRAY);
+                txta.setTextColor(Color.LTGRAY);
 
                 break;
             case R.id.q105_other:
                 if (checked)
                     edt.setVisibility(View.VISIBLE);
 
+                txtb.setTextColor(Color.BLACK);
+                txta.setTextColor(Color.BLACK);
 
                 edt1.setEnabled(true);
                 edt2.setEnabled(true);

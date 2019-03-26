@@ -204,9 +204,11 @@ else
 
         if(ind.getQ603_Other()!= null &&  !ind.getQ603_Other().equals(""))
         {
-            if(Integer.parseInt(ind.getQ603_Other())== 1)
+            if(Integer.parseInt(ind.getQ603_Other().substring(0,1))== 1)
             {
                 chkOther.setChecked(true);
+                q603edt.setVisibility(View.VISIBLE);
+                q603edt.setText(ind.getQ603_Other().substring(1,ind.getQ603_Other().length()));
 
             }else
             {
@@ -214,11 +216,7 @@ else
             }
         }
 
-        if((ind.getQ603_Otherspecify()!= null &&  !ind.getQ603_Otherspecify().equals("")) &&  ind.getQ603_Otherspecify() != null )
 
-        {
-            q603edt.setText(ind.getQ504_OtherSpecify());
-        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -294,7 +292,7 @@ else
                         individual.setQ603_9("2");
                     }if (chkOther.isChecked()) {
                         individual.setQ603_Other("1");
-                        individual.setQ603_Otherspecify(q603edt.getText().toString());
+                        individual.setQ603_Other("1"+q603edt.getText().toString());
 
                     } else {
                         individual.setQ603_Other("2");

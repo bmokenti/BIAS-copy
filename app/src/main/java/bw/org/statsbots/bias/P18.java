@@ -103,7 +103,7 @@ public class P18 extends AppCompatActivity implements Serializable {
 
         ||( ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("0") )|| sample.getStatusCode().equals("3")) &&
                 (Integer.valueOf(p1.getP04YY()) >= 15  ) && (Integer.valueOf(p1.getP06()) == 1 || Integer.valueOf(p1.getP06()) == 2 ||
-             (Integer.valueOf(p1.getP06()) == 3 && Integer.valueOf(p1.getP07()) >= 14))))
+             (Integer.valueOf(p1.getP06()) == 3 &&  Integer.valueOf(p1.getP07()) >= 14))))
         {
         //add to listview
             p18.add(p1.getP01());

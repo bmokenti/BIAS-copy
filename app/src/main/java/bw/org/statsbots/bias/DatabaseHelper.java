@@ -348,6 +348,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Q605Praying = "Q605Praying";
     private static final String Q605DontKnow = "Q605DontKnow";
     private static final String Q605Other = "Q605Other";
+    private static final String Q605OtherSpecify = "Q605OtherSpecify";
     private static final String Q606 = "Q606";
     private static final String Q607 = "Q607";
     private static final String Q608 = "Q608";
@@ -980,7 +981,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q602Workplace + " nvarchar(2),"
             + Q602Peer + " nvarchar(2),"
             + Q602School + " nvarchar(2),"
-            + Q602_Other + " nvarchar(100),"
+            + Q602_Other + " nvarchar(255),"
             + Q603Condom + " nvarchar(1),"
             + Q603FewerP + " nvarchar(1),"
             + Q603Both + " nvarchar(1),"
@@ -990,7 +991,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q603Injection + " nvarchar(1),"
             + Q603Blood + " nvarchar(1),"
             + Q603DontKnow + " nvarchar(1),"
-            + Q603Other + " nvarchar(100),"
+            + Q603Other + " nvarchar(255),"
             + Q604 + " nvarchar(1),"
             + Q604a + " nvarchar(1),"
             + Q604bYouth + " nvarchar(2),"
@@ -1007,14 +1008,15 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q604bWorkplace + " nvarchar(2),"
             + Q604bPeer + " nvarchar(2),"
             + Q604bSchool + " nvarchar(2),"
-            + Q604bOther + " nvarchar(100),"
+            + Q604bOther + " nvarchar(255),"
             + Q605Windows + " nvarchar(1),"
             + Q605Mouth + " nvarchar(1),"
             + Q605Hands + " nvarchar(1),"
             + Q605Nutrition + " nvarchar(1),"
             + Q605Praying + " nvarchar(1),"
             + Q605DontKnow + " nvarchar(1),"
-            + Q605Other + " nvarchar(100),"
+            + Q605Other + " nvarchar(255),"
+
             + Q606 + " nvarchar(1),"
             + Q607 + " nvarchar(1),"
             + Q608 + " nvarchar(1),"
@@ -1025,12 +1027,12 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q611c + " nvarchar(1),"
             + Q612 + " nvarchar(1),"
             + Q612a + " nvarchar(1),"
-            + Q612Other + " nvarchar(100),"
+            + Q612Other + " nvarchar(255),"
             + Q613 + " nvarchar(1),"
             + Q613a + " nvarchar(1),"
-            + Q613aOther + " nvarchar(100),"
+            + Q613aOther + " nvarchar(255),"
             + Q614 + " nvarchar(1),"
-            + Q614Other + " nvarchar(100),"
+            + Q614Other + " nvarchar(255),"
             + Q615 + " nvarchar(1),"
             + Q616Anybody + " nvarchar(1),"
             + Q616Poor + " nvarchar(1),"
@@ -1041,7 +1043,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q616PeopPrison + " nvarchar(1),"
             + Q616Smokers + " nvarchar(1),"
             + Q616DntKnow + " nvarchar(1),"
-            + Q616Other + " nvarchar(100),"
+            + Q616Other + " nvarchar(255),"
             + Q617Meal + " nvarchar(1),"
             + Q617Clothes + " nvarchar(1),"
             + Q617Miscarried + " nvarchar(1),"
@@ -1050,7 +1052,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q617Sejeso + " nvarchar(1),"
             + Q617Touching + " nvarchar(1),"
             + Q617Someone + " nvarchar(1),"
-            + Q617Other + " nvarchar(1),"
+            + Q617Other + " nvarchar(255),"
             + Q618 + " nvarchar(1),"
             + Q619Rash + " nvarchar(2),"
             + Q619Cough + " nvarchar(2),"
@@ -1066,9 +1068,9 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q619Fatigue + " nvarchar(2),"
             + Q619Sweats + " nvarchar(2),"
             + Q619DontKnow + " nvarchar(2),"
-            + Q619Other + " nvarchar(2),"
+            + Q619Other + " nvarchar(255),"
             + Q620 + " nvarchar(1),"
-            + Q620Other + " nvarchar(100),"
+            + Q620Other + " nvarchar(255),"
             + Q621 + " nvarchar(1),"
             + Q621aSpouse + " nvarchar(1),"
             + Q621aPartner + " nvarchar(1),"
@@ -1077,14 +1079,14 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q621aRelative + " nvarchar(1),"
             + Q621aHCWorker + " nvarchar(1),"
             + Q621aCoWorker + " nvarchar(1),"
-            + Q621aOther + " nvarchar(100),"
+            + Q621aOther + " nvarchar(255),"
             + Q621b + " nvarchar(1),"
-            + Q621bOther + " nvarchar(500),"
+            + Q621bOther + " nvarchar(255),"
             + Q622 + " nvarchar(1),"
             + Q622a + " nvarchar(1),"
-            + Q622aOther + " nvarchar(1),"
+            + Q622aOther + " nvarchar(255),"
             + Q622b + " nvarchar(1),"
-            + Q622bOther + " nvarchar(1),"
+            + Q622bOther + " nvarchar(255),"
             + Q623 + " nvarchar(1),"
             + Q624 + " nvarchar(1),"
             + Q625 + " nvarchar(1),"
@@ -1098,20 +1100,20 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q801b + " nvarchar(1),"
             + Q801c + " nvarchar(6),"
             + Q801d + " nvarchar(2),"
-            + Q801dOther + " nvarchar(100),"
+            + Q801dOther + " nvarchar(255),"
             + Q801e + " nvarchar(10),"
-            + Q801eOther + " nvarchar(100),"
+            + Q801eOther + " nvarchar(255),"
             + Q801f + " nvarchar(1),"
             + Q802 + " nvarchar(1),"
             + Q802a + " nvarchar(1),"
-            + Q802aOther + " nvarchar(100),"
+            + Q802aOther + " nvarchar(255),"
             + Q803 + " nvarchar(1),"
-            + Q803Other + " nvarchar(100),"
+            + Q803Other + " nvarchar(255),"
             + Q804 + " nvarchar(1),"
-            + Q804Other + " nvarchar(100),"
+            + Q804Other + " nvarchar(255),"
             + Q901 + " nvarchar(1),"
             + Q901a + " nvarchar(2),"
-            + Q901aOther + " nvarchar(100),"
+            + Q901aOther + " nvarchar(255),"
             + Q902 + " nvarchar(6),"
             + Q903DenyCare + " nvarchar(1),"
             + Q903Gossip + " nvarchar(1),"
@@ -1122,13 +1124,13 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q903SharingStatus + " nvarchar(1),"
             + Q904 + " nvarchar(1),"
             + Q904a + " nvarchar(1),"
-            + Q904aOther + " nvarchar(100),"
+            + Q904aOther + " nvarchar(255),"
             + Q904b + " nvarchar(6),"
             + Q904c + " nvarchar(2),"
-            + Q904cOther + " nvarchar(100),"
+            + Q904cOther + " nvarchar(255),"
             + Q905 + " nvarchar(2),"
             + Q905a + " nvarchar(1),"
-            + Q905aOther + " nvarchar(100),"
+            + Q905aOther + " nvarchar(255),"
             + Q1001 + " nvarchar(1),"
             + Q1002 + " nvarchar(1),"
             + Q1002aMCondom + " nvarchar(1),"
@@ -1148,14 +1150,14 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q1002aNatural + " nvarchar(1),"
             + Q1002aTraditional + " nvarchar(1),"
             + Q1002aSpiritual + " nvarchar(1),"
-            + Q1002aOther + " nvarchar(100),"
+            + Q1002aOther + " nvarchar(255),"
             + Q1002b + " nvarchar(1),"
-            + Q1002bOther + " nvarchar(100),"
+            + Q1002bOther + " nvarchar(255),"
             + Q1003 + " nvarchar(1),"
             + Q1004 + " nvarchar(8),"
             + Q1004a + " nvarchar(1),"
             + Q1004b + " nvarchar(2),"
-            + Q1004bOther + " nvarchar(100),"
+            + Q1004bOther + " nvarchar(255),"
             + Q1005 + " nvarchar(1),"
             + Q1005a + " nvarchar(1),"
             + Q1006 + " nvarchar(1),"
@@ -1163,11 +1165,11 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q1007a + " nvarchar(1),"
             + Q1008 + " nvarchar(1),"
             + Q1008a + " nvarchar(1),"
-            + Q1008aOther + " nvarchar(100),"
+            + Q1008aOther + " nvarchar(255),"
             + Q1009 + " nvarchar(1),"
             + Q1009a + " nvarchar(1),"
             + Q1010 + " nvarchar(1),"
-            + Q1010Other + " nvarchar(100),"
+            + Q1010Other + " nvarchar(255),"
             + Q1011 + " nvarchar(1),"
             + Q1011Other + " nvarchar(100),"
             + Q1012 + " nvarchar(8),"
@@ -1182,7 +1184,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q1017 + " nvarchar(1),"
             + Q1101 + " nvarchar(1),"
             + Q1101a + " nvarchar(1),"
-            + Q1101aOther + " nvarchar(100),"
+            + Q1101aOther + " nvarchar(255),"
             + Q1102 + " nvarchar(1),"
             + Q1102a + " nvarchar(4),"
             + Q1103 + " nvarchar(1),"
@@ -1194,7 +1196,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q1106 + " nvarchar(1),"
             + Q1106a + " nvarchar(1),"
             + Q1106b + " nvarchar(1),"
-            + Q1106bOther + " nvarchar(50),"
+            + Q1106bOther + " nvarchar(255),"
             + Q1107 + " nvarchar(1),"
             + Q1107aDD + " nvarchar(4),"
             + Q1107aWks + " nvarchar(4),"
@@ -1206,11 +1208,11 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + Q1109 + " nvarchar(1),"
             + Q1110 + " nvarchar(1),"
             + Q1111 + " nvarchar(1),"
-            + Q1111Other + " nvarchar(50),"
+            + Q1111Other + " nvarchar(255),"
             + Q1112 + " nvarchar(1),"
-            + Q1112Other + " nvarchar(50),"
+            + Q1112Other + " nvarchar(255),"
             + Q1113 + " nvarchar(1),"
-            + Q1113Other + " nvarchar(50),"
+            + Q1113Other + " nvarchar(255),"
             + Q1114 + " nvarchar(1),"
 
             + IndvQuestionnairePConsent15_17 + " nvarchar(1),"
@@ -1220,9 +1222,9 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             + BloodVol_4 + " nvarchar(1),"
             + BloodVol_6 + " nvarchar(1),"
             + BloodVol_10 + " nvarchar(1),"
-            + BloodVolComment + " nvarchar(50),"
+            + BloodVolComment + " nvarchar(255),"
             + B8_O15_Rapid + " nvarchar(1),"
-            + IndRapidResults + " nvarchar(50),"
+            + IndRapidResults + " nvarchar(255),"
             + IndBloodLabTest + " nvarchar(1),"
             + IndBloodStore + " nvarchar(1),"
             + IndRapidDate + " nvarchar(8),"
@@ -5221,32 +5223,33 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("Q1106bOther", ind.getQ1106bOther());
         hhValues.put("Q1107", ind.getQ1107());
 
-        String ddd = "";
-        String wk = "";
+//        String ddd = "";
+//        String wk = "";
+//
+//        if (ind.getQ1107aDD() != null) {
+//            if (ind.getQ1107aDD().length() == 1) {
+//                ddd = "0" + ind.getQ1107aDD();
+//            }
+//        }
+//        if (ind.getQ1107aWks() != null) {
+//            if (ind.getQ1107aWks().length() == 1) {
+//                wk = "0" + ind.getQ1107aWks();
+//            }
+//        }
+        hhValues.put("Q1107aDD", ind.getQ1107aDD());
+        hhValues.put("Q1107aWks", ind.getQ1107aWks());
 
-        if (ind.getQ1107aDD() != null) {
-            if (ind.getQ1107aDD().length() == 1) {
-                ddd = "0" + ind.getQ1107aDD();
-            }
-        }
-        if (ind.getQ1107aWks() != null) {
-            if (ind.getQ1107aWks().length() == 1) {
-                wk = "0" + ind.getQ1107aWks();
-            }
-        }
-        hhValues.put("Q1107aDD", ddd);
-        hhValues.put("Q1107aWks", wk);
 
 
         hhValues.put("Q1107aDontKnow", ind.getQ1107aDontKnow());
 
         hhValues.put("Q1108", ind.getQ1108());
 
-        hhValues.put("Q1108aDD", ind.getQ1108());
+        hhValues.put("Q1108aDD", ind.getQ1108aDD());
         hhValues.put("Q1108aWks", ind.getQ1108aWks());
 
 
-        hhValues.put("Q1108aDontKnow", ind.getQ1107aDontKnow());
+        hhValues.put("Q1108aDontKnow", ind.getQ1108aDontKnow());
 
 
         hhValues.put("Q1109", ind.getQ1109());

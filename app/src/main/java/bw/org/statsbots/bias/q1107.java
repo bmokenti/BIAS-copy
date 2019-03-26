@@ -80,6 +80,7 @@ public class q1107 extends AppCompatActivity implements  Serializable {
 
 
         }
+
         RadioButton[] bt = new RadioButton[2];
         for(int f=0;f<rg1.getChildCount();f++)
         {
@@ -99,8 +100,83 @@ public class q1107 extends AppCompatActivity implements  Serializable {
             }
         }
 
+if (individual.getQ1107() != null && individual.getQ1107().equals("2"))
+{
+    txtq1107aq.setTextColor(Color.LTGRAY);
+                                    txtweeks.setEnabled(false);
+                                    txtdays.setEnabled(false);
+                                    chk1107a.setEnabled(false);
+                                    // viewa.setVisibility(View.VISIBLE);
+                                    txtweeks.setText("00");
+                                    txtdays.setText("00");
+                                    txt1107dd.setTextColor(Color.LTGRAY);
+                                    txt1107wks.setTextColor(Color.LTGRAY);
+                                    chk1107a.setChecked(false);
+                                    //rb99.setVisibility(View.INVISIBLE);
+}
+
+
+//        RadioButton[] bt = new RadioButton[2];
+//        for(int f=0;f<rg1.getChildCount();f++) {
+//            View o = rg1.getChildAt(f);
+//            if (o instanceof RadioButton) {
+//                bt[f] = ((RadioButton) o);
+//                if (ind.getQ1107() != null && !ind.getQ1107().equals("")) {
+//                    if (Integer.parseInt(ind.getQ1103()) == f + 1) {
+//                        RadioButton radioButton = bt[f];
+//                        radioButton.setChecked(true);
+//                        //TextView q1101atext = findViewById(R.id.q1101atxt);
+//                       // RadioGroup rg1 = (RadioGroup) findViewById(R.id.q1103radioGroup);
+//                        // Is the current Radio Button checked?
+//                        boolean checked = radioButton.isChecked();
+//                        View v = radioButton;
+//                        switch (v.getId()) {
+//                            case R.id.q1107_y:
+//                                if (checked) {
+//                                    txtq1107aq.setTextColor(Color.BLACK);
+//                                    txtweeks.setEnabled(true);
+//                                    txtdays.setEnabled(true);
+//                                    chk1107a.setEnabled(true);
+//                                    // viewa.setVisibility(View.VISIBLE);
+//
+//                                    txt1107dd.setTextColor(Color.BLACK);
+//                                    txt1107wks.setTextColor(Color.BLACK);
+//
+//
+//                                    //rb99.setVisibility(View.VISIBLE);
+//                                }
+//
+//
+//                                break;
+//
+//                            case R.id.q1107_n:
+//                                if (checked) {
+//
+//                                    txtq1107aq.setTextColor(Color.LTGRAY);
+//                                    txtweeks.setEnabled(false);
+//                                    txtdays.setEnabled(false);
+//                                    chk1107a.setEnabled(false);
+//                                    // viewa.setVisibility(View.VISIBLE);
+//                                    txtweeks.setText("00");
+//                                    txtdays.setText("00");
+//                                    txt1107dd.setTextColor(Color.LTGRAY);
+//                                    txt1107wks.setTextColor(Color.LTGRAY);
+//                                    chk1107a.setChecked(false);
+//                                    //rb99.setVisibility(View.INVISIBLE);
+//                                }
+//                                break;
+//
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
+
         if(ind.getQ1107aDD()!= null)
         {
+
             txtdays.setText(ind.getQ1107aDD());
         }
 
@@ -172,6 +248,9 @@ public class q1107 extends AppCompatActivity implements  Serializable {
                             if (rbtn2.isChecked()) {
 
                                 individual.setQ1107(selectedRbtn.getText().toString().substring(0, 1));
+                                individual.setQ1107aWks("00");
+                                individual.setQ1107aDD("00");
+
                                 myDB.onOpen(myDB.getReadableDatabase());
                                 myDB.getWritableDatabase();
                                 myDB.updateIndividual(myDB.getWritableDatabase(), individual);
@@ -302,9 +381,6 @@ public class q1107 extends AppCompatActivity implements  Serializable {
                     //rb99.setVisibility(View.INVISIBLE);
                 }
                 break;
-
-
-
 
 
         }

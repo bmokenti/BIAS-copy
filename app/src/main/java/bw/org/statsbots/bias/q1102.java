@@ -102,19 +102,48 @@ public class q1102 extends AppCompatActivity implements  Serializable {
         }
 
         RadioButton[] bt = new RadioButton[3];
-        for(int f=0;f<rg.getChildCount();f++)
-        {
+        for(int f=0;f<rg.getChildCount();f++) {
             View o = rg.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ1102()!= null &&  !ind.getQ1102().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ1102())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ1102() != null && !ind.getQ1102().equals("")) {
+                    if (Integer.parseInt(ind.getQ1102()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
-                        break;
+                        // TextView q802atext = findViewById(R.id.q802a_other);
+                        // RadioGroup rg1 = (RadioGroup) findViewById(R.id.q802radioGroupa);
+                        // Is the current Radio Button checked?
+                        boolean checked = radioButton.isChecked();
+                        View v = radioButton;
+                        switch (v.getId()) {
+
+                            case R.id.q1102_1:
+                                if (checked)
+                                    q1102ay.setEnabled(true);
+                                q1102ay.setBackgroundResource(android.R.drawable.edit_text);
+                                q1102aylbl.setTextColor(Color.BLACK);
+
+
+                                break;
+
+
+                            case R.id.q1102_2:
+                                if (checked)
+                                    q1102ay.setEnabled(false);
+                                q1102ay.setBackgroundColor(Color.LTGRAY);
+                                q1102ay.setText("");
+                                q1102aylbl.setTextColor(Color.LTGRAY);
+
+                                break;
+                            case R.id.q1102_9:
+                                if (checked)
+                                    q1102ay.setEnabled(false);
+                                q1102ay.setBackgroundColor(Color.LTGRAY);
+                                q1102ay.setText("");
+                                q1102aylbl.setTextColor(Color.LTGRAY);
+                                break;
+
+                        }
                     }
                 }
             }
@@ -183,6 +212,7 @@ public class q1102 extends AppCompatActivity implements  Serializable {
                             myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();
                             myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.updateInd("Q1102a",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
                             myDB.close();
 
                             Intent q1o3 = new Intent(q1102.this, q1103.class);
@@ -214,7 +244,7 @@ public class q1102 extends AppCompatActivity implements  Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-finish();
+                finish();
                 Intent q1o3 = new Intent(q1102.this, q1101.class);
                 q1o3.putExtra("Individual", individual);
                 startActivity(q1o3);

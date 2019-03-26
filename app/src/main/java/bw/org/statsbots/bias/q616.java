@@ -333,11 +333,16 @@ public class q616 extends AppCompatActivity implements Serializable {
 
 
 
-        if(ind.getQ616_10() != null &&  !ind.getQ616_10().equals(""))
+        if(ind.getQ616_Other() != null &&  !ind.getQ616_Other().equals(""))
         {
-            if(Integer.parseInt(ind.getQ616_10())== 1)
+            if(Integer.parseInt(ind.getQ616_Other().substring(0,1))== 1)
             {
                 chkOther.setChecked(true);
+
+                edt616Other.setVisibility(View.VISIBLE);
+                edt616Other.setText(ind.getQ616_Other().substring(1,ind.getQ616_Other().length()));
+                //individual.setQ616_Other("1"+edt616Other.getText().toString());
+
 
             }else
             {
@@ -345,10 +350,7 @@ public class q616 extends AppCompatActivity implements Serializable {
             }
         }
 
-        if(ind.getQ616_Other()!= null )
-        {
-            edt616Other.setText(ind.getQ616_Other());
-        }
+
 
         /**
          * NEXT question
@@ -374,94 +376,95 @@ public class q616 extends AppCompatActivity implements Serializable {
                      */
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
-                } else {
+                }
+                else {
+                    if ((((chkOther.isChecked() && edt616Other.length() == 0)))) {
+                        lib.showError(q616.this, "Q616: ERROR: Other", "Please specify?");
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
+                    } else {
 
-                    if (chk1.isChecked()) {
-                        individual.setQ616_1("1");
-                    }
-                    else {
-                        individual.setQ616_1("2");
+                        if (chk1.isChecked()) {
+                            individual.setQ616_1("1");
+                        } else {
+                            individual.setQ616_1("2");
+
+                        }
+
+                        if (chk2.isChecked()) {
+                            individual.setQ616_2("1");
+                        } else {
+                            individual.setQ616_2("2");
+
+                        }
+                        if (chk3.isChecked()) {
+                            individual.setQ616_3("1");
+                        } else {
+                            individual.setQ616_3("2");
+
+                        }
+                        if (chk4.isChecked()) {
+                            individual.setQ616_4("1");
+                        } else {
+                            individual.setQ616_4("2");
+
+                        }
+                        if (chk5.isChecked()) {
+                            individual.setQ616_5("1");
+                        } else {
+                            individual.setQ616_5("2");
+
+                        }
+                        if (chk6.isChecked()) {
+                            individual.setQ616_6("1");
+                        } else {
+                            individual.setQ616_6("2");
+
+                        }
+                        if (chk7.isChecked()) {
+                            individual.setQ616_7("1");
+                        } else {
+                            individual.setQ616_7("2");
+
+                        }
+                        if (chk8.isChecked()) {
+                            individual.setQ616_8("1");
+                        } else {
+                            individual.setQ616_8("2");
+
+                        }
+                        if (chk9.isChecked()) {
+                            individual.setQ616_9("1");
+                        } else {
+                            individual.setQ616_9("2");
+
+                        }
+
+                        if (chkOther.isChecked()) {
+                            individual.setQ616_Other("1");
+
+                            individual.setQ616_Other(edt616Other.getText().toString());
+                            individual.setQ616_Other("1" + edt616Other.getText().toString());
+
+                        } else
+                            {
+                            individual.setQ616_Other("2");
+
+                        }
+
+                        myDB.onOpen(myDB.getReadableDatabase());
+                        myDB.getWritableDatabase();
+                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                        myDB.close();
+
+                        Intent intent = new Intent(q616.this, q617.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
 
                     }
-
-                    if (chk2.isChecked()) {
-                        individual.setQ616_2("1");
-                    }
-                    else {
-                        individual.setQ616_2("2");
-
-                    }
-                    if (chk3.isChecked()) {
-                        individual.setQ616_3("1");
-                    }
-                    else {
-                        individual.setQ616_3("2");
-
-                    }
-                    if (chk4.isChecked()) {
-                        individual.setQ616_4("1");
-                    }
-                    else {
-                        individual.setQ616_4("2");
-
-                    }
-                    if (chk5.isChecked()) {
-                        individual.setQ616_5("1");
-                    }
-                    else {
-                        individual.setQ616_5("2");
-
-                    }
-                    if (chk6.isChecked()) {
-                        individual.setQ616_6("1");
-                    }
-                    else {
-                        individual.setQ616_6("2");
-
-                    }
-                    if (chk7.isChecked()) {
-                        individual.setQ616_7("1");
-                    }
-                    else {
-                        individual.setQ616_7("2");
-
-                    }
-                    if (chk8.isChecked()) {
-                        individual.setQ616_8("1");
-                    }
-                    else {
-                        individual.setQ616_8("2");
-
-                    }
-                    if (chk9.isChecked()) {
-                        individual.setQ616_9("1");
-                    }
-                    else {
-                        individual.setQ616_9("2");
-
-                    }
-
-                    if (chkOther.isChecked()) {
-                        individual.setQ616_10("1");
-
-                        individual.setQ616_Other(edt616Other.getText().toString());
-
-                    }
-
-                    else {
-                        individual.setQ616_Other("");
-
-                    }
-
-                    myDB.onOpen(myDB.getReadableDatabase());
-                    myDB.getWritableDatabase();
-                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
-                    myDB.close();
-
-                    Intent intent = new Intent(q616.this, q617.class);
-                    intent.putExtra("Individual", individual);
-                    startActivity(intent);
-
                 }
             }
         });

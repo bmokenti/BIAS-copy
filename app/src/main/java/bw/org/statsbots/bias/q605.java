@@ -181,9 +181,11 @@ public class q605 extends AppCompatActivity implements Serializable {
 
         if(ind.getQ605_Other() != null &&  !ind.getQ605_Other().equals(""))
         {
-            if(Integer.parseInt(ind.getQ605_Other())== 1)
+            if(Integer.parseInt(ind.getQ605_Other().substring(0,1))== 1)
             {
                 chkOther.setChecked(true);
+                q605edt.setVisibility(View.VISIBLE);
+                q605edt.setText(ind.getQ605_Other().substring(1,ind.getQ605_Other().length()));
 
             }else
             {
@@ -191,10 +193,11 @@ public class q605 extends AppCompatActivity implements Serializable {
             }
         }
 
-        if(ind.getQ605_Otherspecify()!= null )
-        {
-            q605edt.setText(ind.getQ605_Otherspecify());
-        }
+//        if(ind.getQ605_Otherspecify()!= null )
+//        {
+//            q605edt.setVisibility(View.VISIBLE);
+//            q605edt.setText(ind.getQ605_Otherspecify());
+//        }
 
 
         Button btnnext = findViewById(R.id.button);
@@ -254,7 +257,7 @@ public class q605 extends AppCompatActivity implements Serializable {
                         }
                         if (chkOther.isChecked()) {
                             individual.setQ605_Other("1");
-                            individual.setQ605_Otherspecify(q605edt.getText().toString());
+                            individual.setQ605_Other("1"+q605edt.getText().toString());
                         } else {
                             individual.setQ605_Other("2");
                         }
@@ -312,7 +315,7 @@ public class q605 extends AppCompatActivity implements Serializable {
                         }
                         if (chkOther.isChecked()) {
                             individual.setQ605_Other("1");
-                            individual.setQ605_Otherspecify(q605edt.getText().toString());
+                            individual.setQ605_Other("1"+q605edt.getText().toString());
                         } else {
                             individual.setQ605_Other("2");
                         }

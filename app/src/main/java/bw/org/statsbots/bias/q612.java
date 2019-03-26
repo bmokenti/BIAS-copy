@@ -26,6 +26,7 @@ public class q612 extends AppCompatActivity  implements Serializable{
     protected RadioButton rbtn1,rbtn2,rbtn9,rbtna1, rbtna2, rbtna9, rbtnaOther, selected, selected1;
     protected RadioGroup rbtngroup, rbtngroup1;
     protected EditText edt;
+    TextView q612atext;
 
 
     @Override
@@ -50,6 +51,7 @@ public class q612 extends AppCompatActivity  implements Serializable{
         rbtnaOther =  (RadioButton)findViewById(R.id.q612a_other);
 
         edt = (EditText) findViewById(R.id.q612_other);
+        TextView q612atext = findViewById(R.id.q612atxt);
 
         //final int selectedId1 = rbtngroup1.getCheckedRadioButtonId();
 
@@ -84,28 +86,40 @@ public class q612 extends AppCompatActivity  implements Serializable{
             }
         }
 
-//        RadioButton[] bta = new RadioButton[4];
-//        for(int f=0;f<rbtngroup1.getChildCount();f++)
-//        {
-//            View o = rbtngroup1.getChildAt(f);
-//            if (o instanceof RadioButton)
-//            {
-//                bta[f]=((RadioButton)o);
-//                if(ind.getQ612a()!= null &&  !ind.getQ612a().equals(""))
-//                {
-//                    if(Integer.parseInt(ind.getQ612a())==f+1)
-//                    {
-//                        RadioButton radioButton = bta[f];
-//                        radioButton.setChecked(true);
-//                        break;
-//                    }
-//                }
-//            }
-//        }
+        RadioButton[] bta = new RadioButton[4];
+        for(int f=0;f<rbtngroup1.getChildCount();f++)
+        {
+            View o = rbtngroup1.getChildAt(f);
+            if (o instanceof RadioButton)
+            {
+                bta[f]=((RadioButton)o);
+                if(ind.getQ612a()!= null &&  !ind.getQ612a().equals(""))
+                {
+                    if(Integer.parseInt(ind.getQ612a())==f+1)
+                    {
+                        RadioButton radioButton = bta[f];
+                        radioButton.setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
         if(ind.getQ612aOther()!= null)
         {
             edt.setText(ind.getQ612aOther());
+        }
+
+
+        if (individual.getQ612() != null &&( individual.getQ612().equals("2") ||  individual.getQ612().equals("9")) )
+        {
+            rbtna1.setEnabled(false);
+            rbtna2.setEnabled(false);
+            rbtna9.setEnabled(false);
+            rbtnaOther.setEnabled(false);
+            edt.setVisibility(View.INVISIBLE);
+            edt.setText("");
+            q612atext.setTextColor(Color.LTGRAY);
         }
 
 
@@ -157,6 +171,7 @@ public class q612 extends AppCompatActivity  implements Serializable{
                         } else {
                             if (rbtn2.isChecked() || rbtn9.isChecked()) {
                                 individual.setQ612(selected.getText().toString().substring(0, 1));
+                                individual.setQ612a(null);
 
                                 myDB.onOpen(myDB.getReadableDatabase());
                                 myDB.getWritableDatabase();
@@ -205,7 +220,7 @@ public class q612 extends AppCompatActivity  implements Serializable{
 
     public void onRadioButtonClicked(View v) {
 
-        TextView q612atext = findViewById(R.id.q612atxt);
+
         RadioGroup rg1 = (RadioGroup) findViewById(R.id.q612radioGroupa);
         // Is the current Radio Button checked?
         boolean checked = ((RadioButton) v).isChecked();

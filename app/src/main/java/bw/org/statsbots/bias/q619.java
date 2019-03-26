@@ -301,11 +301,15 @@ public class q619 extends AppCompatActivity implements Serializable {
 
 
 
-        if(ind.getQ619_15() != null &&  !ind.getQ619_15().equals(""))
+        if(ind.getQ619_Other() != null &&  !ind.getQ619_Other().equals(""))
         {
-            if(Integer.parseInt(ind.getQ619_15())== 1)
+            if(Integer.parseInt(ind.getQ619_Other().substring(0,1))== 1)
             {
                 chkOther.setChecked(true);
+                q619edt.setVisibility(View.VISIBLE);
+                q619edt.setText(ind.getQ619_Other().substring(1,ind.getQ619_Other().length()));
+                //individual.setQ616_Other("1"+edt616Other.getText().toString());
+
 
             }else
             {
@@ -313,10 +317,10 @@ public class q619 extends AppCompatActivity implements Serializable {
             }
         }
 
-        if(ind.getQ619_Other()!= null )
-        {
-            q619edt.setText(ind.getQ619_Other());
-        }
+//        if(ind.getQ619_Other()!= null )
+//        {
+//            q619edt.setText(ind.getQ619_Other());
+//        }
 
         Button btnNext = (Button) findViewById(R.id.button);
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -422,7 +426,8 @@ public class q619 extends AppCompatActivity implements Serializable {
                             }
                             if (chkOther.isChecked()) {
                                 individual.setQ619_Other("1");
-                                individual.setQ619_Other(q619edt.getText().toString());
+                               // individual.setQ619_Other(q619edt.getText().toString());
+                                individual.setQ619_Other("1"+q619edt.getText().toString());
 
                             } else {
                                 individual.setQ619_Other("");

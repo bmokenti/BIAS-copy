@@ -119,6 +119,15 @@ public class q601 extends AppCompatActivity implements Serializable {
                 }
             }
         }
+        if (individual.getQ601() != null && individual.getQ601().equals("2"))
+        {
+
+            rbtna1.setEnabled(false);
+            rbtna2.setEnabled(false);
+            rbtna1.setChecked(false);
+            rbtna2.setChecked(false);
+            q601atxt.setTextColor(Color.LTGRAY);
+        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

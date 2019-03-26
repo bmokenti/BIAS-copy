@@ -129,7 +129,8 @@ public class q904 extends AppCompatActivity implements Serializable {
 
         if( ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) || sample.getStatusCode().equals("3")
                 || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && p1.getP06().equals("2")))
-                && (individual.getQ801() != null &&  individual.getQ801().equals("2") ) && (individual.getQ801f() != null && !individual.getQ801f().equals("1")))
+                && ((individual.getQ801() != null &&  individual.getQ801().equals("2") ) ||
+        (individual.getQ801f() != null && !(individual.getQ801f().equals("1"))) ))
         {
             Intent intent = new Intent(q904.this, q1101.class);
             intent.putExtra("Individual", individual);
@@ -145,24 +146,328 @@ public class q904 extends AppCompatActivity implements Serializable {
 //            startActivity(intent);
 //        }
 
-        RadioButton[] bt = new RadioButton[4];
-        for(int f=0;f<rg.getChildCount();f++)
+
+        if (individual.getQ904() != null && (individual.getQ904().equals("1") || individual.getQ904().equals("2")))
+
         {
+            rbtna1.setEnabled(true);
+            rbtna2.setEnabled(true);
+            rbtna3.setEnabled(true);
+            rbtna4.setEnabled(true);
+            rbtna5.setEnabled(true);
+            rbtnaOther.setEnabled(true);
+            t1.setTextColor(Color.BLACK);
+
+            edtbyear.setText("");
+            edtbyear.setEnabled(true);
+            chkb9999.setEnabled(true);
+
+
+            chkb99.setEnabled(true);
+            edtbmnths.setText("");
+            edtbmnths.setEnabled(true);
+            t3.setTextColor(Color.BLACK);
+
+            rbtnc1.setEnabled(false);
+            rbtnc1.setEnabled(false);
+            rbtnc2.setEnabled(false);
+            rbtnc3.setEnabled(false);
+            rbtnc4.setEnabled(false);
+            rbtnc5.setEnabled(false);
+            rbtnc6.setEnabled(false);
+            rbtnc7.setEnabled(false);
+            rbtnc8.setEnabled(false);
+            rbtnc10.setEnabled(false);
+            rbtnc11.setEnabled(false);
+            rbtnc12.setEnabled(false);
+            rbtnc13.setEnabled(false);
+            rbtncOther.setEnabled(false);
+            t4.setTextColor(Color.LTGRAY);
+
+            rbtnc1.setChecked(false);
+            rbtnc1.setChecked(false);
+            rbtnc2.setChecked(false);
+            rbtnc3.setChecked(false);
+            rbtnc4.setChecked(false);
+            rbtnc5.setChecked(false);
+            rbtnc6.setChecked(false);
+            rbtnc7.setChecked(false);
+            rbtnc8.setChecked(false);
+            rbtnc10.setChecked(false);
+            rbtnc11.setChecked(false);
+            rbtnc12.setChecked(false);
+            rbtnc13.setChecked(false);
+            rbtncOther.setChecked(false);
+        }
+
+        RadioButton[] bt = new RadioButton[4];
+        for(int f=0;f<rg.getChildCount();f++) {
             View o = rg.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ904()!= null &&  !ind.getQ904().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ904())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ904() != null && !ind.getQ904().equals("")) {
+                    if (Integer.parseInt(ind.getQ904()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
-                        break;
+
+                        TextView q802atext = findViewById(R.id.q802a_other);
+                        RadioGroup rg1 = (RadioGroup) findViewById(R.id.q802radioGroupa);
+                        // Is the current Radio Button checked?
+                        boolean checked = radioButton.isChecked();
+                        View v = radioButton;
+                        switch (v.getId()) {
+
+                            case R.id.q904_1:
+                                if (checked)
+
+                                    rbtna1.setEnabled(true);
+                                rbtna2.setEnabled(true);
+                                rbtna3.setEnabled(true);
+                                rbtna4.setEnabled(true);
+                                rbtna5.setEnabled(true);
+                                rbtnaOther.setEnabled(true);
+                                t1.setTextColor(Color.BLACK);
+
+                                edtbyear.setText("");
+                                edtbyear.setEnabled(true);
+                                chkb9999.setEnabled(true);
+
+
+                                chkb99.setEnabled(true);
+                                edtbmnths.setText("");
+                                edtbmnths.setEnabled(true);
+                                t3.setTextColor(Color.BLACK);
+
+                                rbtnc1.setEnabled(false);
+                                rbtnc1.setEnabled(false);
+                                rbtnc2.setEnabled(false);
+                                rbtnc3.setEnabled(false);
+                                rbtnc4.setEnabled(false);
+                                rbtnc5.setEnabled(false);
+                                rbtnc6.setEnabled(false);
+                                rbtnc7.setEnabled(false);
+                                rbtnc8.setEnabled(false);
+                                rbtnc10.setEnabled(false);
+                                rbtnc11.setEnabled(false);
+                                rbtnc12.setEnabled(false);
+                                rbtnc13.setEnabled(false);
+                                rbtncOther.setEnabled(false);
+                                t4.setTextColor(Color.LTGRAY);
+
+                                rbtnc1.setChecked(false);
+                                rbtnc1.setChecked(false);
+                                rbtnc2.setChecked(false);
+                                rbtnc3.setChecked(false);
+                                rbtnc4.setChecked(false);
+                                rbtnc5.setChecked(false);
+                                rbtnc6.setChecked(false);
+                                rbtnc7.setChecked(false);
+                                rbtnc8.setChecked(false);
+                                rbtnc10.setChecked(false);
+                                rbtnc11.setChecked(false);
+                                rbtnc12.setChecked(false);
+                                rbtnc13.setChecked(false);
+                                rbtncOther.setChecked(false);
+
+
+                                break;
+
+                            case R.id.q904_2:
+                                if (checked)
+
+                                    rbtna1.setEnabled(true);
+                                rbtna2.setEnabled(true);
+                                rbtna3.setEnabled(true);
+                                rbtna4.setEnabled(true);
+                                rbtna5.setEnabled(true);
+                                rbtnaOther.setEnabled(true);
+                                t2.setTextColor(Color.BLACK);
+
+
+                                edtbyear.setText("");
+                                edtbyear.setEnabled(true);
+                                chkb9999.setEnabled(true);
+
+
+                                chkb99.setEnabled(true);
+                                edtbmnths.setText("");
+                                edtbmnths.setEnabled(true);
+                                t3.setTextColor(Color.BLACK);
+
+
+                                rbtnc1.setEnabled(false);
+                                rbtnc1.setEnabled(false);
+                                rbtnc2.setEnabled(false);
+                                rbtnc3.setEnabled(false);
+                                rbtnc4.setEnabled(false);
+                                rbtnc5.setEnabled(false);
+                                rbtnc6.setEnabled(false);
+                                rbtnc7.setEnabled(false);
+                                rbtnc8.setEnabled(false);
+                                rbtnc10.setEnabled(false);
+                                rbtnc11.setEnabled(false);
+                                rbtnc12.setEnabled(false);
+                                rbtnc13.setEnabled(false);
+                                rbtncOther.setEnabled(false);
+                                t4.setTextColor(Color.LTGRAY);
+
+                                rbtnc1.setChecked(false);
+                                rbtnc1.setChecked(false);
+                                rbtnc2.setChecked(false);
+                                rbtnc3.setChecked(false);
+                                rbtnc4.setChecked(false);
+                                rbtnc5.setChecked(false);
+                                rbtnc6.setChecked(false);
+                                rbtnc7.setChecked(false);
+                                rbtnc8.setChecked(false);
+                                rbtnc10.setChecked(false);
+                                rbtnc11.setChecked(false);
+                                rbtnc12.setChecked(false);
+                                rbtnc13.setChecked(false);
+                                rbtncOther.setChecked(false);
+
+                                break;
+
+                            case R.id.q904_3:
+                                if (checked) {
+
+                                    rbtna1.setEnabled(false);
+                                    rbtna2.setEnabled(false);
+                                    rbtna3.setEnabled(false);
+                                    rbtna4.setEnabled(false);
+                                    rbtna5.setEnabled(false);
+                                    rbtnaOther.setEnabled(false);
+                                    t2.setTextColor(Color.LTGRAY);
+
+
+                                    rbtna1.setChecked(false);
+                                    rbtna2.setChecked(false);
+                                    rbtna3.setChecked(false);
+                                    rbtna4.setChecked(false);
+                                    rbtna5.setChecked(false);
+                                    rbtnaOther.setEnabled(false);
+
+                                    rbtnc1.setEnabled(true);
+                                    rbtnc1.setEnabled(true);
+                                    rbtnc2.setEnabled(true);
+                                    rbtnc3.setEnabled(true);
+                                    rbtnc4.setEnabled(true);
+                                    rbtnc5.setEnabled(true);
+                                    rbtnc6.setEnabled(true);
+                                    rbtnc7.setEnabled(true);
+                                    rbtnc8.setEnabled(true);
+                                    rbtnc10.setEnabled(true);
+                                    rbtnc11.setEnabled(true);
+                                    rbtnc12.setEnabled(true);
+                                    rbtnc13.setEnabled(true);
+                                    rbtncOther.setEnabled(true);
+                                    t4.setTextColor(Color.BLACK);
+
+
+                                    edtbyear.setText("");
+                                    edtbyear.setEnabled(false);
+                                    chkb9999.setChecked(false);
+                                    chkb9999.setEnabled(false);
+                                    chkb99.setChecked(false);
+                                    chkb99.setEnabled(false);
+                                    edtbmnths.setText("");
+                                    edtbmnths.setEnabled(false);
+                                    t3.setTextColor(Color.LTGRAY);
+
+
+                                }
+                                // Put some meat on the sandwich
+                                else {
+
+                                    edtbmnths.setEnabled(true);
+                                    // Remove the meat
+                                }
+
+
+                                break;
+
+                            case R.id.q904_4:
+                                if (checked) {
+
+                                    rbtna1.setEnabled(false);
+                                    rbtna1.setEnabled(false);
+                                    rbtna2.setEnabled(false);
+                                    rbtna3.setEnabled(false);
+                                    rbtna4.setEnabled(false);
+                                    rbtna5.setEnabled(false);
+                                    rbtnaOther.setEnabled(false);
+                                    t2.setTextColor(Color.BLACK);
+
+                                    rbtna1.setChecked(false);
+                                    rbtna2.setChecked(false);
+                                    rbtna3.setChecked(false);
+                                    rbtna4.setChecked(false);
+                                    rbtna5.setChecked(false);
+                                    rbtnaOther.setEnabled(false);
+
+
+                                    rbtnc1.setEnabled(false);
+                                    rbtnc1.setEnabled(false);
+                                    rbtnc2.setEnabled(false);
+                                    rbtnc3.setEnabled(false);
+                                    rbtnc4.setEnabled(false);
+                                    rbtnc5.setEnabled(false);
+                                    rbtnc6.setEnabled(false);
+                                    rbtnc7.setEnabled(false);
+                                    rbtnc8.setEnabled(false);
+                                    rbtnc10.setEnabled(false);
+                                    rbtnc11.setEnabled(false);
+                                    rbtnc12.setEnabled(false);
+                                    rbtnc13.setEnabled(false);
+                                    rbtncOther.setEnabled(false);
+                                    t4.setTextColor(Color.LTGRAY);
+
+                                    rbtnc1.setChecked(false);
+                                    rbtnc1.setChecked(false);
+                                    rbtnc2.setChecked(false);
+                                    rbtnc3.setChecked(false);
+                                    rbtnc4.setChecked(false);
+                                    rbtnc5.setChecked(false);
+                                    rbtnc6.setChecked(false);
+                                    rbtnc7.setChecked(false);
+                                    rbtnc8.setChecked(false);
+                                    rbtnc10.setChecked(false);
+                                    rbtnc11.setChecked(false);
+                                    rbtnc12.setChecked(false);
+                                    rbtnc13.setChecked(false);
+                                    rbtncOther.setChecked(false);
+
+
+                                    edtbyear.setText("");
+                                    edtbyear.setEnabled(false);
+                                    edtbmnths.setText("");
+                                    edtbmnths.setEnabled(false);
+                                    chkb9999.setChecked(false);
+                                    chkb9999.setEnabled(false);
+                                    chkb99.setChecked(false);
+                                    chkb99.setEnabled(false);
+                                    t3.setTextColor(Color.LTGRAY);
+
+
+                                }
+                                // Put some meat on the sandwich
+
+                                break;
+
+
+                            default:
+
+                                break;
+
+                        }
+
                     }
                 }
             }
         }
+
+
+
 
         RadioButton[] bta = new RadioButton[6];
         for(int f=0;f<rga.getChildCount();f++)
@@ -408,7 +713,7 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                 if ((sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) ||
                         (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.valueOf(individual.getQ102()) > 64))
-                        && individual.getQ801f().equals("1")) {
+                        && (individual.getQ801f() != null && individual.getQ801f().equals("1"))) {
 
                     Intent intent = new Intent(q904.this, q801.class);
                     intent.putExtra("Individual", individual);
@@ -619,7 +924,7 @@ finish();
                 rbtna4.setEnabled(false);
                 rbtna5.setEnabled(false);
                 rbtnaOther.setEnabled(false);
-                t1.setTextColor(Color.LTGRAY);
+                t2.setTextColor(Color.BLACK);
 
                     rbtna1.setChecked(false);
                     rbtna2.setChecked(false);

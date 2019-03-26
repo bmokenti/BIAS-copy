@@ -54,13 +54,13 @@ public class P19 extends AppCompatActivity implements Serializable {
             public void onClick(View view) {
 
 
-        if (sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") &&  thisHouse.getHIVTB40().equals("0"))) {
+        if((sample.getStatusCode().equals("3") )|| (sample.getStatusCode().equals("2") &&  thisHouse.getHIVTB40().equals("0"))) {
             Intent intent = new Intent(P19.this, P21.class);
             intent.putExtra("Household", thisHouse);
             startActivity(intent);
         }
         else {
-            if ((sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1")) )
+            if (sample.getStatusCode().equals("2") && thisHouse.getHIVTB40().equals("1"))
                    {
 
                 Intent intent = new Intent(P19.this, P20.class);

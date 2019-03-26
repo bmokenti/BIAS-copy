@@ -72,24 +72,53 @@ public class q1106 extends AppCompatActivity implements Serializable {
 
 
         RadioButton[] bt = new RadioButton[2];
-        for(int f=0;f<rGroup1.getChildCount();f++)
-        {
+        for(int f=0;f<rGroup1.getChildCount();f++) {
             View o = rGroup1.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ1106()!= null &&  !ind.getQ1106().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ1106())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ1106() != null && !ind.getQ1106().equals("")) {
+                    if (Integer.parseInt(ind.getQ1106()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
-                        break;
+                        // Is the current Radio Button checked?
+                        boolean checked = radioButton.isChecked();
+                        View v = radioButton;
+
+                        switch (v.getId()) {
+                            case R.id.q1106_1:
+                                if (checked) {
+                                    txt3.setTextColor(Color.LTGRAY);
+                                    rbtn6b1.setChecked(false);
+                                    rbtn6b2.setChecked(false);
+                                    rbtn6b3.setChecked(false);
+                                    rbtn6b4.setChecked(false);
+                                    rbtn6b5other.setChecked(false);
+                                    q1106btxtOther.setVisibility(View.INVISIBLE);
+
+                                }
+
+
+                                //  rGroup2.setVisibility(View.VISIBLE);
+
+                                break;
+
+                            case R.id.q1106_2:
+                                if (checked)
+                                {
+                                    txt2.setTextColor(Color.LTGRAY);
+                                rbtn6a1.setChecked(false);
+                                rbtn6a2.setChecked(false);
+                                rbtn6a3.setChecked(false);
+                                rbtn6a9.setChecked(false);
+
+                        }
+
+                                break;
+                        }
                     }
                 }
             }
         }
-
 
         RadioButton[] bta = new RadioButton[4];
         for(int f=0;f<rGroup2.getChildCount();f++)
@@ -253,6 +282,7 @@ public class q1106 extends AppCompatActivity implements Serializable {
 
 
                                     individual.setQ1106(selectedRbtn1.getText().toString().substring(0, 1));
+                                    individual.setQ1106a(null);
                                     individual.setQ1106b(selectedRbtn3.getText().toString().substring(0, 1));
                                     individual.setQ1106bOther(q1106btxtOther.getText().toString());
 
@@ -273,6 +303,8 @@ public class q1106 extends AppCompatActivity implements Serializable {
 
                                         individual.setQ1106(selectedRbtn1.getText().toString().substring(0, 1));
                                         individual.setQ1106a(selectedRbtn2.getText().toString().substring(0, 1));
+                                        individual.setQ1106b(null);
+                                        individual.setQ1106bOther(null);
 
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();
@@ -311,7 +343,6 @@ public class q1106 extends AppCompatActivity implements Serializable {
     public void onRadioButtonClicked(View v){
 
 
-
         // Is the current Radio Button checked?
         boolean checked = ((RadioButton) v).isChecked();
 
@@ -319,7 +350,8 @@ public class q1106 extends AppCompatActivity implements Serializable {
             case R.id.q1106_1:
                 if(checked)
 
-                    for(int i = 0; i < rGroup3.getChildCount(); i++){
+                    for(int i = 0; i < rGroup3.getChildCount(); i++)
+                    {
                         ((RadioButton)rGroup3.getChildAt(i)).setEnabled(false);
                         txt3.setTextColor(Color.LTGRAY);
                         rbtn6b1.setChecked(false);

@@ -51,6 +51,27 @@ public class q705 extends AppCompatActivity implements Serializable {
         /**
          * NEXT question
          */
+//
+//        RadioButton[] bt = new RadioButton[2];
+//        for(int f=0;f<rbtngroup.getChildCount();f++)
+//        {
+//            View o = rbtngroup.getChildAt(f);
+//            if (o instanceof RadioButton)
+//            {
+//                bt[f]=((RadioButton)o);
+//                if(ind.getQ705()!= null &&  !ind.getQ705().equals(""))
+//                {
+//                    if(Integer.parseInt(ind.getQ705())==f+1)
+//                    {
+//                        RadioButton radioButton = bt[f];
+//                        radioButton.setChecked(true);
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+
+
 
         RadioButton[] bt = new RadioButton[2];
         for(int f=0;f<rbtngroup.getChildCount();f++)
@@ -115,7 +136,11 @@ public class q705 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q705.super.onBackPressed();
+                finish();
+                Intent intent = new Intent(q705.this, q704.class);
+                intent.putExtra("Individual", individual);
+                startActivity(intent);
+
             }
 
 

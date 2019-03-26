@@ -89,6 +89,41 @@ public class q1103 extends AppCompatActivity implements View.OnClickListener, Se
         }
 if(individual.getQ1101() != null && individual.getQ1101().equals("1") )
 {
+
+
+    individual.setQ202(null);
+        individual.setQ1103(null);
+    individual.setQ1103(null);
+    individual.setQ1103aDD("00");
+    individual.setQ1103aWks("00");
+        individual.setQ1104(null);
+        individual.setQ1105(null);
+        individual.setQ1106(null);
+        individual.setQ1106a(null);
+    individual.setQ1106b(null);
+    individual.setQ1106bOther(null);
+        individual.setQ1107(null);
+        individual.setQ1107aWks("00");
+    individual.setQ1107aDD("00");
+        individual.setQ1108(null);
+    individual.setQ1108aWks("00");
+    individual.setQ1108aDD("00");
+    individual.setQ1109(null);
+    individual.setQ1110(null);
+    individual.setQ1111(null);
+    individual.setQ1111Other(null);
+    individual.setQ1112(null);
+    individual.setQ1112_Other(null);
+
+    individual.setQ1113(null);
+    individual.setQ1113Other(null);
+
+
+
+    myDB.onOpen(myDB.getReadableDatabase());
+        myDB.getWritableDatabase();
+        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+        myDB.close();
     Intent q1o3 = new Intent(q1103.this, q1114.class);
     q1o3.putExtra("Individual", individual);
     startActivity(q1o3);
@@ -96,19 +131,55 @@ if(individual.getQ1101() != null && individual.getQ1101().equals("1") )
 }
 
         RadioButton[] bt = new RadioButton[2];
-        for(int f=0;f<rg.getChildCount();f++)
-        {
+        for(int f=0;f<rg.getChildCount();f++) {
             View o = rg.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ1103()!= null &&  !ind.getQ1103().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ1103())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ1103() != null && !ind.getQ1103().equals("")) {
+                    if (Integer.parseInt(ind.getQ1103()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
-                        break;
+                        TextView q1101atext = findViewById(R.id.q1101atxt);
+                        RadioGroup rg1 = (RadioGroup) findViewById(R.id.q1103radioGroup);
+                        // Is the current Radio Button checked?
+                        boolean checked = radioButton.isChecked();
+                        View v = radioButton;
+                        switch (v.getId()) {
+                            case R.id.q1103_1:
+                                if (checked) {
+                                    q1103aQues.setTextColor(Color.BLACK);
+
+                                    q1103dd.setEnabled(true);
+                                    q1103dd.setBackgroundResource(android.R.drawable.edit_text);
+                                    // Q1103linear.setActivated(true);
+                                    txt1103dd.setTextColor(Color.BLACK);
+                                    txt1103wks.setTextColor(Color.BLACK);
+                                    chkb99.setEnabled(true);
+                                    q1103wks.setEnabled(true);
+                                    q1103wks.setBackgroundResource(android.R.drawable.edit_text);
+
+
+                                }
+                                break;
+
+
+                            case R.id.q1103_2:
+                                if (checked) {
+                                    // Q1103linear.setActivated(false);
+                                    q1103aQues.setTextColor(Color.LTGRAY);
+                                    chkb99.setChecked(false);
+                                    chkb99.setEnabled(false);
+                                    q1103dd.setEnabled(false);
+                                    q1103dd.setText("");
+                                    // q1103dd.setBackgroundColor(Color.LTGRAY);
+                                    txt1103dd.setTextColor(Color.LTGRAY);
+                                    txt1103wks.setTextColor(Color.LTGRAY);
+                                    q1103wks.setEnabled(false);
+                                    q1103wks.setText("");
+                                    // q1103wks.setBackgroundColor(Color.LTGRAY);
+                                }
+                                break;
+                        }
                     }
                 }
             }
@@ -187,6 +258,14 @@ if(individual.getQ1101() != null && individual.getQ1101().equals("1") )
 
                             if (rbtnN.isChecked()) {
                                 individual.setQ1103(selectedRbtn.getText().toString().substring(0,1));
+                                individual.setQ1103aDD("00");
+                                individual.setQ1103aWks("00");
+                                individual.setQ1104(null);
+                                individual.setQ1105(null);
+                                individual.setQ1106(null);
+                                individual.setQ1106a(null);
+                                individual.setQ1106b(null);
+                                individual.setQ1106bOther(null);
 
                                 myDB.onOpen(myDB.getReadableDatabase());
                                 myDB.getWritableDatabase();
@@ -342,8 +421,8 @@ if(individual.getQ1101() != null && individual.getQ1101().equals("1") )
 
             q1103dd.setEnabled(false);
             q1103wks.setEnabled(false);
-            q1103dd.setText("");
-            q1103wks.setText("");
+            q1103dd.setText("99");
+            q1103wks.setText("99");
             txt1103dd.setTextColor(Color.LTGRAY);
             txt1103wks.setTextColor(Color.LTGRAY);
         }

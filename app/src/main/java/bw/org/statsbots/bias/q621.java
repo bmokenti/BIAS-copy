@@ -303,9 +303,12 @@ public class q621 extends AppCompatActivity implements Serializable {
 
         if(ind.getQ621a_Other() != null &&  !ind.getQ621a_Other().equals(""))
         {
-            if(Integer.parseInt(ind.getQ621a_Other())== 1)
+            if(Integer.parseInt(ind.getQ621a_Other().substring(0,1))== 1)
             {
                 chkaOther.setChecked(true);
+                edtaOther.setVisibility(View.VISIBLE);
+                edtaOther.setText(ind.getQ621a_Other().substring(1,ind.getQ621a_Other().length()));
+                //individual.setQ616_Other("1"+edt616Other.getText().toString());
 
             }else
             {
@@ -313,10 +316,10 @@ public class q621 extends AppCompatActivity implements Serializable {
             }
         }
 
-        if(ind.getQ621a_Other1() != null )
-        {
-            edtaOther.setText(ind.getQ621a_Other1());
-        }
+//        if(ind.getQ621a_Other1() != null )
+//        {
+//            edtaOther.setText(ind.getQ621a_Other1());
+//        }
 
 
         if(ind.getQ621bOther() != null)
@@ -442,7 +445,8 @@ public class q621 extends AppCompatActivity implements Serializable {
                                         }
                                         if (chkaOther.isChecked()) {
                                             individual.setQ621a_Other("1");
-                                            individual.setQ621a_Other1(edtaOther.getText().toString());
+                                            //individual.setQ621a_Other1(edtaOther.getText().toString());
+                                            individual.setQ621a_Other("1"+edtaOther.getText().toString());
                                         } else {
                                             individual.setQ621a_Other("2");
                                         }

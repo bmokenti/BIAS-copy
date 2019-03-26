@@ -112,6 +112,21 @@ public class q613 extends AppCompatActivity implements Serializable {
             edt.setText(ind.getQ613aOther());
         }
 
+        if (individual.getQ613() != null &&( individual.getQ613().equals("2") ||  individual.getQ613().equals("9")) )
+        {
+            rbtna1.setEnabled(false);
+            rbtna2.setEnabled(false);
+            rbtna3.setEnabled(false);
+            rbtna9.setEnabled(false);
+            rbtnaOther.setEnabled(false);
+            edt.setVisibility(View.INVISIBLE);
+            edt.setText("");
+            rbtna2.setChecked(false);
+            rbtna3.setChecked(false);
+            rbtna9.setChecked(false);
+            rbtnaOther.setChecked(false);
+            txt1.setTextColor(Color.LTGRAY);
+        }
 
 
 
@@ -165,6 +180,7 @@ public class q613 extends AppCompatActivity implements Serializable {
 
                                     if (rbtn2.isChecked() || rbtn9.isChecked()) {
                                         individual.setQ613(selected.getText().toString().substring(0, 1));
+                                        individual.setQ613a(null);
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();
                                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);

@@ -62,7 +62,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
 
         Intent intent = getIntent();
         p1 = (PersonRoster) intent.getSerializableExtra("Personroster");
-        Log.d("Person Roster",p1.getSRNO()+"");
+        //Log.d("Person Roster",p1.getSRNO()+"");
 
         Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
         individual = ind;

@@ -310,9 +310,11 @@ public class q604 extends AppCompatActivity implements Serializable {
 
         if(ind.getQ604b_Other() != null &&  !ind.getQ604b_Other().equals(""))
         {
-            if(Integer.parseInt(ind.getQ604b_Other())== 1)
+            if(Integer.parseInt(ind.getQ604b_Other().substring(0,1))== 1)
             {
                 ck15txt.setChecked(true);
+                q604edt.setVisibility(View.VISIBLE);
+                q604edt.setText(ind.getQ604b_Other().substring(1,ind.getQ604b_Other().length()));
 
             }else
             {
@@ -320,9 +322,101 @@ public class q604 extends AppCompatActivity implements Serializable {
             }
         }
 
-        if(ind.getQ604b_Otherspecify()!= null )
+
+
+//
+//        if(ind.getQ604b_Otherspecify()!= null )
+//        {
+//            q604edt.setText(ind.getQ604b_Otherspecify());
+//        }
+
+
+         if (individual.getQ604() != null && individual.getQ604().equals("2") )
+         {
+             rbtna1.setEnabled(false);
+             rbtna2.setEnabled(false);
+
+             rbtna1.setChecked(false);
+             rbtna2.setChecked(false);
+
+             t1.setTextColor(Color.LTGRAY);
+             t2.setTextColor(Color.LTGRAY);
+
+             ck1txt.setEnabled(false);
+             ck2txt.setEnabled(false);
+             ck3txt.setEnabled(false);
+             ck4txt.setEnabled(false);
+             ck5txt.setEnabled(false);
+             ck6txt.setEnabled(false);
+             ck7txt.setEnabled(false);
+             ck8txt.setEnabled(false);
+             ck10txt.setEnabled(false);
+
+             ck11txt.setEnabled(false);
+             ck12txt.setEnabled(false);
+             ck13txt.setEnabled(false);
+             ck14txt.setEnabled(false);
+             ck15txt.setEnabled(false);
+             chkOther.setEnabled(false);
+
+             ck1txt.setChecked(false);
+             ck2txt.setChecked(false);
+             ck3txt.setChecked(false);
+             ck4txt.setChecked(false);
+             ck5txt.setChecked(false);
+             ck6txt.setChecked(false);
+             ck7txt.setChecked(false);
+             ck8txt.setChecked(false);
+             ck10txt.setChecked(false);
+
+             ck11txt.setChecked(false);
+             ck12txt.setChecked(false);
+             ck13txt.setChecked(false);
+             ck14txt.setChecked(false);
+             ck15txt.setChecked(false);
+             chkOther.setChecked(false);
+             q604edt.setText("");
+         }
+
+        if (individual.getQ604a() != null && individual.getQ604a().equals("2") )
         {
-            q604edt.setText(ind.getQ604b_Otherspecify());
+
+            t2.setTextColor(Color.LTGRAY);
+
+            ck1txt.setEnabled(false);
+            ck2txt.setEnabled(false);
+            ck3txt.setEnabled(false);
+            ck4txt.setEnabled(false);
+            ck5txt.setEnabled(false);
+            ck6txt.setEnabled(false);
+            ck7txt.setEnabled(false);
+            ck8txt.setEnabled(false);
+            ck10txt.setEnabled(false);
+
+            ck11txt.setEnabled(false);
+            ck12txt.setEnabled(false);
+            ck13txt.setEnabled(false);
+            ck14txt.setEnabled(false);
+            ck15txt.setEnabled(false);
+            chkOther.setEnabled(false);
+
+            ck1txt.setChecked(false);
+            ck2txt.setChecked(false);
+            ck3txt.setChecked(false);
+            ck4txt.setChecked(false);
+            ck5txt.setChecked(false);
+            ck6txt.setChecked(false);
+            ck7txt.setChecked(false);
+            ck8txt.setChecked(false);
+            ck10txt.setChecked(false);
+
+            ck11txt.setChecked(false);
+            ck12txt.setChecked(false);
+            ck13txt.setChecked(false);
+            ck14txt.setChecked(false);
+            ck15txt.setChecked(false);
+            chkOther.setChecked(false);
+            q604edt.setText("");
         }
 
 
@@ -540,7 +634,7 @@ public class q604 extends AppCompatActivity implements Serializable {
 
                                                 if (chkOther.isChecked()) {
                                                     individual.setQ604b_Other("1");
-                                                    individual.setQ604b_Otherspecify(q604edt.getText().toString());
+                                                    individual.setQ604b_Other("1"+q604edt.getText().toString());
 
                                                 } else {
                                                     individual.setQ604b_Other("2");
@@ -724,30 +818,30 @@ public class q604 extends AppCompatActivity implements Serializable {
                 if (checked)
 
                     rbtna1.setEnabled(false);
-                    rbtna2.setEnabled(false);
+                rbtna2.setEnabled(false);
 
                 rbtna1.setChecked(false);
                 rbtna2.setChecked(false);
 
-                    t1.setTextColor(Color.LTGRAY);
-                    t2.setTextColor(Color.LTGRAY);
+                t1.setTextColor(Color.LTGRAY);
+                t2.setTextColor(Color.LTGRAY);
 
-                    ck1txt.setEnabled(false);
-                    ck2txt.setEnabled(false);
-                    ck3txt.setEnabled(false);
-                    ck4txt.setEnabled(false);
-                    ck5txt.setEnabled(false);
-                    ck6txt.setEnabled(false);
-                    ck7txt.setEnabled(false);
-                    ck8txt.setEnabled(false);
-                    ck10txt.setEnabled(false);
+                ck1txt.setEnabled(false);
+                ck2txt.setEnabled(false);
+                ck3txt.setEnabled(false);
+                ck4txt.setEnabled(false);
+                ck5txt.setEnabled(false);
+                ck6txt.setEnabled(false);
+                ck7txt.setEnabled(false);
+                ck8txt.setEnabled(false);
+                ck10txt.setEnabled(false);
 
-                    ck11txt.setEnabled(false);
-                    ck12txt.setEnabled(false);
-                    ck13txt.setEnabled(false);
-                    ck14txt.setEnabled(false);
-                    ck15txt.setEnabled(false);
-                    chkOther.setEnabled(false);
+                ck11txt.setEnabled(false);
+                ck12txt.setEnabled(false);
+                ck13txt.setEnabled(false);
+                ck14txt.setEnabled(false);
+                ck15txt.setEnabled(false);
+                chkOther.setEnabled(false);
 
                 ck1txt.setChecked(false);
                 ck2txt.setChecked(false);

@@ -95,7 +95,7 @@ public class q902 extends AppCompatActivity implements Serializable {
 
 
                     if (!ck2txt.isChecked() && ((edtyear.length() < 4 || Integer.valueOf(edtyear.getText().toString()) <= 1988 ||Integer.valueOf(edtyear.getText().toString()) >= 2019))) {
-                        lib.showError(q902.this, "Q902: year", "Please input year or select Dont know Year: Year shoud be btween 1988 and 2020");
+                        lib.showError(q902.this, "Q902: year", "Please input year or select Dont know Year: Year shoud be between greater than 2019");
                         /**
                          * VIBRATE DEVICE
                          */
@@ -138,7 +138,10 @@ public class q902 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q902.super.onBackPressed();
+                finish();
+                Intent intent = new Intent(q902.this, q901.class);
+                intent.putExtra("Individual", individual);
+                startActivity(intent);
             }
 
 

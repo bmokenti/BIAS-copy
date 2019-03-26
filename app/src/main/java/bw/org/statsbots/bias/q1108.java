@@ -94,15 +94,31 @@ protected LibraryClass lib;
             }
         }
 
+        if (individual.getQ1108() != null && individual.getQ1108().equals("2"))
+        {
+
+            q1108aques.setTextColor(Color.LTGRAY);
+            txtq1108dd.setText("");
+            txtq1108wks.setText("");
+            txtq1108dd.setEnabled(false);
+            txtq1108wks.setEnabled(false);
+            //chkq1108.setVisibility(View.INVISIBLE);
+            // chkq1108.setChecked(false);
+            chkq1108.setEnabled(false);
+            t1108dd.setTextColor(Color.LTGRAY);
+            t1108wks.setTextColor(Color.LTGRAY);
+            //rb99.setVisibility(View.INVISIBLE);
+        }
+
         if(ind.getQ1108aDD()!= null)
         {
-            txtq1108dd.setText(ind.getQ1107aDD());
+            txtq1108dd.setText(ind.getQ1108aDD());
         }
 
 
         if(ind.getQ1108aWks()!= null)
         {
-            txtq1108wks.setText(ind.getQ1107aWks());
+            txtq1108wks.setText(ind.getQ1108aWks());
         }
 
 
@@ -166,10 +182,15 @@ protected LibraryClass lib;
 
                             if (rbtn.isChecked()) {
                                 individual.setQ1108(selectedRbtn.getText().toString().substring(0, 1));
+
+                                individual.setQ1108aWks("00");
+                                individual.setQ1108aDD("00");
+
                                 myDB.onOpen(myDB.getReadableDatabase());
                                 myDB.getWritableDatabase();
                                 myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                 myDB.close();
+
                                 Intent intent = new Intent(q1108.this, q1109.class);
                                 intent.putExtra("Individual", individual);
                                 startActivity(intent);
@@ -262,7 +283,7 @@ protected LibraryClass lib;
                     txtq1108dd.setEnabled(false);
                     txtq1108wks.setEnabled(false);
                     //chkq1108.setVisibility(View.INVISIBLE);
-                    chkq1108.setChecked(false);
+                   // chkq1108.setChecked(false);
                     chkq1108.setEnabled(false);
                     t1108dd.setTextColor(Color.LTGRAY);
                     t1108wks.setTextColor(Color.LTGRAY);

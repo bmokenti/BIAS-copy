@@ -333,11 +333,14 @@ public class q1002 extends AppCompatActivity implements Serializable {
             }
         }
 
-        if(ind.getQ1002a_Other()!= null &&  !ind.getQ1002a_Other().equals(""))
+        if(ind.getQ1002a_18()!= null &&  !ind.getQ1002a_18().equals(""))
         {
-            if(Integer.parseInt(ind.getQ1002a_Other())== 1)
+            if(Integer.parseInt(ind.getQ1002a_18().substring(0,1))== 1)
             {
                 chkaOther.setChecked(true);
+                edtOthertxt.setVisibility(View.VISIBLE);
+                edtOthertxt.setText(ind.getQ1002a_18().substring(1,ind.getQ1002a_18().length()));
+                //individual.setQ616_Other("1"+edt616Other.getText().toString());
 
             }else
             {
@@ -522,7 +525,8 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                         }
                                         if (chka18.isChecked()) {
                                             individual.setQ1002a_18("1");
-                                            individual.setQ1002a_Other(edtOthertxt.getText().toString());
+                                           // individual.setQ1002a_18(edtOthertxt.getText().toString());
+                                            individual.setQ1002a_18("1"+edtOthertxt.getText().toString());
                                         } else {
                                             individual.setQ1002a_18("2");
                                         }
