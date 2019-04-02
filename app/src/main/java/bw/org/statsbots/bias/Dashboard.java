@@ -40,6 +40,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -459,7 +460,9 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                 try {
                     svrmsg = svrmsg.replaceAll("null","\"\"");
+                    //Log.d("Test ",svrmsg.substring(21600,21700));
                     JSONArray jsnArray = new JSONArray(svrmsg);
+                    writeToFile(svrmsg,Dashboard.this);
 
                     if(jsnArray.length()==0){
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -487,6 +490,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                             //JSONObject jObject1 = new JSONObject(jsonItem);
                             JSONObject jObject = new JSONObject(jsonItem);
+
 
                            /* Iterator<String> iter = jObject1.keys();
                             //Log.d("Cloumns",iter.next() + " " + jObject1.get(iter.next()));
@@ -711,43 +715,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                                 /***********************CHECK IF THERE CAME NULLS *
 
-                                String[] field = myDB.getTableColumns(); //obtain field object
-                                for (int ii = 0; ii < field.length; ii++) {
-                                    String fieldName = field[ii];
-                                    if(myDB.getValue(fieldName,hh.getAssignment_ID(),hh.getBatchNumber())==null){
-try{
-                                        SQLiteDatabase db = myDB.getWritableDatabase();
-                                        ContentValues contentValues = new ContentValues();
-                                        contentValues.putNull(fieldName);
-
-                                        db.update("House_Hold_Assignments", contentValues,  "EA_Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber(), null);
-db.close();
-}
-                                        catch (Exception fff){
-    //fff.printStackTrace();
-    Log.d(">>>>"+fieldName , fff.getMessage());
-                                        }
-
-
-
-                                    }else if(myDB.getValue(fieldName,hh.getAssignment_ID(),hh.getBatchNumber()).equals("null")){
-                                            try{
-                                                SQLiteDatabase db = myDB.getWritableDatabase();
-                                                ContentValues contentValues = new ContentValues();
-                                                contentValues.putNull(fieldName);
-
-                                                db.update("House_Hold_Assignments", contentValues,  "EA_Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber(), null);
-                                                db.close();
-                                            }
-                                            catch (Exception fff){
-                                                //fff.printStackTrace();
-                                                Log.d(">>>>"+fieldName , fff.getMessage());
-                                            }
-
-                                    }
-
-
-                                }
 
                               ******************************END NULL RELACEMENT************************************/
 
@@ -826,70 +793,75 @@ db.close();
                                     pp.setBloodLabTest(roster.get("BloodLabTest").toString());
                                     pp.setBloodStore(roster.get("BloodStore").toString());
 
-                                    pp.setRapidDate(roster.get("RapidDate").toString());
+                                    //pp.setRapidDate(roster.get("RapidDate").toString());
+                                    String RdateI  = roster.get("RapidDate").toString();
+                                    DateTime Dtt = null;
+                                    if (RdateI != null || !RdateI.equals("")){
+                                        Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                        Matcher m = datePatt.matcher(RdateI);
+                                        if (m.matches()) {
+                                            Long l = Long.parseLong(m.group(1));
+                                            Dtt = new DateTime(l);
+                                            pp.setRapidDate(Dtt.toString());
+                                            // Time zone is not needed to calculate date
+                                        } else {
+                                            //throw new IllegalArgumentException("Wrong date format");
+                                        }
+                                    }else{
+                                        pp.setRapidDate(dateInString);
+                                    }
 
                                     pp.setBloodSampleCollected(roster.get("BloodSampleCollected").toString());
                                     pp.setChPrntlConsentBloodDraw(roster.get("ChPrntlConsentBloodDraw").toString());
                                     pp.setChPrntlConsentRHT(roster.get("ChPrntlConsentRHT").toString());
                                     pp.setChPrntlConsentLabTest(roster.get("ChPrntlConsentLabTest").toString());
                                     pp.setChPrntlConsentBloodStore(roster.get("ChPrntlConsentBloodStore").toString());
-                                    pp.setChPrntlConsentDate(roster.get("ChPrntlConsentDate").toString());
-                                    pp.setPrntlConsentX_Ray(roster.get("PrntlConsentX_Ray").toString());
-                                    pp.setPrntlConsentX_RayReview(roster.get("PrntlConsentX_RayReview").toString());
-                                    pp.setPrntlConsentX_RayStore(roster.get("PrntlConsentX_RayStore").toString());
-                                    pp.setPrntlConsentSP_Collect(roster.get("PrntlConsentSP_Collect").toString());
-                                    pp.setPrntlParentSP_AddTests(roster.get("PrntlParentSP_AddTests").toString());
-                                    pp.setPrntlConsentSP_LabTest(roster.get("PrntlConsentSP_LabTest").toString());
-                                    pp.setPrntlConsentTBDate(roster.get("PrntlConsentTBDate").toString());
-                                    pp.setIndTB_X_Ray(roster.get("IndTB_X_Ray").toString());
-                                    pp.setIndTB_X_RayReview(roster.get("IndTB_X_RayReview").toString());
-                                    pp.setIndTB_X_RayStore(roster.get("IndTB_X_RayStore").toString());
-                                    pp.setIndSP_Collect(roster.get("IndSP_Collect").toString());
-                                    pp.setIndSP_AddTests(roster.get("IndSP_AddTests").toString());
-                                    pp.setIndSP_LabTests(roster.get("IndSP_LabTests").toString());
-                                    pp.setIndTB_ConsentDate(roster.get("IndTB_ConsentDate").toString());
+                                    //pp.setChPrntlConsentDate(roster.get("ChPrntlConsentDate").toString());
+
+                                    String dateI  = roster.get("ChPrntlConsentDate").toString();
+                                    DateTime Dt = null;
+                                    if (dateI != null) {
+                                        Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                        Matcher m = datePatt.matcher(dateI);
+                                        if (m.matches()) {
+                                            Long l = Long.parseLong(m.group(1));
+                                            Dt = new DateTime(l);
+                                            pp.setChPrntlConsentDate(Dt.toString());
+                                            // Time zone is not needed to calculate date
+                                        } else {
+                                            //throw new IllegalArgumentException("Wrong date format");
+                                        }
+                                    }else {
+                                        pp.setChPrntlConsentDate(dateInString);
+                                    }
+
+
+                                    //pp.setPrntlConsentX_Ray(roster.get("PrntlConsentX_Ray").toString());
+                                    //pp.setPrntlConsentX_RayReview(roster.get("PrntlConsentX_RayReview").toString());
+                                    //pp.setPrntlConsentX_RayStore(roster.get("PrntlConsentX_RayStore").toString());
+                                    //pp.setPrntlConsentSP_Collect(roster.get("PrntlConsentSP_Collect").toString());
+                                    //pp.setPrntlParentSP_AddTests(roster.get("PrntlParentSP_AddTests").toString());
+                                    //pp.setPrntlConsentSP_LabTest(roster.get("PrntlConsentSP_LabTest").toString());
+                                    //pp.setPrntlConsentTBDate(roster.get("PrntlConsentTBDate").toString());
+                                    //pp.setIndTB_X_Ray(roster.get("IndTB_X_Ray").toString());
+                                    //pp.setIndTB_X_RayReview(roster.get("IndTB_X_RayReview").toString());
+                                    //pp.setIndTB_X_RayStore(roster.get("IndTB_X_RayStore").toString());
+                                    //pp.setIndSP_Collect(roster.get("IndSP_Collect").toString());
+                                    //pp.setIndSP_AddTests(roster.get("IndSP_AddTests").toString());
+                                    //pp.setIndSP_LabTests(roster.get("IndSP_LabTests").toString());
+                                    //pp.setIndTB_ConsentDate(roster.get("IndTB_ConsentDate").toString());
+
+                                    //--------------------------IndTB_Consent Date
+
+
+
 
                                     //INSERT ROSTER FOR THIS HOUSE  HOLD
                                     myDB.insertSyncRoster(pp,hh.getAssignment_ID(),hh.getBatchNumber());
 
                                     /***********************CHECK IF THERE CAME NULLS *******************************
 
-                                    String[] fields = myDB.RosterColumns(); //obtain field object
-                                    for (int ii = 0; ii < fields.length; ii++) {
-                                        String fieldName = fields[ii];
-                                        if(myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO())==null){
-                                            try{
-                                                SQLiteDatabase db = myDB.getWritableDatabase();
-                                                ContentValues contentValues = new ContentValues();
-                                                contentValues.putNull(fieldName);
 
-                                                db.update("HHP_ROSTER", contentValues,  "EA_Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber() + " and SRNO="+pp.getSRNO(), null);
-                                                db.close();
-                                            }
-                                            catch (Exception fff){
-                                                //fff.printStackTrace();
-                                                Log.d(">>>>"+fieldName , fff.getMessage());
-                                            }
-
-
-
-                                        }else if(myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO()).equals("null") || myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO()).length()==0 || myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO()).equals("nullnull") || myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO()).equals("nullnullnull") || myDB.getValue1(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),pp.getSRNO()).equals("nullnullnullnull")){
-                                            try{
-                                                SQLiteDatabase db = myDB.getWritableDatabase();
-                                                ContentValues contentValues = new ContentValues();
-                                                contentValues.putNull(fieldName);
-
-                                                db.update("HHP_ROSTER", contentValues,  "EA_Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber() + " and SRNO="+pp.getSRNO(), null);
-                                                db.close();
-                                            }
-                                            catch (Exception fff){
-                                                //fff.printStackTrace();
-                                                Log.d(">>>>"+fieldName , fff.getMessage());
-                                            }
-                                        }
-
-
-                                    }
 
                                     *********************************END NULL RELACEMENT************************************/
 
@@ -1321,16 +1293,10 @@ db.close();
                                             ind.setQ1012_Week(roster.get("Q1012").toString().substring(0, 2));
                                             ind.setQ1012_Month(roster.get("Q1012").toString().substring(2, 4));
                                             ind.setQ1012_Year(roster.get("Q1012").toString().substring(4, 8));
-                                            Log.d("WW", roster.get("Q1012").toString().substring(0, 2));
-                                            Log.d("MM", roster.get("Q1012").toString().substring(2, 4));
-                                            Log.d("YYYY", roster.get("Q1012").toString().substring(4, 8));
-                                        } else {
-                                            ind.setQ1012_Week(roster.get("Q1012").toString());
 
                                         }
-
-
                                     }
+                                    ind.setQ1012Still(roster.get("Q1012Still").toString());
 
 
                                     ind.setQ1013(roster.get("Q1013").toString());
@@ -1411,7 +1377,7 @@ db.close();
                                     //ind.setB8_Date(roster.get("B8_Date").toString());
 
 
-                                    String dateInString1 = roster.get("B8_Date").toString();
+                                   /* String dateInString1 = roster.get("B8_Date").toString();
                                     DateTime resulty = null;
                                     if (dateInString1 != null) {
                                         Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
@@ -1425,7 +1391,7 @@ db.close();
                                             //throw new IllegalArgumentException("Wrong date format");
                                         }
                                     }
-
+*/
                                     ind.setB8_O15_Rapid(roster.get("B8_O15Rapid").toString());
                                     ind.setQ801f(roster.get("Q801f").toString());
                                     ind.setIndRapid_Comment(roster.get("RapidComment").toString());
@@ -1455,7 +1421,7 @@ db.close();
                                     ind.setPrntlConsentLabTest(roster.get("PrntlConsentLabTest").toString());
                                     ind.setPrntlConsentBloodStore(roster.get("PrntlConsentBloodStore").toString());
                                     ind.setPrntlParentID(roster.get("PrntlParentID").toString());
-                                    ind.setPrntlConsentDate(roster.get("PrntlConsentDate").toString());
+                                    //ind.setPrntlConsentDate(roster.get("PrntlConsentDate").toString());
 
                                     ind.setVISIT1(roster.get("VISIT1").toString());
                                     ind.setVISIT2(roster.get("VISIT2").toString());
@@ -1463,7 +1429,27 @@ db.close();
 
                                     String date1InString = roster.get("DATE1").toString();
 
+
+                                    //----------------Ind rapid date
                                     DateTime Date11 = null;
+                                    String StringdATE = roster.get("IndRapidDate1").toString();
+                                    if (StringdATE != null) {
+                                        Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                        Matcher m = datePatt.matcher(StringdATE);
+                                        if (m.matches()) {
+                                            Long l1 = Long.parseLong(m.group(1));
+                                            Date11 = new DateTime(l1);
+                                            ind.setIndRapidDate(Date11.toString());
+                                            // Time zone is not needed to calculate date
+                                        } else {
+                                            //throw new IllegalArgumentException("Wrong date format");
+                                        }
+                                    }else {
+                                        ind.setIndRapidDate(StringdATE);
+                                    }
+
+
+                                    //DateTime Date11 = null;
                                     if (date1InString != null) {
                                         Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
                                         Matcher m = datePatt.matcher(date1InString);
@@ -1479,6 +1465,22 @@ db.close();
                                         ind.setDATE1(date1InString);
                                     }
 
+                                    //----------------Parental consent
+                                    String PrntlCDate = roster.get("PrntlConsentDate").toString();
+                                    if (PrntlCDate != null) {
+                                        Pattern datePatt = Pattern.compile("^/Date\\((\\d+)([+-]\\d+)?\\)/$");
+                                        Matcher m = datePatt.matcher(PrntlCDate);
+                                        if (m.matches()) {
+                                            Long l1 = Long.parseLong(m.group(1));
+                                            Date11 = new DateTime(l1);
+                                            ind.setPrntlConsentDate(Date11.toString());
+                                            // Time zone is not needed to calculate date
+                                        } else {
+                                            //throw new IllegalArgumentException("Wrong date format");
+                                        }
+                                    }else {
+                                        ind.setPrntlConsentDate(PrntlCDate);
+                                    }
 
 
 
@@ -1535,45 +1537,6 @@ db.close();
 
                                     myDB.close();
                                     /***********************CHECK IF THERE CAME NULLS ******************************
-                                    myDB.onOpen(myDB.getReadableDatabase());
-                                    String[] fields = myDB.IndColumns(); //obtain field object
-
-                                    for (int ii = 0; ii < fields.length; ii++) {
-                                        String fieldName = fields[ii];
-                                        if(myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO())==null){
-                                            try{
-                                                SQLiteDatabase db = myDB.getWritableDatabase();
-                                                ContentValues contentValues = new ContentValues();
-                                                contentValues.putNull(fieldName);
-
-
-                                                db.update("Individual", contentValues,  " Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber() + " and SRNO="+ind.getSRNO(), null);
-                                                db.close();
-                                            }
-                                            catch (Exception fff){
-                                                //fff.printStackTrace();
-
-                                            }
-
-
-
-                                        }else if(myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO()).equals("null") || myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO()).length()==0 || myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO()).equals("nullnull") || myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO()).equals("nullnullnull") || myDB.getValue2(fieldName,hh.getAssignment_ID(),hh.getBatchNumber(),ind.getSRNO()).equals("nullnullnullnull")){
-                                            try{
-                                                SQLiteDatabase db = myDB.getWritableDatabase();
-                                                ContentValues contentValues = new ContentValues();
-                                                contentValues.putNull(fieldName);
-
-                                                db.update("Individual", contentValues,  " Assignment_ID=" + hh.getAssignment_ID() + " and BatchNumber=" + hh.getBatchNumber() + " and SRNO="+ind.getSRNO(), null);
-                                                db.close();
-                                            }
-                                            catch (Exception fff){
-                                                //fff.printStackTrace();
-                                                Log.d(">>>>"+fieldName , fff.getMessage());
-                                            }
-                                        }
-
-
-                                    }
 
                                     ********************************END NULL RELACEMENT************************************/
 
@@ -2041,6 +2004,27 @@ db.close();
                                     }
                                 }
                             }
+
+                            //clear EA ASSIGNMENT
+                            List<String> houseList = new ArrayList<>();
+                            houseList = myDB.getRemainingHH(myDB.getReadableDatabase());
+                            SQLiteDatabase db1 = myDB.getWritableDatabase();
+                            if(houseList.size()==0){
+                                for (String s:myDB.getAllEA_Ass(myDB.getReadableDatabase())) {
+
+                                    int i = db1.delete
+                                            ("EA_Assignments",
+                                                    null,null);
+
+                                    int ii = db1.delete
+                                            ("Sample",
+                                                    null,null);
+                                }
+                            }
+                            db1.close();
+
+
+
 
                             Intent intent = new Intent(Dashboard.this,Dashboard.class);
                             intent.putExtra("tbNumber", "1");

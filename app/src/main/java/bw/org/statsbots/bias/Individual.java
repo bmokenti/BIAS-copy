@@ -5,7 +5,15 @@ import java.io.Serializable;
 public class Individual implements Serializable {
     private String AssignmentID;
 
+    public String getQ1012Still() {
+        return Q1012Still;
+    }
 
+    public void setQ1012Still(String q1012Still) {
+        Q1012Still = q1012Still;
+    }
+
+    private String Q1012Still;
     private String VISIT1;
 
     public String getSync() {
@@ -1711,14 +1719,6 @@ public class Individual implements Serializable {
         Q621a_Other = q621a_Other;
     }
 
-
-    public String getQ621a_Other1() {
-        return Q621a_Other1;
-    }
-
-    public void setQ621a_Other1(String q621a_Other1) {
-        Q621a_Other1 = q621a_Other1;
-    }
 
     public String Q621a_Other1;
     public String getQ621() {

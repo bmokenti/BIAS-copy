@@ -83,7 +83,7 @@ public class started_household extends AppCompatActivity implements Serializable
 
         btnComplete=findViewById(R.id.btnComplete);
 
-        btnComplete.setOnClickListener(new View.OnClickListener() {
+        btnComplete.setOnClickListener(new View.OnClickListener()   {
             @Override
             public void onClick(View view) {
 
@@ -636,7 +636,7 @@ public class started_household extends AppCompatActivity implements Serializable
 
         /**
          * fold for TB Inidivudals
-         */
+         **/
         final LinearLayout tbHead = (LinearLayout)findViewById(R.id.tbHead);
         tbHead.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1873,7 +1873,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
                             btn.setTypeface(font);
                             String txt = btn.getText().toString();
-                            btn.setText(txt + " - Status: Present but not Available");
+                            btn.setText(txt + " - Status: Refused");
                         } else if (indiv.getVISIT2().equals("5")) {
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             params.setMargins(10,10,10,10);
