@@ -145,8 +145,9 @@ public class q102 extends AppCompatActivity implements Serializable {
                         AlertDialog.Builder builder = new AlertDialog.Builder(q102.this);
                         builder.setTitle("Confirm Age");
                         builder.setIcon(R.drawable.ic_warning_orange_24dp);
-                        builder.setMessage("Age does not match with P04 age?");
-                        builder.setPositiveButton("No changes", new DialogInterface.OnClickListener() {
+                        builder.setMessage("Age entered does not match with P04 Age ("+ p1.getP04YY()+ "). " +
+                                "Do you want to overide P04 age?");
+                        builder.setPositiveButton("NO", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
                                 individual.setQ102(edt.getText().toString());
@@ -167,7 +168,7 @@ public class q102 extends AppCompatActivity implements Serializable {
                             }
 
                         });
-                        builder.setNegativeButton("Ammend", new DialogInterface.OnClickListener() {
+                        builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
 
@@ -181,9 +182,7 @@ public class q102 extends AppCompatActivity implements Serializable {
                                 //Check if individual already been saved and update
 
                                 individual.setQ102(edt.getText().toString());
-
-
-                                    myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
 
                                 Intent intent = new Intent(q102.this, q103.class);
@@ -265,7 +264,7 @@ public class q102 extends AppCompatActivity implements Serializable {
         return super.onCreateOptionsMenu(menu);
     }
 
-/*
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -273,7 +272,7 @@ public class q102 extends AppCompatActivity implements Serializable {
 
             case R.id.pause:
                 // Show the settings activity
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                 alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
                 alertDialogBuilder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -303,7 +302,7 @@ public class q102 extends AppCompatActivity implements Serializable {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }*/
+    }
 }
 
 

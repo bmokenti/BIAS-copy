@@ -1,11 +1,16 @@
 package bw.org.statsbots.bias;
 
+import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -72,7 +77,7 @@ public class q621 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
 
@@ -81,6 +86,17 @@ public class q621 extends AppCompatActivity implements Serializable {
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+           thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+        if (p.getSRNO() == ind.getSRNO()){
+            p1 = p;
+            break;
+        }
+    }
 
 
         rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -386,16 +402,30 @@ public class q621 extends AppCompatActivity implements Serializable {
                                         individual.setQ621(selectedRbtn.getText().toString().substring(0, 1));
                                         individual.setQ621b(selectedRbtn2.getText().toString().substring(0, 1));
                                         individual.setQ621bOther(edtbOther.getText().toString());
+
+                                        individual.setQ621a_1(null);
+                                        individual.setQ621a_2(null);
+                                        individual.setQ621a_3(null);
+                                        individual.setQ621a_4(null);
+                                        individual.setQ621a_5(null);
+                                        individual.setQ621a_6(null);
+                                        individual.setQ621a_7(null);
+                                        individual.setQ621a_Other(null);
+
+
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();
                                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                                         myDB.close();
+
                                         Intent intent = new Intent(q621.this, q622.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);
                                     } else {
 
                                         individual.setQ621(selectedRbtn.getText().toString().substring(0, 1));
+                                        individual.setQ621b(null);
+
                                         if (chka1.isChecked()) {
                                             individual.setQ621a_1("1");
 
@@ -475,13 +505,14 @@ public class q621 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
                 if (individual.getQ619_9() != null && individual.getQ619_9().equals("1"))
-                {
+                {finish();
                     Intent intent = new Intent(q621.this, q619.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);
                 }
                 else
                 {
+                    finish();
                     Intent intent = new Intent(q621.this, q620.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);
@@ -491,6 +522,64 @@ public class q621 extends AppCompatActivity implements Serializable {
 
 
         });
+    }
+
+    //   thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+//    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+//        for (PersonRoster p: roster
+//        ) {
+//        if (p.getSRNO() == ind.getSRNO()){
+//            p1 = p;
+//            break;
+//        }
+//    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.intervie_control, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId()) {
+
+            case R.id.pause:
+                // Show the settings activity
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(getApplicationContext(), started_household.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(q621.this).toBundle());
+
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+                return  true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     }
 

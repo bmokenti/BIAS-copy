@@ -1,10 +1,15 @@
 package bw.org.statsbots.bias;
 
+import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -63,7 +68,7 @@ public class q1011 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
@@ -71,6 +76,16 @@ public class q1011 extends AppCompatActivity implements Serializable {
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+           thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+        if (p.getSRNO() == ind.getSRNO()){
+            p1 = p;
+            break;
+        }
+    }
 
         RadioButton[] bt = new RadioButton[9];
         for(int f=0;f<rg.getChildCount();f++)
@@ -118,6 +133,22 @@ public class q1011 extends AppCompatActivity implements Serializable {
                         if (rbtn8.isChecked())
                         {
                             individual.setQ1011(selectedRbtn.getText().toString().substring(0,1));
+                            individual.setQ1010_Other(null);
+                            individual.setQ1011(null);
+                            individual.setQ1011_Other(null);
+                            individual.setQ1012_Year("00");
+                            individual.setQ1012_Month("00");
+                            individual.setQ1012_Week("00");
+                            individual.setQ1013(null);
+                            individual.setQ1014(null);
+                            individual.setQ1014a(null);
+                            individual.setQ1014b(null);
+                            individual.setQ1015(null);
+                            individual.setQ1015a(null);
+                            individual.setQ1015b(null);
+                            individual.setQ1016(null);
+                            individual.setQ1017(null);
+
 
                             myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();
@@ -265,6 +296,63 @@ public class q1011 extends AppCompatActivity implements Serializable {
 
         }
 
+    }
+
+    //   thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+//    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+//        for (PersonRoster p: roster
+//        ) {
+//        if (p.getSRNO() == ind.getSRNO()){
+//            p1 = p;
+//            break;
+//        }
+//    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.intervie_control, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.pause:
+                // Show the settings activity
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(getApplicationContext(), started_household.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(q1011.this).toBundle());
+
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

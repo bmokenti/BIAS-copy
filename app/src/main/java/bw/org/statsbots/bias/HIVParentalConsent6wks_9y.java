@@ -32,7 +32,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
     protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
     protected EditText Edttubevolume, EdtDate, EdtGuardian;
     protected CheckBox vol1, vol2, vol3, vol4;
-    protected Button btnNext, btnDate, btnPrev;
+    protected Button btnNext, btnDate, btnPrev, btnloadinfo;
     protected TextView t1, t2, t3, t4, t5, t6, t7, t8;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +127,9 @@ int wks = Integer.valueOf(p1.getP04WKS());
                 (p1.getP06().equals("3")))
         {
             if(p1.getP07()!=null){
-                if(Integer.valueOf(p1.getP07()) < 14){
+                if(Integer.valueOf(p1.getP07()) < 14)
+                {
+
                     Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, HIVConsentOver64.class);
                     q1o2.putExtra("Individual", individual);
                     q1o2.putExtra("Personroster", p1);
@@ -169,6 +171,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
         btnDate = (Button) findViewById(R.id.datebtn);
         btnNext = (Button) findViewById(R.id.btnnext);
         btnPrev = (Button) findViewById(R.id.btnprev);
+        btnloadinfo = (Button) findViewById(R.id.LoadConsetInfo);
 
         vol1 = (CheckBox) findViewById(R.id.vol1);
         vol2 = (CheckBox) findViewById(R.id.vol2);
@@ -182,7 +185,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
         t6  = (TextView) findViewById(R.id.bloodColectionStatus);
         t5  = (TextView) findViewById(R.id.txtstore);
 
-        if((yy == 1 && mm <= 6 ) || (yy == 00 && mm <= 11) || (mm == 1 && wks >= 2))
+        if(rbtn1.isChecked() && ((yy == 1 && mm <= 6 ) || (yy == 00 && mm <= 11) || (mm == 1 && wks >= 2)))
         {
             rbtn3.setEnabled(false);
             rbtn4.setEnabled(false);
@@ -198,7 +201,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
             //rbtn6.setEnabled(true);
 
         }
-        if((yy == 1 && mm <= 6 ) || (yy == 00 && mm <= 11) || (mm == 1 && wks >= 2))
+        if (rbtn1.isChecked() && ((yy == 1 && mm <= 6 ) || (yy == 00 && mm <= 11) || (mm == 1 && wks >= 2)))
         {
             vol3.setEnabled(false);
             vol2.setEnabled(false);
@@ -206,7 +209,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
         }
 
-        if((yy == 1 && mm >= 7 ) || (yy <= 2) )
+        if (rbtn1.isChecked() && ((yy == 1 && mm >= 7 ) || (yy <= 2) ))
         {
             vol3.setEnabled(false);
             vol2.setEnabled(false);
@@ -214,26 +217,26 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
         }
 
-        if((yy >=3 && yy <= 14))
+        if(rbtn1.isChecked() && (yy >=3 && yy <= 14))
         {
             vol2.setEnabled(false);
             vol4.setEnabled(false);
 
         }
-
+//
         rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                int yy =Integer.valueOf(p1.getP04YY());
+                int yy = Integer.valueOf(p1.getP04YY());
                 int mm = Integer.valueOf(p1.getP04MM());
                 int wks = Integer.valueOf(p1.getP04WKS());
-                if(i == R.id.rbtn1 && (yy >=3 && yy <= 14))
-                {
+                if (i == R.id.rbtn1 && (yy >= 3 && yy <= 14)) {
                     // is checked
+
                     vol1.setEnabled(true);
-                    vol2.setEnabled(true);
+                    vol2.setEnabled(false);
                     vol3.setEnabled(true);
-                    vol4.setEnabled(true);
+                    vol4.setEnabled(false);
                     Edttubevolume.setEnabled(true);
                     t1.setTextColor(Color.BLACK);
 
@@ -246,55 +249,110 @@ int wks = Integer.valueOf(p1.getP04WKS());
                     t5.setTextColor(Color.BLACK);
 
 
-
                     rbtn11.setEnabled(true);
                     rbtn12.setEnabled(true);
                     rbtn13.setEnabled(true);
                     t6.setTextColor(Color.BLACK);
 
 
+                } else {
+                    if (i == R.id.rbtn1 && ((yy == 1 && mm <= 6) || (yy == 00 && mm <= 11) || (mm == 1 && wks >= 2))) {
+                        rbtn3.setEnabled(false);
+                        rbtn4.setEnabled(false);
+                        rbtn5.setEnabled(false);
+                        rbtn6.setEnabled(false);
+                        t2.setTextColor(Color.LTGRAY);
+                        t3.setTextColor(Color.LTGRAY);
+                        vol3.setEnabled(false);
+                        vol2.setEnabled(false);
+                        vol4.setEnabled(false);
+
+                        Edttubevolume.setEnabled(true);
+                        vol1.setEnabled(true);
+                        vol3.setEnabled(false);
+                        vol2.setEnabled(false);
+                        vol4.setEnabled(false);
+                        rbtn7.setEnabled(true);
+                        rbtn8.setEnabled(true);
+                        rbtn9.setEnabled(true);
+                        rbtn10.setEnabled(true);
+                        t4.setTextColor(Color.BLACK);
+                        t5.setTextColor(Color.BLACK);
+
+                        rbtn11.setEnabled(true);
+                        rbtn12.setEnabled(true);
+                        rbtn13.setEnabled(true);
+                        t6.setTextColor(Color.BLACK);
+
+
+                    }  else {
+
+                            if (i == R.id.rbtn1 && (i == R.id.rbtn1 && ((yy == 1 && mm >= 7) || (yy <= 2)))) {
+                                vol3.setEnabled(false);
+                                vol2.setEnabled(false);
+                                vol4.setEnabled(false);
+
+                                Edttubevolume.setEnabled(true);
+
+                                rbtn7.setEnabled(true);
+                                rbtn8.setEnabled(true);
+                                rbtn9.setEnabled(true);
+                                rbtn10.setEnabled(true);
+                                t4.setTextColor(Color.BLACK);
+                                t5.setTextColor(Color.BLACK);
+
+                                rbtn11.setEnabled(true);
+                                rbtn12.setEnabled(true);
+                                rbtn13.setEnabled(true);
+                                t6.setTextColor(Color.BLACK);
+
+                            }
+                            else {
+
+                                if ((i == R.id.rbtn2)) {
+                                    vol1.setEnabled(false);
+                                    vol3.setEnabled(false);
+                                    vol2.setEnabled(false);
+                                    vol4.setEnabled(false);
+                                    Edttubevolume.setEnabled(false);
+                                    rbtn7.setEnabled(false);
+                                    rbtn8.setEnabled(false);
+                                    rbtn9.setEnabled(false);
+                                    rbtn10.setEnabled(false);
+
+                                    vol1.setChecked(false);
+                                    vol3.setChecked(false);
+                                    vol2.setChecked(false);
+                                    vol4.setChecked(false);
+                                    Edttubevolume.setText("");
+                                    rbtn7.setChecked(false);
+                                    rbtn8.setChecked(false);
+                                    rbtn9.setChecked(false);
+                                    rbtn10.setChecked(false);
+                                    rbtn11.setChecked(false);
+                                    rbtn12.setChecked(false);
+                                    rbtn13.setChecked(false);
+
+                                    t4.setTextColor(Color.LTGRAY);
+                                    t5.setTextColor(Color.LTGRAY);
+
+                                    rbtn11.setEnabled(false);
+                                    rbtn12.setEnabled(false);
+                                    rbtn13.setEnabled(false);
+                                    t6.setTextColor(Color.LTGRAY);
+
+                                }
+                            }
+                            }
+
+                    }
                 }
-                else
-                {
-                    vol1.setEnabled(false);
-                    vol2.setEnabled(false);
-                    vol3.setEnabled(false);
-                    vol4.setEnabled(false);
-                    t1.setTextColor(Color.LTGRAY);
-                    Edttubevolume.setEnabled(false);
-
-                    vol1.setChecked(false);
-                    vol2.setChecked(false);
-                    vol3.setChecked(false);
-                    vol4.setChecked(false);
-                    Edttubevolume.setText("");
-
-                    rbtn7.setEnabled(false);
-                    rbtn8.setEnabled(false);
-                    rbtn9.setEnabled(false);
-                    rbtn10.setEnabled(false);
-                    t4.setTextColor(Color.LTGRAY);
-                    t5.setTextColor(Color.LTGRAY);
-
-                    rbtn11.setEnabled(false);
-                    rbtn12.setEnabled(false);
-                    rbtn13.setEnabled(false);
-                    t6.setTextColor(Color.LTGRAY);
 
 
-                    rbtn7.setChecked(false);
-                    rbtn8.setChecked(false);
-                    rbtn9.setChecked(false);
-                    rbtn10.setChecked(false);
-
-                    rbtn11.setChecked(false);
-                    rbtn12.setChecked(false);
-                    rbtn13.setChecked(false);
+    });
 
 
-                }
-            }
-        });
+
 
 
 
@@ -305,16 +363,9 @@ int wks = Integer.valueOf(p1.getP04WKS());
                 {
                     // is checked
 
-
-
                     rbtn5.setEnabled(true);
                     rbtn6.setEnabled(true);
                     t3.setTextColor(Color.BLACK);
-
-
-
-
-
 
 
                 }
@@ -492,6 +543,8 @@ int wks = Integer.valueOf(p1.getP04WKS());
             EdtDate.setText(p1.getRapidDate());
         }
 
+
+
         RadioButton[] bt6 = new RadioButton[3];
         for(int f=0;f<rg6.getChildCount();f++)
         {
@@ -522,15 +575,24 @@ int wks = Integer.valueOf(p1.getP04WKS());
                 //Convert to calendar Object
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(today);
-
-
-                CharSequence s = android.text.format.DateFormat.format("dd/MM/yyyy",today.getTime());
+                Date d = new Date();
+                CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss",today.getTime());
                 EdtDate.setText(s.toString());
 
             }
         });
 
+        btnloadinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+                Intent intent = new Intent(HIVParentalConsent6wks_9y.this, Consents_Info_6wks_9years.class);
+                intent.putExtra("Individual", individual);
+                intent.putExtra("Personroster", p1);
+                startActivity(intent);
 
+            }
+        });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -558,10 +620,23 @@ int wks = Integer.valueOf(p1.getP04WKS());
                         vibs.vibrate(100);
 
                     } else {
+
+                        if ((vol1.isChecked() && vol3.isChecked()) )
+                        {
+                            lib.showError(HIVParentalConsent6wks_9y.this, "IndividualConsent: Error: 1a", "6ml container and 1ml container can not be used" +
+                                    " together. The participant need 6ml or just 1ml for rht. Please select accordingly");
+                            /**
+                             * VIBRATE DEVICE
+                             */
+                            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibs.vibrate(100);
+
+                        } else {
                         int selectedId2 = rg2.getCheckedRadioButtonId();
                         selected2 = (RadioButton) findViewById(selectedId2);
 
-                        if (selected2 == null && (Integer.valueOf(p1.getP04YY()) >1 && Integer.valueOf(p1.getP04MM()) >6)) {
+                        if (selected2 == null && (Integer.valueOf(p1.getP04YY()) >1 && Integer.valueOf(p1.getP04MM()) >6))
+                        {
                             lib.showError(HIVParentalConsent6wks_9y.this, "RHT: Error: 2", "Do you agree for the survey team to do RHT?");
                             /**
                              * VIBRATE DEVICE
@@ -586,7 +661,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                 selected4 = (RadioButton) findViewById(selectedId4);
 
                                 if (selected4 == null && rbtn1.isChecked()) {
-                                    lib.showError(HIVParentalConsent6wks_9y.this, "Laboratory: Error: 3", "3. Do you agree for your blood sample to be sent to the laboratory for additional HIV related testing?");
+                                    lib.showError(HIVParentalConsent6wks_9y.this, "Laboratory: Error: 3", "3. Do you agree for your child's blood sample to be sent to the laboratory for additional HIV related testing?");
                                     /**
                                      * VIBRATE DEVICE
                                      */
@@ -598,7 +673,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                     selected5 = (RadioButton) findViewById(selectedId5);
 
                                     if (selected5 == null && rbtn1.isChecked()) {
-                                        lib.showError(HIVParentalConsent6wks_9y.this, "Storage: Error: 4", "4. Do you agree for your blood sample to be stored for up to 5 years for future HIV/TB - related research?");
+                                        lib.showError(HIVParentalConsent6wks_9y.this, "Storage: Error: 4", "4. Do you agree for your child's blood sample to be stored for up to 5 years for future HIV/TB - related research?");
                                         /**
                                          * VIBRATE DEVICE
                                          */
@@ -608,7 +683,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                     } else {
 
 
-                                        if (EdtGuardian == null) {
+                                        if (EdtGuardian == null || EdtGuardian.length() == 0) {
                                             lib.showError(HIVParentalConsent6wks_9y.this, "Guardian: Error: ", "Please please select Guardian ID");
                                             /**
                                              * VIBRATE DEVICE
@@ -648,14 +723,26 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("ChPrntlConsentBloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentBloodDraw(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+                                                        myDB.updateConsents("BloodVolume_1", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodVolume_4", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodVolume_6", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodVolume_10", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodVolumeComment", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("ChPrntlConsentLabTest", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("ChPrntlConsentBloodStore", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodSampleCollected", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
 
+                                                        if (rbtn3.isChecked() || rbtn4.isChecked()) {
+                                                            p1.setChPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
 
-                                                        p1.setChPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
-
-                                                        myDB.onOpen(myDB.getReadableDatabase());
-                                                        myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentRHT(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentRHT(), String.valueOf(p1.getSRNO()));
+                                                            myDB.close();
+                                                        } else {
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                            myDB.close();
+                                                        }
 
                                                         if (rbtn3.isChecked()) {
 
@@ -664,6 +751,11 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                                             myDB.onOpen(myDB.getReadableDatabase());
                                                             //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
                                                             myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.close();
+                                                        } else {
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
                                                             myDB.close();
                                                         }
 
@@ -680,11 +772,9 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                                         /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
 
                                                         //UPDATE HOUSEHOLD
-                                                        myDB.updateHousehold(myDB.getReadableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"Clear", "3");
+                                                        myDB.updateHousehold(myDB.getReadableDatabase(), thisHouse.getAssignment_ID(), thisHouse.getBatchNumber(), "Clear", "3");
                                                         myDB.close();
                                                         /********************END PARTIAL****************/
-
-
 
 
                                                         Intent intent = new Intent(HIVParentalConsent6wks_9y.this, Dashboard.class);
@@ -694,7 +784,6 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
                                                     } else {
                                                         p1.setChPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
-
 
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
@@ -746,23 +835,21 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                                         myDB.updateConsents("BloodVolume_10", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_10(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
-
                                                         p1.setBloodVolumeComment(Edttubevolume.getText().toString());
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolumeComment", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolumeComment(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
-                                                            if(rbtn3.isChecked() || rbtn4.isChecked() ){
-                                                                p1.setChPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
+                                                        if (rbtn3.isChecked() || rbtn4.isChecked()) {
+                                                            p1.setChPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
 
-                                                                myDB.onOpen(myDB.getReadableDatabase());
-                                                                myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentRHT(), String.valueOf(p1.getSRNO()));
-                                                                myDB.close();
-                                                            }
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentRHT(), String.valueOf(p1.getSRNO()));
+                                                            myDB.close();
+                                                        }
 
-
-                                                        if (rbtn3.isChecked() ) {
+                                                        if (rbtn3.isChecked()) {
 
                                                             p1.setRapidResults(selected3.getText().toString().substring(0, 1));
 
@@ -770,8 +857,12 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                                             //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
                                                             myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
                                                             myDB.close();
+                                                        } else {
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                            myDB.close();
                                                         }
-
 
                                                         p1.setChPrntlConsentLabTest(selected4.getText().toString().substring(0, 1));
 
@@ -803,17 +894,6 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                                         myDB.updateConsents("BloodSampleCollected", p1.getAssignmentID(), p1.getBatch(), p1.getBloodSampleCollected(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
-                                                        //Check if individual already been saved and update
-
-
-                                                        //Next question P17
-                                                        // myDB = new DatabaseHelper(HIVParentalConsent6wks_9y.this);
-                                                        // myDB.onOpen(myDB.getReadableDatabase());
-
-
-                                                        //Update
-
-
                                                         Intent intent = new Intent(HIVParentalConsent6wks_9y.this, Dashboard.class);
                                                         intent.putExtra("Individual", individual);
                                                         intent.putExtra("Personroster", p1);
@@ -829,6 +909,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                             }
                                         }
                                     }
+                                }
                                 }
                             }
                         }

@@ -3653,6 +3653,171 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         return PRoster;
     }
 
+
+
+
+    public List<PersonRoster> getdataHhPBar() {
+        // DataModel dataModel = new DataModel();
+        List<PersonRoster> PRoster = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + tblhhroster + " ;", null);
+        StringBuffer stringBuffer = new StringBuffer();
+        PersonRoster dataModel = null;
+        while (cursor.moveToNext()) {
+            dataModel = new PersonRoster();
+
+            String SRNO = cursor.getString(cursor.getColumnIndexOrThrow("SRNO"));
+            String P01 = cursor.getString(cursor.getColumnIndexOrThrow("P01"));
+            String P02 = cursor.getString(cursor.getColumnIndexOrThrow("P02"));
+            String P03 = cursor.getString(cursor.getColumnIndexOrThrow("P03"));
+            String P04_YY = cursor.getString(cursor.getColumnIndexOrThrow("P04_YY"));
+            String P04_MM = cursor.getString(cursor.getColumnIndexOrThrow("P04_MM"));
+            String P04_WKS = cursor.getString(cursor.getColumnIndexOrThrow("P04_WKS"));
+            String P05 = cursor.getString(cursor.getColumnIndexOrThrow("P05"));
+            String P06 = cursor.getString(cursor.getColumnIndexOrThrow("P06"));
+            String P07 = cursor.getString(cursor.getColumnIndexOrThrow("P07"));
+            String P08 = cursor.getString(cursor.getColumnIndexOrThrow("P08"));
+            String P09 = cursor.getString(cursor.getColumnIndexOrThrow("P09"));
+            String P10 = cursor.getString(cursor.getColumnIndexOrThrow("P10"));
+            String P11 = cursor.getString(cursor.getColumnIndexOrThrow("P11"));
+            String P12 = cursor.getString(cursor.getColumnIndexOrThrow("P12"));
+            String P13 = cursor.getString(cursor.getColumnIndexOrThrow("P13"));
+            String P14 = cursor.getString(cursor.getColumnIndexOrThrow("P14"));
+            String P15 = cursor.getString(cursor.getColumnIndexOrThrow("P15"));
+            String P16 = cursor.getString(cursor.getColumnIndexOrThrow("P16"));
+            String P17 = cursor.getString(cursor.getColumnIndexOrThrow("P17"));
+            String P18 = cursor.getString(cursor.getColumnIndexOrThrow("P18"));
+            String P19 = cursor.getString(cursor.getColumnIndexOrThrow("P19"));
+            String P20 = cursor.getString(cursor.getColumnIndexOrThrow("P20"));
+            String P21 = cursor.getString(cursor.getColumnIndexOrThrow("P21"));
+            //String B3_RapidConsent_Yes_No = cursor.getString(cursor.getColumnIndexOrThrow("B3_RapidConsent_Yes_No"));
+
+            // String B3_Date = cursor.getString(cursor.getColumnIndexOrThrow("B3_Date"));
+            String Barcode = cursor.getString(cursor.getColumnIndexOrThrow("Barcode"));
+            //String U15Rapid_Results = cursor.getString(cursor.getColumnIndexOrThrow("U15Rapid_Result"));
+            // String Rapid_Comment = cursor.getString(cursor.getColumnIndexOrThrow("Rapid_Comment"));
+
+
+            String BloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("BloodDraw"));
+            String BloodVolume_1 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_1"));
+            String BloodVolume_4 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_4"));
+            String BloodVolume_6 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_6"));
+            String BloodVolume_10 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_10"));
+            String BloodVolumeComment = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolumeComment"));
+            String Rapid = cursor.getString(cursor.getColumnIndexOrThrow("Rapid"));
+            String RapidResults = cursor.getString(cursor.getColumnIndexOrThrow("RapidResults"));
+            String BloodLabTest = cursor.getString(cursor.getColumnIndexOrThrow("BloodLabTest"));
+            String BloodStore = cursor.getString(cursor.getColumnIndexOrThrow("BloodStore"));
+            String RapidDate = cursor.getString(cursor.getColumnIndexOrThrow("RapidDate"));
+            String BloodSampleCollected = cursor.getString(cursor.getColumnIndexOrThrow("BloodSampleCollected"));
+            String ChPrntlConsentBloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentBloodDraw"));
+            String ChPrntlConsentRHT = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentRHT"));
+            String ChPrntlConsentLabTest = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentLabTest"));
+            String ChPrntlConsentBloodStore = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentBloodStore"));
+            String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian"));
+            String ChPrntlConsentDate = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentDate"));
+
+            String PrntlConsentX_Ray = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_Ray"));
+            String PrntlConsentX_RayReview = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_RayReview"));
+            String PrntlConsentX_RayStore = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_RayStore"));
+            String PrntlConsentSP_Collect = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentSP_Collect"));
+            String PrntlParentSP_AddTests = cursor.getString(cursor.getColumnIndexOrThrow("PrntlParentSP_AddTests"));
+            String PrntlConsentSP_LabTest = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentSP_LabTest"));
+            String PrntlConsentTBDate = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentTBDate"));
+
+            String IndTB_X_Ray = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_X_Ray"));
+            String IndTB_X_RayReview = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_X_RayReview"));
+            String IndTB_X_RayStore = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_X_RayStore"));
+            String IndSP_Collect = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_Collect"));
+            String IndSP_AddTests = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_AddTests"));
+
+            String IndSP_LabTests = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_LabTests"));
+            String IndTB_ConsentDate = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_ConsentDate"));
+
+            dataModel.setAssignmentID(cursor.getString(cursor.getColumnIndexOrThrow("EA_Assignment_ID")));
+            dataModel.setBatch(cursor.getString(cursor.getColumnIndexOrThrow("BatchNumber")));
+            dataModel.setSRNO(Integer.valueOf(SRNO));
+            dataModel.setP01(P01);
+            dataModel.setP02(P02);
+            dataModel.setP03(P03);
+            dataModel.setP04YY(P04_YY);
+            dataModel.setP04MM(P04_MM);
+            dataModel.setP04WKS(P04_WKS);
+            dataModel.setP05(P05);
+            dataModel.setP06(P06);
+            dataModel.setP07(P07);
+            dataModel.setP08(P08);
+            dataModel.setP09(P09);
+            dataModel.setP10(P10);
+            dataModel.setP11(P11);
+            dataModel.setP12(P12);
+            dataModel.setP13(P13);
+            dataModel.setP14(P14);
+            dataModel.setP15(P15);
+            dataModel.setP16(P16);
+            dataModel.setP17(P17);
+            dataModel.setP18(P18);
+            dataModel.setP19(P19);
+            dataModel.setP20(P20);
+            dataModel.setP21(P21);
+            // dataModel.setB3_RapidConsent_Yes_No(B3_RapidConsent_Yes_No);
+
+            // dataModel.setB3_Date(B3_Date);
+
+
+            dataModel.setBarcode(Barcode);
+            dataModel.setBloodDraw(BloodDraw);
+            dataModel.setBloodVolume_1(BloodVolume_1);
+            dataModel.setBloodVolume_4(BloodVolume_4);
+            dataModel.setBloodVolume_6(BloodVolume_6);
+            dataModel.setBloodVolume_10(BloodVolume_10);
+            dataModel.setBloodVolumeComment(BloodVolumeComment);
+            dataModel.setRapid(Rapid);
+            dataModel.setRapidResults(RapidResults);
+            dataModel.setBloodLabTest(BloodLabTest);
+            dataModel.setBloodStore(BloodStore);
+            dataModel.setRapidDate(RapidDate);
+            dataModel.setBloodSampleCollected(BloodSampleCollected);
+            dataModel.setChPrntlConsentBloodDraw(ChPrntlConsentBloodDraw);
+            dataModel.setChPrntlConsentRHT(ChPrntlConsentRHT);
+            dataModel.setChPrntlConsentLabTest(ChPrntlConsentLabTest);
+            dataModel.setChPrntlConsentBloodStore(ChPrntlConsentBloodStore);
+            dataModel.setB3_Guardian(B3_Guardian);
+            dataModel.setChPrntlConsentDate(ChPrntlConsentDate);
+
+            dataModel.setPrntlConsentX_Ray(PrntlConsentX_Ray);
+            dataModel.setPrntlConsentX_RayReview(PrntlConsentX_RayReview);
+            dataModel.setPrntlConsentX_RayStore(PrntlConsentX_RayStore);
+            dataModel.setPrntlConsentSP_Collect(PrntlConsentSP_Collect);
+            dataModel.setPrntlParentSP_AddTests(PrntlParentSP_AddTests);
+            dataModel.setPrntlConsentSP_LabTest(PrntlConsentSP_LabTest);
+            dataModel.setPrntlConsentTBDate(PrntlConsentTBDate);
+
+            dataModel.setIndTB_X_Ray(IndTB_X_Ray);
+            dataModel.setIndTB_X_RayReview(IndTB_X_RayReview);
+            dataModel.setIndTB_X_RayStore(IndTB_X_RayStore);
+            dataModel.setIndSP_Collect(IndSP_Collect);
+            dataModel.setIndSP_AddTests(IndSP_AddTests);
+
+            dataModel.setIndSP_LabTests(IndSP_LabTests);
+            dataModel.setIndTB_ConsentDate(IndTB_ConsentDate);
+
+            // dataModel.setOv64BloodDraw(Ov64BloodDraw);
+            //dataModel.setRapid_Comment(Rapid_Comment);
+
+            stringBuffer.append(dataModel);
+            // stringBuffer.append(dataModel);
+           // if (dataModel.getAssignmentID().equals(assignment_ID) && dataModel.getBatch().equals(Batch)) {
+                PRoster.add(dataModel);
+            //}
+
+        }
+
+
+        return PRoster;
+    }
+
     /**
      * CHECK BARCODE IN ENUMERATORS GIVEN HOUSEHOLDS
      */
@@ -8161,7 +8326,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                         new String[]{Assignment_ID, Batch_no, srno}
                 );
 
-        db1.close();
+
 
     }
 
@@ -8179,7 +8344,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                         new String[]{Assignment_ID, Batch_no, srno}
                 );
 
-        db1.close();
+
 
     }
 
@@ -8196,6 +8361,67 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return Value;
+    }
+
+
+    public void gethhBarcode(){
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cur = db.rawQuery("SELECT * FROM " + tblhhroster, null);
+
+        if(cur.getCount() != 0){
+            cur.moveToFirst();
+
+            do{
+                String row_values = "";
+
+                for(int i = 0 ; i < cur.getColumnCount(); i++){
+                    row_values = row_values + " || " + cur.getString(i);
+                }
+
+               // Log.d("LOG_TAG_HERE", row_values);
+
+            }while (cur.moveToNext());
+        }
+    }
+
+
+
+    public ArrayList<PersonRoster> getAllHhProster() {
+
+        ArrayList<PersonRoster> list = new ArrayList<PersonRoster>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + tblhhroster;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            try {
+
+                // looping through all rows and adding to list
+                if (cursor.moveToFirst()) {
+                    do {
+                        PersonRoster obj = new PersonRoster();
+                        //only one column
+                        obj.setBarcode(cursor.getString(0));
+
+                        //you could add additional columns here..
+
+                        list.add(obj);
+                    } while (cursor.moveToNext());
+                }
+
+            } finally {
+                try { cursor.close(); } catch (Exception ignore) {}
+            }
+
+        } finally {
+            try { db.close(); } catch (Exception ignore) {}
+        }
+
+        return list;
     }
 
     /*****************GET ROSTER COLUMN NUMBERS*******************/

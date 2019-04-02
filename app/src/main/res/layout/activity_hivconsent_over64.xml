@@ -304,7 +304,7 @@
                     android:layout_marginTop="10dp"
                     android:ems="10"
                     android:padding="3dp"
-                    android:text="4: Do you agree for your blood sample to be sent to the laboratory for additional HIV related testing?"
+                    android:text="4: Do you agree for your blood sample to be stored for up to 5 years for future HIV/TB - related research??"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     />

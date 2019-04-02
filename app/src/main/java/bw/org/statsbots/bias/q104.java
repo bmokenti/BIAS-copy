@@ -69,8 +69,8 @@ public class q104 extends AppCompatActivity implements Serializable {
 
 
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
-
         individual = ind;
+
         thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
 
         final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
@@ -203,7 +203,6 @@ public class q104 extends AppCompatActivity implements Serializable {
         }
 
 
-
         if(ind.getQ104a()!=null){
             String type = ind.getQ104a();
             int pos = 0;
@@ -230,7 +229,8 @@ public class q104 extends AppCompatActivity implements Serializable {
 
         }
 
-        if(ind.getQ104c() !=null  ){
+        if(ind.getQ104c() !=null && !ind.getQ104c().equals("") )
+        {
             edtq104c.setText(ind.getQ104c());
         }
 
@@ -261,12 +261,21 @@ public class q104 extends AppCompatActivity implements Serializable {
                 String txtq104cvalue = txtq104text.getText().toString();
 
 
+//                if (edtq104c == null || edtq104c.length() == 0) {
+//                    int typ= Integer.parseInt(autoTypeEducation.getText().toString().substring(0,2));
+//                    if(typ > 10){
+//                        lib.showError(q104.this, "Field of education", "Please type field of education");
+//                        /**
+//                         * VIBRATE DEVICE
+//                         */
+//                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+//                        vibs.vibrate(100);
+//                    }
+//                }else {
+                //Check if country entered is in the list
 
-
-
-                if (txtq104cvalue == null || txtq104cvalue.length() == 0)
-                {
-                    lib.showError(q104.this, " Field of Education ", "Please enter description");
+                if (Selectedtype == null || Selectedtype.length() == 0) {
+                    lib.showError(q104.this, "Education Error", "Please select Type of education");
                     /**
                      * VIBRATE DEVICE
                      */
@@ -274,9 +283,24 @@ public class q104 extends AppCompatActivity implements Serializable {
                     vibs.vibrate(100);
                 } else {
                     //Check if country entered is in the list
+                    boolean exists = false;
+                    for (String s : lst) {
+                        if (s.matches(Selectedtype)) {
 
-                    if (Selectedtype == null || Selectedtype.length() == 0) {
-                        lib.showError(q104.this, "Education Error", "Please select Type of education");
+                            exists = true;
+                            break;
+                        }
+                    }
+
+//                    if (Selectedtype == "00" || Selectedtype == "01" || Selectedtype == "02" || Selectedtype == "03") {
+//                        q104atxt.setTextColor(Color.LTGRAY);
+//                        q104btxt.setTextColor(Color.LTGRAY);
+//                        edtq104c.setEnabled(false);
+//                        autoYear.setEnabled(false);
+//                    }
+
+                    if (Selectedlevel == null || Selectedlevel.length() == 0) {
+                        lib.showError(q104.this, "Level Error", "Please select Level of education");
                         /**
                          * VIBRATE DEVICE
                          */
@@ -284,24 +308,17 @@ public class q104 extends AppCompatActivity implements Serializable {
                         vibs.vibrate(100);
                     } else {
                         //Check if country entered is in the list
-                        boolean exists = false;
-                        for (String s : lst) {
-                            if (s.matches(Selectedtype)) {
-
-                                exists = true;
+                        boolean exist = false;
+                        for (String l : lst1) {
+                            if (l.matches(Selectedlevel)) {
+                                exist = true;
                                 break;
                             }
                         }
 
-                        if (Selectedtype == "00" || Selectedtype == "01" || Selectedtype == "02" || Selectedtype == "03") {
-                            q104atxt.setTextColor(Color.LTGRAY);
-                            q104btxt.setTextColor(Color.LTGRAY);
-                            autoLevel.setEnabled(false);
-                            autoYear.setEnabled(false);
-                        }
 
-                        if (Selectedlevel == null || Selectedlevel.length() == 0) {
-                            lib.showError(q104.this, "Level Error", "Please select Level of education");
+                        if (Selectedyear == null || Selectedyear.length() == 0) {
+                            lib.showError(q104.this, "Year Error", "Please select Year");
                             /**
                              * VIBRATE DEVICE
                              */
@@ -309,89 +326,66 @@ public class q104 extends AppCompatActivity implements Serializable {
                             vibs.vibrate(100);
                         } else {
                             //Check if country entered is in the list
-                            boolean exist = false;
-                            for (String l : lst1) {
-                                if (l.matches(Selectedlevel))
-                                {
-                                    exist = true;
+                            boolean existsY = false;
+                            for (String y : lst2) {
+                                if (Integer.valueOf(y) == Integer.valueOf(Selectedyear)) {
+                                    existsY = true;
                                     break;
                                 }
                             }
-                            if (edtq104c == null || edtq104c.length() == 0 ) {
-                                int typ= Integer.parseInt(autoTypeEducation.getText().toString().substring(0,2));
-                                if(typ > 10){
-                                    lib.showError(q104.this, "Field of education", "Please type field of education");
-                                    /**
-                                     * VIBRATE DEVICE
-                                     */
-                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                                    vibs.vibrate(100);
-                                }else{
+                            int typ = Integer.parseInt(autoTypeEducation.getText().toString().substring(0, 2));
+//                            if ((typ < 10) && (edtq104c != null || edtq104c.length() > 0)) {
+//
+//
+//                                lib.showError(q104.this, "Field of education", "Please clear field of education ");
+//                                /**
+//                                 * VIBRATE DEVICE
+//                                 */
+//                                Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+//                                vibs.vibrate(100);
+//                            } else
+                                if ((typ > 10) && (edtq104c == null || edtq104c.length() == 0)) {
 
-                                }
 
-                            }
-
-                            if (Selectedyear == null || Selectedyear.length() == 0) {
-                                lib.showError(q104.this, "Year Error", "Please select Year");
+                                lib.showError(q104.this, "Field of education", "Please type field of education");
                                 /**
                                  * VIBRATE DEVICE
                                  */
                                 Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                 vibs.vibrate(100);
-                            }
-                               else {
-                                //Check if country entered is in the list
-                                boolean existsY = false;
-                                for (String y : lst2) {
-                                    if (Integer.valueOf(y) == Integer.valueOf(Selectedyear)) {
-                                        existsY = true;
-                                        break;
-                                    }
-                                }
-
-
+                            } else {
 
                                 //Log.d("P05", String.valueOf(exists));
                                 if (exists && exist && existsY) {
-                                    int typ= Integer.parseInt(autoTypeEducation.getText().toString().substring(0,2));
-                                    int lvl = Integer.parseInt(autoLevel.getText().toString().substring(0,1));
-                                    int yr = Integer.parseInt(autoYear.getText().toString().substring(0,1));
+                                    int typ1 = Integer.parseInt(autoTypeEducation.getText().toString().substring(0, 2));
+                                    int lvl = Integer.parseInt(autoLevel.getText().toString().substring(0, 1));
+                                    int yr = Integer.parseInt(autoYear.getText().toString().substring(0, 1));
 
 
-
-
-
-
-                                        //Set q104 fir the current individual
-                                        individual.setQ104(autoTypeEducation.getText().toString().substring(0, 2));
-                                        individual.setQ104a(autoLevel.getText().toString().substring(0, 1));
-                                        individual.setQ104b(autoYear.getText().toString().substring(0, 1));
-                                    if(typ > 10){
-
-                                    }else {
+                                    //Set q104 fir the current individual
+                                    individual.setQ104(autoTypeEducation.getText().toString().substring(0, 2));
+                                    individual.setQ104a(autoLevel.getText().toString().substring(0, 1));
+                                    individual.setQ104b(autoYear.getText().toString().substring(0, 1));
+                                    if (typ1 > 10) {
                                         individual.setQ104c(edtq104c.getText().toString());
+                                    } else {
+                                        individual.setQ104c(null);
                                     }
-                                        myDB = new DatabaseHelper(q104.this);
-                                        myDB.onOpen(myDB.getReadableDatabase());
-                                        myDB.getWritableDatabase();
+                                    myDB = new DatabaseHelper(q104.this);
+                                    myDB.onOpen(myDB.getReadableDatabase());
+                                    myDB.getWritableDatabase();
 
 
-                                        myDB.updateInd("Q104", individual.getAssignmentID(), individual.getBatch(), individual.getQ104(), String.valueOf(individual.getSRNO()));
-                                        myDB.updateInd("Q104a", individual.getAssignmentID(), individual.getBatch(), individual.getQ104a(), String.valueOf(individual.getSRNO()));
-                                        myDB.updateInd("Q104b", individual.getAssignmentID(), individual.getBatch(), individual.getQ104b(), String.valueOf(individual.getSRNO()));
-                                    if(typ > 10){
+                                    myDB.updateInd("Q104", individual.getAssignmentID(), individual.getBatch(), individual.getQ104(), String.valueOf(individual.getSRNO()));
+                                    myDB.updateInd("Q104a", individual.getAssignmentID(), individual.getBatch(), individual.getQ104a(), String.valueOf(individual.getSRNO()));
+                                    myDB.updateInd("Q104b", individual.getAssignmentID(), individual.getBatch(), individual.getQ104b(), String.valueOf(individual.getSRNO()));
+                                    myDB.updateInd("Q104c", individual.getAssignmentID(), individual.getBatch(), individual.getQ104c(), String.valueOf(individual.getSRNO()));
 
-                                    }else{
-                                        myDB.updateInd("Q104c", individual.getAssignmentID(), individual.getBatch(), individual.getQ104c(), String.valueOf(individual.getSRNO()));}
-
-
-                                        Intent intent = new Intent(q104.this, q105.class);
-                                        intent.putExtra("Individual", individual);
-                                        intent.putExtra("Personroster", p1);
-                                        startActivity(intent);
-
-
+                                    myDB.close();
+                                    Intent intent = new Intent(q104.this, q105.class);
+                                    intent.putExtra("Individual", individual);
+                                    intent.putExtra("Personroster", p1);
+                                    startActivity(intent);
 
                                 } else {
 
@@ -405,16 +399,15 @@ public class q104 extends AppCompatActivity implements Serializable {
 
                                 }
 
+
                             }
-
-
                         }
                     }
-
-
                 }
 
             }
+
+
 
         });
 
@@ -444,14 +437,13 @@ public class q104 extends AppCompatActivity implements Serializable {
     }
 
 
-   /* @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch (item.getItemId()) {
-
             case R.id.pause:
                 // Show the settings activity
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                 alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
                 alertDialogBuilder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -460,30 +452,34 @@ public class q104 extends AppCompatActivity implements Serializable {
                                 Intent intent = new Intent(getApplicationContext(), started_household.class);
                                 intent.putExtra("Household", thisHouse);
                                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(q104.this).toBundle());
-
                             }
                         });
                 alertDialogBuilder.setNegativeButton("No",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
-
                             }
                         });
-
-
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
-
-
                 return  true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }*/
+    }
 
 
 }
 
 
+
+/*
+*
+*  boolean exists = false;
+                    for (String s : lst) {
+                        if (s.equals(Selectedtype)) {
+                            exists = true;
+                            break;
+                        }
+                    }
+ */

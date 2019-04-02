@@ -1,5 +1,6 @@
 package bw.org.statsbots.bias;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -60,6 +63,9 @@ public class q1110 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
@@ -78,9 +84,8 @@ public class q1110 extends AppCompatActivity implements Serializable {
 //        if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
 //                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
 
-        if ((sample.getStatusCode().equals("1") && !p1.getP06().equals(2)) || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
-               (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ))  || sample.getStatusCode().equals("1") ||
-                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && !p1.getP06().equals(2)))
+        if (sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
+                (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
         {
             individual.setQ1110(null);
             individual.setQ1111(null);
@@ -103,7 +108,14 @@ public class q1110 extends AppCompatActivity implements Serializable {
 
 
 
-        if (individual.getQ1103().equals("2") && individual.getQ1107().equals("2") && individual.getQ1108().equals("2") && individual.getQ1109().equals("2") )
+
+        if ((individual.getQ1103().equals("2") && individual.getQ1107().equals("2") && individual.getQ1108().equals("2") && individual.getQ1109().equals("2")) &&
+
+        ( sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
+                (p1.getP06() != null && (p1.getP06().equals("1") || p1.getP06().equals("2"))) ) ||
+                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
+                        (p1.getP07() != null && Integer.valueOf(p1.getP07()) >= 14))
+                ||(sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0") )))
         {
             Intent intent = new Intent(q1110.this, q1114.class);
             intent.putExtra("Individual", individual);
@@ -220,6 +232,63 @@ public class q1110 extends AppCompatActivity implements Serializable {
 
         });
     }
+    //   thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+//    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+//        for (PersonRoster p: roster
+//        ) {
+//        if (p.getSRNO() == ind.getSRNO()){
+//            p1 = p;
+//            break;
+//        }
+//    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.intervie_control, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.pause:
+                // Show the settings activity
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(getApplicationContext(), started_household.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(q1110.this).toBundle());
+
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
 }
 

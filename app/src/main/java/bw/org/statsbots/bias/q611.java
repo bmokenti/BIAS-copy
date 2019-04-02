@@ -1,10 +1,15 @@
 package bw.org.statsbots.bias;
 
+import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -61,7 +66,7 @@ public class q611 extends AppCompatActivity implements Serializable {
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 
-
+           thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
 
 
         final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
@@ -106,6 +111,7 @@ public class q611 extends AppCompatActivity implements Serializable {
                     if(Integer.parseInt(ind.getQ611b())==f+1)
                     {
                         RadioButton radioButton = bt2[f];
+
                         radioButton.setChecked(true);
                         break;
                     }
@@ -191,10 +197,14 @@ public class q611 extends AppCompatActivity implements Serializable {
                             individual.setQ611a(selected.getText().toString().substring(0, 1));
                             individual.setQ611b(selected1.getText().toString().substring(0, 1));
                             individual.setQ611c(selected2.getText().toString().substring(0, 1));
+                           // myDB.updateInd("Q104", individual.getAssignmentID(), individual.getBatch(), individual.getQ104(), String.valueOf(individual.getSRNO()));
 
                             myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();
-                            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                            myDB.updateInd("Q611a", individual.getAssignmentID(), individual.getBatch(), individual.getQ611a(), String.valueOf(individual.getSRNO()));
+                            myDB.updateInd("Q611b", individual.getAssignmentID(), individual.getBatch(), individual.getQ611b(), String.valueOf(individual.getSRNO()));
+                            myDB.updateInd("Q611c", individual.getAssignmentID(), individual.getBatch(), individual.getQ611c(), String.valueOf(individual.getSRNO()));
+
                             myDB.close();
 
                             Intent intent = new Intent(q611.this, q612.class);
@@ -221,16 +231,79 @@ public class q611 extends AppCompatActivity implements Serializable {
                         && (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1"))) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
                         (p1.getP07() != null && Integer.parseInt(p1.getP07()) < 14)) || (sample.getStatusCode().equals("1"))) {
 
-                    Intent intent = new Intent(q611.this, q605.class);
+                    Intent intent = new Intent(q611.this, q604.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);
 
-                } else {
-                    q611.super.onBackPressed();
+                }
+ else {
+                    finish();
+                    Intent intent = new Intent(q611.this, q610.class);
+                    intent.putExtra("Individual", individual);
+                    startActivity(intent);
                 }
             }
 
         });
     }
+
+    //   thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+//    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+//        for (PersonRoster p: roster
+//        ) {
+//        if (p.getSRNO() == ind.getSRNO()){
+//            p1 = p;
+//            break;
+//        }
+//    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.intervie_control, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId()) {
+
+            case R.id.pause:
+                // Show the settings activity
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(getApplicationContext(), started_household.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(q611.this).toBundle());
+
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+                return  true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
 

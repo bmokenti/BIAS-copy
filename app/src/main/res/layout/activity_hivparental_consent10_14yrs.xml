@@ -37,6 +37,18 @@
             android:fillViewport="true"
 
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+            <Button
+
+                android:id="@+id/LoadConsetInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="LOAD CONSETS INFORMATION" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -134,7 +146,7 @@
                                             android:text="2. NO, I do not agree for survey team to do RHT with my Child's blood" />
 
                                     </RadioGroup>
-
+                                </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
                 </LinearLayout>
@@ -203,7 +215,7 @@
                         android:layout_marginTop="10dp"
                         android:ems="10"
                         android:padding="3dp"
-                        android:text="4: Do you agree for your Child's blood sample to be sent to the laboratory for additional HIV related testing?"
+                        android:text="4: Do you agree for your child's blood sample to be stored for up to 5 years for future HIV/TB - related research?"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         />

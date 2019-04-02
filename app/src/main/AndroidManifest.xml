@@ -27,8 +27,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".HIVIdnConsentsInfo"
+            android:label="@string/title_activity_hividn_consents_info"></activity>
+        <activity
+            android:name=".Consents_Info_6wks_9years"
+            android:label="@string/title_activity_consents__info_6wks_9years" />
+        <activity
+            android:name=".Q801Tb"
+            android:label="@string/title_activity_q801_tb" />
+        <activity
             android:name=".TB_Parental_Consents"
-            android:label="@string/title_activity_tb__parental__consents"></activity>
+            android:label="@string/title_activity_tb__parental__consents" />
         <activity
             android:name=".Tb_XRay_Consent"
             android:label="@string/title_activity_tb__xray__consent" />

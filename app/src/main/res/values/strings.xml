@@ -29,12 +29,12 @@ If you do participate in this survey, we will ask you questions about your demog
 \n\n
         <b>BLOOD DRAW, TESTING, AND RETURNING OF RESULTS:</b>\n
 We will ask you for consent to draw blood from you in order to conduct HIV testing and other laboratory based HIV-related tests. We will use a needle to take less than a teaspoon of your blood from your arm. If it’s not possible to take blood from your arm, then we will try to take a few drops of blood from your finger. If you need to know your results the testing and counseling session will be done here in your home and will take about 40 minutes.
-        <br/>\n\n
-If you test positive for HIV, we will send your blood to a laboratory to measure the amount of HIV in your blood. This result will be available at the health facility of your choice within 8 to 10 weeks. You may or may not be selected for other additional tests related to HIV. If you are selected, some of your blood sample will be sent to other laboratories. If we have test results that might help guide your care or treatment, we will attempt to contact you to notify you when your results are ready for collection from a health facility of your choice.<br/>\n\n
-Your participation in the survey is voluntary and if you decide to participate, you may change your mind at any time and stop taking part. If you decide not to take part, it will not affect access to healthcare in any way.<br/>\n\n
-        <b>STORAGE OF SPECIMENS</b><br/>\n
-We would also ask for your permission to store your remaining blood in a specimen bank at the National Health Laboratory (NHL) for future research tests. These tests may be used for future research on HIV/AIDS and TB. This sample will be stored for five years. Your remaining blood will not be sold or used for commercial reasons. If you do not agree to long-term storage of your blood samples, we will destroy the samples after survey-related tests have been completed.<br/>\n\n
-Your participation in the survey is voluntary and if you decide to participate, you may change your mind at any time and stop taking part. If you decide not to take part, it will not affect your healthcare in any way.<br/>\n\n
+        <br />\n\n
+If you test positive for HIV, we will send your blood to a laboratory to measure the amount of HIV in your blood. This result will be available at the health facility of your choice within 8 to 10 weeks. You may or may not be selected for other additional tests related to HIV. If you are selected, some of your blood sample will be sent to other laboratories. If we have test results that might help guide your care or treatment, we will attempt to contact you to notify you when your results are ready for collection from a health facility of your choice.<br />\n\n
+Your participation in the survey is voluntary and if you decide to participate, you may change your mind at any time and stop taking part. If you decide not to take part, it will not affect access to healthcare in any way.<br />\n\n
+        <b>STORAGE OF SPECIMENS</b><br />\n
+We would also ask for your permission to store your remaining blood in a specimen bank at the National Health Laboratory (NHL) for future research tests. These tests may be used for future research on HIV/AIDS and TB. This sample will be stored for five years. Your remaining blood will not be sold or used for commercial reasons. If you do not agree to long-term storage of your blood samples, we will destroy the samples after survey-related tests have been completed.<br />\n\n
+Your participation in the survey is voluntary and if you decide to participate, you may change your mind at any time and stop taking part. If you decide not to take part, it will not affect your healthcare in any way.<br />\n\n
         <b>RISKS</b>\n
 The risks of participation are minimal. We will do everything we can to keep your information confidential. You may feel uncomfortable about some of the questions we will ask and you may refuse to answer any question. If you take part, you will be offered free testing for HIV.\n\n
         <b>BENEFITS</b>\n
@@ -109,6 +109,134 @@ Plot 54609, Government Enclave
 Private Bag 0038, Gaborone
 www.moh.gov.bw
      </string>
+
+    <string name="HIVPCInfoChildren">
+    <b>PARENTAL CONSENT FOR CHILDREN 6 WEEKS-17 YEARS [HIV ONLY EA] </b>
+    /n
+
+<b>PURPOSE OF THE SURVEY </b>
+    \n\n
+This survey will help us learn more about the health of children in Botswana. We plan to ask almost 5,000 children like your child to join this survey. We would like to invite your child to join the survey too, even if his/her HIV status is already known. Your child taking part will help the MoHW make health services better in the country.
+    \n\n
+SURVEY PROCEDURES
+[6 WEEKS-14 YEARS]
+We would like to seek your permission to draw blood and conduct several tests and return results on your child. I will begin by explaining the survey procedures.
+[MOVE TO BLOOD DRAW, TESTING, AND RESULTS RETURN]
+[15- 17 YEARS]
+We would like to seek your permission to conduct interviews, draw blood, conduct several related tests and return results for your child. I will begin by explaining the interview procedures.
+INTERVIEWS
+[15 to 17 years]
+If both you and your child agree for him/her to participate in the survey, we will ask your child some questions. The interview will be conducted in private with only the child and a survey staff member. The interview will be conducted in an area in or around the household. We will ask questions on HIV and your child’s behaviour. The interview will take about 45 minutes.  Your child’s answers will not be shared with you.
+BLOOD DRAW, TESTING, AND RESULTS RETURN:
+[6 WEEKS-17 MONTHS]
+We would like to test your child for HIV. We are doing this for all eligible children in the survey. A trained healthcare worker will take a few drops of blood from your child’s finger or heel. We will send your child’s blood to a lab for a special test to determine if he/she has HIV. We will return the result of this test to you at the nearest health facility of your choice in about 5 days to 6 weeks from now. Once the result is ready and sent to the facility, we will alert you by means in which you would have chosen to be contacted. If your child tests positive for HIV, we will also send his/her blood to a laboratory for more tests. One of these tests will be to measure his/her viral load. Viral load is the amount of HIV in the blood.
+[18 MONTHS-15 YEARS]
+We would like to test your child for HIV. We are doing this for all eligible children in the survey. A trained healthcare worker will take less than half a tablespoon of blood from your child’s arm or a smaller amount from his or her finger and test for HIV in your household. We will give you the results and provide counselling about the results on the same day as the test.  We will also discuss with you how to share the results with your child if you decide to discuss the results with him/her.  The entire testing and counselling session will take about 45 minutes. If your child tests positive for HIV, we will also send his/her blood to a laboratory for more tests. One of these tests will be to measure his/her viral load. Viral load is the amount of HIV in the blood.
+[16 - 17 YEARS]
+For HIV testing, these children will consent for themselves.  If your child agrees to join the survey, we would test your child for HIV. We are doing this for all children in the survey regardless of their HIV status. A trained healthcare worker will take less than a tablespoon of blood from your child’s arm or a smaller amount from their finger and test for HIV in your household. We will give him/her the results and provide counselling about the results on the same day as the test.  We will also discuss with him/her how to share the results with you if he/she decides to discuss the results with you.  The entire testing and counselling session will take about 45 minutes. If your child tests positive for HIV, we will also send his/her blood to a laboratory for more tests. One of these tests will be to measure his/her viral load. Viral load is the amount of HIV in the blood.
+ [READ THIS OUT IF IN ONE OF THE 40 HIV SELECTED HOUSEHOLDS. ELSE SKIP TO SECTION ON CHEST X-RAY, SPUTUM COLLECTION, FINGER PRICK, TESTING, AND RESULTS RETURN]
+STORAGE OF BLOOD SPECIMENS
+[6 WEEKS – 15 YEARS]
+We would like to ask your permission to store your child’s remaining blood in a specimen bank at the National Health Laboratory (NHL) for future research tests. These tests may be used for future research on HIV/AIDS and TB. The sample will be stored for five years. Your child’s remaining blood will not be sold or used for commercial reasons. If you do not agree to long-term storage of your child’s blood samples, we will destroy your child’s blood samples after survey-related testing has been completed. During this 5 year period, if you decide you no longer want your child’s blood stored for future research please contact;
+Principal Investigator:
+Oaitse I Motsamai, MPH, DrPH, (NACA-Research Monitoring and Evaluation)
+Phone Number: +267-3710314.  Fax Number: +267-3170960.
+Physical Address: Unit 9, Westgate Mall Western By-Pass Phase 2.
+Private Bag 00463 Gaborone
+Phone: +267 3654811
+Email: oimotsamai@gmail.com
+OR
+Chairperson of Botswana Human Research Development Committee
+Plot 54609, Government Enclave
+Private Bag 0038, Gaborone
+www.moh.gov.bw
+RIGHT TO REFUSE AND TO WITHDRAW
+[6 WEEKS – 17 YEARS]
+It is your decision about whether you will allow us to invite your child to join the survey. You or your child may stop taking part at any time. If your child agrees to be interviewed but does not want to answer some of the questions, then he/she may skip them and move to the next question. If your child does not take part, it will not affect your child’s healthcare in any way.
+RISKS
+[15 TO 17 YEARS]
+The risks of participating in the survey interview are minimal. We will do everything we can to keep your child’s information confidential. During the interview, your child may feel uncomfortable about some of the questions we will ask. He/she can refuse to answer any question.
+[6 WEEKS – 17 YEARS]
+The risks associated with drawing blood are minimal. The needle may hurt your child when it is inserted into and taken out of his/her arm. The pain will go away after a while. We will do our best to make it hurt as little as possible. Sometimes the needle can leave a bruise or swelling on the skin. Your child might bleed a little or feel a little dizzy afterwards. Rarely, an infection might occur where the needle enters the skin. Sometimes we may have to stick your child with the needle more than once in order to get the right amount of blood. You and your child can say ‘no’ at any time and we will stop. If your child has any discomfort, bleeding, or swelling at the site, please contact the survey staff.
+BENEFITS
+[6 WEEKS – 17 YEARS]
+The main benefit for your child to be in the survey is the chance to learn more about his/her health. If your child tests HIV you and/or your child will learn where to take your child/go for life-saving treatment, which is provided by the MoHW for free.  If you already know that your child is HIV positive and he/she is on treatment, the viral load test can help your child’s healthcare worker judge how well the treatment is working.  Your child’s taking part in this survey could help us learn more about children’s health in Botswana.
+COSTS
+[6 WEEKS – 17 YEARS]
+There is no cost to your child for being part of the survey apart from their time and they will not be paid for their participation.
+CONFIDENTIALITY
+[6 WEEKS – 17 YEARS]
+The blood testing of your child will take place in private. Your name and your child’s name will not appear when we share survey results with the MoHW or the public. The information we collect from your child will be identified by a number and not by your name or your child’s name. This means that besides you and your child, no one else will be able to know his/her test results except survey staff.
+
+[INTERVIEWER: INDICATE INFORMATION ON SHEET TO PARTICIPANT—DO NOT READ ALOUD]
+The following individuals and/or agencies will be able to look at your interview records to help oversee the conduct of this survey:
+
+1.	Staff members from Institutional Review Boards or Ethics Committees overseeing the conduct of this survey to ensure that we are protecting your rights as a person taking part in the survey. These include the Botswana Human Research Development Committee (HRDC), the Institutional Review Boards at the Centers for Disease Control and Prevention (CDC) and the WHO Task Force for TB.
+2.	Survey staff and monitors.
+
+Your permission to allow us to use and share your child’s information with the groups above will expire five years after the end of the survey. If during or post the survey you want your child’s information to be removed from the survey data, or have any questions about the survey, or feel that s/he may been harmed by taking part, you should contact the Botswana Human Research Development Committee (HRDC) and NACA mentioned above.
+
+At this time, do you want to ask me anything about: Your child’s blood being taken in your home? Testing your child’s blood in the laboratory?
+
+PERMISSION STATEMENT
+This consent form has been read out to you and you have been given a copy. Any questions that you had have been answered satisfactorily. You know that after choosing to participate in the survey, you may withdraw at any time if you so wish. You know that your participation is voluntary. You have been given sufficient time to consent.
+
+    </string>
+
+
+
+    <string name="HIVIndConsentInfo">
+    Individual Consent for Adults (18-64yrs) and Emancipated Minors [HIV ONLY EA]
+Hello, my name is___________. I would like to invite you to take part in this survey about HIV/AIDS and TB in Botswana. The Ministry of Health and Wellness (MOHw) is leading this survey and is conducting it in collaboration with Statistics Botswana and other partners.
+PURPOSE OF THE SURVEY
+This survey will help us know how many people in Botswana have HIV and need health services. It will also tell us about people’s risk for getting HIV. We plan to ask about 16000 individuals (men, women, and children) from about 6,000 households throughout Botswana to take part in this survey. If you participate, your taking part will help MOHw make health services better in the country.
+
+SURVEY PROCEDURES
+INTERVIEWS
+If you do participate in this survey, we will ask you questions about your demographics, past experience with HIV services, and your behavior. The interview will take about 40 minutes.
+
+BLOOD DRAW, TESTING, AND RESULTS RETURN:
+We will ask you for consent for the blood draw in order to conduct HIV testing and other laboratory based HIV-related tests. We will use a needle to take less than a teaspoon of your blood from your arm. If it’s not possible to take blood from your arm, then we will try to take a few drops of blood from your finger.The testing and counseling session will be done here in your home and will take about 40 minutes.  We will inform you about the results for all the above tests.
+If you test positive for HIV, we will send your blood to a laboratory to measure the amount of HIV in your blood. This result will be available at the health facility of your choice within 8 to 10 weeks. You may or may not be selected for other additional tests related to HIV. If you are selected, some of your blood sample will be sent to other laboratories. If we have test results that might help guide your care or treatment, we will attempt to contact you to notify you when your results are ready for collection from a health facility of your choice.
+STORAGE OF SPECIMENS
+We would also ask for your permission to store your remaining blood in a specimen bank at the National Health Laboratory (NHL) for future research tests. These tests may be used for future research on HIV/AIDS and TB. This sample will be stored for five years. Your remaining blood will not be sold or used for commercial reasons. If you do not agree to long-term storage of your blood samples, we will destroy the samples after survey-related tests have been completed.
+Your participation in the survey is voluntary and if you decide to participate, you may change your mind at any time and stop taking part. If you decide not to take part, it will not affect your healthcare in any way.
+RISKS
+The risks of participation are minimal. We will do everything we can to keep your information confidential. You may feel uncomfortable about some of the questions we will ask and you may refuse to answer any question. If you take part, you will be offered free testing for HIV in your own home.
+BENEFITS
+The information you provide will also be used to improve the health of Batswana. Your responses will help us develop more effective programs to fight HIV and other diseases in Botswana.
+COSTS
+There is no cost to you for being part of the survey and you will not be paid for your participation.
+CONFIDENTIALITY
+What we talk about during the survey will be kept private, even from your family, and will not be shown to anyone outside of the survey team.  Your answers to the questions will be identified only by a number and not by your name. Your name will not appear on any survey results that we share with MOHw, publish or present at scientific meetings. The information we collect during the survey will not be released outside of the survey groups listed unless there is an issue of safety.
+The following individuals and/or agencies will be able to look at your interview records to help oversee the conduct of this survey:
+1.	Staff members from the Institutional Review Boards or Ethics Committees overseeing the conduct of this survey to ensure that we are protecting your rights as a person taking part in a survey. These include the Botswana Human Research Development Committee (HRDC), the Institutional Review Boards at the Centers for Disease Control and Prevention (CDC) and the WHO Task Force for TB.
+2.	Survey staff and monitors.
+Your permission to allow us to use and share your information with the groups above will expire five years after the end of the survey. If during or post the survey you want your information to be removed from the survey data, or have any questions about the survey, or feel that you have been harmed by taking part, you should contact the Botswana Human Research Development Committee (HRDC) and NACA, MOHw:
+Principal Investigator: Oaitse I Motsamai, MPH, DrPH, (NACA-Research Monitoring and Evaluation);
+Phone Number: +267-3710314.  Fax Number: +267-3170960.
+Physical Address: Unit 9, Westgate Mall Western By-Pass Phase 2.
+Private Bag 00463 Gaborone
+Phone: +254 20 263 0867
+Email: oimotsamai@gmail.com
+
+
+WHO YOU SHOULD CONTACT IF YOU HAVE QUESTIONS
+If you have any questions about your rights as a participant in this survey, you can contact HRDC using the following addresses:
+Chairperson of Botswana Human Research Development Committee
+Dr. Khumo Seipone
+PLOT 54609, GOVERNMENT ENCLAVE
+P/BAG 0038, GABORONE
+Email: kseipone@gov.bw
+www.moh.gov.bw
+
+At this time, do you want to ask me anything about: Your child’s taking part the interview? [10-17yrs] Taking your child’s blood? Testing your child in your house and their blood in the laboratory? Storage of your child’s blood for future research testing?
+
+PERMISSION STATEMENT
+This consent form has been read out to you and you have been given a copy.	Any questions that you had have been answered satisfactorily. 	You know that after choosing to participate in the survey, you may withdraw at any time if you so wish. You know that your participation is voluntary.
+
+    </string>
+
     <string name="Head">00 Head</string>
     <string name="Spouse">01 Spouse/Partner</string>
     <string name="Son">02 Son/Daughter</string>
@@ -2304,6 +2432,9 @@ www.moh.gov.bw
     <string name="title_activity_tb__ind__consent">TB_Ind_Consent</string>
     <string name="title_activity_tb__xray__consent">Tb_XRay_Consent</string>
     <string name="title_activity_tb__parental__consents">TB_Parental_Consents</string>
+    <string name="title_activity_q801_tb">Q801Tb</string>
+    <string name="title_activity_consents__info_6wks_9years">Consents_Info_6wks_9years</string>
+    <string name="title_activity_hividn_consents_info">HIVIdnConsentsInfo</string>
 
 
 </resources>

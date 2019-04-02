@@ -47,6 +47,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
         lib = new LibraryClass();
         rbtn1 = (RadioButton) findViewById(R.id.q101_1);
         rbtn2 = (RadioButton) findViewById(R.id.q101_2);
+
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
 
@@ -166,32 +167,30 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
                         AlertDialog.Builder builder = new AlertDialog.Builder(q101.this);
                         builder.setTitle("Confirm Sex");
                         builder.setIcon(R.drawable.ic_warning_orange_24dp);
-                        builder.setMessage("Sex does not match with Sex at Household");
-                        /*builder.setPositiveButton("Ignore", new DialogInterface.OnClickListener() {
+                        builder.setMessage("Sex does not match with Sex at Household." +
+                                "Do you want to overide sex at Household?");
+                        builder.setPositiveButton("NO", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
-                                individual.setQ101(selectedRbtn.getText().toString().substring(0, 1));
+                                //individual.setQ102(edt.getText().toString());
 
-                                    myDB = new DatabaseHelper(q101.this);
-                                    myDB.onOpen(myDB.getReadableDatabase());
+                                //Restart the current activity for next individual
 
-                                    if (myDB.checkIndividual(individual)) {
-                                        //Update
-                                        myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
-                                    } else {
-                                        //Insert
-                                        myDB.insertIndividual(individual);
+                                //Check if individual already been saved and update
+                                //myDB = new DatabaseHelper(q102.this);
+                               // myDB.onOpen(myDB.getReadableDatabase());
 
-                                    }
-                                Intent q1o2 = new Intent(q101.this, q102.class);
-                                q1o2.putExtra("Individual", individual);
-                                q1o2.putExtra("Personroster", p1);
-                                startActivity(q1o2);
+
+                                //Update
+                               // myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+
+
+
                             }
 
-                                });*/
-                        builder.setNegativeButton("Override Sex at Household", new DialogInterface.OnClickListener() {
+                        });
+                        builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
 
@@ -205,11 +204,11 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
                                         //Update
 
                                         myDB.updateInd("Q101",individual.getAssignmentID(),individual.getBatch(),individual.getQ101(),String.valueOf(individual.getSRNO()));
-                                    } /*else {
-                                        //Insert
-                                        myDB.insertIndividual(individual);
-
-                                    }*/
+                                    }
+                                Intent q1o2 = new Intent(q101.this, q102.class);
+                                q1o2.putExtra("Individual", individual);
+                                q1o2.putExtra("Personroster", p1);
+                                startActivity(q1o2);
 
                             }
                         });
@@ -252,6 +251,7 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
                             if (myDB.checkIndividual(individual)) {
                                 //Update
                                 myDB.updateInd("Q101",individual.getAssignmentID(),individual.getBatch(),individual.getQ101(),String.valueOf(individual.getSRNO()));
+
 
                             } /*else {
                                 //Insert

@@ -1,11 +1,16 @@
 package bw.org.statsbots.bias;
 
+import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -55,6 +60,8 @@ public class q604 extends AppCompatActivity implements Serializable {
 
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
+
+        thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
 
         final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
         for (PersonRoster p: roster
@@ -477,6 +484,16 @@ public class q604 extends AppCompatActivity implements Serializable {
                                                         (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ) &&  Integer.valueOf(individual.getQ102()) < 65) ){
 
                                         individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
+
+                            individual.setQ605_1(null);
+                            individual.setQ605_2(null);
+                            individual.setQ605_3(null);
+                            individual.setQ605_4(null);
+                            individual.setQ605_5(null);
+                            individual.setQ605_9(null);
+                            individual.setQ605_Other(null);
+
+
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();
                                         myDB.updateIndividual(myDB.getWritableDatabase(), individual);
@@ -494,10 +511,105 @@ public class q604 extends AppCompatActivity implements Serializable {
                                             {
 
                                             individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
-                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                individual.setQ605_1(null);
+                                                individual.setQ605_2(null);
+                                                individual.setQ605_3(null);
+                                                individual.setQ605_4(null);
+                                                individual.setQ605_5(null);
+                                                individual.setQ605_9(null);
+                                                individual.setQ605_Other(null);
+                                                individual.setQ606(null);
+                                                individual.setQ607(null);
+                                                individual.setQ608(null);
+                                                individual.setQ609(null);
+                                                individual.setQ610(null);
+                                                individual.setQ611a(null);
+                                                individual.setQ611b(null);
+                                                individual.setQ611c(null);
+
+                                                individual.setQ612(null);
+                                                individual.setQ612a(null);
+                                                individual.setQ612aOther(null);
+                                                individual.setQ613(null);
+                                                individual.setQ613a(null);
+                                                individual.setQ613aOther(null);
+                                                individual.setQ614(null);
+                                                individual.setQ614Other(null);
+                                                individual.setQ615(null);
+                                                individual.setQ616_1(null);
+                                                individual.setQ616_2(null);
+                                                individual.setQ616_3(null);
+                                                individual.setQ616_4(null);
+                                                individual.setQ616_5(null);
+                                                individual.setQ616_6(null);
+                                                individual.setQ616_7(null);
+                                                individual.setQ616_8(null);
+                                                individual.setQ616_9(null);
+                                                individual.setQ616_Other(null);
+                                                individual.setQ617a(null);
+                                                individual.setQ617b(null);
+                                                individual.setQ617c(null);
+                                                individual.setQ617d(null);
+
+                                                individual.setQ617e(null);
+                                                individual.setQ617f(null);
+                                                individual.setQ617g(null);
+                                                individual.setQ617h(null);
+                                                individual.setQ617_0ther(null);
+                                                individual.setQ618(null);
+                                                individual.setQ619_1(null);
+                                                individual.setQ619_2(null);
+                                                individual.setQ619_3(null);
+                                                individual.setQ619_4(null);
+                                                individual.setQ619_5(null);
+                                                individual.setQ619_6(null);
+
+                                                individual.setQ619_7(null);
+                                                individual.setQ619_8(null);
+                                                individual.setQ619_9(null);
+                                                individual.setQ619_10(null);
+                                                individual.setQ619_11(null);
+                                                individual.setQ619_12(null);
+                                                individual.setQ619_13(null);
+                                                individual.setQ619_14(null);
+                                                individual.setQ619_Other(null);
+                                                individual.setQ620(null);
+                                                individual.setQ620_Other(null);
+                                                individual.setQ621(null);
+                                                individual.setQ621a_1(null);
+                                                individual.setQ621a_2(null);
+                                                individual.setQ621a_3(null);
+                                                individual.setQ621a_4(null);
+                                                individual.setQ621a_5(null);
+                                                individual.setQ621a_6(null);
+                                                individual.setQ621a_7(null);
+                                                individual.setQ621a_Other(null);
+                                                individual.setQ621b(null);
+                                                individual.setQ621bOther(null);
+                                                individual.setQ622(null);
+                                                individual.setQ622a(null);
+                                                individual.setQ622aOther(null);
+                                                individual.setQ622b(null);
+                                                individual.setQ622bOther(null);
+                                                individual.setQ623(null);
+                                                individual.setQ624(null);
+                                                individual.setQ625(null);
+                                                individual.setQ701(null);
+                                                individual.setQ702(null);
+                                                individual.setQ703(null);
+//                                                individual.setQ704(null);
+//                                                individual.setQ705(null);
+
+
+
+
+
+
+                                                myDB.onOpen(myDB.getReadableDatabase());
                                             myDB.getWritableDatabase();
                                             myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                             myDB.close();
+
                                             Intent intent1 = new Intent(q604.this, q704.class);
                                             intent1.putExtra("Individual", individual);
                                             startActivity(intent1);
@@ -931,6 +1043,66 @@ public class q604 extends AppCompatActivity implements Serializable {
 
                 }
         }
+
+
+    //   thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+//    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+//        for (PersonRoster p: roster
+//        ) {
+//        if (p.getSRNO() == ind.getSRNO()){
+//            p1 = p;
+//            break;
+//        }
+//    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.intervie_control, menu);
+        return super.onCreateOptionsMenu(menu);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId()) {
+
+            case R.id.pause:
+                // Show the settings activity
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(getApplicationContext(), started_household.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(q604.this).toBundle());
+
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+                return  true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+}
 
 

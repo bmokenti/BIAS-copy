@@ -1,5 +1,6 @@
 package bw.org.statsbots.bias;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,6 +10,8 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -99,6 +102,8 @@ public class q106 extends AppCompatActivity implements Serializable {
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
         individual = ind;
 
+        thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
         final List<HouseHold>  thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
@@ -114,7 +119,7 @@ public class q106 extends AppCompatActivity implements Serializable {
 
         }
 
-        if(individual.getQ105().equals("1") || individual.getQ105().equals("2") || individual.getQ105().equals("3") || individual.getQ105().equals("4"))
+        if(individual.getQ105() != null && (individual.getQ105().equals("1") || individual.getQ105().equals("2") || individual.getQ105().equals("3") || individual.getQ105().equals("4")))
         {
 
             myDB = new DatabaseHelper(q106.this);
@@ -133,6 +138,27 @@ public class q106 extends AppCompatActivity implements Serializable {
             intent.putExtra("Personroster", p1);
             startActivity(intent);
         }
+
+        if (individual.getQ105() != null && (individual.getQ105().equals("8") ))
+        {
+
+            myDB = new DatabaseHelper(q106.this);
+            myDB.onOpen(myDB.getReadableDatabase());
+
+            myDB.updateInd("Q106",individual.getAssignmentID(),individual.getBatch(),"2",String.valueOf(individual.getSRNO()));
+            myDB.updateInd("Q106a",individual.getAssignmentID(),individual.getBatch(),"3",String.valueOf(individual.getSRNO()));
+            myDB.updateInd("Q106c",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+            myDB.updateInd("Q106b",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+            myDB.updateInd("Q106d",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+
+            myDB.close();
+
+            Intent intent = new Intent(q106.this, q107.class);
+            intent.putExtra("Individual", individual);
+            intent.putExtra("Personroster", p1);
+            startActivity(intent);
+        }
+
 
         rbtna1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,6 +210,13 @@ public class q106 extends AppCompatActivity implements Serializable {
                 }
             }
         });
+
+
+
+
+
+
+
 
 
         RadioButton[] bt = new RadioButton[2];
@@ -251,13 +284,18 @@ public class q106 extends AppCompatActivity implements Serializable {
                                 //if (checked)
                                 // for (int i = 0; i < rga.getChildCount(); i++) {
                                 //  ((RadioButton) rga.getChildAt(i)).setEnabled(true);
-                                rbtna1.setEnabled(true);
-                                rbtna2.setEnabled(true);
-                                rbtna3.setEnabled(true);
-                                rbtna4.setEnabled(true);
-                                rbtna5.setEnabled(true);
-                                rbtna6.setEnabled(true);
-                                q106atext.setTextColor(Color.BLACK);
+
+
+
+
+                                    rbtna1.setEnabled(true);
+                                    rbtna2.setEnabled(true);
+                                    rbtna3.setEnabled(false);
+
+                                    rbtna4.setEnabled(true);
+                                    rbtna5.setEnabled(true);
+                                    rbtna6.setEnabled(true);
+                                    q106atext.setTextColor(Color.BLACK);
 
 
                                 q106btext.setTextColor(Color.LTGRAY);
@@ -606,7 +644,7 @@ public class q106 extends AppCompatActivity implements Serializable {
                 //  ((RadioButton) rga.getChildAt(i)).setEnabled(true);
                 rbtna1.setEnabled(true);
                 rbtna2.setEnabled(true);
-                rbtna3.setEnabled(true);
+                rbtna3.setEnabled(false);
                 rbtna4.setEnabled(true);
                 rbtna5.setEnabled(true);
                 rbtna6.setEnabled(true);
@@ -644,6 +682,7 @@ public class q106 extends AppCompatActivity implements Serializable {
                 edt2.setText("'");
 
 
+
                 }
                 // }
 
@@ -651,7 +690,53 @@ public class q106 extends AppCompatActivity implements Serializable {
 
             }
         }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.intervie_control, menu);
+        return super.onCreateOptionsMenu(menu);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId()) {
+
+            case R.id.pause:
+                // Show the settings activity
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(getApplicationContext(), started_household.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(q106.this).toBundle());
+
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+                return  true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+}
 
 
 

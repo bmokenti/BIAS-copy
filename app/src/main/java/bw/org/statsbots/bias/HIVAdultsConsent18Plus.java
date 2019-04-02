@@ -42,7 +42,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
     protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
     protected EditText Edttubevolume, EdtDate, EdtparentID;
     protected CheckBox vol1, vol2, vol3, vol4;
-    protected Button btnNext, btnDate, btnPrev;
+    protected Button btnNext, btnDate, btnPrev, btnloadinfo;
     protected TextView t1, t2, t3, t4, t5, t6, t7, t8;
 
     @Override
@@ -149,6 +149,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                 btnDate = (Button) findViewById(R.id.datebtn);
                 btnNext = (Button) findViewById(R.id.btnnext);
                 btnPrev = (Button) findViewById(R.id.btnprev);
+        btnloadinfo = (Button) findViewById(R.id.LoadConsetInfo);
 
                 vol1 = (CheckBox) findViewById(R.id.vol1);
                 vol2 = (CheckBox) findViewById(R.id.vol2);
@@ -467,24 +468,33 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
 
 
 
-                btnDate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //Create Date Object
-                        Date today = new Date();
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+                Date today = new Date();
 
-                        //Convert to calendar Object
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(today);
+                //Convert to calendar Object
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(today);
+                Date d = new Date();
+                CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss",today.getTime());
+                EdtDate.setText(s.toString());
 
+            }
+        });
 
-                        CharSequence s = android.text.format.DateFormat.format("dd/MM/yyyy",today.getTime());
-                        EdtDate.setText(s.toString());
+        btnloadinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+                Intent intent = new Intent(HIVAdultsConsent18Plus.this, HIVIdnConsentsInfo.class);
+                intent.putExtra("Individual", individual);
+                intent.putExtra("Personroster", p1);
+                startActivity(intent);
 
-                    }
-                });
-
-
+            }
+        });
                 btnNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -603,6 +613,10 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                         if (rbtn2.isChecked()) {
                                                             individual.setIndvBloodDraw(selected1.getText().toString().substring(0, 1));
                                                             individual.setB8_O15_Rapid(selected2.getText().toString().substring(0, 1));
+                                                            individual.setIndBloodLabTest(null);
+                                                            individual.setIndBloodStore(null);
+                                                            individual.setIndBloodSampleCollected(null);
+
                                                             if (rbtn3.isChecked()) {
                                                                 individual.setIndRapidResults(selected3.getText().toString().substring(0, 1));
                                                             }

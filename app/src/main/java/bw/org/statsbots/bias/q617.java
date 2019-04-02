@@ -1,10 +1,15 @@
 package bw.org.statsbots.bias;
 
+import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -95,7 +100,7 @@ public class q617 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+
 
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
@@ -104,7 +109,179 @@ public class q617 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
-        //loading q617 radio buttons
+
+           thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+        if (p.getSRNO() == ind.getSRNO()){
+            p1 = p;
+            break;
+        }
+    }
+
+
+
+
+
+
+
+
+        final String[] s1 = new String[1];
+        final String[] s2 = new String[1];
+        final String[] s3 = new String[1];
+        final String[] s4 = new String[1];
+        final String[] s5 = new String[1];
+        final String[] s6 = new String[1];
+        final String[] s7  = new String[1];
+        final String[] s8  = new String[1];
+
+
+        rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg1_01)
+                {
+                    // is checked
+                    s1[0] = "1";
+                }
+                else if(i == R.id.rg1_02)
+                {
+                    s1[0] = "2";
+                }
+                else if(i == R.id.rg1_03)
+                {
+                    s1[0] = "9";
+                }
+            }
+        });
+        rg2 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg2_1)
+                {
+                    // is checked
+                    s2[0] = "1";
+                }
+                else if(i == R.id.rg2_2)
+                {
+                    s2[0] = "2";
+                }
+                else if(i == R.id.rg2_3)
+                {
+                    s2[0] = "9";
+                }
+            }
+        });
+        rg3 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg3_1)
+                {
+                    // is checked
+                    s3[0] = "1";
+                }
+                else if(i == R.id.rg3_2)
+                {
+                    s3[0] = "2";
+                }
+                else if(i == R.id.rg3_3)
+                {
+                    s3[0] = "9";
+                }
+            }
+        });
+        rg4 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg4_1)
+                {
+                    // is checked
+                    s4[0] = "1";
+                }
+                else if(i == R.id.rg4_2)
+                {
+                    s4[0] = "2";
+                }
+                else if(i == R.id.rg4_3)
+                {
+                    s4[0] = "9";
+                }
+            }
+        });
+        rg5 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg5_1)
+                {
+                    // is checked
+                    s5[0] = "1";
+                }
+                else if(i == R.id.rg5_2)
+                {
+                    s5[0] = "2";
+                }
+                else if(i == R.id.rg5_3)
+                {
+                    s5[0] = "9";
+                }
+            }
+        });
+        rg6 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg6_1)
+                {
+                    // is checked
+                    s6[0] = "1";
+                }
+                else if(i == R.id.rg6_2)
+                {
+                    s6[0] = "2";
+                }
+                else if(i == R.id.rg6_3)
+                {
+                    s6[0] = "9";
+                }
+            }
+        });
+        rg7.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg7_1)
+                {
+                    // is checked
+                    s7[0] = "1";
+                }
+                else if(i == R.id.rg7_2)
+                {
+                    s7[0] = "2";
+                }
+                else if(i == R.id.rg7_3)
+                {
+                    s7[0] = "9";
+                }
+            }
+        });
+        rg8.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rg8_1)
+                {
+                    // is checked
+                    s8[0] = "1";
+                }
+                else if(i == R.id.rg8_2)
+                {
+                    s8[0] = "2";
+                }
+                else if(i == R.id.rg8_3)
+                {
+                    s8[0] = "9";
+                }
+            }
+        });
 
         RadioButton[] bt1 = new RadioButton[4];
         for(int f=1;f<rg1.getChildCount();f++)
@@ -267,167 +444,6 @@ public class q617 extends AppCompatActivity implements Serializable {
 
 
 
-
-
-
-        final String[] s1 = new String[1];
-        final String[] s2 = new String[1];
-        final String[] s3 = new String[1];
-        final String[] s4 = new String[1];
-        final String[] s5 = new String[1];
-        final String[] s6 = new String[1];
-        final String[] s7  = new String[1];
-        final String[] s8  = new String[1];
-
-
-        rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rg1_01)
-                {
-                    // is checked
-                    s1[0] = "1";
-                }
-                else if(i == R.id.rg1_02)
-                {
-                    s1[0] = "2";
-                }
-                else if(i == R.id.rg1_03)
-                {
-                    s1[0] = "9";
-                }
-            }
-        });
-        rg2 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rg2_1)
-                {
-                    // is checked
-                    s2[0] = "1";
-                }
-                else if(i == R.id.rg2_2)
-                {
-                    s2[0] = "2";
-                }
-                else if(i == R.id.rg2_3)
-                {
-                    s2[0] = "9";
-                }
-            }
-        });
-        rg3 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rg3_1)
-                {
-                    // is checked
-                    s3[0] = "1";
-                }
-                else if(i == R.id.rg3_2)
-                {
-                    s3[0] = "2";
-                }
-                else if(i == R.id.rg3_3)
-                {
-                    s3[0] = "9";
-                }
-            }
-        });
-        rg4 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rg4_1)
-                {
-                    // is checked
-                    s4[0] = "1";
-                }
-                else if(i == R.id.rg4_2)
-                {
-                    s4[0] = "2";
-                }
-                else if(i == R.id.rg4_3)
-                {
-                    s4[0] = "9";
-                }
-            }
-        });
-        rg5 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rg5_1)
-                {
-                    // is checked
-                    s5[0] = "1";
-                }
-                else if(i == R.id.rg5_2)
-                {
-                    s5[0] = "2";
-                }
-                else if(i == R.id.rg5_3)
-                {
-                    s5[0] = "9";
-                }
-            }
-        });
-        rg6 .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rg6_1)
-                {
-                    // is checked
-                    s6[0] = "1";
-                }
-                else if(i == R.id.rg6_2)
-                {
-                    s6[0] = "2";
-                }
-                else if(i == R.id.rg6_3)
-                {
-                    s6[0] = "9";
-                }
-            }
-        });
-        rg7.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rg7_1)
-                {
-                    // is checked
-                    s7[0] = "1";
-                }
-                else if(i == R.id.rg7_2)
-                {
-                    s7[0] = "2";
-                }
-                else if(i == R.id.rg7_3)
-                {
-                    s7[0] = "9";
-                }
-            }
-        });
-        rg8.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rg8_1)
-                {
-                    // is checked
-                    s8[0] = "1";
-                }
-                else if(i == R.id.rg8_2)
-                {
-                    s8[0] = "2";
-                }
-                else if(i == R.id.rg8_3)
-                {
-                    s8[0] = "9";
-                }
-            }
-        });
-
-
-
-
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -575,6 +591,64 @@ public class q617 extends AppCompatActivity implements Serializable {
 
 
         });
+    }
+
+    //   thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+//    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+//        for (PersonRoster p: roster
+//        ) {
+//        if (p.getSRNO() == ind.getSRNO()){
+//            p1 = p;
+//            break;
+//        }
+//    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.intervie_control, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId()) {
+
+            case R.id.pause:
+                // Show the settings activity
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(getApplicationContext(), started_household.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(q617.this).toBundle());
+
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+                return  true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
 

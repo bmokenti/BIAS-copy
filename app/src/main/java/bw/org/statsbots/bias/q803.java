@@ -1,10 +1,15 @@
 package bw.org.statsbots.bias;
 
+import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -147,7 +152,7 @@ public class q803 extends AppCompatActivity implements Serializable {
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+
         myDB = new DatabaseHelper(this);
         myDB.getWritableDatabase();
         final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
@@ -156,9 +161,31 @@ public class q803 extends AppCompatActivity implements Serializable {
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+           thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+        if (p.getSRNO() == ind.getSRNO()){
+            p1 = p;
+            break;
+        }
+    }
+
 
         if((individual.getQ801a() != null && individual.getQ801a().equals("1"))  && individual.getQ801f().equals("1"))
         {
+
+            individual.setQ803(null);
+            individual.setQ803Other(null);
+            individual.setQ804(null);
+            individual.setQ804Other(null);
+
+            myDB = new DatabaseHelper(q803.this);
+            myDB.onOpen(myDB.getReadableDatabase());
+            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+            myDB.close();
+
             Intent intent = new Intent(q803.this, q901.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
@@ -173,6 +200,42 @@ public class q803 extends AppCompatActivity implements Serializable {
                 && Integer.parseInt( individual.getQ102() )<50) && !individual.getQ801f().equals("1"))
 
         {
+
+            individual.setQ803(null);
+            individual.setQ803Other(null);
+            individual.setQ804(null);
+            individual.setQ804Other(null);
+
+            individual.setQ901(null);
+            individual.setQ901a(null);
+            individual.setQ901aOther(null);
+            individual.setQ902Month("00");
+            individual.setQ902Year("0000");
+            individual.setQ903a(null);
+            individual.setQ903b(null);
+            individual.setQ903c(null);
+            individual.setQ903d(null);
+            individual.setQ903e(null);
+            individual.setQ903f(null);
+            individual.setQ903g(null);
+            individual.setQ903h(null);
+
+            individual.setQ904(null);
+            individual.setQ904a(null);
+            individual.setQ904aOther(null);
+            individual.setQ904bMM("00");
+            individual.setQ904bYYYY("0000");
+            individual.setQ904c(null);
+            individual.setQ904cOther(null);
+            individual.setQ905(null);
+            individual.setQ905a(null);
+            individual.setQ905aOther(null);
+
+            myDB = new DatabaseHelper(q803.this);
+            myDB.onOpen(myDB.getReadableDatabase());
+            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+            myDB.close();
+
             Intent intent = new Intent(q803.this, q1001.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
@@ -246,6 +309,12 @@ public class q803 extends AppCompatActivity implements Serializable {
                     if (rbtn8.isChecked() ) {
                       //  Intent intent = new Intent(q803.this, q901.class);;
                         individual.setQ803(rbtn8.getText().toString().substring(0, 1));
+
+
+                        individual.setQ804(null);
+                        individual.setQ804Other(null);
+
+
                         myDB.onOpen(myDB.getReadableDatabase());
                         myDB.getWritableDatabase();
                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
@@ -304,6 +373,64 @@ else
 
 
         });
+    }
+
+    //   thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+//    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+//        for (PersonRoster p: roster
+//        ) {
+//        if (p.getSRNO() == ind.getSRNO()){
+//            p1 = p;
+//            break;
+//        }
+//    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.intervie_control, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId()) {
+
+            case R.id.pause:
+                // Show the settings activity
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(getApplicationContext(), started_household.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(q803.this).toBundle());
+
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+                return  true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
 

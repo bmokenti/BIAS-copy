@@ -120,11 +120,11 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
         rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.rbtn1) {
+                if (i == R.id.rbtn1 &&(p1.getP04YY() != null && Integer.valueOf(p1.getP04YY())>= 65) ) {
                     // is checked
                     vol1.setEnabled(true);
                     vol2.setEnabled(true);
-                    vol3.setEnabled(true);
+                    vol3.setEnabled(false);
                     vol4.setEnabled(true);
                     Edttubevolume.setEnabled(true);
                     t1.setTextColor(Color.BLACK);
@@ -144,7 +144,35 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                     t6.setTextColor(Color.BLACK);
 
 
-                } else {
+                } else
+                    if (i == R.id.rbtn1 && (p1.getP04YY() != null && (Integer.valueOf(p1.getP04YY())>= 3 && Integer.valueOf(p1.getP04YY())<= 14) ))
+                {
+                    vol2.setEnabled(false);
+                    vol4.setEnabled(false);
+
+                    vol1.setEnabled(true);
+
+                    vol3.setEnabled(true);
+
+                    Edttubevolume.setEnabled(true);
+                    t1.setTextColor(Color.BLACK);
+
+
+                    rbtn7.setEnabled(true);
+                    rbtn8.setEnabled(true);
+                    rbtn9.setEnabled(true);
+                    rbtn10.setEnabled(true);
+                    t4.setTextColor(Color.BLACK);
+                    t5.setTextColor(Color.BLACK);
+
+                    rbtn11.setEnabled(true);
+                    rbtn12.setEnabled(true);
+                    rbtn13.setEnabled(true);
+                    t6.setTextColor(Color.BLACK);
+
+                }
+
+                    else {
                     vol1.setEnabled(false);
                     vol2.setEnabled(false);
                     vol3.setEnabled(false);
@@ -489,9 +517,10 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                     }
                     else {
 
-                        if ((((vol2.isChecked() && (!vol4.isChecked()) )) || ((vol4.isChecked() && (!vol2.isChecked())))
+                        if (((vol2.isChecked() && (!vol4.isChecked()) ) || (vol4.isChecked() && (!vol2.isChecked()))
                                 || (vol2.isChecked() && vol1.isChecked()) ||  (vol4.isChecked() && vol1.isChecked()) ||
-                                (vol4.isChecked() && vol1.isChecked() && vol2.isChecked())) ){
+                                (vol4.isChecked() && vol1.isChecked() && vol2.isChecked()) ||(vol1.isChecked() && vol3.isChecked()) ) )
+                        {
                             lib.showError(HIVConsentOver64.this, "IndividualConsent: Error: 1a", "10ml container and 4ml container can not be used" +
                                     " in isolation. The participant need 14ml or just 1ml for rht. Please select accordingly");
                             /**
@@ -579,6 +608,14 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getBloodDraw(), String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodVolume_1", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodVolume_4", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodVolume_6", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodVolume_10", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodVolumeComment", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodLabTest", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodStore", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodSampleCollected", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
 
@@ -595,6 +632,12 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                             myDB.onOpen(myDB.getReadableDatabase());
                                                             //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
                                                             myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.close();
+                                                        }
+                                                        else {
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
                                                             myDB.close();
                                                         }
 

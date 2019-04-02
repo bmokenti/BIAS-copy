@@ -1,5 +1,6 @@
 package bw.org.statsbots.bias;
 
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -346,14 +347,14 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
     }
 
 
-    /*@Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch (item.getItemId()) {
 
             case R.id.pause:
                 // Show the settings activity
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                 alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
                 alertDialogBuilder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -374,9 +375,12 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
                         });
 
 
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                AlertDialog
+                        alertDialog = alertDialogBuilder.create();
+               alertDialog.show();
 
+
+        //        Activity.getApplication();
 
                 return  true;
 
@@ -384,6 +388,6 @@ public class q103 extends AppCompatActivity implements View.OnClickListener, Ser
                 return super.onOptionsItemSelected(item);
         }
     }
-*/
+
 }
 

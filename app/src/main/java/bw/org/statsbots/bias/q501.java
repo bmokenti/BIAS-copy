@@ -1,5 +1,6 @@
 package bw.org.statsbots.bias;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,6 +9,8 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -59,6 +62,8 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
         final List<HouseHold> thisHous = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch());
         thisHous.get(0).getHIVTB40();
 
+        thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
         final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
         for (PersonRoster p: roster
         ) {
@@ -72,6 +77,31 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
 
         if(individual.getQ101().equals("2"))
         {
+
+
+            individual.setQ501(null);
+            individual.setQ502(null);
+            individual.setQ503(null);
+            individual.setQ504_1(null);
+            individual.setQ504_2(null);
+            individual.setQ504_3(null);
+            individual.setQ504_4(null);
+            individual.setQ504_5(null);
+            individual.setQ504_6(null);
+            individual.setQ504_7(null);
+            individual.setQ504_8(null);
+            individual.setQ504_10(null);
+            individual.setQ504_Other(null);
+            individual.setQ504_OtherSpecify(null);
+
+
+
+            myDB.onOpen(myDB.getReadableDatabase());
+            myDB.getWritableDatabase();
+            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+            myDB.close();
+
+
             Intent intent = new Intent(q501.this, q601.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
@@ -139,6 +169,7 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
                     if (rbtn2.isChecked() || rbtn3.isChecked()) {
 
                         individual.setQ501(selectedRbtn.getText().toString().substring(0,1));
+                        individual.setQ502(null);
 
                         myDB.onOpen(myDB.getReadableDatabase());
                         myDB.getWritableDatabase();
@@ -204,8 +235,10 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
                             }
 
                             else {
-                                q501.super.onBackPressed();
                                 finish();
+                                Intent intent = new Intent(q501.this, q410.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
                             }
                         }
                     }
@@ -243,4 +276,64 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
                 break;
         }
     }
+
+    //   thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
+
+//    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+//        for (PersonRoster p: roster
+//        ) {
+//        if (p.getSRNO() == ind.getSRNO()){
+//            p1 = p;
+//            break;
+//        }
+//    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.intervie_control, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId()) {
+
+            case R.id.pause:
+                // Show the settings activity
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(getApplicationContext(), started_household.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(q501.this).toBundle());
+
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+                return  true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 }

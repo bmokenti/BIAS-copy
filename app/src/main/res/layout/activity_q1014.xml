@@ -142,7 +142,7 @@ android:onClick="onRadioButtonClicked"
                         android:layout_height="wrap_content"
                         android:text="Q1014a. What were the results of the child?"
                         android:textColor="@color/black"
-                        android:textStyle="bold" />
+                        />
 
 
                     <RadioGroup
@@ -215,7 +215,7 @@ android:onClick="onRadioButtonClicked"
                         android:layout_height="wrap_content"
                         android:text="Q1014b. Was the child given ARVs?"
                         android:textColor="@color/black"
-                        android:textStyle="bold" />
+                        />
                     <RadioGroup
                         android:id="@+id/q1014bGroup2"
                         android:layout_width="match_parent"

@@ -31,11 +31,12 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
     protected EditText EDTParentID, EdtDate, EdtGuardian;
     protected DatabaseHelper myDB;
     protected CheckBox vol1, vol2, vol3, vol4;
-    protected Button btnNext, btnDate, btnPrev;
+    protected Button btnNext, btnDate, btnPrev, btnLoad;
     protected TextView t1, t2, t3, t4, t5, t6, t7, t8;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_hivparental_consent10_14yrs);
 
 
@@ -55,10 +56,12 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
         myDB = new DatabaseHelper(this);
         myDB.onOpen(myDB.getReadableDatabase());
 
+        thisHouse = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch()).get(0);
+
       final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
         individual = ind;
 
-        thisHouse = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch()).get(0);
+
 
         final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
         for (PersonRoster p: roster
@@ -102,6 +105,8 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
                 btnDate = (Button) findViewById(R.id.datebtn);
                 btnNext = (Button) findViewById(R.id.btnnext);
                 btnPrev = (Button) findViewById(R.id.btnprev);
+                btnLoad = (Button) findViewById(R.id.LoadConsetInfo);
+
 
                // vol1 = (CheckBox) findViewById(R.id.vol1);
                // vol2 = (CheckBox) findViewById(R.id.vol2);
@@ -261,10 +266,22 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
                 //Convert to calendar Object
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(today);
-
-
-                CharSequence s = android.text.format.DateFormat.format("dd/MM/yyyy",today.getTime());
+                Date d = new Date();
+                CharSequence s = android.text.format.DateFormat.format("yyyy/MM/dd hh:mm:ss",today.getTime());
                 EdtDate.setText(s.toString());
+
+            }
+        });
+
+        btnLoad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+
+                Intent intent = new Intent(HIVParentalConsent10_14yrs.this, Consents_Info_6wks_9years.class);
+                intent.putExtra("Personroster", p1);
+                startActivity(intent);
+
 
             }
         });
@@ -339,6 +356,9 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("ChPrntlConsentBloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentBloodDraw(), String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("ChPrntlConsentLabTest", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("ChPrntlConsentBloodStore", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+
                                                         myDB.close();
 
 

@@ -1,5 +1,6 @@
 package bw.org.statsbots.bias;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,6 +10,8 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -93,11 +96,11 @@ public class q105 extends AppCompatActivity implements Serializable{
         individual = ind;
 
 
+        thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
 
-
-     final List<PersonRoster> roster = myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+        final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
         for (PersonRoster p: roster
-             ) {
+        ) {
             if (p.getSRNO() == ind.getSRNO()){
                 p1 = p;
                 break;
@@ -106,27 +109,30 @@ public class q105 extends AppCompatActivity implements Serializable{
 
         }
 
-//        RadioButton[] bt1 = new RadioButton[9];
-//
-//
-//        for(int f=0;f<rg.getChildCount();f++)
-//        {
-//            View o = rg.getChildAt(f);
-//            if (o instanceof RadioButton)
-//            {
-//                bt1[f]=((RadioButton)o);
-//                if(ind.getQ105()!= null &&  !ind.getQ105().equals(""))
-//                {
-//                    if(Integer.parseInt(ind.getQ105())==f+1)
-//                    {
-//                        RadioButton radioButton = bt1[f];
-//                        radioButton.setChecked(true);
-//                        break;
-//                    }
-//                }
-//            }
-//        }
 
+
+//      if(individual.getQ103() != null && individual.getQ103().equals("1"))
+//      {
+//          rbtn1.setEnabled(false);
+//          rbtn2.setEnabled(false);
+//          rbtn3.setEnabled(false);
+//          rbtn4.setEnabled(false);
+//          rbtn5.setEnabled(false);
+//          rbtn6.setEnabled(false);
+//          rbtn7.setEnabled(false);
+//          rbtn8.setEnabled(true);
+//          rbtn9.setEnabled(false);
+//
+//          edt.setVisibility(View.INVISIBLE);
+//          edt.setText("");
+//          edt1.setText("");
+//          edt1.setEnabled(false);
+//
+//          edt2.setEnabled(false);
+//          edt2.setText("");
+//          txtb.setTextColor(Color.LTGRAY);
+//          txta.setTextColor(Color.LTGRAY);
+//      }
 
         RadioButton[] bt = new RadioButton[9];
         for(int f=0;f<rg.getChildCount();f++)
@@ -360,136 +366,138 @@ public class q105 extends AppCompatActivity implements Serializable{
                                  */
                                 Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                 vibs.vibrate(100);
+                            }
 
+//                            } else {
+//
+//
+//                                if (((p1.getP15() == null || p1.getP15() != null) && (!edt1.getText().equals("") || edt1.length() > 0) && (rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() )) ||
+//                                        ((p1.getP16() == null || p1.getP16() != null) && (!edt2.getText().equals("") || edt1.length() >0) && (rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() ))) {
+//                                    AlertDialog.Builder builder = new AlertDialog.Builder(q105.this);
+//                                    builder.setTitle("Work in the past seven days.");
+//                                    builder.setIcon(R.drawable.ic_warning_orange_24dp);
+//                                    builder.setMessage("Do you want to update P15 and P16");
+//                                   /* builder.setPositiveButton("No changes", new DialogInterface.OnClickListener() {
+//                                        public void onClick(DialogInterface dialog, int id) {
+//
+//                                            individual.setQ105(selectedRbtn.getText().toString().substring(0, 1));
+//                                            if(rbtn9.isChecked()){
+//                                                individual.setQ105Other(edt.getText().toString());
+//                                            }
+//
+//                                            if(rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn9.isChecked())
+//                                            {
+//                                                individual.setQ105a(edt1.getText().toString());
+//                                                individual.setQ105a(edt2.getText().toString());
+//                                            }
+//                                            myDB = new DatabaseHelper(q105.this);
+//                                            myDB.onOpen(myDB.getReadableDatabase());
+//
+//                                            myDB.updateInd("Q105",individual.getAssignmentID(),individual.getBatch(),ind.getQ105(),String.valueOf(individual.getQ105()));
+//
+//                                            myDB.updateInd("Q105Other",individual.getAssignmentID(),individual.getBatch(),ind.getQ105(),String.valueOf(individual.getQ105Other()));
+//
+//                                            myDB.updateInd("Q105a",individual.getAssignmentID(),individual.getBatch(),ind.getQ105(),String.valueOf(individual.getQ105a()));
+//
+//                                            myDB.updateInd("Q105b",individual.getAssignmentID(),individual.getBatch(),ind.getQ105b(),String.valueOf(individual.getQ105b()));
+//
+//
+//                                            myDB.close();
+//                                            Intent intent = new Intent(q105.this, q106.class);
+//                                            intent.putExtra("Individual", individual);
+//                                            intent.putExtra("Personroster", p1);
+//                                            startActivity(intent);
+//
+//                                        }
+//
+//                                    });*/
+//
+//                                    builder.setNegativeButton("Ammend", new DialogInterface.OnClickListener() {
+//                                        public void onClick(DialogInterface dialog, int id) {
+//
+//
+//                                            myDB = new DatabaseHelper(q105.this);
+//                                            myDB.onOpen(myDB.getReadableDatabase());
+//
+//
+//                                            p1.setP15(edt1.getText().toString());
+//
+//                                            myDB.updateConsents("P15", p1.getAssignmentID(), p1.getBatch(), p1.getP15(), String.valueOf(p1.getSRNO()));
+//
+//                                            p1.setP16(edt2.getText().toString());
+//
+//                                            myDB.updateConsents("P16", p1.getAssignmentID(), p1.getBatch(), p1.getP16(), String.valueOf(p1.getSRNO()));
+//
+//
+//                                            //Restart the current activity for next individual
+//
+//                                            //Check if individual already been saved and update
+//
+//                                            individual.setQ105(selectedRbtn.getText().toString().substring(0, 1));
+//                                            if(rbtn9.isChecked()){
+//                                                individual.setQ105Other(edt.getText().toString());
+//                                            }
+//
+//                                            if(rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn9.isChecked())
+//                                            {
+//                                                individual.setQ105a(edt1.getText().toString());
+//                                                individual.setQ105b(edt2.getText().toString());
+//                                            }
+//                                            if(rbtn5.isChecked() || rbtn6.isChecked() || rbtn7.isChecked() || rbtn8.isChecked())
+//                                            {
+//                                                individual.setQ105a(null);
+//                                                individual.setQ105b(null);
+//                                            }
+//
+//
+//                                            myDB = new DatabaseHelper(q105.this);
+//                                            myDB.onOpen(myDB.getReadableDatabase());
+//
+//                                            myDB.updateInd("Q105",individual.getAssignmentID(),individual.getBatch(),individual.getQ105(),String.valueOf(individual.getSRNO()));
+//
+//                                            myDB.updateInd("Q105Other",individual.getAssignmentID(),individual.getBatch(),individual.getQ105Other(),String.valueOf(individual.getSRNO()));
+//
+//                                            myDB.updateInd("Q105a",individual.getAssignmentID(),individual.getBatch(),individual.getQ105a(),String.valueOf(individual.getSRNO()));
+//
+//                                            myDB.updateInd("Q105b",individual.getAssignmentID(),individual.getBatch(),individual.getQ105b(),String.valueOf(individual.getSRNO()));
+//
+//
+//                                            myDB.close();
+//                                            Intent intent = new Intent(q105.this, q106.class);
+//                                            intent.putExtra("Individual", individual);
+//                                            intent.putExtra("Personroster", p1);
+//                                            startActivity(intent);
+//
+//                                        }
+//                                    });
+//
+//                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+//                                    vibs.vibrate(100);
+//
+//                                    AlertDialog alertDialog = builder.show();
+//                                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+//                                    final Button negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+//
+//                                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+//                                    LinearLayout.LayoutParams negativeButtonLL = (LinearLayout.LayoutParams) negativeButton.getLayoutParams();
+//
+//                                    positiveButton.setTextColor(Color.WHITE);
+//                                    negativeButton.setTextColor(Color.WHITE);
+//
+//                                    positiveButton.setBackgroundColor(Color.parseColor("#3180e9"));
+//                                    negativeButton.setBackgroundColor(Color.parseColor("#3180e9"));
+//
+//                                    positiveButtonLL.leftMargin = 10;
+//
+//                                    negativeButtonLL.weight = 10;
+//                                    positiveButtonLL.weight = 10;
+//
+//                                    positiveButton.setLayoutParams(positiveButtonLL);
+//                                    negativeButton.setLayoutParams(negativeButtonLL);
+//
+//                                }
 
-                            } else {
-
-
-                                if (((p1.getP15() == null || p1.getP15() != null) && (!edt1.getText().equals("") || edt1.length() > 0) && (rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() )) ||
-                                        ((p1.getP16() == null || p1.getP16() != null) && (!edt2.getText().equals("") || edt1.length() >0) && (rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() ))) {
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(q105.this);
-                                    builder.setTitle("Work in the past seven days.");
-                                    builder.setIcon(R.drawable.ic_warning_orange_24dp);
-                                    builder.setMessage("Do you want to update P15 and P16");
-                                   /* builder.setPositiveButton("No changes", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-
-                                            individual.setQ105(selectedRbtn.getText().toString().substring(0, 1));
-                                            if(rbtn9.isChecked()){
-                                                individual.setQ105Other(edt.getText().toString());
-                                            }
-
-                                            if(rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn9.isChecked())
-                                            {
-                                                individual.setQ105a(edt1.getText().toString());
-                                                individual.setQ105a(edt2.getText().toString());
-                                            }
-                                            myDB = new DatabaseHelper(q105.this);
-                                            myDB.onOpen(myDB.getReadableDatabase());
-
-                                            myDB.updateInd("Q105",individual.getAssignmentID(),individual.getBatch(),ind.getQ105(),String.valueOf(individual.getQ105()));
-
-                                            myDB.updateInd("Q105Other",individual.getAssignmentID(),individual.getBatch(),ind.getQ105(),String.valueOf(individual.getQ105Other()));
-
-                                            myDB.updateInd("Q105a",individual.getAssignmentID(),individual.getBatch(),ind.getQ105(),String.valueOf(individual.getQ105a()));
-
-                                            myDB.updateInd("Q105b",individual.getAssignmentID(),individual.getBatch(),ind.getQ105b(),String.valueOf(individual.getQ105b()));
-
-
-                                            myDB.close();
-                                            Intent intent = new Intent(q105.this, q106.class);
-                                            intent.putExtra("Individual", individual);
-                                            intent.putExtra("Personroster", p1);
-                                            startActivity(intent);
-
-                                        }
-
-                                    });*/
-
-                                    builder.setNegativeButton("Ammend", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-
-
-                                            myDB = new DatabaseHelper(q105.this);
-                                            myDB.onOpen(myDB.getReadableDatabase());
-
-
-                                            p1.setP15(edt1.getText().toString());
-
-                                            myDB.updateConsents("P15", p1.getAssignmentID(), p1.getBatch(), p1.getP15(), String.valueOf(p1.getSRNO()));
-
-                                            p1.setP16(edt2.getText().toString());
-
-                                            myDB.updateConsents("P16", p1.getAssignmentID(), p1.getBatch(), p1.getP16(), String.valueOf(p1.getSRNO()));
-
-
-                                            //Restart the current activity for next individual
-
-                                            //Check if individual already been saved and update
-
-                                            individual.setQ105(selectedRbtn.getText().toString().substring(0, 1));
-                                            if(rbtn9.isChecked()){
-                                                individual.setQ105Other(edt.getText().toString());
-                                            }
-
-                                            if(rbtn1.isChecked() || rbtn2.isChecked() || rbtn3.isChecked() || rbtn4.isChecked() || rbtn9.isChecked())
-                                            {
-                                                individual.setQ105a(edt1.getText().toString());
-                                                individual.setQ105b(edt2.getText().toString());
-                                            }
-                                            if(rbtn5.isChecked() || rbtn6.isChecked() || rbtn7.isChecked() || rbtn8.isChecked())
-                                            {
-                                                individual.setQ105a(null);
-                                                individual.setQ105b(null);
-                                            }
-
-
-                                            myDB = new DatabaseHelper(q105.this);
-                                            myDB.onOpen(myDB.getReadableDatabase());
-
-                                            myDB.updateInd("Q105",individual.getAssignmentID(),individual.getBatch(),individual.getQ105(),String.valueOf(individual.getSRNO()));
-
-                                            myDB.updateInd("Q105Other",individual.getAssignmentID(),individual.getBatch(),individual.getQ105Other(),String.valueOf(individual.getSRNO()));
-
-                                            myDB.updateInd("Q105a",individual.getAssignmentID(),individual.getBatch(),individual.getQ105a(),String.valueOf(individual.getSRNO()));
-
-                                            myDB.updateInd("Q105b",individual.getAssignmentID(),individual.getBatch(),individual.getQ105b(),String.valueOf(individual.getSRNO()));
-
-
-                                            myDB.close();
-                                            Intent intent = new Intent(q105.this, q106.class);
-                                            intent.putExtra("Individual", individual);
-                                            intent.putExtra("Personroster", p1);
-                                            startActivity(intent);
-
-                                        }
-                                    });
-
-                                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                                    vibs.vibrate(100);
-
-                                    AlertDialog alertDialog = builder.show();
-                                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                                    final Button negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-
-                                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
-                                    LinearLayout.LayoutParams negativeButtonLL = (LinearLayout.LayoutParams) negativeButton.getLayoutParams();
-
-                                    positiveButton.setTextColor(Color.WHITE);
-                                    negativeButton.setTextColor(Color.WHITE);
-
-                                    positiveButton.setBackgroundColor(Color.parseColor("#3180e9"));
-                                    negativeButton.setBackgroundColor(Color.parseColor("#3180e9"));
-
-                                    positiveButtonLL.leftMargin = 10;
-
-                                    negativeButtonLL.weight = 10;
-                                    positiveButtonLL.weight = 10;
-
-                                    positiveButton.setLayoutParams(positiveButtonLL);
-                                    negativeButton.setLayoutParams(negativeButtonLL);
-
-                                } else {
+                                else {
                                     if (rbtn9.isChecked()) {
                                         individual.setQ105(selectedRbtn.getText().toString().substring(0, 1));
                                         individual.setQ105Other(edt.getText().toString());
@@ -552,7 +560,6 @@ public class q105 extends AppCompatActivity implements Serializable{
                                 }
                             }
                         }
-                    }
 
                 }
             }
@@ -709,6 +716,52 @@ public class q105 extends AppCompatActivity implements Serializable{
 
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.intervie_control, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId()) {
+
+            case R.id.pause:
+                // Show the settings activity
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(getApplicationContext(), started_household.class);
+                                intent.putExtra("Household", thisHouse);
+                                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(q105.this).toBundle());
+
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+                return  true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
 
 

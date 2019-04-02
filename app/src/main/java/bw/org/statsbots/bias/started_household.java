@@ -70,6 +70,7 @@ public class started_household extends AppCompatActivity implements Serializable
         myDB.onOpen(myDB.getReadableDatabase());
 
         Intent i = getIntent();
+
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
         thisHouse = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber()).get(0);
 
@@ -1242,10 +1243,25 @@ public class started_household extends AppCompatActivity implements Serializable
                             });
 
                         } else {
+                            final Individual temp1 = individual;
                             if(individual.getIndvBloodDraw() != null || individual.getPrntlConsentBloodDraw() != null) {
                                 Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
                                 btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
                                 Info = "HIV Questionnaire, Blood Collection  Done";
+                                btn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        //**Replace This house with 1 individual
+                                        Intent q1o2 = new Intent(started_household.this, Barcode.class);
+                                        q1o2.putExtra("Personroster", temp);
+                                        q1o2.putExtra("Individual", temp1);
+                                        //Log.d("HHHHH",temp1.getQ101());
+                                        q1o2.putExtra("Household", thisHouse);
+                                        startActivity(q1o2);
+
+
+                                    }
+                                });
                             }
 
                         }
@@ -1386,10 +1402,28 @@ public class started_household extends AppCompatActivity implements Serializable
                                 Info = "Has Documentation";
 
                             } else {
+                                final PersonRoster person1 = r.get(o);
                                 if (r.get(o).getRapidDate() != null || r.get(o).getBloodDraw() != null || r.get(o).getChPrntlConsentBloodDraw() != null ) {
                                     Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
                                     btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
                                     Info = "Blood collection Done";
+                                    btn.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            //**Replace This house with 1 individual
+//
+//                                                Intent b = new Intent(started_household.this, Barcode.class);
+//                                                b.putExtra("Personroster", person1);
+//                                                startActivity(b);
+
+                                            Intent q1o2 = new Intent(started_household.this, Barcode.class);
+                                            q1o2.putExtra("Personroster", person1);
+                                            startActivity(q1o2);
+
+
+                                        }
+                                    });
+
                                 }
                             }
                         }

@@ -2,9 +2,11 @@ package bw.org.statsbots.bias;
 
 
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import bw.org.statsbots.bias.google.zxing.integration.android.IntentIntegrator;
@@ -33,6 +36,7 @@ public class Barcode extends AppCompatActivity implements  Serializable {
     protected DatabaseHelper myDB;
     protected HouseHold thisHouse;
     protected Individual individual;
+
     boolean hasbeenUsed = false;
 
 
@@ -181,14 +185,14 @@ public class Barcode extends AppCompatActivity implements  Serializable {
                     String scanContent = scanningResult.getContents();
                     String scanFormat = scanningResult.getFormatName();
 
-                    if (scanFormat.equals("CODE_128") && scanContent.length() == 8) {
+                    if (scanFormat.equals("CODE_39") && scanContent.length() == 8) {
                         //formatTxt.setText("FORMAT: " + scanFormat);
                         contentTxt.setText(scanContent);
 
                         //Check if the Barcode has been used
 
 
-                        final List<PersonRoster> r = myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+                        final List<PersonRoster> r = myDB.getdataHhPBar();
 
                         if (r.size() > 0) {
                             /**
@@ -210,6 +214,7 @@ public class Barcode extends AppCompatActivity implements  Serializable {
 
                                 }
                             }
+
 
                             if (hasbeenUsed) {
 

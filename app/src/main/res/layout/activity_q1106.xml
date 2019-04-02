@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/q1106aq"
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                   />
 
                 <RadioGroup
 
@@ -199,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/q1106bq"
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                     />
 
                 <RadioGroup
                     android:id="@+id/q1106rgruop3"
