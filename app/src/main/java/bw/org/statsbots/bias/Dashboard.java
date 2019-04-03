@@ -97,7 +97,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         preferences = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         final boolean userlogin_Status = preferences.getBoolean("is_logged", false);
 
-        if(userlogin_Status==false)
+        if(!userlogin_Status)
         {
             editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
             editor.putString("last_try", DateHelper.getDateTime().toString());

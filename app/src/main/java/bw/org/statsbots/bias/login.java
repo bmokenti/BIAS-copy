@@ -138,7 +138,7 @@ public class login extends AppCompatActivity {
                             txterror.setText(loginValidator.preLogin()); //empty text from preLogin() method
 
                             //Check preferences
-                            if (userlogin_Status == true) {
+                            if (userlogin_Status && (preferences.getString("Username",null).matches(username) && preferences.getString("Password",null).matches(password))) {
                                 //proceed to Dashboard
                                 Intent intentHome = new Intent(login.this, Dashboard.class);
                                 // Check if we're running on Android 5.0 or higher
@@ -343,7 +343,7 @@ public class login extends AppCompatActivity {
                     user.setSuper_Code((String) map.get("Super_Code"));
                     user.setIs_Active((String) map.get("Is_Active"));
 
-                    Log.d("Exception 1 :", svrmsg);
+
                     if(user.getCode().equals("0000")){
                         editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                         editor.putString("last_try", DateHelper.getDateTime().toString());
