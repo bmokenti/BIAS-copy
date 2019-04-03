@@ -16,6 +16,7 @@ import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -580,7 +581,30 @@ public class started_household extends AppCompatActivity implements Serializable
 
         if(thisHouse.getSuperComment()!=null && !thisHouse.getSuperComment().isEmpty() ){
             lcomment.setVisibility(View.VISIBLE);
-            commenttxt.setText(thisHouse.getSuperComment());
+            String comm = thisHouse.getSuperComment();
+            String m[]=comm.split("#");
+            String sl="";
+            String messages = "";
+            if(m.length>0) {
+                sl = "<b>" + m[0] + "</b>";
+                if(m.length>1){
+                    String sl1[] = m[1].split("-");
+
+                    for (int ip = 0; ip < sl1.length; ip++) {
+
+                        if (ip == 0) {
+                            messages = messages + " <b>" + sl1[ip] + "</b>";
+                        } else {
+                            messages = messages + sl1[ip] + "<br/>";
+
+                        }
+
+                    }
+                }
+
+            }
+
+            commenttxt.setText(Html.fromHtml(sl+ " <br/>" + messages));
         }
 
         btnUpdate = findViewById(R.id.btnUpdate);

@@ -462,7 +462,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                     svrmsg = svrmsg.replaceAll("null","\"\"");
                     //Log.d("Test ",svrmsg.substring(21600,21700));
                     JSONArray jsnArray = new JSONArray(svrmsg);
-                    writeToFile(svrmsg,Dashboard.this);
 
                     if(jsnArray.length()==0){
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -491,29 +490,6 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             //JSONObject jObject1 = new JSONObject(jsonItem);
                             JSONObject jObject = new JSONObject(jsonItem);
 
-
-                           /* Iterator<String> iter = jObject1.keys();
-                            //Log.d("Cloumns",iter.next() + " " + jObject1.get(iter.next()));
-                            while (iter.hasNext()) {
-                                String key = iter.next();
-                                try {
-
-                                    if(jObject1.has(key)){
-                                        Object value =  jObject1.get(key);
-                                        if(value==null || value.equals("")){
-                                            jObject.put(key,  "");
-                                            Log.d("Items: ", key + "="+value);
-                                        }else{
-                                            jObject.put(key,value);
-                                            Log.d("Items: ", key + "="+value);
-                                        }
-                                    }
-
-                                } catch (JSONException e) {
-                                    // Something went wrong!
-                                    e.printStackTrace();
-                                }
-                            }*/
 
                             HouseHold j = myDB.searchHouse(myDB.getReadableDatabase(),jObject.get("Assignment_ID").toString(),jObject.get("BatchNumber").toString());
 
@@ -1550,28 +1526,16 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                             }else{
 
                                 j.setSuperComment(jObject.get("SuperComment").toString());
-                                j.setSuperComment(jObject.get("Interview_Status").toString());
+                                j.setInterview_Status(jObject.get("Interview_Status").toString());
 
                                 if(jObject.get("Clear")!=null){
                                     if(jObject.get("Clear").toString().equals("1")){
                                         j.setClear("3");
                                     }
                                 }
-                                SQLiteDatabase db = myDB.getWritableDatabase();
-                                ContentValues hhValues = new ContentValues();
-                                hhValues.put("SuperComment",j.getSuperComment());
-                                hhValues.put("Interview_Status",j.getInterview_Status());
-                                hhValues.put("Clear",j.getClear());
+                                myDB.UpdateRejectedWork(j);
+                                myDB.close();
 
-
-                                i = db.update
-                                        (   "House_Hold_Assignments", // table
-                                                hhValues, // column/value
-                                                "Assignment_ID = ? and BatchNumber = ? and SRNO=?", // selections
-                                                new String[]{ String.valueOf(j.getAssignment_ID()),String.valueOf(j.getBatchNumber()) }
-                                        );
-
-                                db.close();
 
 
                             }

@@ -8636,6 +8636,27 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         return Value;
     }
 
+
+    public void UpdateRejectedWork(HouseHold j){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues hhValues = new ContentValues();
+        hhValues.put("SuperComment",j.getSuperComment());
+        hhValues.put("Interview_Status",j.getInterview_Status());
+        hhValues.put("Clear",j.getClear());
+
+
+        int i = db.update
+                (   "House_Hold_Assignments", // table
+                        hhValues, // column/value
+                        "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                        new String[]{ String.valueOf(j.getAssignment_ID()),String.valueOf(j.getBatchNumber()) }
+                );
+
+
+    }
+
+
+
     /*****************GET INDIVIDUAL COLUMN NUMBERS*******************/
     public String getValue2(String colname, String Assignment_ID, String Batch_no, int srno) {
         SQLiteDatabase db = this.getReadableDatabase();

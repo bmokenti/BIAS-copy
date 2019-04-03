@@ -70,9 +70,9 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         setContentView(R.layout.activity_main);
         final Drawable deleteIcon=this.getResources(). getDrawable( R.drawable.ic_delete_forever_black_24dp);
         hhArray = new EditText[30]; //Max number of house hold members
-        hhArrayTemp = new EditText[30];
         removeArray = new Button[30];
         removeArrayTemp = new Button[30];
+        hhArrayTemp = new EditText[30];
 
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
@@ -205,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                                             }
 
                                             //copy the temp to hhArray
+
                                             hhArray=hhArrayTemp.clone();
                                             removeArray = removeArrayTemp.clone();
                                             counter-=1;
@@ -288,6 +289,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         }
         }
 
+        final int[] totalPersons=new int[1];
         /**
          * Button to add household member
          *
@@ -317,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                 int width = display.getWidth();
 
                 //Textbox to enter hhmember names
-                final EditText personName = new EditText(MainActivity.this);
+                EditText personName = new EditText(MainActivity.this);
 
                 // Create a border programmatically
                 GradientDrawable shape = new GradientDrawable();
@@ -353,68 +355,115 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                 hhArray[counter] = personName;
 
                 //remove person button
+
                 final Button btnPremove = new Button(MainActivity.this);
                 btnPremove.setId(counter);
                 btnPremove.setText("Remove");
                 btnPremove.setTextColor(Color.RED);
                 btnPremove.setCompoundDrawablesWithIntrinsicBounds(deleteIcon, null, null, null);
-                btnPremove.setOnClickListener(new View.OnClickListener() {
+                btnPremove.setOnClickListener(new View.OnClickListener(){
                     @Override
-                    public void onClick(View v) {
+                    public void onClick(View v){
                         /**
                          * Throws null pointer exception at some point ----- fix
                          */
-                        ((ViewManager)hhArray[btnPremove.getId()].getParent()).removeView(hhArray[btnPremove.getId()]);
-                        ((ViewManager)removeArray[btnPremove.getId()].getParent()).removeView(removeArray[btnPremove.getId()]);
+                        //del[0]=btnPremove.getId();
+
+                        try{
+
+                            if(btnPremove.getId()==totalPersons[0]-1) {
+                                Log.d("********************", btnPremove.getId() + " === ");
+                                ((ViewManager) hhArray[btnPremove.getId()].getParent()).removeView(hhArray[btnPremove.getId()]);
+                                ((ViewManager) removeArray[btnPremove.getId()].getParent()).removeView(removeArray[btnPremove.getId()]);
+
+                                if (counter == 1) {
+                                    Log.d("Counter ===== ", counter + "");
+                                    counter = 0;
+                                } else {
+
+                                    //make sure to clear the already entered data about the individual and reorder everything
+                                    //Re shuffle the arrays and fill the missing index
+                                    String curposition = "50";
+                                    int t = 0;
+                                    int y = 100;
+                                    for (int i = 0; i < hhArray.length; i++) {
+                                        if (i == btnPremove.getId()) {
+                                            if (i == btnPremove.getId()) {
+                                                hhArrayTemp[i] = null;
+                                                continue;
+                                            } else {
+                                                break;
+                                            }
+                                        } else {
+                                            EditText tempTxt = hhArray[i];
+                                            //tempTxt.setId(t);
+                                            hhArrayTemp[t] = tempTxt;
+                                            t += 1;
+                                        }
+                                    }
 
 
-                        //set hhArray and removeArray index to null
-                        hhArray[counter]=null;
-                        removeArray[counter]=null;
+                                    int t1 = 0;
+                                    for (int i = 0; i < removeArray.length; i++) {
+                                        if (i == btnPremove.getId()) {
 
-                        if(counter==1){
-                            counter=0;
-                        }
-                        else{
+                                            if (i == btnPremove.getId()) {
+                                                removeArrayTemp[i] = null;
+                                                continue;
+                                            } else {
+                                                break;
+                                            }
+                                        } else {
+                                            Button tmpBtn = removeArray[i];
+                                            //tmpBtn.setId(t1);
+                                            removeArrayTemp[t1] = tmpBtn;
+                                            t1 += 1;
+                                        }
+                                    }
 
-                            //make sure to clear the already entered data about the individual and reorder everything
-                            //Re shuffle the arrays and fill the missing index
-                            int t=0;
-                            for (int i = 0; i<hhArray.length;i++)
-                            {
-                                if(hhArray[i]==null)
-                                {
-                                    continue;
-                                }else {
-                                    hhArrayTemp[t]=hhArray[i];
-                                    t+=1;
+                                    //copy the temp to hhArray
+                                    hhArray = hhArrayTemp;
+                                    removeArray = removeArrayTemp;
+                                    counter -= 1;
+                                    setTitle("P01 Total Persons " + counter);
+                                    Log.d("Last counter value", counter + "");
+                                    totalPersons[0]=counter;
+
                                 }
+                            }else{
+                                //**************
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                builder.setTitle("P01 : Person Listing");
+                                builder.setIcon(R.drawable.ic_warning_orange_24dp);
+
+                                builder.setMessage("You can only remove from bottom upwards. Please make sure to ask P01 question properly to get accurate data.");
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                    }
+                                });
+
+                                /**
+                                 * VIBRATE DEVICE
+                                 */
+                                Vibrator vibs = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+                                vibs.vibrate(100);
+
+                                AlertDialog alertDialog = builder.show();
+                                final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                                LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                                positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                                positiveButton.setTextColor(Color.WHITE);
+                                positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                                positiveButton.setLayoutParams(positiveButtonLL);
+
+
                             }
-
-                            int t1=0;
-                            for (int i = 0; i<removeArray.length;i++)
-                            {
-                                if(removeArray[i]==null)
-                                {
-                                    continue;
-                                }
-                                else {
-                                    removeArrayTemp[t1]=removeArray[i];
-                                    t1+=1;
-                                }
-                            }
-
-                            //copy the temp to hhArray
-                            hhArray=hhArrayTemp.clone();
-                            removeArray = removeArrayTemp.clone();
-                            counter-=1;
-                            setTitle("P01 Total Persons " + counter);
-                            //add items to the lenearlayout afresh;
-                            //linearLayout.removeAllViewsInLayout();
-
-
-
+                        }catch (Exception ff){
+                                ff.printStackTrace();
                         }
+
+
                     }
                 });
 
@@ -462,7 +511,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
                 counter++;
                 setTitle("P01 Total Persons " + counter);
-
+                totalPersons[0]=counter;
 
 
 
