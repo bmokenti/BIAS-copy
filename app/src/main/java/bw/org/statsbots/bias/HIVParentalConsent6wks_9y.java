@@ -28,7 +28,7 @@ public class HIVParentalConsent6wks_9y extends  AppCompatActivity implements Ser
     protected LibraryClass lib;
     protected started_household str;
     protected DatabaseHelper myDB;
-    protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7,rbtn9, rbtn10,rbtn11,rbtn12, rbtn13,  selected1, selected2, selected3,  selected4, selected5 , selected6 ;
+    protected RadioButton rbtn1, rbtn2, rbtnIndeterminate, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7,rbtn9, rbtn10,rbtn11,rbtn12, rbtn13,  selected1, selected2, selected3,  selected4, selected5 , selected6 ;
     protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
     protected EditText Edttubevolume, EdtDate, EdtGuardian;
     protected CheckBox vol1, vol2, vol3, vol4;
@@ -157,6 +157,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
         rbtn3 = (RadioButton) findViewById(R.id.rbtn3);
         rbtn4 = (RadioButton) findViewById(R.id.rbtn4);
         rbtn5 = (RadioButton) findViewById(R.id.rbtn5);
+        rbtnIndeterminate = (RadioButton) findViewById(R.id.rbtnIndeterminate);
         rbtn6 = (RadioButton) findViewById(R.id.rbtn6);
         rbtn7 = (RadioButton) findViewById(R.id.rbtn7);
         rbtn8 = (RadioButton) findViewById(R.id.rbtn8);
@@ -191,6 +192,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
             rbtn4.setEnabled(false);
             rbtn5.setEnabled(false);
             rbtn6.setEnabled(false);
+            rbtnIndeterminate.setEnabled(false);
             t2.setTextColor(Color.LTGRAY);
             t3.setTextColor(Color.LTGRAY);
         }
@@ -261,6 +263,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
                         rbtn4.setEnabled(false);
                         rbtn5.setEnabled(false);
                         rbtn6.setEnabled(false);
+                        rbtnIndeterminate.setEnabled(false);
                         t2.setTextColor(Color.LTGRAY);
                         t3.setTextColor(Color.LTGRAY);
                         vol3.setEnabled(false);
@@ -362,12 +365,10 @@ int wks = Integer.valueOf(p1.getP04WKS());
                 if(i == R.id.rbtn3)
                 {
                     // is checked
-
                     rbtn5.setEnabled(true);
                     rbtn6.setEnabled(true);
+                    rbtnIndeterminate.setEnabled(true);
                     t3.setTextColor(Color.BLACK);
-
-
                 }
                 else
                 {
@@ -375,11 +376,13 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
                     rbtn5.setEnabled(false);
                     rbtn6.setEnabled(false);
+                    rbtnIndeterminate.setEnabled(false);
 
                     t3.setTextColor(Color.LTGRAY);
 
                     rbtn5.setChecked(false);
                     rbtn6.setChecked(false);
+                    rbtnIndeterminate.setEnabled(false);
 
 
 
@@ -476,7 +479,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
             }
         }
 
-        RadioButton[] bt3 = new RadioButton[2];
+        RadioButton[] bt3 = new RadioButton[3];
         for(int f=0;f<rg3.getChildCount();f++)
         {
             View o = rg3.getChildAt(f);

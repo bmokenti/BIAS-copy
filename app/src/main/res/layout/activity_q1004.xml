@@ -76,6 +76,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
+
                 <TextView
                     android:id="@+id/q1004txt"
                     android:layout_width="match_parent"
@@ -88,11 +90,22 @@
                     android:textSize="16sp"
                     />
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/tvyy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="2"
+                        android:textAlignment="viewEnd"
+                        android:textSize="16sp"
+                        android:layout_marginStart="5dp"
+                        android:ellipsize="start"
+                        android:text="YY" />
 
                     <EditText
 

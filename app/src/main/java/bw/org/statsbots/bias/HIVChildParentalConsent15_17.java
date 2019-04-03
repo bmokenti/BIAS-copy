@@ -32,7 +32,7 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
     protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
     protected EditText EdtparentID, EdtDate;
     protected CheckBox vol1, vol2, vol3, vol4;
-    protected Button btnNext, btnDate, btnPrev;
+    protected Button btnNext, btnDate, btnPrev, btnLoad;
     protected TextView t1, t2, t3, t4, t5, t6, t7, t8;
 
     @Override
@@ -70,6 +70,8 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
         btnDate = (Button) findViewById(R.id.datebtn);
         btnNext = (Button) findViewById(R.id.btnnext);
         btnPrev = (Button) findViewById(R.id.btnprev);
+        btnLoad = (Button) findViewById(R.id.LoadConsetInfo);
+
 
         // vol1 = (CheckBox) findViewById(R.id.vol1);
         //  vol2 = (CheckBox) findViewById(R.id.vol2);
@@ -395,6 +397,18 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
 
 
 
+        btnLoad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+
+                Intent intent = new Intent(HIVChildParentalConsent15_17.this, Consents_Info_6wks_9years.class);
+                intent.putExtra("Personroster", p1);
+                startActivity(intent);
+
+
+            }
+        });
 
 
         btnDate.setOnClickListener(new View.OnClickListener() {

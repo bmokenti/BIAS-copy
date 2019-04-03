@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.io.Serializable;
 import java.util.List;
 
-public class HIVIdnConsentsInfo extends AppCompatActivity implements Serializable  {
+public class HIVAssentsInfo_10_17  extends AppCompatActivity implements Serializable {
     protected HouseHold thisHouse;
     protected Individual individual;
     protected LibraryClass lib;
@@ -29,7 +29,7 @@ public class HIVIdnConsentsInfo extends AppCompatActivity implements Serializabl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hividn_consents_info);
+        setContentView(R.layout.activity_hivassents_info_10_17);
 
         lib = new LibraryClass();
 
@@ -71,37 +71,12 @@ public class HIVIdnConsentsInfo extends AppCompatActivity implements Serializabl
 
         thisHouse = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch()).get(0);
 
-        setTitle("Questionnaire Assent age 18-64 years");
+        setTitle("HIV Consents Information for Adults 64 + years");
 
-        if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getStatusCode().equals("2") )
-        {
-            //setTitle("Questionnaire Assent age 15-17 years");
-        }
-
-
-        if((Integer.valueOf(p1.getP04YY()) >=18 && Integer.valueOf(p1.getP04YY()) <=64) && sample.getStatusCode().equals("2") )
-        {
-
-        }
-
-        if(Integer.valueOf(p1.getP04YY()) >64 && sample.getStatusCode().equals("2") )
-        {
-
-        }
-
-
-        if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getStatusCode().equals("3") )
-        {
-
-        }
-
-
-        if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getStatusCode().equals("1") )
-
-
-        {
-
-        }
+//        if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getStatusCode().equals("2") )
+//        {
+//            //setTitle("Questionnaire Assent age 15-17 years");
+//        }
 
 
 
@@ -144,15 +119,22 @@ public class HIVIdnConsentsInfo extends AppCompatActivity implements Serializabl
             @Override
             public void onClick(View view) {
                 //Create Date Object
+                if (Integer.valueOf(p1.getP04YY()) <= 14 ) {
 
-
-                {
-                    Intent intent = new Intent(HIVIdnConsentsInfo.this, HIVAdultsConsent18Plus.class);
+                    Intent intent = new Intent(HIVAssentsInfo_10_17.this, HIVConsentOver64.class);
                     intent.putExtra("Individual", individual);
                     intent.putExtra("Personroster", p1);
                     startActivity(intent);
-                }
 
+                }
+                else {
+                    if (Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 17) {
+                        Intent intent = new Intent(HIVAssentsInfo_10_17.this, HIVAdultsConsent18Plus.class);
+                        intent.putExtra("Individual", individual);
+                        intent.putExtra("Personroster", p1);
+                        startActivity(intent);
+                    }
+                }
             }
         });
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -160,16 +142,24 @@ public class HIVIdnConsentsInfo extends AppCompatActivity implements Serializabl
             public void onClick(View v) {
 
 
+                if (Integer.valueOf(p1.getP04YY()) <= 14) {
 
-                {
-                    Intent intent = new Intent(HIVIdnConsentsInfo.this, HIVAdultsConsent18Plus.class);
+                    Intent intent = new Intent(HIVAssentsInfo_10_17.this, HIVConsentOver64.class);
                     intent.putExtra("Individual", individual);
                     intent.putExtra("Personroster", p1);
                     startActivity(intent);
+
+                } else {
+                    if (Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 17) {
+                        Intent intent = new Intent(HIVAssentsInfo_10_17.this, HIVAdultsConsent18Plus.class);
+                        intent.putExtra("Individual", individual);
+                        intent.putExtra("Personroster", p1);
+                        startActivity(intent);
+                    }
                 }
 
-
             }
+
         });
 
 
@@ -179,15 +169,28 @@ public class HIVIdnConsentsInfo extends AppCompatActivity implements Serializabl
             @Override
             public void onClick(View v) {
 
-                {
-                    Intent intent = new Intent(HIVIdnConsentsInfo.this, HIVAdultsConsent18Plus.class);
+
+                if (Integer.valueOf(p1.getP04YY()) <= 14 ) {
+
+                    Intent intent = new Intent(HIVAssentsInfo_10_17.this, HIVConsentOver64.class);
                     intent.putExtra("Individual", individual);
                     intent.putExtra("Personroster", p1);
                     startActivity(intent);
+
+                }
+                else {
+                    if (Integer.valueOf(p1.getP04YY()) >= 15 && Integer.valueOf(p1.getP04YY()) <= 17) {
+                        Intent intent = new Intent(HIVAssentsInfo_10_17.this, HIVAdultsConsent18Plus.class);
+                        intent.putExtra("Individual", individual);
+                        intent.putExtra("Personroster", p1);
+                        startActivity(intent);
+                    }
                 }
             }
+
         });
     }
+
 
     @Override
     public void onBackPressed() {

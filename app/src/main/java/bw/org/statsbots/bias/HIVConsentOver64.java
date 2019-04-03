@@ -38,11 +38,11 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
     protected String currentHH = null;
     protected LibraryClass lib;
     protected DatabaseHelper myDB;
-    protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7,rbtn9, rbtn10,rbtn11,rbtn12, rbtn13,  selected1, selected2, selected3,  selected4, selected5 , selected6 ;
+    protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtnIndeterminate,  rbtn5, rbtn6, rbtn8, rbtn7,rbtn9, rbtn10,rbtn11,rbtn12, rbtn13,  selected1, selected2, selected3,  selected4, selected5 , selected6 ;
     protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
     protected EditText Edttubevolume, EdtDate;
     protected CheckBox vol1, vol2, vol3, vol4;
-    protected Button btnNext, btnDate, btnPrev;
+    protected Button btnNext, btnDate, btnPrev, btnloadinfo;
     protected TextView t1, t2, t3, t4, t5, t6, t7, t8;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +104,10 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
         btnDate = (Button) findViewById(R.id.datebtn);
         btnNext = (Button) findViewById(R.id.btnnext);
         btnPrev = (Button) findViewById(R.id.btnprev);
+        rbtnIndeterminate = (RadioButton) findViewById(R.id.rbtnIndeterminate);
+        btnloadinfo = (Button) findViewById(R.id.LoadConsetInfo);
 
+        //  rbtnIndeterminate.setChecked(false);
         vol1 = (CheckBox) findViewById(R.id.vol1);
         vol2 = (CheckBox) findViewById(R.id.vol2);
         vol3 = (CheckBox) findViewById(R.id.vol3);
@@ -220,7 +223,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                 if (i == R.id.rbtn3) {
                     // is checked
 
-
+                    rbtnIndeterminate.setEnabled(true);
                     rbtn5.setEnabled(true);
                     rbtn6.setEnabled(true);
                     t3.setTextColor(Color.BLACK);
@@ -231,10 +234,12 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
 
                     rbtn5.setEnabled(false);
                     rbtn6.setEnabled(false);
+                    rbtnIndeterminate.setEnabled(false);
 
                     t3.setTextColor(Color.LTGRAY);
 
                     rbtn5.setChecked(false);
+                    rbtnIndeterminate.setChecked(false);
                     rbtn6.setChecked(false);
 
 
@@ -488,6 +493,28 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
             }
         });
 
+
+        //  btnloadinfo = (Button) findViewById(R.id.LoadConsetInfo);
+        btnloadinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Create Date Object
+
+                if (p1.getP04YY() != null && Integer.valueOf(p1.getP04YY()) >= 65) {
+                    Intent intent = new Intent(HIVConsentOver64.this, HIVIdnConsentsInfo.class);
+                    intent.putExtra("Individual", individual);
+                    intent.putExtra("Personroster", p1);
+                    startActivity(intent);
+                } else {
+                    if (p1.getP04YY() != null && Integer.valueOf(p1.getP04YY()) <= 14) {
+                        Intent intent = new Intent(HIVConsentOver64.this, HIVAssentsInfo_10_17.class);
+                        intent.putExtra("Individual", individual);
+                        intent.putExtra("Personroster", p1);
+                        startActivity(intent);
+                    }
+                }
+            }
+        });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override

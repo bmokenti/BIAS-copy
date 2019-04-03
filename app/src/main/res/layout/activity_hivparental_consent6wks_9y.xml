@@ -243,6 +243,12 @@
                                                     android:layout_height="wrap_content"
                                                     android:text="2. Negative" />
 
+                                                <RadioButton
+                                                    android:id="@+id/rbtnIndeterminate"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="3. Indeterminate" />
+
                                             </RadioGroup>
                                         </LinearLayout>
                                         </LinearLayout>

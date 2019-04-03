@@ -27,8 +27,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".HIVAssentsInfo_10_17"
+            android:label="@string/title_activity_hivassents_info_10_17"></activity>
+        <activity
+            android:name=".HIVOv64ConsentsInfo"
+            android:label="@string/title_activity_hivov64_consents_info" />
+        <activity
             android:name=".HIVIdnConsentsInfo"
-            android:label="@string/title_activity_hividn_consents_info"></activity>
+            android:label="@string/title_activity_hividn_consents_info" />
         <activity
             android:name=".Consents_Info_6wks_9years"
             android:label="@string/title_activity_consents__info_6wks_9years" />
@@ -47,9 +53,6 @@
         <activity
             android:name=".IndQuetParentalConsent"
             android:label="@string/title_activity_ind_quet_parental_consent" />
-        <activity
-            android:name=".HIVAssents10_14years"
-            android:label="@string/title_activity_hivassents10_14years" />
         <activity
             android:name=".HIVParentalConsent10_14yrs"
             android:label="@string/title_activity_hivparental_consent10_14yrs" />

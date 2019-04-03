@@ -70,6 +70,8 @@ public class Barcode extends AppCompatActivity implements  Serializable {
         final Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(), p1.getBatch(), p1.getSRNO());
         individual = ind;
 
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
+        sample.getSTATUS();
 
         thisHouse = myDB.getHouseForUpdate(p1.getAssignmentID(), p1.getBatch()).get(0);
         if (thisHouse == null) {
@@ -103,6 +105,15 @@ public class Barcode extends AppCompatActivity implements  Serializable {
         if (Integer.valueOf(p1.getP04YY()) >= 10 && Integer.valueOf(p1.getP04YY()) <= 14) {
             setTitle("Barcode scan for 10 - 14 years");
         }
+
+//        if (sample.getStatusCode().equals("1") && (p1.getP06() != null && p1.getP06().equals("2") ) )
+//
+//        {
+//            lib.showError(Barcode.this, "BarCode Error", "This Person does not qualify for Any Processes of HIV");
+//
+//            Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+//            vibs.vibrate(100);
+//        }
 
 
         contentTxt.setText(individual.getIndBarcode());

@@ -157,14 +157,28 @@ public class Consents_Info_6wks_9years extends AppCompatActivity implements Seri
                     startActivity(intent);
 
                 }
-                else
-                {
-                    Intent intent = new Intent(Consents_Info_6wks_9years.this, HIVParentalConsent10_14yrs.class);
-                    intent.putExtra("Individual", individual);
-                    intent.putExtra("Personroster", p1);
-                    startActivity(intent);
-                }
+                else {
+                    if (Integer.valueOf(p1.getP04YY()) >= 15 ) {
+                        Intent intent = new Intent(Consents_Info_6wks_9years.this, HIVChildParentalConsent15_17.class);
+                        intent.putExtra("Individual", individual);
+                        intent.putExtra("Personroster", p1);
+                        startActivity(intent);
+                    }
+                    else {
+                        if (Integer.valueOf(p1.getP04YY()) >= 10 && Integer.valueOf(p1.getP04YY()) <= 14) {
+                            Intent intent = new Intent(Consents_Info_6wks_9years.this, HIVParentalConsent10_14yrs.class);
+                            intent.putExtra("Individual", individual);
+                            intent.putExtra("Personroster", p1);
+                            startActivity(intent);
+                        }
+                        else
+                        {
 
+                        }
+                    }
+
+
+                }
             }
         });
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -172,24 +186,32 @@ public class Consents_Info_6wks_9years extends AppCompatActivity implements Seri
             public void onClick(View v) {
 
 
-if (Integer.valueOf(p1.getP04YY()) <= 9 ) {
+                if (Integer.valueOf(p1.getP04YY()) <= 9 ) {
 
-    Intent intent = new Intent(Consents_Info_6wks_9years.this, HIVParentalConsent6wks_9y.class);
-    intent.putExtra("Individual", individual);
-    intent.putExtra("Personroster", p1);
-    startActivity(intent);
+                    Intent intent = new Intent(Consents_Info_6wks_9years.this, HIVParentalConsent6wks_9y.class);
+                    intent.putExtra("Individual", individual);
+                    intent.putExtra("Personroster", p1);
+                    startActivity(intent);
 
-}
-else
-{
-    Intent intent = new Intent(Consents_Info_6wks_9years.this, HIVParentalConsent10_14yrs.class);
-    intent.putExtra("Individual", individual);
-    intent.putExtra("Personroster", p1);
-    startActivity(intent);
-}
+                }
+                else {
+                    if (Integer.valueOf(p1.getP04YY()) >= 15) {
+                        Intent intent = new Intent(Consents_Info_6wks_9years.this, HIVChildParentalConsent15_17.class);
+                        intent.putExtra("Individual", individual);
+                        intent.putExtra("Personroster", p1);
+                        startActivity(intent);
+                    } else {
+                        if (Integer.valueOf(p1.getP04YY()) >= 10 && Integer.valueOf(p1.getP04YY()) <= 14) {
+                            Intent intent = new Intent(Consents_Info_6wks_9years.this, HIVParentalConsent10_14yrs.class);
+                            intent.putExtra("Individual", individual);
+                            intent.putExtra("Personroster", p1);
+                            startActivity(intent);
+                        } else {
 
-
-            }
+                        }
+                    }
+                }
+                }
         });
 
 
@@ -206,12 +228,22 @@ else
                     startActivity(intent);
 
                 }
-                else
-                {
-                    Intent intent = new Intent(Consents_Info_6wks_9years.this, HIVParentalConsent10_14yrs.class);
-                    intent.putExtra("Individual", individual);
-                    intent.putExtra("Personroster", p1);
-                    startActivity(intent);
+                else {
+                    if (Integer.valueOf(p1.getP04YY()) >= 15) {
+                        Intent intent = new Intent(Consents_Info_6wks_9years.this, HIVChildParentalConsent15_17.class);
+                        intent.putExtra("Individual", individual);
+                        intent.putExtra("Personroster", p1);
+                        startActivity(intent);
+                    } else {
+                        if (Integer.valueOf(p1.getP04YY()) >= 10 && Integer.valueOf(p1.getP04YY()) <= 14) {
+                            Intent intent = new Intent(Consents_Info_6wks_9years.this, HIVParentalConsent10_14yrs.class);
+                            intent.putExtra("Individual", individual);
+                            intent.putExtra("Personroster", p1);
+                            startActivity(intent);
+                        } else {
+
+                        }
+                    }
                 }
             }
         });

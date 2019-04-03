@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BAIS V &amp; TBPS</string>
+    <string name="app_name">BAIS V &amp; TBPS </string>
     <string name="P01">"<b>"P01. Starting with the head of household"</b>", please give me names of all persons who spent the night with this household last night.
         "<b>"Make sure to include: "\n
         1. Usual members who did not spend the night but will be available in any of the next 5 days
@@ -182,7 +182,6 @@ PERMISSION STATEMENT
 This consent form has been read out to you and you have been given a copy. Any questions that you had have been answered satisfactorily. You know that after choosing to participate in the survey, you may withdraw at any time if you so wish. You know that your participation is voluntary. You have been given sufficient time to consent.
 
     </string>
-
 
 
     <string name="HIVIndConsentInfo">
@@ -532,15 +531,164 @@ This consent form has been read out to you and you have been given a copy.	Any q
       P06.  Does # usually live in this household?
 
     </string>
+
+    <string name="HIVConsentsOver64">
+    <b> Individual Consent for Adults (64+ yrs) [HIV EA]</b>
+\n\n
+Hello, my name is___________. I would like to invite you to take part in this survey about HIV/AIDS and TB in Botswana. The Ministry of Health and Wellness (MOHw) is leading this survey and is conducting it in collaboration with Statistics Botswana and other partners.
+
+        \n\n
+        <b>PURPOSE OF THE SURVEY</b>
+        \n
+This survey will help us know how many people in Botswana have HIV, how many people have TB and need health services. It will also tell us about people’s risk for getting HIV and TB. We plan to ask about 18000 households to join this survey. If you participate, your taking part will help MOHw make health services better in the country.
+\n
+<b> SURVEY PROCEDURES </b>
+        \n
+If you join this survey, we will ask you questions about your age, TB risk factors, and your behavior. The interview will take about 45 minutes.
+\n
+After the interview, we will offer you TB and HIV testing. We ask you to consent for TB screening and a blood draw. If you do agree, we will draw you blood in your home and invite you to the TB station, which is located in your area. There, a nurse will interview you about symptoms of TB and your risk of getting the disease. She will also ask you to consent to take a CXR. If you have a symptom of TB and/or your CXR is abnormal, we will request that you submit 2 specimens of what comes out when you cough (Sputum), one on the spot and another after 1 hour. These specimens will be sent to the NTRL for testing for TB.  The testing and counseling session will take about 45 minutes.  You may agree to the interview without agreeing to give your blood or to test for TB and vice versa.
+\n
+<b> BLOOD DRAW, TESTING, AND RESULTS RETURN: </b>
+        \n
+We will ask you for consent for the blood draw in order to conduct HIV testing and other laboratory based HIV-related tests. We will use a needle to take less than a teaspoon of your blood from your arm. If it’s not possible to take blood from your arm, then we will try to take a few drops of blood from your finger.The testing and counseling session will be done here in your home and will take about 40 minutes.  We will inform you about the results for all the above tests.
+If you test positive for HIV, we will send your blood to a laboratory to measure the amount of HIV in your blood. This result will be available at the health facility of your choice within 8 to 10 weeks. You may or may not be selected for other additional tests related to HIV. If you are selected, some of your blood sample will be sent to other laboratories. If we have test results that might help guide your care or treatment, we will attempt to contact you to notify you when your results are ready for collection from a health facility of your choice.
+Your participation in the survey is voluntary and if you decide to participate, you may change your mind at any time and stop taking part. If you decide not to take part, it will not affect your healthcare in any way.
+\n
+       <b> RISKS</b>
+The risks of participation are minimal. We will do everything we can to keep your information confidential. You may feel uncomfortable about some of the questions we will ask and you may refuse to answer any question. If you take part, you will be offered free testing for HIV.
+
+        <b>BENEFITS</b>
+        \n\n
+Your participation in the survey would inform you of your HIV status. HIV positive patients will receive counseling and linkage to free care and treatment. The information you provide will also be used to improve the health of Batswana. Your responses will help us develop more effective programs to fight HIV and other diseases in Botswana.
+\n
+        <b>COSTS</b>
+        \n
+There is no cost to you for being part of the survey and you will not be paid for your participation.
+        \n\n
+<b>CONFIDENTIALITY</b>
+        \n
+What we talk about during the survey will be kept private, even from your family, and will not be shown to anyone outside of the survey team.  Your answers to the questions will be identified only by a number and not by your name. Your name will not appear on any survey results that we share with MOHw, publish or present at scientific meetings. The information we collect during the survey will not be released outside of the survey groups listed unless there is an issue of safety.
+The following individuals and/or agencies will be able to look at your interview records to help oversee the conduct of this survey:
+        \n
+1.	Staff members from the Institutional Review Boards or Ethics Committees overseeing the conduct of this survey to ensure that we are protecting your rights as a person taking part in a survey. These include the Botswana Human Research Development Committee (HRDC), the Institutional Review Boards at the Centers for Disease Control and Prevention (CDC) and the WHO Task Force for TB.
+\n
+        2.	Survey staff and monitors.
+        \n
+Your permission to allow us to use and share your information with the groups above will expire five years after the end of the survey. If during or post the survey you want your information to be removed from the survey data, or have any questions about the survey, or feel that you have been harmed by taking part, you should contact the Botswana Human Research Development Committee (HRDC) and NACA, MOHw:
+\n
+        Principal Investigator: Oaitse I Motsamai, MPH, DrPH, (NACA-Research Monitoring and Evaluation);
+Phone Number: +267-3710314.  Fax Number: +267-3170960.
+Physical Address: Unit 9, Westgate Mall Western By-Pass Phase 2.
+Private Bag 00463 Gaborone
+Phone: +254 20 263 0867
+Email: oimotsamai@gmail.com
+        \n
+
+
+<b>WHO YOU SHOULD CONTACT IF YOU HAVE QUESTIONS</b>
+        \n
+If you have any questions about your rights as a participant in this survey, you can contact HRDC using the following addresses:
+        \n
+Chairperson of Botswana Human Research Development Committee
+Dr. Khumo Seipone
+PLOT 54609, GOVERNMENT ENCLAVE
+P/BAG 0038, GABORONE
+Email: kseipone@gov.bw
+www.moh.gov.bw
+\n
+At this time, do you want to ask me anything about: Taking your blood in your home? Testing blood in the laboratory?
+\n
+        <b>PERMISSION STATEMENT</b>
+        \n
+This consent form has been read out to you and you have been given a copy. Any questions that you had have been answered satisfactorily. You know that after choosing to participate in the survey, you may withdraw at any time if you so wish. You know that your participation is voluntary. You have been given sufficient time to consent.
+\n
+
+    </string>
+
+
     <string name="Yes1">1. Yes, spent the night</string>
     <string name="Yes2">2. Yes, did not spend the night</string>
     <string name="No3">3. No, visitor</string>
 
+    <string name="HIVAssent_10_17">
 
+    <b>Assent/Consent for Individual Interview/Blood Testing in Minors 10-17 years [HIV ONLY EA] </b>
+\n\n
+Hello. My name is ___________. I will give you information about blood testing in this survey.
+As a part of this survey, we are giving people a chance to learn if they have HIV.  We are also asking people if we can keep some of their blood for future testing.
+What would happen if you agree to get blood testing?
+If you agree to testing, here is what would happen:
+
+INTERVIEWS
+Children 15 to 17 years
+If you agree to join the survey, we will ask you some questions. The interview will be conducted in private with only you and a survey staff member. The interview will be conducted in an area in or around the household. We will ask questions on HIV and your behaviours. The interview will take about 40 minutes.  Your answers will not be shared with your parent/guardian or any other member of the household
+BLOOD TESTING
+[10-17 years]
+We will use a needle to take less than a teaspoon of your blood from your arm. If it’s not possible to take blood from your arm, then we will try to take a few drops of blood from your finger.  Then we will test your blood for HIV here in your home. We will inform your parents about the results for all the above tests. It will take about 30-50 minutes to do the test and to talk to you about the results.
+If you test positive for HIV, we will send your blood to a laboratory to measure the amount of HIV in your blood. This result will be available at the health facility of your choice within 8 to 10 weeks. You may or may not be selected for other additional tests related to HIV. If you are selected, some of your blood sample will be sent to other laboratories.
+[10-15 years]
+If we have test results that might help guide your care or treatment, we will attempt to contact your parent when your results are ready for collection from a health facility of your choice.
+We would also like your assent/consent to have the MOHw store some of your blood for future research tests. These tests may be used for future research on HIV/AIDS and TB. We will tell your parents/guardians about any test results during this period that are important to your health.
+ [16-17 years]
+If we have test results that might help guide your care or treatment, we will attempt to contact you when your results are ready for collection from a health facility of your choice.
+We would also like your consent to have the MOHw store some of your blood for future research tests. These tests may be used for future research on HIV/AIDS and TB. We will inform you about any test results during this period that are important to your health.
+
+[10-17 years]
+Could bad things happen if you agree to blood testing?
+There is a very little chance that anything bad will happen to you if you agree to collection and testing of your blood. The needle may hurt when it is put into and taken out of your arm. This will go away quickly.  Sometimes the needle can leave a bruise on the skin.  You might bleed a little or feel a little dizzy afterwards.  Rarely, an infection might occur where the needle enters the skin.  Sometimes we may have to stick you with the needle more than one time in order to get the right amount of blood.  We will do our best to make it hurt as little as possible.
+
+[10-15 years]
+You may learn that you are infected with HIV. Learning that you have HIV can cause some emotional distress. If your parent agrees, you and your parent will receive counselling on how to cope with learning that you are HIV positive. We will also tell your parent where you can go for care and treatment, which is provided by the Ministry of Health and Wellness for free. We will do everything we can to keep your test results private, but we cannot guarantee total confidential
+[16-17 years]
+You may learn that you are infected with HIV. Learning that you have HIV can cause some emotional distress. If you agree, you and will receive counselling on how to cope with learning that you are HIV positive. We will also tell you where you can go for care and treatment, which is provided by the MOHw for free. We will do everything we can to keep your test results confidential.
+ [FOR PARTICIPANTS AGES 10-15 YEARS]
+If you do not have HIV, you can learn about what you can do to stay that way. If you have HIV, we will tell your parent/guardian where to get help or treatment.  Treatment for HIV is free.  If you already know you have HIV and are on HIV treatment, the tests may help your healthcare worker know how well your treatment is working.  We also hope to learn something from this survey to help other children in Botswana.
+[10-17 years]
+There is no cost to you for being in the survey except for your time. If you don’t want to be in the survey study, you don’t have to be. Nobody will get upset with you if you do not want to join the survey. It is also OK to say ‘Yes’ and change your mind later.  You can stop being in the survey at any time.  If you want to stop, please tell us.
+We will not tell other people that you are in this survey and will not share information about you to anyone who does not work on the survey. Any information about you will have a number on it instead of your name. Your name or any other identifying information will not appear on any survey results that we share. No one else will be able to know your test results except the people working on the survey.
+ The following individuals and/or organizations will be able to look at your survey records:
+[INTERVIEWER: INDICATE INFORMATION ON SHEET TO PARTICIPANT—DO NOT READ ALOUD]
+Staff members from the Institutional Review Boards or Ethics Committees overseeing the conduct of this survey to ensure that we are protecting your child’s rights as a person in a study. These are the Botswana Human research Development Committee (HRDC), the Institutional Review Boards the Centres for Disease Control and Prevention (CDC; Atlanta, USA), the World Health Organization TB Prevalence Survey Task Force, and other government agencies that oversee the safety of human subjects to ensure we are protecting your child’s rights as a person in this survey;
+Study staff and study monitors
+Your permission to allow us to use and share your information with the groups above will end three years after the end of the survey.
+
+WHO YOU SHOULD CONTACT IF YOU HAVE QUESTIONS
+If you want to leave the survey, have any questions about the survey, or feel that you have been harmed by taking part, you or your parent or guardian should contact the study principal investigator, MRS. Oaitse I Motsamai, MPH, DrPH, (NACA-Research Monitoring and Evaluation) within the Ministry of Health and Wellness
+[INTERVIEWER: INDICATE ADDRESSES OF POINTS OF CONTACT—DO NOT READ ALOUD]
+
+MRS. Oaitse I Motsamai, MPH, DrPH, (NACA-Research Monitoring and Evaluation) within the Ministry of Health and Wellness
+Phone Number: +267-3710314.
+Fax Number: +267-3170960.
+Physical Address: Unit 9, Westgate Mall Western By-Pass Phase 2.
+Private Bag 00463 Gaborone
+Phone: +254 20 263 0867
+Email: oimotsamai@gmail.com
+If you have any questions about your rights as a person in this survey, you can contact the Chairperson of the Botswana Human Research Development Committee (HRDC)
+[INTERVIEWER: INDICATE ADDRESS OF POINT OF CONTACT—DO NOT READ ALOUD]
+Dr Khumo Seipone
+Address:  Head of Human Research Development Committee (HRDC)
+PLOT 54609, GOVERNMENT ENCLAVE
+P/BAG 0038, GABORONE
+Email: kseipone@gov.bw
+www.moh.gov.bw
+
+At this time, do you want to ask me anything about: Taking your blood? Testing in your house and the laboratory? Storage of blood for future research testing?
+
+ASSENT STATEMENT
+Any questions that I had were answered satisfactorily. I have been offered a copy of this consent form
+
+PERMISSION STATEMENT
+This consen/Assentt form has been read out to you and you have been given a copy.	Any questions that you had have been answered satisfactorily. 	You know that after choosing to participate in the survey, you may withdraw at any time if you so wish. You know that your participation is voluntary.
+
+
+    </string>
     <string name="P07">
       P07.  How long has # been visiting in this household?
    
     </string>
+
+
+
     <string name="P07_DD">DD</string>
     <string name="identification">IDENTIFICATION</string>
     <string name="AssDistrict">District: </string>
@@ -1422,7 +1570,8 @@ This consent form has been read out to you and you have been given a copy.	Any q
     <string name="q606">
         READ OUT::::::::::::
         Now I am going to ask you some questions about facts and myths about TB and HIV.
-        I would like you to answer the questions to the best of your knowledge.......................................................
+        I would like you to answer the questions to the best of your knowledge..
+        \n\n
       Q606.  Is it possible for a healthy looking person to have HIV?
 
     </string>
@@ -1772,7 +1921,8 @@ This consent form has been read out to you and you have been given a copy.	Any q
 
     <string name="q701">
 
-        READ OUT::::::::::: Now i would like to ask you some questions about attitudes and what you think about people who are living with HIV and AIDS and TB............................................................
+        READ OUT::::::::::: Now i would like to ask you some questions about attitudes and what you think
+        about people who are living with HIV and AIDS and TB............................................................
 
 
     </string>
@@ -1813,8 +1963,9 @@ This consent form has been read out to you and you have been given a copy.	Any q
 
 
     <string name="q801">
-      Q801. READ OUT::::: Now i am going to ask you more about your experience with HIV support, care and treatment.....................................................
-          Have you ever been tested for HIV?
+      Q801. READ OUT::::: Now i am going to ask you more about your experience with HIV support, care and treatment.
+        \n
+        1.  Have you ever been tested for HIV?
 
     </string>
     <string name="q801_1">1. Yes</string>
@@ -1935,8 +2086,9 @@ This consent form has been read out to you and you have been given a copy.	Any q
     <string name="q804_other"> other_specify</string>
 
     <string name="q901">
-        READ OUT:::  Now i am going to ask you more about your experience with HIV support, care and treatment. ..............................................
-      Q901. After learning you had HIV, have you EVER received HIV medical care from a doctor, clinical officer or nurse?
+        READ OUT:::  Now i am going to ask you more about your experience with HIV support, care and treatment. ..........................
+        \n\n
+        Q901. After learning you had HIV, have you EVER received HIV medical care from a doctor, clinical officer or nurse?
 
     </string>
     <string name="q901_1">1. Yes</string>
@@ -2435,6 +2587,9 @@ This consent form has been read out to you and you have been given a copy.	Any q
     <string name="title_activity_q801_tb">Q801Tb</string>
     <string name="title_activity_consents__info_6wks_9years">Consents_Info_6wks_9years</string>
     <string name="title_activity_hividn_consents_info">HIVIdnConsentsInfo</string>
+    <string name="title_activity_hivov64_consents_info">HIVOv64ConsentsInfo</string>
+    <string name="title_activity_hivconsent_info_10_17">HIVConsentInfo_10_17</string>
+    <string name="title_activity_hivassents_info_10_17">HIVAssentsInfo_10_17</string>
 
 
 </resources>

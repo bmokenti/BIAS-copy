@@ -38,7 +38,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
     protected String currentHH = null;
     protected LibraryClass lib;
     protected DatabaseHelper myDB;
-    protected RadioButton rbtn1, rbtn2, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7, rbtn9, rbtn10, rbtn11, rbtn12, rbtn13, selected1, selected2, selected3, selected4, selected5, selected6;
+    protected RadioButton rbtn1, rbtn2,rbtnIndeterminate, rbtn3, rbtn4, rbtn5, rbtn6, rbtn8, rbtn7, rbtn9, rbtn10, rbtn11, rbtn12, rbtn13, selected1, selected2, selected3, selected4, selected5, selected6;
     protected RadioGroup rg1, rg2, rg3, rg4, rg5, rg6;
     protected EditText Edttubevolume, EdtDate, EdtparentID;
     protected CheckBox vol1, vol2, vol3, vol4;
@@ -129,7 +129,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                 rg4 = (RadioGroup) findViewById(R.id.rg4);
                 rg5 = (RadioGroup) findViewById(R.id.rg5);
                 rg6 = (RadioGroup) findViewById(R.id.rg6);
-
+        rbtnIndeterminate = (RadioButton) findViewById(R.id.rbtnIndeterminate);
                 rbtn1 = (RadioButton) findViewById(R.id.rbtn1);
                 rbtn2 = (RadioButton) findViewById(R.id.rbtn2);
                 rbtn3 = (RadioButton) findViewById(R.id.rbtn3);
@@ -144,6 +144,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                 rbtn12 = (RadioButton) findViewById(R.id.rbtn12);
                 rbtn13 = (RadioButton) findViewById(R.id.rbtn13);
                 Edttubevolume = (EditText) findViewById(R.id.TubeVolComment);
+      //  rbtnIndeterminate.setChecked(false);
                 EdtDate = (EditText) findViewById(R.id.DateTxt);
                 EdtparentID = (EditText) findViewById(R.id.ParentTxt);
                 btnDate = (Button) findViewById(R.id.datebtn);
@@ -169,6 +170,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                 {
                     rbtn5.setEnabled(false);
                     rbtn6.setEnabled(false);
+                    rbtnIndeterminate.setEnabled(false);
                     t3.setTextColor(Color.LTGRAY);
                     rbtn4.setEnabled(false);
                     rbtn3.setEnabled(false);
@@ -279,6 +281,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
 
                             rbtn5.setEnabled(true);
                             rbtn6.setEnabled(true);
+                            rbtnIndeterminate.setEnabled(true);
                             t3.setTextColor(Color.BLACK);
 
                         }
@@ -286,9 +289,11 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                         {
                             rbtn5.setEnabled(false);
                             rbtn6.setEnabled(false);
+                            rbtnIndeterminate.setEnabled(false);
                             t3.setTextColor(Color.LTGRAY);
                             rbtn5.setChecked(false);
                             rbtn6.setChecked(false);
+                            rbtnIndeterminate.setChecked(false);
 
 
 
@@ -483,15 +488,26 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
 
             }
         });
-
+//  btnloadinfo = (Button) findViewById(R.id.LoadConsetInfo);
         btnloadinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Create Date Object
-                Intent intent = new Intent(HIVAdultsConsent18Plus.this, HIVIdnConsentsInfo.class);
-                intent.putExtra("Individual", individual);
-                intent.putExtra("Personroster", p1);
-                startActivity(intent);
+                if (Integer.valueOf(p1.getP04YY()) >= 18 ) {
+                    Intent intent = new Intent(HIVAdultsConsent18Plus.this, HIVIdnConsentsInfo.class);
+                    intent.putExtra("Individual", individual);
+                    intent.putExtra("Personroster", p1);
+                    startActivity(intent);
+                }
+
+                 else {
+                    if ( Integer.valueOf(p1.getP04YY()) <= 17) {
+                        Intent intent = new Intent(HIVAdultsConsent18Plus.this, HIVAssentsInfo_10_17.class);
+                        intent.putExtra("Individual", individual);
+                        intent.putExtra("Personroster", p1);
+                        startActivity(intent);
+                    }
+                }
 
             }
         });
