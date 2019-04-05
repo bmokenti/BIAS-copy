@@ -209,24 +209,37 @@ public class q621 extends AppCompatActivity implements Serializable {
             }
         }
 
+
+
+        if(  ind.getQ621bOther() != null )
+        {
+            if ( ind.getQ621b() != null &&  ind.getQ621b().equals("O") )
+            {
+                rbtbOther.setChecked(true);
+                edtbOther.setText(ind.getQ621bOther());
+                edtbOther.setVisibility(View.VISIBLE);
+            }
+        }
+        else
+        {
         RadioButton[] btb = new RadioButton[3];
         for(int f=0;f<rg2.getChildCount();f++)
         {
             View o = rg2.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                btb[f]=((RadioButton)o);
-                if(ind.getQ621b()!= null &&  !ind.getQ621b().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ621b())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                btb[f] = ((RadioButton) o);
+                if (ind.getQ621b() != null && !ind.getQ621b().equals("")) {
+                    if (Integer.parseInt(ind.getQ621b()) == f + 1) {
                         RadioButton radioButton = btb[f];
                         radioButton.setChecked(true);
                         break;
                     }
                 }
             }
+            }
         }
+
+
 
         if(ind.getQ621a_1()!= null &&  !ind.getQ621a_1().equals(""))
         {

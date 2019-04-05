@@ -110,58 +110,42 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
 //                }
 //            }
 //        }
-        if (thisHouse.next != null && (p1.getP13() != null || p1.getP13Other() != null)) {
-            RadioButton[] bt = new RadioButton[5];
+        if(p1.getP13Other()!= null  ) {
+            if (p1.getP13() != null && p1.getP13().equals("O") || p1.getP13().equals("o"))
+            {
+                rbtn6.setChecked(true);
+                edt.setText(p1.getP13Other());
+            }
+        }
+        else
+            {
+            RadioButton[] bt = new RadioButton[6];
             for (int f = 0; f < rbtngroup.getChildCount(); f++) {
 
                 View o = rbtngroup.getChildAt(f);
                 if (o instanceof RadioButton) {
                     bt[f] = ((RadioButton) o);
-                    if (p1.getP13Other() != null) {
-                        RadioButton radioButton = bt[5];
-                        radioButton.setChecked(true);
-                        selected = radioButton;
-                        edt.setText(p1.getP13Other());
-                        break;
-                    } else {
-                        if (p1.getP13() != null) {
-                            if (f == 5) {
-                                if (p1.getP13Other() != null) {
 
-                                    RadioButton radioButton = bt[5];
-                                    radioButton.setChecked(true);
-                                    selected = radioButton;
-                                    edt.setText(p1.getP13Other());
-                                    break;
 
-                                } else {
-                                    if (Integer.parseInt(p1.getP13()) == f + 1) {
-
-                                        RadioButton radioButton = bt[f];
-                                        radioButton.setChecked(true);
-                                        selected = radioButton;
-                                        break;
-                                    }
-                                }
-
-                            } else {
-                                if (Integer.parseInt(p1.getP13()) == f + 1) {
-
-                                    RadioButton radioButton = bt[f];
-                                    radioButton.setChecked(true);
-                                    selected = radioButton;
-                                    break;
-                                }
-                            }
-
+                    if(  (p1.getP13()!= null) )
+                    {
+                        if(Integer.parseInt(p1.getP13()) == f+1)
+                        {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
                         }
+
+
                     }
                 }
+                }
             }
-        }
 
 
-    TextView textView = (TextView) findViewById(R.id.P13);
+
+
+        TextView textView = (TextView) findViewById(R.id.P13);
         String s = getResources().getString(R.string.P13);
         int t = s.indexOf("#");
         s = s.replace("#", "<b>" + p1.getP01() + "</b> ");
@@ -188,7 +172,13 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selected == null) {
+
+                if(p1.getP13Other()!=null)
+                {
+                    selected=(RadioButton)findViewById(R.id.P13_other);
+                }
+
+                if (selected == null && p1.getP13Other()==null) {
                     lib.showError(P13.this, "P13 Error", "Since" + p1.getP01() + "did not work for payment, profit or home use, what did he/she do?");
                     /**
                      * VIBRATE DEVICE
@@ -200,6 +190,7 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                     //Set P02 fir the current individual
                     thisHouse.getPersons()[p1.getLineNumber()].setP13(selected.getText().toString().substring(0, 1));
                     thisHouse.getPersons()[p1.getLineNumber()].setP13Other(edt.getText().toString());
+
                     //Restart the current activity for next individual
 
                     int total = thisHouse.getTotalPersons();
@@ -216,8 +207,8 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                             List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
 
                             if (ll.size() > 0) {
-                                myDB.updateRoster(thisHouse, "P13", p1.getP13(), String.valueOf(p1.getSRNO()));
-                                myDB.updateRoster(thisHouse, "P13Other", p1.getP13Other(), String.valueOf(p1.getSRNO()));
+                                myDB.updateRoster(thisHouse, "P13",thisHouse.getPersons()[p1.getLineNumber()].getP13(), String.valueOf(p1.getSRNO()));
+                                myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
                                 myDB.close();
                             }
 
@@ -234,8 +225,8 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                             //UPDATE HOUSEHOLD
                             List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
                             if (ll.size() > 0) {
-                                myDB.updateRoster(thisHouse, "P13", p1.getP13(), String.valueOf(p1.getSRNO()));
-                                myDB.updateRoster(thisHouse, "P13Other", p1.getP13Other(), String.valueOf(p1.getSRNO()));
+                                myDB.updateRoster(thisHouse, "P13",thisHouse.getPersons()[p1.getLineNumber()].getP13(), String.valueOf(p1.getSRNO()));
+                                myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
                                 myDB.close();
                             }
 
@@ -252,8 +243,8 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                                 //UPDATE HOUSEHOLD
                                 List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
                                 if (ll.size() > 0) {
-                                    myDB.updateRoster(thisHouse, "P13", p1.getP13(), String.valueOf(p1.getSRNO()));
-                                    myDB.updateRoster(thisHouse, "P13Other", p1.getP13Other(), String.valueOf(p1.getSRNO()));
+                                    myDB.updateRoster(thisHouse, "P13", thisHouse.getPersons()[p1.getLineNumber()].getP13(), String.valueOf(p1.getSRNO()));
+                                    myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
                                     myDB.close();
                                 }
 
@@ -270,9 +261,9 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                                     //UPDATE HOUSEHOLD
                                     List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
                                     if (ll.size() > 0) {
-                                        myDB.updateRoster(thisHouse, "P13", p1.getP13(), String.valueOf(p1.getSRNO()));
-                                        myDB.updateRoster(thisHouse, "P13Other", p1.getP13Other(), String.valueOf(p1.getSRNO()));
-                                        myDB.close();
+                                        myDB.updateRoster(thisHouse, "P13", thisHouse.getPersons()[p1.getLineNumber()].getP13(), String.valueOf(p1.getSRNO()));
+                                        myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+                                        //myDB.close();
                                     }
                                     thisHouse = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber()).get(0);
 
@@ -294,10 +285,11 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                                     //UPDATE HOUSEHOLD
                                     List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
                                     if (ll.size() > 0) {
-                                        myDB.updateRoster(thisHouse, "P13", p1.getP13(), String.valueOf(p1.getSRNO()));
-                                        myDB.updateRoster(thisHouse, "P13Other", p1.getP13Other(), String.valueOf(p1.getSRNO()));
-                                        myDB.close();
+                                        myDB.updateRoster(thisHouse, "P13", thisHouse.getPersons()[p1.getLineNumber()].getP13(), String.valueOf(p1.getSRNO()));
+                                        myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+                                        //myDB.close();
                                     }
+                        //thisHouse = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber()).get(0);
 
 
                                     finish();

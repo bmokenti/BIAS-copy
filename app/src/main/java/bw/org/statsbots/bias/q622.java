@@ -258,6 +258,7 @@ public class q622 extends AppCompatActivity implements Serializable {
             }
         });
 
+
         RadioButton[] bt = new RadioButton[3];
         for(int f=0;f<rg1.getChildCount();f++)
         {
@@ -278,7 +279,16 @@ public class q622 extends AppCompatActivity implements Serializable {
             }
         }
 
+//
+        if (ind.getQ622aOther() != null ) {
 
+            if (ind.getQ622a() != null && ind.getQ622a().equals("O")) {
+                rbtaOther.setChecked(true);
+                edtaOther.setText(ind.getQ622aOther());
+            }
+        }
+        else
+        {
 
         RadioButton[] bt1 = new RadioButton[3];
 
@@ -288,10 +298,7 @@ public class q622 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton) {
                 bt1[f] = ((RadioButton) o);
 
-                if (ind.getQ622aOther() != null && ind.getQ622aOther().equals("")) {
-                    rbtaOther.setChecked(true);
-                    edtaOther.setText(ind.getQ622aOther());
-                } else {
+                {
 
                     if (ind.getQ622a() != null && !ind.getQ622a().equals("")) {
                         if (Integer.parseInt(ind.getQ622a()) == f + 1) {
@@ -301,16 +308,21 @@ public class q622 extends AppCompatActivity implements Serializable {
                         }
                     }
                 }
+                }
             }
         }
 
-//        if(ind.getQ621a_Other1() != null)
-//        {
-//            edtbOther.setText(ind.getQ621a_Other1());
-//        }
 
 
+        if (ind.getQ622bOther() != null ) {
 
+            if (ind.getQ622b() != null && ind.getQ622b().equals("O")) {
+                rbtbOther.setChecked(true);
+                edtbOther.setText(ind.getQ622bOther());
+            }
+        }
+        else
+        {
         RadioButton[] bt2 = new RadioButton[3];
 
         for(int f=0;f<rg3.getChildCount();f++) {
@@ -329,8 +341,10 @@ public class q622 extends AppCompatActivity implements Serializable {
                             break;
                         }
                     }
+
                 }
             }
+        }
         }
 
 //

@@ -1209,7 +1209,7 @@ This consen/Assentt form has been read out to you and you have been given a copy
     <string name="q107b_3">3. Shaftman</string>
     <string name="q107b_4">4. Foreman</string>
     <string name="q107b_5">5. Driller</string>
-    <string name="q107b_specify">other specify</string>
+    <string name="q107b_specify">Other specify</string>
 
 
     <string name="q107c">
@@ -2070,7 +2070,7 @@ This consen/Assentt form has been read out to you and you have been given a copy
     <string name="q803_6">6. I have not had the time or chance to go for testing</string>
     <string name="q803_7">7. I do not know where to go to get tested</string>
     <string name="q803_8">8. I know my HIV Positive status</string>
-    <string name="q803_other"> other_specify</string>
+    <string name="q803_other">Other_specify</string>
 
     <string name="q804">
       Q804. Why have you NEVER tested?

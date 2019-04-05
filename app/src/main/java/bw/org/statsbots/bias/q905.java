@@ -189,17 +189,22 @@ public class q905 extends AppCompatActivity implements Serializable {
 //        }
 
 
+
+        if (ind.getQ905aOther() != null ) {
+
+            if (ind.getQ905a() != null && ind.getQ905a().equals("O")) {
+                rbtnaother.setChecked(true);
+                edtaother.setText(ind.getQ905aOther());
+            }
+        }
+        else {
         RadioButton[] bt = new RadioButton[7];
-        for(int f=0;f<rg.getChildCount();f++)
-        {
+        for(int f=0;f<rg.getChildCount();f++) {
             View o = rg.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ905a()!= null &&  !ind.getQ905a().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ905a())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ905a() != null && !ind.getQ905a().equals("")) {
+                    if (Integer.parseInt(ind.getQ905a()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
                         break;
@@ -207,10 +212,13 @@ public class q905 extends AppCompatActivity implements Serializable {
                 }
             }
         }
-        if( ind.getQ905aOther() != null)
-        {
-            edtaother.setText(ind.getQ905aOther());
         }
+
+//
+//        if( ind.getQ905aOther() != null)
+//        {
+//            edtaother.setText(ind.getQ905aOther());
+//        }
 
 
 

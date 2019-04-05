@@ -21,7 +21,8 @@ import android.widget.RadioGroup;
 import java.io.Serializable;
 import java.util.List;
 
-public class q501 extends AppCompatActivity implements View.OnClickListener, Serializable {
+public class
+q501 extends AppCompatActivity implements View.OnClickListener, Serializable {
 
     protected HouseHold thisHouse;
     protected Individual individual;
@@ -173,7 +174,9 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
 
                         myDB.onOpen(myDB.getReadableDatabase());
                         myDB.getWritableDatabase();
-                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                       // myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.updateInd("Q501", individual.getAssignmentID(), individual.getBatch(), individual.getQ501(), String.valueOf(individual.getSRNO()));
+                        myDB.updateInd("Q502", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
                         myDB.close();
                         Intent q1o2 = new Intent(q501.this, q503.class);
                         q1o2.putExtra("Individual", individual);
@@ -186,7 +189,7 @@ public class q501 extends AppCompatActivity implements View.OnClickListener, Ser
 
                         myDB.onOpen(myDB.getReadableDatabase());
                         myDB.getWritableDatabase();
-                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.updateInd("Q501", individual.getAssignmentID(), individual.getBatch(), individual.getQ501(), String.valueOf(individual.getSRNO()));
                         myDB.close();
 
                         Intent intent = new Intent(q501.this, q502.class);

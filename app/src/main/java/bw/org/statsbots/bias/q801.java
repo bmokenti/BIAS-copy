@@ -469,17 +469,22 @@ public class q801 extends AppCompatActivity implements Serializable {
         }
 
 
-        RadioButton[] btd = new RadioButton[12];
-        for(int f=0;f<rgd.getChildCount();f++)
+        if (ind.getQ801dOther() != null ) {
+
+            if (ind.getQ801d() != null && ind.getQ801d().equals("O")) {
+                rbtndOther.setChecked(true);
+                edtdother.setText(ind.getQ801dOther());
+            }
+        }
+        else
         {
+        RadioButton[] btd = new RadioButton[12];
+        for(int f=0;f<rgd.getChildCount();f++) {
             View o = rgd.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                btd[f]=((RadioButton)o);
-                if(ind.getQ801d()!= null &&  !ind.getQ801d().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ801d())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                btd[f] = ((RadioButton) o);
+                if (ind.getQ801d() != null && !ind.getQ801d().equals("")) {
+                    if (Integer.parseInt(ind.getQ801d()) == f + 1) {
                         RadioButton radioButton = btd[f];
                         radioButton.setChecked(true);
                         break;
@@ -487,23 +492,32 @@ public class q801 extends AppCompatActivity implements Serializable {
                 }
             }
         }
+        }
 
+
+        if (ind.getQ801eOther() != null ) {
+
+            if (ind.getQ801e() != null && ind.getQ801e().equals("O")) {
+                rbtneOther.setChecked(true);
+                edteother.setText(ind.getQ801eOther());
+            }
+        }
+        else
+        {
         RadioButton[] bte = new RadioButton[10];
         for(int f=0;f<rge.getChildCount();f++)
         {
             View o = rge.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bte[f]=((RadioButton)o);
-                if(ind.getQ801e()!= null &&  !ind.getQ801e().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ801e())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                bte[f] = ((RadioButton) o);
+                if (ind.getQ801e() != null && !ind.getQ801e().equals("")) {
+                    if (Integer.parseInt(ind.getQ801e()) == f + 1) {
                         RadioButton radioButton = bte[f];
                         radioButton.setChecked(true);
                         break;
                     }
                 }
+            }
             }
         }
 
@@ -728,8 +742,6 @@ public class q801 extends AppCompatActivity implements Serializable {
 
                                                                         myDB = new DatabaseHelper(q801.this);
                                                                         myDB.onOpen(myDB.getReadableDatabase());
-
-
                                                                         myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                                                         myDB.updateInd("Q801f", individual.getAssignmentID(), individual.getBatch(), individual.getQ801f(), String.valueOf(individual.getSRNO()));
 

@@ -247,29 +247,37 @@ public class q901 extends AppCompatActivity implements Serializable {
                 }
             }
         }
-        RadioButton[] bta = new RadioButton[11];
-        for(int f=0;f<rga.getChildCount();f++)
-        {
-            View o = rga.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bta[f]=((RadioButton)o);
-                if(ind.getQ901a()!= null &&  !ind.getQ901a().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ901a())==f+1)
-                    {
-                        RadioButton radioButton = bta[f];
-                        radioButton.setChecked(true);
-                        break;
+
+        if (ind.getQ901aOther() != null ) {
+
+            if (ind.getQ901a() != null && ind.getQ901a().equals("O")) {
+                rbtnaOther.setChecked(true);
+                edt.setText(ind.getQ901aOther());
+            }
+        }
+        else {
+
+            RadioButton[] bta = new RadioButton[11];
+            for (int f = 0; f < rga.getChildCount(); f++) {
+                View o = rga.getChildAt(f);
+                if (o instanceof RadioButton) {
+                    bta[f] = ((RadioButton) o);
+                    if (ind.getQ901a() != null && !ind.getQ901a().equals("")) {
+                        if (Integer.parseInt(ind.getQ901a()) == f + 1) {
+                            RadioButton radioButton = bta[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
         }
 
-        if( ind.getQ901aOther() != null)
-        {
-            edt.setText(ind.getQ901aOther());
-        }
+//
+//        if( ind.getQ901aOther() != null)
+//        {
+//            edt.setText(ind.getQ901aOther());
+//        }
 
 
         Button btnnext = findViewById(R.id.button);
@@ -520,7 +528,7 @@ public class q901 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (individual.getQ803() != null && individual.getQ803().equals("8")) {
+                if (individual.getQ803() != null ) {
                     finish();
                     Intent intent = new Intent(q901.this, q803.class);
                     intent.putExtra("Individual", individual);
@@ -712,7 +720,7 @@ public class q901 extends AppCompatActivity implements Serializable {
             case R.id.pause:
                 // Show the settings activity
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setMessage("Are you sure you want to pause the interview");
                 alertDialogBuilder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             @Override

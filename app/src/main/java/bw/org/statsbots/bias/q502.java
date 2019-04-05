@@ -142,7 +142,8 @@ public class q502 extends AppCompatActivity implements View.OnClickListener, Ser
 
                     myDB.onOpen(myDB.getReadableDatabase());
                     myDB.getWritableDatabase();
-                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.updateInd("Q502", individual.getAssignmentID(), individual.getBatch(), individual.getQ502(), String.valueOf(individual.getSRNO()));
+
                     myDB.close();
                         Intent intent = new Intent(q502.this, q503.class);
                         intent.putExtra("Individual", individual);

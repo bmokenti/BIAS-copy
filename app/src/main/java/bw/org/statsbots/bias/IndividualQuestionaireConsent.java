@@ -54,7 +54,7 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
 
         Intent i = getIntent();
         individual = (Individual) i.getSerializableExtra("Individual");
-        int p = 0;
+      //  int p = 0;
 
         Intent h = getIntent();
         thisHouse = (HouseHold) h.getSerializableExtra("Household");
@@ -64,18 +64,37 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
 
         myDB = new DatabaseHelper(this);
         myDB.onOpen(myDB.getReadableDatabase());
+        //myDB = new DatabaseHelper(this);
+        myDB.getWritableDatabase();
 
-        myDB.getdataHhP(p1.getAssignmentID(), p1.getBatch());
+        final List<HouseHold> thisHous = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch());
+        thisHous.get(0).getHIVTB40();
 
-        Individual ind = myDB.getdataIndivisual(p1.getAssignmentID(),p1.getBatch(),p1.getSRNO());
-        List<PersonRoster> pp = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
 
-        for (PersonRoster p2:pp
-             ) {
-            if(p2.getSRNO()==ind.getSRNO()){
-                p1=p2;
+
+        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), thisHous.get(0).getAssignment_ID());
+        sample.getStatusCode();
+
+//        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), ind.getAssignmentID());
+//        sample.getSTATUS();
+
+        final Individual ind = myDB.getdataIndivisual(individual.getAssignmentID(),individual.getBatch(),individual.getSRNO());
+        individual = ind;
+
+
+        final List<PersonRoster> roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
+        for (PersonRoster p: roster
+        ) {
+            if (p.getSRNO() == ind.getSRNO()){
+                p1 = p;
+                break;
             }
+
+
         }
+
+        thisHouse = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch()).get(0);
+
 
 
         RadioButton[] bt = new RadioButton[2];
@@ -103,11 +122,17 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
             }
         }
 
+        if( sample.getStatusCode().equals("1") && Integer.valueOf(p1.getP04YY()) >=65 )
 
-        final Sample sample = myDB.getSample(myDB.getReadableDatabase(), p1.getAssignmentID());
-        sample.getSample();
 
-        thisHouse = myDB.getHouseForUpdate(p1.getAssignmentID(),p1.getBatch()).get(0);
+        {
+            Intent intent = new Intent(IndividualQuestionaireConsent.this, HIVConsentOver64.class);
+            intent.putExtra("Individual", individual);
+            intent.putExtra("Personroster", p1);
+            startActivity(intent);
+
+        }
+
 
 
         if(Integer.valueOf(p1.getP04YY()) <=17 && sample.getStatusCode().equals("2") )
@@ -140,11 +165,20 @@ public class IndividualQuestionaireConsent extends AppCompatActivity implements 
             setTitle("Questionnaire Assent age 15-17 years");
         }
 
+//        if(Integer.valueOf(p1.getP04YY()) >=65 && sample.getStatusCode().equals("1") )
+//
+//
+//        {
+//            Intent intent = new Intent(IndividualQuestionaireConsent.this, HIVConsentOver64.class);
+//            intent.putExtra("Individual", individual);
+//            intent.putExtra("Personroster", p1);
+//            startActivity(intent);
+//
+//        }
 
 
 
-        myDB = new DatabaseHelper(this);
-        myDB.getWritableDatabase();
+
 
 
         descText = (TextView) findViewById(R.id.description_text);

@@ -197,7 +197,7 @@ public class q503 extends AppCompatActivity implements View.OnClickListener, Ser
                     //Next question q504
                         myDB.onOpen(myDB.getReadableDatabase());
                         myDB.getWritableDatabase();
-                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.updateInd("Q503", individual.getAssignmentID(), individual.getBatch(), individual.getQ503(), String.valueOf(individual.getSRNO()));
                         myDB.close();
 
 
@@ -217,7 +217,7 @@ public class q503 extends AppCompatActivity implements View.OnClickListener, Ser
             {
 
                 finish();
-                Intent intent = new Intent(q503.this, q502.class);
+                Intent intent = new Intent(q503.this, q501.class);
                 intent.putExtra("Individual", individual);
                 startActivity(intent);
             }

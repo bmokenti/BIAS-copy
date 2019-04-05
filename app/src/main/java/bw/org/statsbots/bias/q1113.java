@@ -77,29 +77,36 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
         }
     }
 
+        if (ind.getQ1113Other() != null ) {
 
+            if (ind.getQ1113() != null && ind.getQ1113().equals("O")) {
+                rbtn5.setChecked(true);
+                text1113other.setText(ind.getQ1113Other());
+                text1113other.setVisibility(View.VISIBLE);
+            }
+        }
+        else {
         RadioButton[] bt = new RadioButton[5];
         for(int f=0;f<rg.getChildCount();f++)
         {
             View o = rg.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ1113()!= null &&  !ind.getQ1113().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ1113())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ1113() != null && !ind.getQ1113().equals("")) {
+                    if (Integer.parseInt(ind.getQ1113()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
                         break;
                     }
                 }
             }
+            }
         }
-        if(ind.getQ1113Other()!= null)
-        {
-            text1113other.setText(ind.getQ1113Other());
-        }
+
+//        if(ind.getQ1113Other()!= null)
+//        {
+//            text1113other.setText(ind.getQ1113Other());
+//        }
 
 
         Button btnext = findViewById(R.id.btnnext);

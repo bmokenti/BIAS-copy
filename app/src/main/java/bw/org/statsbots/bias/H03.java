@@ -85,35 +85,44 @@ public class H03 extends AppCompatActivity implements View.OnClickListener, Seri
         }
 
 
-        RadioButton[] bt = new RadioButton[9];
+
 
         //CHECK WHICH BUTTON WAS SELECTED
+        if(  thisHouse.getH03Other()!= null )
+        {
+            if (thisHouse.getH03() != null && thisHouse.getH03().equals("Ot") )
+            {
+                rbtn9.setChecked(true);
+                edt.setText(thisHouse.getH03Other());
+            }
+        }
+        else
+        {
+            RadioButton[] bt = new RadioButton[9];
         for(int f=0;f<rg.getChildCount();f++)
         {
             View o = rg.getChildAt(f);
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(thisHouse.getH03()!= null && !thisHouse.getH03().equals(""))
-                {
 
-                    if(Integer.parseInt(thisHouse.getH03())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
-                    }
 
-                    if(thisHouse.getH03Other()!=null && !thisHouse.getH03Other().equals("")){
-                        rbtn9.setChecked(true);
-                        edt.setText(thisHouse.getH03Other());
+                if( (thisHouse.getH03()!= null ) ) {
+                    if(thisHouse.getH03().equals("") ) {
+                        if (Integer.parseInt(thisHouse.getH03()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
+
+                }
             }
-            else
-            {
-                Log.d("Lost Here","**********");
-            }
+//            else
+//            {
+//                Log.d("Lost Here","**********");
+//            }
         }
 
 

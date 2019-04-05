@@ -369,6 +369,14 @@ public class q1002 extends AppCompatActivity implements Serializable {
 //        }
 
 
+        if (ind.getQ1002b_Other() != null ) {
+
+            if (ind.getQ1002b() != null && ind.getQ1002b().equals("O")) {
+                rbtnbOther.setChecked(true);
+                edtbOther.setText(ind.getQ1002b_Other());
+            }
+        }
+        else {
         RadioButton[] btb = new RadioButton[7];
         for(int f=0;f<rgb.getChildCount();f++)
         {
@@ -376,14 +384,13 @@ public class q1002 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 btb[f]=((RadioButton)o);
-                if(ind.getQ1002b()!= null &&  !ind.getQ1002b().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ1002b())==f+1)
-                    {
+                if(ind.getQ1002b()!= null &&  !ind.getQ1002b().equals("")) {
+                    if (Integer.parseInt(ind.getQ1002b()) == f + 1) {
                         RadioButton radioButton = btb[f];
                         radioButton.setChecked(true);
                         break;
                     }
+                }
                 }
             }
         }

@@ -107,6 +107,45 @@ public class q101 extends AppCompatActivity implements View.OnClickListener, Ser
 
 
 
+//        if(  thisHouse.getH03Other()!= null )
+//        {
+//            if (thisHouse.getH03() != null && thisHouse.getH03().equals("Ot") )
+//            {
+//                rbtn9.setChecked(true);
+//                edt.setText(thisHouse.getH03Other());
+//            }
+//        }
+//        else
+//        {
+//            RadioButton[] bt = new RadioButton[9];
+//            for(int f=0;f<rg.getChildCount();f++)
+//            {
+//                View o = rg.getChildAt(f);
+//                if (o instanceof RadioButton)
+//                {
+//                    bt[f]=((RadioButton)o);
+//
+//
+//                    if( (thisHouse.getH03()!= null ) ) {
+//                        if(thisHouse.getH03().equals("") ) {
+//                            if (Integer.parseInt(thisHouse.getH03()) == f + 1) {
+//                                RadioButton radioButton = bt[f];
+//                                radioButton.setChecked(true);
+//                                break;
+//                            }
+//                        }
+//                    }
+//
+//                }
+//            }
+////            else
+////            {
+////                Log.d("Lost Here","**********");
+////            }
+//        }
+//
+
+
         final Sample sample = myDB.getSample(myDB.getReadableDatabase(), individual.getAssignmentID());
         sample.getSTATUS();
 

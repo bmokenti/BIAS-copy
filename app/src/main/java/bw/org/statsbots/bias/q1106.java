@@ -165,17 +165,23 @@ public class q1106 extends AppCompatActivity implements Serializable {
             }
         }
 
-        RadioButton[] btb = new RadioButton[5];
-        for(int f=0;f<rGroup2.getChildCount();f++)
+
+        if (ind.getQ1106bOther() != null ) {
+
+            if (ind.getQ1106b() != null && ind.getQ1106b().equals("O")) {
+                rbtn6b5other.setChecked(true);
+                q1106btxtOther.setText(ind.getQ1106bOther());
+                q1106btxtOther.setVisibility(View.VISIBLE);
+            }
+        }else
         {
+        RadioButton[] btb = new RadioButton[5];
+        for(int f=0;f<rGroup2.getChildCount();f++) {
             View o = rGroup2.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                btb[f]=((RadioButton)o);
-                if(ind.getQ1106b()!= null &&  !ind.getQ1106b().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ1106b())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                btb[f] = ((RadioButton) o);
+                if (ind.getQ1106b() != null && !ind.getQ1106b().equals("")) {
+                    if (Integer.parseInt(ind.getQ1106b()) == f + 1) {
                         RadioButton radioButton = btb[f];
                         radioButton.setChecked(true);
                         break;
@@ -183,11 +189,12 @@ public class q1106 extends AppCompatActivity implements Serializable {
                 }
             }
         }
-
-        if(ind.getQ1106bOther()!= null)
-        {
-            rbtn6b5other.setText(ind.getQ1106bOther());
         }
+
+//        if(ind.getQ1106bOther()!= null)
+//        {
+//            rbtn6b5other.setText(ind.getQ1106bOther());
+//        }
 
 
 

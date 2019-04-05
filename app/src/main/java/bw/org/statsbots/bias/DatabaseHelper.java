@@ -1416,6 +1416,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(H01, checkNull(house.getH01()));
         contentValues.put(H02, checkNull(house.getH02()));
         contentValues.put(H03, checkNull(house.getH03()));
+        contentValues.put(H03Other, checkNull(house.getH03Other()));
         contentValues.put(H04, checkNull(house.getH04()));
         contentValues.put(H05, checkNull(house.getH05()));
         contentValues.put(H06, checkNull(house.getH06()));
@@ -2495,8 +2496,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q901, houseHold.getQ901());
             individualValues.put(Q901a, houseHold.getQ901a());
             individualValues.put(Q901aOther, houseHold.getQ901aOther());
-            individualValues.put(Q902, houseHold.getQ902Month());
-            individualValues.put(Q902, houseHold.getQ902Year());
+            individualValues.put(Q902, houseHold.getQ902Month()+houseHold.getQ902Year());
 
             individualValues.put(Q903DenyCare, houseHold.getQ903a());
             individualValues.put(Q903Gossip, houseHold.getQ903b());
@@ -2508,8 +2508,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q904, houseHold.getQ904());
             individualValues.put(Q904a, houseHold.getQ904a());
             individualValues.put(Q904aOther, houseHold.getQ904aOther());
-            individualValues.put(Q904b, houseHold.getQ904bMM());
-            individualValues.put(Q904b, houseHold.getQ904bYYYY());
+            individualValues.put(Q904b, houseHold.getQ904bMM()+houseHold.getQ904bYYYY());
             individualValues.put(Q904c, houseHold.getQ904c());
             individualValues.put(Q904cOther, houseHold.getQ904cOther());
             individualValues.put(Q905, houseHold.getQ905());
@@ -3709,6 +3708,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             String P11 = cursor.getString(cursor.getColumnIndexOrThrow("P11"));
             String P12 = cursor.getString(cursor.getColumnIndexOrThrow("P12"));
             String P13 = cursor.getString(cursor.getColumnIndexOrThrow("P13"));
+            String P13Other= cursor.getString(cursor.getColumnIndexOrThrow("P13Other"));
             String P14 = cursor.getString(cursor.getColumnIndexOrThrow("P14"));
             String P15 = cursor.getString(cursor.getColumnIndexOrThrow("P15"));
             String P16 = cursor.getString(cursor.getColumnIndexOrThrow("P16"));
@@ -3779,6 +3779,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             dataModel.setP11(P11);
             dataModel.setP12(P12);
             dataModel.setP13(P13);
+            dataModel.setP13Other(P13Other);
             dataModel.setP14(P14);
             dataModel.setP15(P15);
             dataModel.setP16(P16);
@@ -3874,6 +3875,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             String P11 = cursor.getString(cursor.getColumnIndexOrThrow("P11"));
             String P12 = cursor.getString(cursor.getColumnIndexOrThrow("P12"));
             String P13 = cursor.getString(cursor.getColumnIndexOrThrow("P13"));
+            String P13Other= cursor.getString(cursor.getColumnIndexOrThrow("P13Other"));
             String P14 = cursor.getString(cursor.getColumnIndexOrThrow("P14"));
             String P15 = cursor.getString(cursor.getColumnIndexOrThrow("P15"));
             String P16 = cursor.getString(cursor.getColumnIndexOrThrow("P16"));
@@ -3944,6 +3946,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             dataModel.setP11(P11);
             dataModel.setP12(P12);
             dataModel.setP13(P13);
+            dataModel.setP13Other(P13Other);
             dataModel.setP14(P14);
             dataModel.setP15(P15);
             dataModel.setP16(P16);
@@ -4639,7 +4642,9 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             ind.setQ904a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904a")));
             ind.setQ904aOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904aOther")));
             if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")) != null) {
-                ind.setQ904bMM(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")).substring(0, 2) + cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")).substring(2, 6));
+                ind.setQ904bMM(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")).substring(0, 2));
+
+                        ind.setQ904bYYYY (cursor2.getString(cursor2.getColumnIndexOrThrow("Q904b")).substring(2, 6));
             }
             ind.setQ904c(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904c")));
             ind.setQ904cOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q904cOther")));

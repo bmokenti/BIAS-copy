@@ -135,22 +135,29 @@ public class q1004 extends AppCompatActivity implements Serializable {
                 }
             }
         }
+
+        if (ind.getQ1004b_Other() != null ) {
+
+            if (ind.getQ1004b() != null && ind.getQ1004b().equals("O")) {
+                rbtnbOther.setChecked(true);
+                edtOther.setText(ind.getQ1004b_Other());
+            }
+        }
+        else {
         RadioButton[] btb = new RadioButton[12];
         for(int f=0;f<rgb.getChildCount();f++)
         {
             View o = rgb.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                btb[f]=((RadioButton)o);
-                if(ind.getQ1004b()!= null &&  !ind.getQ1004b().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ1004b())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                btb[f] = ((RadioButton) o);
+                if (ind.getQ1004b() != null && !ind.getQ1004b().equals("")) {
+                    if (Integer.parseInt(ind.getQ1004b()) == f + 1) {
                         RadioButton radioButton = btb[f];
                         radioButton.setChecked(true);
                         break;
                     }
                 }
+            }
             }
         }
 

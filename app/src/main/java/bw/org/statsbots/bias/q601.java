@@ -166,6 +166,8 @@ public class q601 extends AppCompatActivity implements Serializable {
                     } else {
 
                         if (rbtn2.isChecked()) {
+
+
                             individual.setQ601(selectedRbtn.getText().toString().substring(0, 1));
                             individual.setQ601a(null);
                             individual.setQ602_1(null);
@@ -231,7 +233,7 @@ public class q601 extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
 
-                if ( (individual.getQ401() != null && individual.getQ401().equals("2")) && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 ||
+                if ((individual.getQ401() != null && individual.getQ401().equals("2")) && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 ||
                         Integer.valueOf(individual.getQ102()) <= 64)) {
                     Intent intent = new Intent(q601.this, q401.class);
                     intent.putExtra("Individual", individual);
@@ -239,57 +241,83 @@ public class q601 extends AppCompatActivity implements Serializable {
                     finish();
 
                 } else {
-                    if (((sample.getStatusCode().equals("3")) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
-                            || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
-                    ) || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) &&
-                            p1.getP06().equals("2")))) {
-finish();
-                        Intent q1o2 = new Intent(q601.this, q307.class);
-                        q1o2.putExtra("Individual", individual);
-                        startActivity(q1o2);
+                    if (individual.getQ101().equals("1") && (individual.getQ503() != null && individual.getQ503().equals("2"))) {
+
+                        Intent intent = new Intent(q601.this, q504.class);
+                        intent.putExtra("Individual", individual);
+                        startActivity(intent);
+
                     } else {
-                        if (individual.getQ401().equals("2") && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64)) {
-                            Intent intent = new Intent(q601.this, q401.class);
+                        if (individual.getQ101().equals("1") && (individual.getQ503() != null && !individual.getQ503().equals("2"))) {
+
+                            Intent intent = new Intent(q601.this, q503.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);
 
                         } else {
-                            if ((individual.getQ101().equals("2") && individual.getQ401().equals("1")) && (individual.getQ201().equals("1") || individual.getQ201().equals("4") ||
-                                    individual.getQ201().equals("5") || individual.getQ201().equals("6")) || (Integer.parseInt(individual.getQ102()) > 49)) {
-                                Intent intent = new Intent(q601.this, q407.class);
+                            if (individual.getQ101().equals("1") && (individual.getQ501() != null && individual.getQ501().equals("1"))) {
+                                Intent intent = new Intent(q601.this, q502.class);
                                 intent.putExtra("Individual", individual);
                                 startActivity(intent);
+
+                            }
+// elseelse {
+                            if (((sample.getStatusCode().equals("3")) || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
+                                    || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) && Integer.valueOf(individual.getQ102()) > 64
+                            ) || ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) &&
+                                    p1.getP06().equals("2")))) {
                                 finish();
-
+                                Intent q1o2 = new Intent(q601.this, q307.class);
+                                q1o2.putExtra("Individual", individual);
+                                startActivity(q1o2);
                             } else {
-                                if ((individual.getQ101().equals("2")) && ((individual.getQ201().equals("1") &&
-                                        individual.getQ202().equals("2")) || individual.getQ201().equals("6"))
-                                        || Integer.valueOf(individual.getQ102()) >= 50) {
-
-                                    Intent intent = new Intent(q601.this, q407.class);
+                                if (individual.getQ401().equals("2") && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) >= 15 || Integer.valueOf(individual.getQ102()) <= 64)) {
+                                    Intent intent = new Intent(q601.this, q401.class);
                                     intent.putExtra("Individual", individual);
                                     startActivity(intent);
 
                                 } else {
-                                    if ((individual.getQ101().equals("2")) && ((individual.getQ201().equals("1") && individual.getQ202().equals("2")) || individual.getQ201().equals("6"))
-                                            || Integer.valueOf(individual.getQ102()) >= 50) {
+                                    if ((individual.getQ101().equals("2") && individual.getQ401() != null && individual.getQ401().equals("1")) && (individual.getQ201().equals("1") || individual.getQ201().equals("4") ||
+                                            individual.getQ201().equals("5") || individual.getQ201().equals("6")) && (Integer.parseInt(individual.getQ102()) > 49)) {
 
-                                        Intent intent = new Intent(q601.this, q408.class);
+                                        Intent intent = new Intent(q601.this, q407.class);
                                         intent.putExtra("Individual", individual);
                                         startActivity(intent);
+                                        finish();
 
                                     } else {
-                                        if (individual.getQ101().equals("2")) {
-                                            Intent intent = new Intent(q601.this, q410.class);
+                                        if ((individual.getQ101().equals("2") && ((individual.getQ201().equals("1") &&
+                                                individual.getQ202().equals("2")) || individual.getQ201().equals("6"))
+                                                && Integer.valueOf(individual.getQ102()) >= 50)) {
+
+                                            Intent intent = new Intent(q601.this, q407.class);
                                             intent.putExtra("Individual", individual);
                                             startActivity(intent);
 
                                         } else {
+                                            if ((individual.getQ101().equals("2")) && ((individual.getQ201().equals("1") && individual.getQ202().equals("2")) || individual.getQ201().equals("6"))
+                                                    || Integer.valueOf(individual.getQ102()) >= 50) {
 
-                                            finish();
-                                            Intent intent = new Intent(q601.this, q501.class);
-                                            intent.putExtra("Individual", individual);
-                                            startActivity(intent);
+                                                Intent intent = new Intent(q601.this, q408.class);
+                                                intent.putExtra("Individual", individual);
+                                                startActivity(intent);
+
+                                            } else {
+                                                if (individual.getQ101().equals("2")) {
+                                                    Intent intent = new Intent(q601.this, q410.class);
+                                                    intent.putExtra("Individual", individual);
+                                                    startActivity(intent);
+
+                                                }
+////                                                        {
+////
+////                                                        finish();
+////                                                        Intent intent = new Intent(q601.this, q504.class);
+////                                                        intent.putExtra("Individual", individual);
+////                                                        startActivity(intent);
+////                                                    }
+                                            }
+
                                         }
                                     }
                                 }
@@ -385,7 +413,7 @@ break;
             case R.id.pause:
                 // Show the settings activity
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setMessage("Are you sure you want to pause the interview");
                 alertDialogBuilder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             @Override

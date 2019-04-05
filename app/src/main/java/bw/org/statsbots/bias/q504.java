@@ -298,8 +298,8 @@ public class q504 extends AppCompatActivity implements Serializable {
 
                     if(chkOther.isChecked())
                     {
-                        individual.setQ504_Other("1");
-                        individual.setQ504_OtherSpecify(Q504edt.getText().toString());
+                        individual.setQ504_Other("1"+Q504edt.getText().toString());
+                        //individual.setQ504_OtherSpecify(Q504edt.getText().toString());
                     }else
                         {
                         individual.setQ504_Other("2");
@@ -308,7 +308,21 @@ public class q504 extends AppCompatActivity implements Serializable {
 
                     myDB.onOpen(myDB.getReadableDatabase());
                     myDB.getWritableDatabase();
-                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.updateInd("Q504_Pain", individual.getAssignmentID(), individual.getBatch(), individual.getQ504_1(), String.valueOf(individual.getSRNO()));
+                    myDB.updateInd("Q504_Reduced", individual.getAssignmentID(), individual.getBatch(), individual.getQ504_2(), String.valueOf(individual.getSRNO()));
+                    myDB.updateInd("Q504_Fear", individual.getAssignmentID(), individual.getBatch(), individual.getQ504_3(), String.valueOf(individual.getSRNO()));
+                    myDB.updateInd("Q504_Culture", individual.getAssignmentID(), individual.getBatch(), individual.getQ504_4(), String.valueOf(individual.getSRNO()));
+                    myDB.updateInd("Q504_Religion", individual.getAssignmentID(), individual.getBatch(), individual.getQ504_5(), String.valueOf(individual.getSRNO()));
+                    myDB.updateInd("Q504_Spouse", individual.getAssignmentID(), individual.getBatch(), individual.getQ504_6(), String.valueOf(individual.getSRNO()));
+                    myDB.updateInd("Q504_Parental", individual.getAssignmentID(), individual.getBatch(), individual.getQ504_7(), String.valueOf(individual.getSRNO()));
+                    myDB.updateInd("Q504_Long", individual.getAssignmentID(), individual.getBatch(), individual.getQ504_8(), String.valueOf(individual.getSRNO()));
+                    myDB.updateInd("Q504_FearHIV", individual.getAssignmentID(), individual.getBatch(), individual.getQ504_10(), String.valueOf(individual.getSRNO()));
+                    myDB.updateInd("Q504_Other", individual.getAssignmentID(), individual.getBatch(), individual.getQ504_Other(), String.valueOf(individual.getSRNO()));
+                    myDB.updateInd("Q504_OtherSpcify", individual.getAssignmentID(), individual.getBatch(), individual.getQ504_Other(), String.valueOf(individual.getSRNO()));
+
+
+
+
                     myDB.close();
 
                     Intent intent = new Intent(q504.this, q601.class);

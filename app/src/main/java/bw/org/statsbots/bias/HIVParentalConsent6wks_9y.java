@@ -95,6 +95,19 @@ int wks = Integer.valueOf(p1.getP04WKS());
             setTitle("Parental Consent 19 months to 9 years");
         }
 
+
+        if( sample.getStatusCode().equals("1") && Integer.valueOf(p1.getP04YY()) >=65 )
+
+
+        {
+            Intent intent = new Intent(HIVParentalConsent6wks_9y.this, HIVConsentOver64.class);
+            intent.putExtra("Individual", individual);
+            intent.putExtra("Personroster", p1);
+            startActivity(intent);
+
+        }
+
+
         if(Integer.valueOf(p1.getP04YY()) >=10 && Integer.valueOf(p1.getP04YY()) <=14)
         {
             Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, HIVParentalConsent10_14yrs.class);
@@ -115,7 +128,10 @@ int wks = Integer.valueOf(p1.getP04WKS());
         }
 
 
-        if(Integer.valueOf(p1.getP04YY()) >= 15  && Integer.valueOf(p1.getP04YY()) <= 64)
+
+
+
+            if(Integer.valueOf(p1.getP04YY()) >= 15  && Integer.valueOf(p1.getP04YY()) <= 64)
         {
             Intent q1o2 = new Intent(HIVParentalConsent6wks_9y.this, IndQuetParentalConsent.class);
             q1o2.putExtra("Individual", individual);
@@ -205,6 +221,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
         }
         if (rbtn1.isChecked() && ((yy == 1 && mm <= 6 ) || (yy == 00 && mm <= 11) || (mm == 1 && wks >= 2)))
         {
+            vol1.setEnabled(true);
             vol3.setEnabled(false);
             vol2.setEnabled(false);
             vol4.setEnabled(false);
@@ -213,6 +230,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
         if (rbtn1.isChecked() && ((yy == 1 && mm >= 7 ) || (yy <= 2) ))
         {
+            vol1.setEnabled(true);
             vol3.setEnabled(false);
             vol2.setEnabled(false);
             vol4.setEnabled(false);
@@ -220,9 +238,10 @@ int wks = Integer.valueOf(p1.getP04WKS());
         }
 
         if(rbtn1.isChecked() && (yy >=3 && yy <= 14))
-        {
+        { vol1.setEnabled(true);
             vol2.setEnabled(false);
             vol4.setEnabled(false);
+            vol3.setEnabled(true);
 
         }
 //
@@ -266,9 +285,11 @@ int wks = Integer.valueOf(p1.getP04WKS());
                         rbtnIndeterminate.setEnabled(false);
                         t2.setTextColor(Color.LTGRAY);
                         t3.setTextColor(Color.LTGRAY);
-                        vol3.setEnabled(false);
-                        vol2.setEnabled(false);
-                        vol4.setEnabled(false);
+
+//                        vol1.setEnabled(true);
+//                        vol3.setEnabled(false);
+//                        vol2.setEnabled(false);
+//                        vol4.setEnabled(false);
 
                         Edttubevolume.setEnabled(true);
                         vol1.setEnabled(true);
@@ -294,6 +315,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                 vol3.setEnabled(false);
                                 vol2.setEnabled(false);
                                 vol4.setEnabled(false);
+                                vol1.setEnabled(true);
 
                                 Edttubevolume.setEnabled(true);
 

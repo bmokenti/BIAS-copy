@@ -309,6 +309,8 @@ public class q904 extends AppCompatActivity implements Serializable {
             rbtncOther.setChecked(false);
         }
 
+
+
         RadioButton[] bt = new RadioButton[4];
         for(int f=0;f<rg.getChildCount();f++) {
             View o = rg.getChildAt(f);
@@ -576,19 +578,22 @@ public class q904 extends AppCompatActivity implements Serializable {
         }
 
 
+        if (ind.getQ904aOther() != null ) {
 
+            if (ind.getQ904a() != null && ind.getQ904a().equals("O")) {
+                rbtnaOther.setChecked(true);
+                edta.setText(ind.getQ904aOther());
+            }
+        }
+        else {
 
         RadioButton[] bta = new RadioButton[6];
-        for(int f=0;f<rga.getChildCount();f++)
-        {
+        for(int f=0;f<rga.getChildCount();f++) {
             View o = rga.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bta[f]=((RadioButton)o);
-                if(ind.getQ904a()!= null &&  !ind.getQ904a().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ904a())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                bta[f] = ((RadioButton) o);
+                if (ind.getQ904a() != null && !ind.getQ904a().equals("")) {
+                    if (Integer.parseInt(ind.getQ904a()) == f + 1) {
                         RadioButton radioButton = bta[f];
                         radioButton.setChecked(true);
                         break;
@@ -596,12 +601,13 @@ public class q904 extends AppCompatActivity implements Serializable {
                 }
             }
         }
-
-        if( ind.getQ904aOther() != null)
-        {
-            edta.setText(ind.getQ904aOther());
         }
 
+//        if( ind.getQ904aOther() != null)
+//        {
+//            edta.setText(ind.getQ904aOther());
+//        }
+//
 
 
         if( ind.getQ904bMM() != null)
@@ -624,30 +630,34 @@ public class q904 extends AppCompatActivity implements Serializable {
             chkb9999.setChecked(true);
         }
 
+        if (ind.getQ904cOther() != null ) {
 
-        RadioButton[] btc = new RadioButton[13];
-        for(int f=0;f<rgc.getChildCount();f++)
-        {
-            View o = rgc.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                btc[f]=((RadioButton)o);
-                if(ind.getQ904c()!= null &&  !ind.getQ904c().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ904c())==f+1)
-                    {
-                        RadioButton radioButton = btc[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (ind.getQ904c() != null && ind.getQ904c().equals("O")) {
+                rbtncOther.setChecked(true);
+                edtc.setText(ind.getQ904cOther());
+            }
+        }
+        else {
+            RadioButton[] btc = new RadioButton[13];
+            for (int f = 0; f < rgc.getChildCount(); f++) {
+                View o = rgc.getChildAt(f);
+                if (o instanceof RadioButton) {
+                    btc[f] = ((RadioButton) o);
+                    if (ind.getQ904c() != null && !ind.getQ904c().equals("")) {
+                        if (Integer.parseInt(ind.getQ904c()) == f + 1) {
+                            RadioButton radioButton = btc[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
         }
 
-        if( ind.getQ904cOther() != null)
-        {
-            edtc.setText(ind.getQ904cOther());
-        }
+//        if( ind.getQ904cOther() != null)
+//        {
+//            edtc.setText(ind.getQ904cOther());
+//        }
 
         Button btnnext = findViewById(R.id.button);
         btnnext.setOnClickListener(new View.OnClickListener() {

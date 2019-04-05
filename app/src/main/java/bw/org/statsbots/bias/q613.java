@@ -102,33 +102,41 @@ public class q613 extends AppCompatActivity implements Serializable {
         }
 
 
-
+        if(  ind.getQ613aOther() != null )
+        {
+            if ( ind.getQ613a() != null &&  ind.getQ613a().equals("O") )
+            {
+                rbtnaOther.setChecked(true);
+                edt.setText(ind.getQ613aOther());
+                edt.setVisibility(View.VISIBLE);
+            }
+        }
+        else
+        {
         RadioButton[] bta = new RadioButton[5];
         for(int f=0;f<rbtngroup1.getChildCount();f++)
         {
             View o = rbtngroup1.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bta[f]=((RadioButton)o);
-                if(ind.getQ613a()!= null &&  !ind.getQ613a().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ613a())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                bta[f] = ((RadioButton) o);
+                if (ind.getQ613a() != null && !ind.getQ613a().equals("")) {
+                    if (Integer.parseInt(ind.getQ613a()) == f + 1) {
                         RadioButton radioButton = bta[f];
                         radioButton.setChecked(true);
                         break;
                     }
                 }
             }
+            }
         }
 
 
 
 
-        if(ind.getQ613aOther()!= null)
-        {
-            edt.setText(ind.getQ613aOther());
-        }
+//        if(ind.getQ613aOther()!= null)
+//        {
+//            edt.setText(ind.getQ613aOther());
+//        }
 
         if (individual.getQ613() != null &&( individual.getQ613().equals("2") ||  individual.getQ613().equals("9")) )
         {

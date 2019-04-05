@@ -245,28 +245,36 @@ public class q803 extends AppCompatActivity implements Serializable {
         }
 
 
+
+        if (ind.getQ803Other() != null || (ind.getQ803Other().equals(""))) {
+
+            if (ind.getQ803() != null && ind.getQ803().equals("O")) {
+                rbtnother.setChecked(true);
+                edtother.setText(ind.getQ803Other());
+                edtother.setVisibility(View.VISIBLE);
+            }
+        }
+        else {
         RadioButton[] bt = new RadioButton[9];
         for(int f=0;f<rbtngroup.getChildCount();f++)
         {
             View o = rbtngroup.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ803()!= null &&  !ind.getQ803().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ803())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ803() != null || !ind.getQ803().equals("")) {
+                    if (Integer.parseInt(ind.getQ803()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
                         break;
                     }
                 }
             }
+            }
         }
-        if( ind.getQ803Other() != null)
-        {
-            edtother.setText(ind.getQ803Other());
-        }
+//        if( ind.getQ803Other() != null)
+//        {
+//            edtother.setText(ind.getQ803Other());
+//        }
 
 
         /**

@@ -738,6 +738,7 @@ public class q604 extends AppCompatActivity implements Serializable {
                                                 } else {
                                                     individual.setQ604b_14("2");
                                                 }
+
                                                 if (ck15txt.isChecked()) {
                                                     individual.setQ604b_15("1");
                                                 } else {
@@ -746,6 +747,7 @@ public class q604 extends AppCompatActivity implements Serializable {
 
                                                 if (chkOther.isChecked()) {
                                                     individual.setQ604b_Other("1");
+
                                                     individual.setQ604b_Other("1"+q604edt.getText().toString());
 
                                                 } else {

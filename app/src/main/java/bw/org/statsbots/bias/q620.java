@@ -104,17 +104,24 @@ public class q620 extends AppCompatActivity implements Serializable {
             startActivity(intent);
         }
 
-        RadioButton[] bt = new RadioButton[7];
-        for(int f=1;f<rg1.getChildCount();f++)
+
+        if(  ind.getQ620_Other() != null )
         {
-            View o = rg1.getChildAt(f);
-            if (o instanceof RadioButton)
+            if ( ind.getQ620() != null &&  ind.getQ620().equals("O") )
             {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ620()!= null &&  !ind.getQ620().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ620())==f)
-                    {
+                rbtnOther.setChecked(true);
+                edtOther.setText(ind.getQ620_Other());
+            }
+        }
+        else
+        {
+        RadioButton[] bt = new RadioButton[7];
+        for(int f=1;f<rg1.getChildCount();f++) {
+            View o = rg1.getChildAt(f);
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ620() != null && !ind.getQ620().equals("")) {
+                    if (Integer.parseInt(ind.getQ620()) == f) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
                         break;
@@ -122,10 +129,12 @@ public class q620 extends AppCompatActivity implements Serializable {
                 }
             }
         }
-        if(ind.getQ620_Other()!= null)
-        {
-            edtOther.setText(ind.getQ620_Other());
         }
+
+//        if(ind.getQ620_Other()!= null)
+//        {
+//            edtOther.setText(ind.getQ620_Other());
+//        }
 
         Button btnnext = findViewById(R.id.btnNext);
             btnnext.setOnClickListener(new View.OnClickListener() {

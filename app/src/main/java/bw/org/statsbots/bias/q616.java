@@ -162,24 +162,7 @@ public class q616 extends AppCompatActivity implements Serializable {
 
         if (individual.getQ604().equals("2") && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")){
 
-//            individual.setQ606(null);
-//            individual.setQ607(null);
-//            individual.setQ608(null);
-//            individual.setQ609(null);
-//            individual.setQ610(null);
-//            individual.setQ611a(null);
-//            individual.setQ611b(null);
-//            individual.setQ611c(null);
-//
-//            individual.setQ612(null);
-//            individual.setQ612a(null);
-//            individual.setQ612aOther(null);
-//            individual.setQ613(null);
-//            individual.setQ613a(null);
-//            individual.setQ613aOther(null);
-            individual.setQ614(null);
-            individual.setQ614Other(null);
-            individual.setQ615(null);
+
             individual.setQ616_1(null);
             individual.setQ616_2(null);
             individual.setQ616_3(null);
@@ -252,24 +235,7 @@ public class q616 extends AppCompatActivity implements Serializable {
 
         if( sample.getStatusCode().equals("1") && individual.getQ604().equals("1") )
         {
-            individual.setQ606(null);
-            individual.setQ607(null);
-            individual.setQ608(null);
-            individual.setQ609(null);
-            individual.setQ610(null);
-            individual.setQ611a(null);
-            individual.setQ611b(null);
-            individual.setQ611c(null);
 
-            individual.setQ612(null);
-            individual.setQ612a(null);
-            individual.setQ612aOther(null);
-            individual.setQ613(null);
-            individual.setQ613a(null);
-            individual.setQ613aOther(null);
-            individual.setQ614(null);
-            individual.setQ614Other(null);
-            individual.setQ615(null);
             individual.setQ616_1(null);
             individual.setQ616_2(null);
             individual.setQ616_3(null);

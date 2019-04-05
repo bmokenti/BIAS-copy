@@ -234,17 +234,23 @@ myDB.close();
             }
         });
 
+
+
+        if (ind.getQ804Other() != null ) {
+
+            if (ind.getQ804() != null && ind.getQ804().equals("O")) {
+                rbtnother.setChecked(true);
+                edt804other.setText(ind.getQ804Other());
+            }
+        }
+        else {
         RadioButton[] bt = new RadioButton[8];
-        for(int f=0;f<rbtngroup.getChildCount();f++)
-        {
+        for(int f=0;f<rbtngroup.getChildCount();f++) {
             View o = rbtngroup.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ804()!= null &&  !ind.getQ804().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ804())==f+1)
-                    {
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ804() != null && !ind.getQ804().equals("")) {
+                    if (Integer.parseInt(ind.getQ804()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
                         break;
@@ -252,10 +258,11 @@ myDB.close();
                 }
             }
         }
-        if( ind.getQ804Other() != null)
-        {
-            edt804other.setText(ind.getQ804Other());
         }
+//        if( ind.getQ804Other() != null)
+//        {
+//            edt804other.setText(ind.getQ804Other());
+//        }
 
         /**
          * NEXT question

@@ -1227,6 +1227,19 @@ public class started_household extends AppCompatActivity implements Serializable
                                         Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
                                         btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
                                         Info = "Rapid Test Done";
+                                        final PersonRoster person1 = r.get(o);
+                                        btn.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                //**Replace This house with 1 individual
+                                                Intent q1o2 = new Intent(started_household.this, Barcode.class);
+
+                                               q1o2.putExtra("Personroster", person1);
+                                                startActivity(q1o2);
+
+
+                                            }
+                                        });
                                     }
                                 }
                             }

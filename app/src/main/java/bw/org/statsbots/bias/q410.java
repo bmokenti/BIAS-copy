@@ -139,21 +139,21 @@ public class q410 extends AppCompatActivity implements Serializable {
             individual.setQ410Pushed(null);
             individual.setQ410Slapped(null);
             //individual.setQ410(null);
-
-            individual.setQ501(null);
-            individual.setQ502(null);
-            individual.setQ503(null);
-            individual.setQ504_1(null);
-            individual.setQ504_2(null);
-            individual.setQ504_3(null);
-            individual.setQ504_4(null);
-            individual.setQ504_5(null);
-            individual.setQ504_6(null);
-            individual.setQ504_7(null);
-            individual.setQ504_8(null);
-            individual.setQ504_10(null);
-            individual.setQ504_Other(null);
-            individual.setQ504_OtherSpecify(null);
+//
+//            individual.setQ501(null);
+//            individual.setQ502(null);
+//            individual.setQ503(null);
+//            individual.setQ504_1(null);
+//            individual.setQ504_2(null);
+//            individual.setQ504_3(null);
+//            individual.setQ504_4(null);
+//            individual.setQ504_5(null);
+//            individual.setQ504_6(null);
+//            individual.setQ504_7(null);
+//            individual.setQ504_8(null);
+//            individual.setQ504_10(null);
+//            individual.setQ504_Other(null);
+//            individual.setQ504_OtherSpecify(null);
 
 
 

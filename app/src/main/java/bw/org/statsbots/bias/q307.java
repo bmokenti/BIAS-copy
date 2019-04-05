@@ -175,7 +175,7 @@ public class q307 extends AppCompatActivity implements View.OnClickListener, Ser
                         (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 )))
                 {
                     finish();
-                    Intent q1o2 = new Intent(q307.this, q305.class);
+                    Intent q1o2 = new Intent(q307.this, q304.class);
                     q1o2.putExtra("Individual", individual);
                     startActivity(q1o2);
                 }

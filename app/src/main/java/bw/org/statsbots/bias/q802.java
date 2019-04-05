@@ -310,29 +310,35 @@ public class q802 extends AppCompatActivity implements Serializable {
             }
         }
 
-        RadioButton[] bta = new RadioButton[5];
-        for(int f=0;f<rbtngroup1.getChildCount();f++)
-        {
-            View o = rbtngroup1.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bta[f]=((RadioButton)o);
-                if(ind.getQ802a()!= null &&  !ind.getQ802a().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ802a())==f+1)
-                    {
-                        RadioButton radioButton = bta[f];
-                        radioButton.setChecked(true);
-                        break;
+
+        if (ind.getQ802aOther() != null ) {
+
+            if (ind.getQ802a() != null && ind.getQ802a().equals("O")) {
+                rbtnaother.setChecked(true);
+                edtnaOther.setText(ind.getQ802aOther());
+            }
+        }
+        else {
+            RadioButton[] bta = new RadioButton[5];
+            for (int f = 0; f < rbtngroup1.getChildCount(); f++) {
+                View o = rbtngroup1.getChildAt(f);
+                if (o instanceof RadioButton) {
+                    bta[f] = ((RadioButton) o);
+                    if (ind.getQ802a() != null && !ind.getQ802a().equals("")) {
+                        if (Integer.parseInt(ind.getQ802a()) == f + 1) {
+                            RadioButton radioButton = bta[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
         }
 
-        if( ind.getQ802aOther() != null)
-        {
-            edtnaOther.setText(ind.getQ802aOther());
-        }
+//        if( ind.getQ802aOther() != null)
+//        {
+//            edtnaOther.setText(ind.getQ802aOther());
+//        }
 
 
         /**
@@ -430,7 +436,9 @@ public class q802 extends AppCompatActivity implements Serializable {
         btprev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                q802.super.onBackPressed();
+                Intent intent = new Intent(q802.this, q801.class);
+                intent.putExtra("Individual", individual);
+                startActivity(intent);
             }
 
 
@@ -548,7 +556,7 @@ public class q802 extends AppCompatActivity implements Serializable {
             case R.id.pause:
                 // Show the settings activity
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setMessage(" Are you sure you want to pause the interview");
                 alertDialogBuilder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             @Override

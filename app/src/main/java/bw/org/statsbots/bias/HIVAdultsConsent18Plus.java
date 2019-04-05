@@ -342,7 +342,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                     }
                 }
 
-                RadioButton[] bt3 = new RadioButton[2];
+                RadioButton[] bt3 = new RadioButton[3];
                 for(int f=0;f<rg3.getChildCount();f++)
                 {
                     View o = rg3.getChildAt(f);
@@ -629,25 +629,24 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                         if (rbtn2.isChecked()) {
                                                             individual.setIndvBloodDraw(selected1.getText().toString().substring(0, 1));
                                                             individual.setB8_O15_Rapid(selected2.getText().toString().substring(0, 1));
-                                                            individual.setIndBloodLabTest(null);
-                                                            individual.setIndBloodStore(null);
-                                                            individual.setIndBloodSampleCollected(null);
-
                                                             if (rbtn3.isChecked()) {
                                                                 individual.setIndRapidResults(selected3.getText().toString().substring(0, 1));
                                                             }
                                                             individual.setIndRapidDate(EdtDate.getText().toString());
-
+                                                            individual.setIndBloodLabTest(null);
+                                                            individual.setIndBloodStore(null);
+                                                            individual.setIndBloodSampleCollected(null);
                                                             myDB = new DatabaseHelper(HIVAdultsConsent18Plus.this);
                                                             myDB.onOpen(myDB.getReadableDatabase());
 
                                                             myDB.onOpen(myDB.getReadableDatabase());
                                                             myDB.getWritableDatabase();
+                                                            myDB.updateInd("B8_O15_Rapid", individual.getAssignmentID(), individual.getBatch(), individual.getB8_O15_Rapid(), String.valueOf(individual.getSRNO()));
+                                                            myDB.updateInd("IndRapidResults", individual.getAssignmentID(), individual.getBatch(), individual.getIndRapidResults(), String.valueOf(individual.getSRNO()));
                                                             myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-                                                            myDB.close();
 
 
-                                                        /*******************Launch VISIT***************************/
+                                                            /*******************Launch VISIT***************************/
 
 
                                                         final CharSequence[] list1 = new String[3];
@@ -905,12 +904,12 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                             } else {
                                                                 individual.setBloodVol_10("2");
                                                             }
-                                                            individual.setBloodVolComment(Edttubevolume.getText().toString());
-                                                                if((individual.getQ801f() != null && !individual.getQ801f() .equals("1"))
-                                                                        && (individual.getQ904() != null && !individual.getQ904() .equals("1") ))
-                                                                {
+//                                                            individual.setBloodVolComment(Edttubevolume.getText().toString());
+//                                                                if((individual.getQ801f() != null && !individual.getQ801f() .equals("1"))
+//                                                                        && (individual.getQ904() != null && !individual.getQ904() .equals("1") ))
+//                                                                {
                                                                     individual.setB8_O15_Rapid(selected2.getText().toString().substring(0, 1));
-                                                                }
+
                                                             if (rbtn3.isChecked()) {
                                                                 individual.setIndRapidResults(selected3.getText().toString().substring(0, 1));
 

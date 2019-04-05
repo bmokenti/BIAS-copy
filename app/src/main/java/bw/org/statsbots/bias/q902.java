@@ -78,15 +78,15 @@ public class q902 extends AppCompatActivity implements Serializable {
 
         if( ind.getQ902Year() != null)
         {
-            edtmnths.setText(ind.getQ902Year());
+            edtyear.setText(ind.getQ902Year());
         }
 
-        if( ind.getQ902Month() == "99")
+        if(ind.getQ902Month() != null && ind.getQ902Month() == "99")
         {
             ck1txt.setChecked(true);
         }
 
-        if( ind.getQ902Year()  == "9999")
+        if( ind.getQ902Year() != null && ind.getQ902Year()  == "9999")
         {
             ck2txt.setChecked(true);
         }
@@ -135,7 +135,11 @@ public class q902 extends AppCompatActivity implements Serializable {
 
                                 myDB.onOpen(myDB.getReadableDatabase());
                                 myDB.getWritableDatabase();
-                                myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                        myDB.updateInd("Q902", individual.getAssignmentID(), individual.getBatch(), individual.getQ902Month()+individual.getQ902Year(), String.valueOf(individual.getSRNO()));
+
+                      //  myDB.updateInd("Q801f", individual.getAssignmentID(), individual.getBatch(), individual.getQ801f(), String.valueOf(individual.getSRNO()));
+
+                       // myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                                 myDB.close();
 
                                 Intent intent = new Intent(q902.this, q903.class);

@@ -48,6 +48,7 @@ public class P12 extends AppCompatActivity implements Serializable {
 
         if(thisHouse.next!=null){
             p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.next)];
+            Log.d("p01",p1.getP01());
 
         }else if(thisHouse.previous!=null){
             p1 = thisHouse.getPersons()[Integer.parseInt(thisHouse.previous)];

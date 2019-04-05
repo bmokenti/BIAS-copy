@@ -353,7 +353,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
             }
         }
 
-        RadioButton[] bt3 = new RadioButton[2];
+        RadioButton[] bt3 = new RadioButton[3];
         for(int f=0;f<rg3.getChildCount();f++)
         {
             View o = rg3.getChildAt(f);
@@ -501,7 +501,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                 //Create Date Object
 
                 if (p1.getP04YY() != null && Integer.valueOf(p1.getP04YY()) >= 65) {
-                    Intent intent = new Intent(HIVConsentOver64.this, HIVIdnConsentsInfo.class);
+                    Intent intent = new Intent(HIVConsentOver64.this, HIVOv64ConsentsInfo.class);
                     intent.putExtra("Individual", individual);
                     intent.putExtra("Personroster", p1);
                     startActivity(intent);

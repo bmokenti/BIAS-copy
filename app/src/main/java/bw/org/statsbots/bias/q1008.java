@@ -112,20 +112,27 @@ public class q1008 extends AppCompatActivity implements Serializable {
             }
         }
 
-        RadioButton[] bta = new RadioButton[10];
-        for(int f=0;f<rga.getChildCount();f++)
-        {
-            View o = rga.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bta[f]=((RadioButton)o);
-                if(ind.getQ1008a()!= null &&  !ind.getQ1008a().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ1008a())==f+1)
-                    {
-                        RadioButton radioButton = bta[f];
-                        radioButton.setChecked(true);
-                        break;
+
+
+        if (ind.getQ1008a_Other() != null ) {
+
+            if (ind.getQ1008a() != null && ind.getQ1008a().equals("O")) {
+                rbtnaOther.setChecked(true);
+                edtOther.setText(ind.getQ1008a_Other());
+            }
+        }
+        else {
+            RadioButton[] bta = new RadioButton[10];
+            for (int f = 0; f < rga.getChildCount(); f++) {
+                View o = rga.getChildAt(f);
+                if (o instanceof RadioButton) {
+                    bta[f] = ((RadioButton) o);
+                    if (ind.getQ1008a() != null && !ind.getQ1008a().equals("")) {
+                        if (Integer.parseInt(ind.getQ1008a()) == f + 1) {
+                            RadioButton radioButton = bta[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -175,6 +182,8 @@ public class q1008 extends AppCompatActivity implements Serializable {
 
 
                                 individual.setQ1008(selectedRbtn.getText().toString().substring(0, 1));
+                                individual.setQ1008a(null);
+                                individual.setQ1008a_Other(null);
                                 individual.setQ1009(null);
                                 individual.setQ1009a(null);
 

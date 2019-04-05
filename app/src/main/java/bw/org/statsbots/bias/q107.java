@@ -500,6 +500,16 @@ public class q107 extends AppCompatActivity implements Serializable{
             }
         }
 
+        if(  ind.getQ107bOther() != null )
+        {
+            if ( ind.getQ107b() != null &&  ind.getQ107b().equals("O") )
+            {
+                rbtnbOther.setChecked(true);
+                edtbOther.setText(ind.getQ107bOther());
+            }
+        }
+        else
+        {
         RadioGroup rgg = findViewById(R.id.q107bradioGroup);
         RadioButton[] bt5 = new RadioButton[6];
         for(int f=0;f<rgg.getChildCount();f++)
@@ -508,25 +518,34 @@ public class q107 extends AppCompatActivity implements Serializable{
             if (o instanceof RadioButton)
             {
                 bt5[f]=((RadioButton)o);
-                if(ind.getQ107b()!= null &&  !ind.getQ107b().equals(""))
-                {
-                    try{
-                        if(Integer.parseInt(ind.getQ107b())==f+1)
-                        {
+                if(ind.getQ107b()!= null ) {
+                    try {
+                        if (Integer.parseInt(ind.getQ107b()) == f + 1) {
                             RadioButton radioButton = bt5[f];
                             radioButton.setChecked(true);
                             break;
                         }
-                    }catch(Exception ff){
+                    } catch (Exception ff) {
 
 
                     }
+                }
 
                 }
             }
         }
 
 
+        if(  ind.getQ107cOther() != null )
+        {
+            if ( ind.getQ107c() != null &&  ind.getQ107c().equals("O") )
+            {
+                rbtncOther.setChecked(true);
+                edtcOther.setText(ind.getQ107cOther());
+            }
+        }
+        else
+        {
         RadioGroup rg3 = findViewById(R.id.q107cradioGroup);
         RadioButton[] bt6 = new RadioButton[6];
 
@@ -536,22 +555,59 @@ public class q107 extends AppCompatActivity implements Serializable{
             if (o instanceof RadioButton)
             {
                 bt6[f]=((RadioButton)o);
-                if(ind.getQ107c()!= null &&  !ind.getQ107c().equals(""))
-                {
-                    try{
-                        if(Integer.parseInt(ind.getQ107c())==f+1)
-                        {
+                if(ind.getQ107c()!= null ) {
+                    try {
+                        if (Integer.parseInt(ind.getQ107c()) == f + 1) {
                             RadioButton radioButton = bt6[f];
                             radioButton.setChecked(true);
                             break;
                         }
-                    }catch (Exception r){
+                    } catch (Exception r) {
 
                     }
-
+                }
                 }
             }
         }
+
+
+//        if(  thisHouse.getH03Other()!= null )
+//        {
+//            if (thisHouse.getH03() != null && thisHouse.getH03().equals("Ot") )
+//            {
+//                rbtn9.setChecked(true);
+//                edt.setText(thisHouse.getH03Other());
+//            }
+//        }
+//        else
+//        {
+//            RadioButton[] bt = new RadioButton[9];
+//            for(int f=0;f<rg.getChildCount();f++)
+//            {
+//                View o = rg.getChildAt(f);
+//                if (o instanceof RadioButton)
+//                {
+//                    bt[f]=((RadioButton)o);
+//
+//
+//                    if( (thisHouse.getH03()!= null ) ) {
+//                        if(thisHouse.getH03().equals("") ) {
+//                            if (Integer.parseInt(thisHouse.getH03()) == f + 1) {
+//                                RadioButton radioButton = bt[f];
+//                                radioButton.setChecked(true);
+//                                break;
+//                            }
+//                        }
+//                    }
+//
+//                }
+//            }
+////            else
+////            {
+////                Log.d("Lost Here","**********");
+////            }
+//        }
+
 
 
         Button btnnext = findViewById(R.id.button);
