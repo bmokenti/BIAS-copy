@@ -569,7 +569,7 @@ public class q107 extends AppCompatActivity implements Serializable{
                 }
             }
         }
-
+///
 
 //        if(  thisHouse.getH03Other()!= null )
 //        {
