@@ -461,6 +461,20 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 try {
                     svrmsg = svrmsg.replaceAll("null","\"\"");
                     //Log.d("Test ",svrmsg.substring(21600,21700));
+/*
+
+                    try {
+                        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getApplicationContext().openFileOutput("config.txt", Context.MODE_PRIVATE));
+                        outputStreamWriter.write(svrmsg);
+                        outputStreamWriter.close();
+                    }
+                    catch (IOException e) {
+                        Log.e("Exception", "File write failed: " + e.toString());
+                    }
+*/
+
+
+
                     JSONArray jsnArray = new JSONArray(svrmsg);
 
                     if(jsnArray.length()==0){

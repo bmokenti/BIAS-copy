@@ -1403,8 +1403,8 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COMMENT_3, checkNull(house.getCOMMENT_3()));
         contentValues.put(TOTAL_VISITS, checkNull(house.getTOTAL_VISITS()));
         contentValues.put(SuperComment, checkNull(house.getSuperComment()));
-        contentValues.put(QcComment, checkNull(house.getQcComment()));
-        contentValues.put(HQComment, checkNull(house.getHQComment()));
+        //contentValues.put(QcComment, checkNull(house.getQcComment()));
+        //contentValues.put(HQComment, checkNull(house.getHQComment()));
         contentValues.put(Sample_FK, checkNull(house.getSample_FK()));
         contentValues.put(CONSENT, checkNull(house.getCONSENT()));
         contentValues.put(CHECKED_BY, checkNull(house.getCHECKED_BY()));
