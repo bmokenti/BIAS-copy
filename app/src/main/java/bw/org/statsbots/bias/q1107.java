@@ -94,7 +94,7 @@ public class q1107 extends AppCompatActivity implements  Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1107()!= null &&  !ind.getQ1107().equals(""))
+                if(ind.getQ1107()!= null)
                 {
                     if(Integer.parseInt(ind.getQ1107())==f+1)
                     {

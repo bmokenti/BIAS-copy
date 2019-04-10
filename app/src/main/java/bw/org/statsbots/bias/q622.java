@@ -281,48 +281,40 @@ public class q622 extends AppCompatActivity implements Serializable {
 
 //
         if (ind.getQ622aOther() != null ) {
-
-            if (ind.getQ622a() != null && ind.getQ622a().equals("O")) {
-                rbtaOther.setChecked(true);
-                edtaOther.setText(ind.getQ622aOther());
+            if (!ind.getQ622aOther().equals("")) {
+                if (ind.getQ622a() != null && ind.getQ622a().equals("O")) {
+                    rbtaOther.setChecked(true);
+                    edtaOther.setText(ind.getQ622aOther());
+                }
             }
         }
         else
         {
 
         RadioButton[] bt1 = new RadioButton[3];
-
-        for(int f=0;f<rg2.getChildCount();f++)
-        {
+        for(int f=0;f<rg2.getChildCount();f++) {
             View o = rg2.getChildAt(f);
             if (o instanceof RadioButton) {
                 bt1[f] = ((RadioButton) o);
 
                 {
-
-                    if (ind.getQ622a() != null && !ind.getQ622a().equals("")) {
-                        if (Integer.parseInt(ind.getQ622a()) == f + 1) {
-                            RadioButton radioButton = bt1[f];
-                            radioButton.setChecked(true);
-                            break;
+                    if (ind.getQ622a() != null) {
+                        if (!ind.getQ622a().equals("")) {
+                            if (Integer.parseInt(ind.getQ622a()) == f + 1) {
+                                RadioButton radioButton = bt1[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
                         }
                     }
                 }
-                }
             }
+        }
         }
 
 
 
-        if (ind.getQ622bOther() != null ) {
 
-            if (ind.getQ622b() != null && ind.getQ622b().equals("O")) {
-                rbtbOther.setChecked(true);
-                edtbOther.setText(ind.getQ622bOther());
-            }
-        }
-        else
-        {
         RadioButton[] bt2 = new RadioButton[3];
 
         for(int f=0;f<rg3.getChildCount();f++) {
@@ -330,19 +322,20 @@ public class q622 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton) {
                 bt2[f] = ((RadioButton) o);
 
-                if (ind.getQ622bOther() != null && !ind.getQ622bOther().equals("")) {
+                if (ind.getQ622bOther() != null ) {
                     rbtbOther.setChecked(true);
                     edtbOther.setText(ind.getQ622bOther());
                 } else {
-                    if (ind.getQ622b() != null && !ind.getQ622b().equals("")) {
-                        if (Integer.parseInt(ind.getQ622b()) == f + 1) {
-                            RadioButton radioButton = bt2[f];
-                            radioButton.setChecked(true);
-                            break;
+                    if (ind.getQ622b() != null ) {
+                        if (!ind.getQ622b().equals("")) {
+                            if (Integer.parseInt(ind.getQ622b()) == f + 1) {
+                                RadioButton radioButton = bt2[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
                         }
                     }
 
-                }
             }
         }
         }
@@ -436,8 +429,15 @@ public class q622 extends AppCompatActivity implements Serializable {
                                    else {
                                             if (rbtn2.isChecked()) {
                                                 individual.setQ622(selectedRbtn.getText().toString().substring(0, 1));
+
                                                 individual.setQ622b(selectedRbtnb.getText().toString().substring(0, 1));
-                                                individual.setQ622bOther(edtbOther.getText().toString());
+                                                if(rbtbOther.isChecked()) {
+                                                    individual.setQ622bOther(edtbOther.getText().toString());
+                                                }
+                                                else
+                                                {
+                                                    individual.setQ622bOther(null);
+                                                }
 
                                                 individual.setQ622a(null);
                                                 individual.setQ622aOther(null);
@@ -453,6 +453,10 @@ public class q622 extends AppCompatActivity implements Serializable {
                                             }
                                             else {
                                                     individual.setQ622(selectedRbtn.getText().toString().substring(0, 1));
+                                                individual.setQ622a(null);
+                                                individual.setQ622aOther(null);
+                                                individual.setQ622b(null);
+                                                individual.setQ622bOther(null);
 
                                                     myDB.onOpen(myDB.getReadableDatabase());
                                                     myDB.getWritableDatabase();
@@ -496,6 +500,8 @@ public class q622 extends AppCompatActivity implements Serializable {
 
         });
     }
+
+
     //   thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
 
 //    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());

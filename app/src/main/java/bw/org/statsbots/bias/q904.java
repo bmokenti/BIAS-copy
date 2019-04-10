@@ -592,11 +592,13 @@ public class q904 extends AppCompatActivity implements Serializable {
             View o = rga.getChildAt(f);
             if (o instanceof RadioButton) {
                 bta[f] = ((RadioButton) o);
-                if (ind.getQ904a() != null && !ind.getQ904a().equals("")) {
-                    if (Integer.parseInt(ind.getQ904a()) == f + 1) {
-                        RadioButton radioButton = bta[f];
-                        radioButton.setChecked(true);
-                        break;
+                if (ind.getQ904a() != null ) {
+                    if (!ind.getQ904a().equals("")) {
+                        if (Integer.parseInt(ind.getQ904a()) == f + 1) {
+                            RadioButton radioButton = bta[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -632,7 +634,7 @@ public class q904 extends AppCompatActivity implements Serializable {
 
         if (ind.getQ904cOther() != null ) {
 
-            if (ind.getQ904c() != null && ind.getQ904c().equals("O")) {
+            if (ind.getQ904c() != null && ind.getQ904c().equals("o")) {
                 rbtncOther.setChecked(true);
                 edtc.setText(ind.getQ904cOther());
             }
@@ -643,11 +645,13 @@ public class q904 extends AppCompatActivity implements Serializable {
                 View o = rgc.getChildAt(f);
                 if (o instanceof RadioButton) {
                     btc[f] = ((RadioButton) o);
-                    if (ind.getQ904c() != null && !ind.getQ904c().equals("")) {
-                        if (Integer.parseInt(ind.getQ904c()) == f + 1) {
-                            RadioButton radioButton = btc[f];
-                            radioButton.setChecked(true);
-                            break;
+                    if (ind.getQ904c() != null ) {
+                        if (!ind.getQ904c().equals("")) {
+                            if (Integer.parseInt(ind.getQ904c()) == f + 1) {
+                                RadioButton radioButton = btc[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
                         }
                     }
                 }
@@ -740,13 +744,35 @@ public class q904 extends AppCompatActivity implements Serializable {
                                         individual.setQ904(selectedRbtn.getText().toString().substring(0, 1));
 
                                         individual.setQ904c(selectedRbtnc.getText().toString().substring(0, 1));
-                                        individual.setQ904cOther(edtc.getText().toString());
+                                        if(rbtnaOther.isChecked())
+                                        {
+                                            individual.setQ904cOther(edtc.getText().toString());
+                                        }
+                                        else
+                                        {
+                                            individual.setQ904cOther(null);
+                                        }
+
 
 
                                         individual.setQ904a(null);
                                         individual.setQ904aOther(null);
-                                        individual.setQ904bMM("00");
-                                        individual.setQ904bYYYY("0000");
+
+                                        if (edtbmnths.getText().toString().length() == 0) {
+                                            individual.setQ904bMM("00");
+                                        } else if (edtbmnths.getText().toString().length() == 1) {
+                                            individual.setQ904bMM("0" + edtbmnths.getText().toString());
+                                        } else {
+                                            individual.setQ904bMM(edtbmnths.getText().toString());
+                                        }
+
+                                        if (edtbyear.getText().toString().length() == 0) {
+                                            individual.setQ904bYYYY("0000");
+                                        }
+                                        else {
+                                            individual.setQ904bYYYY(edtbyear.getText().toString());
+                                        }
+
 
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();
@@ -770,8 +796,22 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                                             individual.setQ904a(null);
                                             individual.setQ904aOther(null);
-                                            individual.setQ904bMM("00");
-                                            individual.setQ904bYYYY("0000");
+
+                                            if (edtbmnths.getText().toString().length() == 0) {
+                                                individual.setQ904bMM("00");
+                                            } else if (edtbmnths.getText().toString().length() == 1) {
+                                                individual.setQ904bMM("0" + edtbmnths.getText().toString());
+                                            } else {
+                                                individual.setQ904bMM(edtbmnths.getText().toString());
+                                            }
+
+                                            if (edtbyear.getText().toString().length() == 0) {
+                                                individual.setQ904bYYYY("0000");
+                                            }
+                                            else {
+                                                individual.setQ904bYYYY(edtbyear.getText().toString());
+                                            }
+
                                             individual.setQ904c(null);
                                             individual.setQ904cOther(null);
                                             individual.setQ905(null);
@@ -780,6 +820,7 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                                             myDB.onOpen(myDB.getReadableDatabase());
                                             myDB.getWritableDatabase();
+                                            myDB.updateInd("Q904B", individual.getAssignmentID(), individual.getBatch(), individual.getQ904bMM()+individual.getQ904bYYYY() , String.valueOf(individual.getSRNO()));
                                             myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                                             myDB.close();
 
@@ -798,9 +839,30 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                                                 individual.setQ904(selectedRbtn.getText().toString().substring(0, 1));
                                                 individual.setQ904a(selectedRbtna.getText().toString().substring(0, 1));
-                                                individual.setQ904aOther(edta.getText().toString());
-                                                individual.setQ904bMM(edtbmnths.getText().toString());
-                                                individual.setQ904bYYYY(edtbyear.getText().toString());
+                                                if(rbtnaOther.isChecked()) {
+                                                    individual.setQ904aOther(edta.getText().toString());
+                                                }
+                                                else
+                                                {
+                                                    individual.setQ904aOther(null);
+                                                }
+
+
+                                                if (edtbmnths.getText().toString().length() == 0) {
+                                                    individual.setQ904bMM("00");
+                                                } else if (edtbmnths.getText().toString().length() == 1) {
+                                                    individual.setQ904bMM("0" + edtbmnths.getText().toString());
+                                                } else {
+                                                    individual.setQ904bMM(edtbmnths.getText().toString());
+                                                }
+
+                                                if (edtbyear.getText().toString().length() == 0) {
+                                                    individual.setQ904bYYYY("0000");
+                                                }
+                                                else {
+                                                    individual.setQ904bYYYY(edtbyear.getText().toString());
+                                                }
+
 
                                                 individual.setQ904c(null);
                                                 individual.setQ904cOther(null);
@@ -810,8 +872,11 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                                                 myDB.onOpen(myDB.getReadableDatabase());
                                                 myDB.getWritableDatabase();
+                                                myDB.updateInd("Q904B", individual.getAssignmentID(), individual.getBatch(), individual.getQ904bMM()+individual.getQ904bYYYY() , String.valueOf(individual.getSRNO()));
+
                                                 myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                                                 myDB.close();
+
                                                 Intent q1o2 = new Intent(q904.this, q1001.class);
                                                 q1o2.putExtra("Individual", individual);
                                                 startActivity(q1o2);
@@ -820,10 +885,31 @@ public class q904 extends AppCompatActivity implements Serializable {
                                         else {
                                             //Set q904 for the current individual
                                             individual.setQ904(selectedRbtn.getText().toString().substring(0, 1));
+
                                             individual.setQ904a(selectedRbtna.getText().toString().substring(0, 1));
-                                            individual.setQ904aOther(edta.getText().toString());
-                                            individual.setQ904bMM(edtbmnths.getText().toString());
-                                            individual.setQ904bYYYY(edtbyear.getText().toString());
+                                                if(rbtnaOther.isChecked()) {
+                                                    individual.setQ904aOther(edta.getText().toString());
+                                                }
+                                                else
+                                                {
+                                                    individual.setQ904aOther(null);
+                                                }
+                                                if (edtbmnths.getText().toString().length() == 0) {
+                                                    individual.setQ904bMM("00");
+                                                } else if (edtbmnths.getText().toString().length() == 1) {
+                                                    individual.setQ904bMM("0" + edtbmnths.getText().toString());
+                                                } else {
+                                                    individual.setQ904bMM(edtbmnths.getText().toString());
+                                                }
+
+                                                if (edtbyear.getText().toString().length() == 0) {
+                                                    individual.setQ904bYYYY("0000");
+                                                }
+                                                else {
+                                                    individual.setQ904bYYYY(edtbyear.getText().toString());
+                                                }
+
+                                                individual.setQ904bYYYY(edtbyear.getText().toString());
 
 
 
@@ -832,8 +918,10 @@ public class q904 extends AppCompatActivity implements Serializable {
 
                                                 myDB.onOpen(myDB.getReadableDatabase());
                                                 myDB.getWritableDatabase();
+                                                myDB.updateInd("Q904B", individual.getAssignmentID(), individual.getBatch(), individual.getQ904bMM()+individual.getQ904bYYYY() , String.valueOf(individual.getSRNO()));
                                                 myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                                                 myDB.close();
+
                                             Intent intent = new Intent(q904.this, q905.class);
                                             intent.putExtra("Individual", individual);
                                             startActivity(intent);

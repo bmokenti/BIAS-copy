@@ -447,7 +447,7 @@ if (individual.getQ101() != null && individual.getQ101().equals("1"))
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1001()!= null &&  !ind.getQ1001().equals(""))
+                if(ind.getQ1001()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1001())==f+1)
                     {

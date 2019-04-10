@@ -231,7 +231,7 @@ public class q1101 extends AppCompatActivity implements  Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1101()!= null &&  !ind.getQ1101().equals(""))
+                if(ind.getQ1101()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1101())==f+1)
                     {
@@ -259,11 +259,13 @@ public class q1101 extends AppCompatActivity implements  Serializable {
             View o = rg2.getChildAt(f);
             if (o instanceof RadioButton) {
                 bta[f] = ((RadioButton) o);
-                if (ind.getQ1101a() != null && !ind.getQ1101a().equals("")) {
-                    if (Integer.parseInt(ind.getQ1101a()) == f + 1) {
-                        RadioButton radioButton = bta[f];
-                        radioButton.setChecked(true);
-                        break;
+                if (ind.getQ1101a() != null) {
+                    if (!ind.getQ1101a().equals("")) {
+                        if (Integer.parseInt(ind.getQ1101a()) == f + 1) {
+                            RadioButton radioButton = bta[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -386,8 +388,12 @@ public class q1101 extends AppCompatActivity implements  Serializable {
                                 myDB.onOpen(myDB.getReadableDatabase());
                                 myDB.getWritableDatabase();
                                 myDB.updateInd("Q1101",individual.getAssignmentID(),individual.getBatch(),ind.getQ1101(),String.valueOf(individual.getSRNO()));
+
                                 myDB.updateInd("Q1101a",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
-                                myDB.updateInd("Q1101aOther",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+
+                                   myDB.updateInd("Q1101aOther",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+
+
                                 myDB.close();
 
 
@@ -424,7 +430,16 @@ public class q1101 extends AppCompatActivity implements  Serializable {
                                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                                         myDB.updateInd("Q1101",individual.getAssignmentID(),individual.getBatch(),ind.getQ1101(),String.valueOf(individual.getSRNO()));
                                         myDB.updateInd("Q1101a",individual.getAssignmentID(),individual.getBatch(),ind.getQ1101a(),String.valueOf(individual.getSRNO()));
-                                        myDB.updateInd("Q1101aOther",individual.getAssignmentID(),individual.getBatch(),ind.getQ1101aOther(),String.valueOf(individual.getSRNO()));
+                                        if(rbtnaOther.isChecked())
+                                        {
+                                            myDB.updateInd("Q1101a",individual.getAssignmentID(),individual.getBatch(),ind.getQ1101a(),String.valueOf(individual.getSRNO()));
+
+                                        }
+                                        else
+                                        {
+                                            myDB.updateInd("Q1101aOther",individual.getAssignmentID(),individual.getBatch(),null,String.valueOf(individual.getSRNO()));
+
+                                        }
                                         myDB.close();
                                         Intent q1o3 = new Intent(q1101.this, q1102.class);
                                         q1o3.putExtra("Individual", individual);

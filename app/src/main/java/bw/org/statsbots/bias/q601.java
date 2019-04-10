@@ -93,18 +93,18 @@ public class q601 extends AppCompatActivity implements Serializable {
         for(int f=0;f<rg.getChildCount();f++)
         {
             View o = rg.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ601()!= null &&  !ind.getQ601().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ601())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ601() != null) {
+                    if (!ind.getQ601().equals("")) {
+                        if (Integer.parseInt(ind.getQ601()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
+
             }
         }
 
@@ -112,16 +112,15 @@ public class q601 extends AppCompatActivity implements Serializable {
         for(int f=0;f<rga.getChildCount();f++)
         {
             View o = rga.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bta[f]=((RadioButton)o);
-                if(ind.getQ601a()!= null &&  !ind.getQ601a().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ601a())==f+1)
-                    {
-                        RadioButton radioButton = bta[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bta[f] = ((RadioButton) o);
+                if (ind.getQ601a() != null) {
+                    if (!ind.getQ601a().equals("")) {
+                        if (Integer.parseInt(ind.getQ601a()) == f + 1) {
+                            RadioButton radioButton = bta[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }

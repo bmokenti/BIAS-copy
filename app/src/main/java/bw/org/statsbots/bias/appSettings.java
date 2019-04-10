@@ -35,7 +35,7 @@ public class appSettings extends AppCompatActivity {
         Button btn1 = findViewById(R.id.button3);
 
         if(txt.getText().toString().length()>0){
-            txt.setEnabled(false);
+           txt.setEnabled(false);
             btn.setEnabled(false);
         }
 

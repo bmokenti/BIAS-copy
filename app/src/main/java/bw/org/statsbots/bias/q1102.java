@@ -110,7 +110,7 @@ public class q1102 extends AppCompatActivity implements  Serializable {
             View o = rg.getChildAt(f);
             if (o instanceof RadioButton) {
                 bt[f] = ((RadioButton) o);
-                if (ind.getQ1102() != null && !ind.getQ1102().equals("")) {
+                if (ind.getQ1102() != null ) {
                     if (Integer.parseInt(ind.getQ1102()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);

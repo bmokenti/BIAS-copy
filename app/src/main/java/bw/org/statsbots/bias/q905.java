@@ -203,11 +203,13 @@ public class q905 extends AppCompatActivity implements Serializable {
             View o = rg.getChildAt(f);
             if (o instanceof RadioButton) {
                 bt[f] = ((RadioButton) o);
-                if (ind.getQ905a() != null && !ind.getQ905a().equals("")) {
-                    if (Integer.parseInt(ind.getQ905a()) == f + 1) {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                if (ind.getQ905a() != null ) {
+                    if (!ind.getQ905a().equals("")) {
+                        if (Integer.parseInt(ind.getQ905a()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -286,8 +288,13 @@ public class q905 extends AppCompatActivity implements Serializable {
 
                             individual.setQ905(edtdays.getText().toString());
                             individual.setQ905a(selectedRbtna.getText().toString().substring(0, 1));
-                            individual.setQ905aOther(edtaother.getText().toString());
-
+                            if(rbtnaother.isChecked()) {
+                                individual.setQ905aOther(edtaother.getText().toString());
+                            }
+                            else
+                            {
+                                individual.setQ905aOther(null);
+                            }
                             myDB = new DatabaseHelper(q905.this);
                             myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();

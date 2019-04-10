@@ -94,13 +94,14 @@ public class q612 extends AppCompatActivity  implements Serializable{
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ612()!= null &&  !ind.getQ612().equals(""))
+                if(ind.getQ612()!= null )
                 {
-                    if(Integer.parseInt(ind.getQ612())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                    if(!ind.getQ612().equals("")) {
+                        if (Integer.parseInt(ind.getQ612()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -109,11 +110,12 @@ public class q612 extends AppCompatActivity  implements Serializable{
 
         if(  ind.getQ612aOther() != null )
         {
-            if ( ind.getQ612a() != null &&  ind.getQ612a().equals("O") )
-            {
-                rbtnaOther.setChecked(true);
-                edt.setText(ind.getQ612aOther());
-                edt.setVisibility(View.VISIBLE);
+            if( !ind.getQ612aOther().equals("") ) {
+                if (ind.getQ612a() != null && ind.getQ612a().equals("O")) {
+                    rbtnaOther.setChecked(true);
+                    edt.setText(ind.getQ612aOther());
+                    //edt.setVisibility(View.VISIBLE);
+                }
             }
         }
         else
@@ -123,16 +125,61 @@ public class q612 extends AppCompatActivity  implements Serializable{
             View o = rbtngroup1.getChildAt(f);
             if (o instanceof RadioButton) {
                 bta[f] = ((RadioButton) o);
-                if (ind.getQ612a() != null && !ind.getQ612a().equals("")) {
-                    if (Integer.parseInt(ind.getQ612a()) == f + 1) {
-                        RadioButton radioButton = bta[f];
-                        radioButton.setChecked(true);
-                        break;
+
+                if (ind.getQ612a() != null ) {
+                    if (!ind.getQ612a().equals(""))
+                    {
+                        if (Integer.parseInt(ind.getQ612a()) == f + 1) {
+                            RadioButton radioButton = bta[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
         }
         }
+
+
+//        if(  thisHouse.getH03Other()!= null )
+//        {
+//            if (thisHouse.getH03() != null && thisHouse.getH03().equals("Ot") )
+//            {
+//                rbtn9.setChecked(true);
+//                edt.setText(thisHouse.getH03Other());
+//            }
+//        }
+//        else
+//        {
+//            RadioButton[] bt = new RadioButton[9];
+//            for(int f=0;f<rg.getChildCount();f++)
+//            {
+//                View o = rg.getChildAt(f);
+//                if (o instanceof RadioButton)
+//                {
+//                    bt[f]=((RadioButton)o);
+//
+//
+//                    if( (thisHouse.getH03()!= null ) ) {
+//                        if(!thisHouse.getH03().equals("")) {
+//                            if (Integer.parseInt(thisHouse.getH03()) == f + 1) {
+//                                RadioButton radioButton = bt[f];
+//                                radioButton.setChecked(true);
+//                                break;
+//                            }
+//                        }
+//                    }
+//
+//                }
+//            }
+////            else
+////            {
+////                Log.d("Lost Here","**********");
+////            }
+//        }
+
+
+
 
 //        if(ind.getQ612aOther()!= null)
 //        {
@@ -225,7 +272,14 @@ public class q612 extends AppCompatActivity  implements Serializable{
                                 myDB.getWritableDatabase();
                                 myDB.updateInd("Q612", individual.getAssignmentID(), individual.getBatch(), individual.getQ612(), String.valueOf(individual.getSRNO()));
                                 myDB.updateInd("Q612a", individual.getAssignmentID(), individual.getBatch(), individual.getQ612a(), String.valueOf(individual.getSRNO()));
-                                myDB.updateInd("Q612Other", individual.getAssignmentID(), individual.getBatch(), individual.getQ612aOther(), String.valueOf(individual.getSRNO()));
+                                if(rbtnaOther.isChecked()) {
+                                    myDB.updateInd("Q612Other", individual.getAssignmentID(), individual.getBatch(), individual.getQ612aOther(), String.valueOf(individual.getSRNO()));
+                                }
+                                else
+                                {
+                                    myDB.updateInd("Q612Other", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+
+                                }
                                 myDB.close();
 
                                 Intent intent = new Intent(q612.this, q613.class);

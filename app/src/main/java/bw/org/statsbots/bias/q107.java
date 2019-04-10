@@ -776,9 +776,21 @@ public class q107 extends AppCompatActivity implements Serializable{
                                                     }
 
                                                     individual.setQ107b(selectedRbtn1.getText().toString().substring(0, 1));
-                                                    individual.setQ107bOther(edtbOther.getText().toString());
+                                                    if(rbtnbOther.isChecked()) {
+                                                        individual.setQ107bOther(edtbOther.getText().toString());
+                                                    }
+                                                    else
+                                                    {
+                                                        individual.setQ107bOther(null);
+                                                    }
                                                     individual.setQ107c(selectedRbtn2.getText().toString().substring(0, 1));
-                                                    individual.setQ107cOther(edtcOther.getText().toString());
+                                                    if(rbtncOther.isChecked()) {
+                                                        individual.setQ107cOther(edtcOther.getText().toString());
+                                                    }
+                                                    else
+                                                    {
+                                                        individual.setQ107cOther(null);
+                                                    }
 
                                                     myDB.onOpen(myDB.getReadableDatabase());
                                                     myDB.getWritableDatabase();

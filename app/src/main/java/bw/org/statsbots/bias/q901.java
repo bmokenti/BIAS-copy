@@ -108,7 +108,8 @@ public class q901 extends AppCompatActivity implements Serializable {
             intent.putExtra("Individual", individual);
             startActivity(intent);
         }
-        else {
+        else
+            {
 
         }
 
@@ -236,13 +237,13 @@ public class q901 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ901()!= null &&  !ind.getQ901().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ901())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                if(ind.getQ901()!= null ) {
+                    if (!ind.getQ901().equals("")) {
+                        if (Integer.parseInt(ind.getQ901()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -262,11 +263,13 @@ public class q901 extends AppCompatActivity implements Serializable {
                 View o = rga.getChildAt(f);
                 if (o instanceof RadioButton) {
                     bta[f] = ((RadioButton) o);
-                    if (ind.getQ901a() != null && !ind.getQ901a().equals("")) {
-                        if (Integer.parseInt(ind.getQ901a()) == f + 1) {
-                            RadioButton radioButton = bta[f];
-                            radioButton.setChecked(true);
-                            break;
+                    if (ind.getQ901a() != null ) {
+                        if (!ind.getQ901a().equals("")) {
+                            if (Integer.parseInt(ind.getQ901a()) == f + 1) {
+                                RadioButton radioButton = bta[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
                         }
                     }
                 }
@@ -504,7 +507,16 @@ public class q901 extends AppCompatActivity implements Serializable {
 
                                     individual.setQ901(selectedRbtn.getText().toString().substring(0, 1));
                                     individual.setQ901a(selectedRbtna.getText().toString().substring(0, 1));
-                                    individual.setQ901a(edt.getText().toString());
+                                    if(rbtnaOther.isChecked())
+                                    {
+                                        individual.setQ901a(edt.getText().toString());
+                                    }
+                                    else
+                                    {
+                                        individual.setQ901a(null);
+                                    }
+
+
 
                                     myDB.onOpen(myDB.getReadableDatabase());
                                     myDB.getWritableDatabase();
@@ -533,20 +545,21 @@ public class q901 extends AppCompatActivity implements Serializable {
                     Intent intent = new Intent(q901.this, q803.class);
                     intent.putExtra("Individual", individual);
                     startActivity(intent);
-                } else {
-                    if (individual.getQ801() != null && individual.getQ801().equals("1")) {
-                        finish();
-
-                        Intent intent = new Intent(q901.this, q801.class);
-                        intent.putExtra("Individual", individual);
-                        startActivity(intent);
-                    } else {
+                }  else {
                         if ((individual.getQ801a() != null && individual.getQ801a().equals("1")) && individual.getQ801f().equals("1")) {
                             finish();
                             Intent intent = new Intent(q901.this, q802.class);
                             intent.putExtra("Individual", individual);
                             startActivity(intent);
-                        } else
+                        }
+                        else {
+                            if (individual.getQ801() != null && individual.getQ801().equals("1")) {
+                                finish();
+
+                                Intent intent = new Intent(q901.this, q801.class);
+                                intent.putExtra("Individual", individual);
+                                startActivity(intent);
+                            }else
                             {
                             finish();
                                 Intent intent = new Intent(q901.this, q804.class);

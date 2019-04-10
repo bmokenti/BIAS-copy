@@ -128,7 +128,7 @@ if ((individual.getQ1004_Month() != null && Integer.valueOf(individual.getQ1004_
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1014()!= null &&  !ind.getQ1014().equals(""))
+                if(ind.getQ1014()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1014())==f+1)
                     {
@@ -148,7 +148,7 @@ if ((individual.getQ1004_Month() != null && Integer.valueOf(individual.getQ1004_
             if (o instanceof RadioButton)
             {
                 bta[f]=((RadioButton)o);
-                if(ind.getQ1014a()!= null &&  !ind.getQ1014a().equals(""))
+                if(ind.getQ1014a()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1014a())==f+1)
                     {
@@ -167,7 +167,7 @@ if ((individual.getQ1004_Month() != null && Integer.valueOf(individual.getQ1004_
             if (o instanceof RadioButton)
             {
                 btb[f]=((RadioButton)o);
-                if(ind.getQ1014b()!= null &&  !ind.getQ1014b().equals(""))
+                if(ind.getQ1014b()!= null)
                 {
                     if(Integer.parseInt(ind.getQ1014b())==f+1)
                     {

@@ -562,7 +562,16 @@ public class q617 extends AppCompatActivity implements Serializable {
 
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();
-                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.updateInd("Q617Meal", individual.getAssignmentID(), individual.getBatch(), individual.getQ617a(), String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q617Clothes", individual.getAssignmentID(), individual.getBatch(), individual.getQ617b(), String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q617Miscarried", individual.getAssignmentID(), individual.getBatch(), individual.getQ617c(), String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q617Widow", individual.getAssignmentID(), individual.getBatch(), individual.getQ617d(), String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q617FamilyHIV", individual.getAssignmentID(), individual.getBatch(), individual.getQ617e(), String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q617Sejeso", individual.getAssignmentID(), individual.getBatch(), individual.getQ617f(), String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q617Touching", individual.getAssignmentID(), individual.getBatch(), individual.getQ617g(), String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q617Someone", individual.getAssignmentID(), individual.getBatch(), individual.getQ617h(), String.valueOf(individual.getSRNO()));
+                                        myDB.updateInd("Q617Other", individual.getAssignmentID(), individual.getBatch(), individual.getQ617_0ther(), String.valueOf(individual.getSRNO()));
+                                       // myDB.updateIndividual(myDB.getWritableDatabase(),individual);
                                         myDB.close();
 
                                         Intent intent = new Intent(q617.this, q618.class);
@@ -620,7 +629,7 @@ public class q617 extends AppCompatActivity implements Serializable {
             case R.id.pause:
                 // Show the settings activity
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setMessage(" Are you sure you want to pause the interview");
                 alertDialogBuilder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             @Override

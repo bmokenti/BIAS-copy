@@ -100,7 +100,7 @@ public class q1008 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1008()!= null &&  !ind.getQ1008().equals(""))
+                if(ind.getQ1008()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1008())==f+1)
                     {
@@ -127,11 +127,13 @@ public class q1008 extends AppCompatActivity implements Serializable {
                 View o = rga.getChildAt(f);
                 if (o instanceof RadioButton) {
                     bta[f] = ((RadioButton) o);
-                    if (ind.getQ1008a() != null && !ind.getQ1008a().equals("")) {
-                        if (Integer.parseInt(ind.getQ1008a()) == f + 1) {
-                            RadioButton radioButton = bta[f];
-                            radioButton.setChecked(true);
-                            break;
+                    if (ind.getQ1008a() != null) {
+                        if (!ind.getQ1008a().equals("")) {
+                            if (Integer.parseInt(ind.getQ1008a()) == f + 1) {
+                                RadioButton radioButton = bta[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
                         }
                     }
                 }
@@ -199,7 +201,13 @@ public class q1008 extends AppCompatActivity implements Serializable {
                             } else {
                                 individual.setQ1008(selectedRbtn.getText().toString().substring(0, 1));
                                 individual.setQ1008a(selectedRbtna.getText().toString().substring(0, 1));
-                                individual.setQ1008a_Other(edtOther.getText().toString());
+                                if(rbtnaOther.isChecked()) {
+                                    individual.setQ1008a_Other(edtOther.getText().toString());
+                                }
+                                else
+                                {
+                                    individual.setQ1008a_Other(null);
+                                }
                                 individual.setQ1009(null);
                                 individual.setQ1009a(null);
 

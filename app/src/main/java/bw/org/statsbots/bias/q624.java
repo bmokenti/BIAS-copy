@@ -76,16 +76,15 @@ public class q624 extends AppCompatActivity implements Serializable {
         for(int f=0;f<rg1.getChildCount();f++)
         {
             View o = rg1.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ624()!= null &&  !ind.getQ624().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ624())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ624() != null) {
+                    if (!ind.getQ624().equals("")) {
+                        if (Integer.parseInt(ind.getQ624()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }

@@ -140,7 +140,7 @@ if(individual.getQ1101() != null && individual.getQ1101().equals("1") )
             View o = rg.getChildAt(f);
             if (o instanceof RadioButton) {
                 bt[f] = ((RadioButton) o);
-                if (ind.getQ1103() != null && !ind.getQ1103().equals("")) {
+                if (ind.getQ1103() != null ) {
                     if (Integer.parseInt(ind.getQ1103()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);

@@ -113,7 +113,7 @@ public class q1104 extends AppCompatActivity implements View.OnClickListener, Se
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1104()!= null &&  !ind.getQ1104().equals(""))
+                if(ind.getQ1104()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1104())==f+1)
                     {

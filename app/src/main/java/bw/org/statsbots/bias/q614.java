@@ -93,13 +93,16 @@ public class q614 extends AppCompatActivity implements Serializable {
             }
         });
 
+
+
+
         if(  ind.getQ614Other() != null )
-        {
-            if ( ind.getQ614() != null &&  ind.getQ614().equals("O") )
-            {
+        { if(  !ind.getQ614Other().equals("")) {
+            if (ind.getQ614() != null && ind.getQ614().equals("O")) {
                 rbtnother.setChecked(true);
                 edt.setText(ind.getQ614Other());
             }
+        }
         }
         else
         {
@@ -109,15 +112,18 @@ public class q614 extends AppCompatActivity implements Serializable {
             View o = rbtngroup.getChildAt(f);
             if (o instanceof RadioButton) {
                 bt[f] = ((RadioButton) o);
-                if (ind.getQ614() != null && !ind.getQ614().equals("")) {
+
+                if (ind.getQ614() != null ) {
+                    if (!ind.getQ614().equals("")) {
                     if (Integer.parseInt(ind.getQ614()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
                         break;
                     }
                 }
+                }
             }
-            }
+        }
         }
 
 //        if(ind.getQ614Other()!= null)
@@ -169,7 +175,14 @@ public class q614 extends AppCompatActivity implements Serializable {
                     myDB.onOpen(myDB.getReadableDatabase());
                     myDB.getWritableDatabase();
                     myDB.updateInd("Q614", individual.getAssignmentID(), individual.getBatch(), individual.getQ614(), String.valueOf(individual.getSRNO()));
-                    myDB.updateInd("Q614Other", individual.getAssignmentID(), individual.getBatch(), individual.getQ614Other(), String.valueOf(individual.getSRNO()));
+                        if(rbtnother.isChecked()) {
+                            myDB.updateInd("Q614Other", individual.getAssignmentID(), individual.getBatch(), individual.getQ614Other(), String.valueOf(individual.getSRNO()));
+                        }
+                        else
+                        {
+                            myDB.updateInd("Q614Other", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+
+                        }
                     myDB.close();
 //
 //                        myDB.onOpen(myDB.getReadableDatabase());

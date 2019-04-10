@@ -93,19 +93,17 @@ public class q1114 extends AppCompatActivity implements View.OnClickListener, Se
         }
 
         RadioButton[] bt = new RadioButton[2];
-        for(int f=0;f<rg.getChildCount();f++)
-        {
+        for(int f=0;f<rg.getChildCount();f++) {
             View o = rg.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ1114()!= null &&  !ind.getQ1114().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ1114())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ1114() != null) {
+                    if (!ind.getQ1114().equals("")) {
+                        if (Integer.parseInt(ind.getQ1114()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }

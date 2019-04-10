@@ -1381,7 +1381,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Assignment_ID, house.getAssignment_ID());
         contentValues.put(DWELLING_NO, house.getDWELLING_NO());
         contentValues.put(HH_NO, house.getHH_NO());
-        contentValues.put(RESP_LINE, house.getBatchNumber());
+        contentValues.put(RESP_LINE, "");
         contentValues.put(ENUMERATOR, house.getENUMERATOR());
         contentValues.put(SUPERVISOR, house.getSUPERVISOR());
         contentValues.put(QUALITY_CONTROLLER, house.getQUALITY_CONTROLLER());

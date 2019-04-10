@@ -72,7 +72,7 @@ protected DatabaseHelper myDB;
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ610()!= null &&  !ind.getQ610().equals(""))
+                if(ind.getQ610()!= null )
                 {
                     if(Integer.parseInt(ind.getQ610())==f+1)
                     {

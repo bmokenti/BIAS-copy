@@ -89,8 +89,10 @@ public class q613 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ613()!= null &&  !ind.getQ613().equals(""))
+                if(ind.getQ613()!= null )
                 {
+                    if(!ind.getQ613().equals(""))
+                    {
                     if(Integer.parseInt(ind.getQ613())==f+1)
                     {
                         RadioButton radioButton = bt[f];
@@ -100,31 +102,36 @@ public class q613 extends AppCompatActivity implements Serializable {
                 }
             }
         }
-
+        }
 
         if(  ind.getQ613aOther() != null )
         {
-            if ( ind.getQ613a() != null &&  ind.getQ613a().equals("O") )
-            {
+            if(  !ind.getQ613aOther().equals("") ) {
+            if (ind.getQ613a() != null && ind.getQ613a().equals("O")) {
                 rbtnaOther.setChecked(true);
                 edt.setText(ind.getQ613aOther());
                 edt.setVisibility(View.VISIBLE);
             }
         }
+        }
         else
         {
+
         RadioButton[] bta = new RadioButton[5];
         for(int f=0;f<rbtngroup1.getChildCount();f++)
         {
             View o = rbtngroup1.getChildAt(f);
             if (o instanceof RadioButton) {
                 bta[f] = ((RadioButton) o);
-                if (ind.getQ613a() != null && !ind.getQ613a().equals("")) {
+
+                if (ind.getQ613a() != null ) {
+                    if (!ind.getQ613a().equals("")){
                     if (Integer.parseInt(ind.getQ613a()) == f + 1) {
                         RadioButton radioButton = bta[f];
                         radioButton.setChecked(true);
                         break;
                     }
+                }
                 }
             }
             }
@@ -230,7 +237,15 @@ public class q613 extends AppCompatActivity implements Serializable {
                                         myDB.getWritableDatabase();
                                         myDB.updateInd("Q613", individual.getAssignmentID(), individual.getBatch(), individual.getQ613(), String.valueOf(individual.getSRNO()));
                                         myDB.updateInd("Q613a", individual.getAssignmentID(), individual.getBatch(), individual.getQ613a(), String.valueOf(individual.getSRNO()));
-                                        myDB.updateInd("Q613aOther", individual.getAssignmentID(), individual.getBatch(), individual.getQ613aOther(), String.valueOf(individual.getSRNO()));
+                                        if(rbtnaOther.isChecked()) {
+                                            myDB.updateInd("Q613aOther", individual.getAssignmentID(), individual.getBatch(), individual.getQ613aOther(), String.valueOf(individual.getSRNO()));
+
+                                        }else
+                                        {
+                                            myDB.updateInd("Q613aOther", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+
+                                        }
+
                                         myDB.close();
                                         //Next question q614
 

@@ -2108,5 +2108,13 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Dashboard.this, Dashboard.class);
+        startActivity(intent);
+
+
+    }
+
 
 }

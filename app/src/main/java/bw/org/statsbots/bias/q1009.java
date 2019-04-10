@@ -92,7 +92,7 @@ public class q1009 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1009()!= null &&  !ind.getQ1009().equals(""))
+                if(ind.getQ1009()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1009())==f+1)
                     {
@@ -111,7 +111,7 @@ public class q1009 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bta[f]=((RadioButton)o);
-                if(ind.getQ1009a()!= null &&  !ind.getQ1009a().equals(""))
+                if(ind.getQ1009a()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1009a())==f+1)
                     {

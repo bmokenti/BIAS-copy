@@ -124,7 +124,7 @@ public class q1004 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1004a()!= null &&  !ind.getQ1004a().equals(""))
+                if(ind.getQ1004a()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1004a())==f+1)
                     {
@@ -150,11 +150,13 @@ public class q1004 extends AppCompatActivity implements Serializable {
             View o = rgb.getChildAt(f);
             if (o instanceof RadioButton) {
                 btb[f] = ((RadioButton) o);
-                if (ind.getQ1004b() != null && !ind.getQ1004b().equals("")) {
-                    if (Integer.parseInt(ind.getQ1004b()) == f + 1) {
-                        RadioButton radioButton = btb[f];
-                        radioButton.setChecked(true);
-                        break;
+                if (ind.getQ1004b() != null ) {
+                    if (!ind.getQ1004b().equals("")) {
+                        if (Integer.parseInt(ind.getQ1004b()) == f + 1) {
+                            RadioButton radioButton = btb[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -268,9 +270,43 @@ public class q1004 extends AppCompatActivity implements Serializable {
 
 
                                             if (rbtna1.isChecked()) {
-                                                individual.setQ1004_Day(edtdays.getText().toString());
-                                                individual.setQ1004_Month(edtmonths.getText().toString());
-                                                individual.setQ1004_Year(edtyears.getText().toString());
+
+                                                //                                                individual.setQ1004_Day(edtdays.getText().toString());
+//                                                individual.setQ1004_Month(edtmonths.getText().toString());
+//                                                individual.setQ1004_Year(edtyears.getText().toString());
+
+
+
+                                                if (edtdays.getText().toString().length() == 0) {
+                                                    individual.setQ1004_Day("00");
+                                                } else if (edtdays.getText().toString().length() == 1) {
+                                                    individual.setQ1004_Day("0" + edtdays.getText().toString());
+                                                } else {
+                                                    individual.setQ1004_Day(edtdays.getText().toString());
+                                                }
+
+
+                                                if (edtmonths.getText().toString().length() == 0) {
+                                                    individual.setQ1004_Month("00");
+                                                } else if (edtmonths.getText().toString().length() == 1) {
+                                                    individual.setQ1004_Month("0" + edtmonths.getText().toString());
+                                                } else {
+                                                    individual.setQ1004_Month(edtmonths.getText().toString());
+                                                }
+
+
+                                                if (edtyears.getText().toString().length() == 0) {
+                                                    individual.setQ1004_Year("0000");
+                                                }
+                                                else {
+                                                    individual.setQ1004_Year(edtyears.getText().toString());
+                                                }
+
+
+
+
+
+
                                                 individual.setQ1004a(selectedRbtna.getText().toString().substring(0, 1));
                                                 individual.setQ1004b(null);
                                                 individual.setQ1004b_Other(null);
@@ -286,14 +322,42 @@ public class q1004 extends AppCompatActivity implements Serializable {
                                                 intent.putExtra("Individual", individual);
                                                 startActivity(intent);
                                             } else {
-                                                individual.setQ1004_Day(edtdays.getText().toString());
-                                                individual.setQ1004_Month(edtmonths.getText().toString());
-                                                individual.setQ1004_Year(edtyears.getText().toString());
+                                                if (edtdays.getText().toString().length() == 0) {
+                                                    individual.setQ1004_Day("00");
+                                                } else if (edtdays.getText().toString().length() == 1) {
+                                                    individual.setQ1004_Day("0" + edtdays.getText().toString());
+                                                } else {
+                                                    individual.setQ1004_Day(edtdays.getText().toString());
+                                                }
+
+
+                                                if (edtmonths.getText().toString().length() == 0) {
+                                                    individual.setQ1004_Month("00");
+                                                } else if (edtmonths.getText().toString().length() == 1) {
+                                                    individual.setQ1004_Month("0" + edtmonths.getText().toString());
+                                                } else {
+                                                    individual.setQ1004_Month(edtmonths.getText().toString());
+                                                }
+
+
+                                                if (edtyears.getText().toString().length() == 0) {
+                                                    individual.setQ1004_Year("0000");
+                                                }
+                                                else {
+                                                    individual.setQ1004_Year(edtyears.getText().toString());
+                                                }
+
+
 
                                                 individual.setQ1004a(selectedRbtna.getText().toString().substring(0, 1));
                                                 individual.setQ1004b(selectedRbtnb.getText().toString().substring(0, 1));
-                                                individual.setQ1004b_Other(edtOther.getText().toString());
-
+                                                if(rbtnbOther.isChecked()) {
+                                                    individual.setQ1004b_Other(edtOther.getText().toString());
+                                                }
+                                                else
+                                                {
+                                                    individual.setQ1004b_Other(null);
+                                                }
 
                                                 myDB.onOpen(myDB.getReadableDatabase());
                                                 myDB.getWritableDatabase();

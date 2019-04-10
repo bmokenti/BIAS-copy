@@ -115,7 +115,7 @@ public class q1015 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1015()!= null &&  !ind.getQ1015().equals(""))
+                if(ind.getQ1015()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1015())==f+1)
                     {
@@ -140,7 +140,7 @@ public class q1015 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bta[f]=((RadioButton)o);
-                if(ind.getQ1015a()!= null &&  !ind.getQ1015a().equals(""))
+                if(ind.getQ1015a()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1015a())==f+1)
                     {
@@ -160,7 +160,7 @@ public class q1015 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 btb[f]=((RadioButton)o);
-                if(ind.getQ1015b()!= null &&  !ind.getQ1015b().equals(""))
+                if(ind.getQ1015b()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1015b())==f+1)
                     {

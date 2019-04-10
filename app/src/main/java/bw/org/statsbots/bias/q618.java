@@ -70,16 +70,15 @@ public class q618 extends AppCompatActivity implements Serializable {
         for(int f=0;f<rg1.getChildCount();f++)
         {
             View o = rg1.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ618()!= null &&  !ind.getQ618().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ618())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ618() != null) {
+                    if (!ind.getQ618().equals("")) {
+                        if (Integer.parseInt(ind.getQ618()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }

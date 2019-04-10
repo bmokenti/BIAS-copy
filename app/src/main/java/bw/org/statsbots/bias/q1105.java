@@ -75,7 +75,7 @@ public class q1105 extends AppCompatActivity implements  Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1105()!= null &&  !ind.getQ1105().equals(""))
+                if(ind.getQ1105()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1105())==f)
                     {

@@ -96,7 +96,7 @@ public class q705 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ705()!= null &&  !ind.getQ705().equals(""))
+                if(ind.getQ705()!= null )
                 {
                     if(Integer.parseInt(ind.getQ705())==f+1)
                     {

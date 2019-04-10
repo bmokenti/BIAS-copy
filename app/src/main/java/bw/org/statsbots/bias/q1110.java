@@ -129,13 +129,13 @@ public class q1110 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1110()!= null &&  !ind.getQ1110().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ1110())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                if(ind.getQ1110()!= null) {
+                    if (!ind.getQ1110().equals("")) {
+                        if (Integer.parseInt(ind.getQ1110()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }

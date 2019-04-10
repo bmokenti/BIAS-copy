@@ -126,7 +126,7 @@ public class q1002 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1002()!= null &&  !ind.getQ1002().equals(""))
+                if(ind.getQ1002()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1002())==f+1)
                     {
@@ -384,11 +384,13 @@ public class q1002 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 btb[f]=((RadioButton)o);
-                if(ind.getQ1002b()!= null &&  !ind.getQ1002b().equals("")) {
-                    if (Integer.parseInt(ind.getQ1002b()) == f + 1) {
-                        RadioButton radioButton = btb[f];
-                        radioButton.setChecked(true);
-                        break;
+                if(ind.getQ1002b()!= null ) {
+                    if (!ind.getQ1002b().equals("")) {
+                        if (Integer.parseInt(ind.getQ1002b()) == f + 1) {
+                            RadioButton radioButton = btb[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
                 }
@@ -476,7 +478,13 @@ public class q1002 extends AppCompatActivity implements Serializable {
 
                                         individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
                                         individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
-                                        individual.setQ1002b_Other(edtbOther.getText().toString());
+                                        if(rbtnbOther.isChecked()) {
+                                            individual.setQ1002b_Other(edtbOther.getText().toString());
+                                        }
+                                        else
+                                        {
+                                            individual.setQ1002b_Other(null);
+                                        }
                                         individual.setQ1002a_1(null);
                                         individual.setQ1002a_2(null);
                                         individual.setQ1002a_3(null);

@@ -87,7 +87,7 @@ public class q611 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ611a()!= null &&  !ind.getQ611a().equals(""))
+                if(ind.getQ611a()!= null )
                 {
                     if(Integer.parseInt(ind.getQ611a())==f+1)
                     {
@@ -106,14 +106,14 @@ public class q611 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt2[f]=((RadioButton)o);
-                if(ind.getQ611b()!= null &&  !ind.getQ611b().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ611b())==f+1)
-                    {
-                        RadioButton radioButton = bt2[f];
+                if(ind.getQ611b()!= null ) {
+                    if (!ind.getQ611b().equals("")) {
+                        if (Integer.parseInt(ind.getQ611b()) == f + 1) {
+                            RadioButton radioButton = bt2[f];
 
-                        radioButton.setChecked(true);
-                        break;
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -126,20 +126,21 @@ public class q611 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt3[f]=((RadioButton)o);
-                if(ind.getQ611c()!= null &&  !ind.getQ611c().equals(""))
                 {
-                    if(Integer.parseInt(ind.getQ611c())==f+1)
-                    {
-                        RadioButton radioButton = bt3[f];
-                        radioButton.setChecked(true);
-                        break;
+                if(ind.getQ611c()!= null ) {
+                    if (!ind.getQ611c().equals("")) {
+                        if (Integer.parseInt(ind.getQ611c()) == f + 1) {
+                            RadioButton radioButton = bt3[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
         }
 
 
-
+            }
 
         /**
          * NEXT question

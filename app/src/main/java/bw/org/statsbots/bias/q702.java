@@ -75,7 +75,7 @@ public class q702 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ702()!= null &&  !ind.getQ702().equals(""))
+                if(ind.getQ702()!= null )
                 {
                     if(Integer.parseInt(ind.getQ702())==f+1)
                     {

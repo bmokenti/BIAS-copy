@@ -89,11 +89,13 @@ public class q1112 extends AppCompatActivity implements View.OnClickListener, Se
             View o = rg.getChildAt(f);
             if (o instanceof RadioButton) {
                 bt[f] = ((RadioButton) o);
-                if (ind.getQ1112() != null && !ind.getQ1112().equals("")) {
-                    if (Integer.parseInt(ind.getQ1112()) == f + 1) {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                if (ind.getQ1112() != null ) {
+                    if (!ind.getQ1112().equals("")) {
+                        if (Integer.parseInt(ind.getQ1112()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -147,7 +149,13 @@ public class q1112 extends AppCompatActivity implements View.OnClickListener, Se
                 else {
 
                     individual.setQ1112(selectedRbtn.getText().toString().substring(0,1));
-                    individual.setQ1112_Other(text1112other.getText().toString());
+                    if(rbtn5.isChecked()) {
+                        individual.setQ1112_Other(text1112other.getText().toString());
+                    }
+                    else
+                    {
+                        individual.setQ1112_Other(null);
+                    }
 
                     myDB.onOpen(myDB.getReadableDatabase());
                     myDB.getWritableDatabase();

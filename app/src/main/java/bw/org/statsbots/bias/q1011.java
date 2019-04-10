@@ -104,11 +104,13 @@ public class q1011 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1011()!= null &&  !ind.getQ1011().equals("")) {
+                if(ind.getQ1011()!= null ) {
+                    if(!ind.getQ1011().equals("")) {
                     if (Integer.parseInt(ind.getQ1011()) == f + 1) {
                         RadioButton radioButton = bt[f];
                         radioButton.setChecked(true);
                         break;
+                    }
                     }
                 }
                 }
@@ -142,7 +144,7 @@ public class q1011 extends AppCompatActivity implements Serializable {
                         if (rbtn8.isChecked())
                         {
                             individual.setQ1011(selectedRbtn.getText().toString().substring(0,1));
-                            individual.setQ1010_Other(null);
+                            individual.setQ1011_Other(null);
                             individual.setQ1011(null);
                             individual.setQ1011_Other(null);
                             individual.setQ1012_Year("00");
@@ -171,8 +173,13 @@ public class q1011 extends AppCompatActivity implements Serializable {
                         }
                         else {
                             individual.setQ1011(selectedRbtn.getText().toString().substring(0,1));
-                            individual.setQ1011_Other(edtOther.getText().toString());
-
+                            if(rbtnOther.isChecked()) {
+                                individual.setQ1011_Other(edtOther.getText().toString());
+                            }
+                            else
+                            {
+                                individual.setQ1011_Other(null);
+                            }
                             myDB.onOpen(myDB.getReadableDatabase());
                             myDB.getWritableDatabase();
                             myDB.updateIndividual(myDB.getWritableDatabase(),individual);

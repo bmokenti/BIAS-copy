@@ -91,11 +91,15 @@ public class q1111 extends AppCompatActivity implements  Serializable {
             View o = rg.getChildAt(f);
             if (o instanceof RadioButton) {
                 bt[f] = ((RadioButton) o);
-                if (ind.getQ1111() != null && !ind.getQ1111().equals("")) {
-                    if (Integer.parseInt(ind.getQ1111()) == f + 1) {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                if (ind.getQ1111() != null ) {
+                    if (ind.getQ1111() != null) {
+                        if (!ind.getQ1111().equals("")) {
+                            if (Integer.parseInt(ind.getQ1111()) == f + 1) {
+                                RadioButton radioButton = bt[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
+                        }
                     }
                 }
             }
@@ -153,8 +157,12 @@ public class q1111 extends AppCompatActivity implements  Serializable {
                     //Set q101 for the current individual
 
                    individual.setQ1111(selectedRbtn.getText().toString().substring(0,1));
-                   individual.setQ1111Other(text1111other.getText().toString());
-
+                   if(rbtn5ot.isChecked()) {
+                       individual.setQ1111Other(text1111other.getText().toString());
+                   }
+                   else {
+                       individual.setQ1111Other(null);
+                   }
                     myDB.onOpen(myDB.getReadableDatabase());
                     myDB.getWritableDatabase();
                     myDB.updateIndividual(myDB.getWritableDatabase(),individual);

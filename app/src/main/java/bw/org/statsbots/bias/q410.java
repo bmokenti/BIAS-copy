@@ -610,7 +610,15 @@ public class q410 extends AppCompatActivity implements Serializable {
 
                                             myDB.onOpen(myDB.getReadableDatabase());
                                             myDB.getWritableDatabase();
-                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                            myDB.updateInd("Q410Slapped", individual.getAssignmentID(), individual.getBatch(), individual.getQ410MadeAfraid(), String.valueOf(individual.getSRNO()));
+                                            myDB.updateInd("Q410Pushed", individual.getAssignmentID(), individual.getBatch(), individual.getQ410Slapped(), String.valueOf(individual.getSRNO()));
+                                            myDB.updateInd("Q410Chocked", individual.getAssignmentID(), individual.getBatch(), individual.getQ410Choked(), String.valueOf(individual.getSRNO()));
+                                            myDB.updateInd("Q410Threatened", individual.getAssignmentID(), individual.getBatch(), individual.getQ410Threatened(), String.valueOf(individual.getSRNO()));
+                                            myDB.updateInd("Q410Physical", individual.getAssignmentID(), individual.getBatch(), individual.getQ410Physical(), String.valueOf(individual.getSRNO()));
+                                            myDB.updateInd("Q410Forced", individual.getAssignmentID(), individual.getBatch(), individual.getQ410Forced(), String.valueOf(individual.getSRNO()));
+                                            myDB.updateInd("Q410MadeAfraid", individual.getAssignmentID(), individual.getBatch(), individual.getQ410MadeAfraid(), String.valueOf(individual.getSRNO()));
+
+                                          //  myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                             myDB.close();
 
                                             Intent intent = new Intent(q410.this, q501.class);

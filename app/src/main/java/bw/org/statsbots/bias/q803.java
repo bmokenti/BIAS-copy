@@ -246,26 +246,29 @@ public class q803 extends AppCompatActivity implements Serializable {
 
 
 
-        if (ind.getQ803Other() != null || (ind.getQ803Other().equals(""))) {
+        if (ind.getQ803Other() != null ) {
 
-            if (ind.getQ803() != null && ind.getQ803().equals("O")) {
-                rbtnother.setChecked(true);
-                edtother.setText(ind.getQ803Other());
-                edtother.setVisibility(View.VISIBLE);
+                if (ind.getQ803() != null && ind.getQ803().equals("O")) {
+                    rbtnother.setChecked(true);
+                    edtother.setText(ind.getQ803Other());
+                    edtother.setVisibility(View.VISIBLE);
+                }
             }
-        }
-        else {
+            else {
         RadioButton[] bt = new RadioButton[9];
         for(int f=0;f<rbtngroup.getChildCount();f++)
         {
             View o = rbtngroup.getChildAt(f);
             if (o instanceof RadioButton) {
                 bt[f] = ((RadioButton) o);
-                if (ind.getQ803() != null || !ind.getQ803().equals("")) {
-                    if (Integer.parseInt(ind.getQ803()) == f + 1) {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+
+                if (ind.getQ803() != null ) {
+                    if (ind.getQ803().equals("")) {
+                        if (Integer.parseInt(ind.getQ803()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -338,8 +341,13 @@ public class q803 extends AppCompatActivity implements Serializable {
 
                             //  Intent intent = new Intent(q803.this, q901.class);;
                       individual.setQ803(selected.getText().toString().substring(0, 1));
-                       individual.setQ803Other(edtother.getText().toString());
-
+                      if(rbtnother.isChecked()) {
+                          individual.setQ803Other(edtother.getText().toString());
+                      }
+                      else
+                      {
+                          individual.setQ803Other(null);
+                      }
                         myDB.onOpen(myDB.getReadableDatabase());
                         myDB.getWritableDatabase();
                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);

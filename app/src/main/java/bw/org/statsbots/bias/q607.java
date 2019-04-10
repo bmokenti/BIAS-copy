@@ -72,16 +72,15 @@ public class q607 extends AppCompatActivity implements Serializable {
         for(int f=0;f<rbtngroup.getChildCount();f++)
         {
             View o = rbtngroup.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ607()!= null &&  !ind.getQ607().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ607())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ607() != null) {
+                    if (!ind.getQ607().equals("")) {
+                        if (Integer.parseInt(ind.getQ607()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }

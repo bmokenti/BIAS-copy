@@ -1687,7 +1687,7 @@ public class started_household extends AppCompatActivity implements Serializable
 
                 else if (s.getStatusCode().equals("3") || (s.getStatusCode().equals("2")  && thisHouse.getHIVTB40().equals("0"))) {
                     //TB
-                    //************************************HIV
+                    //************************************
 
 
                     if (Integer.parseInt(r.get(o).getP04YY()) < 15) {
@@ -1714,9 +1714,9 @@ public class started_household extends AppCompatActivity implements Serializable
                     } else {
 
 //
-//
 
                         //15 years and over
+
 
                         List<Individual> Ind = myDB.getdataIndivisual(thisHouse);
                         Individual individual = null;
@@ -1727,7 +1727,7 @@ public class started_household extends AppCompatActivity implements Serializable
                             }
                         }
 
-
+                        if (r.get(o).getP06().equals("1")  || r.get(o).getP06().equals("2") || (r.get(o).getP06().equals("3") && Integer.parseInt(r.get(o).getP07()) > 13)) {
 //                        List<PersonRoster> hous = myDB.getdataHhP(thisHouse);
 //                        HouseHold household = null;
 //                        for (Individual ii : Ind)
@@ -1738,100 +1738,113 @@ public class started_household extends AppCompatActivity implements Serializable
 //
 //                        }
 
-                        if (individual == null) {
-                            individual = new Individual();
-                            Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_person_black_24dp);
-                            btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
+
+
+                            if (individual == null) {
+
+                                individual = new Individual();
+
+                                Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_person_black_24dp);
+                                btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
 
 
 //                            individual = new Individual();
-                            Info = "Pending Questionnaire TB and X-Ray";
+                                Info = "Pending Questionnaire TB and X-Ray";
 
-                            individual.setSRNO(r.get(o).getSRNO());
-                            individual.setAssignmentID(r.get(o).getAssignmentID());
-                            individual.setBatch(r.get(o).getBatch());
+                                individual.setSRNO(r.get(o).getSRNO());
+                                individual.setAssignmentID(r.get(o).getAssignmentID());
+                                individual.setBatch(r.get(o).getBatch());
 
 
-                            if (myDB.checkIndividual(individual)) {
+                                if (myDB.checkIndividual(individual)) {
 
-                            } else {
-                                //Insert
-                                myDB.insertIndividual(individual);
+                                } else {
+                                    //Insert
+                                    myDB.insertIndividual(individual);
 
-                            }
+                                }
 
-                            List<HouseHold> h = myDB.getHouseHold(myDB.getReadableDatabase(), "", individual.getAssignmentID());
-                            for (HouseHold hhh : h) {
-                                if (hhh.getAssignment_ID().equals(individual.getAssignmentID()) && hhh.getBatchNumber().equals(individual.getBatch()) && hhh.getIsHIVTB40().equals("True")) {
-                                    if (thisHouse.getHIVTB40().equals("1")) {
-                                        Info = Info + ", ";
+                                List<HouseHold> h = myDB.getHouseHold(myDB.getReadableDatabase(), "", individual.getAssignmentID());
+                                for (HouseHold hhh : h) {
+                                    if (hhh.getAssignment_ID().equals(individual.getAssignmentID()) && hhh.getBatchNumber().equals(individual.getBatch()) && hhh.getIsHIVTB40().equals("True")) {
+                                        if (thisHouse.getHIVTB40().equals("1")) {
+                                            Info = Info + ", ";
+                                        }
                                     }
                                 }
-                            }
 
 
-                            final Individual temp1 = individual;
-                            btn.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    //**Replace This house with 1 individual
-
-//                                    Intent b = new Intent(started_household.this, Barcode.class);
-//                                    b.putExtra("Personroster", temp);
-//                                    startActivity(b);
-
-                                    Intent q1o2 = new Intent(started_household.this, Barcode.class);
-                                    q1o2.putExtra("Personroster", temp);
-                                    q1o2.putExtra("Individual", temp1);
-                                    //Log.d("HHHHH",temp1.getQ101());
-                                    q1o2.putExtra("Household", thisHouse);
-
-                                    startActivity(q1o2);
-
-
-                                }
-                            });
-
-                        } else {
-
-                            if(individual.getQ1114() !=null || individual.getIndvQuestionnaireConsent() != null){
-                                Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
-                                btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
-                            }
-
-
-                            Info = "Pending Questionnaire TB and X-Ray";
-
-                            final Individual temp1 = individual;
-                            btn.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    //**Replace This house with 1 individual
+                                final Individual temp1 = individual;
+                                btn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        //**Replace This house with 1 individual
 
 //                                    Intent b = new Intent(started_household.this, Barcode.class);
 //                                    b.putExtra("Personroster", temp);
 //                                    startActivity(b);
 
-                                    Intent q1o2 = new Intent(started_household.this, Barcode.class);
-                                    q1o2.putExtra("Personroster", temp);
-                                    q1o2.putExtra("Individual", temp1);
-                                    //Log.d("HHHHH",temp1.getQ101());
-                                    q1o2.putExtra("Household", thisHouse);
+                                        Intent q1o2 = new Intent(started_household.this, Barcode.class);
+                                        q1o2.putExtra("Personroster", temp);
+                                        q1o2.putExtra("Individual", temp1);
+                                        //Log.d("HHHHH",temp1.getQ101());
+                                        q1o2.putExtra("Household", thisHouse);
 
-                                    startActivity(q1o2);
+                                        startActivity(q1o2);
 
 
+                                    }
+                                });
+
+                            } else {
+
+                                if (individual.getQ1114() != null || individual.getIndvQuestionnaireConsent() != null) {
+                                    Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_check_completed_24dp);
+                                    btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
                                 }
-                            });
 
+
+                                Info = "Individual Questionnaire Done TB";
+
+                                final Individual temp1 = individual;
+                                btn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        //**Replace This house with 1 individual
+
+//                                    Intent b = new Intent(started_household.this, Barcode.class);
+//                                    b.putExtra("Personroster", temp);
+//                                    startActivity(b);
+
+                                        Intent q1o2 = new Intent(started_household.this, Barcode.class);
+                                        q1o2.putExtra("Personroster", temp);
+                                        q1o2.putExtra("Individual", temp1);
+                                        //Log.d("HHHHH",temp1.getQ101());
+                                        q1o2.putExtra("Household", thisHouse);
+
+                                        startActivity(q1o2);
+
+
+                                    }
+                                });
+
+
+                            }
+
+                        }
+                        else {
+                            Info = Info + "Not eligible";
+                            Drawable d = ContextCompat.getDrawable(started_household.this, R.drawable.ic_person_black_24dp);
+                            btn.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
 
                         }
 
+
                     }
 
-
-
                 }
+
+
 
 
 

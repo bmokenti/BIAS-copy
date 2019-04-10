@@ -72,13 +72,14 @@ public class q609 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ609()!= null &&  !ind.getQ609().equals(""))
+                if(ind.getQ609()!= null)
                 {
-                    if(Integer.parseInt(ind.getQ609())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                    if(!ind.getQ609().equals("")) {
+                        if (Integer.parseInt(ind.getQ609()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }

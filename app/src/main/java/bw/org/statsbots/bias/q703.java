@@ -72,7 +72,7 @@ public class q703 extends AppCompatActivity implements Serializable{
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ703()!= null &&  !ind.getQ703().equals(""))
+                if(ind.getQ703()!= null)
                 {
                     if(Integer.parseInt(ind.getQ703())==f+1)
                     {

@@ -89,7 +89,7 @@ protected LibraryClass lib;
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ1108()!= null &&  !ind.getQ1108().equals(""))
+                if(ind.getQ1108()!= null )
                 {
                     if(Integer.parseInt(ind.getQ1108())==f)
                     {

@@ -213,7 +213,7 @@ public class q621 extends AppCompatActivity implements Serializable {
 
         if(  ind.getQ621bOther() != null )
         {
-            if ( ind.getQ621b() != null &&  ind.getQ621b().equals("O") )
+            if ( ind.getQ621b() != null ||  ind.getQ621b().equals("O") )
             {
                 rbtbOther.setChecked(true);
                 edtbOther.setText(ind.getQ621bOther());
@@ -228,11 +228,14 @@ public class q621 extends AppCompatActivity implements Serializable {
             View o = rg2.getChildAt(f);
             if (o instanceof RadioButton) {
                 btb[f] = ((RadioButton) o);
-                if (ind.getQ621b() != null && !ind.getQ621b().equals("")) {
-                    if (Integer.parseInt(ind.getQ621b()) == f + 1) {
-                        RadioButton radioButton = btb[f];
-                        radioButton.setChecked(true);
-                        break;
+
+                if (ind.getQ621b() != null) {
+                    if (!ind.getQ621b().equals("")) {
+                        if (Integer.parseInt(ind.getQ621b()) == f + 1) {
+                            RadioButton radioButton = btb[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -414,7 +417,13 @@ public class q621 extends AppCompatActivity implements Serializable {
                                     if (rbtn2.isChecked()) {
                                         individual.setQ621(selectedRbtn.getText().toString().substring(0, 1));
                                         individual.setQ621b(selectedRbtn2.getText().toString().substring(0, 1));
-                                        individual.setQ621bOther(edtbOther.getText().toString());
+                                        if(rbtbOther.isChecked()) {
+                                            individual.setQ621bOther(edtbOther.getText().toString());
+                                        }
+                                        else
+                                        {
+                                            individual.setQ621bOther(null);
+                                        }
 
                                         individual.setQ621a_1(null);
                                         individual.setQ621a_2(null);

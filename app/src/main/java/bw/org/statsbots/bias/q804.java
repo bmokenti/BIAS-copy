@@ -249,11 +249,14 @@ myDB.close();
             View o = rbtngroup.getChildAt(f);
             if (o instanceof RadioButton) {
                 bt[f] = ((RadioButton) o);
-                if (ind.getQ804() != null && !ind.getQ804().equals("")) {
-                    if (Integer.parseInt(ind.getQ804()) == f + 1) {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+
+                if (ind.getQ804() != null ) {
+                    if (!ind.getQ804().equals("")) {
+                        if (Integer.parseInt(ind.getQ804()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -303,8 +306,13 @@ myDB.close();
                                 &&  (individual.getQ401() != null && individual.getQ401().equals("1")))
                         {
                             individual.setQ804(selected.getText().toString().substring(0, 1));
-                            individual.setQ804Other(edt804other.getText().toString());
-
+                            if(rbtnother.isChecked()) {
+                                individual.setQ804Other(edt804other.getText().toString());
+                            }
+                            else
+                            {
+                                individual.setQ804Other(null);
+                            }
 
                             individual.setQ901(null);
                             individual.setQ901a(null);
@@ -340,7 +348,13 @@ myDB.close();
                             startActivity(intent);
                         } else {
                             individual.setQ804(selected.getText().toString().substring(0, 1));
-                            individual.setQ804Other(edt804other.getText().toString());
+                            if(rbtnother.isChecked()) {
+                                individual.setQ804Other(edt804other.getText().toString());
+                            }
+                            else
+                            {
+                                individual.setQ804Other(null);
+                            }
                             individual.setQ901(null);
                             individual.setQ901a(null);
                             individual.setQ901aOther(null);

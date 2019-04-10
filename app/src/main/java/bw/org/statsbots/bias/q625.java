@@ -75,13 +75,13 @@ public class q625 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ625()!= null &&  !ind.getQ625().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ625())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                if(ind.getQ625()!= null ) {
+                    if (!ind.getQ625().equals("")) {
+                        if (Integer.parseInt(ind.getQ625()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }

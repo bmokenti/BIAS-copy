@@ -100,7 +100,7 @@ public class q704 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ704()!= null &&  !ind.getQ704().equals(""))
+                if(ind.getQ704()!= null)
                 {
                     if(Integer.parseInt(ind.getQ704())==f+1)
                     {

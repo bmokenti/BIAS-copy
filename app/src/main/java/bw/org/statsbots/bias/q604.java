@@ -111,16 +111,15 @@ public class q604 extends AppCompatActivity implements Serializable {
         for(int f=0;f<rg.getChildCount();f++)
         {
             View o = rg.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ604()!= null &&  !ind.getQ604().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ604())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ604() != null) {
+                    if (!ind.getQ604().equals("")) {
+                        if (Integer.parseInt(ind.getQ604()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -130,16 +129,15 @@ public class q604 extends AppCompatActivity implements Serializable {
         for(int f=0;f<rga.getChildCount();f++)
         {
             View o = rga.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bta[f]=((RadioButton)o);
-                if(ind.getQ604a()!= null &&  !ind.getQ604a().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ604a())==f+1)
-                    {
-                        RadioButton radioButton = bta[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bta[f] = ((RadioButton) o);
+                if (ind.getQ604a() != null) {
+                    if (!ind.getQ604a().equals("")) {
+                        if (Integer.parseInt(ind.getQ604a()) == f + 1) {
+                            RadioButton radioButton = bta[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -319,13 +317,13 @@ public class q604 extends AppCompatActivity implements Serializable {
         {
             if(Integer.parseInt(ind.getQ604b_Other().substring(0,1))== 1)
             {
-                ck15txt.setChecked(true);
+                chkOther.setChecked(true);
                 q604edt.setVisibility(View.VISIBLE);
                 q604edt.setText(ind.getQ604b_Other().substring(1,ind.getQ604b_Other().length()));
 
             }else
             {
-                ck15txt.setChecked(false);
+                chkOther.setChecked(false);
             }
         }
 

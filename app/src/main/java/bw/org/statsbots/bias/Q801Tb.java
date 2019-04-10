@@ -162,11 +162,13 @@ public class Q801Tb extends AppCompatActivity implements Serializable {
             View o = rg.getChildAt(f);
             if (o instanceof RadioButton) {
                 bt[f] = ((RadioButton) o);
-                if (ind.getQ801() != null && !ind.getQ801().equals("")) {
-                    if (Integer.parseInt(ind.getQ801()) == f + 1) {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                if (ind.getQ801() != null ) {
+                    if (!ind.getQ801().equals("")) {
+                        if (Integer.parseInt(ind.getQ801()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -178,11 +180,13 @@ public class Q801Tb extends AppCompatActivity implements Serializable {
             View o = rga.getChildAt(f);
             if (o instanceof RadioButton) {
                 bta[f] = ((RadioButton) o);
-                if (ind.getQ801a() != null && !ind.getQ801a().equals("")) {
-                    if (Integer.parseInt(ind.getQ801a()) == f + 1) {
-                        RadioButton radioButton = bta[f];
-                        radioButton.setChecked(true);
-                        break;
+                if (ind.getQ801a() != null) {
+                    if (!ind.getQ801a().equals("")) {
+                        if (Integer.parseInt(ind.getQ801a()) == f + 1) {
+                            RadioButton radioButton = bta[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -210,11 +214,13 @@ public class Q801Tb extends AppCompatActivity implements Serializable {
             View o = rgf.getChildAt(f);
             if (o instanceof RadioButton) {
                 btf[f] = ((RadioButton) o);
-                if (ind.getQ801f() != null && !ind.getQ801f().equals("")) {
-                    if (Integer.parseInt(ind.getQ801f()) == f + 1) {
-                        RadioButton radioButton = btf[f];
-                        radioButton.setChecked(true);
-                        break;
+                if (ind.getQ801f() != null ) {
+                    if (!ind.getQ801f().equals("")) {
+                        if (Integer.parseInt(ind.getQ801f()) == f + 1) {
+                            RadioButton radioButton = btf[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
