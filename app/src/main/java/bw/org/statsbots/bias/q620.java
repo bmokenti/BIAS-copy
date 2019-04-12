@@ -123,6 +123,9 @@ public class q620 extends AppCompatActivity implements Serializable {
 
                 if (ind.getQ620() != null ) {
                     if (!ind.getQ620().equals("")) {
+                        if (f == 4) {
+                            rbtn9.setChecked(true);
+                        }
                         if (Integer.parseInt(ind.getQ620()) == f) {
                             RadioButton radioButton = bt[f];
                             radioButton.setChecked(true);

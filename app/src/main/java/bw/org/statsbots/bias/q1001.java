@@ -222,8 +222,8 @@ if (individual.getQ101() != null && individual.getQ101().equals("1"))
         }
 
         if( sample.getStatusCode().equals("3") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0"))
-                || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.parseInt(individual.getQ102()) >64)
-        || (sample.getStatusCode().equals("1")  && Integer.parseInt(individual.getQ102()) >64))
+                || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && Integer.parseInt(individual.getQ102()) >49)
+        || (sample.getStatusCode().equals("1")  && Integer.parseInt(individual.getQ102()) >49))
         {
 
             individual.setQ1001(null);
@@ -522,8 +522,7 @@ if (individual.getQ101() != null && individual.getQ101().equals("1"))
                 if
                 ((individual.getQ801f().equals("2") || individual.getQ801f().equals("3") || individual.getQ801f().equals("4") ||
                         individual.getQ801f().equals("9")) && individual.getQ801a().equals("1")
-                        && individual.getQ101().equals("2") && (Integer.valueOf(individual.getQ102()) > 14 &&
-                        Integer.valueOf(individual.getQ102()) < 50)) {
+                       ) {
                     finish();
                     Intent intent = new Intent(q1001.this, q801.class);
                     intent.putExtra("Individual", individual);

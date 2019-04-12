@@ -26,7 +26,7 @@ public class q611 extends AppCompatActivity implements Serializable {
     protected Individual individual;
     protected LibraryClass lib;
     protected DatabaseHelper myDB;
-    protected RadioButton rbtn1, rbtn2, rbtn9, rbtn1b, rbtnb2, rbtnb9, rbtnc1, rbtnc2, rbtnc9, selected, selected1, selected2;
+    protected RadioButton rbtn1, rbtn2, rbtn9, rbtnb1, rbtnb2, rbtnb9, rbtnc1, rbtnc2, rbtnc9, selected, selected1, selected2;
     protected RadioGroup rbtngroup, rbtngroupb, rbtngroupc;
 
     @Override
@@ -42,14 +42,14 @@ public class q611 extends AppCompatActivity implements Serializable {
         rbtn9 = (RadioButton) findViewById(R.id.q611a_9);
         rbtngroup = (RadioGroup) findViewById(R.id.q611aradioGroup);
 
-        rbtn1 = (RadioButton) findViewById(R.id.q611b_1);
-        rbtn2 = (RadioButton) findViewById(R.id.q611b_2);
-        rbtn9 = (RadioButton) findViewById(R.id.q611b_9);
+        rbtnb1 = (RadioButton) findViewById(R.id.q611b_1);
+        rbtnb2 = (RadioButton) findViewById(R.id.q611b_2);
+        rbtnb9 = (RadioButton) findViewById(R.id.q611b_9);
         rbtngroupb = (RadioGroup) findViewById(R.id.q611bradioGroup);
 
-        rbtn1 = (RadioButton) findViewById(R.id.q611c_1);
-        rbtn2 = (RadioButton) findViewById(R.id.q611c_2);
-        rbtn9 = (RadioButton) findViewById(R.id.q611c_9);
+        rbtnc1 = (RadioButton) findViewById(R.id.q611c_1);
+        rbtnc2 = (RadioButton) findViewById(R.id.q611c_2);
+        rbtnc9 = (RadioButton) findViewById(R.id.q611c_9);
         rbtngroupc = (RadioGroup) findViewById(R.id.q611cradioGroup);
 
 
@@ -89,6 +89,9 @@ public class q611 extends AppCompatActivity implements Serializable {
                 bt[f]=((RadioButton)o);
                 if(ind.getQ611a()!= null )
                 {
+                    if (f == 2) {
+                    rbtn9.setChecked(true);
+                }
                     if(Integer.parseInt(ind.getQ611a())==f+1)
                     {
                         RadioButton radioButton = bt[f];
@@ -108,6 +111,9 @@ public class q611 extends AppCompatActivity implements Serializable {
                 bt2[f]=((RadioButton)o);
                 if(ind.getQ611b()!= null ) {
                     if (!ind.getQ611b().equals("")) {
+                        if (f == 2) {
+                            rbtnb9.setChecked(true);
+                        }
                         if (Integer.parseInt(ind.getQ611b()) == f + 1) {
                             RadioButton radioButton = bt2[f];
 
@@ -129,6 +135,9 @@ public class q611 extends AppCompatActivity implements Serializable {
                 {
                 if(ind.getQ611c()!= null ) {
                     if (!ind.getQ611c().equals("")) {
+                        if (f == 2) {
+                            rbtnc9.setChecked(true);
+                        }
                         if (Integer.parseInt(ind.getQ611c()) == f + 1) {
                             RadioButton radioButton = bt3[f];
                             radioButton.setChecked(true);

@@ -136,7 +136,6 @@
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginEnd="8dp"
-
                         android:layout_marginRight="8dp"
                         android:textSize="16sp">
 

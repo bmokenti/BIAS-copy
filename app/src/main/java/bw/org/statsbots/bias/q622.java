@@ -267,13 +267,16 @@ public class q622 extends AppCompatActivity implements Serializable {
             {
                 bt[f]=((RadioButton)o);
 
-                if(ind.getQ622()!= null &&  !ind.getQ622().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ622())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                if(ind.getQ622()!= null ) {
+                    if (!ind.getQ622().equals("")) {
+                        if (f == 2) {
+                            rbtn3.setChecked(true);
+                        }
+                        if (Integer.parseInt(ind.getQ622()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -300,6 +303,9 @@ public class q622 extends AppCompatActivity implements Serializable {
                 {
                     if (ind.getQ622a() != null) {
                         if (!ind.getQ622a().equals("")) {
+                            if (f == 1) {
+                                rbta2.setChecked(true);
+                            }
                             if (Integer.parseInt(ind.getQ622a()) == f + 1) {
                                 RadioButton radioButton = bt1[f];
                                 radioButton.setChecked(true);
@@ -328,6 +334,9 @@ public class q622 extends AppCompatActivity implements Serializable {
                 } else {
                     if (ind.getQ622b() != null ) {
                         if (!ind.getQ622b().equals("")) {
+                            if (f == 1) {
+                                rbtb2.setChecked(true);
+                            }
                             if (Integer.parseInt(ind.getQ622b()) == f + 1) {
                                 RadioButton radioButton = bt2[f];
                                 radioButton.setChecked(true);

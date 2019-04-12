@@ -76,6 +76,7 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
             break;
         }
     }
+        //individual.setQ1113Other("other");
 
         if (ind.getQ1113Other() != null ) {
 
@@ -109,6 +110,8 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
 //        {
 //            text1113other.setText(ind.getQ1113Other());
 //        }
+
+
 
 
         Button btnext = findViewById(R.id.btnnext);
@@ -164,6 +167,8 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
                     myDB.onOpen(myDB.getReadableDatabase());
                     myDB.getWritableDatabase();
                     myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                    myDB.updateInd("Q1113Other", individual.getAssignmentID(), individual.getBatch(), individual.getQ1113Other(), String.valueOf(individual.getSRNO()));
+
                     myDB.close();
 
                     Intent intent = new Intent(q1113.this, q1114.class);

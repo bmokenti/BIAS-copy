@@ -173,7 +173,7 @@ public class q803 extends AppCompatActivity implements Serializable {
     }
 
 
-        if((individual.getQ801a() != null && individual.getQ801a().equals("1"))  && individual.getQ801f().equals("1"))
+        if((individual.getQ801a() != null && individual.getQ801a().equals("1"))  )
         {
 
             individual.setQ803(null);

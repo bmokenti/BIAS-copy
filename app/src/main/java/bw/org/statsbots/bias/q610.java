@@ -74,11 +74,15 @@ protected DatabaseHelper myDB;
                 bt[f]=((RadioButton)o);
                 if(ind.getQ610()!= null )
                 {
-                    if(Integer.parseInt(ind.getQ610())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                    if(!ind.getQ610().equals("")) {
+                        if (f == 2) {
+                            rbtn9.setChecked(true);
+                        }
+                        if (Integer.parseInt(ind.getQ610()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }

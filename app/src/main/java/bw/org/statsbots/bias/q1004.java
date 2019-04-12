@@ -98,6 +98,43 @@ public class q1004 extends AppCompatActivity implements Serializable {
         }
     }
 
+        if ( individual.getQ1004a() != null && individual.getQ1004a().equals("1")) {
+
+
+                rbtnb1.setEnabled(false);
+            rbtnb2.setEnabled(false);
+            rbtnb3.setEnabled(false);
+            rbtnb4.setEnabled(false);
+            rbtnb5.setEnabled(false);
+            rbtnb6.setEnabled(false);
+            rbtnb7.setEnabled(false);
+            rbtnb8.setEnabled(false);
+            rbtnb10.setEnabled(false);
+            rbtnb11.setEnabled(false);
+
+            rbtnb12.setEnabled(false);
+            rbtnbOther.setEnabled(false);
+
+            rbtnb1.setChecked(false);
+            rbtnb2.setChecked(false);
+            rbtnb3.setChecked(false);
+            rbtnb4.setChecked(false);
+            rbtnb5.setChecked(false);
+            rbtnb6.setChecked(false);
+            rbtnb7.setChecked(false);
+            rbtnb8.setChecked(false);
+            rbtnb10.setChecked(false);
+            rbtnb11.setChecked(false);
+
+            rbtnb12.setChecked(false);
+            rbtnbOther.setChecked(false);
+
+
+
+            tb.setTextColor(Color.LTGRAY);
+
+
+        }
 
 
         rgb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -441,7 +478,7 @@ public class q1004 extends AppCompatActivity implements Serializable {
 
 
 
-                tb.setTextColor(Color.BLACK);
+                tb.setTextColor(Color.LTGRAY);
 
 
 
@@ -462,7 +499,7 @@ public class q1004 extends AppCompatActivity implements Serializable {
                 rbtnb8.setEnabled(true);
                 rbtnb10.setEnabled(true);
                 rbtnb11.setEnabled(true);
-
+                tb.setTextColor(Color.LTGRAY);
                 rbtnb12.setEnabled(true);
                 rbtnbOther.setEnabled(true);
 

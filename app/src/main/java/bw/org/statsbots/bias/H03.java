@@ -221,7 +221,14 @@ public class H03 extends AppCompatActivity implements View.OnClickListener, Seri
 
                             //UPDATE HOUSEHOLD
                             myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H03", thisHouse.getH03());
-                            myDB.updateHousehold(myDB.getWritableDatabase(),thisHouse.getAssignment_ID(),thisHouse.getBatchNumber(),"H03Other", thisHouse.getH03Other());
+                            if(rbtn9.isChecked()) {
+                                myDB.updateHousehold(myDB.getWritableDatabase(), thisHouse.getAssignment_ID(), thisHouse.getBatchNumber(), "H03Other", thisHouse.getH03Other());
+                            }
+                            else
+                            {
+                                myDB.updateHousehold(myDB.getWritableDatabase(), thisHouse.getAssignment_ID(), thisHouse.getBatchNumber(), "H03Other", null);
+
+                            }
                             myDB.close();
 
 

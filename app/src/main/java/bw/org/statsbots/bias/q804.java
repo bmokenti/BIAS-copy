@@ -241,6 +241,7 @@ myDB.close();
             if (ind.getQ804() != null && ind.getQ804().equals("O")) {
                 rbtnother.setChecked(true);
                 edt804other.setText(ind.getQ804Other());
+                edt804other.setVisibility(View.VISIBLE);
             }
         }
         else {

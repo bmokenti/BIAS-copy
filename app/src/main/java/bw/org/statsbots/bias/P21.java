@@ -94,7 +94,7 @@ public class P21 extends AppCompatActivity implements Serializable {
                 myDB.onOpen(myDB.getReadableDatabase());
 
                 //UPDATE HOUSEHOLD
-                myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
+                //myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
 
                 Intent intent = new Intent(P21.this,H01.class);
                 intent.putExtra("Household",  thisHouse);

@@ -161,7 +161,7 @@
                                 android:text="@string/q803_other" />
 
 
-
+                        </RadioGroup>
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_marginTop="10dp"
@@ -182,7 +182,7 @@
                                 android:padding="3dp"
                                 android:visibility="invisible"/>
 
-                        </RadioGroup>
+
 
                     </LinearLayout>
 

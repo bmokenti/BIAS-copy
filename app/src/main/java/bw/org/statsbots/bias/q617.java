@@ -290,32 +290,37 @@ public class q617 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt1[f]=((RadioButton)o);
-                if(ind.getQ617a()!= null &&  !ind.getQ617a().equals(""))
+                if(ind.getQ617a()!= null )
                 {
-                    if(Integer.parseInt(ind.getQ617a())==f)
-                    {
-                        RadioButton radioButton = bt1[f];
-                        radioButton.setChecked(true);
-                        break;
+                    if(!ind.getQ617a().equals("")) {
+                        if (f == 2) {
+                            rbtn3.setChecked(true);
+                        }
+                        if (Integer.parseInt(ind.getQ617a()) == f) {
+                            RadioButton radioButton = bt1[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
         }
 
         RadioButton[] bt2 = new RadioButton[4];
-        for(int f=1;f<rg2.getChildCount();f++)
-        {
+        for(int f=1;f<rg2.getChildCount();f++) {
             View o = rg2.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt2[f]=((RadioButton)o);
-                if(ind.getQ617b()!= null &&  !ind.getQ617b().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ617b())==f)
-                    {
-                        RadioButton radioButton = bt2[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bt2[f] = ((RadioButton) o);
+                if (ind.getQ617b() != null) {
+                    if (!ind.getQ617b().equals("")) {
+                        if (f == 2) {
+                            rbtn6.setChecked(true);
+                        }
+                        if (Integer.parseInt(ind.getQ617b()) == f) {
+                            RadioButton radioButton = bt2[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -329,13 +334,17 @@ public class q617 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt3[f]=((RadioButton)o);
-                if(ind.getQ617c()!= null &&  !ind.getQ617c().equals(""))
+                if(ind.getQ617c()!= null )
                 {
-                    if(Integer.parseInt(ind.getQ617c())==f)
-                    {
-                        RadioButton radioButton = bt3[f];
-                        radioButton.setChecked(true);
-                        break;
+                    if(!ind.getQ617c().equals("")) {
+                        if (f == 2) {
+                            rbtn9.setChecked(true);
+                        }
+                        if (Integer.parseInt(ind.getQ617c()) == f) {
+                            RadioButton radioButton = bt3[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -349,13 +358,16 @@ public class q617 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt4[f]=((RadioButton)o);
-                if(ind.getQ617d()!= null &&  !ind.getQ617d().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ617d())==f)
-                    {
-                        RadioButton radioButton = bt4[f];
-                        radioButton.setChecked(true);
-                        break;
+                if(ind.getQ617d()!= null ) {
+                    if (!ind.getQ617d().equals("")) {
+                        if (f == 2) {
+                            rbtn12.setChecked(true);
+                        }
+                        if (Integer.parseInt(ind.getQ617d()) == f) {
+                            RadioButton radioButton = bt4[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -367,13 +379,16 @@ public class q617 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt5[f]=((RadioButton)o);
-                if(ind.getQ617e()!= null &&  !ind.getQ617e().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ617e())==f)
-                    {
-                        RadioButton radioButton = bt5[f];
-                        radioButton.setChecked(true);
-                        break;
+                if(ind.getQ617e()!= null) {
+                    if (!ind.getQ617e().equals("")) {
+                        if (f == 2) {
+                            rbtn15.setChecked(true);
+                        }
+                        if (Integer.parseInt(ind.getQ617e()) == f) {
+                            RadioButton radioButton = bt5[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -384,16 +399,18 @@ public class q617 extends AppCompatActivity implements Serializable {
         for(int f=1;f<rg6.getChildCount();f++)
         {
             View o = rg6.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt6[f]=((RadioButton)o);
-                if(ind.getQ617f()!= null &&  !ind.getQ617f().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ617f())==f)
-                    {
-                        RadioButton radioButton = bt6[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bt6[f] = ((RadioButton) o);
+                if (ind.getQ617f() != null) {
+                    if (!ind.getQ617f().equals("")) {
+                        if (f == 2) {
+                            rbtn18.setChecked(true);
+                        }
+                        if (Integer.parseInt(ind.getQ617f()) == f) {
+                            RadioButton radioButton = bt6[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -403,16 +420,18 @@ public class q617 extends AppCompatActivity implements Serializable {
         for(int f=1;f<rg7.getChildCount();f++)
         {
             View o = rg7.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt7[f]=((RadioButton)o);
-                if(ind.getQ617g()!= null &&  !ind.getQ617g().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ617g())==f)
-                    {
-                        RadioButton radioButton = bt7[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bt7[f] = ((RadioButton) o);
+                if (ind.getQ617g() != null) {
+                    if (!ind.getQ617g().equals("")) {
+                        if (f == 2) {
+                            rbtn21.setChecked(true);
+                        }
+                        if (Integer.parseInt(ind.getQ617g()) == f) {
+                            RadioButton radioButton = bt7[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -425,22 +444,25 @@ public class q617 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 bt8[f]=((RadioButton)o);
-                if(ind.getQ617h()!= null &&  !ind.getQ617h().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ617h())==f)
-                    {
-                        RadioButton radioButton = bt8[f];
-                        radioButton.setChecked(true);
-                        break;
+                if(ind.getQ617h()!= null ) {
+                    if (!ind.getQ617h().equals("")) {
+                        if (f == 2) {
+                            rbtn24.setChecked(true);
+                        }
+                        if (Integer.parseInt(ind.getQ617h()) == f) {
+                            RadioButton radioButton = bt8[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
         }
 
-        if(ind.getQ617_0ther()!= null)
-        {
-            edtOther.setText(ind.getQ617_0ther());
-        }
+//        if(ind.getQ617_0ther()!= null)
+//        { chkOther.setChecked(true);
+//            edtOther.setText(ind.getQ617_0ther());
+//        }
 
 
 

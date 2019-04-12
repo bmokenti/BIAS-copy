@@ -91,6 +91,45 @@ public class q1015 extends AppCompatActivity implements Serializable {
         }
     }
 
+        if ( individual.getQ1015() != null && (individual.getQ1015().equals("2") || individual.getQ1015().equals("9") ))
+        {
+            rbtna1.setEnabled(false);
+            rbtna2.setEnabled(false);
+            rbtna3.setEnabled(false);
+            rbtna4.setEnabled(false);
+            rbtna5.setEnabled(false);
+
+
+            rbtna1.setChecked(false);
+            rbtna2.setChecked(false);
+            rbtna3.setChecked(false);
+            rbtna4.setChecked(false);
+            rbtna5.setChecked(false);
+            ta.setTextColor(Color.LTGRAY);
+
+            rbtnb1.setEnabled(false);
+            rbtnb2.setEnabled(false);
+
+            rbtnb1.setChecked(false);
+            rbtnb2.setChecked(false);
+
+            tb.setTextColor(Color.LTGRAY);
+
+        }
+
+
+        if ( individual.getQ1015a() != null && !(individual.getQ1015a().equals("1") ))
+        {
+
+            rbtnb1.setEnabled(false);
+            rbtnb2.setEnabled(false);
+
+            rbtnb1.setChecked(false);
+            rbtnb2.setChecked(false);
+
+            tb.setTextColor(Color.LTGRAY);
+
+        }
         if (((individual.getQ1004_Month() != null && Integer.valueOf(individual.getQ1004_Month()) <=1 ) &&
                 (individual.getQ1004_Day() != null && Integer.valueOf(individual.getQ1004_Day()) >= 13 )))
         {
@@ -116,7 +155,9 @@ public class q1015 extends AppCompatActivity implements Serializable {
             {
                 bt[f]=((RadioButton)o);
                 if(ind.getQ1015()!= null )
-                {
+                { if (f == 2) {
+                    rbtn3.setChecked(true);
+                }
                     if(Integer.parseInt(ind.getQ1015())==f+1)
                     {
                         RadioButton radioButton = bt[f];
@@ -142,6 +183,9 @@ public class q1015 extends AppCompatActivity implements Serializable {
                 bta[f]=((RadioButton)o);
                 if(ind.getQ1015a()!= null )
                 {
+                    if (f == 4) {
+                        rbtna5.setChecked(true);
+                    }
                     if(Integer.parseInt(ind.getQ1015a())==f+1)
                     {
                         RadioButton radioButton = bta[f];
@@ -401,10 +445,8 @@ public class q1015 extends AppCompatActivity implements Serializable {
 
                     rbtnb1.setEnabled(false);
                 rbtnb2.setEnabled(false);
-
                 rbtnb1.setChecked(false);
                 rbtnb2.setChecked(false);
-
                 tb.setTextColor(Color.LTGRAY);
                 break;
 

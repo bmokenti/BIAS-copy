@@ -86,13 +86,32 @@ public class q1008 extends AppCompatActivity implements Serializable {
         }
     }
 
-        if (individual.getQ1007a() != null &&  !individual.getQ1007a().equals("1"))
-        {
-            Intent intent = new Intent(q1008.this, q1009.class);
-            intent.putExtra("Individual", individual);
-            startActivity(intent);
-        }
 
+        if ( individual.getQ1008() != null && individual.getQ1008().equals("1"))
+        {
+            rbtna1.setEnabled(false);
+            rbtna2.setEnabled(false);
+            rbtna3.setEnabled(false);
+            rbtna4.setEnabled(false);
+            rbtna5.setEnabled(false);
+            rbtna6.setEnabled(false);
+            rbtna7.setEnabled(false);
+            rbtna8.setEnabled(false);
+            rbtna10.setEnabled(false);
+            rbtnaOther.setEnabled(false);
+            t1.setTextColor(Color.LTGRAY);
+
+            rbtna1.setChecked(false);
+            rbtna2.setChecked(false);
+            rbtna3.setChecked(false);
+            rbtna4.setChecked(false);
+            rbtna5.setChecked(false);
+            rbtna6.setChecked(false);
+            rbtna7.setChecked(false);
+            rbtna8.setChecked(false);
+            rbtna10.setChecked(false);
+            rbtnaOther.setChecked(false);
+        }
         RadioButton[] bt = new RadioButton[2];
         for(int f=0;f<rg.getChildCount();f++)
         {

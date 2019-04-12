@@ -111,20 +111,24 @@ public class q503 extends AppCompatActivity implements View.OnClickListener, Ser
         for(int f=0;f<rg.getChildCount();f++)
         {
             View o = rg.getChildAt(f);
-            if (o instanceof RadioButton)
-            {
-                bt[f]=((RadioButton)o);
-                if(ind.getQ503()!= null &&  !ind.getQ503().equals(""))
-                {
-                    if(Integer.parseInt(ind.getQ503())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+            if (o instanceof RadioButton) {
+                bt[f] = ((RadioButton) o);
+                if (ind.getQ503() != null) {
+                    if (!ind.getQ503().equals("")) {
+                        if (!ind.getQ501().equals("")) {
+                            if (f == 2) {
+                                rbtn3.setChecked(true);
+                            }
+                            if (Integer.parseInt(ind.getQ503()) == f + 1) {
+                                RadioButton radioButton = bt[f];
+                                radioButton.setChecked(true);
+                                break;
+                            }
+                        }
                     }
                 }
+                }
             }
-        }
 
 
         Button btnnext = findViewById(R.id.button);

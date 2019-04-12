@@ -104,13 +104,14 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
 
             individual.setQ408(null);
             individual.setQ408a(null);
-            individual.setQ410MadeAfraid(null);
-            individual.setQ410Forced(null);
-            individual.setQ410Physical(null);
-            individual.setQ410Threatened(null);
-            individual.setQ410Choked(null);
-            individual.setQ410Pushed(null);
-            individual.setQ410Slapped(null);
+
+//            individual.setQ410MadeAfraid(null);
+//            individual.setQ410Forced(null);
+//            individual.setQ410Physical(null);
+//            individual.setQ410Threatened(null);
+//            individual.setQ410Choked(null);
+//            individual.setQ410Pushed(null);
+//            individual.setQ410Slapped(null);
             //individual.setQ410(null);
 
 //            individual.setQ501(null);
@@ -135,7 +136,7 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
             myDB.updateIndividual(myDB.getWritableDatabase(),individual);
             myDB.close();
 
-            Intent intent = new Intent(q408.this, q601.class);
+            Intent intent = new Intent(q408.this, q410.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
 
@@ -151,13 +152,13 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
 
             individual.setQ408(null);
             individual.setQ408a(null);
-            individual.setQ410MadeAfraid(null);
-            individual.setQ410Forced(null);
-            individual.setQ410Physical(null);
-            individual.setQ410Threatened(null);
-            individual.setQ410Choked(null);
-            individual.setQ410Pushed(null);
-            individual.setQ410Slapped(null);
+//            individual.setQ410MadeAfraid(null);
+//            individual.setQ410Forced(null);
+//            individual.setQ410Physical(null);
+//            individual.setQ410Threatened(null);
+//            individual.setQ410Choked(null);
+//            individual.setQ410Pushed(null);
+//            individual.setQ410Slapped(null);
             //individual.setQ410(null);
 
 
@@ -168,7 +169,7 @@ public class q408 extends AppCompatActivity implements View.OnClickListener, Ser
             myDB.close();
 
 
-            Intent intent = new Intent(q408.this, q501.class);
+            Intent intent = new Intent(q408.this, q410.class);
             intent.putExtra("Individual", individual);
             startActivity(intent);
 

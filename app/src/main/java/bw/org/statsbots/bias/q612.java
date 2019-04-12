@@ -97,6 +97,9 @@ public class q612 extends AppCompatActivity  implements Serializable{
                 if(ind.getQ612()!= null )
                 {
                     if(!ind.getQ612().equals("")) {
+                        if (f == 2) {
+                            rbtn9.setChecked(true);
+                        }
                         if (Integer.parseInt(ind.getQ612()) == f + 1) {
                             RadioButton radioButton = bt[f];
                             radioButton.setChecked(true);
@@ -129,6 +132,9 @@ public class q612 extends AppCompatActivity  implements Serializable{
                 if (ind.getQ612a() != null ) {
                     if (!ind.getQ612a().equals(""))
                     {
+                        if (f == 2) {
+                            rbtna9.setChecked(true);
+                        }
                         if (Integer.parseInt(ind.getQ612a()) == f + 1) {
                             RadioButton radioButton = bta[f];
                             radioButton.setChecked(true);

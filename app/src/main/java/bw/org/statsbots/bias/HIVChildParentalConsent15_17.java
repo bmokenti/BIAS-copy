@@ -50,7 +50,7 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
         //rg3 = (RadioGroup) findViewById(R.id.rg3);
         rg4 = (RadioGroup) findViewById(R.id.rg4);
         rg5 = (RadioGroup) findViewById(R.id.rg5);
-        rg6 = (RadioGroup) findViewById(R.id.rg6);
+
 
         rbtn1 = (RadioButton) findViewById(R.id.rbtn1);
         rbtn2 = (RadioButton) findViewById(R.id.rbtn2);
@@ -123,13 +123,13 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getPrntlConsentBloodDraw()!= null &&  !ind.getPrntlConsentBloodDraw().equals(""))
-                {
-                    if(Integer.parseInt(ind.getPrntlConsentBloodDraw())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                if(ind.getPrntlConsentBloodDraw()!= null ) {
+                    if (!ind.getPrntlConsentBloodDraw().equals("")) {
+                        if (Integer.parseInt(ind.getPrntlConsentBloodDraw()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }
@@ -142,7 +142,7 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
             if (o instanceof RadioButton)
             {
                 bt2[f]=((RadioButton)o);
-                if(ind.getPrntlConsentRHT()!= null &&  !ind.getPrntlConsentRHT().equals(""))
+                if(ind.getPrntlConsentRHT()!= null )
                 {
                     if(Integer.parseInt(ind.getPrntlConsentRHT())==f+1)
                     {
@@ -164,7 +164,7 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
             if (o instanceof RadioButton)
             {
                 bt3[f]=((RadioButton)o);
-                if(ind.getPrntlConsentLabTest()!= null &&  !ind.getPrntlConsentLabTest().equals(""))
+                if(ind.getPrntlConsentLabTest()!= null )
                 {
                     if(Integer.parseInt(ind.getPrntlConsentLabTest())==f+1)
                     {
@@ -183,7 +183,7 @@ public class HIVChildParentalConsent15_17 extends AppCompatActivity implements S
             if (o instanceof RadioButton)
             {
                 bt4[f]=((RadioButton)o);
-                if(ind.getPrntlConsentBloodStore()!= null &&  !ind.getPrntlConsentBloodStore().equals(""))
+                if(ind.getPrntlConsentBloodStore()!= null )
                 {
                     if(Integer.parseInt(ind.getPrntlConsentBloodStore())==f+1)
                     {
@@ -443,25 +443,24 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
                     Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibs.vibrate(100);
 
-                }
-                else {
+                }else {
+                    int selectedId2 = rg2.getCheckedRadioButtonId();
+                    selected2 = (RadioButton) findViewById(selectedId2);
 
-
-                    if (EdtparentID == null && rbtn1.isChecked() &&
-                            (individual.getQ102() != null && (Integer.valueOf(individual.getQ102()) == 17 || Integer.valueOf(individual.getQ102()) == 18 ) )) {
-                        lib.showError(HIVChildParentalConsent15_17.this, "RHT: Error: 2", "3. Do you agree for the survey team to do RHT on your Child");
+                    if (selected2 == null) {
+                        lib.showError(HIVChildParentalConsent15_17.this, "RHT", "D Do you agree for the survey team to do RHT on your Child");
                         /**
                          * VIBRATE DEVICE
                          */
                         Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibs.vibrate(100);
 
-                    }else {
-                        int selectedId4 = rg4.getCheckedRadioButtonId();
-                        selected4 = (RadioButton) findViewById(selectedId4);
+                    } else {
 
-                        if (selected4 == null && rbtn1.isChecked()) {
-                            lib.showError(HIVChildParentalConsent15_17.this, "Laboratory: Error: 3", "3. Do you agree for your childs blood sample to be sent to the laboratory for additional HIV related testing?");
+
+                        if (EdtparentID == null && rbtn1.isChecked() &&
+                                (individual.getQ102() != null && (Integer.valueOf(individual.getQ102()) == 17 || Integer.valueOf(individual.getQ102()) == 18))) {
+                            lib.showError(HIVChildParentalConsent15_17.this, "Parent", "3. Provide parent name");
                             /**
                              * VIBRATE DEVICE
                              */
@@ -469,11 +468,11 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
                             vibs.vibrate(100);
 
                         } else {
-                            int selectedId5 = rg5.getCheckedRadioButtonId();
-                            selected5 = (RadioButton) findViewById(selectedId5);
+                            int selectedId4 = rg4.getCheckedRadioButtonId();
+                            selected4 = (RadioButton) findViewById(selectedId4);
 
-                            if (selected5 == null && rbtn1.isChecked()) {
-                                lib.showError(HIVChildParentalConsent15_17.this, "Storage: Error: 4", "4. Do you agree for your Childs blood sample to be stored for up to 5 years for future HIV/TB - related research?");
+                            if (selected4 == null && rbtn1.isChecked()) {
+                                lib.showError(HIVChildParentalConsent15_17.this, "Laboratory: Error: 3", "3. Do you agree for your childs blood sample to be sent to the laboratory for additional HIV related testing?");
                                 /**
                                  * VIBRATE DEVICE
                                  */
@@ -481,10 +480,11 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
                                 vibs.vibrate(100);
 
                             } else {
+                                int selectedId5 = rg5.getCheckedRadioButtonId();
+                                selected5 = (RadioButton) findViewById(selectedId5);
 
-
-                                if (EdtDate == null) {
-                                    lib.showError(HIVChildParentalConsent15_17.this, "DATE: Error: ", "Please record date");
+                                if (selected5 == null && rbtn1.isChecked()) {
+                                    lib.showError(HIVChildParentalConsent15_17.this, "Storage: Error: 4", "4. Do you agree for your Childs blood sample to be stored for up to 5 years for future HIV/TB - related research?");
                                     /**
                                      * VIBRATE DEVICE
                                      */
@@ -492,69 +492,80 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
                                     vibs.vibrate(100);
 
                                 } else {
-                                    if (rbtn2.isChecked()) {
-                                        individual.setPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
-                                        individual.setPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
-                                        individual.setPrntlParentID(EdtparentID.getText().toString().substring(0, 1));
-                                        individual.setPrntlConsentLabTest(null);
-                                        individual.setPrntlConsentBloodStore(null);
-
-                                        individual.setPrntlConsentDate(EdtDate.getText().toString());
 
 
-                                        myDB = new DatabaseHelper(HIVChildParentalConsent15_17.this);
-                                        myDB.onOpen(myDB.getReadableDatabase());
+                                    if (EdtDate == null) {
+                                        lib.showError(HIVChildParentalConsent15_17.this, "DATE: Error: ", "Please record date");
+                                        /**
+                                         * VIBRATE DEVICE
+                                         */
+                                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                        vibs.vibrate(100);
 
-                                        if (myDB.checkIndividual(individual)) {
-                                            //Update
-                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
-
-                                        } else {
-                                            //Insert
-                                            myDB.insertIndividual(individual);
-
-                                        }
-
-                                        Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
-                                        intent.putExtra("Individual", individual);
-                                        intent.putExtra("Personroster", p1);
-                                        startActivity(intent);
                                     } else {
+                                        if (rbtn2.isChecked()) {
+                                            individual.setPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
+                                            individual.setPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
+                                            individual.setPrntlParentID(EdtparentID.getText().toString().substring(0, 1));
+                                            individual.setPrntlConsentLabTest(null);
+                                            individual.setPrntlConsentBloodStore(null);
+                                            individual.setPrntlConsentDate(EdtDate.getText().toString());
 
-                                        individual.setPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
-                                        individual.setPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
-                                        individual.setPrntlConsentLabTest(selected3.getText().toString().substring(0, 1));
-                                        individual.setPrntlConsentBloodStore(selected4.getText().toString().substring(0, 1));
-                                        individual.setPrntlParentID(EdtparentID.getText().toString());
-                                        individual.setPrntlConsentDate(EdtDate.getText().toString());
-                                        // (EdtDate.getText().toString());
 
+                                            myDB = new DatabaseHelper(HIVChildParentalConsent15_17.this);
+                                            myDB.onOpen(myDB.getReadableDatabase());
 
-                                        //Next question P17
-                                        myDB = new DatabaseHelper(HIVChildParentalConsent15_17.this);
-                                        myDB.onOpen(myDB.getReadableDatabase());
+                                            if (myDB.checkIndividual(individual)) {
+                                                //Update
+                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
-                                        if (myDB.checkIndividual(individual)) {
-                                            //Update
-                                            myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                            } else {
+                                                //Insert
+                                                myDB.insertIndividual(individual);
 
+                                            }
+
+                                            Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
+                                            intent.putExtra("Individual", individual);
+                                            intent.putExtra("Personroster", p1);
+                                            startActivity(intent);
                                         } else {
-                                            //Insert
-                                            myDB.insertIndividual(individual);
+
+                                            individual.setPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
+                                            individual.setPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
+                                            individual.setPrntlConsentLabTest(selected4.getText().toString().substring(0, 1));
+                                            individual.setPrntlConsentBloodStore(selected5.getText().toString().substring(0, 1));
+                                            individual.setPrntlParentID(EdtparentID.getText().toString());
+                                            individual.setPrntlConsentDate(EdtDate.getText().toString());
+                                            // (EdtDate.getText().toString());
+
+
+                                            //Next question P17
+                                            myDB = new DatabaseHelper(HIVChildParentalConsent15_17.this);
+                                            myDB.onOpen(myDB.getReadableDatabase());
+
+                                            if (myDB.checkIndividual(individual)) {
+                                                //Update
+                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+
+                                            } else {
+                                                //Insert
+                                                myDB.insertIndividual(individual);
+
+                                            }
+
+                                            Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
+                                            intent.putExtra("Individual", individual);
+                                            intent.putExtra("Personroster", p1);
+                                            startActivity(intent);
 
                                         }
-
-                                        Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
-                                        intent.putExtra("Individual", individual);
-                                        intent.putExtra("Personroster", p1);
-                                        startActivity(intent);
-
                                     }
                                 }
                             }
                         }
                     }
-                        }
+                }
 
             }
         });

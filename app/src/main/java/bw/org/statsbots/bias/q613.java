@@ -93,6 +93,9 @@ public class q613 extends AppCompatActivity implements Serializable {
                 {
                     if(!ind.getQ613().equals(""))
                     {
+                        if (f == 2) {
+                            rbtn9.setChecked(true);
+                        }
                     if(Integer.parseInt(ind.getQ613())==f+1)
                     {
                         RadioButton radioButton = bt[f];
@@ -126,6 +129,9 @@ public class q613 extends AppCompatActivity implements Serializable {
 
                 if (ind.getQ613a() != null ) {
                     if (!ind.getQ613a().equals("")){
+                        if (f == 3) {
+                            rbtna9.setChecked(true);
+                        }
                     if (Integer.parseInt(ind.getQ613a()) == f + 1) {
                         RadioButton radioButton = bta[f];
                         radioButton.setChecked(true);

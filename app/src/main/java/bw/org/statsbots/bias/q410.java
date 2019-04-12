@@ -125,7 +125,84 @@ public class q410 extends AppCompatActivity implements Serializable {
             //do nothing
         }
 
+        if ((individual.getQ101().equals("2") &&  individual.getQ401().equals("1")) && (individual.getQ201().equals("1")
+                || individual.getQ201().equals("4") ||
+                individual.getQ201().equals("5") || individual.getQ201().equals("6")) || (Integer.parseInt(individual.getQ102()) > 49 ))
+        {
 
+
+            individual.setQ408(null);
+            individual.setQ408a(null);
+            individual.setQ410MadeAfraid(null);
+            individual.setQ410Forced(null);
+            individual.setQ410Physical(null);
+            individual.setQ410Threatened(null);
+            individual.setQ410Choked(null);
+            individual.setQ410Pushed(null);
+            individual.setQ410Slapped(null);
+            //individual.setQ410(null);
+
+//            individual.setQ501(null);
+//            individual.setQ502(null);
+//            individual.setQ503(null);
+//            individual.setQ504_1(null);
+//            individual.setQ504_2(null);
+//            individual.setQ504_3(null);
+//            individual.setQ504_4(null);
+//            individual.setQ504_5(null);
+//            individual.setQ504_6(null);
+//            individual.setQ504_7(null);
+//            individual.setQ504_8(null);
+//            individual.setQ504_10(null);
+//            individual.setQ504_Other(null);
+//            individual.setQ504_OtherSpecify(null);
+
+
+
+            myDB.onOpen(myDB.getReadableDatabase());
+            myDB.getWritableDatabase();
+            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+            myDB.close();
+
+            Intent intent = new Intent(q410.this, q601.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+
+            //do nothing
+        }
+
+        if ((individual.getQ101().equals("1") && individual.getQ401().equals("1") )  && (individual.getQ201().equals("1") || individual.getQ201().equals("4") ||
+                individual.getQ201().equals("5") || individual.getQ201().equals("6")) || Integer.valueOf(individual.getQ102()) >= 50 )
+        {
+
+
+            individual.setQ408(null);
+            individual.setQ408a(null);
+            individual.setQ410MadeAfraid(null);
+            individual.setQ410Forced(null);
+            individual.setQ410Physical(null);
+            individual.setQ410Threatened(null);
+            individual.setQ410Choked(null);
+            individual.setQ410Pushed(null);
+            individual.setQ410Slapped(null);
+
+
+
+            myDB.onOpen(myDB.getReadableDatabase());
+            myDB.getWritableDatabase();
+            myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+            myDB.close();
+
+
+            Intent intent = new Intent(q410.this, q501.class);
+            intent.putExtra("Individual", individual);
+            startActivity(intent);
+
+        } else {
+            //do nothing
+        }
 
         if ((individual.getQ101().equals("2")) && ((individual.getQ201().equals("1")  && individual.getQ202().equals("2")) || individual.getQ201().equals("6"))
                 || Integer.valueOf(individual.getQ102()) >= 50)

@@ -81,6 +81,22 @@ public class q1007 extends AppCompatActivity implements Serializable {
         }
     }
 
+        if ( individual.getQ1007() != null && individual.getQ1007().equals("2"))
+        {
+            rbtna1.setEnabled(false);
+            rbtna2.setEnabled(false);
+            rbtna3.setEnabled(false);
+            rbtna4.setEnabled(false);
+            rbtna5.setEnabled(false);
+
+            rbtna1.setChecked(false);
+            rbtna2.setChecked(false);
+            rbtna3.setChecked(false);
+            rbtna4.setChecked(false);
+            rbtna5.setChecked(false);
+            t1.setTextColor(Color.LTGRAY);
+        }
+
         RadioButton[] bt = new RadioButton[2];
         for(int f=0;f<rg.getChildCount();f++)
         {
@@ -109,6 +125,9 @@ public class q1007 extends AppCompatActivity implements Serializable {
                 bta[f]=((RadioButton)o);
                 if(ind.getQ1007a()!= null )
                 {
+                    if (f == 4) {
+                        rbtna5.setChecked(true);
+                    }
                     if(Integer.parseInt(ind.getQ1007a())==f+1)
                     {
                         RadioButton radioButton = bta[f];

@@ -133,7 +133,14 @@ public class q105 extends AppCompatActivity implements Serializable{
 //          txtb.setTextColor(Color.LTGRAY);
 //          txta.setTextColor(Color.LTGRAY);
 //      }
+        if(ind.getQ105Other()!=null){
 
+            if(ind.getQ105() != null && ind.getQ105().equals("O")){
+            rbtn9.setChecked(true);
+            edt.setText(ind.getQ105Other());
+        }
+        }
+        else{
         RadioButton[] bt = new RadioButton[9];
         for(int f=0;f<rg.getChildCount();f++)
         {
@@ -142,147 +149,136 @@ public class q105 extends AppCompatActivity implements Serializable{
             {
                 bt[f]=((RadioButton)o);
 
+                    if(ind.getQ105()!= null ) {
+                        if (!ind.getQ105().equals("")) {
+                            if (Integer.parseInt(ind.getQ105()) == f + 1) {
+                                RadioButton radioButton = bt[f];
+                                radioButton.setChecked(true);
 
-                if(ind.getQ105Other()!=null){
-                    rbtn9.setChecked(true);
-                    edt.setText(ind.getQ105Other());
-                }else{
-
-                    if(ind.getQ105()!= null &&  !ind.getQ105().equals(""))
-                    {
-                        if(Integer.parseInt(ind.getQ105())==f+1)
-                        {
-                            RadioButton radioButton = bt[f];
-                            radioButton.setChecked(true);
-
-                            TextView q802atext = findViewById(R.id.q802a_other);
-                            RadioGroup rg1 = (RadioGroup) findViewById(R.id.q802radioGroupa);
-                            // Is the current Radio Button checked?
-                            boolean checked = radioButton.isChecked();
-                            View v = radioButton;
-                            switch (v.getId()) {
-                                case R.id.rbtn1:
-                                    if (checked)
-                                        edt.setVisibility(View.INVISIBLE);
-                                    edt.setText("");
-                                    edt2.setEnabled(true);
-                                    edt1.setEnabled(true);
-                                    txtb.setTextColor(Color.BLACK);
-                                    txta.setTextColor(Color.BLACK);
+                                TextView q802atext = findViewById(R.id.q802a_other);
+                                RadioGroup rg1 = (RadioGroup) findViewById(R.id.q802radioGroupa);
+                                // Is the current Radio Button checked?
+                                boolean checked = radioButton.isChecked();
+                                View v = radioButton;
+                                switch (v.getId()) {
+                                    case R.id.rbtn1:
+                                        if (checked)
+                                            edt.setVisibility(View.INVISIBLE);
+                                        edt.setText("");
+                                        edt2.setEnabled(true);
+                                        edt1.setEnabled(true);
+                                        txtb.setTextColor(Color.BLACK);
+                                        txta.setTextColor(Color.BLACK);
 
 
-
-                                    break;
-
-
-                                case R.id.q105_1b:
-                                    if (checked)
-
-                                        edt.setVisibility(View.INVISIBLE);
-                                    edt.setText("");
-                                    edt2.setEnabled(true);
-                                    edt1.setEnabled(true);
-                                    txtb.setTextColor(Color.BLACK);
-                                    txta.setTextColor(Color.BLACK);
+                                        break;
 
 
+                                    case R.id.q105_1b:
+                                        if (checked)
+
+                                            edt.setVisibility(View.INVISIBLE);
+                                        edt.setText("");
+                                        edt2.setEnabled(true);
+                                        edt1.setEnabled(true);
+                                        txtb.setTextColor(Color.BLACK);
+                                        txta.setTextColor(Color.BLACK);
 
 
-                                    break;
-                                case R.id.q105_1c:
-                                    if (checked)
-                                        edt.setVisibility(View.INVISIBLE);
-                                    edt.setText("");
-                                    edt2.setEnabled(true);
-                                    edt1.setEnabled(true);
-                                    txtb.setTextColor(Color.BLACK);
-                                    txta.setTextColor(Color.BLACK);
+                                        break;
+                                    case R.id.q105_1c:
+                                        if (checked)
+                                            edt.setVisibility(View.INVISIBLE);
+                                        edt.setText("");
+                                        edt2.setEnabled(true);
+                                        edt1.setEnabled(true);
+                                        txtb.setTextColor(Color.BLACK);
+                                        txta.setTextColor(Color.BLACK);
 
 
+                                        break;
+                                    case R.id.q105_1d:
+                                        if (checked)
+                                            edt.setVisibility(View.INVISIBLE);
+                                        edt.setText("");
+                                        edt2.setEnabled(true);
+                                        edt1.setEnabled(true);
 
-                                    break;
-                                case R.id.q105_1d:
-                                    if (checked)
-                                        edt.setVisibility(View.INVISIBLE);
-                                    edt.setText("");
-                                    edt2.setEnabled(true);
-                                    edt1.setEnabled(true);
+                                        txtb.setTextColor(Color.BLACK);
+                                        txta.setTextColor(Color.BLACK);
 
-                                    txtb.setTextColor(Color.BLACK);
-                                    txta.setTextColor(Color.BLACK);
+                                        break;
+                                    case R.id.q105_1e:
+                                        if (checked)
+                                            edt.setVisibility(View.INVISIBLE);
+                                        edt.setText("");
+                                        edt1.setText("");
 
-                                    break;
-                                case R.id.q105_1e:
-                                    if (checked)
-                                        edt.setVisibility(View.INVISIBLE);
-                                    edt.setText("");
-                                    edt1.setText("");
-
-                                    edt1.setEnabled(false);
-                                    edt2.setEnabled(false);
-                                    edt2.setText("");
-                                    txtb.setTextColor(Color.LTGRAY);
-                                    txta.setTextColor(Color.LTGRAY);
-
+                                        edt1.setEnabled(false);
+                                        edt2.setEnabled(false);
+                                        edt2.setText("");
+                                        txtb.setTextColor(Color.LTGRAY);
+                                        txta.setTextColor(Color.LTGRAY);
 
 
-                                    break;
-                                case R.id.q105_1f:
-                                    if (checked)
-                                        edt.setVisibility(View.INVISIBLE);
-                                    edt.setText("");
-                                    edt1.setText("");
+                                        break;
+                                    case R.id.q105_1f:
+                                        if (checked)
+                                            edt.setVisibility(View.INVISIBLE);
+                                        edt.setText("");
+                                        edt1.setText("");
 
-                                    edt1.setEnabled(false);
-                                    edt2.setEnabled(false);
-                                    edt2.setText("");
-                                    txtb.setTextColor(Color.LTGRAY);
-                                    txta.setTextColor(Color.LTGRAY);
-
-
-                                    break;
-                                case R.id.q105_1g:
-                                    if (checked)
-                                        edt.setVisibility(View.INVISIBLE);
-                                    edt.setText("");
-                                    edt1.setText("");
-                                    edt1.setEnabled(false);
-                                    txtb.setTextColor(Color.LTGRAY);
-                                    txta.setTextColor(Color.LTGRAY);
-
-                                    edt2.setEnabled(false);
-                                    edt2.setText("");
-
-                                    break;
-
-                                case R.id.q105_1h:
-                                    if (checked)
-                                        edt.setVisibility(View.INVISIBLE);
-                                    edt.setText("");
-                                    edt1.setText("");
-                                    edt1.setEnabled(false);
-
-                                    edt2.setEnabled(false);
-                                    edt2.setText("");
-                                    txtb.setTextColor(Color.LTGRAY);
-                                    txta.setTextColor(Color.LTGRAY);
+                                        edt1.setEnabled(false);
+                                        edt2.setEnabled(false);
+                                        edt2.setText("");
+                                        txtb.setTextColor(Color.LTGRAY);
+                                        txta.setTextColor(Color.LTGRAY);
 
 
-                                    break;
-                                case R.id.q105_other:
-                                    if (checked)
-                                        edt.setVisibility(View.VISIBLE);
+                                        break;
+                                    case R.id.q105_1g:
+                                        if (checked)
+                                            edt.setVisibility(View.INVISIBLE);
+                                        edt.setText("");
+                                        edt1.setText("");
+                                        edt1.setEnabled(false);
+                                        txtb.setTextColor(Color.LTGRAY);
+                                        txta.setTextColor(Color.LTGRAY);
 
-                                    txtb.setTextColor(Color.BLACK);
-                                    txta.setTextColor(Color.BLACK);
+                                        edt2.setEnabled(false);
+                                        edt2.setText("");
 
-                                    edt1.setEnabled(true);
-                                    edt2.setEnabled(true);
-                                    break;
+                                        break;
 
+                                    case R.id.q105_1h:
+                                        if (checked)
+                                            edt.setVisibility(View.INVISIBLE);
+                                        edt.setText("");
+                                        edt1.setText("");
+                                        edt1.setEnabled(false);
+
+                                        edt2.setEnabled(false);
+                                        edt2.setText("");
+                                        txtb.setTextColor(Color.LTGRAY);
+                                        txta.setTextColor(Color.LTGRAY);
+
+
+                                        break;
+                                    case R.id.q105_other:
+                                        if (checked)
+                                            edt.setVisibility(View.VISIBLE);
+
+                                        txtb.setTextColor(Color.BLACK);
+                                        txta.setTextColor(Color.BLACK);
+
+                                        edt1.setEnabled(true);
+                                        edt2.setEnabled(true);
+                                        break;
+
+                                }
+
+                                break;
                             }
-
-                            break;
                         }
                     }
                 }
@@ -290,10 +286,7 @@ public class q105 extends AppCompatActivity implements Serializable{
 
 
             }
-            else
-            {
-                Log.d("h13 Lost Here","**********");
-            }
+
         }
 
         if(ind.getQ105Other()!=null){

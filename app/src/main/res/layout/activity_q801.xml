@@ -400,6 +400,13 @@
                                 android:text="@string/q801d_8" />
 
                             <RadioButton
+                                android:id="@+id/q801d_9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/q801d_9" />
+
+
+                            <RadioButton
                                 android:id="@+id/q801d_10"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -413,11 +420,6 @@
 
                                 android:text="@string/q801d_11" />
 
-                            <RadioButton
-                                android:id="@+id/q801d_9"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/q801d_9" />
 
                             <RadioButton
                                 android:id="@+id/q801d_other"

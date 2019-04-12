@@ -115,13 +115,17 @@ q501 extends AppCompatActivity implements View.OnClickListener, Serializable {
             if (o instanceof RadioButton)
             {
                 bt[f]=((RadioButton)o);
-                if(ind.getQ501()!= null &&  !ind.getQ501().equals(""))
+                if(ind.getQ501()!= null )
                 {
-                    if(Integer.parseInt(ind.getQ501())==f+1)
-                    {
-                        RadioButton radioButton = bt[f];
-                        radioButton.setChecked(true);
-                        break;
+                    if(!ind.getQ501().equals("")) {
+                        if (f == 2) {
+                            rbtn3.setChecked(true);
+                        }
+                        if (Integer.parseInt(ind.getQ501()) == f + 1) {
+                            RadioButton radioButton = bt[f];
+                            radioButton.setChecked(true);
+                            break;
+                        }
                     }
                 }
             }

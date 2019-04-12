@@ -155,6 +155,9 @@ public class q1106 extends AppCompatActivity implements Serializable {
                 bta[f]=((RadioButton)o);
                 if(ind.getQ1106a()!= null )
                 {
+                    if (f == 3) {
+                        rbtn6a9.setChecked(true);
+                    }
                     if(Integer.parseInt(ind.getQ1106a())==f+1)
                     {
                         RadioButton radioButton = bta[f];

@@ -118,6 +118,174 @@ public class q1002 extends AppCompatActivity implements Serializable {
         }
     }
 
+    if ( individual.getQ1002() != null && individual.getQ1002().equals("1"))
+    {
+        chka1.setEnabled(true);
+        chka2.setEnabled(true);
+        chka3.setEnabled(true);
+        chka4.setEnabled(true);
+        chka5.setEnabled(true);
+
+        chka6.setEnabled(true);
+        chka7.setEnabled(true);
+        chka8.setEnabled(true);
+        chka10.setEnabled(true);
+        chka11.setEnabled(true);
+        chka12.setEnabled(true);
+        chka13.setEnabled(true);
+        chka14.setEnabled(true);
+        chka15.setEnabled(true);
+        chka16.setEnabled(true);
+        chka17.setEnabled(true);
+        chka18.setEnabled(true);
+        chkaOther.setEnabled(true);
+
+        rbtnb1.setEnabled(false);
+        rbtnb2.setEnabled(false);
+        rbtnb3.setEnabled(false);
+        rbtnb4.setEnabled(false);
+        rbtnb5.setEnabled(false);
+        rbtnb6.setEnabled(false);
+        rbtnbOther.setEnabled(false);
+        edtOthertxt.setEnabled(true);
+
+        rbtnb1.setChecked(false);
+        rbtnb2.setChecked(false);
+        rbtnb3.setChecked(false);
+        rbtnb4.setChecked(false);
+        rbtnb5.setChecked(false);
+        rbtnb6.setChecked(false);
+        rbtnbOther.setChecked(false);
+
+
+        tb.setTextColor(Color.BLACK);
+
+
+
+
+
+    }
+
+        if ( individual.getQ1002() != null && individual.getQ1002().equals("2")) {
+            chka1.setEnabled(false);
+            chka2.setEnabled(false);
+            chka3.setEnabled(false);
+            chka4.setEnabled(false);
+            chka5.setEnabled(false);
+
+            chka6.setEnabled(false);
+            chka7.setEnabled(false);
+            chka8.setEnabled(false);
+            chka10.setEnabled(false);
+            chka11.setEnabled(false);
+            chka12.setEnabled(false);
+            chka13.setEnabled(false);
+            chka14.setEnabled(false);
+            chka15.setEnabled(false);
+            chka16.setEnabled(false);
+            chka17.setEnabled(false);
+            chka18.setEnabled(false);
+            chkaOther.setEnabled(false);
+
+
+            chka1.setChecked(false);
+            chka2.setChecked(false);
+            chka3.setChecked(false);
+            chka4.setChecked(false);
+            chka5.setChecked(false);
+            chka6.setChecked(false);
+            chka7.setChecked(false);
+            chka8.setChecked(false);
+            chka10.setChecked(false);
+            chka11.setChecked(false);
+            chka12.setChecked(false);
+            chka13.setChecked(false);
+            chka14.setChecked(false);
+            chka15.setChecked(false);
+            chka16.setChecked(false);
+            chka17.setChecked(false);
+            chka18.setChecked(false);
+            chkaOther.setChecked(false);
+
+            tb.setTextColor(Color.BLACK);
+            ta.setTextColor(Color.BLACK);
+
+            rbtnb1.setEnabled(true);
+            rbtnb2.setEnabled(true);
+            rbtnb3.setEnabled(true);
+            rbtnb4.setEnabled(true);
+            rbtnb5.setEnabled(true);
+            rbtnb6.setEnabled(true);
+            rbtnbOther.setEnabled(true);
+
+
+        }
+
+        if ( individual.getQ1002() != null && individual.getQ1002().equals("9")) {
+            chka1.setEnabled(false);
+            chka2.setEnabled(false);
+            chka3.setEnabled(false);
+            chka4.setEnabled(false);
+            chka5.setEnabled(false);
+            chka6.setEnabled(false);
+            chka7.setEnabled(false);
+            chka8.setEnabled(false);
+            chka10.setEnabled(false);
+            chka11.setEnabled(false);
+            chka12.setEnabled(false);
+            chka13.setEnabled(false);
+            chka14.setEnabled(false);
+            chka15.setEnabled(false);
+            chka16.setEnabled(false);
+            chka17.setEnabled(false);
+            chka18.setEnabled(false);
+            chkaOther.setEnabled(false);
+
+            chka1.setChecked(false);
+            chka2.setChecked(false);
+            chka3.setChecked(false);
+            chka4.setChecked(false);
+            chka5.setChecked(false);
+            chka6.setChecked(false);
+            chka7.setChecked(false);
+            chka8.setChecked(false);
+            chka10.setChecked(false);
+            chka11.setChecked(false);
+            chka12.setChecked(false);
+            chka13.setChecked(false);
+            chka14.setChecked(false);
+            chka15.setChecked(false);
+            chka16.setChecked(false);
+            chka17.setChecked(false);
+            chka18.setChecked(false);
+            chkaOther.setChecked(false);
+            edtOthertxt.setEnabled(false);
+
+            rbtnb1.setEnabled(false);
+            rbtnb2.setEnabled(false);
+            rbtnb3.setEnabled(false);
+            rbtnb4.setEnabled(false);
+            rbtnb5.setEnabled(false);
+            rbtnb6.setEnabled(false);
+            rbtnbOther.setEnabled(false);
+            edtOthertxt.setText("");
+            edtOthertxt.setVisibility(View.INVISIBLE);
+
+
+            rbtnb1.setChecked(false);
+            rbtnb2.setChecked(false);
+            rbtnb3.setChecked(false);
+            rbtnb4.setChecked(false);
+            rbtnb5.setChecked(false);
+            rbtnb6.setChecked(false);
+            rbtnbOther.setChecked(false);
+
+            ta.setTextColor(Color.LTGRAY);
+            tb.setTextColor(Color.LTGRAY);
+
+
+
+        }
 
         RadioButton[] bt = new RadioButton[3];
         for(int f=0;f<rg.getChildCount();f++)
@@ -128,6 +296,9 @@ public class q1002 extends AppCompatActivity implements Serializable {
                 bt[f]=((RadioButton)o);
                 if(ind.getQ1002()!= null )
                 {
+                    if (f == 2) {
+                        rbtn3.setChecked(true);
+                    }
                     if(Integer.parseInt(ind.getQ1002())==f+1)
                     {
                         RadioButton radioButton = bt[f];
@@ -470,6 +641,11 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                     individual.setQ1002a_18(null);
                                     individual.setQ1002a_Other(null);
 
+                                    myDB.onOpen(myDB.getReadableDatabase());
+                                    myDB.getWritableDatabase();
+                                    myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                    myDB.close();
+
                                     Intent intent = new Intent(q1002.this, q1003.class);
                                     intent.putExtra("Individual", individual);
                                     startActivity(intent);
@@ -477,7 +653,7 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                     if (rbtn3.isChecked()) {
 
                                         individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
-                                        individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
+                                        individual.setQ1002b(null);
                                         if(rbtnbOther.isChecked()) {
                                             individual.setQ1002b_Other(edtbOther.getText().toString());
                                         }
@@ -504,6 +680,12 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                         individual.setQ1002a_17(null);
                                         individual.setQ1002a_18(null);
                                         individual.setQ1002a_Other(null);
+
+                                        myDB.onOpen(myDB.getReadableDatabase());
+                                        myDB.getWritableDatabase();
+                                        myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.close();
+
 
                                         Intent intent = new Intent(q1002.this, q1003.class);
                                         intent.putExtra("Individual", individual);
