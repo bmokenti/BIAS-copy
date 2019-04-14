@@ -283,6 +283,8 @@ public class P12 extends AppCompatActivity implements Serializable {
                                     List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
                                     if(ll.size()>0){
                                         myDB.updateRoster(thisHouse,"P12",p1.getP12(), String.valueOf(p1.getSRNO()));
+                                        myDB.updateRoster(thisHouse,"P13",null, String.valueOf(p1.getSRNO()));
+                                        myDB.updateRoster(thisHouse,"P13Other",null, String.valueOf(p1.getSRNO()));
                                         myDB.close();
                                     }
 

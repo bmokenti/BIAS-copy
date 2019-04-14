@@ -534,17 +534,14 @@ public class q1002 extends AppCompatActivity implements Serializable {
             }
         }
 
-//        if(ind.getQ1002_Other()!= null )
-//        {
-//            q619edt.setText(ind.getQ619_Other());
-//        }
+     //individual.setQ1002b_Other("Not started having sex yet");
 
-
-        if (ind.getQ1002b_Other() != null ) {
-
-            if (ind.getQ1002b() != null && ind.getQ1002b().equals("O")) {
+        if (ind.getQ1002b() != null )
+        {
+            if ( ind.getQ1002b().equals("O") ) {
                 rbtnbOther.setChecked(true);
-                edtbOther.setText(ind.getQ1002b_Other());
+                edtbOther.setText(ind.getQ1002bOther());
+                edtbOther.setVisibility(View.VISIBLE);
             }
         }
         else {
@@ -555,7 +552,7 @@ public class q1002 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 btb[f]=((RadioButton)o);
-                if(ind.getQ1002b()!= null ) {
+                if(ind.getQ1002b()!= null && !ind.getQ1002b().equals("O")) {
                     if (!ind.getQ1002b().equals("")) {
                         if (Integer.parseInt(ind.getQ1002b()) == f + 1) {
                             RadioButton radioButton = btb[f];
@@ -620,7 +617,13 @@ public class q1002 extends AppCompatActivity implements Serializable {
 
                                     individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
                                     individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
-                                    individual.setQ1002b_Other(edtbOther.getText().toString());
+                                    if (rbtnbOther.isChecked()) {
+                                        individual.setQ1002bOther(edtbOther.getText().toString());
+                                    }
+                                    else
+                                    {
+                                        individual.setQ1002bOther(null);
+                                    }
                                     individual.setQ1002a_1(null);
                                     individual.setQ1002a_2(null);
                                     individual.setQ1002a_3(null);
@@ -644,6 +647,8 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                     myDB.onOpen(myDB.getReadableDatabase());
                                     myDB.getWritableDatabase();
                                     myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                    myDB.updateInd("Q1002bOther", individual.getAssignmentID(), individual.getBatch(), individual.getQ1002bOther(), String.valueOf(individual.getSRNO()));
+
                                     myDB.close();
 
                                     Intent intent = new Intent(q1002.this, q1003.class);
@@ -655,11 +660,11 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                         individual.setQ1002(selectedRbtn.getText().toString().substring(0, 1));
                                         individual.setQ1002b(null);
                                         if(rbtnbOther.isChecked()) {
-                                            individual.setQ1002b_Other(edtbOther.getText().toString());
+                                            individual.setQ1002bOther(edtbOther.getText().toString());
                                         }
                                         else
                                         {
-                                            individual.setQ1002b_Other(null);
+                                            individual.setQ1002bOther(null);
                                         }
                                         individual.setQ1002a_1(null);
                                         individual.setQ1002a_2(null);
@@ -684,6 +689,7 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();
                                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.updateInd("Q1002bOther", individual.getAssignmentID(), individual.getBatch(), individual.getQ1002bOther(), String.valueOf(individual.getSRNO()));
                                         myDB.close();
 
 
@@ -783,34 +789,15 @@ public class q1002 extends AppCompatActivity implements Serializable {
                                         }
 
                                         individual.setQ1002b(null);
-                                        individual.setQ1002b_Other(null);
+                                        individual.setQ1002bOther(null);
 
-                                        /*
-                                        individual.setQ1002a_1(chka1.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_2(chka2.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_3(chka3.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_3(chka4.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_4(chka5.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_6(chka6.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_7(chka7.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_8(chka8.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_10(chka10.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_11(chka11.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_12(chka12.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_13(chka13.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_14(chka14.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_15(chka15.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_16(chka16.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_17(chka17.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_18(chka18.getText().toString().substring(0, 1));
-                                        individual.setQ1002a_Other(edtOthertxt.getText().toString());
-*/
-                                        //individual.setQ1002b(selectedRbtnb.getText().toString().substring(0, 1));
-                                       // individual.setQ1002bOther(edtbOther.getText().toString());
+
 
                                         myDB.onOpen(myDB.getReadableDatabase());
                                         myDB.getWritableDatabase();
                                         myDB.updateIndividual(myDB.getWritableDatabase(),individual);
+                                        myDB.updateInd("Q1002bOther", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+
                                         myDB.close();
 
 

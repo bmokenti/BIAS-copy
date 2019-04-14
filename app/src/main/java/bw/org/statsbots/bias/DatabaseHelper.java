@@ -2096,9 +2096,26 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q1002, houseHold.getIndividual()[i].getQ1002());
             individualValues.put(Q1002bOther, houseHold.getIndividual()[i].getQ1002bOther());
             individualValues.put(Q1003, houseHold.getIndividual()[i].getQ1003());
-            individualValues.put(Q1004, houseHold.getIndividual()[i].getQ1004_Day());
-            individualValues.put(Q1004, houseHold.getIndividual()[i].getQ1004_Month());
-            individualValues.put(Q1004, houseHold.getIndividual()[i].getQ1004_Year());
+           // individualValues.put(Q1004, houseHold.getIndividual()[i].getQ1004_Day());
+           // individualValues.put(Q1004, houseHold.getIndividual()[i].getQ1004_Month());
+
+            String tempMonth = "00";
+            String tempYear = "0000";
+            String tempDay = "00";
+
+
+            if (houseHold.getIndividual()[i].getQ1004_Day() != null) {
+                tempDay = houseHold.getIndividual()[i].getQ1004_Day();
+            }
+            if (houseHold.getIndividual()[i].getQ1004_Month() != null) {
+                tempMonth = houseHold.getIndividual()[i].getQ1004_Month();
+            }
+            if (houseHold.getIndividual()[i].getQ1004_Year() != null) {
+                tempYear = houseHold.getIndividual()[i].getQ1004_Year();
+            }
+            individualValues.put("Q1004", tempDay + tempMonth + tempYear);
+
+           // individualValues.put(Q1004, houseHold.getIndividual()[i].getQ1004_Year());
             individualValues.put(Q1004a, houseHold.getIndividual()[i].getQ1004a());
             individualValues.put(Q1004b, houseHold.getIndividual()[i].getQ1004b());
             individualValues.put(Q1004bOther, houseHold.getIndividual()[i].getQ1004bOther());
@@ -2116,9 +2133,25 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q1010Other, houseHold.getIndividual()[i].getQ1010Other());
             individualValues.put(Q1011, houseHold.getIndividual()[i].getQ1011());
             individualValues.put(Q1011Other, houseHold.getIndividual()[i].getQ1011_Other());
-            individualValues.put(Q1012, houseHold.getIndividual()[i].getQ1012_Week());
-            individualValues.put(Q1012, houseHold.getIndividual()[i].getQ1012_Month());
-            individualValues.put(Q1012, houseHold.getIndividual()[i].getQ1012_Year());
+
+//            individualValues.put(Q1012, houseHold.getIndividual()[i].getQ1012_Week());
+//            individualValues.put(Q1012, houseHold.getIndividual()[i].getQ1012_Month());
+//            individualValues.put(Q1012, houseHold.getIndividual()[i].getQ1012_Year());
+
+            tempMonth = "00";
+            tempYear = "00";
+            tempDay = "00";
+
+            if (houseHold.getIndividual()[i].getQ1012_Week() != null) {
+                tempDay = houseHold.getIndividual()[i].getQ1012_Week();
+            }
+            if (houseHold.getIndividual()[i].getQ1012_Month() != null) {
+                tempMonth = houseHold.getIndividual()[i].getQ1012_Month();
+            }
+            if (houseHold.getIndividual()[i].getQ1012_Year() != null) {
+                tempYear = houseHold.getIndividual()[i].getQ1012_Year();
+            }
+            individualValues.put("Q1012", tempDay + tempMonth + tempYear);
 
             individualValues.put(Q1013, houseHold.getIndividual()[i].getQ1013());
             individualValues.put(Q1014, houseHold.getIndividual()[i].getQ1014());
@@ -2537,9 +2570,27 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q1002, houseHold.getQ1002());
             individualValues.put(Q1002bOther, houseHold.getQ1002bOther());
             individualValues.put(Q1003, houseHold.getQ1003());
-            individualValues.put(Q1004, houseHold.getQ1004_Day());
-            individualValues.put(Q1004, houseHold.getQ1004_Month());
-            individualValues.put(Q1004, houseHold.getQ1004_Year());
+
+
+//            individualValues.put(Q1004, houseHold.getQ1004_Day());
+//            individualValues.put(Q1004, houseHold.getQ1004_Month());
+//            individualValues.put(Q1004, houseHold.getQ1004_Year());
+
+            String tempMonth = "00";
+            String tempYear = "0000";
+            String tempDay = "00";
+
+            if (houseHold.getQ1004_Day() != null) {
+                tempDay = houseHold.getQ1004_Day();
+            }
+            if (houseHold.getQ1004_Month() != null) {
+                tempMonth = houseHold.getQ1004_Month();
+            }
+            if (houseHold.getQ1004_Year() != null) {
+                tempYear = houseHold.getQ1004_Year();
+            }
+            individualValues.put("Q1004", tempDay + tempMonth + tempYear);
+
             individualValues.put(Q1004a, houseHold.getQ1004a());
             individualValues.put(Q1004b, houseHold.getQ1004b());
             individualValues.put(Q1004bOther, houseHold.getQ1004bOther());
@@ -2557,10 +2608,26 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             individualValues.put(Q1010Other, houseHold.getQ1010Other());
             individualValues.put(Q1011, houseHold.getQ1011());
             individualValues.put(Q1011Other, houseHold.getQ1011_Other());
+//
+//            individualValues.put(Q1012, houseHold.getQ1012_Week());
+//            individualValues.put(Q1012, houseHold.getQ1012_Month());
+//            individualValues.put(Q1012, houseHold.getQ1012_Year());
 
-            individualValues.put(Q1012, houseHold.getQ1012_Week());
-            individualValues.put(Q1012, houseHold.getQ1012_Month());
-            individualValues.put(Q1012, houseHold.getQ1012_Year());
+            tempMonth = "00";
+            tempYear = "00";
+            tempDay = "00";
+
+            if (houseHold.getQ1012_Week() != null) {
+                tempDay = houseHold.getQ1012_Week();
+            }
+            if (houseHold.getQ1012_Month() != null) {
+                tempMonth = houseHold.getQ1012_Month();
+            }
+            if (houseHold.getQ1012_Year() != null) {
+                tempYear = houseHold.getQ1012_Year();
+            }
+            individualValues.put("Q1012", tempDay + tempMonth + tempYear);
+
 
             individualValues.put(Q1012Still, houseHold.getQ1012Still());
 
@@ -5264,7 +5331,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         hhValues.put("Q604bRadio", ind.getQ604b_3());
         hhValues.put("Q604bNewsPaper", ind.getQ604b_4());
         hhValues.put("Q604bHospital", ind.getQ604b_5());
-        hhValues.put(Q604bPoster, ind.getQ604b_6());
+        hhValues.put("Q604bPoster", ind.getQ604b_6());
         hhValues.put("Q604bTraditional", ind.getQ604b_7());
         hhValues.put("Q604bWorkshop", ind.getQ604b_8());
         hhValues.put("Q604bIndividual", ind.getQ604b_10());
@@ -8415,7 +8482,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")) != null) {
                     ind.setQ1012_Week(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(0, 2));
                     ind.setQ1012_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(2, 4));
-                    ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4, 8));
+                    ind.setQ1012_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012")).substring(4, 6));
                 }
                 ind.setQ1012Still(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1012Still")));
 

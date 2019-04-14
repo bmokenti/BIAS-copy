@@ -405,7 +405,7 @@ myDB.close();
                             individual.setQ1002b(null);
                             individual.setQ1002b_Other(null);
                             individual.setQ1003(null);
-                            individual.setQ1004_Year("00");
+                            individual.setQ1004_Year("0000");
                             individual.setQ1004_Month("00");
                             individual.setQ1004_Day("00");
                             individual.setQ1004a(null);

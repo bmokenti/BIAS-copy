@@ -85,12 +85,12 @@ public class H03 extends AppCompatActivity implements View.OnClickListener, Seri
         }
 
 
-
+  // thisHouse.setH03("01");
 
         //CHECK WHICH BUTTON WAS SELECTED
         if(  thisHouse.getH03Other()!= null )
         {
-            if (thisHouse.getH03() != null && thisHouse.getH03().equals("Ot") )
+            if (thisHouse.getH03() != null && thisHouse.getH03().equals("Ot") || thisHouse.getH03().equals("O")  )
             {
                 rbtn9.setChecked(true);
                 edt.setText(thisHouse.getH03Other());

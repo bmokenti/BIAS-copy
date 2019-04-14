@@ -447,7 +447,7 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
                     int selectedId2 = rg2.getCheckedRadioButtonId();
                     selected2 = (RadioButton) findViewById(selectedId2);
 
-                    if (selected2 == null) {
+                    if (selected2 == null && Integer.parseInt(individual.getQ102()) == 15) {
                         lib.showError(HIVChildParentalConsent15_17.this, "RHT", "D Do you agree for the survey team to do RHT on your Child");
                         /**
                          * VIBRATE DEVICE
@@ -505,7 +505,12 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
                                     } else {
                                         if (rbtn2.isChecked()) {
                                             individual.setPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
-                                            individual.setPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
+                                            if (Integer.parseInt(individual.getQ102()) == 15) {
+                                                individual.setPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
+                                            }
+                                            else {
+                                                individual.setPrntlConsentRHT(null);
+                                            }
                                             individual.setPrntlParentID(EdtparentID.getText().toString().substring(0, 1));
                                             individual.setPrntlConsentLabTest(null);
                                             individual.setPrntlConsentBloodStore(null);
@@ -532,7 +537,12 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
                                         } else {
 
                                             individual.setPrntlConsentBloodDraw(selected1.getText().toString().substring(0, 1));
-                                            individual.setPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
+                                            if (Integer.parseInt(individual.getQ102()) == 15) {
+                                                individual.setPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
+                                            }
+                                            else {
+                                                individual.setPrntlConsentRHT(null);
+                                            }
                                             individual.setPrntlConsentLabTest(selected4.getText().toString().substring(0, 1));
                                             individual.setPrntlConsentBloodStore(selected5.getText().toString().substring(0, 1));
                                             individual.setPrntlParentID(EdtparentID.getText().toString());

@@ -111,15 +111,18 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
 //            }
 //        }
 
-//        if ( p1.getP13() != null) {
+
+//        if ( !p1.getP13().equals("")) {
 //            if (p1.getP13() != null && p1.getP13().equals("O")) {
-//                p1.setP13Other("O");
+//                p1.setP13Other("Other");
 //                selected = (RadioButton) findViewById(R.id.P13_other);
 //            }
 //        }
 
+
+
         if(p1.getP13Other()!= null  ) {
-            if (p1.getP13() != null && p1.getP13().equals("O") || p1.getP13().equals("o"))
+            if (p1.getP13() != null && p1.getP13().equals("Ot") || p1.getP13().equals("O") )
             {
                 rbtn6.setChecked(true);
                 edt.setText(p1.getP13Other());
@@ -183,9 +186,7 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
             @Override
             public void onClick(View v) {
 
-                if (p1.getP13Other() != null) {
-                    selected = (RadioButton) findViewById(R.id.P13_other);
-                }
+
 
                 if (selected == null) {
                     lib.showError(P13.this, "P13 Error", "Since" + p1.getP01() + "did not work for payment, profit or home use, what did he/she do?");
@@ -207,7 +208,7 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
 
                         //Set P02 fir the current individual
                         thisHouse.getPersons()[p1.getLineNumber()].setP13(selected.getText().toString().substring(0, 1));
-                        thisHouse.getPersons()[p1.getLineNumber()].setP13Other(edt.getText().toString());
+
 
                         //Restart the current activity for next individual
 
@@ -226,7 +227,16 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
 
                                 if (ll.size() > 0) {
                                     myDB.updateRoster(thisHouse, "P13", thisHouse.getPersons()[p1.getLineNumber()].getP13(), String.valueOf(p1.getSRNO()));
-                                    myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+                                    if(selected == rbtn6) {
+                                        thisHouse.getPersons()[p1.getLineNumber()].setP13Other(edt.getText().toString());
+                                        myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+                                    }
+                                    else
+                                    {
+                                        myDB.updateRoster(thisHouse, "P13Other", null, String.valueOf(p1.getSRNO()));
+                                    }myDB.updateRoster(thisHouse, "P14", null, String.valueOf(p1.getSRNO()));
+                                    myDB.updateRoster(thisHouse, "P15", null, String.valueOf(p1.getSRNO()));
+                                    myDB.updateRoster(thisHouse, "P16", null, String.valueOf(p1.getSRNO()));
                                     myDB.close();
                                 }
 
@@ -244,7 +254,16 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                                 List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
                                 if (ll.size() > 0) {
                                     myDB.updateRoster(thisHouse, "P13", thisHouse.getPersons()[p1.getLineNumber()].getP13(), String.valueOf(p1.getSRNO()));
-                                    myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+                                    if(selected == rbtn6) {
+                                        thisHouse.getPersons()[p1.getLineNumber()].setP13Other(edt.getText().toString());
+                                        myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+                                    }
+                                    else
+                                    {
+                                        myDB.updateRoster(thisHouse, "P13Other", null, String.valueOf(p1.getSRNO()));
+                                    }myDB.updateRoster(thisHouse, "P14", null, String.valueOf(p1.getSRNO()));
+                                    myDB.updateRoster(thisHouse, "P15", null, String.valueOf(p1.getSRNO()));
+                                    myDB.updateRoster(thisHouse, "P16", null, String.valueOf(p1.getSRNO()));
                                     myDB.close();
                                 }
 
@@ -262,7 +281,16 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                                     List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
                                     if (ll.size() > 0) {
                                         myDB.updateRoster(thisHouse, "P13", thisHouse.getPersons()[p1.getLineNumber()].getP13(), String.valueOf(p1.getSRNO()));
-                                        myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+                                        if(selected == rbtn6) {
+                                            thisHouse.getPersons()[p1.getLineNumber()].setP13Other(edt.getText().toString());
+                                            myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+                                        }
+                                        else
+                                        {
+                                            myDB.updateRoster(thisHouse, "P13Other", null, String.valueOf(p1.getSRNO()));
+                                        }myDB.updateRoster(thisHouse, "P14", null, String.valueOf(p1.getSRNO()));
+                                        myDB.updateRoster(thisHouse, "P15", null, String.valueOf(p1.getSRNO()));
+                                        myDB.updateRoster(thisHouse, "P16", null, String.valueOf(p1.getSRNO()));
                                         myDB.close();
                                     }
 
@@ -280,7 +308,18 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                                         List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
                                         if (ll.size() > 0) {
                                             myDB.updateRoster(thisHouse, "P13", thisHouse.getPersons()[p1.getLineNumber()].getP13(), String.valueOf(p1.getSRNO()));
-                                            myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+
+                                            if(selected == rbtn6) {
+                                                thisHouse.getPersons()[p1.getLineNumber()].setP13Other(edt.getText().toString());
+                                                myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+                                            }
+                                            else
+                                            {
+                                                myDB.updateRoster(thisHouse, "P13Other", null, String.valueOf(p1.getSRNO()));
+                                            }
+                                                myDB.updateRoster(thisHouse, "P14", null, String.valueOf(p1.getSRNO()));
+                                            myDB.updateRoster(thisHouse, "P15", null, String.valueOf(p1.getSRNO()));
+                                            myDB.updateRoster(thisHouse, "P16", null, String.valueOf(p1.getSRNO()));
                                             myDB.close();
                                         }
                                        thisHouse = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber()).get(0);
@@ -305,7 +344,16 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                             List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
                             if (ll.size() > 0) {
                                 myDB.updateRoster(thisHouse, "P13", thisHouse.getPersons()[p1.getLineNumber()].getP13(), String.valueOf(p1.getSRNO()));
-                                myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+                                if(selected == rbtn6) {
+                                    thisHouse.getPersons()[p1.getLineNumber()].setP13Other(edt.getText().toString());
+                                    myDB.updateRoster(thisHouse, "P13Other", thisHouse.getPersons()[p1.getLineNumber()].getP13Other(), String.valueOf(p1.getSRNO()));
+                                }
+                                else
+                                {
+                                    myDB.updateRoster(thisHouse, "P13Other", null, String.valueOf(p1.getSRNO()));
+                                }myDB.updateRoster(thisHouse, "P14", null, String.valueOf(p1.getSRNO()));
+                                myDB.updateRoster(thisHouse, "P15", null, String.valueOf(p1.getSRNO()));
+                                myDB.updateRoster(thisHouse, "P16", null, String.valueOf(p1.getSRNO()));
                                 myDB.close();
                             }
                             //thisHouse = myDB.getHouseForUpdate(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber()).get(0);
