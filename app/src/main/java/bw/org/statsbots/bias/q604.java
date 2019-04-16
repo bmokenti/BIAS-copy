@@ -478,11 +478,29 @@ public class q604 extends AppCompatActivity implements Serializable {
 
                                         if (rbtn2.isChecked() && (sample.getStatusCode().equals("1")) ||
                                             (rbtn2.isChecked() && sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) ||
-                                                (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
+                                                (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") &&
                                                         (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) < 14 ) &&  Integer.valueOf(individual.getQ102()) < 65) ){
 
                                         individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
+                                            individual.setQ604a(null);
 
+                                            //Clear previous results
+                                            individual.setQ604b_1(null);
+                                            individual.setQ604b_2(null);
+                                            individual.setQ604b_3(null);
+                                            individual.setQ604b_4(null);
+                                            individual.setQ604b_5(null);
+                                            individual.setQ604b_6(null);
+                                            individual.setQ604b_7(null);
+                                            individual.setQ604b_8(null);
+                                            individual.setQ604b_10(null);
+                                            individual.setQ604b_11(null);
+                                            individual.setQ604b_12(null);
+                                            individual.setQ604b_13(null);
+                                            individual.setQ604b_14(null);
+                                            individual.setQ604b_15(null);
+                                            individual.setQ604b_Other(null);
+                                            individual.setQ604b_Otherspecify(null);
                             individual.setQ605_1(null);
                             individual.setQ605_2(null);
                             individual.setQ605_3(null);
@@ -509,6 +527,26 @@ public class q604 extends AppCompatActivity implements Serializable {
                                             {
 
                                             individual.setQ604(selectedRbtn.getText().toString().substring(0, 1));
+                                                individual.setQ604a(null);
+
+                                                //Clear previous results
+                                                individual.setQ604b_1(null);
+                                                individual.setQ604b_2(null);
+                                                individual.setQ604b_3(null);
+                                                individual.setQ604b_4(null);
+                                                individual.setQ604b_5(null);
+                                                individual.setQ604b_6(null);
+                                                individual.setQ604b_7(null);
+                                                individual.setQ604b_8(null);
+                                                individual.setQ604b_10(null);
+                                                individual.setQ604b_11(null);
+                                                individual.setQ604b_12(null);
+                                                individual.setQ604b_13(null);
+                                                individual.setQ604b_14(null);
+                                                individual.setQ604b_15(null);
+                                                individual.setQ604b_Other(null);
+                                                individual.setQ604b_Otherspecify(null);
+
                                                 individual.setQ605_1(null);
                                                 individual.setQ605_2(null);
                                                 individual.setQ605_3(null);

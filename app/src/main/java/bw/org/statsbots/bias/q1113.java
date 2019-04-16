@@ -78,7 +78,7 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
     }
         //individual.setQ1113Other("other");
 
-        if (ind.getQ1113Other() != null ) {
+        if (ind.getQ1113() != null ) {
 
             if (ind.getQ1113() != null && ind.getQ1113().equals("O")) {
                 rbtn5.setChecked(true);
@@ -159,10 +159,10 @@ public class q1113 extends AppCompatActivity implements View.OnClickListener, Se
 
                   individual.setQ1113(selectedRbtn.getText().toString().substring(0,1));
                     if(rbtn5.isChecked()) {
-                        individual.setQ1111Other(text1113other.getText().toString());
+                        individual.setQ1113Other(text1113other.getText().toString());
                     }
                     else {
-                        individual.setQ1111Other(null);
+                        individual.setQ1113Other(null);
                     }
                     myDB.onOpen(myDB.getReadableDatabase());
                     myDB.getWritableDatabase();

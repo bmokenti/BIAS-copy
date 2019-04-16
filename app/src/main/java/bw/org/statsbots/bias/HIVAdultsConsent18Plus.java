@@ -99,7 +99,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
 
 
 
-                if (  (individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 18 )  || (Integer.valueOf(p1.getP04YY()) >= 18 ) ) {
+                if (  ( individual.getQ102().equals("") || individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 18 )  || (Integer.valueOf(p1.getP04YY()) >= 18 ) ) {
                     setTitle("Individual Consent [18-64]");
                 }
                 else
@@ -107,7 +107,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                     setTitle("Individual Assent 15-17");
                 }
 
-                if(individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 65 &&
+                if(individual.getQ102().equals("") || individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 65 &&
                         (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) )
                 {
                     Intent intent = new Intent(HIVAdultsConsent18Plus.this, HIVConsentOver64.class);
@@ -116,7 +116,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                     startActivity(intent);
                 }
 
-                if(( individual.getQ102() != null && Integer.valueOf(individual.getQ102()) <= 17  && individual.getPrntlConsentBloodDraw().equals(2) && individual.getPrntlConsentRHT().equals(2)))
+                if(( individual.getQ102().equals("") || individual.getQ102() != null && Integer.valueOf(individual.getQ102()) <= 17  && individual.getPrntlConsentBloodDraw().equals(2) && individual.getPrntlConsentRHT().equals(2)))
                 {
                     Intent intent = new Intent(HIVAdultsConsent18Plus.this, Dashboard.class);
                     intent.putExtra("Individual", individual);
@@ -265,7 +265,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                     t6.setTextColor(Color.LTGRAY);
                 }
 
-                if (individual.getQ102() != null && Integer.valueOf(individual.getQ102())>= 15 )
+                if (individual.getQ102().equals("") || individual.getQ102() != null && Integer.valueOf(individual.getQ102())>= 15 )
                 {
                     if (individual.getIndvBloodDraw() == null || individual.getIndvBloodDraw() != null ) {
                         vol3.setEnabled(false);

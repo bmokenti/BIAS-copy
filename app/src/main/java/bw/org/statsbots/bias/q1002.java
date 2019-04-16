@@ -536,7 +536,7 @@ public class q1002 extends AppCompatActivity implements Serializable {
 
      //individual.setQ1002b_Other("Not started having sex yet");
 
-        if (ind.getQ1002b() != null )
+        if (ind.getQ1002bOther() != null )
         {
             if ( ind.getQ1002b().equals("O") ) {
                 rbtnbOther.setChecked(true);
@@ -552,7 +552,7 @@ public class q1002 extends AppCompatActivity implements Serializable {
             if (o instanceof RadioButton)
             {
                 btb[f]=((RadioButton)o);
-                if(ind.getQ1002b()!= null && !ind.getQ1002b().equals("O")) {
+                if(ind.getQ1002b()!= null ) {
                     if (!ind.getQ1002b().equals("")) {
                         if (Integer.parseInt(ind.getQ1002b()) == f + 1) {
                             RadioButton radioButton = btb[f];

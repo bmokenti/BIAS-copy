@@ -312,7 +312,7 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
 
 
 
-        if ((individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 18) && (sample.getStatusCode().equals("1") ||
+        if ((individual.getQ102().equals("") || individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 18) && (sample.getStatusCode().equals("1") ||
                 (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1")) ) )
         {
             Intent intent = new Intent(HIVChildParentalConsent15_17.this, HIVAdultsConsent18Plus.class);
@@ -342,7 +342,7 @@ if( individual.getIndvQuestionnaireConsent().equals("2") &&
         }
 
 */
-    if (individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 16 )
+    if (individual.getQ102().equals("") || individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 16 )
         {
     rbtn3.setEnabled(false);
     rbtn4.setEnabled(false);

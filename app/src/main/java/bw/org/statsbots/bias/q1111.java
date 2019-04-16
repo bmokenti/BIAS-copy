@@ -76,7 +76,7 @@ public class q1111 extends AppCompatActivity implements  Serializable {
     }
 
 
-        if (ind.getQ1111Other() != null ) {
+        if (ind.getQ1111() != null ) {
 
             if (ind.getQ1111() != null && ind.getQ1111().equals("O")) {
                 rbtn5ot.setChecked(true);

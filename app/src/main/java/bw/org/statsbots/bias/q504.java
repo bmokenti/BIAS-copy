@@ -191,11 +191,13 @@ public class q504 extends AppCompatActivity implements Serializable {
             }
         }
 
-        if(ind.getQ504_Other()!= null &&  !ind.getQ504_Other().equals(""))
+        if(ind.getQ504_Other()!= null )
         {
-            if(Integer.parseInt(ind.getQ504_Other())== 1)
+            if(Integer.parseInt(ind.getQ504_Other().substring(0, 1)) == 1)
             {
+                Q504edt.setVisibility(View.VISIBLE);
                 chkOther.setChecked(true);
+                Q504edt.setText(ind.getQ504_Other().substring(1, ind.getQ504_Other().length()));
 
             }else
             {
@@ -203,11 +205,8 @@ public class q504 extends AppCompatActivity implements Serializable {
             }
         }
 
-        if((ind.getQ504_Other()!= null &&  !ind.getQ504_Other().equals("")) &&  ind.getQ504_OtherSpecify() != null )
 
-        {
-            Q504edt.setText(ind.getQ504_OtherSpecify());
-        }
+
 
 
 

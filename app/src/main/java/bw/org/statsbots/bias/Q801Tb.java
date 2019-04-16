@@ -216,6 +216,9 @@ public class Q801Tb extends AppCompatActivity implements Serializable {
                 btf[f] = ((RadioButton) o);
                 if (ind.getQ801f() != null ) {
                     if (!ind.getQ801f().equals("")) {
+                        if (f == 4) {
+                            rbtnf5.setChecked(true);
+                        }
                         if (Integer.parseInt(ind.getQ801f()) == f + 1) {
                             RadioButton radioButton = btf[f];
                             radioButton.setChecked(true);

@@ -161,7 +161,6 @@
                     android:gravity="center"
                     android:hint="Other specify"
                     android:inputType="text"
-                    android:maxLength="2"
                     android:padding="3dp"
                     android:visibility="invisible"/>
 

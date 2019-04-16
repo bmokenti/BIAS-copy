@@ -223,8 +223,7 @@ if (individual.getQ101() != null && individual.getQ101().equals("1"))
 
 }
         if( ((sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("0")) || sample.getStatusCode().equals("3")
-                || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && p1.getP06().equals("2")))
-              )
+                || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1") && p1.getP06().equals("2"))))
         {
 
 
@@ -444,8 +443,7 @@ if (individual.getQ101() != null && individual.getQ101().equals("1"))
         if((individual.getQ101().equals("2")) &&
                 ((Integer.parseInt( individual.getQ102() ) >49 ) || (individual.getQ401().equals("2")))
                 && ( sample.getStatusCode().equals("1") || (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) )
-        && (sample.getStatusCode().equals("2") &&thisHous.get(0).getHIVTB40().equals("1") &&
-              (p1.getP07()  != null &&  Integer.parseInt(p1.getP07() ) > 14 )) )
+        )
         {
             individual.setQ1001(null);
             individual.setQ1002(null);

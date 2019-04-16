@@ -1538,12 +1538,15 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                                 }
                             }else{
-
+                                if(Integer.parseInt(jObject.get("Interview_Status").toString())==2)
+                                {
+                                    j.setInterview_Status(jObject.get("Interview_Status").toString());
+                                }
                                 j.setSuperComment(jObject.get("SuperComment").toString());
-                                j.setInterview_Status(jObject.get("Interview_Status").toString());
-
-                                if(jObject.get("Clear")!=null){
-                                    if(jObject.get("Clear").toString().equals("1")){
+                                if(jObject.get("Clear")!=null)
+                                {
+                                    if(jObject.get("Clear").toString().equals("1"))
+                                    {
                                         j.setClear("3");
                                     }
                                 }

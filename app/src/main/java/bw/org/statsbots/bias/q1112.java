@@ -74,7 +74,7 @@ public class q1112 extends AppCompatActivity implements View.OnClickListener, Se
 
 
 
-        if (ind.getQ1112_Other() != null ) {
+        if (ind.getQ1112() != null ) {
 
             if (ind.getQ1112() != null && ind.getQ1112().equals("O")) {
                 rbtn5.setChecked(true);
