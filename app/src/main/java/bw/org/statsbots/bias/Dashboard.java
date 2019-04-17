@@ -41,6 +41,8 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.Console;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -438,9 +440,9 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
         }
 
         @Override
-        protected void onPostExecute(String result){
+        protected void onPostExecute(String result)
+        {
             //mAuthTask = null
-
             readFromServer(result);
             d.dismiss();
 
@@ -458,7 +460,8 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
             if (svrmsg != null)
             {
 
-                try {
+                try
+                {
                     svrmsg = svrmsg.replaceAll("null","\"\"");
                     //Log.d("Test ",svrmsg.substring(21600,21700));
 /*
@@ -1530,18 +1533,11 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                                     ********************************END NULL RELACEMENT************************************/
 
-
-
-
-
-
-
                                 }
                             }else{
-                                if(Integer.parseInt(jObject.get("Interview_Status").toString())==2)
-                                {
-                                    j.setInterview_Status(jObject.get("Interview_Status").toString());
-                                }
+
+                                j.setInterview_Status(jObject.get("Interview_Status").toString());
+
                                 j.setSuperComment(jObject.get("SuperComment").toString());
                                 if(jObject.get("Clear")!=null)
                                 {
@@ -1569,9 +1565,21 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
 
 
-                } catch (Exception g) {
-                    g.printStackTrace();
-                    Log.d("Exception 1 :", "from JSONArray: ");
+                } catch (Exception g){
+                    //g.printStackTrace();
+                    //Log.d("Exception 1 :", "from JSONArray: ");
+                    try {
+
+
+                        String enumLog = "";
+
+                        Date currentTime = Calendar.getInstance().getTime();
+                        enumLog = "Synchronize Recieve Error: " + g.toString();
+
+                        writeFileOnInternalStorage(Dashboard.this, "ActivityLog.txt", enumLog);
+                    } catch (Exception ss){
+
+                    }
                 }
 
 
@@ -1959,10 +1967,10 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
         @Override
         protected void onPostExecute(String result){
-            Log.d("From Server", "The...." + result);
+            //Log.d("From Server", "The...." + result);
             result = result.replace("\"", "");
             int r = 3;
-            try{ r=Integer.parseInt(result);}catch (Exception g){ Log.d("Syncronize error",g.toString());}
+            try{ r=Integer.parseInt(result);}catch (Exception g){ Log.d("Synchronize error",g.toString());}
 
             if(result!=null){
                 if(r==1){
@@ -2027,10 +2035,10 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                     if(r==0){
                         d.dismiss();
                         AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
-                        builder.setTitle("Error");
+                        builder.setTitle("Synchronization Error");
                         builder.setIcon(R.drawable.ic_error_red_24dp);
 
-                        builder.setMessage("An error has been encountered while synchronizing: From Server");
+                        builder.setMessage("An error has been encountered while synchronizing. A Error log has been sent for technical assistance.");
                         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //Do nothing only when the Head of House is selected we proceed.
@@ -2046,6 +2054,23 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                         positiveButton.setTextColor(Color.WHITE);
                         positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
                         positiveButton.setLayoutParams(positiveButtonLL);
+
+                        try {
+
+
+                            String enumLog = "";
+
+                            Date currentTime = Calendar.getInstance().getTime();
+                            enumLog = "Synchronize Send Error: " + status;
+
+                            writeFileOnInternalStorage(Dashboard.this, "ActivityLog.txt", enumLog);
+                        } catch (Exception ss){
+
+                        }
+
+
+
+
                     }else{
                         //exception during sync
                         d.dismiss();
@@ -2053,7 +2078,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                         builder.setTitle("Fatal Error");
                         builder.setIcon(R.drawable.ic_error_red_24dp);
 
-                        builder.setMessage("An error has been encountered while synchronizing: try did not work" + r + "::"+status);
+                        builder.setMessage("An error has been encountered while synchronizing: An Error log has been sent for technical assistance.");
                         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //Do nothing only when the Head of House is selected we proceed.
@@ -2069,6 +2094,20 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                         positiveButton.setTextColor(Color.WHITE);
                         positiveButton.setBackgroundColor(Color.parseColor("#FF0000"));
                         positiveButton.setLayoutParams(positiveButtonLL);
+
+                        try {
+
+
+                            String enumLog = "";
+
+                            Date currentTime = Calendar.getInstance().getTime();
+                            enumLog = "Synchronize Send Error: " + status;
+
+                            writeFileOnInternalStorage(Dashboard.this, "ActivityLog.txt", enumLog);
+                        } catch (Exception ss){
+
+                        }
+
 
                     }
 
@@ -2101,6 +2140,23 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
                 positiveButton.setLayoutParams(positiveButtonLL);
 
+                try {
+
+
+                    String enumLog = "";
+
+                    Date currentTime = Calendar.getInstance().getTime();
+                    enumLog = "Synchronize Send Error: " + status;
+
+                    writeFileOnInternalStorage(Dashboard.this, "ActivityLog.txt", enumLog);
+                } catch (Exception ss){
+
+                }
+
+
+
+
+
             }
 
 
@@ -2112,12 +2168,31 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed(){
         Intent intent = new Intent(Dashboard.this, Dashboard.class);
         startActivity(intent);
-
-
     }
 
+    /**
+     * WRITE LIST OF MEMBERS
+     */
+    public void writeFileOnInternalStorage(Context mcoContext,String sFileName, String sBody){
+        //String root = Environment.getExternalStorageDirectory().toString();
+        File file = new File(mcoContext.getFilesDir(),"BaisDataLogs");
+        if(!file.exists()){
+            file.mkdir();
+        }
 
+        try{
+            File gpxfile = new File(file, sFileName);
+            FileWriter writer = new FileWriter(gpxfile,true);
+            writer.append(sBody);
+            writer.append("\n\r");
+            writer.flush();
+            writer.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

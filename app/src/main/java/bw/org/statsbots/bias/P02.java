@@ -259,7 +259,7 @@ public class P02 extends AppCompatActivity implements Serializable {
                         //Set P02 fir the current individual
                         thisHouse.getPersons()[p1.getLineNumber()].setP02(selectedRbtn.getText().toString().substring(0,2));
 
-                        Log.d("Data", thisHouse.getPersons()[p1.getLineNumber()].getP01());
+                        //Log.d("Data", thisHouse.getPersons()[p1.getLineNumber()].getP01());
                         /**
                          * If current person LineNumber is equal to TotalPersons-1
                          * Proceed to next Question in the roster

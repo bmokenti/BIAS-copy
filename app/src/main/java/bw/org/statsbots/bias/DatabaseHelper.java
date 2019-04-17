@@ -1573,7 +1573,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhrosterValues.put(BatchNumberR, houseHold.getBatchNumber());
             hhrosterValues.put(SRNO, houseHold.getPersons()[i].getLineNumber());
             hhrosterValues.put(P01, houseHold.getPersons()[i].getP01());
-            Log.d("Person Name", houseHold.getPersons()[i].getP01());
             hhrosterValues.put(P02, houseHold.getPersons()[i].getP02());
             hhrosterValues.put(P03, houseHold.getPersons()[i].getP03());
             hhrosterValues.put(P04_YY, houseHold.getPersons()[i].getP04YY());
@@ -1598,23 +1597,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             hhrosterValues.put(P21, houseHold.getPersons()[i].getP21());
             // hhrosterValues.put(BloodSampleCollected, houseHold.getPersons()[i].getBloodSampleCollected());
             hhrosterValues.put(Barcode, houseHold.getPersons()[i].getBarcode());
-            // hhrosterValues.put(RapidResults, houseHold.getPersons()[i].getRapidResults());
-            //hhrosterValues.put(RapidDate, houseHold.getPersons()[i].getRapidDate());
-            /*hhrosterValues.put(H01, houseHold.getH01());
-            hhrosterValues.put(H02, houseHold.getH02());
-            hhrosterValues.put(H03, houseHold.getH03());
-            hhrosterValues.put(H03Other, houseHold.getH03Other());
-            hhrosterValues.put(H04, houseHold.getH04());
-            hhrosterValues.put(H04Other, houseHold.getH04Other());
-            hhrosterValues.put(H05, houseHold.getH05());
-            hhrosterValues.put(H05Other, houseHold.getH05Other());
-            hhrosterValues.put(H06, houseHold.getH06());
-            hhrosterValues.put(H07, houseHold.getH07());
-            hhrosterValues.put(H08, houseHold.getH08());
-            hhrosterValues.put(H09, houseHold.getH09());
-            hhrosterValues.put(H09Other, houseHold.getH09Other());
-            hhrosterValues.put(H10, houseHold.getH10());
-            hhrosterValues.put(H11, houseHold.getH11());*/
+
 
             hhrosterValues.put(BloodDraw, houseHold.getPersons()[i].getBloodDraw());
             hhrosterValues.put(BloodVolume_1, houseHold.getPersons()[i].getBloodVolume_1());
@@ -3746,16 +3729,15 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         return hhDetails;
     }
 
-
     ///stopped here*******************************************************************************************************************************************************************
     public List<PersonRoster> getdataHhP(String assignment_ID, String Batch) {
-        // DataModel dataModel = new DataModel();
+
         List<PersonRoster> PRoster = new ArrayList<>();
-        SQLiteDatabase db = this.getWritableDatabase();
-        db = this.getReadableDatabase();
+        SQLiteDatabase db  = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + tblhhroster + " ;", null);
         StringBuffer stringBuffer = new StringBuffer();
         PersonRoster dataModel = null;
+
         while (cursor.moveToNext()) {
             dataModel = new PersonRoster();
 
@@ -4078,6 +4060,184 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         return PRoster;
     }
+
+    /**
+     * get persons for Listing P01
+     */
+    public List<PersonRoster> getPersonP01(String assignment_ID, String Batch) {
+
+        List<PersonRoster> PRoster = new ArrayList<>();
+        SQLiteDatabase db  = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + tblhhroster + " WHERE EA_Assignment_ID="+assignment_ID+" and BatchNumber="+Batch+";", null);
+        StringBuffer stringBuffer = new StringBuffer();
+        PersonRoster dataModel = null;
+
+        while (cursor.moveToNext()) {
+            dataModel = new PersonRoster();
+
+            String SRNO = cursor.getString(cursor.getColumnIndexOrThrow("SRNO"));
+            String P01 = cursor.getString(cursor.getColumnIndexOrThrow("P01"));
+            String P02 = cursor.getString(cursor.getColumnIndexOrThrow("P02"));
+            String P03 = cursor.getString(cursor.getColumnIndexOrThrow("P03"));
+            String P04_YY = cursor.getString(cursor.getColumnIndexOrThrow("P04_YY"));
+            String P04_MM = cursor.getString(cursor.getColumnIndexOrThrow("P04_MM"));
+            String P04_WKS = cursor.getString(cursor.getColumnIndexOrThrow("P04_WKS"));
+            String P05 = cursor.getString(cursor.getColumnIndexOrThrow("P05"));
+            String P06 = cursor.getString(cursor.getColumnIndexOrThrow("P06"));
+            String P07 = cursor.getString(cursor.getColumnIndexOrThrow("P07"));
+            String P08 = cursor.getString(cursor.getColumnIndexOrThrow("P08"));
+            String P09 = cursor.getString(cursor.getColumnIndexOrThrow("P09"));
+            String P10 = cursor.getString(cursor.getColumnIndexOrThrow("P10"));
+            String P11 = cursor.getString(cursor.getColumnIndexOrThrow("P11"));
+            String P12 = cursor.getString(cursor.getColumnIndexOrThrow("P12"));
+            String P13 = cursor.getString(cursor.getColumnIndexOrThrow("P13"));
+            String P13Other= cursor.getString(cursor.getColumnIndexOrThrow("P13Other"));
+            String P14 = cursor.getString(cursor.getColumnIndexOrThrow("P14"));
+            String P15 = cursor.getString(cursor.getColumnIndexOrThrow("P15"));
+            String P16 = cursor.getString(cursor.getColumnIndexOrThrow("P16"));
+            String P17 = cursor.getString(cursor.getColumnIndexOrThrow("P17"));
+            String P18 = cursor.getString(cursor.getColumnIndexOrThrow("P18"));
+            String P19 = cursor.getString(cursor.getColumnIndexOrThrow("P19"));
+            String P20 = cursor.getString(cursor.getColumnIndexOrThrow("P20"));
+            String P21 = cursor.getString(cursor.getColumnIndexOrThrow("P21"));
+            //String B3_RapidConsent_Yes_No = cursor.getString(cursor.getColumnIndexOrThrow("B3_RapidConsent_Yes_No"));
+
+            // String B3_Date = cursor.getString(cursor.getColumnIndexOrThrow("B3_Date"));
+            String Barcode = cursor.getString(cursor.getColumnIndexOrThrow("Barcode"));
+            //String U15Rapid_Results = cursor.getString(cursor.getColumnIndexOrThrow("U15Rapid_Result"));
+            // String Rapid_Comment = cursor.getString(cursor.getColumnIndexOrThrow("Rapid_Comment"));
+
+
+            String BloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("BloodDraw"));
+            String BloodVolume_1 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_1"));
+            String BloodVolume_4 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_4"));
+            String BloodVolume_6 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_6"));
+            String BloodVolume_10 = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolume_10"));
+            String BloodVolumeComment = cursor.getString(cursor.getColumnIndexOrThrow("BloodVolumeComment"));
+            String Rapid = cursor.getString(cursor.getColumnIndexOrThrow("Rapid"));
+            String RapidResults = cursor.getString(cursor.getColumnIndexOrThrow("RapidResults"));
+            String BloodLabTest = cursor.getString(cursor.getColumnIndexOrThrow("BloodLabTest"));
+            String BloodStore = cursor.getString(cursor.getColumnIndexOrThrow("BloodStore"));
+            String RapidDate = cursor.getString(cursor.getColumnIndexOrThrow("RapidDate"));
+            String BloodSampleCollected = cursor.getString(cursor.getColumnIndexOrThrow("BloodSampleCollected"));
+            String ChPrntlConsentBloodDraw = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentBloodDraw"));
+            String ChPrntlConsentRHT = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentRHT"));
+            String ChPrntlConsentLabTest = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentLabTest"));
+            String ChPrntlConsentBloodStore = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentBloodStore"));
+            String B3_Guardian = cursor.getString(cursor.getColumnIndexOrThrow("B3_Guardian"));
+            String ChPrntlConsentDate = cursor.getString(cursor.getColumnIndexOrThrow("ChPrntlConsentDate"));
+
+            String PrntlConsentX_Ray = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_Ray"));
+            String PrntlConsentX_RayReview = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_RayReview"));
+            String PrntlConsentX_RayStore = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentX_RayStore"));
+            String PrntlConsentSP_Collect = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentSP_Collect"));
+            String PrntlParentSP_AddTests = cursor.getString(cursor.getColumnIndexOrThrow("PrntlParentSP_AddTests"));
+            String PrntlConsentSP_LabTest = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentSP_LabTest"));
+            String PrntlConsentTBDate = cursor.getString(cursor.getColumnIndexOrThrow("PrntlConsentTBDate"));
+
+            String IndTB_X_Ray = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_X_Ray"));
+            String IndTB_X_RayReview = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_X_RayReview"));
+            String IndTB_X_RayStore = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_X_RayStore"));
+            String IndSP_Collect = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_Collect"));
+            String IndSP_AddTests = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_AddTests"));
+
+            String IndSP_LabTests = cursor.getString(cursor.getColumnIndexOrThrow("IndSP_LabTests"));
+            String IndTB_ConsentDate = cursor.getString(cursor.getColumnIndexOrThrow("IndTB_ConsentDate"));
+
+            dataModel.setAssignmentID(cursor.getString(cursor.getColumnIndexOrThrow("EA_Assignment_ID")));
+            dataModel.setBatch(cursor.getString(cursor.getColumnIndexOrThrow("BatchNumber")));
+            dataModel.setSRNO(Integer.valueOf(SRNO));
+            dataModel.setP01(P01);
+            dataModel.setP02(P02);
+            dataModel.setP03(P03);
+            dataModel.setP04YY(P04_YY);
+            dataModel.setP04MM(P04_MM);
+            dataModel.setP04WKS(P04_WKS);
+            dataModel.setP05(P05);
+            dataModel.setP06(P06);
+            dataModel.setP07(P07);
+            dataModel.setP08(P08);
+            dataModel.setP09(P09);
+            dataModel.setP10(P10);
+            dataModel.setP11(P11);
+            dataModel.setP12(P12);
+            dataModel.setP13(P13);
+            dataModel.setP13Other(P13Other);
+            dataModel.setP14(P14);
+            dataModel.setP15(P15);
+            dataModel.setP16(P16);
+            dataModel.setP17(P17);
+            dataModel.setP18(P18);
+            dataModel.setP19(P19);
+            dataModel.setP20(P20);
+            dataModel.setP21(P21);
+            // dataModel.setB3_RapidConsent_Yes_No(B3_RapidConsent_Yes_No);
+
+            // dataModel.setB3_Date(B3_Date);
+
+
+            dataModel.setBarcode(Barcode);
+            dataModel.setBloodDraw(BloodDraw);
+            dataModel.setBloodVolume_1(BloodVolume_1);
+            dataModel.setBloodVolume_4(BloodVolume_4);
+            dataModel.setBloodVolume_6(BloodVolume_6);
+            dataModel.setBloodVolume_10(BloodVolume_10);
+            dataModel.setBloodVolumeComment(BloodVolumeComment);
+            dataModel.setRapid(Rapid);
+            dataModel.setRapidResults(RapidResults);
+            dataModel.setBloodLabTest(BloodLabTest);
+            dataModel.setBloodStore(BloodStore);
+            dataModel.setRapidDate(RapidDate);
+            dataModel.setBloodSampleCollected(BloodSampleCollected);
+            dataModel.setChPrntlConsentBloodDraw(ChPrntlConsentBloodDraw);
+            dataModel.setChPrntlConsentRHT(ChPrntlConsentRHT);
+            dataModel.setChPrntlConsentLabTest(ChPrntlConsentLabTest);
+            dataModel.setChPrntlConsentBloodStore(ChPrntlConsentBloodStore);
+            dataModel.setB3_Guardian(B3_Guardian);
+            dataModel.setChPrntlConsentDate(ChPrntlConsentDate);
+
+            dataModel.setPrntlConsentX_Ray(PrntlConsentX_Ray);
+            dataModel.setPrntlConsentX_RayReview(PrntlConsentX_RayReview);
+            dataModel.setPrntlConsentX_RayStore(PrntlConsentX_RayStore);
+            dataModel.setPrntlConsentSP_Collect(PrntlConsentSP_Collect);
+            dataModel.setPrntlParentSP_AddTests(PrntlParentSP_AddTests);
+            dataModel.setPrntlConsentSP_LabTest(PrntlConsentSP_LabTest);
+            dataModel.setPrntlConsentTBDate(PrntlConsentTBDate);
+
+            dataModel.setIndTB_X_Ray(IndTB_X_Ray);
+            dataModel.setIndTB_X_RayReview(IndTB_X_RayReview);
+            dataModel.setIndTB_X_RayStore(IndTB_X_RayStore);
+            dataModel.setIndSP_Collect(IndSP_Collect);
+            dataModel.setIndSP_AddTests(IndSP_AddTests);
+
+            dataModel.setIndSP_LabTests(IndSP_LabTests);
+            dataModel.setIndTB_ConsentDate(IndTB_ConsentDate);
+
+            // dataModel.setOv64BloodDraw(Ov64BloodDraw);
+            //dataModel.setRapid_Comment(Rapid_Comment);
+
+            stringBuffer.append(dataModel);
+            // stringBuffer.append(dataModel);
+            if (dataModel.getAssignmentID().equals(assignment_ID) && dataModel.getBatch().equals(Batch)) {
+                PRoster.add(dataModel);
+            }
+
+        }
+
+
+        return PRoster;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * CHECK BARCODE IN ENUMERATORS GIVEN HOUSEHOLDS
@@ -4989,6 +5149,90 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    //UPDATE HOUSEHOLD SECTION
+    public void updateHHEnd(SQLiteDatabase db, HouseHold houseHold) {
+        SQLiteDatabase db1 = this.getWritableDatabase();
+        ContentValues hhValues = new ContentValues();
+
+
+        //String HH_Assignment_ID = cursor.getString(cursor.getColumnIndexOrThrow("EA_Assignment_ID"));
+        //String BatchNumber = cursor.getString(cursor.getColumnIndexOrThrow("BatchNumber"));
+        //hhValues.put("DWELLING_NO", houseHold.getDWELLING_NO());
+        //hhValues.put("HH_NO", houseHold.getHH_NO());
+        //String ENUMERATOR = cursor.getString(cursor.getColumnIndexOrThrow("ENUMERATOR"));
+        //String SUPERVISOR = cursor.getString(cursor.getColumnIndexOrThrow("SUPERVISOR"));
+        // String QUALITY_CONTROLLER = cursor.getString(cursor.getColumnIndexOrThrow("QUALITY_CONTROLLER"));
+        hhValues.put("INTERVIEWER_VISITS1", houseHold.getINTERVIEWER_VISIT1());
+        hhValues.put("DATE1", houseHold.getDATE1());
+        hhValues.put("VISIT1_RESULT", houseHold.getVISIT1_RESULT());
+        hhValues.put("COMMENT1", houseHold.getCOMMENT1());
+        hhValues.put("NEXT_VISIT_2_DATE", houseHold.getNEXT_VISIT_2_DATE());
+        hhValues.put("NEXT_VISIT_2_Time", houseHold.getNEXT_VISIT_2_TIME());
+        hhValues.put("INTERVIEWER_VISITS2", houseHold.getINTERVIEWER_VISIT2());
+        hhValues.put("DATE2", houseHold.getDATE2());
+        hhValues.put("VISIT2_RESULT", houseHold.getVISIT2_RESULT());
+        hhValues.put("COMMENT2", houseHold.getCOMMENT2());
+        hhValues.put("NEXT_VISIT_3_DATE", houseHold.getNEXT_VISIT_3_DATE());
+        hhValues.put("NEXT_VISIT_3_Time", houseHold.getNEXT_VISIT_3_TIME());
+        hhValues.put("INTERVIEWER_VISITS3", houseHold.getINTERVIEWER_VISIT3());
+        hhValues.put("DATE3", houseHold.getDATE3());
+        hhValues.put("VISIT3_RESULT", houseHold.getVISIT3_RESULT());
+        hhValues.put("COMMENT_3", houseHold.getCOMMENT3());
+        hhValues.put("TOTAL_VISITS", houseHold.getTOTAL_VISITS());
+
+        hhValues.put("CONSENT", houseHold.getCONSENT());
+        //hhValues.put("CHECKED_BY",houseHold.get);
+        //hhValues.put("CODED",houseHold);
+        hhValues.put("FINAL_RESULT", houseHold.getFINAL_RESULT());
+        hhValues.put("FINAL_OTHER", houseHold.getFINAL_OTHER());
+        hhValues.put("H01", houseHold.getH01());
+        hhValues.put("Interview_Status", houseHold.getInterview_Status());
+        hhValues.put("H02", houseHold.getH02());
+        hhValues.put("H03", houseHold.getH03());
+        hhValues.put("H03Other", houseHold.getH03Other());
+        hhValues.put("H04", houseHold.getH04());
+        hhValues.put("H04Other", houseHold.getH04Other());
+        hhValues.put("H05", houseHold.getH05());
+        hhValues.put("H05Other", houseHold.getH05Other());
+        hhValues.put("H06", houseHold.getH06());
+        hhValues.put("H07", houseHold.getH07());
+        hhValues.put("H08", houseHold.getH08());
+        hhValues.put("H08Other", houseHold.getH08Other());
+        hhValues.put("H09", houseHold.getH09());
+        hhValues.put("H09Other", houseHold.getH09Other());
+        hhValues.put("H10", houseHold.getH10());
+        hhValues.put("H11", houseHold.getH11());
+        hhValues.put("H11Other", houseHold.getH11Other());
+
+        hhValues.put("H12Radio", houseHold.getH12());
+        hhValues.put("H12TV", houseHold.getH12TV());
+        hhValues.put("H12Telephone", houseHold.getH12Telephone());
+        hhValues.put("H12CellPhone", houseHold.getH12CellPhone());
+        hhValues.put("H12PrintMedia", houseHold.getH12PrintMedia());
+        hhValues.put("H12ElecMedia", houseHold.getH12ElecMedia());
+        hhValues.put("H12PerformArts", houseHold.getH12PerfomArts());
+
+        hhValues.put("H13Vehicle", houseHold.getH13());
+        hhValues.put("H13Tractor", houseHold.getH13Tractor());
+        hhValues.put("H13Motorcycle", houseHold.getH13Motorcycle());
+        hhValues.put("H13Bicycle", houseHold.getH13Bicycle());
+        hhValues.put("H13DonkeyCart", houseHold.getH13DonkeyCart());
+        hhValues.put("H13DonkeyHorse", houseHold.getH13DonkeyHorse());
+        hhValues.put("H13Camels", houseHold.getH13Camels());
+
+        int i = db1.update
+                (tblhousehold, // table
+                        hhValues, // column/value
+                        "EA_Assignment_ID = ? and BatchNumber = ?", // selections
+                        new String[]{String.valueOf(houseHold.getAssignment_ID()), String.valueOf(houseHold.getBatchNumber())}
+                );
+
+
+        db1.close();
+    }
+
+
+
     //UPDATE HOUSEHOLD COLUMNS EACH
     public void updateHouseholdAllColumns(SQLiteDatabase db, HouseHold houseHold) {
         SQLiteDatabase db1 = this.getWritableDatabase();
@@ -4997,8 +5241,8 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         //String HH_Assignment_ID = cursor.getString(cursor.getColumnIndexOrThrow("EA_Assignment_ID"));
         //String BatchNumber = cursor.getString(cursor.getColumnIndexOrThrow("BatchNumber"));
-        hhValues.put("DWELLING_NO", houseHold.getDWELLING_NO());
-        hhValues.put("HH_NO", houseHold.getHH_NO());
+        //hhValues.put("DWELLING_NO", houseHold.getDWELLING_NO());
+        //hhValues.put("HH_NO", houseHold.getHH_NO());
         //String ENUMERATOR = cursor.getString(cursor.getColumnIndexOrThrow("ENUMERATOR"));
         //String SUPERVISOR = cursor.getString(cursor.getColumnIndexOrThrow("SUPERVISOR"));
         // String QUALITY_CONTROLLER = cursor.getString(cursor.getColumnIndexOrThrow("QUALITY_CONTROLLER"));
@@ -5071,89 +5315,93 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
         if (houseHold.getPersons() != null) {
 
-
             for (int k = 0; k < houseHold.getPersons().length; k++) {
+                if(houseHold.getPersons()[k] !=null) {
+                    if(houseHold.getPersons()[k].getP01()!=null) {
+                        if(houseHold.getPersons()[k].getP01().length()>0) {
+                            hhValues = new ContentValues();
+                            hhValues.put("EA_Assignment_ID", houseHold.getAssignment_ID());
+                            hhValues.put("BatchNumber", houseHold.getBatchNumber());
+                            //Log.d("From update Roster", houseHold.getPersons()[k].getP01());
+                            hhValues.put("SRNO", houseHold.getPersons()[k].getSRNO());
+                            hhValues.put("P01", houseHold.getPersons()[k].getP01());
+                            hhValues.put("P02", houseHold.getPersons()[k].getP02());
+                            hhValues.put("P03", houseHold.getPersons()[k].getP03());
+                            hhValues.put("P04_YY", houseHold.getPersons()[k].getP04YY());
+                            hhValues.put("P04_MM", houseHold.getPersons()[k].getP04MM());
+                            hhValues.put("P04_WKS", houseHold.getPersons()[k].getP04WKS());
+                            hhValues.put("P06", houseHold.getPersons()[k].getP06());
+                            hhValues.put("P07", houseHold.getPersons()[k].getP07());
+                            hhValues.put("P17", houseHold.getPersons()[k].getP17());
+                            hhValues.put("P18", houseHold.getPersons()[k].getP18());
+                            hhValues.put("P19", houseHold.getPersons()[k].getP19());
+                            hhValues.put("P20", houseHold.getPersons()[k].getP20());
+                            hhValues.put("P21", houseHold.getPersons()[k].getP21());
 
-                hhValues = new ContentValues();
-                hhValues.put("EA_Assignment_ID", houseHold.getAssignment_ID());
-                hhValues.put("BatchNumber", houseHold.getBatchNumber());
-                Log.d("From update Roster", houseHold.getPersons()[k].getP01());
-                hhValues.put("SRNO", houseHold.getPersons()[k].getSRNO());
-                hhValues.put("P01", houseHold.getPersons()[k].getP01());
-                hhValues.put("P02", houseHold.getPersons()[k].getP02());
-                hhValues.put("P03", houseHold.getPersons()[k].getP03());
-                hhValues.put("P04_YY", houseHold.getPersons()[k].getP04YY());
-                hhValues.put("P04_MM", houseHold.getPersons()[k].getP04MM());
-                hhValues.put("P04_WKS", houseHold.getPersons()[k].getP04WKS());
-                hhValues.put("P06", houseHold.getPersons()[k].getP06());
-                hhValues.put("P07", houseHold.getPersons()[k].getP07());
-                hhValues.put("P17", houseHold.getPersons()[k].getP17());
-                hhValues.put("P18", houseHold.getPersons()[k].getP18());
-                hhValues.put("P19", houseHold.getPersons()[k].getP19());
-                hhValues.put("P20", houseHold.getPersons()[k].getP20());
-                hhValues.put("P21", houseHold.getPersons()[k].getP21());
+                            //hhValues.put("B3_RapidConsent_Yes_No", houseHold.getPersons()[k].getB3_RapidConsent_Yes_No());
+                            // hhValues.put("B3_Guardian", houseHold.getPersons()[k].getB3_Guardian());
+                            //hhValues.put("B3_Date", houseHold.getPersons()[k].getB3_Date());
+                            //hhValues.put("U15Rapid_Result", houseHold.getPersons()[k].getU15Rapid_Results());
+                            // hhValues.put("Rapid_Comment", houseHold.getPersons()[k].getRapid_Comment());
+                            hhValues.put("BarCodeHHR", houseHold.getPersons()[k].getBarcode());
+                            hhValues.put("P08", houseHold.getPersons()[k].getP08());
+                            hhValues.put("P10", houseHold.getPersons()[k].getP10());
+                            hhValues.put("P11", houseHold.getPersons()[k].getP11());
+                            hhValues.put("P12", houseHold.getPersons()[k].getP12());
+                            hhValues.put("P13", houseHold.getPersons()[k].getP13());
+                            hhValues.put("P13Other", houseHold.getPersons()[k].getP13Other());
+                            hhValues.put("P14", houseHold.getPersons()[k].getP14());
+                            hhValues.put("P15", houseHold.getPersons()[k].getP15());
+                            hhValues.put("P16", houseHold.getPersons()[k].getP16());
 
-                //hhValues.put("B3_RapidConsent_Yes_No", houseHold.getPersons()[k].getB3_RapidConsent_Yes_No());
-                // hhValues.put("B3_Guardian", houseHold.getPersons()[k].getB3_Guardian());
-                //hhValues.put("B3_Date", houseHold.getPersons()[k].getB3_Date());
-                //hhValues.put("U15Rapid_Result", houseHold.getPersons()[k].getU15Rapid_Results());
-                // hhValues.put("Rapid_Comment", houseHold.getPersons()[k].getRapid_Comment());
-                hhValues.put("BarCodeHHR", houseHold.getPersons()[k].getBarcode());
-                hhValues.put("P08", houseHold.getPersons()[k].getP08());
-                hhValues.put("P10", houseHold.getPersons()[k].getP10());
-                hhValues.put("P11", houseHold.getPersons()[k].getP11());
-                hhValues.put("P12", houseHold.getPersons()[k].getP12());
-                hhValues.put("P13", houseHold.getPersons()[k].getP13());
-                hhValues.put("P13Other", houseHold.getPersons()[k].getP13Other());
-                hhValues.put("P14", houseHold.getPersons()[k].getP14());
-                hhValues.put("P15", houseHold.getPersons()[k].getP15());
-                hhValues.put("P16", houseHold.getPersons()[k].getP16());
+                            hhValues.put("BloodDraw", houseHold.getPersons()[k].getBloodDraw());
+                            hhValues.put("BloodVolume_1", houseHold.getPersons()[k].getBloodVolume_1());
+                            hhValues.put("BloodVolume_4", houseHold.getPersons()[k].getBloodVolume_4());
+                            hhValues.put("BloodVolume_6", houseHold.getPersons()[k].getBloodVolume_6());
+                            hhValues.put("BloodVolume_10", houseHold.getPersons()[k].getBloodVolume_10());
+                            hhValues.put("BloodVolumeComment", houseHold.getPersons()[k].getBloodVolumeComment());
+                            hhValues.put("Rapid", houseHold.getPersons()[k].getRapid());
+                            hhValues.put("RapidResults", houseHold.getPersons()[k].getRapidResults());
+                            hhValues.put("BloodLabTest", houseHold.getPersons()[k].getBloodLabTest());
+                            hhValues.put("BloodStore", houseHold.getPersons()[k].getBloodStore());
+                            hhValues.put("RapidDate", houseHold.getPersons()[k].getRapidDate());
+                            hhValues.put("BloodSampleCollected", houseHold.getPersons()[k].getBloodSampleCollected());
+                            hhValues.put("ChPrntlConsentBloodDraw", houseHold.getPersons()[k].getChPrntlConsentBloodDraw());
+                            hhValues.put("ChPrntlConsentRHT", houseHold.getPersons()[k].getChPrntlConsentRHT());
+                            hhValues.put("ChPrntlConsentLabTest", houseHold.getPersons()[k].getChPrntlConsentLabTest());
+                            hhValues.put("ChPrntlConsentBloodStore", houseHold.getPersons()[k].getChPrntlConsentBloodStore());
+                            hhValues.put("B3_Guardian", houseHold.getPersons()[k].getB3_Guardian());
+                            hhValues.put("ChPrntlConsentDate", houseHold.getPersons()[k].getChPrntlConsentDate());
 
-                hhValues.put("BloodDraw", houseHold.getPersons()[k].getBloodDraw());
-                hhValues.put("BloodVolume_1", houseHold.getPersons()[k].getBloodVolume_1());
-                hhValues.put("BloodVolume_4", houseHold.getPersons()[k].getBloodVolume_4());
-                hhValues.put("BloodVolume_6", houseHold.getPersons()[k].getBloodVolume_6());
-                hhValues.put("BloodVolume_10", houseHold.getPersons()[k].getBloodVolume_10());
-                hhValues.put("BloodVolumeComment", houseHold.getPersons()[k].getBloodVolumeComment());
-                hhValues.put("Rapid", houseHold.getPersons()[k].getRapid());
-                hhValues.put("RapidResults", houseHold.getPersons()[k].getRapidResults());
-                hhValues.put("BloodLabTest", houseHold.getPersons()[k].getBloodLabTest());
-                hhValues.put("BloodStore", houseHold.getPersons()[k].getBloodStore());
-                hhValues.put("RapidDate", houseHold.getPersons()[k].getRapidDate());
-                hhValues.put("BloodSampleCollected", houseHold.getPersons()[k].getBloodSampleCollected());
-                hhValues.put("ChPrntlConsentBloodDraw", houseHold.getPersons()[k].getChPrntlConsentBloodDraw());
-                hhValues.put("ChPrntlConsentRHT", houseHold.getPersons()[k].getChPrntlConsentRHT());
-                hhValues.put("ChPrntlConsentLabTest", houseHold.getPersons()[k].getChPrntlConsentLabTest());
-                hhValues.put("ChPrntlConsentBloodStore", houseHold.getPersons()[k].getChPrntlConsentBloodStore());
-                hhValues.put("B3_Guardian", houseHold.getPersons()[k].getB3_Guardian());
-                hhValues.put("ChPrntlConsentDate", houseHold.getPersons()[k].getChPrntlConsentDate());
+                            hhValues.put("PrntlConsentX_Ray", houseHold.getPersons()[k].getPrntlConsentX_Ray());
+                            hhValues.put("PrntlConsentX_RayReview", houseHold.getPersons()[k].getPrntlConsentX_RayReview());
+                            hhValues.put("PrntlConsentX_RayStore", houseHold.getPersons()[k].getPrntlConsentX_RayStore());
+                            hhValues.put("PrntlConsentSP_Collect", houseHold.getPersons()[k].getPrntlConsentSP_Collect());
+                            hhValues.put("PrntlParentSP_AddTests", houseHold.getPersons()[k].getPrntlParentSP_AddTests());
+                            hhValues.put("PrntlConsentSP_LabTest", houseHold.getPersons()[k].getPrntlConsentSP_LabTest());
+                            hhValues.put("PrntlConsentTBDate", houseHold.getPersons()[k].getPrntlConsentTBDate());
 
-                hhValues.put("PrntlConsentX_Ray", houseHold.getPersons()[k].getPrntlConsentX_Ray());
-                hhValues.put("PrntlConsentX_RayReview", houseHold.getPersons()[k].getPrntlConsentX_RayReview());
-                hhValues.put("PrntlConsentX_RayStore", houseHold.getPersons()[k].getPrntlConsentX_RayStore());
-                hhValues.put("PrntlConsentSP_Collect", houseHold.getPersons()[k].getPrntlConsentSP_Collect());
-                hhValues.put("PrntlParentSP_AddTests", houseHold.getPersons()[k].getPrntlParentSP_AddTests());
-                hhValues.put("PrntlConsentSP_LabTest", houseHold.getPersons()[k].getPrntlConsentSP_LabTest());
-                hhValues.put("PrntlConsentTBDate", houseHold.getPersons()[k].getPrntlConsentTBDate());
-
-                hhValues.put("IndTB_X_Ray", houseHold.getPersons()[k].getIndTB_X_Ray());
-                hhValues.put("IndTB_X_RayReview", houseHold.getPersons()[k].getIndTB_X_RayReview());
-                hhValues.put("IndTB_X_RayStore", houseHold.getPersons()[k].getIndTB_X_RayStore());
-                hhValues.put("IndSP_Collect", houseHold.getPersons()[k].getIndSP_Collect());
-                hhValues.put("IndSP_AddTests", houseHold.getPersons()[k].getIndSP_AddTests());
-                hhValues.put("IndSP_LabTests", houseHold.getPersons()[k].getIndSP_LabTests());
-                hhValues.put("IndTB_ConsentDate", houseHold.getPersons()[k].getIndTB_ConsentDate());
+                            hhValues.put("IndTB_X_Ray", houseHold.getPersons()[k].getIndTB_X_Ray());
+                            hhValues.put("IndTB_X_RayReview", houseHold.getPersons()[k].getIndTB_X_RayReview());
+                            hhValues.put("IndTB_X_RayStore", houseHold.getPersons()[k].getIndTB_X_RayStore());
+                            hhValues.put("IndSP_Collect", houseHold.getPersons()[k].getIndSP_Collect());
+                            hhValues.put("IndSP_AddTests", houseHold.getPersons()[k].getIndSP_AddTests());
+                            hhValues.put("IndSP_LabTests", houseHold.getPersons()[k].getIndSP_LabTests());
+                            hhValues.put("IndTB_ConsentDate", houseHold.getPersons()[k].getIndTB_ConsentDate());
 
 
-                int ii = db1.update
-                        (tblhhroster, // table
-                                hhValues, // column/value
-                                "EA_Assignment_ID = ? and BatchNumber = ? and SRNO =?", // selections
-                                new String[]{String.valueOf(houseHold.getAssignment_ID()), String.valueOf(houseHold.getBatchNumber()), String.valueOf(houseHold.getPersons()[k].getSRNO())}
-                        );
+                            int ii = db1.update
+                                    (tblhhroster, // table
+                                            hhValues, // column/value
+                                            "EA_Assignment_ID = ? and BatchNumber = ? and SRNO =?", // selections
+                                            new String[]{String.valueOf(houseHold.getAssignment_ID()), String.valueOf(houseHold.getBatchNumber()), String.valueOf(houseHold.getPersons()[k].getSRNO())}
+                                    );
 
-                if (ii > 0) {
-                    Log.d("HH Roster", "Person roster updated");
+                            if (ii > 0) {
+                                //Log.d("HH Roster", "Person roster updated");
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -8713,7 +8961,10 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues hhValues = new ContentValues();
         hhValues.put("SuperComment",j.getSuperComment());
-        hhValues.put("Interview_Status",j.getInterview_Status());
+
+        if(Integer.parseInt(j.getInterview_Status())==2) {
+            hhValues.put("Interview_Status", j.getInterview_Status());
+        }
         hhValues.put("Clear",j.getClear());
 
 

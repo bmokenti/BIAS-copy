@@ -90,8 +90,8 @@ public class P21 extends AppCompatActivity implements Serializable {
             public void onClick(View view)
             {
 
-                myDB = new DatabaseHelper(P21.this);
-                myDB.onOpen(myDB.getReadableDatabase());
+                //myDB = new DatabaseHelper(P21.this);
+                //myDB.onOpen(myDB.getReadableDatabase());
 
                 //UPDATE HOUSEHOLD
                 //myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);

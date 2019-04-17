@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -30,7 +31,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,15 +57,21 @@ public class started_household extends AppCompatActivity implements Serializable
     protected LinearLayout lcomment ;
     protected Button btnUpdate,btnComplete;
     protected LinearLayout tb,hiv;
+    public static final String MY_PREFS_NAME = "bw.org.statsbots.bias.enumerator";
+    SharedPreferences.Editor editor;
+    SharedPreferences preferences;
     protected PersonRoster p1=null;
     protected DatabaseHelper myDB;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_started_household);
-
+        preferences = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         Started_Locality = findViewById(R.id.Started_Locality);
         Timestarted= findViewById(R.id.Timestarted);
         startedDwelling = findViewById(R.id.startedDwelling);
@@ -83,6 +98,9 @@ public class started_household extends AppCompatActivity implements Serializable
 
 
         btnComplete=findViewById(R.id.btnComplete);
+
+
+
 
         btnComplete.setOnClickListener(new View.OnClickListener()   {
             @Override
@@ -2210,6 +2228,8 @@ public class started_household extends AppCompatActivity implements Serializable
     }
     @Override
     public void onBackPressed() {
+        finish();
+
         Intent intent = new Intent(started_household.this,Dashboard.class);
         intent.putExtra("tbNumber", "1");
         startActivity(intent);

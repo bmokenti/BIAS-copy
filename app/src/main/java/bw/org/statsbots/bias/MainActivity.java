@@ -16,6 +16,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.opengl.Visibility;
 import android.os.Build;
+import android.os.Environment;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.annotation.DrawableRes;
@@ -43,9 +44,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Stack;
 
@@ -76,28 +81,26 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
         Intent i = getIntent();
         thisHouse = (HouseHold)i.getSerializableExtra("Household");
-
-        // Log.d("DB Name: ",myDB.getDatabaseName().toString() );
         myDB = new DatabaseHelper(this);
-        //Log.d("DB Name: ",myDB.getDatabaseName().toString() );
         myDB.onOpen(myDB.getWritableDatabase());
 
 
-        Log.d("House", thisHouse.getAssignment_ID());
-
         //***************************Read Roster from Database and load it into Object thisHouse
-        List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+        //List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
+
+
+        List<PersonRoster> list = myDB.getPersonP01(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
 
 
         final int memberExist[]= new int[1];//tracker of exist roster
 
         if(list.size()>0)
         {
-
             PersonRoster[] pp = new PersonRoster[list.size()];
             pp = list.toArray(pp);
             thisHouse.setHouseHoldeMembers(pp);
             memberExist[0] = 1;
+
         }
 
 
@@ -106,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
         if(thisHouse.getPersons() !=null){
 
-
+        Log.d("Size",thisHouse.getPersons().length+"");
         for(int ii = 0;ii<thisHouse.getPersons().length;ii++)
         {
             if(thisHouse.getPersons()[ii] != null){
@@ -133,6 +136,8 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                 personName.setText(thisHouse.getPersons()[ii].getP01());
                 personName.setId(counter);
                 personName.setSingleLine();
+
+
                 Display display = getWindowManager().getDefaultDisplay();
                 int width = display.getWidth();
                 if (width > 700) {
@@ -347,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                 if (width > 700) {
                     //personName.setWidth(700);
                     personName.setWidth(width);
-                } else {
+                }else{
                     personName.setWidth(width);
                 }
 
@@ -524,248 +529,351 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         /**
          * Button to complete listing Individuals
          */
-        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+
         final FloatingActionButton fbDone = (FloatingActionButton)findViewById(R.id.floatNext);
-        fbDone.setOnClickListener(new View.OnClickListener() {
+        try {
+            fbDone.setOnClickListener(new View.OnClickListener() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                @Override
+                public void onClick(View v) {
+                    int Head = 0;
+
+                    if (hhArray[0] == null) {
+                        AlertDialog.Builder builderErr = new AlertDialog.Builder(MainActivity.this);
+                        builderErr.setTitle("P01 Error");
+                        builderErr.setIcon(R.drawable.ic_warning_orange_24dp);
+                        builderErr.setMessage("Persons roster requires atleast 1 person");
+                        builderErr.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //Do nothing only when the Head of House is selected we proceed.
+
+                            }
+                        });
+
+                        /**
+                         * VIBRATE DEVICE
+                         */
+                        Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibs.vibrate(100);
 
 
-            @Override
-            public void onClick(View v) {
-                int Head=0;
+                        AlertDialog alertDialog = builderErr.show();
+                        final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                        positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                        positiveButton.setTextColor(Color.WHITE);
+                        positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
+                        positiveButton.setLayoutParams(positiveButtonLL);
 
-                if(hhArray[0]==null){
-                    AlertDialog.Builder builderErr = new AlertDialog.Builder(MainActivity.this);
-                    builderErr.setTitle("P01 Error");
-                    builderErr.setIcon(R.drawable.ic_warning_orange_24dp);
-                    builderErr.setMessage("Persons roster requires atleast 1 person");
-                    builderErr.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //Do nothing only when the Head of House is selected we proceed.
-
-                        }
-                    });
-
-                    /**
-                     * VIBRATE DEVICE
-                     */
-                    Vibrator vibs = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                    vibs.vibrate(100);
-
-
-                    AlertDialog alertDialog =  builderErr.show();
-                    final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
-                    positiveButtonLL.width=ViewGroup.LayoutParams.MATCH_PARENT;
-                    positiveButton.setTextColor(Color.WHITE);
-                    positiveButton.setBackgroundColor(Color.parseColor("#FF9007"));
-                    positiveButton.setLayoutParams(positiveButtonLL);
-
-                }else{
-                    //Complete the list entry\
-                    int c=0;
-                    for (EditText ed:hhArray) {
-                        if(ed!=null){
-                            if(!ed.getText().toString().isEmpty()){
-                                c++;
+                    } else {
+                        //Complete the list entry\
+                        int c = 0;
+                        for (EditText ed : hhArray) {
+                            if (ed != null) {
+                                if (!ed.getText().toString().isEmpty()) {
+                                    c++;
+                                }
                             }
                         }
-                    }
 
+                        counter =0;
+                        final CharSequence[] list = new String[c];
+                        for (EditText ed : hhArray) {
+                            if (ed != null) {
 
-                    counter = c;
-                    final CharSequence[] list = new String[counter];
-                    for(int i =0;i<counter;i++){
+                                list[counter] = (counter + 1) + " - " + ed.getText().toString();
+                                if (memberExist[0] == 1) {
 
-                            list[i]= (i+1) + " - " + hhArray[i].getText().toString();
-                            //Log.d("Roster ",hhArray.length + " ---- " + counter);
+                                    if (counter == thisHouse.getPersons().length) {
+                                        if (thisHouse.getPersons() != null) {
+                                            if (counter < thisHouse.getPersons().length){
+                                                    if (thisHouse.getPersons()[counter].getP02() != null) {
+                                                        {
+                                                            if (thisHouse.getPersons()[counter].getP02().trim() != "") {
+                                                                if (thisHouse.getPersons()[counter].getP02().equals("00")) {
+                                                                    Head = counter;
+                                                                }
+                                                            }
+                                                        }
 
-                            if(memberExist[0]==1){
-
-                                if(counter == thisHouse.getPersons().length){
-
-                                    if(thisHouse.getPersons()!=null){
-                                        if(thisHouse.getPersons()[i].getP02() != null && thisHouse.getPersons()[i].getP02().trim() != ""){
-                                            if(thisHouse.getPersons()[i].getP02().equals("00")){
-                                                Head = i;
-                                            }
-
-                                        }
-                                    }
-                                }else{
-
-                                    if(thisHouse.getPersons()!=null){
-                                        if(i==thisHouse.getPersons().length && thisHouse.getPersons().length!=0 ){
-                                            break;
-                                        }else{
-                                            if(thisHouse.getPersons()[i].getP02() != null && thisHouse.getPersons()[i].getP02().trim() != "" ){
-                                                if(thisHouse.getPersons()[i].getP02().equals("00")){
-                                                    Head = i;
                                                 }
-
                                             }
+                                        }
+                                    } else {
+
+                                        if (thisHouse.getPersons() != null) {
+                                            if (counter == thisHouse.getPersons().length && thisHouse.getPersons().length != 0) {
+                                                break;
+                                            } else {
+                                                if (counter < thisHouse.getPersons().length){
+
+                                                        if (thisHouse.getPersons()[counter].getP02() != null) {
+                                                            if (thisHouse.getPersons()[counter].getP02().trim() != "") {
+                                                                if (thisHouse.getPersons()[counter].getP02().equals("00")) {
+                                                                    Head = counter;
+                                                                }
+                                                            }
+                                                        }
+
+
+                                                }
+                                            }
+
                                         }
 
                                     }
 
+
+                                }
+                                counter++;
+                            }
+
+                        }
+
+
+                        builder.setTitle("Select/Confirm head of Household");
+                        int selected = Head; // or whatever you want
+
+                        builder.setIcon(R.drawable.ic_person_black_24dp);
+
+                        for(CharSequence fff:list){
+                        }
+                        builder.setSingleChoiceItems(list, selected, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+
+                                //Start New House Class Activity
+                                String[] plist = new String[counter];
+
+                                for (int i = 0; i < counter; i++) {
+                                    if(hhArray[i]!=null){
+                                        plist[i] = hhArray[i].getText().toString();
+                                    }
+                                }
+
+                                //Set the Head of house to index of selected array
+                                //Log.d("Size ",plist.length+"");
+                                HeadofHouse = which;
+
+                                thisHouse.setHead(HeadofHouse);
+
+                                /**
+                                 * DATA FROM THE LISTING
+                                 */
+                                PersonRoster[] p = new PersonRoster[plist.length];
+                                Log.d("Array : ",plist.length+"");
+                                for (int i = 0; i < plist.length; i++){
+                                    p[i] = new PersonRoster();
+                                    p[i].setLineNumber(i);
+                                    p[i].setP01(plist[i]);
+                                    if (i == which){
+                                        p[i].setP02("00");
+                                    }
+                                    //Log.d("Person ", p[i].getLineNumber() + " " + p[i].getP01());
+                                }
+
+
+                                thisHouse.next = String.valueOf(0);
+                                thisHouse.previous = null;
+
+
+                                //Save or Update Persons Roster
+                                List<PersonRoster> ll = myDB.getPersonP01(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
+
+                                if (ll.size() > 0){
+
+
+                                    List<PersonRoster> list = myDB.getPersonP01(thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
+                                    thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
+
+                                    //Log.d("Memmbers", thisHouse.getPersons().length+"");
+                                    List<PersonRoster> kTemp = new ArrayList<>();
+
+                                    for (int ii = 0; ii < plist.length; ii++) {
+                                        if (ii > thisHouse.getPersons().length - 1) {
+                                            //new members
+                                            kTemp.add(p[ii]);
+                                        } else {
+
+                                            if(!thisHouse.getPersons()[ii].getP01().matches(p[ii].getP01())){
+                                                try {
+
+
+                                                    String enumLog = "";
+
+                                                    Date currentTime = Calendar.getInstance().getTime();
+                                                    enumLog = thisHouse.getAssignment_ID() + "," + thisHouse.getBatchNumber() + "," + thisHouse.getDWELLING_NO() + ", " + thisHouse.getHH_NO() + ", " + currentTime.toString() + "," + " Updated: Existing member from: " +thisHouse.getPersons()[ii].getP01()+ " to " + p[ii].getP01()+" : " + p[ii].getSRNO() + " ### ";
+
+                                                    writeFileOnInternalStorage(MainActivity.this, "ActivityLog.txt", enumLog);
+                                                } catch (Exception ss) {
+
+                                                }
+                                            }
+                                            thisHouse.getPersons()[ii].setP01(p[ii].getP01());
+                                        }
+
+                                        //Log.d("Check Persons", ii+"======================");
+                                    }
+
+                                    /**
+                                     * Copy the already existing members to arraylist
+                                     */
+                                    List<PersonRoster> finalList = new ArrayList<>();
+                                    for (PersonRoster pp : thisHouse.getPersons()) {
+                                        finalList.add(pp);
+
+                                    }
+                                    /**
+                                     * Add each new Member in kTemp to finalList then Insert that person
+                                     */
+                                    for (PersonRoster prr : kTemp) {
+                                        finalList.add(prr);
+                                        //Insert this member to DB
+                                        myDB.insertPerson(prr, thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
+                                        try {
+
+
+                                            String enumLog = "";
+
+                                            Date currentTime = Calendar.getInstance().getTime();
+
+                                            enumLog = thisHouse.getAssignment_ID() + "," + thisHouse.getBatchNumber() + "," + thisHouse.getDWELLING_NO() + ", " + thisHouse.getHH_NO() + ", " + currentTime.toString() + "," + " Insert: Added A new member: " + " " + prr.getSRNO() + ", " + prr.getP01() +" ### ";
+
+                                            writeFileOnInternalStorage(MainActivity.this, "ActivityLog.txt", enumLog);
+                                        } catch (Exception ss) {
+
+                                        }
+
+                                    }
+
+
+                                    PersonRoster[] pp = new PersonRoster[finalList.size()];
+                                    pp = finalList.toArray(pp);
+                                    thisHouse.setHouseHoldeMembers(pp);
+
+                                    //myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(), thisHouse);
+
+                                    MainActivity.this.finish();
+                                    Intent intent = new Intent(MainActivity.this, P02.class);
+                                    intent.putExtra("Household", thisHouse);
+                                    startActivity(intent);
+
+
+                                } else {
+                                    thisHouse.setHouseHoldeMembers(p);
+
+                                    //myDB.insertHhroster(thisHouse);
+
+
+                                    for (PersonRoster pr : p) {
+                                        myDB.insertPerson(pr, thisHouse.getAssignment_ID(), thisHouse.getBatchNumber());
+
+                                        try {
+
+
+                                            String enumLog = "";
+
+                                            Date currentTime = Calendar.getInstance().getTime();
+                                            enumLog = thisHouse.getAssignment_ID() + "," + thisHouse.getBatchNumber() + "," + thisHouse.getDWELLING_NO() + ", " + thisHouse.getHH_NO() + ", " + currentTime.toString() + "," + " Insert: Added A new member: " + " " + pr.getSRNO() + ", " + pr.getP01() +" ### ";
+
+                                            writeFileOnInternalStorage(MainActivity.this, "ActivityLog.txt", enumLog);
+                                        } catch (Exception ss) {
+
+                                        }
+                                    }
+
+                                    MainActivity.this.finish();
+                                    Intent intent = new Intent(MainActivity.this, P02.class);
+                                    intent.putExtra("Household", thisHouse);
+
+                                    startActivity(intent);
+
+
                                 }
 
 
                             }
 
+
+
+
+
+                        });
+
+                        try {
+
+                                AlertDialog   ad = builder.show();
+
+                                //SET DIVIDER
+                                ListView listView = ad.getListView();
+                                listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
+                                listView.setDividerHeight(3);
+
+
+                                //OK Button layout
+                                final Button positiveButton = ad.getButton(AlertDialog.BUTTON_POSITIVE);
+                                LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+                                positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                                positiveButton.setTextColor(Color.WHITE);
+                                positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
+                                positiveButton.setLayoutParams(positiveButtonLL);
+
+
+
+                        } catch (Exception g) {
+
+                        }finally {
+
+                        }
 
 
                     }
-
-
-
-
-                    builder.setTitle("Select/Confirm head of Household");
-                    int selected = Head; // or whatever you want
-
-                    builder.setIcon(R.drawable.ic_person_black_24dp);
-                    builder.setSingleChoiceItems(list, selected, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int which) {
-
-                            //Start New House Class Activity
-                            String[] plist = new String[counter];
-
-                            for(int i =0;i<counter;i++)
-                            {
-                                plist[i]= hhArray[i].getText().toString();
-                                //Log.d("Name",plist[i] );
-                            }
-
-                            //Set the Head of house to index of selected array
-                            //Log.d("Size ",plist.length+"");
-                            HeadofHouse = which;
-
-                            thisHouse.setHead(HeadofHouse);
-
-                            /**
-                             * DATA FROM THE LISTING
-                             */
-                            PersonRoster[] p = new PersonRoster[plist.length];
-
-                            for (int i=0;i<plist.length;i++)
-                            {
-                                p[i] = new PersonRoster();
-                                p[i].setLineNumber(i);
-                                p[i].setP01(plist[i]);
-                                if(i==which){
-                                    p[i].setP02("00");
-                                }
-                                //Log.d("Person ", p[i].getLineNumber() + " " + p[i].getP01());
-                            }
-
-
-                            thisHouse.next =String.valueOf(0);
-                            thisHouse.previous=null;
-
-
-
-                            //Save or Update Persons Roster
-                            List<PersonRoster> ll = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
-
-                            if(ll.size()>0)
-                            {
-
-
-                                List<PersonRoster> list = myDB.getdataHhP(thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
-
-                                thisHouse.setHouseHoldeMembers(list.toArray(thisHouse.getHouseHoldeMembers()));
-
-                                //Log.d("Memmbers", thisHouse.getPersons().length+"");
-                                List<PersonRoster> kTemp = new ArrayList<>();
-
-                                for(int ii =0; ii<plist.length;ii++){
-                                    if(ii > thisHouse.getPersons().length-1 )
-                                    {
-                                        kTemp.add(p[ii]);
-                                    }else {
-                                        thisHouse.getPersons()[ii].setP01(p[ii].getP01());
-                                    }
-
-                                    //Log.d("Check Persons", ii+"======================");
-                                }
-
-                                List<PersonRoster> finalList = new ArrayList<>();
-                                for (PersonRoster pp:thisHouse.getPersons()) {
-                                    finalList.add(pp);
-
-                                }
-                                for (PersonRoster pp:kTemp) {
-                                    finalList.add(pp);
-                                    //Insert this member to DB
-                                    myDB.insertPerson(pp,thisHouse.getAssignment_ID(),thisHouse.getBatchNumber());
-                                }
-
-
-
-                                PersonRoster[] pp = new PersonRoster[finalList.size()];
-                                pp = finalList.toArray(pp);
-                                thisHouse.setHouseHoldeMembers(pp);
-
-                                myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
-
-
-                                Intent intent = new Intent(MainActivity.this,P02.class);
-                                intent.putExtra("Household",  thisHouse);
-                                startActivity(intent);
-
-                                //finish();
-
-                            }
-                            else
-                            {
-                                thisHouse.setHouseHoldeMembers(p);
-
-                                myDB.insertHhroster(thisHouse);
-
-
-                                Intent intent = new Intent(MainActivity.this,P02.class);
-                                intent.putExtra("Household",  thisHouse);
-                                startActivity(intent);
-
-                                //finish();
-                            }
-
-
-
-
-                        }
-                    });
-
-                    AlertDialog ad = builder.show();
-
-                    //SET DIVIDER
-                    ListView listView = ad.getListView();
-                    listView.setDivider(new ColorDrawable(Color.parseColor("#FFB4B4B4")));
-                    listView.setDividerHeight(3);
-
-
-                    //OK Button layout
-                    final Button positiveButton = ad.getButton(AlertDialog.BUTTON_POSITIVE);
-                    LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
-                    positiveButtonLL.width=ViewGroup.LayoutParams.MATCH_PARENT;
-                    positiveButton.setTextColor(Color.WHITE);
-                    positiveButton.setBackgroundColor(Color.parseColor("#3FC0FF"));
-                    positiveButton.setLayoutParams(positiveButtonLL);
-
-
 
 
                 }
-
-
-            }
-        });
-
+            });
+        }catch (Exception ggg){
+            ggg.printStackTrace();
+        }
 
 
 
     }
 
 
+    /**
+     * WRITE LIST OF MEMBERS
+     */
+    public void writeFileOnInternalStorage(Context mcoContext,String sFileName, String sBody){
+        //String root = Environment.getExternalStorageDirectory().toString();
+        File file = new File(mcoContext.getFilesDir(),"BaisDataLogs");
+        if(!file.exists()){
+            file.mkdir();
+        }
+
+        try{
+            File gpxfile = new File(file, sFileName);
+            FileWriter writer = new FileWriter(gpxfile,true);
+            writer.append(sBody);
+            writer.append("\n\r");
+            writer.flush();
+            writer.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+    }
+
+
+
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 
 }

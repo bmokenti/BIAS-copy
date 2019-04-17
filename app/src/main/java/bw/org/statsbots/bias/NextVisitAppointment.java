@@ -235,8 +235,8 @@ public class NextVisitAppointment extends AppCompatActivity implements View.OnCl
 
 
                                    /* *
-                                     * LAUNCH DASH BOARD WITHOUT PASSING ANY PAYLOADS
-                                     */
+                                    *LAUNCH DASH BOARD WITHOUT PASSING ANY PAYLOADS
+                                    * */
                                     Intent intent = new Intent(NextVisitAppointment.this,Dashboard.class);
                                     intent.putExtra("Household",  thisHouse);
                                     startActivity(intent);

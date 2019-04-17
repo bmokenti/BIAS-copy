@@ -439,7 +439,7 @@ public class H13 extends AppCompatActivity implements Serializable {
                     //Save all responses
                     //thisHouse.setVISIT1_RESULT("9");
                     thisHouse.setInterview_Status("9");
-                    myDB.updateHouseholdAllColumns(myDB.getWritableDatabase(),thisHouse);
+                    myDB.updateHHEnd(myDB.getWritableDatabase(),thisHouse);
                     myDB.updateHHStatus(thisHouse);
 
 

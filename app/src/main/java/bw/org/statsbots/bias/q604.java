@@ -1083,16 +1083,6 @@ public class q604 extends AppCompatActivity implements Serializable {
         }
 
 
-    //   thisHouse = myDB.getHouseForUpdate(individual.getAssignmentID(),individual.getBatch()).get(0);
-
-//    final List <PersonRoster>  roster = myDB.getdataHhP(ind.getAssignmentID(), ind.getBatch());
-//        for (PersonRoster p: roster
-//        ) {
-//        if (p.getSRNO() == ind.getSRNO()){
-//            p1 = p;
-//            break;
-//        }
-//    }
 
 
     @Override
