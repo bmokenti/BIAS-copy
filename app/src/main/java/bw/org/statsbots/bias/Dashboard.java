@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -42,6 +44,8 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.Console;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -324,7 +328,9 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
                 return true;
 
             case R.id.action_send:
-                List<HouseHold> CompleteddHH = myDB.getCompleted();
+
+
+                 List<HouseHold> CompleteddHH = myDB.getCompleted();
                 LibraryClass lib = new LibraryClass();
                 if(CompleteddHH.size()==0){
                     lib.showError(Dashboard.this,"Synchronization","You have no completed assignments to synchronize, You  have to mark at least 1 Household for synchronization");
@@ -336,10 +342,11 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
 
                 }
                 else{
-
+                    BackUpd();
 
                     if (Validator.isNetworkAvailable(Dashboard.this)) {
                         //Proceed connect to web service
+
                         new syncDataToServer().execute();
 
 
@@ -2195,4 +2202,59 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
             e.printStackTrace();
         }
     }
+
+    public void BackUpd(){
+        try{
+            ContextWrapper c = new ContextWrapper(this);
+            final String inFileName = c.getDatabasePath("BIAS.db").toString();
+            Log.d("Location",inFileName);
+            File dbFile = new File(inFileName);
+            FileInputStream fis = new FileInputStream(dbFile);
+
+            Calendar calendar = Calendar.getInstance();
+
+            int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+            int currentMinute = calendar.get(Calendar.MINUTE);
+            int second = calendar.get(Calendar.SECOND);
+            int date = calendar.get(Calendar.DAY_OF_MONTH);
+            int month = calendar.get(Calendar.MONTH);
+            int year = calendar.get(Calendar.YEAR);
+            String DBName= "BaisCopy"+date+month+year+second+".db";
+
+            String outFileName = c.getFilesDir()+"/"+DBName;
+            Log.d("Backup db", outFileName);
+            // Open the empty db as the output stream
+            OutputStream output = new FileOutputStream(outFileName);
+
+            // Transfer bytes from the inputfile to the outputfile
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fis.read(buffer))>0){
+                output.write(buffer, 0, length);
+            }
+
+            // Close the streams
+            output.flush();
+            output.close();
+            fis.close();
+            //Log.d("Backup Done","Failed to backup");
+        }catch(Exception f){
+            Log.d("Backup failed","Failed to backup"+f.toString());
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

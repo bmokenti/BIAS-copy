@@ -380,7 +380,7 @@ public class q1004 extends AppCompatActivity implements Serializable {
                                                 if (edtyears.getText().toString().length() == 0) {
                                                     individual.setQ1004_Year("0000");
                                                 }
-                                                else {
+                                                else  {
                                                     individual.setQ1004_Year(edtyears.getText().toString());
                                                 }
 

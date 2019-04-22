@@ -3729,7 +3729,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         return hhDetails;
     }
 
-    ///stopped here*******************************************************************************************************************************************************************
+ ///stopped here*******************************************************************************************************************************************************************
     public List<PersonRoster> getdataHhP(String assignment_ID, String Batch) {
 
         List<PersonRoster> PRoster = new ArrayList<>();
@@ -4902,6 +4902,10 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             ind.setQ1002bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1002bOther")));
             ind.setQ1003(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1003")));
             if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null && cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).length() == 8) {
+                ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0, 2));
+                ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(2, 4));
+                ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(4, 8));
+            }else if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null && cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).length() == 4){
                 ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0, 2));
                 ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(2, 4));
                 ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(4, 8));

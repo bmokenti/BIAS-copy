@@ -38,6 +38,7 @@ public class Q801Tb extends AppCompatActivity implements Serializable {
     protected CheckBox chkc99, chkc9999;
     protected DatabaseHelper myDB;
     protected RadioButton selectedRbtn, selectedRbtnb, selectedRbtnd, selectedRbtne, selectedRbtnf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,22 +1,30 @@
 package bw.org.statsbots.bias;
 
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Vibrator;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.apache.commons.io.comparator.LastModifiedFileComparator;
+
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,13 +32,16 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
 
 public class appSettings extends AppCompatActivity {
     EditText txt;
     SharedPreferences preferences;
     public static final String MY_PREFS_NAME = "bw.org.statsbots.bias.enumerator";
     SharedPreferences.Editor editor;
-    Button btnSendTech;
+    Button btnSendTech,btnRestore;
 
     protected LibraryClass lib = new LibraryClass();
     public String readData(Context mcoContext,String sFileName){
@@ -68,7 +79,8 @@ public class appSettings extends AppCompatActivity {
         File gpxfile = new File(file, sFileName);
         if(gpxfile.exists())
         {
-            try{
+            try
+            {
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 String line;
                 while ((line = br.readLine()) != null){
@@ -175,6 +187,7 @@ public class appSettings extends AppCompatActivity {
         });
 
         btnSendTech = findViewById(R.id.button5);
+        btnRestore = findViewById(R.id.button5);
 
         btnSendTech.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,6 +275,63 @@ d.printStackTrace();
             }
         });
 
+        btnRestore.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                final List<File> l  = getDir();
+
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(appSettings.this);
+                //builderSingle.setIcon(R.drawable.ic_launcher);
+                builderSingle.setTitle("Select One Name:-");
+
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(appSettings.this, android.R.layout.select_dialog_singlechoice);
+                for(int i=0; i<5;i++){
+                    if(i<l.size()){
+                        String s = "BAISBak_"+l.get(i).getName();
+                        arrayAdapter.add(s);
+                    }
+
+
+                }
+
+
+                builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String strName = arrayAdapter.getItem(which);
+                        AlertDialog.Builder builderInner = new AlertDialog.Builder(appSettings.this);
+                        builderInner.setMessage(strName);
+                        builderInner.setTitle("Are you sure you want to backup to this restore point?");
+                        builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,int which) {
+                               // Remove the main db and copy the backup to this point
+
+
+                            }
+                        });
+                        builderInner.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builderInner.show();
+                    }
+                });
+                builderSingle.show();
+
+
+            }
+        });
 
 
     }
@@ -277,4 +347,79 @@ d.printStackTrace();
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
+
+    /**
+     * tHIS METHOD GET list of all the  available back up created since the EA started
+     * @return
+     */
+    public List<File> getDir(){
+        ContextWrapper c = new ContextWrapper(this);
+        //String path = c.getFilesDir()+"/";
+        String path= c.getFilesDir()+"/";
+        Log.d("Files", "Path: " + path);
+        File directory = new File(path);
+        File[] f = directory.listFiles();
+
+        Arrays.sort(f, LastModifiedFileComparator.LASTMODIFIED_COMPARATOR);
+        System.out.println("\nLast Modified Ascending Order (LASTMODIFIED_COMPARATOR)");
+
+        //Arrays.sort(f, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+        //System.out.println("\nLast Modified Descending Order (LASTMODIFIED_REVERSE)");
+
+
+
+
+        List<File> files = Arrays.asList(f) ;
+
+        Log.d("Files", "Size: "+ files.size());
+        for (int i = 0; i < files.size(); i++)
+        {
+            Log.d("Files", "FileName:" + files.get(i).getName());
+        }
+        return files;
+    }
+
+    public void BackUpd(){
+        try{
+            ContextWrapper c = new ContextWrapper(this);
+            final String inFileName = c.getDatabasePath("BIAS.db").toString();
+            Log.d("Location",inFileName);
+            File dbFile = new File(inFileName);
+            FileInputStream fis = new FileInputStream(dbFile);
+
+            Calendar calendar = Calendar.getInstance();
+
+            int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+            int currentMinute = calendar.get(Calendar.MINUTE);
+            int second = calendar.get(Calendar.SECOND);
+            int date = calendar.get(Calendar.DAY_OF_MONTH);
+            int month = calendar.get(Calendar.MONTH);
+            int year = calendar.get(Calendar.YEAR);
+            String DBName= "BaisCopy"+date+month+year+second+".db";
+
+            String outFileName = c.getFilesDir()+"/"+DBName;
+            Log.d("Backup db", outFileName);
+            // Open the empty db as the output stream
+            OutputStream output = new FileOutputStream(outFileName);
+
+            // Transfer bytes from the inputfile to the outputfile
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fis.read(buffer))>0){
+                output.write(buffer, 0, length);
+            }
+
+            // Close the streams
+            output.flush();
+            output.close();
+            fis.close();
+            //Log.d("Backup Done","Failed to backup");
+        }catch(Exception f){
+            Log.d("Backup failed","Failed to backup"+f.toString());
+        }
+
+
+    }
+
+
 }
