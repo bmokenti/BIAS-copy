@@ -4910,6 +4910,17 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(2, 4));
                 ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(4, 8));
             }
+            else
+            {
+                if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null && cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).length() == 4)
+                {
+
+                    ind.setQ1004_Day("00");
+                    ind.setQ1004_Month("00");
+                    ind.setQ1004_Year("0000");
+                }
+            }
+
             ind.setQ1004a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004a")));
             ind.setQ1004b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004b")));
             ind.setQ1004bOther(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004bOther")));
@@ -6185,6 +6196,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 String P11 = cursor1.getString(cursor1.getColumnIndexOrThrow("P11"));
                 String P12 = cursor1.getString(cursor1.getColumnIndexOrThrow("P12"));
                 String P13 = cursor1.getString(cursor1.getColumnIndexOrThrow("P13"));
+                String P13Other = cursor1.getString(cursor1.getColumnIndexOrThrow("P13Other"));
                 String P14 = cursor1.getString(cursor1.getColumnIndexOrThrow("P14"));
                 String P15 = cursor1.getString(cursor1.getColumnIndexOrThrow("P15"));
                 String P16 = cursor1.getString(cursor1.getColumnIndexOrThrow("P16"));
@@ -6256,6 +6268,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 dataModel1.setP11(P11);
                 dataModel1.setP12(P12);
                 dataModel1.setP13(P13);
+                dataModel1.setP13Other(P13Other);
                 dataModel1.setP14(P14);
                 dataModel1.setP15(P15);
                 dataModel1.setP16(P16);
@@ -6685,10 +6698,20 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                 ind.setQ1003(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1003")));
 
-                if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null) {
+                if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null  && cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).length() == 8  ) {
                     ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0, 2));
                     ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(2, 4));
                     ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(4, 8));
+                }
+                else
+                {
+                    if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null && cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).length() == 4)
+                    {
+
+                        ind.setQ1004_Day("00");
+                        ind.setQ1004_Month("00");
+                        ind.setQ1004_Year("0000");
+                    }
                 }
 
 
@@ -7224,7 +7247,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ504_7(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Parental")));
                 ind.setQ504_8(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Long")));
                 ind.setQ504_10(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_FearHIV")));
-
                 ind.setQ504_Other(cursor2.getString(cursor2.getColumnIndexOrThrow("Q504_Other")));
 
                 ind.setQ601(cursor2.getString(cursor2.getColumnIndexOrThrow("Q601")));
@@ -7476,10 +7498,20 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                 ind.setQ1003(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1003")));
 
-                if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null) {
+                if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null && cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).length() == 8) {
                     ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0, 2));
                     ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(2, 4));
                     ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(4, 8));
+                }
+                else
+                {
+                    if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null && cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).length() == 4)
+                    {
+
+                        ind.setQ1004_Day("00");
+                        ind.setQ1004_Month("00");
+                        ind.setQ1004_Year("0000");
+                    }
                 }
 
 
@@ -8237,6 +8269,16 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                     ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(2, 4));
                     ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(4, 8));
                 }
+                else
+                {
+                    if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null && cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).length() == 4)
+                    {
+
+                        ind.setQ1004_Day("00");
+                        ind.setQ1004_Month("00");
+                        ind.setQ1004_Year("0000");
+                    }
+                }
 
 
                 ind.setQ1004a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004a")));
@@ -8700,10 +8742,21 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                 ind.setQ1003(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1003")));
 
-                ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0, 2));
-                ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(2, 4));
-                ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(4, 8));
+                if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null && cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).length() == 8) {
+                    ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0, 2));
+                    ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(2, 4));
+                    ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(4, 8));
+                }
+else
+                {
+                    if (cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null && cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).length() == 4)
+                    {
 
+                        ind.setQ1004_Day("00");
+                        ind.setQ1004_Month("00");
+                        ind.setQ1004_Year("0000");
+                    }
+                }
 
                 ind.setQ1004a(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004a")));
                 ind.setQ1004b(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004b")));

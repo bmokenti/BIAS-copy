@@ -121,7 +121,7 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
 
 
 
-        if(p1.getP13Other()!= null  ) {
+        if(p1.getP13()!= null  ) {
             if (p1.getP13() != null && p1.getP13().equals("Ot") || p1.getP13().equals("O") )
             {
                 rbtn6.setChecked(true);
@@ -351,7 +351,8 @@ public class P13 extends AppCompatActivity implements Serializable, View.OnClick
                                 else
                                 {
                                     myDB.updateRoster(thisHouse, "P13Other", null, String.valueOf(p1.getSRNO()));
-                                }myDB.updateRoster(thisHouse, "P14", null, String.valueOf(p1.getSRNO()));
+                                }
+                                myDB.updateRoster(thisHouse, "P14", null, String.valueOf(p1.getSRNO()));
                                 myDB.updateRoster(thisHouse, "P15", null, String.valueOf(p1.getSRNO()));
                                 myDB.updateRoster(thisHouse, "P16", null, String.valueOf(p1.getSRNO()));
                                 myDB.close();

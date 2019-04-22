@@ -240,7 +240,7 @@ public class q1013 extends AppCompatActivity implements Serializable {
             case R.id.pause:
                 // Show the settings activity
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setMessage("[Demo!] Are you sure you want to pause the interview");
+                alertDialogBuilder.setMessage("Are you sure you want to pause the interview");
                 alertDialogBuilder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             @Override
