@@ -407,7 +407,8 @@
                                 android:layout_toLeftOf="@id/datebtn"
                                 android:background="@drawable/edit_text_background"
                                 android:hint="date"
-                                android:inputType="text"
+                                android:inputType="none"
+
                                 android:padding="3dp"
                                 android:paddingLeft="10dp" />
                         </LinearLayout>

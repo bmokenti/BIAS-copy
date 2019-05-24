@@ -99,7 +99,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
 
 
 
-                if (  ( individual.getQ102().equals("") || individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 18 )  || (Integer.valueOf(p1.getP04YY()) >= 18 ) ) {
+                if (  (  individual.getQ102() != null  && Integer.valueOf(individual.getQ102()) >= 18 )  || (Integer.valueOf(p1.getP04YY()) >= 18 ) ) {
                     setTitle("Individual Consent [18-64]");
                 }
                 else
@@ -107,7 +107,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                     setTitle("Individual Assent 15-17");
                 }
 
-                if(individual.getQ102().equals("") || individual.getQ102() != null && Integer.valueOf(individual.getQ102()) >= 65 &&
+                if(individual.getQ102() != null  && Integer.valueOf(individual.getQ102()) >= 65 &&
                         (sample.getStatusCode().equals("2") && thisHous.get(0).getHIVTB40().equals("1")) )
                 {
                     Intent intent = new Intent(HIVAdultsConsent18Plus.this, HIVConsentOver64.class);
@@ -116,7 +116,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                     startActivity(intent);
                 }
 
-                if(( individual.getQ102().equals("") || individual.getQ102() != null && Integer.valueOf(individual.getQ102()) <= 17  && individual.getPrntlConsentBloodDraw().equals(2) && individual.getPrntlConsentRHT().equals(2)))
+                if((individual.getQ102() != null  && Integer.valueOf(individual.getQ102()) <= 17  && individual.getPrntlConsentBloodDraw().equals(2) && individual.getPrntlConsentRHT().equals(2)))
                 {
                     Intent intent = new Intent(HIVAdultsConsent18Plus.this, Dashboard.class);
                     intent.putExtra("Individual", individual);
@@ -129,7 +129,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                 rg4 = (RadioGroup) findViewById(R.id.rg4);
                 rg5 = (RadioGroup) findViewById(R.id.rg5);
                 rg6 = (RadioGroup) findViewById(R.id.rg6);
-        rbtnIndeterminate = (RadioButton) findViewById(R.id.rbtnIndeterminate);
+                rbtnIndeterminate = (RadioButton) findViewById(R.id.rbtnIndeterminate);
                 rbtn1 = (RadioButton) findViewById(R.id.rbtn1);
                 rbtn2 = (RadioButton) findViewById(R.id.rbtn2);
                 rbtn3 = (RadioButton) findViewById(R.id.rbtn3);
@@ -164,7 +164,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                 t6  = (TextView) findViewById(R.id.bloodColectionStatus);
                 t5  = (TextView) findViewById(R.id.txtstore);
 
-
+        EdtDate.setEnabled(false);
                 if ((individual.getQ801f() != null && individual.getQ801f().equals("1"))
                         && (individual.getQ904() != null && individual.getQ904().equals("1"))  )
                 {
@@ -265,7 +265,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                     t6.setTextColor(Color.LTGRAY);
                 }
 
-                if (individual.getQ102().equals("") || individual.getQ102() != null && Integer.valueOf(individual.getQ102())>= 15 )
+                if (individual.getQ102() != null && Integer.valueOf(individual.getQ102())>= 15 )
                 {
                     if (individual.getIndvBloodDraw() == null || individual.getIndvBloodDraw() != null ) {
                         vol3.setEnabled(false);
@@ -627,7 +627,7 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                             if (rbtn1.isChecked() && (individual.getQ801f() != null && individual.getQ801f().equals("1"))
                                                                     && (individual.getQ904() != null && individual.getQ904().equals("1"))) {
 
-                                                                individual.setIndConsentQuestionnaire(selected1.getText().toString().substring(0, 1));
+                                                               // individual.setIndConsentQuestionnaire(selected1.getText().toString().substring(0, 1));
 
                                                                 individual.setIndvBloodDraw(selected1.getText().toString().substring(0, 1));
                                                                 if (vol1.isChecked()) {
@@ -662,10 +662,20 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                                 individual.setIndRapidDate(EdtDate.getText().toString());
                                                                 individual.setIndBloodSampleCollected(selected6.getText().toString().substring(0, 1));
 
-
+                                                                myDB.updateInd("IndvBloodDraw", individual.getAssignmentID(), individual.getBatch(), individual.getIndvBloodDraw(), String.valueOf(individual.getSRNO()));
+                                                                myDB.updateInd("BloodVol_1", individual.getAssignmentID(), individual.getBatch(), individual.getBloodVol_1(), String.valueOf(individual.getSRNO()));
+                                                                myDB.updateInd("BloodVol_4", individual.getAssignmentID(), individual.getBatch(), individual.getBloodVol_4(), String.valueOf(individual.getSRNO()));
+                                                                myDB.updateInd("BloodVol_6", individual.getAssignmentID(), individual.getBatch(), individual.getBloodVol_6(), String.valueOf(individual.getSRNO()));
+                                                                myDB.updateInd("BloodVol_10", individual.getAssignmentID(), individual.getBatch(), individual.getBloodVol_10(), String.valueOf(individual.getSRNO()));
+                                                                myDB.updateInd("BloodVolComment", individual.getAssignmentID(), individual.getBatch(),individual.getBloodVolComment(), String.valueOf(individual.getSRNO()));
                                                                 myDB.updateInd("B8_O15_Rapid", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
                                                                 myDB.updateInd("IndRapidResults", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
-                                                                myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                                                myDB.updateInd("IndBloodLabTest", individual.getAssignmentID(), individual.getBatch(), individual.getIndBloodLabTest(), String.valueOf(individual.getSRNO()));
+                                                                myDB.updateInd("IndBloodStore", individual.getAssignmentID(), individual.getBatch(), individual.getIndBloodStore(), String.valueOf(individual.getSRNO()));
+                                                                myDB.updateInd("IndRapidDate", individual.getAssignmentID(), individual.getBatch(), individual.getIndRapidDate(), String.valueOf(individual.getSRNO()));
+                                                                 myDB.updateInd("IndBloodSampleCollected", individual.getAssignmentID(), individual.getBatch(),individual.getIndBloodSampleCollected(), String.valueOf(individual.getSRNO()));
+
+                                                                //myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
 
                                                                 /*******************Launch VISIT***************************/
@@ -930,9 +940,21 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                                     myDB.onOpen(myDB.getReadableDatabase());
                                                                     myDB.getWritableDatabase();
 
+                                                                    myDB.updateInd("IndvBloodDraw", individual.getAssignmentID(), individual.getBatch(), individual.getIndvBloodDraw(), String.valueOf(individual.getSRNO()));
+                                                                    myDB.updateInd("BloodVol_1", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+                                                                    myDB.updateInd("BloodVol_4", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+                                                                    myDB.updateInd("BloodVol_6", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+                                                                    myDB.updateInd("BloodVol_10", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+                                                                    myDB.updateInd("BloodVolComment", individual.getAssignmentID(), individual.getBatch(),null, String.valueOf(individual.getSRNO()));
                                                                     myDB.updateInd("B8_O15_Rapid", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
                                                                     myDB.updateInd("IndRapidResults", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
-                                                                    myDB.updateIndividual(myDB.getWritableDatabase(), individual);
+                                                                    myDB.updateInd("IndBloodLabTest", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+                                                                    myDB.updateInd("IndBloodStore", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+                                                                    myDB.updateInd("IndRapidDate", individual.getAssignmentID(), individual.getBatch(), individual.getIndRapidDate(), String.valueOf(individual.getSRNO()));
+                                                                    myDB.updateInd("IndBloodSampleCollected", individual.getAssignmentID(), individual.getBatch(),null, String.valueOf(individual.getSRNO()));
+
+
+                                                                   // myDB.updateIndividual(myDB.getWritableDatabase(), individual);
 
 
                                                                     /*******************Launch VISIT***************************/
@@ -1487,6 +1509,34 @@ public class HIVAdultsConsent18Plus extends AppCompatActivity implements Seriali
                                                                         //Next question P17
                                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                                         myDB.getWritableDatabase();
+                                                                        myDB.updateInd("IndvBloodDraw", individual.getAssignmentID(), individual.getBatch(), individual.getIndvBloodDraw(), String.valueOf(individual.getSRNO()));
+                                                                        myDB.updateInd("BloodVol_1", individual.getAssignmentID(), individual.getBatch(), individual.getBloodVol_1(), String.valueOf(individual.getSRNO()));
+                                                                        myDB.updateInd("BloodVol_4", individual.getAssignmentID(), individual.getBatch(), individual.getBloodVol_4(), String.valueOf(individual.getSRNO()));
+                                                                        myDB.updateInd("BloodVol_6", individual.getAssignmentID(), individual.getBatch(), individual.getBloodVol_6(), String.valueOf(individual.getSRNO()));
+                                                                        myDB.updateInd("BloodVol_10", individual.getAssignmentID(), individual.getBatch(), individual.getBloodVol_10(), String.valueOf(individual.getSRNO()));
+
+                                                                        if ((individual.getQ801f() != null && !individual.getQ801f().equals("1"))
+                                                                                && (individual.getQ904() != null && !individual.getQ904().equals("1")))
+                                                                        {
+                                                                            myDB.updateInd("B8_O15_Rapid", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+                                                                            myDB.updateInd("IndRapidResults", individual.getAssignmentID(), individual.getBatch(), null, String.valueOf(individual.getSRNO()));
+
+                                                                        } else {
+                                                                            myDB.updateInd("B8_O15_Rapid", individual.getAssignmentID(), individual.getBatch(), individual.getB8_O15_Rapid(), String.valueOf(individual.getSRNO()));
+
+
+                                                                            if (rbtn3.isChecked()) {
+                                                                                myDB.updateInd("IndRapidResults", individual.getAssignmentID(), individual.getBatch(), individual.getIndRapidResults(), String.valueOf(individual.getSRNO()));
+
+                                                                            }
+                                                                        }
+
+                                                                        myDB.updateInd("BloodVolComment", individual.getAssignmentID(), individual.getBatch(),individual.getBloodVolComment(), String.valueOf(individual.getSRNO()));
+                                                                        myDB.updateInd("IndBloodLabTest", individual.getAssignmentID(), individual.getBatch(), individual.getIndBloodLabTest(), String.valueOf(individual.getSRNO()));
+                                                                        myDB.updateInd("IndBloodStore", individual.getAssignmentID(), individual.getBatch(), individual.getIndBloodStore(), String.valueOf(individual.getSRNO()));
+                                                                        myDB.updateInd("IndRapidDate", individual.getAssignmentID(), individual.getBatch(), individual.getIndRapidDate(), String.valueOf(individual.getSRNO()));
+                                                                        myDB.updateInd("IndBloodSampleCollected", individual.getAssignmentID(), individual.getBatch(),individual.getIndBloodSampleCollected(), String.valueOf(individual.getSRNO()));
+
                                                                         myDB.updateIndividual(myDB.getWritableDatabase(), individual);
                                                                         myDB.close();
 

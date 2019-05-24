@@ -120,6 +120,8 @@ public class HIVParentalConsent10_14yrs extends AppCompatActivity implements Ser
                // t6 = (TextView) findViewById(R.id.bloodColectionStatus);
                // t5 = (TextView) findViewById(R.id.txtstore);
 
+
+        EdtDate.setEnabled(false);
                 rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup radioGroup, int i) {

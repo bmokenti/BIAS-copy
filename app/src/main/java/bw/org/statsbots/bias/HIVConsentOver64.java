@@ -106,7 +106,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
         btnPrev = (Button) findViewById(R.id.btnprev);
         rbtnIndeterminate = (RadioButton) findViewById(R.id.rbtnIndeterminate);
         btnloadinfo = (Button) findViewById(R.id.LoadConsetInfo);
-
+        EdtDate.setEnabled(false);
         //  rbtnIndeterminate.setChecked(false);
         vol1 = (CheckBox) findViewById(R.id.vol1);
         vol2 = (CheckBox) findViewById(R.id.vol2);
@@ -632,7 +632,11 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                     if (rbtn2.isChecked()) {
 
                                                         p1.setBloodDraw(selected1.getText().toString().substring(0, 1));
+                                                        p1.setRapid(selected2.getText().toString().substring(0, 1));
 
+
+                                                        p1.setRapidDate(EdtDate.getText().toString());
+                                                        myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getBloodDraw(), String.valueOf(p1.getSRNO()));
                                                         myDB.updateConsents("BloodVolume_1", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
@@ -640,15 +644,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                         myDB.updateConsents("BloodVolume_6", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
                                                         myDB.updateConsents("BloodVolume_10", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
                                                         myDB.updateConsents("BloodVolumeComment", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
-                                                        myDB.updateConsents("BloodLabTest", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
-                                                        myDB.updateConsents("BloodStore", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
-                                                        myDB.updateConsents("BloodSampleCollected", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
 
-
-                                                        p1.setRapid(selected2.getText().toString().substring(0, 1));
-
-                                                        myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("Rapid", p1.getAssignmentID(), p1.getBatch(), p1.getRapid(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 
@@ -668,12 +664,20 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                             myDB.close();
                                                         }
 
-                                                        p1.setRapidDate(EdtDate.getText().toString());
-
                                                         myDB.onOpen(myDB.getReadableDatabase());
-                                                        //  myDB.updateRoster(thisHouse,"tRapidDate",p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodLabTest", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodStore", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
                                                         myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+                                                        myDB.updateConsents("BloodSampleCollected", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
                                                         myDB.close();
+
+
+
+
+//                                                        myDB.onOpen(myDB.getReadableDatabase());
+//                                                        //  myDB.updateRoster(thisHouse,"tRapidDate",p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+//                                                        myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
+//                                                        myDB.close();
 
 
                                                         /*******************Launch VISIT***************************/
@@ -907,7 +911,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getBloodDraw(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
 
                                                         if (vol1.isChecked()) {
@@ -919,7 +923,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolume_1", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_1(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         // myDB.updateRoster(thisHouse,"BloodVolume_1",p1.getBloodVolume_1(), String.valueOf(p1.getSRNO()));
                                                         if (vol2.isChecked()) {
@@ -931,7 +935,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolume_4", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_4(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
                                                         //myDB.updateRoster(thisHouse,"BloodVolume_4",p1.getBloodVolume_4(), String.valueOf(p1.getSRNO()));
                                                         if (vol3.isChecked()) {
                                                             p1.setBloodVolume_6("1");
@@ -941,7 +945,7 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolume_6", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_6(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
                                                         //myDB.updateRoster(thisHouse,"BloodVolume_6",p1.getBloodVolume_6(), String.valueOf(p1.getSRNO()));
                                                         if (vol4.isChecked()) {
                                                             p1.setBloodVolume_10("1");
@@ -952,21 +956,21 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolume_10", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_10(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
 
                                                         p1.setBloodVolumeComment(Edttubevolume.getText().toString());
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolumeComment", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolumeComment(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
 
                                                         p1.setRapid(selected2.getText().toString().substring(0, 1));
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("Rapid", p1.getAssignmentID(), p1.getBatch(), p1.getRapid(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         if (rbtn3.isChecked()) {
 
@@ -975,28 +979,35 @@ public class HIVConsentOver64 extends AppCompatActivity implements Serializable 
                                                             myDB.onOpen(myDB.getReadableDatabase());
                                                             //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
                                                             myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
-                                                            myDB.close();
-                                                        }
 
+                                                        }
+else
+                                                        {
+
+                                                            myDB.onOpen(myDB.getReadableDatabase());
+                                                            //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
+                                                            myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
+
+                                                        }
 
                                                         p1.setBloodLabTest(selected4.getText().toString().substring(0, 1));
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodLabTest", p1.getAssignmentID(), p1.getBatch(), p1.getBloodLabTest(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         p1.setBloodStore(selected5.getText().toString().substring(0, 1));
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodStore", p1.getAssignmentID(), p1.getBatch(), p1.getBloodStore(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
 
                                                         p1.setRapidDate(EdtDate.getText().toString());
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         p1.setBloodSampleCollected(selected6.getText().toString().substring(0, 1));
 

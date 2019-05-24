@@ -202,6 +202,8 @@ int wks = Integer.valueOf(p1.getP04WKS());
         t6  = (TextView) findViewById(R.id.bloodColectionStatus);
         t5  = (TextView) findViewById(R.id.txtstore);
 
+        EdtDate.setEnabled(false);
+
         if(rbtn1.isChecked() && ((yy == 1 && mm <= 6 ) || (yy == 00 && mm <= 11) || (mm == 1 && wks >= 2)))
         {
             rbtn3.setEnabled(false);
@@ -762,23 +764,23 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
                                                             myDB.onOpen(myDB.getReadableDatabase());
                                                             myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentRHT(), String.valueOf(p1.getSRNO()));
-                                                            myDB.close();
+
                                                         } else {
                                                             myDB.onOpen(myDB.getReadableDatabase());
                                                             myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
-                                                            myDB.close();
+
                                                         }
 
                                                         if (rbtn3.isChecked()) {
 
                                                             p1.setRapidResults(selected3.getText().toString().substring(0, 1));
 
-                                                            myDB.onOpen(myDB.getReadableDatabase());
+
                                                             //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
                                                             myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
-                                                            myDB.close();
+
                                                         } else {
-                                                            myDB.onOpen(myDB.getReadableDatabase());
+
                                                             //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
                                                             myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
                                                             myDB.close();
@@ -786,19 +788,19 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
                                                         p1.setB3_Guardian(EdtGuardian.getText().toString());
 
-                                                        myDB.onOpen(myDB.getReadableDatabase());
+
                                                         myDB.updateConsents("B3_Guardian", p1.getAssignmentID(), p1.getBatch(), p1.getB3_Guardian(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         p1.setRapidDate(EdtDate.getText().toString());
 
-                                                        myDB.onOpen(myDB.getReadableDatabase());
+
                                                         myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
                                                         /*******UPDATE HOUSE FOR PARTIAL SEND*****************/
 
                                                         //UPDATE HOUSEHOLD
-                                                        myDB.updateHousehold(myDB.getReadableDatabase(), thisHouse.getAssignment_ID(), thisHouse.getBatchNumber(), "Clear", "3");
-                                                        myDB.close();
+                                                       // myDB.updateHousehold(myDB.getReadableDatabase(), thisHouse.getAssignment_ID(), thisHouse.getBatchNumber(), "Clear", "3");
+
                                                         /********************END PARTIAL****************/
 
 
@@ -813,7 +815,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("ChPrntlConsentBloodDraw", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentBloodDraw(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
 
                                                         if (vol1.isChecked()) {
@@ -823,9 +825,9 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                                             p1.setBloodVolume_1("2");
                                                         }
 
-                                                        myDB.onOpen(myDB.getReadableDatabase());
+
                                                         myDB.updateConsents("BloodVolume_1", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_1(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         // myDB.updateRoster(thisHouse,"BloodVolume_1",p1.getBloodVolume_1(), String.valueOf(p1.getSRNO()));
                                                         if (vol2.isChecked()) {
@@ -837,7 +839,7 @@ int wks = Integer.valueOf(p1.getP04WKS());
 
                                                         myDB.onOpen(myDB.getReadableDatabase());
                                                         myDB.updateConsents("BloodVolume_4", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_4(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
                                                         //myDB.updateRoster(thisHouse,"BloodVolume_4",p1.getBloodVolume_4(), String.valueOf(p1.getSRNO()));
                                                         if (vol3.isChecked()) {
                                                             p1.setBloodVolume_6("1");
@@ -845,9 +847,9 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                                             p1.setBloodVolume_6("2");
                                                         }
 
-                                                        myDB.onOpen(myDB.getReadableDatabase());
+
                                                         myDB.updateConsents("BloodVolume_6", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_6(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
                                                         //myDB.updateRoster(thisHouse,"BloodVolume_6",p1.getBloodVolume_6(), String.valueOf(p1.getSRNO()));
                                                         if (vol4.isChecked()) {
                                                             p1.setBloodVolume_10("1");
@@ -856,66 +858,66 @@ int wks = Integer.valueOf(p1.getP04WKS());
                                                         }
 
 
-                                                        myDB.onOpen(myDB.getReadableDatabase());
+
                                                         myDB.updateConsents("BloodVolume_10", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolume_10(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         p1.setBloodVolumeComment(Edttubevolume.getText().toString());
 
-                                                        myDB.onOpen(myDB.getReadableDatabase());
+
                                                         myDB.updateConsents("BloodVolumeComment", p1.getAssignmentID(), p1.getBatch(), p1.getBloodVolumeComment(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         if (rbtn3.isChecked() || rbtn4.isChecked()) {
                                                             p1.setChPrntlConsentRHT(selected2.getText().toString().substring(0, 1));
 
-                                                            myDB.onOpen(myDB.getReadableDatabase());
+
                                                             myDB.updateConsents("ChPrntlConsentRHT", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentRHT(), String.valueOf(p1.getSRNO()));
-                                                            myDB.close();
+
                                                         }
 
                                                         if (rbtn3.isChecked()) {
 
                                                             p1.setRapidResults(selected3.getText().toString().substring(0, 1));
 
-                                                            myDB.onOpen(myDB.getReadableDatabase());
+
                                                             //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
                                                             myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), p1.getRapidResults(), String.valueOf(p1.getSRNO()));
-                                                            myDB.close();
+
                                                         } else {
-                                                            myDB.onOpen(myDB.getReadableDatabase());
+
                                                             //myDB.updateRoster(thisHouse,"RapidResults",p1.getRapidResults(), String.valueOf(p1.getSRNO()));
                                                             myDB.updateConsents("RapidResults", p1.getAssignmentID(), p1.getBatch(), null, String.valueOf(p1.getSRNO()));
-                                                            myDB.close();
+
                                                         }
 
                                                         p1.setChPrntlConsentLabTest(selected4.getText().toString().substring(0, 1));
 
-                                                        myDB.onOpen(myDB.getReadableDatabase());
+
                                                         myDB.updateConsents("ChPrntlConsentLabTest", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentLabTest(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         p1.setChPrntlConsentBloodStore(selected5.getText().toString().substring(0, 1));
 
-                                                        myDB.onOpen(myDB.getReadableDatabase());
+
                                                         myDB.updateConsents("ChPrntlConsentBloodStore", p1.getAssignmentID(), p1.getBatch(), p1.getChPrntlConsentBloodStore(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         //************************set guardian id or name***************************************/
                                                         p1.setB3_Guardian(EdtGuardian.getText().toString());
 
-                                                        myDB.onOpen(myDB.getReadableDatabase());
+
                                                         myDB.updateConsents("B3_Guardian", p1.getAssignmentID(), p1.getBatch(), p1.getB3_Guardian(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         p1.setRapidDate(EdtDate.getText().toString());
-                                                        myDB.onOpen(myDB.getReadableDatabase());
+
                                                         myDB.updateConsents("RapidDate", p1.getAssignmentID(), p1.getBatch(), p1.getRapidDate(), String.valueOf(p1.getSRNO()));
-                                                        myDB.close();
+
 
                                                         p1.setBloodSampleCollected(selected6.getText().toString().substring(0, 1));
 
-                                                        myDB.onOpen(myDB.getReadableDatabase());
+
                                                         myDB.updateConsents("BloodSampleCollected", p1.getAssignmentID(), p1.getBatch(), p1.getBloodSampleCollected(), String.valueOf(p1.getSRNO()));
                                                         myDB.close();
 

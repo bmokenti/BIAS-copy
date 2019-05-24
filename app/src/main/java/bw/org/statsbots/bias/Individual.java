@@ -1587,8 +1587,8 @@ public class Individual implements Serializable {
     }
 
 
-    public void setQ619_11(String q619_13) {
-        Q619_13 = q619_13;
+    public void setQ619_11(String q619_11) {
+        Q619_11 = q619_11;
     }
 
 

@@ -86,8 +86,7 @@ public class TabFragment2 extends Fragment implements Serializable {
                 /***REJECTED COLOR ORANGE**/
                 for(int h = 0; h< RejectedHH.size(); h++)
                 {
-                    Sample s =  myDB.getSample(myDB.getReadableDatabase(), RejectedHH.get(h).getAssignment_ID());
-                    String[] l = s.getDistrictEAVillageLocality().split(":");
+                    Sample s =  myDB.getSample(myDB.getReadableDatabase(), RejectedHH.get(h).getAssignment_ID());String[] l = s.getDistrictEAVillageLocality().split(":");
 
                     hhDetails.add
                     (

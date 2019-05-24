@@ -3202,7 +3202,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             buffer.append("Block:" + res.getString(6) + "\n");
             buffer.append("Ea_status:" + res.getString(7) + "\n");
         }
-        Log.d("DB EA_Assgnments: ", buffer.toString());
+        //Log.d("DB EA_Assgnments: ", buffer.toString());
         // Show all data
         /// myDB.showMessage("Data",buffer.toString());
     }
@@ -4905,10 +4905,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0, 2));
                 ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(2, 4));
                 ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(4, 8));
-            }else if(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")) != null && cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).length() == 4){
-                ind.setQ1004_Day(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(0, 2));
-                ind.setQ1004_Month(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(2, 4));
-                ind.setQ1004_Year(cursor2.getString(cursor2.getColumnIndexOrThrow("Q1004")).substring(4, 8));
             }
             else
             {
@@ -6247,10 +6243,8 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 String IndSP_LabTests = cursor1.getString(cursor1.getColumnIndexOrThrow("IndSP_LabTests"));
                 String IndTB_ConsentDate = cursor1.getString(cursor1.getColumnIndexOrThrow("IndTB_ConsentDate"));
 
-
                 dataModel1.setAssignmentID(cursor1.getString(cursor1.getColumnIndexOrThrow("EA_Assignment_ID")));
                 dataModel1.setBatch(cursor1.getString(cursor1.getColumnIndexOrThrow("BatchNumber")));
-
 
                 dataModel1.setSRNO(Integer.valueOf(SRNO));
                 dataModel1.setP01(P01);
@@ -8406,7 +8400,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
                 //ind.setB8_Yes_No(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Yes_No")));
                 //ind.setB8_Date(cursor2.getString(cursor2.getColumnIndexOrThrow("B8_Date")));
-                ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
+               // ind.setB8_O15_Rapid(cursor2.getString(cursor2.getColumnIndexOrThrow("IndRapidResults")));
                 //ind.setQ801f(cursor2.getString(cursor2.getColumnIndexOrThrow("Q801f")));
                 // ind.setIndRapid_Comment(cursor2.getString(cursor2.getColumnIndexOrThrow("Rapid_Comment")));
 

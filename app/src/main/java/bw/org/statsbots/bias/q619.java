@@ -315,6 +315,17 @@ public class q619 extends AppCompatActivity implements Serializable {
         }
 
 
+        if(ind.getQ619_9()!= null &&  !ind.getQ619_9().equals(""))
+        {
+            if(Integer.parseInt(ind.getQ619_9())== 1)
+            {
+                ck9txt.setChecked(true);
+
+            }else
+            {
+                ck9txt.setChecked(false);
+            }
+        }
 
 
         if(ind.getQ619_Other() != null &&  !ind.getQ619_Other().equals(""))

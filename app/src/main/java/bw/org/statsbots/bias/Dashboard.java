@@ -2219,7 +2219,7 @@ public class Dashboard extends AppCompatActivity implements Serializable, Naviga
             int date = calendar.get(Calendar.DAY_OF_MONTH);
             int month = calendar.get(Calendar.MONTH);
             int year = calendar.get(Calendar.YEAR);
-            String DBName= "BaisCopy"+date+month+year+second+".db";
+            String DBName= "BaisCopy"+date+month+year+currentHour+currentMinute+second+".db";
 
             String outFileName = c.getFilesDir()+"/"+DBName;
             Log.d("Backup db", outFileName);
